@@ -39,7 +39,7 @@ const modules = [
         title: "What is a random variable?",
         description:
           "Understand random variables, notation, discrete and continuous cases, expectation and variance.",
-        href: "/courses/statistics-foundation/modules/random-variables-distributions/lessons/random-variable",
+        href: "/courses/statistics-foundation/modules/random-variables-distributions/lessons/what-is-a-random-variable",
       },
       {
         title: "Expected value and variance",
@@ -160,12 +160,13 @@ export default function StatisticsFoundationCoursePage() {
           <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
             A structured foundation course with 5 modules. Each lesson contains a
             conversational lecture, detailed theoretical notes, worked examples,
-            interactive components where useful, coding practice if needed, and a quiz.
+            interactive components where useful, coding practice if needed, and a
+            quiz.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href="/courses/statistics-foundation/modules/random-variables-distributions/lessons/random-variable"
+              href="/courses/statistics-foundation/modules/random-variables-distributions/lessons/what-is-a-random-variable"
               className="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500"
             >
               Open sample lesson
@@ -189,7 +190,9 @@ export default function StatisticsFoundationCoursePage() {
           </div>
 
           <div className="rounded-2xl bg-slate-50 p-5">
-            <p className="text-sm font-semibold text-slate-500">Lesson format</p>
+            <p className="text-sm font-semibold text-slate-500">
+              Lesson format
+            </p>
             <p className="mt-2 text-lg font-bold text-slate-950">
               Lecture, Notes, Quiz
             </p>
