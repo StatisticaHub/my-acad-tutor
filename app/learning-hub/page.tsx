@@ -1,3 +1,11 @@
+const basePath =
+  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+
+function withBasePath(href: string) {
+  if (href === "/") return `${basePath}/`;
+  return `${basePath}${href}/`;
+}
+
 const pathways = [
   {
     title: "Statistics Foundation",
@@ -46,7 +54,7 @@ export default function LearningHubPage() {
       <section className="px-5 py-16 md:px-8 md:py-20">
         <div className="mx-auto max-w-7xl">
           <a
-            href="/"
+            href={withBasePath("/")}
             className="text-sm font-black text-blue-700 hover:text-blue-900"
           >
             ← Back to homepage
@@ -79,7 +87,9 @@ export default function LearningHubPage() {
                 <li>Start with the course that matches your current level.</li>
                 <li>Study lessons in order instead of jumping randomly.</li>
                 <li>Use interactive labs and quizzes to check understanding.</li>
-                <li>Return to detailed notes when mathematical ideas feel unclear.</li>
+                <li>
+                  Return to detailed notes when mathematical ideas feel unclear.
+                </li>
               </ul>
             </div>
           </div>
@@ -88,7 +98,7 @@ export default function LearningHubPage() {
             {pathways.map((pathway) => (
               <a
                 key={pathway.title}
-                href={pathway.href}
+                href={withBasePath(pathway.href)}
                 className="group flex min-h-[420px] flex-col rounded-[1.7rem] border border-[#ded9cf] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex flex-wrap items-center gap-2">
