@@ -109,7 +109,7 @@ export default function ServicesPage() {
           <SectionHeading
             eyebrow="How it works"
             title="A simple support process."
-            description="The goal is not to give shortcuts. The goal is to help you understand the work properly and build confidence."
+            description="The goal is not to give shortcuts. The goal is to help students understand the work properly and build confidence."
           />
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -141,7 +141,7 @@ export default function ServicesPage() {
             <SectionHeading
               eyebrow="Responsible learning"
               title="Academic integrity is built into the platform."
-              description="Support is designed to improve understanding, not replace your own academic work."
+              description="Support is designed to improve understanding, not replace the student’s own academic work."
             />
           </div>
 
@@ -150,7 +150,7 @@ export default function ServicesPage() {
 
             <ul className="mt-6 space-y-4 text-sm leading-6 text-slate-300">
               <li>✓ Explain concepts, methods and statistical reasoning.</li>
-              <li>✓ Help you understand analysis workflows and interpretation.</li>
+              <li>✓ Help students understand analysis workflows and interpretation.</li>
               <li>✓ Provide feedback, planning support and learning guidance.</li>
               <li>✓ Support responsible skill development in R, Python and statistics.</li>
             </ul>
