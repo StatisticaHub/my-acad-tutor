@@ -1,20 +1,18 @@
-import Image from "next/image";
+const basePath =
+  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 export default function Logo({ dark = false }: { dark?: boolean }) {
   return (
-    <a href="/" className="flex items-center gap-3">
+    <a href={`${basePath}/`} className="flex items-center gap-3">
       <div
         className={`flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border ${
           dark ? "border-white/15 bg-white" : "border-neutral-200 bg-white"
         }`}
       >
-        <Image
-          src="/images/my-academic-tutor-logo.png"
+        <img
+          src={`${basePath}/images/my-academic-tutor-logo.png`}
           alt="My Academic Tutor logo"
-          width={48}
-          height={48}
           className="h-full w-full object-cover"
-          priority
         />
       </div>
 

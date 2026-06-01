@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+
+const basePath =
+  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 const navLinks = [
   { label: "Start Here", href: "/start-here" },
@@ -12,21 +14,22 @@ const navLinks = [
   { label: "Resources", href: "/resources" },
 ];
 
+function withBasePath(href: string) {
+  return `${basePath}${href}/`;
+}
+
 export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-[#f7f4ee]/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
-        <a href="/" className="flex items-center gap-4">
+        <a href={`${basePath}/`} className="flex items-center gap-4">
           <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-neutral-300 bg-white shadow-sm">
-            <Image
-              src="/images/my-academic-tutor-logo.png"
+            <img
+              src={`${basePath}/images/my-academic-tutor-logo.png`}
               alt="My Academic Tutor logo"
-              width={56}
-              height={56}
               className="h-full w-full object-cover"
-              priority
             />
           </div>
 
@@ -44,7 +47,7 @@ export default function Header() {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={withBasePath(link.href)}
               className="rounded-full px-4 py-2 text-sm font-semibold text-neutral-700 transition hover:bg-white hover:text-[#8b1116]"
             >
               {link.label}
@@ -54,14 +57,14 @@ export default function Header() {
 
         <div className="hidden items-center gap-3 xl:flex">
           <a
-            href="/learning-hub"
+            href={`${basePath}/learning-hub/`}
             className="rounded-full border border-neutral-300 bg-white px-5 py-2.5 text-sm font-semibold text-neutral-950 shadow-sm transition hover:-translate-y-0.5"
           >
             Explore courses
           </a>
 
           <a
-            href="/contact"
+            href={`${basePath}/contact/`}
             className="rounded-full bg-[#8b1116] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5"
           >
             Request support
@@ -82,7 +85,7 @@ export default function Header() {
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={withBasePath(link.href)}
                 onClick={() => setOpen(false)}
                 className="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-semibold text-neutral-800 shadow-sm"
               >
@@ -92,7 +95,7 @@ export default function Header() {
 
             <div className="grid gap-2 pt-3 sm:grid-cols-2">
               <a
-                href="/learning-hub"
+                href={`${basePath}/learning-hub/`}
                 onClick={() => setOpen(false)}
                 className="rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-center text-sm font-bold text-neutral-950"
               >
@@ -100,7 +103,7 @@ export default function Header() {
               </a>
 
               <a
-                href="/contact"
+                href={`${basePath}/contact/`}
                 onClick={() => setOpen(false)}
                 className="rounded-2xl bg-[#8b1116] px-4 py-3 text-center text-sm font-bold text-white"
               >

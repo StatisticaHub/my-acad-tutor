@@ -1,4 +1,5 @@
-import Image from "next/image";
+const basePath =
+  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 export default function Hero() {
   return (
@@ -17,14 +18,14 @@ export default function Hero() {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a
-              href="/courses"
+              href={`${basePath}/courses/`}
               className="rounded-md bg-[#8b1116] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5"
             >
               Explore courses
             </a>
 
             <a
-              href="/contact"
+              href={`${basePath}/contact/`}
               className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition hover:-translate-y-0.5"
             >
               Join interest list
@@ -62,21 +63,21 @@ export default function Hero() {
 
             <div className="mt-9 flex flex-wrap gap-3">
               <a
-                href="/start-here"
+                href={`${basePath}/start-here/`}
                 className="rounded-md bg-neutral-950 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5"
               >
                 Start here
               </a>
 
               <a
-                href="/learning-hub"
+                href={`${basePath}/learning-hub/`}
                 className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition hover:-translate-y-0.5"
               >
                 Visit Learning Hub
               </a>
 
               <a
-                href="/contact"
+                href={`${basePath}/contact/`}
                 className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition hover:-translate-y-0.5"
               >
                 Request support
@@ -106,13 +107,10 @@ export default function Hero() {
 
           <aside className="rounded-[1.5rem] border border-neutral-200 bg-white p-4 shadow-sm">
             <div className="relative min-h-[560px] overflow-hidden rounded-[1.1rem] border border-neutral-200 bg-neutral-950">
-              <Image
-                src="/images/academic-tutoring-hero.jpg"
+              <img
+                src={`${basePath}/images/academic-tutoring-hero.jpg`}
                 alt="Academic tutoring and research support workspace"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover"
+                className="absolute inset-0 h-full w-full object-cover"
               />
 
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/25 to-black/78" />
