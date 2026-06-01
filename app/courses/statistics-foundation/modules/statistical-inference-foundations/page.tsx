@@ -1,4 +1,4 @@
-export default function RandomVariablesDistributionsModulePage() {
+export default function StatisticalInferenceFoundationsModulePage() {
   return (
     <main className="min-h-screen bg-slate-50 px-6 py-16 text-slate-950">
       <section className="mx-auto max-w-6xl">
@@ -10,16 +10,16 @@ export default function RandomVariablesDistributionsModulePage() {
         </a>
 
         <p className="mt-8 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
-          Module 4
+          Module 5
         </p>
 
         <h1 className="mt-4 max-w-4xl text-4xl font-bold tracking-tight md:text-6xl">
-          Random Variables and Distributions
+          Statistical Inference Foundations
         </h1>
 
         <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-          This module explains random variables, expected value, variance,
-          Binomial, Poisson and Normal distributions.
+          This module introduces sampling distributions, confidence intervals,
+          hypothesis testing, p-values, errors, power and sample size.
         </p>
       </section>
     </main>

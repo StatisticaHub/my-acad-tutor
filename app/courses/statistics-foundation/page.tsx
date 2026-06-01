@@ -1,283 +1,419 @@
-import Badge from "@/components/ui/Badge";
-import SectionHeading from "@/components/sections/SectionHeading";
-import LessonUnitCard from "@/components/course/LessonUnitCard";
-
 const modules = [
   {
     number: "01",
-    title: "Probability Foundations",
+    title: "Introduction to Statistical Thinking",
+    href: "/courses/statistics-foundation/modules/introduction-to-statistical-thinking",
     description:
-      "Students begin with the language of uncertainty: events, sample spaces, probability rules, conditional probability, independence and Bayes theorem.",
+      "Build the language of data, variables, populations, samples, graphs and sampling methods.",
     lessons: [
-      {
-        title: "What is probability?",
-        description:
-          "A conceptual introduction to uncertainty, events, sample spaces and probability as a way of measuring uncertainty.",
-        href: "/courses/statistics-foundation/modules/probability-foundations/lessons/what-is-probability",
-      },
-      {
-        title: "Conditional probability and independence",
-        description:
-          "Learn how probability changes when information is given, and why independence is a strong mathematical condition.",
-        href: "/courses/statistics-foundation/modules/probability-foundations/lessons/conditional-probability-independence",
-      },
-      {
-        title: "Bayes theorem",
-        description:
-          "Understand Bayes theorem as a way of updating beliefs using evidence, with medical and academic examples.",
-        href: "/courses/statistics-foundation/modules/probability-foundations/lessons/bayes-theorem",
-      },
+      "What statistics means",
+      "Populations and samples",
+      "Data types and graphs",
     ],
+    status: "Available",
+    tone: "blue",
   },
   {
     number: "02",
-    title: "Random Variables and Distributions",
+    title: "Descriptive Statistics",
+    href: "/courses/statistics-foundation/modules/descriptive-statistics",
     description:
-      "This module explains how uncertain outcomes become mathematical objects, and how distributions describe their behaviour.",
+      "Learn how to summarise datasets using centre, spread, quartiles, skewness, outliers and comparisons.",
     lessons: [
-      {
-        title: "What is a random variable?",
-        description:
-          "Understand random variables, notation, discrete and continuous cases, expectation and variance.",
-        href: "/courses/statistics-foundation/modules/random-variables-distributions/lessons/what-is-a-random-variable",
-      },
-      {
-        title: "Expected value and variance",
-        description:
-          "Learn how expectation measures the centre of a random variable and variance measures spread around that centre.",
-        href: "/courses/statistics-foundation/modules/random-variables-distributions/lessons/expectation-variance",
-      },
-      {
-        title: "Common probability distributions",
-        description:
-          "Explore Bernoulli, Binomial, Poisson, Normal and other common distributions used in statistics.",
-        href: "/courses/statistics-foundation/modules/random-variables-distributions/lessons/common-distributions",
-      },
+      "Mean, median and mode",
+      "Variance and standard deviation",
+      "Boxplots and outliers",
     ],
+    status: "Available",
+    tone: "green",
   },
   {
     number: "03",
-    title: "Sampling and Estimation",
+    title: "Probability Foundations",
+    href: "/courses/statistics-foundation/modules/probability-foundations",
     description:
-      "Students learn how samples connect to populations, why estimators vary, and how uncertainty is measured.",
+      "Develop probability reasoning before moving into random variables, inference and uncertainty.",
     lessons: [
-      {
-        title: "Samples, populations and estimators",
-        description:
-          "Understand the difference between a population quantity and a sample-based estimate.",
-        href: "/courses/statistics-foundation/modules/sampling-estimation/lessons/samples-populations-estimators",
-      },
-      {
-        title: "Sampling distributions",
-        description:
-          "Learn why an estimator has its own distribution and why this idea is central to inference.",
-        href: "/courses/statistics-foundation/modules/sampling-estimation/lessons/sampling-distributions",
-      },
-      {
-        title: "Confidence intervals",
-        description:
-          "Understand confidence intervals as a way of expressing uncertainty around an estimate.",
-        href: "/courses/statistics-foundation/modules/sampling-estimation/lessons/confidence-intervals",
-      },
+      "Events and sample spaces",
+      "Probability rules",
+      "Conditional probability",
     ],
+    status: "Available",
+    tone: "amber",
   },
   {
     number: "04",
-    title: "Hypothesis Testing",
+    title: "Random Variables and Distributions",
+    href: "/courses/statistics-foundation/modules/random-variables-distributions",
     description:
-      "This module introduces null hypotheses, test statistics, p-values, statistical significance and interpretation.",
+      "Understand how uncertain outcomes become mathematical objects with expectation, variance and distributions.",
     lessons: [
-      {
-        title: "What is a hypothesis test?",
-        description:
-          "Learn the logic of testing a claim using data, null hypotheses and alternative hypotheses.",
-        href: "/courses/statistics-foundation/modules/hypothesis-testing/lessons/what-is-hypothesis-test",
-      },
-      {
-        title: "p-values and significance",
-        description:
-          "Understand what a p-value does and does not mean, with careful interpretation.",
-        href: "/courses/statistics-foundation/modules/hypothesis-testing/lessons/p-values-significance",
-      },
-      {
-        title: "Power and errors",
-        description:
-          "Learn Type I error, Type II error, statistical power and why sample size matters.",
-        href: "/courses/statistics-foundation/modules/hypothesis-testing/lessons/power-errors",
-      },
+      "Random variables",
+      "Expected value and variance",
+      "Common distributions",
     ],
+    status: "Available",
+    tone: "purple",
   },
   {
     number: "05",
-    title: "Regression Foundations",
+    title: "Statistical Inference Foundations",
+    href: "/courses/statistics-foundation/modules/statistical-inference-foundations",
     description:
-      "Students move from comparing groups to modelling relationships between variables.",
+      "Learn sampling distributions, standard errors, confidence intervals, hypothesis testing and power.",
     lessons: [
-      {
-        title: "Simple linear regression",
-        description:
-          "Understand the regression line, slope, intercept, residuals and interpretation.",
-        href: "/courses/statistics-foundation/modules/regression-foundations/lessons/simple-linear-regression",
-      },
-      {
-        title: "Multiple regression",
-        description:
-          "Learn how regression adjusts for several predictors and how coefficients are interpreted.",
-        href: "/courses/statistics-foundation/modules/regression-foundations/lessons/multiple-regression",
-      },
-      {
-        title: "Regression assumptions and diagnostics",
-        description:
-          "Understand residuals, linearity, constant variance, normality assumptions and model checking.",
-        href: "/courses/statistics-foundation/modules/regression-foundations/lessons/regression-assumptions-diagnostics",
-      },
+      "Sampling distributions",
+      "Confidence intervals",
+      "Hypothesis testing",
     ],
+    status: "Available",
+    tone: "red",
   },
 ];
 
-const lessonParts = [
-  "Lecture: conversational explanation using recurring characters, examples and guided intuition.",
-  "Detailed notes: complete theory, notation, derivations, worked examples and interpretation.",
-  "Interactive components: visual demonstrations where useful.",
-  "Coding practice: included only when a lesson needs computation or data analysis.",
-  "Quiz: checkpoint questions to test conceptual understanding.",
-];
+const toneClasses: Record<string, string> = {
+  blue: "bg-blue-100 text-blue-800",
+  green: "bg-emerald-100 text-emerald-800",
+  amber: "bg-amber-100 text-amber-800",
+  purple: "bg-violet-100 text-violet-800",
+  red: "bg-red-100 text-red-800",
+};
 
 export default function StatisticsFoundationCoursePage() {
   return (
-    <main className="bg-slate-50 text-slate-950">
-      <section className="bg-slate-950 px-6 py-24 text-white md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-wrap gap-3">
-            <Badge variant="blue">Statistics</Badge>
-            <Badge variant="green">Free launch course</Badge>
-          </div>
+    <main className="min-h-screen bg-[#f2efe7] text-neutral-950">
+      <div className="mx-auto max-w-7xl px-5 py-7 md:px-8 md:py-10">
+        <header className="mb-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+          <a href="/" className="flex items-center gap-3">
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#ded9cf] bg-white text-lg font-black shadow-sm">
+              MAT
+            </div>
 
-          <h1 className="mt-6 max-w-5xl text-5xl font-bold tracking-tight md:text-7xl">
-            Statistics Foundation for University Students.
-          </h1>
+            <div>
+              <p className="text-xs font-extrabold uppercase tracking-[0.18em] text-blue-700">
+                My Academic Tutor
+              </p>
+              <p className="text-xl font-extrabold tracking-tight">
+                Statistics Foundation
+              </p>
+            </div>
+          </a>
 
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
-            A structured foundation course with 5 modules. Each lesson contains a
-            conversational lecture, detailed theoretical notes, worked examples,
-            interactive components where useful, coding practice if needed, and a
-            quiz.
-          </p>
-
-          <div className="mt-10 flex flex-wrap gap-4">
+          <nav className="flex flex-wrap gap-2">
             <a
-              href="/courses/statistics-foundation/modules/random-variables-distributions/lessons/what-is-a-random-variable"
-              className="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500"
+              href="/learning-hub"
+              className="rounded-full border border-[#ded9cf] bg-white/70 px-4 py-2 text-sm font-semibold text-neutral-600 transition hover:bg-white hover:text-neutral-950"
             >
-              Open sample lesson
+              Learning Hub
             </a>
-
             <a
               href="/pathways/statistics"
-              className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
+              className="rounded-full border border-[#ded9cf] bg-white/70 px-4 py-2 text-sm font-semibold text-neutral-600 transition hover:bg-white hover:text-neutral-950"
             >
-              View statistics pathway
+              Statistics Pathway
             </a>
-          </div>
-        </div>
-      </section>
+            <a
+              href="/courses"
+              className="rounded-full border border-[#ded9cf] bg-white/70 px-4 py-2 text-sm font-semibold text-neutral-600 transition hover:bg-white hover:text-neutral-950"
+            >
+              All Courses
+            </a>
+          </nav>
+        </header>
 
-      <section className="border-b border-slate-200 bg-white px-6 py-10">
-        <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-4">
-          <div className="rounded-2xl bg-slate-50 p-5">
-            <p className="text-sm font-semibold text-slate-500">Modules</p>
-            <p className="mt-2 text-lg font-bold text-slate-950">5</p>
-          </div>
-
-          <div className="rounded-2xl bg-slate-50 p-5">
-            <p className="text-sm font-semibold text-slate-500">
-              Lesson format
-            </p>
-            <p className="mt-2 text-lg font-bold text-slate-950">
-              Lecture, Notes, Quiz
-            </p>
-          </div>
-
-          <div className="rounded-2xl bg-slate-50 p-5">
-            <p className="text-sm font-semibold text-slate-500">Level</p>
-            <p className="mt-2 text-lg font-bold text-slate-950">
-              Beginner to Intermediate
-            </p>
-          </div>
-
-          <div className="rounded-2xl bg-slate-50 p-5">
-            <p className="text-sm font-semibold text-slate-500">Launch</p>
-            <p className="mt-2 text-lg font-bold text-slate-950">July 2026</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Lesson structure"
-            title="Every lesson follows a complete learning format."
-            description="The course is designed so students first understand the concept conversationally, then study the full theory, then practise and test themselves."
-          />
-
-          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {lessonParts.map((part) => (
-              <div
-                key={part}
-                className="rounded-2xl border border-slate-200 bg-white p-5 text-sm leading-6 text-slate-700 shadow-sm"
-              >
-                {part}
+        <section className="overflow-hidden rounded-[2.1rem] border border-[#ded9cf] bg-gradient-to-br from-white via-[#fbfaf6] to-blue-50 p-7 shadow-[0_22px_70px_rgba(31,29,23,0.10)] md:p-11">
+          <div className="grid gap-9 lg:grid-cols-[1.45fr_0.75fr] lg:items-end">
+            <div>
+              <div className="mb-5 flex flex-wrap gap-2">
+                <span className="rounded-full bg-blue-100 px-4 py-2 text-xs font-extrabold text-blue-800">
+                  Beginner-friendly
+                </span>
+                <span className="rounded-full bg-emerald-100 px-4 py-2 text-xs font-extrabold text-emerald-800">
+                  Theoretical
+                </span>
+                <span className="rounded-full bg-blue-100 px-4 py-2 text-xs font-extrabold text-blue-800">
+                  Zero coding
+                </span>
               </div>
-            ))}
+
+              <h1 className="max-w-5xl text-4xl font-black tracking-[-0.06em] md:text-6xl lg:text-7xl">
+                Statistics Foundation for University Students
+              </h1>
+
+              <p className="mt-6 text-base font-bold text-neutral-950">
+                Course developed by My Academic Tutor.
+              </p>
+
+              <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-600">
+                A theoretical and beginner-friendly course for students who want
+                to build a strong base in statistics before studying
+                biostatistics, epidemiology, data science, machine learning,
+                research methods or quantitative analysis.
+              </p>
+
+              <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-600">
+                The course avoids coding and focuses on concepts, notation,
+                mathematical reasoning, derivations, interpretation, interactive
+                visual learning and exam-style thinking.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="/courses/statistics-foundation/modules/introduction-to-statistical-thinking"
+                  className="rounded-full bg-neutral-950 px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:shadow-lg"
+                >
+                  Start learning
+                </a>
+
+                <a
+                  href="#course-modules"
+                  className="rounded-full border border-[#ded9cf] bg-white px-6 py-3 text-sm font-extrabold text-neutral-950 transition hover:-translate-y-0.5 hover:shadow-md"
+                >
+                  View all modules
+                </a>
+              </div>
+            </div>
+
+            <aside className="rounded-[1.6rem] border border-[#ded9cf] bg-white/80 p-5 shadow-sm">
+              <h2 className="text-lg font-extrabold tracking-tight">
+                Course snapshot
+              </h2>
+
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                <div className="rounded-2xl border border-[#ded9cf] bg-[#f8f6f1] p-4">
+                  <strong className="block text-3xl font-black tracking-tight">
+                    5
+                  </strong>
+                  <span className="text-xs font-medium text-neutral-500">
+                    Core modules
+                  </span>
+                </div>
+
+                <div className="rounded-2xl border border-[#ded9cf] bg-[#f8f6f1] p-4">
+                  <strong className="block text-3xl font-black tracking-tight">
+                    25
+                  </strong>
+                  <span className="text-xs font-medium text-neutral-500">
+                    Structured lessons
+                  </span>
+                </div>
+
+                <div className="rounded-2xl border border-[#ded9cf] bg-[#f8f6f1] p-4">
+                  <strong className="block text-3xl font-black tracking-tight">
+                    0
+                  </strong>
+                  <span className="text-xs font-medium text-neutral-500">
+                    Coding required
+                  </span>
+                </div>
+
+                <div className="rounded-2xl border border-[#ded9cf] bg-[#f8f6f1] p-4">
+                  <strong className="block text-3xl font-black tracking-tight">
+                    100%
+                  </strong>
+                  <span className="text-xs font-medium text-neutral-500">
+                    Concept focused
+                  </span>
+                </div>
+              </div>
+
+              <ul className="mt-5 list-disc space-y-2 pl-5 text-sm leading-6 text-neutral-600">
+                <li>Lecture-style explanations with recurring characters.</li>
+                <li>Detailed notes with notation and derivations.</li>
+                <li>Interactive labs, worked examples and quizzes.</li>
+              </ul>
+            </aside>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="bg-white px-6 py-20">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Course modules"
-            title="Five modules from probability to regression."
-            description="Each module contains structured lessons with lecture, notes, interactive learning support and quiz checkpoints."
-          />
+        <section id="course-modules" className="mt-12">
+          <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
+                Course structure
+              </p>
+              <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
+                Five modules from foundations to inference
+              </h2>
+            </div>
 
-          <div className="mt-12 space-y-8">
+            <p className="max-w-2xl text-sm leading-7 text-neutral-600">
+              Start with the language of data, then move through descriptive
+              statistics, probability, random variables and statistical
+              inference.
+            </p>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-5">
             {modules.map((module) => (
-              <div
+              <a
                 key={module.number}
-                className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm"
+                href={module.href}
+                className="group flex min-h-[270px] flex-col rounded-[1.35rem] border border-[#ded9cf] bg-white/90 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="grid gap-6 md:grid-cols-[80px_1fr]">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
-                    {module.number}
-                  </div>
-
-                  <div>
-                    <h2 className="text-3xl font-bold tracking-tight text-slate-950">
-                      {module.title}
-                    </h2>
-
-                    <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-600">
-                      {module.description}
-                    </p>
-                  </div>
+                <div
+                  className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl text-base font-black ${
+                    toneClasses[module.tone]
+                  }`}
+                >
+                  {module.number}
                 </div>
 
-                <div className="mt-8 grid gap-5 md:grid-cols-3">
+                <h3 className="text-lg font-black leading-tight tracking-tight">
+                  {module.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-6 text-neutral-600">
+                  {module.description}
+                </p>
+
+                <ul className="mt-4 list-disc space-y-1 pl-5 text-xs leading-5 text-neutral-600">
                   {module.lessons.map((lesson) => (
-                    <LessonUnitCard
-                      key={lesson.title}
-                      title={lesson.title}
-                      description={lesson.description}
-                      href={lesson.href}
-                    />
+                    <li key={lesson}>{lesson}</li>
                   ))}
+                </ul>
+
+                <div className="mt-auto flex items-center justify-between gap-3 pt-5 text-xs">
+                  <span className="text-neutral-400">5 lessons</span>
+                  <span className="rounded-full bg-emerald-100 px-3 py-1 font-extrabold text-emerald-800">
+                    {module.status}
+                  </span>
                 </div>
-              </div>
+
+                <p className="mt-4 text-sm font-extrabold text-blue-700 opacity-0 transition group-hover:opacity-100">
+                  Open module →
+                </p>
+              </a>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section className="mt-12">
+          <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
+                Learning approach
+              </p>
+              <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
+                Built for understanding, not memorisation
+              </h2>
+            </div>
+
+            <p className="max-w-2xl text-sm leading-7 text-neutral-600">
+              Every lesson follows the same premium structure so students know
+              exactly how to learn, practise and test themselves.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="rounded-[1.35rem] border border-[#ded9cf] bg-white p-6 shadow-sm">
+              <span className="rounded-full bg-blue-100 px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-blue-800">
+                Step 1
+              </span>
+              <h3 className="mt-5 text-xl font-black tracking-tight">
+                Understand the idea
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-neutral-600">
+                Each lesson begins with a conversational lecture using Mr. R,
+                Emma, Oliver, James and Sophia.
+              </p>
+            </div>
+
+            <div className="rounded-[1.35rem] border border-[#ded9cf] bg-white p-6 shadow-sm">
+              <span className="rounded-full bg-blue-100 px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-blue-800">
+                Step 2
+              </span>
+              <h3 className="mt-5 text-xl font-black tracking-tight">
+                Study the theory
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-neutral-600">
+                Detailed notes explain notation, definitions, assumptions,
+                derivations and interpretation mistakes.
+              </p>
+            </div>
+
+            <div className="rounded-[1.35rem] border border-[#ded9cf] bg-white p-6 shadow-sm">
+              <span className="rounded-full bg-blue-100 px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-blue-800">
+                Step 3
+              </span>
+              <h3 className="mt-5 text-xl font-black tracking-tight">
+                Practise and check
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-neutral-600">
+                Interactive labs, worked examples and quizzes help students test
+                understanding before moving ahead.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-8 grid gap-4 md:grid-cols-2">
+          <div className="rounded-[1.35rem] border border-[#ded9cf] bg-white p-6 shadow-sm">
+            <h2 className="text-2xl font-black tracking-tight">Designed for</h2>
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-neutral-600">
+              <li>University students beginning statistics for the first time.</li>
+              <li>
+                Students preparing for biostatistics, epidemiology, data science
+                or research methods.
+              </li>
+              <li>
+                Learners who want mathematical notation explained clearly before
+                moving to software.
+              </li>
+              <li>
+                Students who prefer conceptual, theoretical and exam-style
+                learning without coding.
+              </li>
+            </ul>
+          </div>
+
+          <div className="rounded-[1.35rem] border border-[#ded9cf] bg-white p-6 shadow-sm">
+            <h2 className="text-2xl font-black tracking-tight">
+              What makes it different
+            </h2>
+            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-neutral-600">
+              <li>No programming distractions in the foundation stage.</li>
+              <li>Clear movement from definitions to interpretation.</li>
+              <li>Mathematical reasoning explained gradually.</li>
+              <li>Consistent structure across every lesson.</li>
+              <li>Useful preparation for applied quantitative subjects.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="mt-8 flex flex-col gap-5 rounded-[1.7rem] bg-neutral-950 p-7 text-white shadow-xl md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2 className="text-3xl font-black tracking-tight">
+              Ready to start?
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-white/70">
+              Begin with Module 1 and build the statistical language needed for
+              later biostatistics, epidemiology, data science and research
+              methods.
+            </p>
+          </div>
+
+          <a
+            href="/courses/statistics-foundation/modules/introduction-to-statistical-thinking"
+            className="rounded-full bg-white px-6 py-3 text-sm font-black text-neutral-950 transition hover:-translate-y-0.5 hover:shadow-lg"
+          >
+            Start Module 1
+          </a>
+        </section>
+
+        <footer className="mt-10 border-t border-[#ded9cf] pt-6 text-sm leading-7 text-neutral-600">
+          <p>
+            <strong className="text-neutral-950">
+              Statistics Foundation for University Students
+            </strong>
+          </p>
+          <p>
+            Course developed by{" "}
+            <strong className="text-neutral-950">My Academic Tutor</strong>.
+          </p>
+          <p>© 2026 My Academic Tutor. All rights reserved.</p>
+        </footer>
+      </div>
     </main>
   );
 }
