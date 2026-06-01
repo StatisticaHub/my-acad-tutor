@@ -1,3 +1,12 @@
+const basePath =
+  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+
+function withBasePath(href: string) {
+  if (href === "/") return `${basePath}/`;
+  if (href.startsWith("#")) return href;
+  return `${basePath}${href}/`;
+}
+
 const modules = [
   {
     number: "01",
@@ -84,7 +93,7 @@ export default function StatisticsFoundationCoursePage() {
     <main className="min-h-screen bg-[#f2efe7] text-neutral-950">
       <div className="mx-auto max-w-7xl px-5 py-7 md:px-8 md:py-10">
         <header className="mb-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-          <a href="/" className="flex items-center gap-3">
+          <a href={withBasePath("/")} className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#ded9cf] bg-white text-lg font-black shadow-sm">
               MAT
             </div>
@@ -101,19 +110,19 @@ export default function StatisticsFoundationCoursePage() {
 
           <nav className="flex flex-wrap gap-2">
             <a
-              href="/learning-hub"
+              href={withBasePath("/learning-hub")}
               className="rounded-full border border-[#ded9cf] bg-white/70 px-4 py-2 text-sm font-semibold text-neutral-600 transition hover:bg-white hover:text-neutral-950"
             >
               Learning Hub
             </a>
             <a
-              href="/pathways/statistics"
+              href={withBasePath("/pathways/statistics")}
               className="rounded-full border border-[#ded9cf] bg-white/70 px-4 py-2 text-sm font-semibold text-neutral-600 transition hover:bg-white hover:text-neutral-950"
             >
               Statistics Pathway
             </a>
             <a
-              href="/courses"
+              href={withBasePath("/courses")}
               className="rounded-full border border-[#ded9cf] bg-white/70 px-4 py-2 text-sm font-semibold text-neutral-600 transition hover:bg-white hover:text-neutral-950"
             >
               All Courses
@@ -159,7 +168,9 @@ export default function StatisticsFoundationCoursePage() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href="/courses/statistics-foundation/modules/introduction-to-statistical-thinking"
+                  href={withBasePath(
+                    "/courses/statistics-foundation/modules/introduction-to-statistical-thinking"
+                  )}
                   className="rounded-full bg-neutral-950 px-6 py-3 text-sm font-extrabold text-white transition hover:-translate-y-0.5 hover:shadow-lg"
                 >
                   Start learning
@@ -248,7 +259,7 @@ export default function StatisticsFoundationCoursePage() {
             {modules.map((module) => (
               <a
                 key={module.number}
-                href={module.href}
+                href={withBasePath(module.href)}
                 className="group flex min-h-[270px] flex-col rounded-[1.35rem] border border-[#ded9cf] bg-white/90 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
               >
                 <div
@@ -394,7 +405,9 @@ export default function StatisticsFoundationCoursePage() {
           </div>
 
           <a
-            href="/courses/statistics-foundation/modules/introduction-to-statistical-thinking"
+            href={withBasePath(
+              "/courses/statistics-foundation/modules/introduction-to-statistical-thinking"
+            )}
             className="rounded-full bg-white px-6 py-3 text-sm font-black text-neutral-950 transition hover:-translate-y-0.5 hover:shadow-lg"
           >
             Start Module 1

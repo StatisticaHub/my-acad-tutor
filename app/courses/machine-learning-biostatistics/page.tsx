@@ -2,6 +2,15 @@ import Badge from "@/components/ui/Badge";
 import SectionHeading from "@/components/sections/SectionHeading";
 import LessonUnitCard from "@/components/course/LessonUnitCard";
 
+const basePath =
+  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+
+function withBasePath(href: string) {
+  if (href === "/") return `${basePath}/`;
+  if (href.startsWith("#")) return href;
+  return `${basePath}${href}/`;
+}
+
 const modules = [
   {
     number: "01",
@@ -12,14 +21,14 @@ const modules = [
       {
         title: "What is machine learning in biostatistics?",
         description:
-          "Understand machine learning as a set of statistical and computational tools for learning from health data.",
+          "Understand machine learning as a set of tools for learning patterns from health data, not as magic.",
         href: "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning",
         hasCoding: false,
       },
       {
         title: "Prediction versus inference",
         description:
-          "Learn why predicting a clinical outcome and estimating an interpretable effect are different goals.",
+          "Learn why predicting a patient outcome and estimating an interpretable effect are different goals.",
         href: "/courses/machine-learning-biostatistics/modules/foundations/lessons/prediction-vs-inference",
         hasCoding: false,
       },
@@ -173,21 +182,23 @@ export default function MachineLearningBiostatisticsCoursePage() {
           </h1>
 
           <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
-            A 5-module course on medical machine learning, prediction, validation,
-            overfitting, leakage, calibration, survival prediction and responsible
-            clinical interpretation.
+            A 5-module course on medical machine learning, prediction,
+            validation, overfitting, leakage, calibration, survival prediction
+            and responsible clinical interpretation.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href="/courses/machine-learning-biostatistics/modules/foundations/lessons/prediction-vs-inference"
+              href={withBasePath(
+                "/courses/machine-learning-biostatistics/modules/foundations/lessons/prediction-vs-inference"
+              )}
               className="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500"
             >
               Open sample lesson
             </a>
 
             <a
-              href="/pathways/biostatistics"
+              href={withBasePath("/pathways/biostatistics")}
               className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
             >
               View biostatistics pathway
@@ -204,7 +215,9 @@ export default function MachineLearningBiostatisticsCoursePage() {
           </div>
 
           <div className="rounded-2xl bg-slate-50 p-5">
-            <p className="text-sm font-semibold text-slate-500">Lesson format</p>
+            <p className="text-sm font-semibold text-slate-500">
+              Lesson format
+            </p>
             <p className="mt-2 text-lg font-bold text-slate-950">
               Lecture, Notes, Coding, Quiz
             </p>
@@ -212,7 +225,9 @@ export default function MachineLearningBiostatisticsCoursePage() {
 
           <div className="rounded-2xl bg-slate-50 p-5">
             <p className="text-sm font-semibold text-slate-500">Level</p>
-            <p className="mt-2 text-lg font-bold text-slate-950">Intermediate</p>
+            <p className="mt-2 text-lg font-bold text-slate-950">
+              Intermediate
+            </p>
           </div>
 
           <div className="rounded-2xl bg-slate-50 p-5">
@@ -279,7 +294,7 @@ export default function MachineLearningBiostatisticsCoursePage() {
                       key={lesson.title}
                       title={lesson.title}
                       description={lesson.description}
-                      href={lesson.href}
+                      href={withBasePath(lesson.href)}
                       hasCoding={lesson.hasCoding}
                     />
                   ))}
