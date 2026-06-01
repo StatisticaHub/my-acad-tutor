@@ -1,32 +1,38 @@
 import CourseCard from "@/components/course/CourseCard";
-import FeatureCard from "@/components/sections/FeatureCard";
+import PathwayCard from "@/components/course/PathwayCard";
 import SectionHeading from "@/components/sections/SectionHeading";
 import Badge from "@/components/ui/Badge";
 
 const subjects = [
   {
     title: "Statistics",
-    description: "Probability, estimation, hypothesis testing, regression and interpretation.",
-  },
-  {
-    title: "Biostatistics",
-    description: "Clinical data, survival analysis, epidemiology and medical prediction.",
-  },
-  {
-    title: "Programming",
-    description: "R, Python, data cleaning, visualisation and reproducible workflows.",
-  },
-  {
-    title: "Data Science",
-    description: "Exploratory analysis, modelling, validation and applied machine learning.",
+    description:
+      "Probability, estimation, hypothesis testing, regression and interpretation.",
   },
   {
     title: "Mathematics",
-    description: "Mathematical foundations for statistics, models and data science.",
+    description:
+      "Algebra, calculus, linear algebra and mathematical foundations for data science.",
+  },
+  {
+    title: "Biostatistics",
+    description:
+      "Clinical data, survival analysis, epidemiology and medical prediction.",
+  },
+  {
+    title: "Programming",
+    description:
+      "R, Python, data cleaning, visualisation and reproducible workflows.",
+  },
+  {
+    title: "Data Science",
+    description:
+      "Exploratory analysis, modelling, validation and applied machine learning.",
   },
   {
     title: "Bioinformatics",
-    description: "Omics workflows, RNA-seq, single-cell concepts and biological interpretation.",
+    description:
+      "Omics workflows, RNA-seq, single-cell concepts and biological interpretation.",
   },
 ];
 
@@ -95,19 +101,74 @@ const courses = [
 
 const pathways = [
   {
-    title: "Foundation pathway",
+    title: "Statistics Pathway",
     description:
-      "Start here if you are new to statistics or need to rebuild your basics properly.",
+      "Build a strong foundation in probability, random variables, estimation, hypothesis testing, regression and statistical interpretation.",
+    href: "/pathways/statistics",
+    level: "Beginner to Advanced",
+    courses: "Statistics Foundation, Regression, Statistical Inference",
+    badge: "Statistics",
+    variant: "blue" as const,
   },
   {
-    title: "Research pathway",
+    title: "Mathematics Pathway",
     description:
-      "For students working on dissertations, health research, epidemiology or applied data analysis.",
+      "Strengthen the mathematical foundations needed for statistics, machine learning and data science, including algebra, calculus and matrices.",
+    href: "/pathways/mathematics",
+    level: "Beginner to Intermediate",
+    courses: "Mathematics for Data Science, Probability Maths, Linear Algebra",
+    badge: "Mathematics",
+    variant: "violet" as const,
   },
   {
-    title: "Coding pathway",
+    title: "Biostatistics Pathway",
     description:
-      "For students learning R, Python, reproducible workflows and data analysis programming.",
+      "Learn statistical methods used in health research, clinical studies, epidemiology, survival analysis and medical prediction modelling.",
+    href: "/pathways/biostatistics",
+    level: "Intermediate",
+    courses: "Biostatistics, Survival Analysis, Medical Prediction Models",
+    badge: "Biostatistics",
+    variant: "green" as const,
+  },
+  {
+    title: "Data Science Pathway",
+    description:
+      "Develop applied skills in data exploration, visualisation, modelling, validation, machine learning and responsible interpretation.",
+    href: "/pathways/data-science",
+    level: "Beginner to Advanced",
+    courses: "Data Science Foundations, Machine Learning, Model Evaluation",
+    badge: "Data Science",
+    variant: "blue" as const,
+  },
+  {
+    title: "Programming Pathway",
+    description:
+      "Learn R and Python for academic data analysis, reproducible workflows, statistical coding and project-based learning.",
+    href: "/pathways/programming",
+    level: "Beginner",
+    courses: "R for Data Analysis, Python for Data Science, Reproducible Reports",
+    badge: "Programming",
+    variant: "dark" as const,
+  },
+  {
+    title: "Bioinformatics Pathway",
+    description:
+      "Understand biological data analysis, omics workflows, RNA-seq, single-cell concepts, spatial data and reproducible pipelines.",
+    href: "/pathways/bioinformatics",
+    level: "Beginner to Intermediate",
+    courses: "Bioinformatics Foundations, RNA-seq, Single-cell Analysis",
+    badge: "Bioinformatics",
+    variant: "violet" as const,
+  },
+  {
+    title: "Research & Dissertation Pathway",
+    description:
+      "For students planning dissertations, research projects, statistical analysis plans, literature-based methods and applied interpretation.",
+    href: "/pathways/research-dissertation",
+    level: "University and MSc level",
+    courses: "Research Methods, Analysis Planning, Dissertation Support",
+    badge: "Research",
+    variant: "green" as const,
   },
 ];
 
@@ -119,12 +180,13 @@ export default function LearningHubPage() {
           <Badge variant="dark">Learning Hub</Badge>
 
           <h1 className="mt-6 max-w-5xl text-5xl font-bold tracking-tight md:text-7xl">
-            Courses, guides and interactive learning for quantitative subjects.
+            Choose your field and follow a structured academic pathway.
           </h1>
 
           <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
-            Explore structured learning pathways in Statistics, Biostatistics,
-            Programming, Data Science, Mathematics and Bioinformatics.
+            Explore structured learning pathways in Statistics, Mathematics,
+            Biostatistics, Programming, Data Science, Bioinformatics and Research
+            Support.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
@@ -156,6 +218,7 @@ export default function LearningHubPage() {
                 <h2 className="text-base font-bold text-slate-950">
                   {subject.title}
                 </h2>
+
                 <p className="mt-2 text-sm leading-6 text-slate-600">
                   {subject.description}
                 </p>
@@ -168,14 +231,14 @@ export default function LearningHubPage() {
       <section className="px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Course catalogue"
-            title="Choose your learning pathway."
-            description="Start with free lessons, explore premium course previews and follow structured modules designed for academic learners."
+            eyebrow="Learning pathways"
+            title="Choose your field and follow a structured route."
+            description="The Learning Hub is organised by academic direction, so students can start from the field they care about most."
           />
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {courses.map((course) => (
-              <CourseCard key={course.title} {...course} />
+            {pathways.map((pathway) => (
+              <PathwayCard key={pathway.title} {...pathway} />
             ))}
           </div>
         </div>
@@ -184,18 +247,14 @@ export default function LearningHubPage() {
       <section className="bg-white px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Guided pathways"
-            title="Learn in the right order."
-            description="The Learning Hub is organised around student goals, not just a random list of topics."
+            eyebrow="Course catalogue"
+            title="Start with selected courses and expand over time."
+            description="Each course is designed with theory, worked examples, visual explanation, applied interpretation and future interactive activities."
           />
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {pathways.map((pathway) => (
-              <FeatureCard
-                key={pathway.title}
-                title={pathway.title}
-                description={pathway.description}
-              />
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {courses.map((course) => (
+              <CourseCard key={course.title} {...course} />
             ))}
           </div>
         </div>
@@ -236,9 +295,11 @@ export default function LearningHubPage() {
                 <div className="rounded-2xl bg-white/5 p-4 text-sm text-slate-300">
                   Mean and standard deviation sliders
                 </div>
+
                 <div className="rounded-2xl bg-white/5 p-4 text-sm text-slate-300">
                   Regression line and noise controls
                 </div>
+
                 <div className="rounded-2xl bg-white/5 p-4 text-sm text-slate-300">
                   Confidence interval simulation preview
                 </div>
