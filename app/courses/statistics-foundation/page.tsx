@@ -1,46 +1,146 @@
 import Badge from "@/components/ui/Badge";
 import SectionHeading from "@/components/sections/SectionHeading";
+import LessonUnitCard from "@/components/course/LessonUnitCard";
 
 const modules = [
   {
     number: "01",
     title: "Probability Foundations",
-    lessons:
-      "Events, probability rules, conditional probability, independence and Bayes theorem.",
+    description:
+      "Students begin with the language of uncertainty: events, sample spaces, probability rules, conditional probability, independence and Bayes theorem.",
+    lessons: [
+      {
+        title: "What is probability?",
+        description:
+          "A conceptual introduction to uncertainty, events, sample spaces and probability as a way of measuring uncertainty.",
+        href: "/courses/statistics-foundation/modules/probability-foundations/lessons/what-is-probability",
+      },
+      {
+        title: "Conditional probability and independence",
+        description:
+          "Learn how probability changes when information is given, and why independence is a strong mathematical condition.",
+        href: "/courses/statistics-foundation/modules/probability-foundations/lessons/conditional-probability-independence",
+      },
+      {
+        title: "Bayes theorem",
+        description:
+          "Understand Bayes theorem as a way of updating beliefs using evidence, with medical and academic examples.",
+        href: "/courses/statistics-foundation/modules/probability-foundations/lessons/bayes-theorem",
+      },
+    ],
   },
   {
     number: "02",
     title: "Random Variables and Distributions",
-    lessons:
-      "Discrete and continuous random variables, expectation, variance and common distributions.",
+    description:
+      "This module explains how uncertain outcomes become mathematical objects, and how distributions describe their behaviour.",
+    lessons: [
+      {
+        title: "What is a random variable?",
+        description:
+          "Understand random variables, notation, discrete and continuous cases, expectation and variance.",
+        href: "/courses/statistics-foundation/modules/random-variables-distributions/lessons/random-variable",
+      },
+      {
+        title: "Expected value and variance",
+        description:
+          "Learn how expectation measures the centre of a random variable and variance measures spread around that centre.",
+        href: "/courses/statistics-foundation/modules/random-variables-distributions/lessons/expectation-variance",
+      },
+      {
+        title: "Common probability distributions",
+        description:
+          "Explore Bernoulli, Binomial, Poisson, Normal and other common distributions used in statistics.",
+        href: "/courses/statistics-foundation/modules/random-variables-distributions/lessons/common-distributions",
+      },
+    ],
   },
   {
     number: "03",
     title: "Sampling and Estimation",
-    lessons:
-      "Samples, estimators, sampling distributions, standard errors and confidence intervals.",
+    description:
+      "Students learn how samples connect to populations, why estimators vary, and how uncertainty is measured.",
+    lessons: [
+      {
+        title: "Samples, populations and estimators",
+        description:
+          "Understand the difference between a population quantity and a sample-based estimate.",
+        href: "/courses/statistics-foundation/modules/sampling-estimation/lessons/samples-populations-estimators",
+      },
+      {
+        title: "Sampling distributions",
+        description:
+          "Learn why an estimator has its own distribution and why this idea is central to inference.",
+        href: "/courses/statistics-foundation/modules/sampling-estimation/lessons/sampling-distributions",
+      },
+      {
+        title: "Confidence intervals",
+        description:
+          "Understand confidence intervals as a way of expressing uncertainty around an estimate.",
+        href: "/courses/statistics-foundation/modules/sampling-estimation/lessons/confidence-intervals",
+      },
+    ],
   },
   {
     number: "04",
     title: "Hypothesis Testing",
-    lessons:
-      "Null hypotheses, test statistics, p-values, significance, power and interpretation.",
+    description:
+      "This module introduces null hypotheses, test statistics, p-values, statistical significance and interpretation.",
+    lessons: [
+      {
+        title: "What is a hypothesis test?",
+        description:
+          "Learn the logic of testing a claim using data, null hypotheses and alternative hypotheses.",
+        href: "/courses/statistics-foundation/modules/hypothesis-testing/lessons/what-is-hypothesis-test",
+      },
+      {
+        title: "p-values and significance",
+        description:
+          "Understand what a p-value does and does not mean, with careful interpretation.",
+        href: "/courses/statistics-foundation/modules/hypothesis-testing/lessons/p-values-significance",
+      },
+      {
+        title: "Power and errors",
+        description:
+          "Learn Type I error, Type II error, statistical power and why sample size matters.",
+        href: "/courses/statistics-foundation/modules/hypothesis-testing/lessons/power-errors",
+      },
+    ],
   },
   {
     number: "05",
     title: "Regression Foundations",
-    lessons:
-      "Simple linear regression, multiple regression, assumptions, diagnostics and interpretation.",
+    description:
+      "Students move from comparing groups to modelling relationships between variables.",
+    lessons: [
+      {
+        title: "Simple linear regression",
+        description:
+          "Understand the regression line, slope, intercept, residuals and interpretation.",
+        href: "/courses/statistics-foundation/modules/regression-foundations/lessons/simple-linear-regression",
+      },
+      {
+        title: "Multiple regression",
+        description:
+          "Learn how regression adjusts for several predictors and how coefficients are interpreted.",
+        href: "/courses/statistics-foundation/modules/regression-foundations/lessons/multiple-regression",
+      },
+      {
+        title: "Regression assumptions and diagnostics",
+        description:
+          "Understand residuals, linearity, constant variance, normality assumptions and model checking.",
+        href: "/courses/statistics-foundation/modules/regression-foundations/lessons/regression-assumptions-diagnostics",
+      },
+    ],
   },
 ];
 
-const features = [
-  "Clear theory-first explanations",
-  "Mathematical notation and derivations",
-  "Worked examples",
-  "Practice exercises",
-  "Interpretation-focused lessons",
-  "Interactive demos during launch sprint",
+const lessonParts = [
+  "Lecture: conversational explanation using recurring characters, examples and guided intuition.",
+  "Detailed notes: complete theory, notation, derivations, worked examples and interpretation.",
+  "Interactive components: visual demonstrations where useful.",
+  "Coding practice: included only when a lesson needs computation or data analysis.",
+  "Quiz: checkpoint questions to test conceptual understanding.",
 ];
 
 export default function StatisticsFoundationCoursePage() {
@@ -58,14 +158,14 @@ export default function StatisticsFoundationCoursePage() {
           </h1>
 
           <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
-            A structured foundation course for students who want to understand
-            probability, random variables, estimation, hypothesis testing and regression
-            from first principles.
+            A structured foundation course with 5 modules. Each lesson contains a
+            conversational lecture, detailed theoretical notes, worked examples,
+            interactive components where useful, coding practice if needed, and a quiz.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href="/courses/statistics-foundation/lessons/random-variable"
+              href="/courses/statistics-foundation/modules/random-variables-distributions/lessons/random-variable"
               className="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500"
             >
               Open sample lesson
@@ -84,6 +184,18 @@ export default function StatisticsFoundationCoursePage() {
       <section className="border-b border-slate-200 bg-white px-6 py-10">
         <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-4">
           <div className="rounded-2xl bg-slate-50 p-5">
+            <p className="text-sm font-semibold text-slate-500">Modules</p>
+            <p className="mt-2 text-lg font-bold text-slate-950">5</p>
+          </div>
+
+          <div className="rounded-2xl bg-slate-50 p-5">
+            <p className="text-sm font-semibold text-slate-500">Lesson format</p>
+            <p className="mt-2 text-lg font-bold text-slate-950">
+              Lecture, Notes, Quiz
+            </p>
+          </div>
+
+          <div className="rounded-2xl bg-slate-50 p-5">
             <p className="text-sm font-semibold text-slate-500">Level</p>
             <p className="mt-2 text-lg font-bold text-slate-950">
               Beginner to Intermediate
@@ -94,48 +206,24 @@ export default function StatisticsFoundationCoursePage() {
             <p className="text-sm font-semibold text-slate-500">Launch</p>
             <p className="mt-2 text-lg font-bold text-slate-950">July 2026</p>
           </div>
-
-          <div className="rounded-2xl bg-slate-50 p-5">
-            <p className="text-sm font-semibold text-slate-500">Access</p>
-            <p className="mt-2 text-lg font-bold text-slate-950">Free preview</p>
-          </div>
-
-          <div className="rounded-2xl bg-slate-50 p-5">
-            <p className="text-sm font-semibold text-slate-500">Best for</p>
-            <p className="mt-2 text-lg font-bold text-slate-950">
-              University students
-            </p>
-          </div>
         </div>
       </section>
 
       <section className="px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Course structure"
-            title="A complete foundation before advanced statistics."
-            description="The course is organised so each module builds naturally from probability to statistical inference and regression."
+            eyebrow="Lesson structure"
+            title="Every lesson follows a complete learning format."
+            description="The course is designed so students first understand the concept conversationally, then study the full theory, then practise and test themselves."
           />
 
-          <div className="mt-12 grid gap-6">
-            {modules.map((module) => (
+          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {lessonParts.map((part) => (
               <div
-                key={module.number}
-                className="grid gap-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-[80px_1fr]"
+                key={part}
+                className="rounded-2xl border border-slate-200 bg-white p-5 text-sm leading-6 text-slate-700 shadow-sm"
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
-                  {module.number}
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-950">
-                    {module.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    {module.lessons}
-                  </p>
-                </div>
+                {part}
               </div>
             ))}
           </div>
@@ -143,46 +231,47 @@ export default function StatisticsFoundationCoursePage() {
       </section>
 
       <section className="bg-white px-6 py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
-            <SectionHeading
-              eyebrow="What makes it different"
-              title="Theory, equations and interpretation together."
-              description="The course is not designed as a collection of formula sheets. It explains why methods work, how notation connects to intuition and how results should be interpreted."
-            />
-          </div>
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow="Course modules"
+            title="Five modules from probability to regression."
+            description="Each module contains structured lessons with lecture, notes, interactive learning support and quiz checkpoints."
+          />
 
-          <div className="grid gap-4">
-            {features.map((feature) => (
+          <div className="mt-12 space-y-8">
+            {modules.map((module) => (
               <div
-                key={feature}
-                className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm font-semibold text-slate-800"
+                key={module.number}
+                className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm"
               >
-                {feature}
+                <div className="grid gap-6 md:grid-cols-[80px_1fr]">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+                    {module.number}
+                  </div>
+
+                  <div>
+                    <h2 className="text-3xl font-bold tracking-tight text-slate-950">
+                      {module.title}
+                    </h2>
+
+                    <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-600">
+                      {module.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-8 grid gap-5 md:grid-cols-3">
+                  {module.lessons.map((lesson) => (
+                    <LessonUnitCard
+                      key={lesson.title}
+                      title={lesson.title}
+                      description={lesson.description}
+                      href={lesson.href}
+                    />
+                  ))}
+                </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-7xl rounded-[2rem] bg-blue-600 p-8 text-white md:p-12">
-          <h2 className="max-w-3xl text-3xl font-bold tracking-tight md:text-5xl">
-            Start with the free sample lesson.
-          </h2>
-
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-50">
-            The first sample lesson introduces random variables using notation,
-            examples and careful interpretation.
-          </p>
-
-          <div className="mt-8">
-            <a
-              href="/courses/statistics-foundation/lessons/random-variable"
-              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-50"
-            >
-              Open sample lesson
-            </a>
           </div>
         </div>
       </section>
