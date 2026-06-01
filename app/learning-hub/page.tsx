@@ -1,332 +1,124 @@
-import CourseCard from "@/components/course/CourseCard";
-import PathwayCard from "@/components/course/PathwayCard";
-import SectionHeading from "@/components/sections/SectionHeading";
-import Badge from "@/components/ui/Badge";
-
-const subjects = [
-  {
-    title: "Statistics",
-    description:
-      "Probability, estimation, hypothesis testing, regression and interpretation.",
-  },
-  {
-    title: "Mathematics",
-    description:
-      "Algebra, calculus, linear algebra and mathematical foundations for data science.",
-  },
-  {
-    title: "Biostatistics",
-    description:
-      "Clinical data, survival analysis, epidemiology and medical prediction.",
-  },
-  {
-    title: "Programming",
-    description:
-      "R, Python, data cleaning, visualisation and reproducible workflows.",
-  },
-  {
-    title: "Data Science",
-    description:
-      "Exploratory analysis, modelling, validation and applied machine learning.",
-  },
-  {
-    title: "Bioinformatics",
-    description:
-      "Omics workflows, RNA-seq, single-cell concepts and biological interpretation.",
-  },
-];
-
-const courses = [
+const pathways = [
   {
     title: "Statistics Foundation",
-    description:
-      "A structured foundation course for university students covering probability, random variables, estimation, hypothesis testing and regression.",
+    tag: "Available",
+    level: "Beginner to intermediate",
     href: "/courses/statistics-foundation",
-    subject: "Statistics",
-    level: "Beginner to Intermediate",
-    duration: "July 2026 launch",
-    status: "Free" as const,
+    description:
+      "A zero-coding course that builds statistical thinking, descriptive statistics, probability, random variables and inference foundations.",
+    details: [
+      "5 modules and 25 structured lessons",
+      "Lecture, detailed notes, interactive labs, worked examples and quizzes",
+      "Designed for university students preparing for biostatistics, data science and research methods",
+    ],
   },
   {
     title: "Machine Learning in Biostatistics",
-    description:
-      "Learn prediction, validation, clinical interpretation, overfitting, leakage, calibration and model evaluation in medical research.",
+    tag: "Coming next",
+    level: "Intermediate",
     href: "/courses/machine-learning-biostatistics",
-    subject: "Biostatistics",
-    level: "Intermediate",
-    duration: "July 2026 launch",
-    status: "Premium" as const,
+    description:
+      "A medical machine learning pathway focused on prediction, validation, overfitting, leakage, calibration and clinical interpretation.",
+    details: [
+      "Medical and health data examples",
+      "Prediction versus inference",
+      "Model evaluation and responsible reporting",
+    ],
   },
   {
-    title: "R and Python for Academic Data Analysis",
+    title: "Research Methods & Data Analysis",
+    tag: "Planned",
+    level: "Project support",
+    href: "/courses",
     description:
-      "A practical pathway for students who want to analyse data, create reports and understand statistical programming workflows.",
-    href: "/courses/r-python-data-analysis",
-    subject: "Programming",
-    level: "Beginner",
-    duration: "Coming soon",
-    status: "Coming Soon" as const,
-  },
-  {
-    title: "Biostatistics for Health Research",
-    description:
-      "Learn how statistical methods are used in epidemiology, clinical studies, public health and medical research interpretation.",
-    href: "/courses/biostatistics-health-research",
-    subject: "Biostatistics",
-    level: "Intermediate",
-    duration: "Coming soon",
-    status: "Coming Soon" as const,
-  },
-  {
-    title: "Mathematics for Data Science",
-    description:
-      "Build confidence in algebra, calculus, probability and matrix ideas used in statistics and machine learning.",
-    href: "/courses/mathematics-for-data-science",
-    subject: "Mathematics",
-    level: "Beginner",
-    duration: "Coming soon",
-    status: "Coming Soon" as const,
-  },
-  {
-    title: "Bioinformatics Foundations",
-    description:
-      "A beginner-friendly pathway into biological data, omics analysis concepts and reproducible bioinformatics thinking.",
-    href: "/courses/bioinformatics-foundations",
-    subject: "Bioinformatics",
-    level: "Beginner",
-    duration: "Coming soon",
-    status: "Coming Soon" as const,
-  },
-];
-
-const pathways = [
-  {
-    title: "Statistics Pathway",
-    description:
-      "Build a strong foundation in probability, random variables, estimation, hypothesis testing, regression and statistical interpretation.",
-    href: "/pathways/statistics",
-    level: "Beginner to Advanced",
-    courses: "Statistics Foundation, Regression, Statistical Inference",
-    badge: "Statistics",
-    variant: "blue" as const,
-  },
-  {
-    title: "Mathematics Pathway",
-    description:
-      "Strengthen the mathematical foundations needed for statistics, machine learning and data science, including algebra, calculus and matrices.",
-    href: "/pathways/mathematics",
-    level: "Beginner to Intermediate",
-    courses: "Mathematics for Data Science, Probability Maths, Linear Algebra",
-    badge: "Mathematics",
-    variant: "violet" as const,
-  },
-  {
-    title: "Biostatistics Pathway",
-    description:
-      "Learn statistical methods used in health research, clinical studies, epidemiology, survival analysis and medical prediction modelling.",
-    href: "/pathways/biostatistics",
-    level: "Intermediate",
-    courses: "Biostatistics, Survival Analysis, Medical Prediction Models",
-    badge: "Biostatistics",
-    variant: "green" as const,
-  },
-  {
-    title: "Data Science Pathway",
-    description:
-      "Develop applied skills in data exploration, visualisation, modelling, validation, machine learning and responsible interpretation.",
-    href: "/pathways/data-science",
-    level: "Beginner to Advanced",
-    courses: "Data Science Foundations, Machine Learning, Model Evaluation",
-    badge: "Data Science",
-    variant: "blue" as const,
-  },
-  {
-    title: "Programming Pathway",
-    description:
-      "Learn R and Python for academic data analysis, reproducible workflows, statistical coding and project-based learning.",
-    href: "/pathways/programming",
-    level: "Beginner",
-    courses: "R for Data Analysis, Python for Data Science, Reproducible Reports",
-    badge: "Programming",
-    variant: "dark" as const,
-  },
-  {
-    title: "Bioinformatics Pathway",
-    description:
-      "Understand biological data analysis, omics workflows, RNA-seq, single-cell concepts, spatial data and reproducible pipelines.",
-    href: "/pathways/bioinformatics",
-    level: "Beginner to Intermediate",
-    courses: "Bioinformatics Foundations, RNA-seq, Single-cell Analysis",
-    badge: "Bioinformatics",
-    variant: "violet" as const,
-  },
-  {
-    title: "Research & Dissertation Pathway",
-    description:
-      "For students planning dissertations, research projects, statistical analysis plans, literature-based methods and applied interpretation.",
-    href: "/pathways/research-dissertation",
-    level: "University and MSc level",
-    courses: "Research Methods, Analysis Planning, Dissertation Support",
-    badge: "Research",
-    variant: "green" as const,
+      "A future pathway for students planning dissertations, research reports and applied quantitative projects.",
+    details: [
+      "Study design and variables",
+      "Analysis planning",
+      "Interpretation and reporting",
+    ],
   },
 ];
 
 export default function LearningHubPage() {
   return (
-    <main className="bg-slate-50 text-slate-950">
-      <section className="bg-slate-950 px-6 py-24 text-white md:py-32">
+    <main className="min-h-screen bg-[#f2efe7] text-neutral-950">
+      <section className="px-5 py-16 md:px-8 md:py-20">
         <div className="mx-auto max-w-7xl">
-          <Badge variant="dark">Learning Hub</Badge>
+          <a
+            href="/"
+            className="text-sm font-black text-blue-700 hover:text-blue-900"
+          >
+            ← Back to homepage
+          </a>
 
-          <h1 className="mt-6 max-w-5xl text-5xl font-bold tracking-tight md:text-7xl">
-            Choose your field and follow a structured academic pathway.
-          </h1>
+          <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_0.75fr] lg:items-end">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
+                Learning Hub
+              </p>
 
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
-            Explore structured learning pathways in Statistics, Mathematics,
-            Biostatistics, Programming, Data Science, Bioinformatics and Research
-            Support.
-          </p>
+              <h1 className="mt-4 max-w-5xl text-5xl font-black leading-[0.95] tracking-[-0.06em] md:text-7xl">
+                Learn quantitative subjects through structured pathways.
+              </h1>
 
-          <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href="/courses"
-              className="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500"
-            >
-              View all courses
-            </a>
+              <p className="mt-6 max-w-3xl text-lg leading-9 text-neutral-700">
+                The Learning Hub contains guided courses in statistics,
+                biostatistics, data science, research methods and related
+                quantitative subjects. Each course is designed to move from
+                concepts to theory, interpretation and practice.
+              </p>
+            </div>
 
-            <a
-              href="/resources"
-              className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
-            >
-              Explore free resources
-            </a>
+            <div className="rounded-[1.7rem] border border-[#ded9cf] bg-white p-6 shadow-sm">
+              <h2 className="text-2xl font-black tracking-tight">
+                How to use the hub
+              </h2>
+
+              <ul className="mt-5 list-disc space-y-3 pl-5 text-sm leading-7 text-neutral-600">
+                <li>Start with the course that matches your current level.</li>
+                <li>Study lessons in order instead of jumping randomly.</li>
+                <li>Use interactive labs and quizzes to check understanding.</li>
+                <li>Return to detailed notes when mathematical ideas feel unclear.</li>
+              </ul>
+            </div>
           </div>
-        </div>
-      </section>
 
-      <section className="border-b border-slate-200 bg-white px-6 py-10">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {subjects.map((subject) => (
-              <div
-                key={subject.title}
-                className="rounded-2xl border border-slate-200 bg-slate-50 p-5"
+          <div className="mt-12 grid gap-5 lg:grid-cols-3">
+            {pathways.map((pathway) => (
+              <a
+                key={pathway.title}
+                href={pathway.href}
+                className="group flex min-h-[420px] flex-col rounded-[1.7rem] border border-[#ded9cf] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
               >
-                <h2 className="text-base font-bold text-slate-950">
-                  {subject.title}
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-full bg-blue-100 px-3 py-2 text-xs font-black text-blue-800">
+                    {pathway.level}
+                  </span>
+                  <span className="rounded-full bg-emerald-100 px-3 py-2 text-xs font-black text-emerald-800">
+                    {pathway.tag}
+                  </span>
+                </div>
+
+                <h2 className="mt-6 text-3xl font-black tracking-tight">
+                  {pathway.title}
                 </h2>
 
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  {subject.description}
+                <p className="mt-4 text-sm leading-7 text-neutral-600">
+                  {pathway.description}
                 </p>
-              </div>
+
+                <ul className="mt-5 list-disc space-y-2 pl-5 text-sm leading-6 text-neutral-600">
+                  {pathway.details.map((detail) => (
+                    <li key={detail}>{detail}</li>
+                  ))}
+                </ul>
+
+                <p className="mt-auto pt-8 text-sm font-black text-blue-700">
+                  Open pathway →
+                </p>
+              </a>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Learning pathways"
-            title="Choose your field and follow a structured route."
-            description="The Learning Hub is organised by academic direction, so students can start from the field they care about most."
-          />
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {pathways.map((pathway) => (
-              <PathwayCard key={pathway.title} {...pathway} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white px-6 py-20">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Course catalogue"
-            title="Start with selected courses and expand over time."
-            description="Each course is designed with theory, worked examples, visual explanation, applied interpretation and future interactive activities."
-          />
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {courses.map((course) => (
-              <CourseCard key={course.title} {...course} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
-            <SectionHeading
-              eyebrow="Interactive preview"
-              title="Visual learning is part of the platform."
-              description="Interactive demos will help students understand distributions, regression, uncertainty, model performance and clinical prediction concepts."
-            />
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Badge variant="blue">Normal distribution</Badge>
-              <Badge variant="green">Regression</Badge>
-              <Badge variant="violet">Confidence intervals</Badge>
-            </div>
-          </div>
-
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl">
-            <div className="rounded-3xl bg-slate-950 p-6 text-white">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
-                Coming in this sprint
-              </p>
-
-              <h3 className="mt-4 text-2xl font-bold">
-                Interactive statistics demos
-              </h3>
-
-              <p className="mt-4 text-sm leading-6 text-slate-300">
-                Students will move sliders, change assumptions and see statistical
-                ideas update visually in real time.
-              </p>
-
-              <div className="mt-8 grid gap-3">
-                <div className="rounded-2xl bg-white/5 p-4 text-sm text-slate-300">
-                  Mean and standard deviation sliders
-                </div>
-
-                <div className="rounded-2xl bg-white/5 p-4 text-sm text-slate-300">
-                  Regression line and noise controls
-                </div>
-
-                <div className="rounded-2xl bg-white/5 p-4 text-sm text-slate-300">
-                  Confidence interval simulation preview
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white px-6 py-20">
-        <div className="mx-auto max-w-7xl rounded-[2rem] bg-blue-600 p-8 text-white md:p-12">
-          <h2 className="max-w-3xl text-3xl font-bold tracking-tight md:text-5xl">
-            Start with free lessons. Upgrade later for premium pathways.
-          </h2>
-
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-50">
-            The launch version will include free course previews, selected full lessons,
-            premium course pathways and interactive learning demos.
-          </p>
-
-          <div className="mt-8">
-            <a
-              href="/pricing"
-              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-50"
-            >
-              View learning access
-            </a>
           </div>
         </div>
       </section>

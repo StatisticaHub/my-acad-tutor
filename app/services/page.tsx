@@ -1,200 +1,142 @@
-import FeatureCard from "@/components/sections/FeatureCard";
-import SectionHeading from "@/components/sections/SectionHeading";
-
 const services = [
   {
-    title: "Statistics Tutoring",
+    title: "Statistics support",
     description:
-      "Support with probability, distributions, estimation, hypothesis testing, regression, ANOVA, statistical interpretation and exam preparation.",
+      "Guidance with probability, descriptive statistics, inference, hypothesis testing, regression, multivariate methods and interpretation.",
+    examples: [
+      "Understanding statistical concepts",
+      "Choosing suitable methods",
+      "Interpreting results and assumptions",
+      "Preparing for exams and coursework topics",
+    ],
   },
   {
-    title: "Biostatistics & Medical Statistics",
+    title: "Biostatistics & medical statistics",
     description:
-      "Guidance with clinical data, epidemiology, survival analysis, logistic regression, diagnostic accuracy, medical prediction models and health research interpretation.",
+      "Support for students and researchers working with health data, epidemiology, survival analysis, clinical trials and medical research methods.",
+    examples: [
+      "Survival analysis concepts",
+      "Epidemiological measures",
+      "Clinical trial methods",
+      "Health data interpretation",
+    ],
   },
   {
-    title: "R and Python Support",
+    title: "Programming & statistical software",
     description:
-      "Help with data cleaning, coding logic, statistical workflows, plots, reproducible analysis and understanding programming errors.",
+      "Guidance with R, Python, SPSS, SAS and Stata for academic analysis, reproducible workflows and statistical reporting.",
+    examples: [
+      "Code walkthroughs",
+      "Debugging support",
+      "Data cleaning logic",
+      "Reproducible analysis structure",
+    ],
   },
   {
-    title: "Data Science Support",
+    title: "Dissertation and research support",
     description:
-      "Support with exploratory data analysis, modelling, machine learning concepts, validation, visualisation and project workflows.",
+      "Structured guidance for research questions, study design, variables, analysis plans, tables, figures and interpretation.",
+    examples: [
+      "Research question refinement",
+      "Variable planning",
+      "Analysis strategy",
+      "Results interpretation",
+    ],
   },
   {
-    title: "Bioinformatics Support",
+    title: "Data science and machine learning",
     description:
-      "Conceptual and workflow support for omics data, RNA-seq, single-cell analysis, spatial data, biological interpretation and reproducible pipelines.",
+      "Support with data preparation, visualisation, prediction modelling, validation, model evaluation and responsible interpretation.",
+    examples: [
+      "Prediction versus inference",
+      "Model validation",
+      "Performance metrics",
+      "Machine learning foundations",
+    ],
   },
   {
-    title: "Dissertation & Research Guidance",
+    title: "Bioinformatics and omics",
     description:
-      "Help with research question development, analysis planning, methodology structure, interpretation and responsible academic feedback.",
-  },
-];
-
-const process = [
-  {
-    step: "01",
-    title: "Tell us your topic",
-    description:
-      "Share your subject, module, research problem, dataset type or the concept you are struggling with.",
-  },
-  {
-    step: "02",
-    title: "Get a clear learning plan",
-    description:
-      "We identify what you need to understand and suggest the right support pathway.",
-  },
-  {
-    step: "03",
-    title: "Learn through explanation",
-    description:
-      "Sessions focus on reasoning, interpretation, worked examples and independent skill development.",
+      "Guidance with biological data analysis concepts, omics workflows, gene expression analysis and computational interpretation.",
+    examples: [
+      "RNA-seq foundations",
+      "Omics data interpretation",
+      "Bioinformatics workflow planning",
+      "Biological meaning of results",
+    ],
   },
 ];
 
 export default function ServicesPage() {
   return (
-    <main className="bg-slate-50 text-slate-950">
-      <section className="bg-slate-950 px-6 py-24 text-white md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.25em] text-blue-400">
-            Academic Support Services
-          </p>
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-16 text-neutral-950 md:px-8 md:py-20">
+      <section className="mx-auto max-w-7xl">
+        <a href="/" className="text-sm font-semibold text-[#8b1116]">
+          ← Back to homepage
+        </a>
 
-          <h1 className="max-w-5xl text-5xl font-bold tracking-tight md:text-7xl">
-            Expert support for statistics, data science and research-based learning.
-          </h1>
-
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
-            My Academic Tutor helps students understand difficult quantitative subjects
-            through clear explanation, structured guidance and responsible academic support.
-          </p>
-
-          <div className="mt-10">
-            <a
-              href="/contact"
-              className="rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500"
-            >
-              Request Academic Support
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-20">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="What we support"
-            title="Support across quantitative academic subjects."
-            description="Choose focused academic help for your course, dissertation, coding project or research-based data analysis work."
-          />
-
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => (
-              <FeatureCard
-                key={service.title}
-                title={service.title}
-                description={service.description}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white px-6 py-20">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="How it works"
-            title="A simple support process."
-            description="The goal is not to give shortcuts. The goal is to help students understand the work properly and build confidence."
-          />
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {process.map((item) => (
-              <div
-                key={item.step}
-                className="rounded-3xl border border-slate-200 bg-slate-50 p-6"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
-                  {item.step}
-                </div>
-
-                <h3 className="mt-6 text-xl font-bold text-slate-950">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 text-sm leading-6 text-slate-600">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center">
+        <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <SectionHeading
-              eyebrow="Responsible learning"
-              title="Academic integrity is built into the platform."
-              description="Support is designed to improve understanding, not replace the student’s own academic work."
-            />
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
+              Services
+            </p>
+
+            <h1 className="font-serif-academic mt-4 text-5xl font-semibold leading-[0.98] tracking-[-0.04em] md:text-7xl">
+              Academic support for quantitative learning and research.
+            </h1>
           </div>
 
-          <div className="rounded-[2rem] bg-slate-950 p-8 text-white">
-            <h3 className="text-2xl font-bold">What we do</h3>
-
-            <ul className="mt-6 space-y-4 text-sm leading-6 text-slate-300">
-              <li>✓ Explain concepts, methods and statistical reasoning.</li>
-              <li>✓ Help students understand analysis workflows and interpretation.</li>
-              <li>✓ Provide feedback, planning support and learning guidance.</li>
-              <li>✓ Support responsible skill development in R, Python and statistics.</li>
-            </ul>
-
-            <h3 className="mt-10 text-2xl font-bold">What we do not do</h3>
-
-            <ul className="mt-6 space-y-4 text-sm leading-6 text-slate-300">
-              <li>✕ Ghostwrite assignments, dissertations or coursework.</li>
-              <li>✕ Complete assessed work on behalf of students.</li>
-              <li>✕ Manipulate results or fabricate analysis outcomes.</li>
-              <li>✕ Support impersonation or dishonest academic conduct.</li>
-            </ul>
-
-            <div className="mt-8">
-              <a
-                href="/academic-integrity"
-                className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100"
-              >
-                Read academic integrity policy
-              </a>
-            </div>
-          </div>
+          <p className="max-w-3xl text-base leading-8 text-neutral-600 md:text-lg">
+            My Academic Tutor provides guidance-based academic support across
+            statistics, biostatistics, programming, data science,
+            bioinformatics and research methods. The focus is understanding,
+            interpretation and responsible learning.
+          </p>
         </div>
-      </section>
 
-      <section className="bg-white px-6 py-20">
-        <div className="mx-auto max-w-7xl rounded-[2rem] bg-blue-600 p-8 text-white md:p-12">
-          <h2 className="max-w-3xl text-3xl font-bold tracking-tight md:text-5xl">
-            Need help choosing the right support?
+        <div className="mt-12 grid gap-px overflow-hidden rounded-[1.25rem] border border-neutral-200 bg-neutral-200 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => (
+            <article key={service.title} className="bg-white p-6 md:p-7">
+              <h2 className="font-serif-academic text-3xl font-semibold tracking-tight">
+                {service.title}
+              </h2>
+
+              <p className="mt-4 text-sm leading-7 text-neutral-600">
+                {service.description}
+              </p>
+
+              <ul className="mt-5 space-y-2 text-sm leading-6 text-neutral-700">
+                {service.examples.map((item) => (
+                  <li key={item} className="border-t border-neutral-200 pt-2">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-10 rounded-[1.25rem] border border-neutral-200 bg-neutral-950 p-8 text-white">
+          <p className="text-xs font-bold uppercase tracking-[0.28em] text-white/50">
+            Academic integrity
+          </p>
+
+          <h2 className="font-serif-academic mt-3 text-4xl font-semibold tracking-tight">
+            Support is guidance-based.
           </h2>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-blue-50">
-            Send your topic, course area or research problem and we will suggest the most
-            suitable support pathway.
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-white/70">
+            We help students understand concepts, software, methods and
+            interpretation. We do not complete assessed work, write assignments,
+            submit work, impersonate students or support academic misconduct.
           </p>
 
-          <div className="mt-8">
-            <a
-              href="/contact"
-              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-50"
-            >
-              Contact My Academic Tutor
-            </a>
-          </div>
+          <a
+            href="/contact"
+            className="mt-6 inline-flex rounded-md bg-white px-6 py-3 text-sm font-semibold text-neutral-950"
+          >
+            Request support
+          </a>
         </div>
       </section>
     </main>
