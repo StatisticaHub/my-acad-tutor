@@ -1,3 +1,12 @@
+const basePath =
+  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+
+function withBasePath(href: string) {
+  if (href === "/") return `${basePath}/`;
+  if (href.startsWith("#")) return href;
+  return `${basePath}${href}/`;
+}
+
 const lessons = [
   {
     number: "2.1",
@@ -89,7 +98,7 @@ export default function DescriptiveStatisticsModulePage() {
       <div className="mx-auto max-w-7xl px-5 py-8 md:px-8 md:py-12">
         <header className="mb-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
           <a
-            href="/courses/statistics-foundation"
+            href={withBasePath("/courses/statistics-foundation")}
             className="inline-flex items-center gap-2 text-sm font-black text-blue-700 hover:text-blue-800"
           >
             ← Back to Statistics Foundation
@@ -97,13 +106,17 @@ export default function DescriptiveStatisticsModulePage() {
 
           <nav className="flex flex-wrap gap-2">
             <a
-              href="/courses/statistics-foundation/modules/introduction-to-statistical-thinking"
+              href={withBasePath(
+                "/courses/statistics-foundation/modules/introduction-to-statistical-thinking"
+              )}
               className="rounded-full border border-[#ded9cf] bg-white/80 px-4 py-2 text-sm font-bold text-neutral-700 hover:bg-white"
             >
               Module 1
             </a>
             <a
-              href="/courses/statistics-foundation/modules/probability-foundations"
+              href={withBasePath(
+                "/courses/statistics-foundation/modules/probability-foundations"
+              )}
               className="rounded-full border border-[#ded9cf] bg-white/80 px-4 py-2 text-sm font-bold text-neutral-700 hover:bg-white"
             >
               Module 3 →
@@ -145,7 +158,9 @@ export default function DescriptiveStatisticsModulePage() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href="/courses/statistics-foundation/modules/descriptive-statistics/lessons/measures-of-centre"
+                  href={withBasePath(
+                    "/courses/statistics-foundation/modules/descriptive-statistics/lessons/measures-of-centre"
+                  )}
                   className="rounded-full bg-neutral-950 px-6 py-3 text-sm font-black text-white transition hover:bg-neutral-800"
                 >
                   Start Lesson 2.1
@@ -189,7 +204,9 @@ export default function DescriptiveStatisticsModulePage() {
                   <li>Reading graphs and distribution shape.</li>
                   <li>Detecting and interpreting outliers responsibly.</li>
                   <li>Comparing values using standard units.</li>
-                  <li>Understanding correlation without overclaiming causation.</li>
+                  <li>
+                    Understanding correlation without overclaiming causation.
+                  </li>
                 </ul>
               </div>
             </aside>
@@ -217,7 +234,7 @@ export default function DescriptiveStatisticsModulePage() {
             {lessons.map((lesson) => (
               <a
                 key={lesson.number}
-                href={lesson.href}
+                href={withBasePath(lesson.href)}
                 className="group rounded-[1.5rem] border border-[#ded9cf] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
@@ -311,9 +328,7 @@ export default function DescriptiveStatisticsModulePage() {
                 Why spread is essential for understanding consistency and
                 variability.
               </li>
-              <li>
-                How skewness and outliers affect centre and spread.
-              </li>
+              <li>How skewness and outliers affect centre and spread.</li>
               <li>
                 How z-scores compare raw values using standard deviation units.
               </li>
@@ -337,7 +352,9 @@ export default function DescriptiveStatisticsModulePage() {
             </p>
 
             <a
-              href="/courses/statistics-foundation/modules/probability-foundations"
+              href={withBasePath(
+                "/courses/statistics-foundation/modules/probability-foundations"
+              )}
               className="mt-6 inline-flex rounded-full bg-neutral-950 px-5 py-3 text-sm font-black text-white"
             >
               Continue to Module 3 →

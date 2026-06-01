@@ -1,3 +1,12 @@
+const basePath =
+  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+
+function withBasePath(href: string) {
+  if (href === "/") return `${basePath}/`;
+  if (href.startsWith("#")) return href;
+  return `${basePath}${href}/`;
+}
+
 const lessons = [
   {
     number: "1.1",
@@ -41,7 +50,7 @@ export default function IntroductionToStatisticalThinkingModulePage() {
     <main className="min-h-screen bg-slate-50 px-6 py-16 text-slate-950">
       <section className="mx-auto max-w-6xl">
         <a
-          href="/courses/statistics-foundation"
+          href={withBasePath("/courses/statistics-foundation")}
           className="text-sm font-semibold text-blue-600 hover:text-blue-700"
         >
           ← Back to Statistics Foundation
@@ -61,22 +70,45 @@ export default function IntroductionToStatisticalThinkingModulePage() {
           types of variables, graphical summaries and sampling methods.
         </p>
 
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a
+            href={withBasePath(
+              "/courses/statistics-foundation/modules/introduction-to-statistical-thinking/lessons/what-is-statistics"
+            )}
+            className="rounded-full bg-slate-950 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
+          >
+            Start Lesson 1.1
+          </a>
+
+          <a
+            href={withBasePath(
+              "/courses/statistics-foundation/modules/descriptive-statistics"
+            )}
+            className="rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-bold text-slate-950 transition hover:-translate-y-0.5 hover:shadow-sm"
+          >
+            Next module →
+          </a>
+        </div>
+
         <div className="mt-12 grid gap-5">
           {lessons.map((lesson) => (
             <a
               key={lesson.number}
-              href={lesson.href}
+              href={withBasePath(lesson.href)}
               className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
               <p className="text-sm font-semibold text-blue-600">
                 Lesson {lesson.number}
               </p>
+
               <h2 className="mt-2 text-2xl font-bold text-slate-950">
                 {lesson.title}
               </h2>
+
               <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
                 {lesson.description}
               </p>
+
               <p className="mt-5 text-sm font-semibold text-slate-950">
                 Open lesson →
               </p>
