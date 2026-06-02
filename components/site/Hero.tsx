@@ -7,13 +7,14 @@ export default function Hero() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 rounded-[1.5rem] border border-[#ead8d8] bg-white p-6 shadow-sm md:p-8">
           <p className="text-xs font-bold uppercase tracking-[0.34em] text-[#8b1116]">
-            New courses launching July 2026
+            Structured courses launching July 2026
           </p>
 
           <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg">
-            Statistics Foundation for University Students and Machine Learning
-            in Biostatistics are being released as structured learning pathways
-            by My Academic Tutor.
+            My Academic Tutor is preparing structured learning pathways in
+            Statistics Foundation and Machine Learning in Biostatistics for
+            students who want clearer explanations, stronger theory and more
+            confident quantitative reasoning.
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
@@ -40,24 +41,21 @@ export default function Hero() {
             </p>
 
             <h1 className="font-serif-academic mt-6 max-w-5xl text-5xl font-semibold leading-[0.98] tracking-[-0.04em] md:text-7xl">
-              Specialist academic support and structured courses for
-              quantitative learning.
+              Clear academic support and structured quantitative learning.
             </h1>
 
             <div className="mt-7 max-w-4xl space-y-5 text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
               <p>
                 My Academic Tutor supports university students, researchers and
-                early-career professionals across statistics, biostatistics,
-                programming, data science, bioinformatics and quantitative
-                research methods.
+                early-career professionals who need help understanding
+                statistics, biostatistics, programming, data science,
+                bioinformatics and quantitative research methods.
               </p>
 
               <p>
-                From foundational statistical theory to applied medical
-                statistics, machine learning, dissertation analysis and research
-                interpretation, the platform is designed to make complex
-                quantitative subjects clearer, structured and academically
-                responsible.
+                The platform combines subject tutoring, research guidance and
+                structured course pathways to make complex quantitative topics
+                easier to understand, interpret and apply responsibly.
               </p>
             </div>
 
@@ -88,7 +86,7 @@ export default function Hero() {
               {[
                 ["2020", "Supporting learners since"],
                 ["July 2026", "Structured course release"],
-                ["0", "Shortcuts or assignment writing"],
+                ["500+", "Learners supported across global institutions"],
               ].map(([value, label]) => (
                 <div
                   key={label}
@@ -122,18 +120,18 @@ export default function Hero() {
 
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/70">
-                    Founder-led academic platform
+                    Quantitative learning platform
                   </p>
 
                   <h2 className="font-serif-academic mt-4 max-w-2xl text-4xl font-semibold leading-tight tracking-[-0.03em] md:text-5xl">
                     Built around clarity, interpretation and responsible
-                    learning.
+                    academic learning.
                   </h2>
 
                   <p className="mt-5 max-w-xl text-sm leading-7 text-white/80 md:text-base">
-                    Founded by Rahul, with academic training in MSc Statistics
-                    from IIT Kanpur and MSc Medical Statistics and Health Data
-                    Science from the University of Bristol.
+                    Designed for students and researchers who want structured
+                    explanations, ethical academic support and stronger
+                    confidence with quantitative methods.
                   </p>
                 </div>
               </div>

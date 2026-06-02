@@ -1,14 +1,23 @@
+const basePath =
+  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+
+function withBasePath(href: string) {
+  if (href === "/") return `${basePath}/`;
+  if (href.startsWith("#")) return href;
+  return `${basePath}${href}/`;
+}
+
 const courses = [
   {
     title: "Statistics Foundation for University Students",
     tag: "Launching July 2026",
     href: "/courses/statistics-foundation",
     description:
-      "A beginner-friendly, no-coding course focused on statistical concepts, notation, probability, inference foundations, derivations and exam-style thinking.",
+      "A beginner-friendly, no-coding course for students who want to build strong foundations in statistical thinking, notation, probability, inference, regression and exam-style reasoning.",
     details: [
       ["Level", "Beginner to intermediate"],
-      ["Format", "Lectures, notes, interactive labs and quizzes"],
-      ["Certificate", "Completion certificate planned"],
+      ["Format", "Lectures, detailed notes, interactive labs and quizzes"],
+      ["Focus", "Theory, interpretation and mathematical understanding"],
     ],
   },
   {
@@ -16,19 +25,38 @@ const courses = [
     tag: "Launching July 2026",
     href: "/courses/machine-learning-biostatistics",
     description:
-      "A structured course connecting machine learning with medical statistics, clinical prediction modelling, validation, regularisation, survival analysis and biomedical data science.",
+      "A structured applied course connecting machine learning with medical statistics, clinical prediction modelling, validation, regularisation, survival analysis and biomedical data science.",
     details: [
       ["Level", "Intermediate to advanced"],
-      ["Format", "R-based applied learning pathway"],
-      ["Certificate", "Completion certificate planned"],
+      ["Format", "Applied learning pathway with R-based examples"],
+      ["Focus", "Prediction, validation and medical interpretation"],
     ],
   },
 ];
 
 const upcoming = [
-  "R for Academic Data Analysis",
-  "Dissertation Data Analysis",
-  "Bioinformatics and Omics Data Analysis",
+  {
+    title: "R for Academic Data Analysis",
+    description:
+      "A practical pathway for students who need to clean, analyse, visualise and report academic data using R.",
+  },
+  {
+    title: "Dissertation Data Analysis",
+    description:
+      "Guidance-focused support for planning analysis, choosing methods, interpreting results and structuring academic reports.",
+  },
+  {
+    title: "Bioinformatics and Omics Data Analysis",
+    description:
+      "A future pathway covering omics concepts, expression analysis, workflows and biological interpretation.",
+  },
+];
+
+const platformPoints = [
+  "Clear explanations before technical detail",
+  "Guidance-based support, not assignment completion",
+  "Structured lessons with visual and interactive learning",
+  "Focused on statistics, biostatistics, data science and research methods",
 ];
 
 export default function CoursesPreview() {
@@ -40,16 +68,17 @@ export default function CoursesPreview() {
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
               Learning Hub
             </p>
+
             <h2 className="font-serif-academic mt-3 text-4xl font-semibold tracking-[-0.035em] md:text-5xl">
-              Structured courses launching in July 2026.
+              Structured courses for quantitative learning.
             </h2>
           </div>
 
           <p className="max-w-3xl text-base leading-8 text-neutral-600">
-            My Academic Tutor is developing structured course pathways for
-            students who want clear explanations, strong foundations and applied
-            quantitative learning across statistics, biostatistics and data
-            science.
+            My Academic Tutor is developing structured learning pathways for
+            students who want clear explanations, strong foundations and
+            applied quantitative understanding across statistics,
+            biostatistics, data science and research methods.
           </p>
         </div>
 
@@ -57,7 +86,7 @@ export default function CoursesPreview() {
           {courses.map((course) => (
             <article
               key={course.title}
-              className="rounded-[1.25rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"
+              className="rounded-[1.25rem] border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:p-8"
             >
               <p className="text-xs font-bold uppercase tracking-[0.26em] text-[#8b1116]">
                 {course.tag}
@@ -73,14 +102,15 @@ export default function CoursesPreview() {
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <a
-                  href={course.href}
-                  className="rounded-md bg-neutral-950 px-5 py-3 text-sm font-semibold text-white"
+                  href={withBasePath(course.href)}
+                  className="rounded-md bg-neutral-950 px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5"
                 >
                   Open course
                 </a>
+
                 <a
-                  href="/contact"
-                  className="rounded-md border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-950"
+                  href={withBasePath("/contact")}
+                  className="rounded-md border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-950 transition hover:-translate-y-0.5"
                 >
                   Register interest
                 </a>
@@ -95,6 +125,7 @@ export default function CoursesPreview() {
                     <dt className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-500">
                       {label}
                     </dt>
+
                     <dd className="text-sm leading-6 text-neutral-700">
                       {value}
                     </dd>
@@ -106,54 +137,82 @@ export default function CoursesPreview() {
         </div>
 
         <div className="mt-8 rounded-[1.25rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-xs font-bold uppercase tracking-[0.26em] text-[#8b1116]">
-            Upcoming pathways
-          </p>
+          <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.26em] text-[#8b1116]">
+                Upcoming pathways
+              </p>
 
-          <h3 className="font-serif-academic mt-3 text-3xl font-semibold tracking-tight">
-            More courses are being prepared.
-          </h3>
+              <h3 className="font-serif-academic mt-3 text-3xl font-semibold tracking-tight">
+                More courses are being prepared.
+              </h3>
 
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-neutral-600">
-            These pathways will support students who need applied software,
-            dissertation and biomedical data analysis guidance.
-          </p>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-neutral-600">
+                Future pathways will support students who need structured
+                learning in academic software, dissertation analysis and
+                biomedical data analysis.
+              </p>
+            </div>
 
-          <div className="mt-6 grid gap-3 md:grid-cols-3">
-            {upcoming.map((item) => (
-              <div
-                key={item}
-                className="rounded-md border border-neutral-200 bg-[#f8f6f1] p-5"
-              >
-                <p className="text-sm font-semibold text-neutral-950">{item}</p>
-                <p className="mt-2 text-xs font-bold uppercase tracking-[0.2em] text-neutral-500">
-                  Planned
-                </p>
-              </div>
-            ))}
+            <div className="grid gap-3 md:grid-cols-3">
+              {upcoming.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-md border border-neutral-200 bg-[#f8f6f1] p-5"
+                >
+                  <p className="text-sm font-semibold text-neutral-950">
+                    {item.title}
+                  </p>
+
+                  <p className="mt-3 text-sm leading-6 text-neutral-600">
+                    {item.description}
+                  </p>
+
+                  <p className="mt-4 text-xs font-bold uppercase tracking-[0.2em] text-neutral-500">
+                    Planned
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="mt-8 rounded-[1.25rem] border border-neutral-200 bg-neutral-950 p-6 text-white md:p-8">
-          <p className="text-xs font-bold uppercase tracking-[0.26em] text-white/50">
-            Founder note
-          </p>
+        <div className="mt-8 rounded-[1.25rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+          <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.26em] text-white/50">
+                Platform approach
+              </p>
 
-          <p className="mt-4 max-w-5xl text-sm leading-7 text-white/75">
-            These courses are developed under the guidance of Rahul, Founder of
-            My Academic Tutor. His academic background in MSc Statistics from
-            Indian Institute of Technology Kanpur and MSc Medical Statistics and
-            Health Data Science from the University of Bristol shapes the
-            platform’s focus on clear explanation, mathematical understanding,
-            applied interpretation and responsible academic support.
-          </p>
+              <h3 className="font-serif-academic mt-3 text-3xl font-semibold tracking-tight">
+                Built for clarity, interpretation and responsible learning.
+              </h3>
 
-          <a
-            href="/about"
-            className="mt-6 inline-flex rounded-md bg-white px-5 py-3 text-sm font-semibold text-neutral-950"
-          >
-            About the platform
-          </a>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/75">
+                The Learning Hub is designed to help students move from
+                confusion to structure: first understanding the idea, then the
+                notation, then the method, and finally the interpretation.
+              </p>
+
+              <a
+                href={withBasePath("/learning-hub")}
+                className="mt-6 inline-flex rounded-md bg-white px-5 py-3 text-sm font-semibold text-neutral-950 transition hover:-translate-y-0.5"
+              >
+                Visit Learning Hub
+              </a>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {platformPoints.map((point) => (
+                <div
+                  key={point}
+                  className="rounded-xl border border-white/10 bg-white/5 p-4"
+                >
+                  <p className="text-sm leading-6 text-white/80">{point}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
