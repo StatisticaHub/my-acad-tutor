@@ -6,6 +6,7 @@ const basePath =
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
   if (href.startsWith("#")) return href;
+
   const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
   return `${basePath}${cleanHref}`;
 }
@@ -21,44 +22,70 @@ const popularSearches = [
   "SPSS",
 ];
 
-const categories = [
-  "Statistics",
-  "Regression",
-  "Biostatistics",
-  "Research methods",
-  "Data analysis",
-  "Software",
-  "Bioinformatics",
-];
-
 const guideFormat = [
   {
     title: "Problem",
-    description: "What difficulty does the topic solve?",
+    description:
+      "Understand the difficulty, misconception or decision that makes the topic important.",
   },
   {
     title: "Intuition",
-    description: "What is the idea in simple language?",
+    description:
+      "Build the idea in plain language before moving into formal methods.",
   },
   {
     title: "Method",
-    description: "What steps or theory are used?",
+    description:
+      "Learn the statistical logic, assumptions, workflow and decision steps.",
   },
   {
     title: "Working",
-    description: "How does it work in practice?",
+    description:
+      "See how the method behaves in realistic student, dissertation or research settings.",
   },
   {
     title: "Limitations",
-    description: "When can the method mislead?",
+    description:
+      "Recognise when the method can mislead, fail or require extra care.",
   },
   {
     title: "Discussion",
-    description: "How should students interpret and report it?",
+    description:
+      "Learn how to interpret, report and explain the result responsibly.",
   },
 ];
 
+const featureCards = [
+  {
+    title: "Study guides",
+    description:
+      "Structured explanations for statistical, analytical and research-method topics.",
+  },
+  {
+    title: "Checklists",
+    description:
+      "Practical prompts for method choice, data preparation, interpretation and reporting.",
+  },
+  {
+    title: "Interpretation support",
+    description:
+      "Guidance for understanding assumptions, uncertainty, limitations and conclusions.",
+  },
+];
+
+function getAreaCounts() {
+  const counts = new Map<string, number>();
+
+  resourceGuides.forEach((guide) => {
+    counts.set(guide.area, (counts.get(guide.area) ?? 0) + 1);
+  });
+
+  return Array.from(counts.entries()).sort(([a], [b]) => a.localeCompare(b));
+}
+
 export default function ResourcesPage() {
+  const areaCounts = getAreaCounts();
+
   return (
     <main className="min-h-screen bg-[#f7f4ee] text-neutral-950">
       <section className="relative overflow-hidden border-b border-neutral-200 bg-white px-5 py-16 md:px-8">
@@ -67,18 +94,18 @@ export default function ResourcesPage() {
         <div className="relative mx-auto max-w-7xl">
           <a
             href={withBasePath("/")}
-            className="text-sm font-semibold text-[#8b1116] hover:text-neutral-950"
+            className="text-sm font-semibold text-[#8b1116] transition hover:text-neutral-950"
           >
             ← Back to homepage
           </a>
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
+          <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#8b1116]">
                 Resources
               </p>
 
-              <h1 className="font-serif-academic mt-5 max-w-5xl text-5xl font-medium leading-tight tracking-[-0.03em] md:text-6xl">
+              <h1 className="font-serif-academic mt-5 max-w-5xl text-5xl font-medium leading-tight tracking-[-0.035em] md:text-7xl">
                 In-depth guides for quantitative learning.
               </h1>
 
@@ -89,30 +116,31 @@ export default function ResourcesPage() {
               </p>
 
               <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-600">
-                Each guide is written like a structured learning note, not a
-                short blog post. The aim is to help students understand the
-                problem, build intuition, learn the method, see how it works,
-                recognise limitations and discuss results responsibly.
+                Each guide is designed as a structured learning note. You move
+                from the problem, to intuition, to method, to worked thinking,
+                then into limitations and discussion. The aim is not just to
+                memorise methods, but to understand when and why they should be
+                used.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#guide-library"
-                  className="rounded-md bg-neutral-950 px-6 py-3 text-sm font-semibold text-white"
+                  className="rounded-md bg-neutral-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#8b1116]"
                 >
                   Browse guides
                 </a>
 
                 <a
                   href={withBasePath("/learning-hub")}
-                  className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-800"
+                  className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-800 transition hover:border-[#8b1116] hover:text-[#8b1116]"
                 >
                   Visit Learning Hub
                 </a>
 
                 <a
                   href={withBasePath("/contact")}
-                  className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-800"
+                  className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-800 transition hover:border-[#8b1116] hover:text-[#8b1116]"
                 >
                   Ask for support
                 </a>
@@ -121,14 +149,34 @@ export default function ResourcesPage() {
 
             <div className="rounded-[1.5rem] border border-neutral-200 bg-white/90 p-6 shadow-sm">
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-neutral-500">
-                Search resources
+                Resource library
               </p>
+
+              <div className="mt-5 grid grid-cols-2 gap-3">
+                <div className="rounded-xl border border-neutral-200 bg-[#f8f6f1] p-4">
+                  <p className="text-3xl font-semibold tracking-[-0.03em] text-neutral-950">
+                    {resourceGuides.length}
+                  </p>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+                    Guides
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-neutral-200 bg-[#f8f6f1] p-4">
+                  <p className="text-3xl font-semibold tracking-[-0.03em] text-neutral-950">
+                    {areaCounts.length}
+                  </p>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
+                    Areas
+                  </p>
+                </div>
+              </div>
 
               <div className="mt-5 rounded-xl border border-neutral-200 bg-[#f8f6f1] p-5">
                 <p className="text-sm leading-7 text-neutral-600">
                   Search examples: regression, p-value, survival analysis,
-                  missing data, SPSS, dissertation, confidence interval,
-                  logistic regression.
+                  missing data, dissertation, confidence interval, logistic
+                  regression.
                 </p>
               </div>
 
@@ -153,29 +201,17 @@ export default function ResourcesPage() {
 
       <section className="border-b border-neutral-200 bg-neutral-950 px-5 py-10 text-white md:px-8">
         <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
-          <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-5">
-            <h2 className="text-lg font-semibold">Study guides</h2>
-            <p className="mt-2 text-sm leading-7 text-white/70">
-              Structured explanations for common statistical, analytical and
-              research-method topics.
-            </p>
-          </div>
-
-          <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-5">
-            <h2 className="text-lg font-semibold">Checklists</h2>
-            <p className="mt-2 text-sm leading-7 text-white/70">
-              Practical prompts for data preparation, method choice,
-              interpretation and reporting.
-            </p>
-          </div>
-
-          <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-5">
-            <h2 className="text-lg font-semibold">Interpretation support</h2>
-            <p className="mt-2 text-sm leading-7 text-white/70">
-              Guidance for understanding assumptions, results, uncertainty and
-              limitations.
-            </p>
-          </div>
+          {featureCards.map((card) => (
+            <div
+              key={card.title}
+              className="rounded-[1.25rem] border border-white/10 bg-white/5 p-5"
+            >
+              <h2 className="text-lg font-semibold">{card.title}</h2>
+              <p className="mt-2 text-sm leading-7 text-white/70">
+                {card.description}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -193,9 +229,9 @@ export default function ResourcesPage() {
             </div>
 
             <p className="max-w-3xl text-base leading-8 text-neutral-600">
-              The resources are designed to feel like mini-lessons. Students
-              can read them before a lecture, while preparing for coursework, or
-              when they need to understand why a method is used.
+              The resources are built like mini-lessons. Students can read them
+              before a lecture, while preparing coursework, or when they need to
+              understand why a method is appropriate.
             </p>
           </div>
 
@@ -203,7 +239,7 @@ export default function ResourcesPage() {
             {guideFormat.map((item) => (
               <div
                 key={item.title}
-                className="rounded-[1.25rem] border border-neutral-200 bg-[#f8f6f1] p-5"
+                className="rounded-[1.25rem] border border-neutral-200 bg-[#f8f6f1] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-sm"
               >
                 <h3 className="font-serif-academic text-2xl font-medium tracking-[-0.015em]">
                   {item.title}
@@ -235,22 +271,22 @@ export default function ResourcesPage() {
 
           <p className="max-w-3xl text-base leading-8 text-neutral-600">
             These resources help students ask better questions, understand
-            common analysis decisions and prepare for coursework,
-            dissertations, tutoring or research support.
+            analysis decisions and prepare for coursework, dissertations,
+            tutoring or research support.
           </p>
         </div>
 
         <div className="mb-8 flex flex-wrap gap-2">
           <span className="rounded-full bg-[#8b1116] px-4 py-2 text-sm font-semibold text-white">
-            All areas
+            All areas · {resourceGuides.length}
           </span>
 
-          {categories.map((category) => (
+          {areaCounts.map(([area, count]) => (
             <span
-              key={category}
+              key={area}
               className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-600"
             >
-              {category}
+              {area} · {count}
             </span>
           ))}
         </div>
@@ -262,34 +298,40 @@ export default function ResourcesPage() {
 
           <a
             href={withBasePath("/contact")}
-            className="w-fit rounded-md bg-neutral-950 px-5 py-3 text-sm font-semibold text-white"
+            className="w-fit rounded-md bg-neutral-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#8b1116]"
           >
             Submit requirement
           </a>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {resourceGuides.map((resource) => (
+          {resourceGuides.map((resource, index) => (
             <a
               key={resource.slug}
               href={withBasePath(`/resources/${resource.slug}`)}
-              className="group rounded-[1.35rem] border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              className="group flex min-h-full flex-col rounded-[1.35rem] border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#d8b6b6] hover:shadow-md"
             >
-              <div className="flex flex-wrap gap-2">
-                <span className="rounded-full bg-[#f7f4ee] px-3 py-1 text-xs font-bold text-neutral-700">
-                  {resource.area}
-                </span>
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-wrap gap-2">
+                  <span className="rounded-full bg-[#f7f4ee] px-3 py-1 text-xs font-bold text-neutral-700">
+                    {resource.area}
+                  </span>
 
-                <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-bold text-neutral-500">
-                  {resource.level}
+                  <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-bold text-neutral-500">
+                    {resource.level}
+                  </span>
+                </div>
+
+                <span className="text-xs font-bold text-neutral-300">
+                  {String(index + 1).padStart(2, "0")}
                 </span>
               </div>
 
-              <h3 className="font-serif-academic mt-5 text-2xl font-medium tracking-[-0.015em] group-hover:text-[#8b1116]">
+              <h3 className="font-serif-academic mt-5 text-2xl font-medium leading-tight tracking-[-0.015em] group-hover:text-[#8b1116]">
                 {resource.title}
               </h3>
 
-              <p className="mt-4 text-sm leading-7 text-neutral-600">
+              <p className="mt-4 flex-1 text-sm leading-7 text-neutral-600">
                 {resource.summary}
               </p>
 
@@ -325,30 +367,30 @@ export default function ResourcesPage() {
               </h2>
 
               <p className="mt-5 max-w-3xl text-base leading-8 text-white/70">
-                Resources can help you understand the basics. If you need help
-                applying a method to your own course, dissertation or research
-                project, you can submit a support enquiry.
+                Resources can help you understand the foundations. If you need
+                help applying a method to your own course, dissertation or
+                research project, you can submit a support enquiry.
               </p>
             </div>
 
             <div className="grid gap-3">
               <a
                 href={withBasePath("/contact")}
-                className="rounded-md bg-white px-6 py-4 text-center text-sm font-semibold text-neutral-950"
+                className="rounded-md bg-white px-6 py-4 text-center text-sm font-semibold text-neutral-950 transition hover:bg-[#f7f4ee]"
               >
                 Submit support requirement
               </a>
 
               <a
                 href={withBasePath("/courses")}
-                className="rounded-md border border-white/15 bg-white/10 px-6 py-4 text-center text-sm font-semibold text-white"
+                className="rounded-md border border-white/15 bg-white/10 px-6 py-4 text-center text-sm font-semibold text-white transition hover:bg-white/15"
               >
                 Explore structured courses
               </a>
 
               <a
                 href={withBasePath("/learning-hub")}
-                className="rounded-md border border-white/15 px-6 py-4 text-center text-sm font-semibold text-white/80"
+                className="rounded-md border border-white/15 px-6 py-4 text-center text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
               >
                 Visit Learning Hub
               </a>
