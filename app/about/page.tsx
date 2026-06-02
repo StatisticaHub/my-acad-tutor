@@ -32,7 +32,7 @@ export default function AboutPage() {
             </p>
 
             <h1 className="font-serif-academic mt-4 text-3xl font-semibold leading-[1.02] tracking-[-0.035em] sm:text-4xl md:text-7xl">
-              A founder-led platform for quantitative learning.
+              A structured platform for quantitative learning.
             </h1>
           </div>
 
@@ -51,16 +51,11 @@ export default function AboutPage() {
           </p>
 
           <h2 className="font-serif-academic mt-3 text-4xl font-semibold tracking-tight">
-            Built around clear explanation and responsible academic support.
+            Built around clarity, structure and responsible academic support.
           </h2>
 
           <p className="mt-5 max-w-5xl text-sm leading-8 text-neutral-600 md:text-base">
-            Founded by Rahul, with academic training in MSc Statistics from
-            Indian Institute of Technology Kanpur, India, and MSc Medical
-            Statistics and Health Data Science from the University of Bristol,
-            UK, the platform is shaped by a commitment to statistical reasoning,
-            applied interpretation and structured teaching.
-          </p>
+            Founded by an Indian Institute of Technology Kanpur, India alumnus, My Academic Tutor was created to support quantitative learning across statistics, biostatistics, data science, programming, research methods, bioinformatics and related academic fields.</p>
         </div>
 
         <div className="mt-8 grid gap-px overflow-hidden rounded-[1.25rem] border border-neutral-200 bg-neutral-200 md:grid-cols-2 lg:grid-cols-4">

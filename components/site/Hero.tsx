@@ -1,142 +1,107 @@
 const basePath =
   process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
+function withBasePath(href: string) {
+  if (href === "/") return `${basePath}/`;
+  if (href.startsWith("#")) return href;
+  if (href.startsWith("http")) return href;
+  if (href.startsWith("mailto:")) return href;
+  return `${basePath}${href}/`;
+}
+
+const subjects = [
+  "Statistics",
+  "Biostatistics",
+  "Data Science",
+  "Research Methods",
+];
+
 export default function Hero() {
   return (
     <section className="bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-20">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-10 rounded-[1.5rem] border border-[#ead8d8] bg-white p-6 shadow-sm md:p-8">
-          <p className="text-xs font-bold uppercase tracking-[0.34em] text-[#8b1116]">
-            Structured courses launching July 2026
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div>
+          <div className="flex flex-wrap gap-2">
+            {subjects.map((subject) => (
+              <span
+                key={subject}
+                className="rounded-full border border-neutral-300 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-neutral-700 shadow-sm"
+              >
+                {subject}
+              </span>
+            ))}
+          </div>
+
+          <p className="mt-8 max-w-4xl text-xs font-black uppercase leading-6 tracking-[0.14em] text-[#8b1116] sm:text-sm sm:tracking-[0.2em]">
+            Academic support for quantitative learning, analysis and research
           </p>
 
-          <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg">
-            My Academic Tutor is preparing structured learning pathways in
-            Statistics Foundation and Machine Learning in Biostatistics for
-            students who want clearer explanations, stronger theory and more
-            confident quantitative reasoning.
+          <p className="mt-5 max-w-3xl text-base leading-7 text-neutral-700 md:text-lg md:leading-8">
+            My Academic Tutor helps university students, researchers and
+            early-career professionals understand quantitative subjects with
+            clarity, structure and responsible academic guidance.
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <p className="mt-4 max-w-3xl text-base leading-7 text-neutral-600 md:text-lg md:leading-8">
+            Learn through structured course pathways, focused study resources
+            and support for statistical thinking, biostatistics, programming,
+            data science, bioinformatics and research interpretation.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <a
-              href={`${basePath}/courses/`}
-              className="rounded-md bg-[#8b1116] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5"
+              href={withBasePath("/start-here")}
+              className="inline-flex w-full items-center justify-center rounded-full bg-[#8b1116] px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#711014] sm:w-auto"
             >
-              Explore courses
+              Start here
             </a>
 
             <a
-              href={`${basePath}/contact/`}
-              className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition hover:-translate-y-0.5"
+              href={withBasePath("/courses/statistics-foundation")}
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-bold text-neutral-950 shadow-sm transition hover:bg-neutral-50 sm:w-auto"
             >
-              Join interest list
+              View Statistics Foundation
+            </a>
+
+            <a
+              href={withBasePath("/resources")}
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-transparent px-6 py-3 text-sm font-bold text-neutral-950 transition hover:bg-white sm:w-auto"
+            >
+              Browse resources
             </a>
           </div>
         </div>
 
-        <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.36em] text-[#8b1116]">
-              Statistics · Biostatistics · Data Science · Research Methods
+        <div className="relative overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+          <img
+            src={`${basePath}/images/academic-tutoring-hero.jpg`}
+            alt="Academic research and quantitative learning workspace"
+            className="h-[300px] w-full object-cover object-center md:h-[560px]"
+          />
+
+          <div className="absolute inset-x-3 bottom-3 rounded-2xl bg-white/90 p-4 shadow-sm backdrop-blur md:inset-x-6 md:bottom-6 md:rounded-3xl md:p-6">
+            <p className="hidden text-xs font-black uppercase tracking-[0.18em] text-[#8b1116] md:block">
+              Research and analysis workspace
             </p>
 
-            <h1 className="font-serif-academic mt-6 max-w-5xl text-3xl font-medium leading-[1.08] tracking-[-0.035em] sm:text-4xl md:text-7xl">
-              Clear academic support and structured quantitative learning.
-            </h1>
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+              Quantitative learning environment
+            </p>
 
-            <div className="mt-7 max-w-4xl space-y-5 text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
-              <p>
-                My Academic Tutor supports university students, researchers and
-                early-career professionals who need help understanding
-                statistics, biostatistics, programming, data science,
-                bioinformatics and quantitative research methods.
-              </p>
+            <h2 className="mt-2 text-lg font-bold tracking-tight text-neutral-950 md:text-2xl">
+              Master complex methods with clarity and confidence.
+            </h2>
 
-              <p>
-                The platform combines subject tutoring, research guidance and
-                structured course pathways to make complex quantitative topics
-                easier to understand, interpret and apply responsibly.
-              </p>
-            </div>
-
-            <div className="mt-9 flex flex-wrap gap-3">
-              <a
-                href={`${basePath}/start-here/`}
-                className="rounded-md bg-neutral-950 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5"
-              >
-                Start here
-              </a>
-
-              <a
-                href={`${basePath}/learning-hub/`}
-                className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition hover:-translate-y-0.5"
-              >
-                Visit Learning Hub
-              </a>
-
-              <a
-                href={`${basePath}/contact/`}
-                className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-950 shadow-sm transition hover:-translate-y-0.5"
-              >
-                Request support
-              </a>
-            </div>
-
-            <div className="mt-10 grid max-w-4xl gap-3 sm:grid-cols-3">
-              {[
-                ["2020", "Supporting learners since"],
-                ["July 2026", "Structured course release"],
-                ["500+", "Learners supported across global institutions"],
-              ].map(([value, label]) => (
-                <div
-                  key={label}
-                  className="border-l border-neutral-300 bg-white/60 px-5 py-4"
-                >
-                  <p className="font-serif-academic text-3xl font-semibold tracking-tight text-neutral-950">
-                    {value}
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-neutral-600">
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <p className="mt-2 text-sm leading-6 text-neutral-700 md:text-base md:leading-7">
+              <span className="md:hidden">
+                Ethical support for learning, analysis and interpretation.
+              </span>
+              <span className="hidden md:inline">
+                Designed for clearer explanation, responsible academic support
+                and stronger confidence with quantitative methods.
+              </span>
+            </p>
           </div>
-
-          <aside className="rounded-[1.5rem] border border-neutral-200 bg-white p-4 shadow-sm">
-            <div className="relative min-h-[560px] overflow-hidden rounded-[1.1rem] border border-neutral-200 bg-neutral-950">
-              <img
-                src={`${basePath}/images/academic-tutoring-hero.jpg`}
-                alt="Academic tutoring and research support workspace"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/25 to-black/78" />
-
-              <div className="relative z-10 flex min-h-[560px] flex-col justify-between p-8 text-white md:p-10">
-                <p className="text-xs font-semibold uppercase tracking-[0.36em] text-white/70">
-                  Academic research and data analysis workspace
-                </p>
-
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.32em] text-white/70">
-                    Quantitative learning platform
-                  </p>
-
-                  <h2 className="font-serif-academic mt-4 max-w-2xl text-4xl font-semibold leading-tight tracking-[-0.03em] md:text-5xl">
-                    Built around clarity, interpretation and responsible
-                    academic learning.
-                  </h2>
-
-                  <p className="mt-5 max-w-xl text-sm leading-7 text-white/80 md:text-base">
-                    Designed for students and researchers who want structured
-                    explanations, ethical academic support and stronger
-                    confidence with quantitative methods.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </aside>
         </div>
       </div>
     </section>

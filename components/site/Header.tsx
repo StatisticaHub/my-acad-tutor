@@ -15,6 +15,10 @@ const navLinks = [
 ];
 
 function withBasePath(href: string) {
+  if (href === "/") return `${basePath}/`;
+  if (href.startsWith("#")) return href;
+  if (href.startsWith("http")) return href;
+  if (href.startsWith("mailto:")) return href;
   return `${basePath}${href}/`;
 }
 
@@ -23,22 +27,27 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-[#f7f4ee]/95 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-3 md:px-8 md:py-4">
-        <a href={`${basePath}/`} className="flex min-w-0 items-center gap-3 md:gap-4">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-neutral-300 bg-white shadow-sm md:h-14 md:w-14">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2.5 md:px-8 md:py-4">
+        <a
+          href={withBasePath("/")}
+          className="flex min-w-0 items-center gap-3 md:gap-4"
+          aria-label="My Academic Tutor home"
+        >
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden md:h-14 md:w-14">
             <img
               src={`${basePath}/images/my-academic-tutor-logo.png`}
               alt="My Academic Tutor logo"
-              className="h-full w-full object-contain object-center p-1.5"
+              className="h-full w-full object-contain object-center"
             />
           </div>
 
           <div className="min-w-0">
-            <p className="text-[0.68rem] font-bold uppercase tracking-[0.28em] text-[#8b1116] sm:text-xs sm:tracking-[0.32em]">
+            <p className="font-serif-academic text-[0.82rem] font-semibold uppercase tracking-[0.22em] text-[#8b1116] sm:text-[0.95rem] sm:tracking-[0.28em]">
               My Academic Tutor
             </p>
-            <p className="font-serif-academic mt-1 max-w-[210px] text-base font-semibold leading-snug tracking-tight text-neutral-800 sm:max-w-none md:text-lg">
-              Statistics, biostatistics & data science support
+
+            <p className="mt-1 text-[0.82rem] font-medium leading-snug tracking-[0.01em] text-neutral-700 sm:text-sm md:text-base">
+              Quantitative Learning Support
             </p>
           </div>
         </a>
@@ -57,14 +66,14 @@ export default function Header() {
 
         <div className="hidden items-center gap-3 xl:flex">
           <a
-            href={`${basePath}/learning-hub/`}
+            href={withBasePath("/learning-hub")}
             className="rounded-full border border-neutral-300 bg-white px-5 py-2.5 text-sm font-semibold text-neutral-950 shadow-sm transition hover:-translate-y-0.5"
           >
             Explore courses
           </a>
 
           <a
-            href={`${basePath}/contact/`}
+            href={withBasePath("/contact")}
             className="rounded-full bg-[#8b1116] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5"
           >
             Request support
@@ -95,7 +104,7 @@ export default function Header() {
 
             <div className="grid gap-2 pt-3 sm:grid-cols-2">
               <a
-                href={`${basePath}/learning-hub/`}
+                href={withBasePath("/learning-hub")}
                 onClick={() => setOpen(false)}
                 className="rounded-2xl border border-neutral-300 bg-white px-4 py-3 text-center text-sm font-bold text-neutral-950"
               >
@@ -103,7 +112,7 @@ export default function Header() {
               </a>
 
               <a
-                href={`${basePath}/contact/`}
+                href={withBasePath("/contact")}
                 onClick={() => setOpen(false)}
                 className="rounded-2xl bg-[#8b1116] px-4 py-3 text-center text-sm font-bold text-white"
               >
