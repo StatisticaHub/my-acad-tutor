@@ -226,9 +226,21 @@ cat("Unsupervised learning searches for structure without outcome labels.\\n")
 cat("Semi-supervised learning starts with complete predictors but incomplete labels.\\n")
 cat("The learning type should be chosen from the scientific question, not from the algorithm name.\\n")`;
 
-function Initials({ children }: { children: string }) {
+function Initials({
+  children,
+  teacher = false,
+}: {
+  children: string;
+  teacher?: boolean;
+}) {
   return (
-    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-950 text-xs font-black text-white">
+    <div
+      className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-sans text-sm font-black ${
+        teacher
+          ? "bg-[#e8f1ff] text-[#244aa8]"
+          : "bg-[#fff2bf] text-[#7a3f00]"
+      }`}
+    >
       {children}
     </div>
   );
@@ -243,28 +255,33 @@ function DialogueLine({
   initials: string;
   name: string;
   children: ReactNode;
-  tone?: "neutral" | "blue" | "green" | "rose" | "amber";
+  tone?: "neutral" | "amber" | "blue" | "green" | "rose";
 }) {
-  const toneClass =
-    tone === "blue"
-      ? "bg-blue-50"
-      : tone === "green"
-      ? "bg-emerald-50"
-      : tone === "rose"
-      ? "bg-rose-50"
-      : tone === "amber"
-      ? "bg-amber-50"
-      : "bg-white";
+  const teacher = initials === "MR";
+  const bubbleClass = teacher
+    ? "border-[#d8dee8] bg-[#edf5ff]"
+    : "border-[#ded9cf] bg-[#fbfaf7]";
 
   return (
     <div
-      className={`flex gap-4 rounded-3xl border border-slate-200 p-5 ${toneClass}`}
+      className={`flex items-start gap-4 ${
+        teacher ? "justify-end" : "justify-start"
+      }`}
     >
-      <Initials>{initials}</Initials>
-      <div>
-        <p className="text-sm font-black text-slate-950">{name}</p>
-        <div className="mt-2 text-base leading-7 text-slate-700">{children}</div>
+      {!teacher && <Initials>{initials}</Initials>}
+
+      <div
+        className={`max-w-4xl rounded-[1.6rem] border px-6 py-5 shadow-sm ${bubbleClass}`}
+      >
+        <p className="font-sans text-base font-black text-neutral-600">
+          {name}
+        </p>
+        <div className="mt-4 text-[1.05rem] leading-8 text-neutral-800 md:text-lg md:leading-9">
+          {children}
+        </div>
       </div>
+
+      {teacher && <Initials teacher>{initials}</Initials>}
     </div>
   );
 }
@@ -277,17 +294,19 @@ function TopicCard({
   children: ReactNode;
 }) {
   return (
-    <article className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-      <h3 className="text-lg font-black text-slate-950">{title}</h3>
-      <div className="mt-3 text-sm leading-7 text-slate-600">{children}</div>
+    <article className="rounded-[1.5rem] border border-[#ded9cf] bg-[#fbfaf7] p-5 shadow-sm">
+      <h3 className="font-sans text-lg font-black text-[#111111]">{title}</h3>
+      <div className="mt-3 text-sm leading-7 text-neutral-700">{children}</div>
     </article>
   );
 }
 
 function FormulaBox({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
-      <div className="font-mono text-sm leading-7 text-slate-700">{children}</div>
+    <div className="mt-5 rounded-[1.5rem] border border-[#ded9cf] bg-[#fbfaf7] p-5 shadow-sm">
+      <div className="font-mono text-sm leading-7 text-neutral-700">
+        {children}
+      </div>
     </div>
   );
 }
@@ -378,7 +397,7 @@ ${code}
 
       <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
         <div className="border-b border-slate-200 bg-slate-50 px-4 py-4">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
             R console output
           </p>
           <p className="mt-1 text-xs leading-5 text-slate-500">
@@ -639,7 +658,7 @@ export default function TypesOfLearningPage() {
             href={withBasePath(
               "/courses/machine-learning-biostatistics/modules/foundations"
             )}
-            className="text-sm font-black text-blue-600 transition hover:text-blue-700"
+            className="text-sm font-black text-[#8b1116] transition hover:text-[#5f0b0f]"
           >
             ← Back to Module 1
           </a>
@@ -654,7 +673,7 @@ export default function TypesOfLearningPage() {
 
         <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
           <div className="flex flex-wrap gap-3">
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-xs font-black text-blue-800">
+            <span className="rounded-full bg-[#f8e9ea] px-4 py-2 text-xs font-black text-[#8b1116]">
               Module 1
             </span>
             <span className="rounded-full bg-emerald-100 px-4 py-2 text-xs font-black text-emerald-800">
@@ -720,147 +739,200 @@ export default function TypesOfLearningPage() {
         </section>
 
         {activeTab === "Lecture" && (
-          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <section className="mt-10 rounded-[2rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Conversational lecture
             </p>
 
-            <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
+            <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.035em] text-[#111111] md:text-4xl">
               One dataset, three learning situations
             </h2>
 
-            <div className="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6">
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
-                Topics being explained in this lecture
-              </p>
+            <p className="mt-5 rounded-[1.75rem] bg-[#f4f2ee] p-6 text-lg font-bold leading-8 text-neutral-600 md:text-xl md:leading-9">
+              <span className="font-black text-[#111111]">Scene:</span> Mr. R
+              opens the diabetes dataset again. Emma, Oliver, James and Sophia
+              notice that sometimes the diabetes label is used, sometimes it is
+              hidden, and sometimes it is missing for many patients.
+            </p>
 
-              <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-                {learningTopics.map((topic) => (
-                  <div
-                    key={topic.title}
-                    className="rounded-2xl border border-slate-200 bg-white p-4"
-                  >
-                    <p className="font-black text-slate-950">{topic.title}</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
-                      {topic.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 space-y-4">
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+            <div className="mt-8 space-y-5">
+              <DialogueLine initials="EM" name="Emma" tone="amber">
                 In the previous lessons, we used diabetes status as the outcome.
                 Does every machine learning problem have an outcome like that?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Not always. Some learning problems use known outcomes directly.
                 Some search for structure without using outcomes. Some have
                 outcomes for only part of the dataset. That is why we separate
                 supervised, unsupervised and semi-supervised learning.
               </DialogueLine>
 
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+              <DialogueLine initials="OL" name="Oliver" tone="amber">
                 So the difference is not just the algorithm. It is about whether
-                the outcome label is available and whether we let the model use
-                it.
+                the outcome label is available and whether the model is allowed
+                to use it.
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Exactly. In supervised learning, the model is trained on
                 examples where both predictors and outcomes are known. In our
                 diabetes example, each training patient has clinical variables
                 and observed diabetes status.
               </DialogueLine>
 
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
-                That is like learning a mapping from X to Y?
+              <DialogueLine initials="JA" name="James" tone="amber">
+                Is that the same as learning a mapping from X to Y?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Yes. We write predictors as X and the outcome as Y. Supervised
-                learning estimates a function f so that f of X predicts Y for
-                new patients.
+                learning estimates a function so that f of X predicts Y for new
+                patients.
               </DialogueLine>
 
-              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
-                But do not forget the rule from Lesson 1.1. The predictors must
-                be available at the prediction time. If you sneak in future
-                outcome information, your supervised model becomes invalid.
-              </DialogueLine>
-
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+              <DialogueLine initials="SO" name="Sophia" tone="amber">
                 What about unsupervised learning? Where would that appear in a
                 hospital or biomedical setting?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Suppose we collect glucose, BMI, age, insulin, blood pressure
                 and other measurements. Instead of predicting diabetes status,
                 we ask whether patients naturally form subgroups. The algorithm
                 does not use the diabetes label while forming the groups.
               </DialogueLine>
 
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+              <DialogueLine initials="EM" name="Emma" tone="amber">
                 So after clustering, can we check whether the clusters differ in
                 diabetes status?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Yes, but only after the clusters are formed. The distinction is
                 crucial. If diabetes status was used to create the clusters,
                 then it was not purely unsupervised.
               </DialogueLine>
 
-              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
-                I love when people call an analysis unsupervised after they
-                secretly used labels to tune the clusters. That makes the
-                interpretation look much stronger than it really is.
-              </DialogueLine>
-
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+              <DialogueLine initials="OL" name="Oliver" tone="amber">
                 And semi-supervised learning is when routine hospital data has
                 measurements for many patients, but confirmed labels for only
                 some of them?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Correct. Labels may be expensive, delayed or require expert
                 review. In medical data, we often have many records with X, but
                 only a subset with reliable Y.
               </DialogueLine>
-
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
-                So before choosing an algorithm, we should ask: What is X? What
-                is Y? Is Y available? Is Y being used during learning?
-              </DialogueLine>
-
-              <DialogueLine initials="PS" name="Prof Stat">
-                Perfect. That is the whole lesson. The learning type is not a
-                slogan. It is a statement about data structure, label use and
-                scientific aim.
-              </DialogueLine>
             </div>
 
-            <div className="mt-8 rounded-3xl bg-slate-950 p-6 text-white">
-              <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
+            <div className="mt-10 rounded-[1.75rem] border-l-8 border-[#f2a23a] bg-[#fff8e6] p-6 shadow-sm md:p-8">
+              <p className="font-sans text-sm font-black uppercase tracking-[0.32em] text-[#5a260f]">
                 Big idea
               </p>
-              <p className="mt-3 text-xl font-black leading-8 md:text-2xl">
+              <p className="mt-4 max-w-5xl text-[1.05rem] font-medium leading-8 text-[#4b2413] md:text-lg md:leading-9">
                 Supervised learning uses outcome labels to learn prediction
                 rules. Unsupervised learning searches for structure without
                 outcome labels. Semi-supervised learning works between these
                 settings when many records are unlabelled.
               </p>
             </div>
+
+            <h3 className="mt-8 font-sans text-2xl font-black tracking-[-0.03em] text-[#111111]">
+              The role of the outcome label
+            </h3>
+
+            <p className="mt-3 text-base leading-8 text-neutral-700">
+              The learning type is determined by how the outcome label is used.
+              In supervised learning, Y is known during training. In
+              unsupervised learning, Y is not used during learning. In
+              semi-supervised learning, Y is available only for some
+              observations.
+            </p>
+
+            <p className="mt-3 text-base leading-8 text-neutral-700">
+              This distinction matters because the same algorithm name does not
+              always tell us the scientific aim. The correct first question is:
+              what is X, what is Y, is Y available, and is Y used during
+              learning?
+            </p>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <TopicCard title="Supervised learning">
+                Predictors X and outcome labels Y are available during training.
+                The usual aim is prediction for new patients.
+              </TopicCard>
+
+              <TopicCard title="Unsupervised learning">
+                The algorithm searches for structure in X without using the
+                outcome label during learning.
+              </TopicCard>
+
+              <TopicCard title="Semi-supervised learning">
+                Predictors are available for many records, but reliable outcome
+                labels are available for only some records.
+              </TopicCard>
+            </div>
+
+            <h3 className="mt-8 font-sans text-2xl font-black tracking-[-0.03em] text-[#111111]">
+              The safe interpretation rule
+            </h3>
+
+            <p className="mt-3 text-base leading-8 text-neutral-700">
+              A prediction score, a cluster, or an unlabelled record does not
+              automatically tell us the scientific meaning of the analysis. We
+              must ask how labels were used, whether the result was validated,
+              and whether the interpretation is being overstated.
+            </p>
+
+            <div className="mt-5 rounded-[1.75rem] border border-[#ded9cf] bg-[#f8f6f1] p-6">
+              <p className="text-base font-black leading-8 text-[#111111]">
+                Good label discipline = define X and Y + state whether Y is
+                used during learning + validate appropriately + avoid
+                overclaiming clusters or predictions
+              </p>
+            </div>
+
+            <div className="mt-8 space-y-5">
+              <DialogueLine initials="JA" name="James" tone="amber">
+                Can the same dataset be used in all three ways?
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                Yes. With diabetes labels available, we can train a supervised
+                model. If we hide the labels and cluster only on measurements,
+                we are doing unsupervised learning. If labels are available for
+                only a subset, we enter a semi-supervised setting.
+              </DialogueLine>
+
+              <DialogueLine initials="SO" name="Sophia" tone="amber">
+                Clinically, the interpretation changes each time.
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                Exactly. A supervised model predicts an outcome. An
+                unsupervised cluster suggests possible structure. A
+                semi-supervised setting raises questions about label quality,
+                missing labels and bias.
+              </DialogueLine>
+
+              <DialogueLine initials="EM" name="Emma" tone="amber">
+                So before choosing an algorithm, we should ask: What is X? What
+                is Y? Is Y available? Is Y being used during learning?
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                Perfect. The learning type is not a slogan. It is a statement
+                about data structure, label use and scientific aim.
+              </DialogueLine>
+            </div>
           </section>
         )}
 
         {activeTab === "Detailed Notes" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Detailed notes
             </p>
 
@@ -1177,7 +1249,7 @@ export default function TypesOfLearningPage() {
 
         {activeTab === "Interactive Lab" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Advanced interactive lab
             </p>
 
@@ -1263,7 +1335,7 @@ export default function TypesOfLearningPage() {
                 </div>
 
                 <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
-                  <p className="text-sm font-black uppercase tracking-[0.16em] text-blue-600">
+                  <p className="text-sm font-black uppercase tracking-[0.16em] text-[#8b1116]">
                     Best classification
                   </p>
                   <p className="mt-2 text-xl font-black text-slate-950">
@@ -1486,7 +1558,7 @@ export default function TypesOfLearningPage() {
 
         {activeTab === "R Coding Lab" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               R coding lab
             </p>
 
@@ -1546,7 +1618,7 @@ export default function TypesOfLearningPage() {
 
         {activeTab === "Report" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Reporting
             </p>
 
@@ -1633,7 +1705,7 @@ export default function TypesOfLearningPage() {
 
         {activeTab === "Quiz" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Quiz
             </p>
 
@@ -1692,16 +1764,16 @@ export default function TypesOfLearningPage() {
           </section>
         )}
 
-        <section className="mt-10 rounded-[2rem] bg-slate-950 p-6 text-white md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
+        <section className="mt-10 rounded-[1.6rem] bg-[#050505] p-5 text-white shadow-sm md:p-7">
+          <p className="font-sans text-xs font-black uppercase tracking-[0.28em] text-[#9fd0ff]">
             Lesson complete
           </p>
 
-          <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
+          <h2 className="mt-4 max-w-3xl font-sans text-2xl font-black leading-tight tracking-[-0.035em] md:text-3xl">
             Next, learn why training performance can mislead.
           </h2>
 
-          <p className="mt-5 max-w-4xl text-base leading-7 text-slate-300">
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
             The next lesson introduces training data, test data, overfitting and
             generalisation, which are central to honest prediction modelling.
           </p>
@@ -1710,7 +1782,7 @@ export default function TypesOfLearningPage() {
             href={withBasePath(
               "/courses/machine-learning-biostatistics/modules/foundations/lessons/training-testing-overfitting-generalisation"
             )}
-            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-slate-100 sm:w-auto"
+            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 sm:w-auto"
           >
             Next lesson →
           </a>

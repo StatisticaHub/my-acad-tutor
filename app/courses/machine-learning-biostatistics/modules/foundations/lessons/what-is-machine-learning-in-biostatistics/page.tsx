@@ -140,9 +140,21 @@ cat("Sensitivity tells us how many diabetes-positive patients are detected.\\n")
 cat("Specificity tells us how many diabetes-negative patients are correctly identified.\\n")
 cat("This is prediction, not causal explanation.\\n")`;
 
-function Initials({ children }: { children: string }) {
+function Initials({
+  children,
+  teacher = false,
+}: {
+  children: string;
+  teacher?: boolean;
+}) {
   return (
-    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-950 text-xs font-black text-white">
+    <div
+      className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-sans text-sm font-black ${
+        teacher
+          ? "bg-[#e8f1ff] text-[#244aa8]"
+          : "bg-[#fff2bf] text-[#7a3f00]"
+      }`}
+    >
       {children}
     </div>
   );
@@ -157,28 +169,33 @@ function DialogueLine({
   initials: string;
   name: string;
   children: ReactNode;
-  tone?: "neutral" | "blue" | "green" | "rose" | "amber";
+  tone?: "neutral" | "amber";
 }) {
-  const toneClass =
-    tone === "blue"
-      ? "bg-blue-50"
-      : tone === "green"
-      ? "bg-emerald-50"
-      : tone === "rose"
-      ? "bg-rose-50"
-      : tone === "amber"
-      ? "bg-amber-50"
-      : "bg-white";
+  const teacher = initials === "MR";
+  const bubbleClass = teacher
+    ? "border-[#d8dee8] bg-[#edf5ff]"
+    : "border-[#ded9cf] bg-[#fbfaf7]";
 
   return (
     <div
-      className={`flex gap-4 rounded-3xl border border-slate-200 p-5 ${toneClass}`}
+      className={`flex items-start gap-4 ${
+        teacher ? "justify-end" : "justify-start"
+      }`}
     >
-      <Initials>{initials}</Initials>
-      <div>
-        <p className="text-sm font-black text-slate-950">{name}</p>
-        <div className="mt-2 text-base leading-7 text-slate-700">{children}</div>
+      {!teacher && <Initials>{initials}</Initials>}
+
+      <div
+        className={`max-w-4xl rounded-[1.6rem] border px-6 py-5 shadow-sm ${bubbleClass}`}
+      >
+        <p className="font-sans text-base font-black text-neutral-600">
+          {name}
+        </p>
+        <div className="mt-4 text-[1.05rem] leading-8 text-neutral-800 md:text-lg md:leading-9">
+          {children}
+        </div>
       </div>
+
+      {teacher && <Initials teacher>{initials}</Initials>}
     </div>
   );
 }
@@ -191,9 +208,9 @@ function TopicCard({
   children: ReactNode;
 }) {
   return (
-    <article className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-      <h3 className="text-lg font-black text-slate-950">{title}</h3>
-      <div className="mt-3 text-sm leading-7 text-slate-600">{children}</div>
+    <article className="rounded-[1.5rem] border border-[#ded9cf] bg-[#fbfaf7] p-5 shadow-sm">
+      <h3 className="font-sans text-lg font-black text-[#111111]">{title}</h3>
+      <div className="mt-3 text-sm leading-7 text-neutral-700">{children}</div>
     </article>
   );
 }
@@ -486,163 +503,233 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
         </section>
 
         {activeTab === "Lecture" && (
-          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <section className="mt-10 rounded-[2rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Conversational lecture
             </p>
 
-            <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              A hospital data lab conversation
+            <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.035em] text-[#111111] md:text-4xl">
+              The first medical machine learning class begins
             </h2>
 
-            <div className="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6">
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
-                Topics being explained in this lecture
-              </p>
+            <p className="mt-5 rounded-[1.75rem] bg-[#f4f2ee] p-6 text-lg font-bold leading-8 text-neutral-600 md:text-xl md:leading-9">
+              <span className="font-black text-[#111111]">Scene:</span> Mr. R
+              walks into a computer lab where Emma, Oliver, James and Sophia are
+              looking at a small patient dataset. The dataset contains age,
+              glucose level, blood pressure, BMI and whether each patient was
+              recorded as diabetes positive or diabetes negative.
+            </p>
 
-              <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-                {learningTopics.map((topic) => (
-                  <div
-                    key={topic.title}
-                    className="rounded-2xl border border-slate-200 bg-white p-4"
-                  >
-                    <p className="font-black text-slate-950">{topic.title}</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
-                      {topic.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
+            <div className="mt-8 space-y-4">
+              <DialogueLine initials="EM" name="Emma" tone="amber">
+                I keep hearing that machine learning can predict disease,
+                identify high-risk patients and analyse medical data. But in
+                biostatistics, what does machine learning actually mean?
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                In biostatistics, machine learning means learning a prediction
+                rule from health data. The model studies examples from patients
+                whose outcomes are already known, then uses the patterns in
+                those examples to estimate an outcome for a new patient.
+              </DialogueLine>
+
+              <DialogueLine initials="OL" name="Oliver" tone="amber">
+                So machine learning is mainly about prediction?
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                Very often, yes. In medical machine learning, we may ask whether
+                routine clinical variables can predict whether a patient has a
+                condition, whether a patient is at high risk, whether a
+                treatment response is likely, or whether follow-up is needed.
+              </DialogueLine>
+
+              <DialogueLine initials="JA" name="James" tone="amber">
+                Is that different from ordinary statistics?
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                There is overlap. Statistics and machine learning both learn
+                from data. But the emphasis is often different. Traditional
+                statistical modelling often asks, “How is this variable
+                associated with the outcome?” Machine learning often asks, “Can
+                we predict the outcome accurately for new observations?”
+              </DialogueLine>
+
+              <DialogueLine initials="SO" name="Sophia" tone="amber">
+                So if we build a model to predict diabetes, we are not
+                automatically explaining what causes diabetes?
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                Exactly. That distinction is very important. A variable may help
+                prediction without proving causation. For example, glucose, BMI
+                and age may help predict diabetes status, but a prediction model
+                alone does not prove that changing one of those variables would
+                cause the outcome to change.
+              </DialogueLine>
+            </div>
+
+            <div className="mt-10 rounded-[1.75rem] border-l-8 border-[#f2a23a] bg-[#fff8e6] p-6 shadow-sm md:p-8">
+              <p className="font-sans text-sm font-black uppercase tracking-[0.32em] text-[#5a260f]">
+                Big idea
+              </p>
+              <p className="mt-4 max-w-5xl text-[1.05rem] font-medium leading-8 text-[#4b2413] md:text-lg md:leading-9">
+                Machine learning in biostatistics is the use of data-driven
+                models to predict health outcomes, classify patients, discover
+                patterns or support medical decisions — but every model must be
+                judged through clinical timing, validation, uncertainty,
+                interpretation and usefulness.
+              </p>
+            </div>
+
+            <h3 className="mt-8 font-sans text-2xl font-black tracking-[-0.03em] text-[#111111]">
+              Why machine learning exists in biostatistics
+            </h3>
+
+            <p className="mt-3 text-base leading-8 text-neutral-700">
+              Health data are often too large, complex or high-dimensional for
+              simple manual rules. A hospital may collect information on age,
+              sex, symptoms, blood tests, imaging results, medications,
+              diagnoses, previous admissions and long-term outcomes. A
+              researcher may study thousands of genetic markers, methylation
+              sites, proteins or clinical variables.
+            </p>
+
+            <p className="mt-3 text-base leading-8 text-neutral-700">
+              Machine learning exists because we often want to learn useful
+              patterns from these data. The aim is not simply to fit a
+              complicated algorithm. The aim is to build a prediction rule that
+              can help answer a clearly defined medical or biomedical question.
+            </p>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <TopicCard title="Prediction question">
+                The question the model is designed to answer. For example: “Can
+                we predict diabetes-positive status using information available
+                before diagnosis?”
+              </TopicCard>
+
+              <TopicCard title="Outcome">
+                The target variable we want to predict. In this lesson, the
+                outcome is diabetes status: positive or negative.
+              </TopicCard>
+
+              <TopicCard title="Predictors">
+                The variables used to make the prediction. These may include
+                age, glucose, BMI, blood pressure or other measurements
+                available at the time of prediction.
+              </TopicCard>
+
+              <TopicCard title="Training data">
+                The data used to teach the model. The model sees both
+                predictors and outcomes during training.
+              </TopicCard>
+
+              <TopicCard title="Unseen data">
+                Data not used to fit the model. This is needed to check whether
+                the model generalises beyond the patients it has already seen.
+              </TopicCard>
+
+              <TopicCard title="Threshold">
+                A cut-off used to turn a predicted probability into a class. For
+                example, risk ≥ 0.50 may be labelled predicted positive.
+              </TopicCard>
+            </div>
+
+            <h3 className="mt-8 font-sans text-2xl font-black tracking-[-0.03em] text-[#111111]">
+              The biostatistical way of thinking about machine learning
+            </h3>
+
+            <p className="mt-3 text-base leading-8 text-neutral-700">
+              A machine learning thinker does not only ask, “Which algorithm
+              should I use?” A biostatistical machine learning thinker asks,
+              “What is the clinical question? Who are the patients? What
+              outcome is being predicted? When are the predictors measured? Is
+              there any leakage? Does the model work on unseen patients? Are the
+              errors clinically acceptable?”
+            </p>
+
+            <div className="mt-5 rounded-3xl border border-[#ded9cf] bg-[#f8f6f1] p-6">
+              <p className="text-base font-black leading-8 text-[#111111]">
+                Good medical machine learning = clear prediction question +
+                correct predictor timing + honest validation + careful
+                interpretation + clinical usefulness
+              </p>
             </div>
 
             <div className="mt-8 space-y-4">
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
-                I keep hearing that machine learning can predict disease,
-                identify high-risk patients and analyse medical data. But in
-                biostatistics, what does “machine learning” actually mean?
+              <DialogueLine initials="OL" name="Oliver" tone="amber">
+                So machine learning is not just choosing between logistic
+                regression, random forests or neural networks?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
-                In biostatistics, machine learning means learning a prediction
-                rule from health data. The rule uses patient information, which
-                we call predictors, to estimate an outcome for a new patient.
+              <DialogueLine initials="MR" name="Mr. R">
+                Correct. Algorithms are tools. Before choosing an algorithm, we
+                need to define the prediction problem. A poorly defined clinical
+                question can make even an advanced model useless.
               </DialogueLine>
 
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
-                So the first topic is prediction. What is our prediction problem
-                in this lesson?
+              <DialogueLine initials="EM" name="Emma" tone="amber">
+                What do you mean by predictor timing?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
-                We ask whether routinely measured clinical variables can predict
-                diabetes status. The outcome is diabetes: negative or positive.
-                The predictors include glucose, BMI/mass and age.
+              <DialogueLine initials="MR" name="Mr. R">
+                Predictor timing means checking whether each variable is
+                available at the moment the prediction is supposed to be made. A
+                model used at triage cannot use information recorded after
+                diagnosis. If it does, the model may look excellent during
+                analysis but fail in real clinical use.
               </DialogueLine>
 
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
-                That sounds clinically meaningful. A risk prediction model could
-                help decide who needs further testing, monitoring or follow-up.
+              <DialogueLine initials="JA" name="James" tone="amber">
+                Is that what people call data leakage?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
-                Yes, but the wording matters. We are predicting diabetes status.
-                We are not yet claiming that glucose or BMI causes diabetes in
-                this dataset.
+              <DialogueLine initials="MR" name="Mr. R">
+                Yes. Data leakage happens when information enters the model that
+                would not genuinely be available at the time of prediction.
+                Leakage can make model performance look unrealistically strong.
               </DialogueLine>
 
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
-                Why not? If glucose is higher in diabetes-positive patients, does
-                that not explain the disease?
+              <DialogueLine initials="SO" name="Sophia" tone="amber">
+                So a model can be mathematically impressive but clinically
+                misleading?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
-                It may help prediction, but prediction and explanation are not
-                the same. A variable can be useful for predicting an outcome
-                without proving a causal mechanism.
-              </DialogueLine>
-
-              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
-                And I have another warning. If you accidentally include future
-                information, like a diagnosis code recorded after the outcome,
-                your model may look amazing but fail in real clinical use.
-              </DialogueLine>
-
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
-                So every predictor must be available when the prediction is made.
-                A model used at triage cannot use information recorded after
-                diagnosis.
-              </DialogueLine>
-
-              <DialogueLine initials="PS" name="Prof Stat">
-                Exactly. That is why machine learning in biostatistics is more
-                than fitting an algorithm. We need a valid prediction question, a
-                correct prediction time, appropriate predictors and honest
-                validation.
-              </DialogueLine>
-
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
-                What does the model actually learn from the data?
-              </DialogueLine>
-
-              <DialogueLine initials="PS" name="Prof Stat">
-                It learns a mathematical rule. For a binary outcome, a simple
-                logistic prediction model estimates a probability between 0 and
-                1. For example, a patient may receive predicted risk 0.72, which
-                means the model estimates a 72% probability of diabetes-positive
-                status.
-              </DialogueLine>
-
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
-                Then why do we need a threshold?
-              </DialogueLine>
-
-              <DialogueLine initials="PS" name="Prof Stat">
-                The probability is continuous. A threshold converts that
-                probability into a class. At threshold 0.50, risk 0.72 becomes
-                predicted positive. But if we choose threshold 0.80, the same
-                patient becomes predicted negative.
-              </DialogueLine>
-
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
-                That means the threshold changes clinical behaviour. A low
-                threshold may detect more high-risk patients but also create more
-                false positives.
-              </DialogueLine>
-
-              <DialogueLine initials="PS" name="Prof Stat">
-                Correct. That is why we evaluate accuracy, sensitivity and
-                specificity. Accuracy tells us overall correctness. Sensitivity
-                tells us how many positive patients we detect. Specificity tells
-                us how many negative patients we correctly rule out.
-              </DialogueLine>
-
-              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
-                And please do not celebrate high accuracy too early. If the data
-                are imbalanced, a model can look accurate while missing the
-                patients you care most about.
-              </DialogueLine>
-
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
-                So the answer to “What is machine learning in biostatistics?” is
-                not just “algorithms”. It is a whole prediction workflow.
-              </DialogueLine>
-
-              <DialogueLine initials="PS" name="Prof Stat">
-                Exactly. It is a workflow: define the question, check the data,
-                fit a model, test on unseen patients, study errors, interpret
-                clinically and report limitations.
+              <DialogueLine initials="MR" name="Mr. R">
+                Exactly. That is why machine learning in biostatistics is not an
+                algorithm competition. It is a careful workflow: define the
+                question, prepare the data, fit the model, validate it on unseen
+                patients, examine errors, interpret results and report
+                limitations.
               </DialogueLine>
             </div>
 
-            <div className="mt-8 rounded-3xl bg-slate-950 p-6 text-white">
-              <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
-                Big idea
+            <div className="mt-10 rounded-[1.6rem] bg-[#050505] p-5 text-white shadow-sm md:p-7">
+              <p className="font-sans text-xs font-black uppercase tracking-[0.28em] text-[#9fd0ff]">
+                Lesson complete
               </p>
-              <p className="mt-3 text-xl font-black leading-8 md:text-2xl">
-                Machine learning in biostatistics is not algorithm competition.
-                It is prediction modelling with clinical timing, validation,
-                threshold judgement and responsible interpretation.
+
+              <h3 className="mt-4 max-w-3xl font-sans text-2xl font-black leading-tight tracking-[-0.035em] md:text-3xl">
+                Next, separate prediction from explanation and causation.
+              </h3>
+
+              <p className="mt-4 max-w-4xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
+                The next lesson explains why a model can predict well without
+                proving cause, and why causal language must be used carefully in
+                medical machine learning.
               </p>
+
+              <a
+                href={withBasePath(
+                  "/courses/machine-learning-biostatistics/modules/foundations/lessons/prediction-explanation-causal-thinking"
+                )}
+                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 sm:w-auto"
+              >
+                Next lesson →
+              </a>
             </div>
           </section>
         )}
@@ -1444,31 +1531,7 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
           </section>
         )}
 
-        <section className="mt-10 rounded-[2rem] bg-slate-950 p-6 text-white md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
-            Lesson complete
-          </p>
-
-          <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-            Next, separate prediction from explanation and causation.
-          </h2>
-
-          <p className="mt-5 max-w-4xl text-base leading-7 text-slate-300">
-            The next lesson explains why a model can predict well without
-            proving cause, and why causal language must be used carefully in
-            medical ML.
-          </p>
-
-          <a
-            href={withBasePath(
-              "/courses/machine-learning-biostatistics/modules/foundations/lessons/prediction-explanation-causal-thinking"
-            )}
-            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-slate-100 sm:w-auto"
-          >
-            Next lesson →
-          </a>
-        </section>
-      </section>
+</section>
     </main>
   );
 }

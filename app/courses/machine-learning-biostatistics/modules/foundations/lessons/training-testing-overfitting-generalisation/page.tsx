@@ -409,9 +409,21 @@ cat("3. A large training-test gap suggests overfitting or instability.\\n")
 cat("4. Perfect-looking performance should trigger a leakage investigation.\\n")
 cat("5. A clinically useful model must use predictors available at the real prediction time.\\n")`;
 
-function Initials({ children }: { children: string }) {
+function Initials({
+  children,
+  teacher = false,
+}: {
+  children: string;
+  teacher?: boolean;
+}) {
   return (
-    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-950 text-xs font-black text-white">
+    <div
+      className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-sans text-sm font-black ${
+        teacher
+          ? "bg-[#e8f1ff] text-[#244aa8]"
+          : "bg-[#fff2bf] text-[#7a3f00]"
+      }`}
+    >
       {children}
     </div>
   );
@@ -426,28 +438,33 @@ function DialogueLine({
   initials: string;
   name: string;
   children: ReactNode;
-  tone?: "neutral" | "blue" | "green" | "rose" | "amber";
+  tone?: "neutral" | "amber" | "blue" | "green" | "rose";
 }) {
-  const toneClass =
-    tone === "blue"
-      ? "bg-blue-50"
-      : tone === "green"
-      ? "bg-emerald-50"
-      : tone === "rose"
-      ? "bg-rose-50"
-      : tone === "amber"
-      ? "bg-amber-50"
-      : "bg-white";
+  const teacher = initials === "MR";
+  const bubbleClass = teacher
+    ? "border-[#d8dee8] bg-[#edf5ff]"
+    : "border-[#ded9cf] bg-[#fbfaf7]";
 
   return (
     <div
-      className={`flex gap-4 rounded-3xl border border-slate-200 p-5 ${toneClass}`}
+      className={`flex items-start gap-4 ${
+        teacher ? "justify-end" : "justify-start"
+      }`}
     >
-      <Initials>{initials}</Initials>
-      <div>
-        <p className="text-sm font-black text-slate-950">{name}</p>
-        <div className="mt-2 text-base leading-7 text-slate-700">{children}</div>
+      {!teacher && <Initials>{initials}</Initials>}
+
+      <div
+        className={`max-w-4xl rounded-[1.6rem] border px-6 py-5 shadow-sm ${bubbleClass}`}
+      >
+        <p className="font-sans text-base font-black text-neutral-600">
+          {name}
+        </p>
+        <div className="mt-4 text-[1.05rem] leading-8 text-neutral-800 md:text-lg md:leading-9">
+          {children}
+        </div>
       </div>
+
+      {teacher && <Initials teacher>{initials}</Initials>}
     </div>
   );
 }
@@ -460,17 +477,19 @@ function TopicCard({
   children: ReactNode;
 }) {
   return (
-    <article className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-      <h3 className="text-lg font-black text-slate-950">{title}</h3>
-      <div className="mt-3 text-sm leading-7 text-slate-600">{children}</div>
+    <article className="rounded-[1.5rem] border border-[#ded9cf] bg-[#fbfaf7] p-5 shadow-sm">
+      <h3 className="font-sans text-lg font-black text-[#111111]">{title}</h3>
+      <div className="mt-3 text-sm leading-7 text-neutral-700">{children}</div>
     </article>
   );
 }
 
 function FormulaBox({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
-      <div className="font-mono text-sm leading-7 text-slate-700">{children}</div>
+    <div className="mt-5 rounded-[1.5rem] border border-[#ded9cf] bg-[#fbfaf7] p-5 shadow-sm">
+      <div className="font-mono text-sm leading-7 text-neutral-700">
+        {children}
+      </div>
     </div>
   );
 }
@@ -561,7 +580,7 @@ ${code}
 
       <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
         <div className="border-b border-slate-200 bg-slate-50 px-4 py-4">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
             R console output
           </p>
           <p className="mt-1 text-xs leading-5 text-slate-500">
@@ -834,7 +853,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
             href={withBasePath(
               "/courses/machine-learning-biostatistics/modules/foundations"
             )}
-            className="text-sm font-black text-blue-600 transition hover:text-blue-700"
+            className="text-sm font-black text-[#8b1116] transition hover:text-[#5f0b0f]"
           >
             ← Back to Module 1
           </a>
@@ -849,7 +868,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
 
         <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
           <div className="flex flex-wrap gap-3">
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-xs font-black text-blue-800">
+            <span className="rounded-full bg-[#f8e9ea] px-4 py-2 text-xs font-black text-[#8b1116]">
               Module 1
             </span>
             <span className="rounded-full bg-emerald-100 px-4 py-2 text-xs font-black text-emerald-800">
@@ -915,136 +934,204 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
         </section>
 
         {activeTab === "Lecture" && (
-          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <section className="mt-10 rounded-[2rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Conversational lecture
             </p>
 
-            <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
+            <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.035em] text-[#111111] md:text-4xl">
               The model that looked perfect
             </h2>
 
-            <div className="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6">
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
-                Topics being explained in this lecture
-              </p>
+            <p className="mt-5 rounded-[1.75rem] bg-[#f4f2ee] p-6 text-lg font-bold leading-8 text-neutral-600 md:text-xl md:leading-9">
+              <span className="font-black text-[#111111]">Scene:</span> Mr. R
+              shows Emma, Oliver, James and Sophia two model reports. One model
+              performs reasonably on unseen test patients. Another model looks
+              almost perfect, but its predictors include information that would
+              not be available at the real clinical prediction time.
+            </p>
 
-              <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-                {learningTopics.map((topic) => (
-                  <div
-                    key={topic.title}
-                    className="rounded-2xl border border-slate-200 bg-white p-4"
-                  >
-                    <p className="font-black text-slate-950">{topic.title}</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
-                      {topic.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 space-y-4">
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+            <div className="mt-8 space-y-5">
+              <DialogueLine initials="EM" name="Emma" tone="amber">
                 In Lesson 1.3, we learned that supervised learning uses labelled
                 examples. If the model learns from labelled patients, why can we
                 not simply check how well it predicts those same patients?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Because predicting patients already used for training is easier
                 than predicting genuinely new patients. Training performance
                 tells us how well the model fits the data it has seen. Medical
                 prediction requires generalisation.
               </DialogueLine>
 
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+              <DialogueLine initials="SO" name="Sophia" tone="amber">
                 In clinic, I do not need a model that memorises historical
                 patients. I need a model that helps with tomorrow’s patients,
                 who were not part of model fitting.
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Exactly. That is why we split the data. The training set is used
                 to estimate the model. The test set is held back and touched
                 only after the model is fitted.
               </DialogueLine>
 
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+              <DialogueLine initials="OL" name="Oliver" tone="amber">
                 So the test set is like a rehearsal for future patients?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Yes, but only a limited rehearsal. It is still from the same
                 dataset. It is better than training performance, but external
-                validation in another hospital or time period is stronger.
+                validation in another hospital, time period or population is
+                stronger.
               </DialogueLine>
 
-              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
-                I prefer when people do the split after looking at everything,
-                tune the model repeatedly on the test set, or accidentally add
-                future information. Then the model looks wonderful.
-              </DialogueLine>
-
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
-                But that would not be valid. If a predictor would not be
-                available when the decision is made, the model cannot use it in
-                real clinical practice.
-              </DialogueLine>
-
-              <DialogueLine initials="PS" name="Prof Stat">
-                Correct. That is leakage. It can happen through future diagnosis
-                codes, post-outcome treatment, lab results ordered after
-                suspicion, duplicate records, or variables created using the
-                outcome.
-              </DialogueLine>
-
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+              <DialogueLine initials="JA" name="James" tone="amber">
                 What about overfitting? Is that the same as leakage?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 They are different. Overfitting means the model learns
                 training-specific noise or accidental patterns. Leakage means
                 the model receives information it should not have. Both make
                 performance too optimistic.
               </DialogueLine>
 
-              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
-                If the model gets perfect accuracy in a realistic clinical
-                problem, be suspicious. Real patients are messy. Perfect results
-                often mean the answer leaked into the predictors.
+              <DialogueLine initials="EM" name="Emma" tone="amber">
+                If a model gets perfect accuracy in a realistic clinical
+                problem, should we celebrate?
               </DialogueLine>
 
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
-                So the safest question is not “Which model has the highest
-                number?” It is “Which model performs honestly using information
-                available at the real prediction time?”
-              </DialogueLine>
-
-              <DialogueLine initials="PS" name="Prof Stat">
-                Perfect. Honest validation is the foundation of trustworthy
-                medical machine learning.
+              <DialogueLine initials="MR" name="Mr. R">
+                We should investigate first. Real patients are messy. Perfect or
+                near-perfect results often mean future information, duplicate
+                patient records, outcome-derived variables or some other leakage
+                has entered the workflow.
               </DialogueLine>
             </div>
 
-            <div className="mt-8 rounded-3xl bg-slate-950 p-6 text-white">
-              <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
+            <div className="mt-10 rounded-[1.75rem] border-l-8 border-[#f2a23a] bg-[#fff8e6] p-6 shadow-sm md:p-8">
+              <p className="font-sans text-sm font-black uppercase tracking-[0.32em] text-[#5a260f]">
                 Big idea
               </p>
-              <p className="mt-3 text-xl font-black leading-8 md:text-2xl">
+              <p className="mt-4 max-w-5xl text-[1.05rem] font-medium leading-8 text-[#4b2413] md:text-lg md:leading-9">
                 A model is not trustworthy because it performs well on training
                 data. It becomes more trustworthy when it performs well on
                 genuinely unseen data without leakage and with predictors
                 available at the intended clinical prediction time.
               </p>
             </div>
+
+            <h3 className="mt-8 font-sans text-2xl font-black tracking-[-0.03em] text-[#111111]">
+              Why unseen-data performance matters
+            </h3>
+
+            <p className="mt-3 text-base leading-8 text-neutral-700">
+              The training data are used to learn the model. The test data are
+              used to ask a more honest question: how does the model behave on
+              patients it did not see during fitting? This is not a technical
+              detail. It is the core of trustworthy prediction modelling.
+            </p>
+
+            <p className="mt-3 text-base leading-8 text-neutral-700">
+              A model can look excellent on the data it already knows. That does
+              not mean it will work in a new clinic, a new year, a new patient
+              group or a real decision pathway. Generalisation is the bridge
+              between model fitting and practical usefulness.
+            </p>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              <TopicCard title="Training data">
+                Rows used to estimate the model parameters and learn the
+                prediction rule.
+              </TopicCard>
+
+              <TopicCard title="Test data">
+                Held-out rows used after model fitting to estimate performance
+                on unseen patients.
+              </TopicCard>
+
+              <TopicCard title="Generalisation">
+                The ability of a model to work beyond the patients it has
+                already seen.
+              </TopicCard>
+
+              <TopicCard title="Overfitting">
+                When a model learns training-specific noise or accidental
+                patterns instead of stable signal.
+              </TopicCard>
+
+              <TopicCard title="Leakage">
+                When future, duplicate or outcome-derived information enters
+                the model and inflates performance.
+              </TopicCard>
+
+              <TopicCard title="External validation">
+                Testing the model in a genuinely different setting, such as
+                another hospital, population or time period.
+              </TopicCard>
+            </div>
+
+            <h3 className="mt-8 font-sans text-2xl font-black tracking-[-0.03em] text-[#111111]">
+              The safe validation rule
+            </h3>
+
+            <p className="mt-3 text-base leading-8 text-neutral-700">
+              Before trusting a medical prediction model, define the prediction
+              time, split data before model selection, keep the final test set
+              protected, check for leakage, compare training and test
+              performance, and clearly report whether validation is internal or
+              external.
+            </p>
+
+            <div className="mt-5 rounded-[1.75rem] border border-[#ded9cf] bg-[#f8f6f1] p-6">
+              <p className="text-base font-black leading-8 text-[#111111]">
+                Good validation discipline = define prediction time + separate
+                training and test data + protect the test set + check leakage +
+                report limits of generalisation
+              </p>
+            </div>
+
+            <div className="mt-8 space-y-5">
+              <DialogueLine initials="OL" name="Oliver" tone="amber">
+                Can a model overfit even if there is no leakage?
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                Yes. A model may simply be too flexible for the amount of data.
+                Extra transformations, interactions or complex algorithms can
+                learn noise in the training sample.
+              </DialogueLine>
+
+              <DialogueLine initials="JA" name="James" tone="amber">
+                And can a leakage model look good even on the test set?
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                Yes. If the leaked variable is also present in the test set, the
+                test performance may look excellent. But the test is no longer a
+                fair simulation of real clinical use.
+              </DialogueLine>
+
+              <DialogueLine initials="SO" name="Sophia" tone="amber">
+                So the safest question is not “Which model has the highest
+                number?” It is “Which model performs honestly using information
+                available at the real prediction time?”
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                Perfect. Honest validation is the foundation of trustworthy
+                medical machine learning.
+              </DialogueLine>
+            </div>
           </section>
         )}
 
         {activeTab === "Detailed Notes" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Detailed notes
             </p>
 
@@ -1344,7 +1431,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
 
         {activeTab === "Interactive Lab" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Advanced interactive lab
             </p>
 
@@ -1384,7 +1471,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
                   <p className="font-black text-slate-950">
                     {selectedScenarioData.scenario}
                   </p>
-                  <p className="mt-4 text-sm font-black uppercase tracking-[0.16em] text-blue-600">
+                  <p className="mt-4 text-sm font-black uppercase tracking-[0.16em] text-[#8b1116]">
                     Diagnosis
                   </p>
                   <p className="mt-2 text-xl font-black text-slate-950">
@@ -1681,7 +1768,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
                 </div>
 
                 <div className="mt-5 rounded-2xl bg-white p-4">
-                  <p className="text-sm font-black uppercase tracking-[0.16em] text-blue-600">
+                  <p className="text-sm font-black uppercase tracking-[0.16em] text-[#8b1116]">
                     Validation readiness score
                   </p>
                   <p className="mt-2 text-3xl font-black text-slate-950">
@@ -1760,7 +1847,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
 
         {activeTab === "R Coding Lab" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               R coding lab
             </p>
 
@@ -1825,7 +1912,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
 
         {activeTab === "Report" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Reporting
             </p>
 
@@ -1930,7 +2017,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
 
         {activeTab === "Quiz" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Quiz
             </p>
 
@@ -1997,16 +2084,16 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
           </section>
         )}
 
-        <section className="mt-10 rounded-[2rem] bg-slate-950 p-6 text-white md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
+        <section className="mt-10 rounded-[1.6rem] bg-[#050505] p-5 text-white shadow-sm md:p-7">
+          <p className="font-sans text-xs font-black uppercase tracking-[0.28em] text-[#9fd0ff]">
             Lesson complete
           </p>
 
-          <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
+          <h2 className="mt-4 max-w-3xl font-sans text-2xl font-black leading-tight tracking-[-0.035em] md:text-3xl">
             Next, combine the foundations into a complete ML workflow.
           </h2>
 
-          <p className="mt-5 max-w-4xl text-base leading-7 text-slate-300">
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
             The next lesson brings prediction questions, learning types,
             validation, leakage checks and reporting discipline into one
             responsible biostatistical machine learning workflow.
@@ -2016,7 +2103,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
             href={withBasePath(
               "/courses/machine-learning-biostatistics/modules/foundations/lessons/biostatistical-ml-workflow"
             )}
-            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-slate-100 sm:w-auto"
+            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 sm:w-auto"
           >
             Next lesson →
           </a>

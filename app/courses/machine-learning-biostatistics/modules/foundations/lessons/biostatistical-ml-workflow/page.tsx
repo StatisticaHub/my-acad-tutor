@@ -324,9 +324,21 @@ cat("It fits the model on training data and evaluates it on unseen test data.\\n
 cat("It studies thresholds because clinical decisions depend on false positives and false negatives.\\n")
 cat("It reports limitations honestly, especially the need for external validation.\\n")`;
 
-function Initials({ children }: { children: string }) {
+function Initials({
+  children,
+  teacher = false,
+}: {
+  children: string;
+  teacher?: boolean;
+}) {
   return (
-    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-950 text-xs font-black text-white">
+    <div
+      className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full font-sans text-sm font-black ${
+        teacher
+          ? "bg-[#e8f1ff] text-[#244aa8]"
+          : "bg-[#fff2bf] text-[#7a3f00]"
+      }`}
+    >
       {children}
     </div>
   );
@@ -341,28 +353,33 @@ function DialogueLine({
   initials: string;
   name: string;
   children: ReactNode;
-  tone?: "neutral" | "blue" | "green" | "rose" | "amber";
+  tone?: "neutral" | "amber" | "blue" | "green" | "rose";
 }) {
-  const toneClass =
-    tone === "blue"
-      ? "bg-blue-50"
-      : tone === "green"
-      ? "bg-emerald-50"
-      : tone === "rose"
-      ? "bg-rose-50"
-      : tone === "amber"
-      ? "bg-amber-50"
-      : "bg-white";
+  const teacher = initials === "MR";
+  const bubbleClass = teacher
+    ? "border-[#d8dee8] bg-[#edf5ff]"
+    : "border-[#ded9cf] bg-[#fbfaf7]";
 
   return (
     <div
-      className={`flex gap-4 rounded-3xl border border-slate-200 p-5 ${toneClass}`}
+      className={`flex items-start gap-4 ${
+        teacher ? "justify-end" : "justify-start"
+      }`}
     >
-      <Initials>{initials}</Initials>
-      <div>
-        <p className="text-sm font-black text-slate-950">{name}</p>
-        <div className="mt-2 text-base leading-7 text-slate-700">{children}</div>
+      {!teacher && <Initials>{initials}</Initials>}
+
+      <div
+        className={`max-w-4xl rounded-[1.6rem] border px-6 py-5 shadow-sm ${bubbleClass}`}
+      >
+        <p className="font-sans text-base font-black text-neutral-600">
+          {name}
+        </p>
+        <div className="mt-4 text-[1.05rem] leading-8 text-neutral-800 md:text-lg md:leading-9">
+          {children}
+        </div>
       </div>
+
+      {teacher && <Initials teacher>{initials}</Initials>}
     </div>
   );
 }
@@ -375,17 +392,19 @@ function TopicCard({
   children: ReactNode;
 }) {
   return (
-    <article className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-      <h3 className="text-lg font-black text-slate-950">{title}</h3>
-      <div className="mt-3 text-sm leading-7 text-slate-600">{children}</div>
+    <article className="rounded-[1.5rem] border border-[#ded9cf] bg-[#fbfaf7] p-5 shadow-sm">
+      <h3 className="font-sans text-lg font-black text-[#111111]">{title}</h3>
+      <div className="mt-3 text-sm leading-7 text-neutral-700">{children}</div>
     </article>
   );
 }
 
 function FormulaBox({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
-      <div className="font-mono text-sm leading-7 text-slate-700">{children}</div>
+    <div className="mt-5 rounded-[1.5rem] border border-[#ded9cf] bg-[#fbfaf7] p-5 shadow-sm">
+      <div className="font-mono text-sm leading-7 text-neutral-700">
+        {children}
+      </div>
     </div>
   );
 }
@@ -476,7 +495,7 @@ ${code}
 
       <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
         <div className="border-b border-slate-200 bg-slate-50 px-4 py-4">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
             R console output
           </p>
           <p className="mt-1 text-xs leading-5 text-slate-500">
@@ -920,7 +939,7 @@ export default function BiostatisticalMLWorkflowPage() {
             href={withBasePath(
               "/courses/machine-learning-biostatistics/modules/foundations"
             )}
-            className="text-sm font-black text-blue-600 transition hover:text-blue-700"
+            className="text-sm font-black text-[#8b1116] transition hover:text-[#5f0b0f]"
           >
             ← Back to Module 1
           </a>
@@ -935,7 +954,7 @@ export default function BiostatisticalMLWorkflowPage() {
 
         <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
           <div className="flex flex-wrap gap-3">
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-xs font-black text-blue-800">
+            <span className="rounded-full bg-[#f8e9ea] px-4 py-2 text-xs font-black text-[#8b1116]">
               Module 1
             </span>
             <span className="rounded-full bg-emerald-100 px-4 py-2 text-xs font-black text-emerald-800">
@@ -1001,156 +1020,249 @@ export default function BiostatisticalMLWorkflowPage() {
         </section>
 
         {activeTab === "Lecture" && (
-          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <section className="mt-10 rounded-[2rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Conversational lecture
             </p>
 
-            <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
+            <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.035em] text-[#111111] md:text-4xl">
               The team builds the full ML workflow
             </h2>
 
-            <div className="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6">
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
-                Topics being explained in this lecture
-              </p>
+            <p className="mt-5 rounded-[1.75rem] bg-[#f4f2ee] p-6 text-lg font-bold leading-8 text-neutral-600 md:text-xl md:leading-9">
+              <span className="font-black text-[#111111]">Scene:</span> Mr. R
+              brings the Module 1 lessons together. Emma, Oliver, James and
+              Sophia now have to build a complete diabetes prediction workflow:
+              clinical question, target population, outcome, prediction time,
+              predictor timing, validation, threshold judgement and reporting.
+            </p>
 
-              <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-                {learningTopics.map((topic) => (
-                  <div
-                    key={topic.title}
-                    className="rounded-2xl border border-slate-200 bg-white p-4"
-                  >
-                    <p className="font-black text-slate-950">{topic.title}</p>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
-                      {topic.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 space-y-4">
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+            <div className="mt-8 space-y-5">
+              <DialogueLine initials="EM" name="Emma" tone="amber">
                 We have learned what machine learning means in biostatistics,
                 how prediction differs from explanation and causation, the types
                 of learning, and why training and testing matter. Is this lesson
                 where we connect everything?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Exactly. Lesson 1.5 is the workflow lesson. It teaches that a
                 biostatistical ML project is not just a fitted model. It is a
                 chain of decisions from clinical question to reporting.
               </DialogueLine>
 
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+              <DialogueLine initials="SO" name="Sophia" tone="amber">
                 In clinical work, I would not start by asking whether we should
                 use logistic regression, random forests or neural networks. I
                 would start by asking what decision the model should support.
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Correct. The first question is clinical: who are the patients,
                 what outcome is predicted, when is the prediction made, and what
                 could happen after the prediction?
               </DialogueLine>
 
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+              <DialogueLine initials="OL" name="Oliver" tone="amber">
                 So for our diabetes example, the question is whether routine
                 clinical characteristics can predict diabetes status?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Yes. Then we define the target population, the outcome, the
                 prediction time and the predictors. Only after that should we fit
                 a model.
               </DialogueLine>
 
-              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
-                And this is where I wait. If someone forgets prediction time, I
-                can sneak in future diagnosis codes, post-treatment information
-                or variables created using the outcome.
+              <DialogueLine initials="JA" name="James" tone="amber">
+                Why does prediction time keep appearing in every lesson?
               </DialogueLine>
 
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
-                That would make the model look better than it would be in real
-                practice. A predictor must be available when the clinical
-                decision is made.
+              <DialogueLine initials="MR" name="Mr. R">
+                Because prediction time tells us which predictors are valid. If
+                a variable is only known after diagnosis, treatment, follow-up or
+                outcome measurement, it cannot be used for an earlier prediction
+                task.
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
-                Exactly. Predictor timing is not a small technical detail. It is
-                one of the main differences between a useful prediction model and
-                an invalid one.
+              <DialogueLine initials="EM" name="Emma" tone="amber">
+                So predictor timing is how we prevent leakage?
               </DialogueLine>
 
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+              <DialogueLine initials="MR" name="Mr. R">
+                It is one of the strongest safeguards. Predictor timing helps us
+                remove future diagnosis codes, post-treatment information,
+                outcome-derived variables and workflow variables that would not
+                be available in real practice.
+              </DialogueLine>
+
+              <DialogueLine initials="OL" name="Oliver" tone="amber">
                 After predictor timing, we split the data into training and test
                 sets?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Yes. Training data estimate the model. Test data estimate how
                 the model behaves on observations it has not seen. In our
                 teaching run, we use 537 training rows and 231 test rows.
               </DialogueLine>
 
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+              <DialogueLine initials="SO" name="Sophia" tone="amber">
                 But the report should not only say accuracy. If the model misses
                 many diabetes-positive patients, that matters clinically.
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 Correct. We report AUC, Brier score, sensitivity, specificity,
                 PPV and NPV. We also study thresholds because different
                 thresholds create different clinical behaviour.
               </DialogueLine>
 
-              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+              <DialogueLine initials="JA" name="James" tone="amber">
                 At threshold 0.50, the model may have good specificity but lower
-                sensitivity. So it may be better at ruling out negatives than
-                detecting all positives?
+                sensitivity. So it may rule out negatives better than it detects
+                all positives?
               </DialogueLine>
 
-              <DialogueLine initials="PS" name="Prof Stat">
+              <DialogueLine initials="MR" name="Mr. R">
                 That is the correct style of interpretation. The model is not
                 just a number; it is a decision tool with consequences.
               </DialogueLine>
-
-              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
-                And please remember, if performance looks magical, inspect the
-                workflow. A perfect model often means a broken design.
-              </DialogueLine>
-
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
-                So the final report should say what the model can support, what
-                it cannot support, and what validation is still needed.
-              </DialogueLine>
-
-              <DialogueLine initials="PS" name="Prof Stat">
-                Exactly. This is responsible biostatistical machine learning:
-                define, check, fit, validate, interpret, report and limit.
-              </DialogueLine>
             </div>
 
-            <div className="mt-8 rounded-3xl bg-slate-950 p-6 text-white">
-              <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
+            <div className="mt-10 rounded-[1.75rem] border-l-8 border-[#f2a23a] bg-[#fff8e6] p-6 shadow-sm md:p-8">
+              <p className="font-sans text-sm font-black uppercase tracking-[0.32em] text-[#5a260f]">
                 Big idea
               </p>
-              <p className="mt-3 text-xl font-black leading-8 md:text-2xl">
+              <p className="mt-4 max-w-5xl text-[1.05rem] font-medium leading-8 text-[#4b2413] md:text-lg md:leading-9">
                 A medical ML model is only as trustworthy as the workflow that
                 produced it. The workflow must protect the clinical question,
                 predictor timing, validation, threshold choice and reporting
                 language.
               </p>
             </div>
+
+            <h3 className="mt-8 font-sans text-2xl font-black tracking-[-0.03em] text-[#111111]">
+              Why the workflow matters
+            </h3>
+
+            <p className="mt-3 text-base leading-8 text-neutral-700">
+              A machine learning project can fail even when the code runs
+              correctly. It can fail because the clinical question is vague, the
+              target population is unclear, the outcome is poorly defined, the
+              predictors are measured too late, the test set is repeatedly used,
+              or the report claims more than the evidence supports.
+            </p>
+
+            <p className="mt-3 text-base leading-8 text-neutral-700">
+              The workflow protects the scientific meaning of the model. It
+              forces the analyst to define what is being predicted, for whom,
+              at what time, using which predictors, with what validation, and
+              with what limitations.
+            </p>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <TopicCard title="Clinical question">
+                What decision, risk judgement or follow-up action should the
+                model support?
+              </TopicCard>
+
+              <TopicCard title="Target population">
+                Who are the patients, samples or records the model is intended
+                for?
+              </TopicCard>
+
+              <TopicCard title="Prediction time">
+                When is the prediction made, and what information is genuinely
+                available then?
+              </TopicCard>
+
+              <TopicCard title="Validation">
+                How well does the model perform on observations not used for
+                model fitting?
+              </TopicCard>
+
+              <TopicCard title="Threshold judgement">
+                How should predicted probabilities become classes, alerts or
+                actions?
+              </TopicCard>
+
+              <TopicCard title="Reporting discipline">
+                What can be claimed, what cannot be claimed, and what validation
+                is still needed?
+              </TopicCard>
+
+              <TopicCard title="Limitations">
+                Internal validation is not deployment. External validation and
+                clinical usefulness evaluation are still needed.
+              </TopicCard>
+
+              <TopicCard title="Module 1 foundation">
+                The full workflow joins prediction, causality caution, learning
+                type, validation and leakage control.
+              </TopicCard>
+            </div>
+
+            <h3 className="mt-8 font-sans text-2xl font-black tracking-[-0.03em] text-[#111111]">
+              The responsible workflow rule
+            </h3>
+
+            <p className="mt-3 text-base leading-8 text-neutral-700">
+              A responsible medical ML analysis should move in order: define the
+              question, define the population, define the outcome, define the
+              prediction time, check predictor timing, separate training and
+              validation data, fit the model, evaluate performance, inspect
+              thresholds and report limitations.
+            </p>
+
+            <div className="mt-5 rounded-[1.75rem] border border-[#ded9cf] bg-[#f8f6f1] p-6">
+              <p className="text-base font-black leading-8 text-[#111111]">
+                Good workflow discipline = clinical question + target population
+                + outcome definition + prediction time + predictor timing +
+                honest validation + threshold judgement + transparent reporting
+              </p>
+            </div>
+
+            <div className="mt-8 space-y-5">
+              <DialogueLine initials="EM" name="Emma" tone="amber">
+                So the final report should say what the model can support, what
+                it cannot support, and what validation is still needed?
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                Exactly. A careful report explains the model aim, data,
+                validation design, metrics, threshold behaviour and limitations.
+                It avoids saying the model is deployable after only one internal
+                test split.
+              </DialogueLine>
+
+              <DialogueLine initials="SO" name="Sophia" tone="amber">
+                Clinically, that is important. A model may be useful as a
+                teaching example but still not ready for real patients.
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                Correct. Before clinical use, we would need external validation,
+                calibration assessment, decision-curve or clinical usefulness
+                thinking, fairness checks and implementation review.
+              </DialogueLine>
+
+              <DialogueLine initials="JA" name="James" tone="amber">
+                So Module 1 gives us the safety rules before we study more
+                algorithms.
+              </DialogueLine>
+
+              <DialogueLine initials="MR" name="Mr. R">
+                Perfect. This is responsible biostatistical machine learning:
+                define, check, fit, validate, interpret, report and limit.
+              </DialogueLine>
+            </div>
           </section>
         )}
 
         {activeTab === "Detailed Notes" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Detailed notes
             </p>
 
@@ -1583,7 +1695,7 @@ export default function BiostatisticalMLWorkflowPage() {
 
         {activeTab === "Interactive Lab" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Advanced interactive lab
             </p>
 
@@ -1620,7 +1732,7 @@ export default function BiostatisticalMLWorkflowPage() {
                 </div>
 
                 <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
-                  <p className="text-xs font-black uppercase tracking-[0.16em] text-blue-600">
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-[#8b1116]">
                     Step {selectedStepData.step}
                   </p>
                   <p className="mt-2 text-xl font-black text-slate-950">
@@ -1673,7 +1785,7 @@ export default function BiostatisticalMLWorkflowPage() {
                   <p className="font-black text-slate-950">
                     {selectedScenarioData.scenario}
                   </p>
-                  <p className="mt-4 text-xs font-black uppercase tracking-[0.16em] text-blue-600">
+                  <p className="mt-4 text-xs font-black uppercase tracking-[0.16em] text-[#8b1116]">
                     Diagnosis
                   </p>
                   <p className="mt-2 text-xl font-black text-slate-950">
@@ -1827,7 +1939,7 @@ export default function BiostatisticalMLWorkflowPage() {
                 />
 
                 <div className="mt-5 rounded-2xl bg-white p-4">
-                  <p className="text-xs font-black uppercase tracking-[0.16em] text-blue-600">
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-[#8b1116]">
                     Decision at threshold {selectedThreshold.toFixed(2)}
                   </p>
                   <p className="mt-2 text-2xl font-black text-slate-950">
@@ -1966,7 +2078,7 @@ export default function BiostatisticalMLWorkflowPage() {
               </div>
 
               <div className="mt-5 rounded-2xl bg-white p-4">
-                <p className="text-sm font-black uppercase tracking-[0.16em] text-blue-600">
+                <p className="text-sm font-black uppercase tracking-[0.16em] text-[#8b1116]">
                   Workflow readiness score
                 </p>
                 <p className="mt-2 text-3xl font-black text-slate-950">
@@ -1986,7 +2098,7 @@ export default function BiostatisticalMLWorkflowPage() {
 
         {activeTab === "R Coding Lab" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               R coding lab
             </p>
 
@@ -2062,7 +2174,7 @@ export default function BiostatisticalMLWorkflowPage() {
 
         {activeTab === "Report" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Reporting
             </p>
 
@@ -2208,7 +2320,7 @@ export default function BiostatisticalMLWorkflowPage() {
 
         {activeTab === "Quiz" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#8b1116]">
               Quiz
             </p>
 
@@ -2287,16 +2399,16 @@ export default function BiostatisticalMLWorkflowPage() {
           </section>
         )}
 
-        <section className="mt-10 rounded-[2rem] bg-slate-950 p-6 text-white md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
+        <section className="mt-10 rounded-[1.6rem] bg-[#050505] p-5 text-white shadow-sm md:p-7">
+          <p className="font-sans text-xs font-black uppercase tracking-[0.28em] text-[#9fd0ff]">
             Module 1 complete
           </p>
 
-          <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
+          <h2 className="mt-4 max-w-3xl font-sans text-2xl font-black leading-tight tracking-[-0.035em] md:text-3xl">
             Next, move into supervised learning for clinical prediction.
           </h2>
 
-          <p className="mt-5 max-w-4xl text-base leading-7 text-slate-300">
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
             Module 2 can now build on this foundation: binary classification,
             logistic regression, decision thresholds, ROC/AUC, calibration and
             clinical prediction performance.
@@ -2304,9 +2416,9 @@ export default function BiostatisticalMLWorkflowPage() {
 
           <a
             href={withBasePath(
-              "/courses/machine-learning-biostatistics/modules/supervised-learning"
+              "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data"
             )}
-            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-slate-100 sm:w-auto"
+            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 sm:w-auto"
           >
             Open Module 2 →
           </a>
