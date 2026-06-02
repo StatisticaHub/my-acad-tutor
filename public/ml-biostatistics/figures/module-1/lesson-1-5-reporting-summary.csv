@@ -1,0 +1,15 @@
+item,value
+Clinical question,Can routinely measured clinical characteristics predict diabetes status?
+Target population,Patients with routinely measured diabetes-related clinical characteristics
+Outcome,Diabetes status
+Prediction time,When candidate predictors are available before outcome interpretation
+Predictors,"pregnant, glucose, pressure, triceps, insulin, mass, pedigree, age"
+Training rows,537
+Test rows,231
+Model,Logistic regression
+AUC,0.837
+Brier score,0.149
+Threshold 0.50 accuracy,0.792
+Threshold 0.50 sensitivity,0.625
+Threshold 0.50 specificity,0.868
+Main limitation,Internal train/test split only; external validation would be needed

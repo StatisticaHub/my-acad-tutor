@@ -13,9 +13,9 @@ const modules = [
     number: "01",
     title: "Foundations of Machine Learning in Biostatistics",
     href: "/courses/machine-learning-biostatistics/modules/foundations",
-    status: "In progress",
+    status: "Complete",
     summary:
-      "Build the language of prediction, supervised learning, training/testing, overfitting and biostatistical ML workflow.",
+      "Build the language of prediction, supervised learning, train/test validation, overfitting, leakage, thresholds and responsible biostatistical ML workflow.",
     lessons: [
       {
         title: "What is machine learning in biostatistics?",
@@ -25,22 +25,22 @@ const modules = [
       {
         title: "Prediction vs explanation vs causal thinking",
         href: "/courses/machine-learning-biostatistics/modules/foundations/lessons/prediction-explanation-causal-thinking",
-        available: false,
+        available: true,
       },
       {
         title: "Types of learning",
         href: "/courses/machine-learning-biostatistics/modules/foundations/lessons/types-of-learning",
-        available: false,
+        available: true,
       },
       {
         title: "Training, testing, overfitting and generalisation",
         href: "/courses/machine-learning-biostatistics/modules/foundations/lessons/training-testing-overfitting-generalisation",
-        available: false,
+        available: true,
       },
       {
         title: "Biostatistical ML workflow",
         href: "/courses/machine-learning-biostatistics/modules/foundations/lessons/biostatistical-ml-workflow",
-        available: false,
+        available: true,
       },
     ],
   },
@@ -50,7 +50,7 @@ const modules = [
     href: "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data",
     status: "Preparing",
     summary:
-      "Study regression, logistic classification, k-nearest neighbours, decision trees and clinical modelling pipelines.",
+      "Study regression as prediction, logistic classification, k-nearest neighbours, decision trees and clinical modelling pipelines.",
     lessons: [
       {
         title: "Regression as a prediction model",
@@ -213,6 +213,29 @@ const features = [
   },
 ];
 
+const moduleOneScripts = [
+  [
+    "Lesson 1.1 R script",
+    "/ml-biostatistics/r/module-1/lesson-1-1-what-is-ml-biostatistics.R",
+  ],
+  [
+    "Lesson 1.2 R script",
+    "/ml-biostatistics/r/module-1/lesson-1-2-prediction-explanation-causality.R",
+  ],
+  [
+    "Lesson 1.3 R script",
+    "/ml-biostatistics/r/module-1/lesson-1-3-types-of-learning.R",
+  ],
+  [
+    "Lesson 1.4 R script",
+    "/ml-biostatistics/r/module-1/lesson-1-4-training-testing-overfitting.R",
+  ],
+  [
+    "Lesson 1.5 R script",
+    "/ml-biostatistics/r/module-1/lesson-1-5-biostatistical-ml-workflow.R",
+  ],
+];
+
 export default function MachineLearningBiostatisticsCoursePage() {
   return (
     <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-slate-950 md:px-8 md:py-16">
@@ -223,7 +246,8 @@ export default function MachineLearningBiostatisticsCoursePage() {
           </p>
 
           <h1 className="mt-5 max-w-5xl text-4xl font-black tracking-tight md:text-6xl">
-            Machine learning for health data, clinical prediction and biostatistical modelling.
+            Machine learning for health data, clinical prediction and
+            biostatistical modelling.
           </h1>
 
           <p className="mt-6 max-w-4xl text-base leading-8 text-slate-600 md:text-lg">
@@ -235,9 +259,18 @@ export default function MachineLearningBiostatisticsCoursePage() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href={withBasePath(
-                "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics"
+                "/courses/machine-learning-biostatistics/modules/foundations"
               )}
               className="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-black text-white transition hover:bg-slate-800 sm:w-auto"
+            >
+              Open Module 1
+            </a>
+
+            <a
+              href={withBasePath(
+                "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics"
+              )}
+              className="inline-flex w-full items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-black text-slate-700 transition hover:bg-slate-50 sm:w-auto"
             >
               Start Lesson 1.1
             </a>
@@ -263,8 +296,8 @@ export default function MachineLearningBiostatisticsCoursePage() {
             {[
               ["Modules", "5"],
               ["Lessons", "25"],
+              ["Module 1", "Complete"],
               ["Coding", "R + WebR"],
-              ["Case studies", "Applied"],
             ].map(([label, value]) => (
               <div
                 key={label}
@@ -273,7 +306,9 @@ export default function MachineLearningBiostatisticsCoursePage() {
                 <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
                   {label}
                 </p>
-                <p className="mt-2 text-2xl font-black text-slate-950">{value}</p>
+                <p className="mt-2 text-2xl font-black text-slate-950">
+                  {value}
+                </p>
               </div>
             ))}
           </div>
@@ -291,8 +326,9 @@ export default function MachineLearningBiostatisticsCoursePage() {
           <p className="mt-5 max-w-4xl text-base leading-8 text-slate-600">
             The early modules use the same shared diabetes prediction dataset.
             Students first learn the basic prediction question, then revisit the
-            same data for logistic regression, validation, classification
-            metrics, ROC/AUC, calibration, regularisation and reporting.
+            same data for learning types, train/test validation, leakage,
+            thresholds, reporting, supervised models, calibration and applied
+            case studies.
           </p>
 
           <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -327,8 +363,8 @@ export default function MachineLearningBiostatisticsCoursePage() {
 
             <p className="mt-5 text-base leading-8 text-slate-600">
               Each module contains five lessons. Lessons follow the structure:
-              conversational lecture, notes, interactive lab, R coding lab,
-              report-style interpretation and quiz.
+              conversational lecture, detailed notes, interactive lab, R coding
+              lab, report-style interpretation and quiz.
             </p>
           </div>
 
@@ -347,7 +383,13 @@ export default function MachineLearningBiostatisticsCoursePage() {
 
                   <div>
                     <div className="flex flex-wrap gap-2">
-                      <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-slate-600">
+                      <span
+                        className={`rounded-full px-3 py-1 text-xs font-black ${
+                          module.status === "Complete"
+                            ? "bg-emerald-50 text-emerald-700"
+                            : "bg-white text-slate-600"
+                        }`}
+                      >
                         {module.status}
                       </span>
                       <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-black text-blue-700">
@@ -368,12 +410,22 @@ export default function MachineLearningBiostatisticsCoursePage() {
                         <a
                           key={lesson.href}
                           href={withBasePath(lesson.href)}
-                          className="flex items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+                          className={`flex items-center justify-between gap-4 rounded-2xl border px-4 py-3 text-sm font-bold transition ${
+                            lesson.available
+                              ? "border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+                              : "border-slate-200 bg-white/70 text-slate-500 hover:bg-white"
+                          }`}
                         >
                           <span>
                             {module.number}.{index + 1} {lesson.title}
                           </span>
-                          <span className="shrink-0 text-xs font-black uppercase tracking-[0.14em] text-slate-400">
+                          <span
+                            className={`shrink-0 text-xs font-black uppercase tracking-[0.14em] ${
+                              lesson.available
+                                ? "text-emerald-700"
+                                : "text-slate-400"
+                            }`}
+                          >
                             {lesson.available ? "Open" : "Ready"}
                           </span>
                         </a>
@@ -456,14 +508,15 @@ export default function MachineLearningBiostatisticsCoursePage() {
                 Download shared diabetes CSV →
               </a>
 
-              <a
-                href={withBasePath(
-                  "/ml-biostatistics/r/module-1/lesson-1-1-what-is-ml-biostatistics.R"
-                )}
-                className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-700 transition hover:bg-blue-50 hover:text-blue-700"
-              >
-                Download Lesson 1.1 R script →
-              </a>
+              {moduleOneScripts.map(([label, href]) => (
+                <a
+                  key={href}
+                  href={withBasePath(href)}
+                  className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-black text-slate-700 transition hover:bg-blue-50 hover:text-blue-700"
+                >
+                  Download {label} →
+                </a>
+              ))}
 
               <a
                 href={withBasePath(
