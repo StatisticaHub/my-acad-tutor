@@ -3243,6 +3243,143 @@ export const resourceGuides: ResourceGuide[] = [
  "Introduction to causal inference and DAGs",
  "Survival analysis: Kaplan-Meier curves and Cox regression",
  ],
- }
+ },
+
+  {
+    slug: "r-python-spss-sas-stata-which-should-i-use",
+    area: "Software",
+    level: "Foundation",
+    title: "R, Python, SPSS, SAS or Stata: which should I use?",
+    summary:
+      "A practical guide for students choosing statistical software for coursework, dissertations, health research, data science, biostatistics and reproducible analysis.",
+
+    problem: {
+      title: "Problem",
+      body:
+        "Students often ask which statistical software is best, but the better question is which software is best for the task, the course, the dataset, the deadline and the future skill goal. R, Python, SPSS, SAS and Stata can all be useful, but they are not identical. Some are stronger for reproducible research, some are easier for beginners, some are common in clinical trials, some are strong for data science and some are preferred in particular academic departments.",
+      bullets: [
+        "Students choose software because someone else recommended it without considering their own project.",
+        "Beginners may choose a tool that is too difficult for a short deadline.",
+        "Students may use point-and-click software without understanding the statistics.",
+        "Students may use coding tools but fail to organise scripts reproducibly.",
+        "Departments, supervisors or employers may expect a specific software package.",
+        "Large datasets, repeated workflows and research reports require different software strengths.",
+        "The software choice can affect reproducibility, collaboration and employability.",
+      ],
+    },
+
+    intuition: {
+      title: "Intuition",
+      body:
+        "Statistical software is not the analysis itself. It is the environment used to clean data, fit models, produce tables, create figures and document decisions. The right tool should help you answer the research question clearly and reproducibly. For a small undergraduate project, SPSS may be enough. For a dissertation with regression, visualisation and reproducible reporting, R may be stronger. For machine learning and general data science, Python may be more useful. For clinical trials and regulated pharmaceutical settings, SAS is often important. For epidemiology, economics and social science workflows, Stata is still widely used.",
+      bullets: [
+        "Choose software based on the project aim, not only popularity.",
+        "Point-and-click software may be easier at first but weaker for reproducibility.",
+        "Code-based software has a learning curve but is better for repeatable workflows.",
+        "R is very strong for statistics, graphics, epidemiology, biostatistics and reproducible reports.",
+        "Python is strong for data science, machine learning, automation and general programming.",
+        "SPSS is approachable for beginners and common in many taught courses.",
+        "SAS and Stata remain important in some professional and research environments.",
+      ],
+    },
+
+    method: {
+      title: "Method",
+      body:
+        "A good software decision begins with five questions. What does the course or supervisor require? What type of analysis is needed? How large and complex is the dataset? How much time is available to learn the tool? How important are reproducibility and future career value? Once these are clear, the choice becomes more rational.",
+      bullets: [
+        "Step 1: Check whether your module, supervisor or workplace requires a specific package.",
+        "Step 2: Identify whether the task is basic analysis, regression, survival analysis, machine learning, omics or reporting.",
+        "Step 3: Decide whether you need point-and-click speed or code-based reproducibility.",
+        "Step 4: Consider the dataset size, cleaning complexity and number of repeated steps.",
+        "Step 5: Consider whether the project needs publication-quality graphics or automated reports.",
+        "Step 6: Consider collaboration: what can your supervisor, team or classmates read and review?",
+        "Step 7: Consider future goals: academia, health data science, clinical trials, industry or consulting.",
+        "Step 8: Choose one main tool and avoid switching repeatedly during the same project unless necessary.",
+      ],
+    },
+
+    working: {
+      title: "Working",
+      body:
+        "Suppose a student has a small survey dataset and needs descriptive statistics, t-tests and simple regression for a short coursework deadline. SPSS may be practical if the course teaches it and the student needs quick output. Suppose another student is writing a dissertation with data cleaning, regression diagnostics, plots and a reproducible report. R is usually stronger because scripts and Quarto or R Markdown can document the full workflow. Suppose a student wants to build prediction models or later work in data science. Python becomes very valuable. If the target is pharmaceutical programming or some clinical-trials roles, SAS may be worth learning. If the project is in epidemiology, economics or policy research, Stata may be expected.",
+      bullets: [
+        "Use SPSS when the task is introductory, the dataset is modest and the course expects menu-based analysis.",
+        "Use R when the project needs statistics, visualisation, reproducibility, regression, survival analysis or academic reporting.",
+        "Use Python when the project involves data science, machine learning, automation, APIs or broader programming.",
+        "Use SAS when working toward clinical-trials, pharmaceutical or regulated reporting environments where SAS is requested.",
+        "Use Stata when the department, supervisor or research field commonly uses Stata for epidemiology, economics or social science.",
+        "Use Excel only for simple data inspection, not as the main tool for serious statistical modelling.",
+        "For dissertations, prefer a workflow where cleaning, analysis and figures can be repeated from scripts.",
+      ],
+    },
+
+    limitations: {
+      title: "Limitations",
+      body:
+        "There is no universally best statistical software. A tool can be powerful but unsuitable for a beginner under time pressure. Another tool can be beginner-friendly but limited for reproducibility or advanced modelling. Software choice also depends on access, licensing, operating system, supervisor support and assessment requirements. The biggest mistake is believing that the software will compensate for weak statistical thinking.",
+      bullets: [
+        "R and Python require time to learn coding habits and debugging.",
+        "SPSS is easier for beginners but can encourage copy-and-paste reporting if used carelessly.",
+        "SAS can be important professionally but may be less convenient for independent students because of access and licensing.",
+        "Stata is efficient for many applied research workflows but may not be available to every student.",
+        "Using many tools in one small project can create confusion.",
+        "A software package cannot fix a poorly defined research question.",
+        "Output should always be interpreted statistically, not copied mechanically.",
+      ],
+    },
+
+    discussion: {
+      title: "Discussion",
+      body:
+        "The best long-term strategy is to learn one beginner-friendly tool well enough to complete the current task, while gradually building a reproducible coding skill. For many students in statistics, biostatistics and health data science, R is the strongest academic statistics base. Python is an excellent second skill for machine learning and general data science. SPSS can be useful for quick introductory analyses. SAS and Stata are valuable when a field, employer or supervisor expects them.",
+      bullets: [
+        "For immediate coursework, use the tool your course supports.",
+        "For dissertations and research projects, prioritise reproducibility.",
+        "For biostatistics and epidemiology, R is often a strong first coding tool.",
+        "For machine learning and automation, Python is highly useful.",
+        "For clinical-trials programming, SAS remains relevant.",
+        "For social science, economics and some epidemiology workflows, Stata may be useful.",
+        "Whichever tool you use, focus on understanding the method, assumptions and interpretation.",
+      ],
+    },
+
+    checklist: [
+      "Does your module or supervisor require a specific software package?",
+      "What analysis do you need: descriptive statistics, tests, regression, survival analysis, machine learning or reporting?",
+      "Do you need a point-and-click interface or a reproducible script?",
+      "How much time do you have to learn the tool?",
+      "How complex is the data cleaning?",
+      "Do you need high-quality graphs?",
+      "Do you need automated reports or dynamic documents?",
+      "Will your supervisor or team be able to review your work?",
+      "Is the software available on your laptop or university system?",
+      "Will this software help your future career direction?",
+      "Can you explain the statistical method beyond the software output?",
+      "Can you reproduce the analysis later from saved steps or scripts?",
+    ],
+
+    commonMistakes: [
+      "Choosing software only because it looks easy.",
+      "Choosing software only because it sounds advanced.",
+      "Switching tools repeatedly instead of finishing the analysis.",
+      "Using SPSS output without understanding the method.",
+      "Using R or Python scripts without documenting the workflow.",
+      "Using Excel for analyses that need proper statistical modelling.",
+      "Ignoring supervisor or department expectations.",
+      "Learning a difficult tool too close to the deadline.",
+      "Assuming software choice is more important than study design and interpretation.",
+      "Reporting software output without explaining results in plain language.",
+    ],
+
+    related: [
+      "How to prepare your data before analysis",
+      "How to choose the correct statistical test",
+      "Reproducible analysis with R Markdown or Quarto",
+      "Common mistakes in dissertation data analysis",
+      "How to report regression results in a dissertation",
+      "RNA-seq and differential expression analysis",
+    ],
+  }
 
 ];
