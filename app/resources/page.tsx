@@ -123,17 +123,17 @@ export default function ResourcesPage() {
                 used.
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <a
                   href="#guide-library"
-                  className="rounded-md bg-neutral-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#8b1116]"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-neutral-950 px-6 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 sm:w-auto"
                 >
                   Browse guides
                 </a>
 
                 <a
                   href={withBasePath("/learning-hub")}
-                  className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-800 transition hover:border-[#8b1116] hover:text-[#8b1116]"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-bold text-neutral-950 transition hover:bg-neutral-50 sm:w-auto"
                 >
                   Visit Learning Hub
                 </a>

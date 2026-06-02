@@ -1,104 +1,69 @@
-const basePath =
-  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
   if (href.startsWith("#")) return href;
-  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
-  return `${basePath}${cleanHref}`;
+  if (href.startsWith("http")) return href;
+  if (href.startsWith("mailto:")) return href;
+  return `${basePath}${href}/`;
 }
 
 export default function ContactCTA() {
   return (
     <section className="bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-16">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-neutral-200 bg-neutral-950 text-white shadow-sm">
-        <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="p-8 md:p-12">
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-white/50">
-              Start here
-            </p>
+      <div className="mx-auto max-w-7xl rounded-[2rem] bg-neutral-950 p-6 text-white shadow-sm md:p-10">
+        <p className="text-sm font-black uppercase tracking-[0.2em] text-white/50">
+          Request support
+        </p>
 
-            <h2 className="font-serif-academic mt-4 max-w-3xl text-4xl font-semibold tracking-[-0.035em] md:text-5xl">
-              Tell us what you want to understand, improve or analyse.
+        <div className="mt-4 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <div>
+            <h2 className="max-w-3xl text-3xl font-bold tracking-tight md:text-5xl">
+              Need help choosing the right learning or support route?
             </h2>
 
-            <p className="mt-5 max-w-3xl text-base leading-8 text-white/70">
-              Share your subject, academic level, software requirements,
-              deadline and the type of support you need. We will suggest the
-              most suitable route, whether that is structured learning, subject
-              tutoring, software guidance or research analysis support.
+            <p className="mt-4 max-w-2xl text-base leading-7 text-white/70">
+              Send your subject, level, topic, software needs and deadline. We
+              will guide you towards the most suitable support option while
+              keeping academic integrity clear.
             </p>
-
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                <p className="text-sm font-semibold text-white">
-                  Subject guidance
-                </p>
-                <p className="mt-2 text-xs leading-6 text-white/60">
-                  Statistics, biostatistics, data science and research methods.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                <p className="text-sm font-semibold text-white">
-                  Software support
-                </p>
-                <p className="mt-2 text-xs leading-6 text-white/60">
-                  R, Python, SPSS, SAS, Stata and reproducible workflows.
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                <p className="text-sm font-semibold text-white">
-                  Research planning
-                </p>
-                <p className="mt-2 text-xs leading-6 text-white/60">
-                  Method choice, interpretation, tables, figures and reporting.
-                </p>
-              </div>
-            </div>
           </div>
 
-          <div className="border-t border-white/10 bg-white/5 p-8 md:p-12 lg:border-l lg:border-t-0">
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-white/50">
-              Choose an action
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
+            <p className="text-sm font-bold text-white">
+              Best for:
             </p>
 
-            <div className="mt-6 grid gap-3">
-              <a
-                href={withBasePath("/contact")}
-                className="rounded-md bg-white px-6 py-4 text-center text-sm font-semibold text-neutral-950 transition hover:-translate-y-0.5 hover:shadow-md"
-              >
-                Submit requirement
-              </a>
-
-              <a
-                href="mailto:contact@myacademictutor.com"
-                className="rounded-md border border-white/15 bg-white/10 px-6 py-4 text-center text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/15"
-              >
-                Email directly
-              </a>
-
-              <a
-                href={withBasePath("/academic-integrity")}
-                className="rounded-md border border-white/15 px-6 py-4 text-center text-sm font-semibold text-white/80 transition hover:bg-white/5 hover:text-white"
-              >
-                Read academic integrity policy
-              </a>
-            </div>
-
-            <div className="mt-6 rounded-xl border border-[#ead8d8]/20 bg-[#fff8f6]/10 p-5">
-              <p className="text-sm font-semibold text-white">
-                Responsible support only
-              </p>
-
-              <p className="mt-2 text-sm leading-7 text-white/65">
-                Support is designed to explain, guide and build confidence. It
-                is not used for ghostwriting, impersonation or dishonest
-                completion of assessed work.
-              </p>
-            </div>
+            <ul className="mt-3 space-y-2 text-sm leading-6 text-white/65">
+              <li>• Statistics and biostatistics topics</li>
+              <li>• Dissertation or research planning</li>
+              <li>• R, Python, SPSS, Stata or SAS guidance</li>
+              <li>• Interpreting methods and results</li>
+            </ul>
           </div>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+          <a
+            href={withBasePath("/contact")}
+            className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-bold text-neutral-950 transition hover:bg-neutral-100 sm:w-auto"
+          >
+            Submit requirement
+          </a>
+
+          <a
+            href="mailto:contact@myacademictutor.com"
+            className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto"
+          >
+            Email directly
+          </a>
+
+          <a
+            href={withBasePath("/academic-integrity")}
+            className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto"
+          >
+            Read academic integrity policy
+          </a>
         </div>
       </div>
     </section>
