@@ -12,6 +12,7 @@ const navLinks = [
   { label: "Courses", href: "/courses" },
   { label: "Learning Hub", href: "/learning-hub" },
   { label: "Resources", href: "/resources" },
+  { label: "Pricing", href: "/pricing" },
 ];
 
 function withBasePath(href: string) {

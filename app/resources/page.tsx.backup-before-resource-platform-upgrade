@@ -6,11 +6,9 @@ const basePath =
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
   if (href.startsWith("#")) return href;
-  if (href.startsWith("http")) return href;
-  if (href.startsWith("mailto:")) return href;
 
   const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
-  return `${basePath}${cleanHref}/`;
+  return `${basePath}${cleanHref}`;
 }
 
 const popularSearches = [
@@ -72,63 +70,6 @@ const featureCards = [
     title: "Interpretation support",
     description:
       "Guidance for understanding assumptions, uncertainty, limitations and conclusions.",
-  },
-];
-
-const flagshipGuides = [
-  {
-    title: "How to choose the correct statistical test",
-    href: "/resources/how-to-choose-the-correct-statistical-test",
-    description:
-      "A practical decision guide for choosing between t-tests, ANOVA, chi-square tests, regression, logistic regression and survival analysis.",
-  },
-  {
-    title: "Understanding p-values, confidence intervals and effect sizes",
-    href: "/resources/understanding-p-values-confidence-intervals-and-effect-sizes",
-    description:
-      "A careful guide to statistical evidence, uncertainty, magnitude and responsible interpretation.",
-  },
-  {
-    title: "Linear regression assumptions and diagnostics",
-    href: "/resources/linear-regression-assumptions-and-diagnostics",
-    description:
-      "A guide to residuals, linearity, equal variance, outliers, influence and regression reporting.",
-  },
-  {
-    title: "Survival analysis: Kaplan-Meier curves and Cox regression",
-    href: "/resources/survival-analysis-kaplan-meier-curves-and-cox-regression",
-    description:
-      "A health-data guide to time-to-event outcomes, censoring, Kaplan-Meier curves, log-rank tests and Cox models.",
-  },
-  {
-    title: "R, Python, SPSS, SAS or Stata: which should I use?",
-    href: "/resources/r-python-spss-sas-stata-which-should-i-use",
-    description:
-      "A student-friendly software guide for coursework, dissertation analysis, biostatistics and data science goals.",
-  },
-];
-
-const platformPreviewCards = [
-  {
-    title: "Interactive demos",
-    href: "/interactive-demos",
-    description:
-      "Explore visual demos for normal distributions, regression lines and confidence intervals.",
-    cta: "Try demos",
-  },
-  {
-    title: "Dashboard preview",
-    href: "/dashboard",
-    description:
-      "Preview future student progress, saved lessons, coding labs and certificate placeholders.",
-    cta: "Open dashboard",
-  },
-  {
-    title: "Pricing preview",
-    href: "/pricing",
-    description:
-      "View the planned free, premium course, academic support and institution support structure.",
-    cta: "View pricing",
   },
 ];
 
@@ -309,98 +250,6 @@ export default function ResourcesPage() {
                 </p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-neutral-200 bg-[#f7f4ee] px-5 py-14 md:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-8 grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
-                Flagship resource guides
-              </p>
-
-              <h2 className="font-serif-academic mt-3 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
-                Start with the five most useful public guides.
-              </h2>
-            </div>
-
-            <p className="max-w-3xl text-base leading-8 text-neutral-600">
-              These guides give the Resources page a stronger launch identity:
-              method choice, statistical interpretation, regression diagnostics,
-              survival analysis and software selection.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-            {flagshipGuides.map((guide, index) => (
-              <a
-                key={guide.href}
-                href={withBasePath(guide.href)}
-                className="rounded-[1.5rem] border border-neutral-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-              >
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#8b1116]">
-                  Guide {index + 1}
-                </p>
-
-                <h3 className="mt-3 text-xl font-black leading-tight tracking-[-0.03em] text-neutral-950">
-                  {guide.title}
-                </h3>
-
-                <p className="mt-4 text-sm leading-7 text-neutral-600">
-                  {guide.description}
-                </p>
-
-                <p className="mt-5 text-sm font-black text-[#8b1116]">
-                  Read guide →
-                </p>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-neutral-200 bg-neutral-950 px-5 py-14 text-white md:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#9fd0ff]">
-                Platform preview
-              </p>
-
-              <h2 className="font-serif-academic mt-3 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
-                Resources are part of a wider learning platform.
-              </h2>
-
-              <p className="mt-5 text-base leading-8 text-white/65">
-                Students can use guides for quick reference, then move into
-                structured courses, visual demos and the future dashboard
-                experience.
-              </p>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              {platformPreviewCards.map((card) => (
-                <a
-                  key={card.href}
-                  href={withBasePath(card.href)}
-                  className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 transition hover:-translate-y-1 hover:bg-white/10"
-                >
-                  <h3 className="text-xl font-black tracking-[-0.03em]">
-                    {card.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-7 text-white/65">
-                    {card.description}
-                  </p>
-
-                  <p className="mt-5 text-sm font-black text-white">
-                    {card.cta} →
-                  </p>
-                </a>
-              ))}
-            </div>
           </div>
         </div>
       </section>

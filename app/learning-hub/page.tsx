@@ -1,11 +1,18 @@
+import NormalDistributionExplorer from "@/components/interactive/NormalDistributionExplorer";
+import RegressionLineExplorer from "@/components/interactive/RegressionLineExplorer";
+import ConfidenceIntervalSimulator from "@/components/interactive/ConfidenceIntervalSimulator";
+
 const basePath =
   process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
   if (href.startsWith("#")) return href;
+  if (href.startsWith("http")) return href;
+  if (href.startsWith("mailto:")) return href;
+
   const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
-  return `${basePath}${cleanHref}`;
+  return `${basePath}${cleanHref}/`;
 }
 
 const pathways = [
@@ -32,15 +39,15 @@ const pathways = [
   {
     number: "02",
     title: "Machine Learning in Biostatistics",
-    tag: "Launching July 2026",
+    tag: "Module 1 available",
     level: "Intermediate",
     href: "/courses/machine-learning-biostatistics",
     description:
       "A structured medical machine learning pathway focused on prediction, validation, overfitting, leakage, calibration and clinical interpretation.",
     details: [
+      "Module 1 foundations now available",
       "Medical and health data examples",
-      "Prediction versus inference",
-      "Model evaluation and responsible reporting",
+      "Prediction, validation, leakage and responsible reporting",
     ],
     outcomes: [
       "Understand prediction modelling in health data",
@@ -101,14 +108,61 @@ const learningFormats = [
       "Complete pathways with ordered lessons, theory, examples, labs and quizzes.",
   },
   {
-    title: "Interactive learning",
+    title: "Interactive demos",
     description:
-      "Visual labs help students see how statistical ideas behave, not just memorise formulas.",
+      "Visual tools help students see how statistical ideas behave, not just memorise formulas.",
   },
   {
-    title: "Live support route",
+    title: "Dashboard preview",
     description:
-      "Students can enquire separately for subject-wise live sessions when they need guidance.",
+      "A platform-style learning experience with progress, saved lessons and recommended pathways.",
+  },
+];
+
+const platformCards = [
+  {
+    title: "Pricing preview",
+    body:
+      "See the planned free, premium course, academic support and institution support structure before live payments are connected.",
+    href: "/pricing",
+    cta: "View pricing",
+  },
+  {
+    title: "Dashboard preview",
+    body:
+      "Preview the future student dashboard with course progress, saved lessons, coding labs and certificate placeholders.",
+    href: "/dashboard",
+    cta: "Open dashboard preview",
+  },
+  {
+    title: "Interactive demos",
+    body:
+      "Try visual demonstrations for distributions, regression and confidence intervals.",
+    href: "/interactive-demos",
+    cta: "Try demos",
+  },
+];
+
+const resourceHighlights = [
+  {
+    title: "Choosing the correct statistical test",
+    href: "/resources/how-to-choose-the-correct-statistical-test",
+  },
+  {
+    title: "P-values, confidence intervals and effect sizes",
+    href: "/resources/understanding-p-values-confidence-intervals-and-effect-sizes",
+  },
+  {
+    title: "Linear regression assumptions and diagnostics",
+    href: "/resources/linear-regression-assumptions-and-diagnostics",
+  },
+  {
+    title: "Survival analysis: Kaplan-Meier curves and Cox regression",
+    href: "/resources/survival-analysis-kaplan-meier-curves-and-cox-regression",
+  },
+  {
+    title: "R, Python, SPSS, SAS or Stata: which should I use?",
+    href: "/resources/r-python-spss-sas-stata-which-should-i-use",
   },
 ];
 
@@ -137,9 +191,10 @@ export default function LearningHubPage() {
               </h1>
 
               <p className="mt-6 max-w-4xl text-lg leading-9 text-neutral-700">
-                The Learning Hub brings together guided courses in statistics,
-                biostatistics, data science, research methods and related
-                quantitative subjects.
+                The Learning Hub brings together guided courses, interactive
+                demos, flagship resources and platform previews for statistics,
+                biostatistics, data science, research methods and quantitative
+                academic development.
               </p>
 
               <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-600">
@@ -158,17 +213,17 @@ export default function LearningHubPage() {
                 </a>
 
                 <a
-                  href={withBasePath("/courses")}
+                  href={withBasePath("/interactive-demos")}
                   className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-bold text-neutral-950 transition hover:bg-neutral-50 sm:w-auto"
                 >
-                  Browse courses
+                  Try interactive demos
                 </a>
 
                 <a
-                  href={withBasePath("/contact")}
-                  className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-950 transition hover:-translate-y-0.5 hover:shadow-md"
+                  href={withBasePath("/pricing")}
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#8b1116] px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:shadow-md sm:w-auto"
                 >
-                  Enquire for live sessions
+                  Pricing preview
                 </a>
               </div>
             </div>
@@ -220,7 +275,10 @@ export default function LearningHubPage() {
         </div>
       </section>
 
-      <section id="pathways" className="mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-16">
+      <section
+        id="pathways"
+        className="mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-16"
+      >
         <div className="mb-10 grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
@@ -316,6 +374,137 @@ export default function LearningHubPage() {
 
       <section className="border-y border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-16">
         <div className="mx-auto max-w-7xl">
+          <div className="mb-8 max-w-4xl">
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
+              Interactive learning preview
+            </p>
+
+            <h2 className="font-serif-academic mt-4 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
+              Learn statistics by moving, seeing and interpreting.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-neutral-600">
+              These demos show the direction of My Academic Tutor: visual
+              explanations, active learning and interpretation-focused
+              quantitative education.
+            </p>
+          </div>
+
+          <div className="grid gap-8">
+            <NormalDistributionExplorer />
+            <RegressionLineExplorer />
+            <ConfidenceIntervalSimulator />
+          </div>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              href={withBasePath("/interactive-demos")}
+              className="rounded-full bg-neutral-950 px-6 py-3 text-center text-sm font-bold text-white transition hover:-translate-y-0.5"
+            >
+              Open all interactive demos
+            </a>
+
+            <a
+              href={withBasePath("/dashboard")}
+              className="rounded-full border border-neutral-300 bg-white px-6 py-3 text-center text-sm font-bold text-neutral-950 transition hover:-translate-y-0.5"
+            >
+              View dashboard preview
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-16">
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
+              Platform preview
+            </p>
+
+            <h2 className="font-serif-academic mt-4 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
+              Explore the platform experience before login and payments.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-neutral-600">
+              Live Stripe payments, full student login and progress tracking can
+              be added later. For now, these preview pages show the platform
+              direction clearly.
+            </p>
+          </div>
+
+          <div className="grid gap-4">
+            {platformCards.map((card) => (
+              <a
+                key={card.title}
+                href={withBasePath(card.href)}
+                className="rounded-[1.5rem] border border-neutral-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              >
+                <h3 className="text-2xl font-black tracking-[-0.03em]">
+                  {card.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-neutral-600">
+                  {card.body}
+                </p>
+
+                <p className="mt-4 text-sm font-black text-[#8b1116]">
+                  {card.cta} →
+                </p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-16">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
+                Flagship resource guides
+              </p>
+
+              <h2 className="font-serif-academic mt-4 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
+                Start with the most useful public guides.
+              </h2>
+
+              <p className="mt-5 text-base leading-8 text-neutral-600">
+                These guides support students who need quick but careful help
+                with method choice, interpretation, regression, survival
+                analysis and software selection.
+              </p>
+
+              <a
+                href={withBasePath("/resources")}
+                className="mt-6 inline-flex rounded-full bg-[#8b1116] px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5"
+              >
+                View all resources
+              </a>
+            </div>
+
+            <div className="grid gap-3">
+              {resourceHighlights.map((resource, index) => (
+                <a
+                  key={resource.href}
+                  href={withBasePath(resource.href)}
+                  className="rounded-[1.25rem] border border-neutral-200 bg-[#f8f6f1] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-sm"
+                >
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#8b1116]">
+                    Guide {index + 1}
+                  </p>
+
+                  <h3 className="mt-2 text-xl font-black tracking-[-0.03em]">
+                    {resource.title}
+                  </h3>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-16">
+        <div className="mx-auto max-w-7xl">
           <div className="rounded-[1.5rem] border border-neutral-200 bg-[#f8f6f1] p-8 md:p-10">
             <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
               <div>
@@ -337,14 +526,14 @@ export default function LearningHubPage() {
               <div className="grid gap-3">
                 <a
                   href={withBasePath("/courses#live-sessions")}
-                  className="rounded-md bg-neutral-950 px-6 py-4 text-center text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-md"
+                  className="rounded-full bg-neutral-950 px-6 py-4 text-center text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-md"
                 >
                   View live session subjects
                 </a>
 
                 <a
                   href={withBasePath("/contact")}
-                  className="rounded-md border border-neutral-300 bg-white px-6 py-4 text-center text-sm font-semibold text-neutral-950 transition hover:-translate-y-0.5 hover:shadow-md"
+                  className="rounded-full border border-neutral-300 bg-white px-6 py-4 text-center text-sm font-semibold text-neutral-950 transition hover:-translate-y-0.5 hover:shadow-md"
                 >
                   Submit an enquiry
                 </a>
