@@ -1,5 +1,4 @@
-const basePath =
-  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
@@ -95,50 +94,52 @@ const platformPoints = [
 
 export default function CoursesPreview() {
   return (
-    <section className="bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-16">
+    <section className="bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-10 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
-              Courses and platform preview
+        <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+            <div>
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                Courses and platform preview
+              </p>
+
+              <h2 className="mt-4 max-w-4xl font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-5xl">
+                Structured courses for quantitative learning.
+              </h2>
+            </div>
+
+            <p className="max-w-4xl text-base leading-8 text-neutral-700">
+              My Academic Tutor is developing structured learning pathways for
+              students who want clear explanations, strong foundations and
+              applied quantitative understanding across statistics,
+              biostatistics, data science and research methods.
             </p>
-
-            <h2 className="font-serif-academic mt-3 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
-              Structured courses for quantitative learning.
-            </h2>
           </div>
+        </section>
 
-          <p className="max-w-3xl text-base leading-8 text-neutral-600">
-            My Academic Tutor is developing structured learning pathways for
-            students who want clear explanations, strong foundations and applied
-            quantitative understanding across statistics, biostatistics, data
-            science and research methods.
-          </p>
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="mt-6 grid gap-6 lg:grid-cols-2">
           {courses.map((course) => (
             <article
               key={course.title}
-              className={`rounded-[1.75rem] border p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:p-8 ${
+              className={`rounded-[2rem] border p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:p-8 ${
                 course.dark
-                  ? "border-neutral-950 bg-neutral-950 text-white"
-                  : "border-neutral-200 bg-white text-neutral-950"
+                  ? "border-[#111111] bg-[#111111] text-white"
+                  : "border-neutral-200 bg-white text-[#111111]"
               }`}
             >
               <div className="flex flex-wrap items-center gap-2">
                 <span
-                  className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] ${
+                  className={`rounded-full px-3 py-1 text-xs font-black uppercase tracking-[0.18em] ${
                     course.dark
                       ? "bg-white text-[#8b1116]"
-                      : "bg-[#f8e9ea] text-[#8b1116]"
+                      : "bg-[#f7f4ee] text-[#8b1116]"
                   }`}
                 >
                   {course.tag}
                 </span>
 
                 <span
-                  className={`rounded-full border px-3 py-1 text-xs font-bold ${
+                  className={`rounded-full border px-3 py-1 text-xs font-black ${
                     course.dark
                       ? "border-white/15 text-white/65"
                       : "border-neutral-200 text-neutral-500"
@@ -148,13 +149,13 @@ export default function CoursesPreview() {
                 </span>
               </div>
 
-              <h3 className="font-serif-academic mt-5 text-3xl font-medium leading-tight tracking-[-0.03em] md:text-4xl">
+              <h3 className="mt-6 max-w-2xl font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-4xl">
                 {course.title}
               </h3>
 
               <p
-                className={`mt-5 text-sm leading-7 ${
-                  course.dark ? "text-white/70" : "text-neutral-600"
+                className={`mt-5 text-base leading-8 ${
+                  course.dark ? "text-white/70" : "text-neutral-700"
                 }`}
               >
                 {course.description}
@@ -167,7 +168,7 @@ export default function CoursesPreview() {
                     className={`rounded-2xl border p-4 ${
                       course.dark
                         ? "border-white/10 bg-white/5"
-                        : "border-neutral-200 bg-[#f8f6f1]"
+                        : "border-neutral-200 bg-[#f7f4ee]"
                     }`}
                   >
                     <p
@@ -177,8 +178,9 @@ export default function CoursesPreview() {
                     >
                       {label}
                     </p>
+
                     <p
-                      className={`mt-2 text-sm font-semibold leading-6 ${
+                      className={`mt-2 text-sm font-bold leading-6 ${
                         course.dark ? "text-white/80" : "text-neutral-700"
                       }`}
                     >
@@ -192,7 +194,7 @@ export default function CoursesPreview() {
                 href={withBasePath(course.href)}
                 className={`mt-7 inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-black transition hover:-translate-y-0.5 sm:w-auto ${
                   course.dark
-                    ? "bg-white text-neutral-950"
+                    ? "bg-white text-[#111111]"
                     : "bg-[#8b1116] text-white"
                 }`}
               >
@@ -202,22 +204,22 @@ export default function CoursesPreview() {
           ))}
         </div>
 
-        <section className="mt-8 rounded-[1.75rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
                 Platform proof
               </p>
 
-              <h3 className="font-serif-academic mt-3 text-3xl font-medium leading-tight tracking-[-0.025em] md:text-4xl">
+              <h3 className="mt-4 max-w-3xl font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-4xl">
                 More than course pages.
               </h3>
 
-              <p className="mt-4 text-sm leading-7 text-neutral-600">
-                The platform now includes preview routes for demos, pricing and
-                the future student dashboard. These pages help visitors see the
-                direction of the learning experience before login and payments
-                are added.
+              <p className="mt-5 text-base leading-8 text-neutral-700">
+                The platform includes preview routes for demos, pricing and the
+                future student dashboard. These pages help visitors understand
+                the direction of the learning experience before login and
+                payments are added.
               </p>
             </div>
 
@@ -226,17 +228,17 @@ export default function CoursesPreview() {
                 <a
                   key={card.href}
                   href={withBasePath(card.href)}
-                  className="rounded-[1.35rem] border border-neutral-200 bg-[#f8f6f1] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-sm"
+                  className="rounded-[1.75rem] border border-neutral-200 bg-[#f7f4ee] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-sm"
                 >
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
                     {card.label}
                   </p>
 
-                  <h4 className="mt-3 text-xl font-black tracking-[-0.03em]">
+                  <h4 className="mt-3 font-sans text-xl font-black tracking-[-0.03em]">
                     {card.title}
                   </h4>
 
-                  <p className="mt-3 text-sm leading-7 text-neutral-600">
+                  <p className="mt-3 text-sm leading-7 text-neutral-700">
                     {card.description}
                   </p>
 
@@ -250,12 +252,12 @@ export default function CoursesPreview() {
         </section>
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_0.9fr]">
-          <div className="rounded-[1.75rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
+          <div className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
               Preparing next
             </p>
 
-            <h3 className="font-serif-academic mt-3 text-3xl font-medium leading-tight tracking-[-0.025em] md:text-4xl">
+            <h3 className="mt-4 font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-4xl">
               Future learning pathways.
             </h3>
 
@@ -263,13 +265,13 @@ export default function CoursesPreview() {
               {upcoming.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-[1.25rem] border border-neutral-200 bg-[#f8f6f1] p-5"
+                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
                 >
-                  <h4 className="text-lg font-black tracking-[-0.02em]">
+                  <h4 className="font-sans text-xl font-black tracking-[-0.03em]">
                     {item.title}
                   </h4>
 
-                  <p className="mt-2 text-sm leading-7 text-neutral-600">
+                  <p className="mt-3 text-sm leading-7 text-neutral-700">
                     {item.description}
                   </p>
                 </div>
@@ -277,43 +279,37 @@ export default function CoursesPreview() {
             </div>
           </div>
 
-          <div className="rounded-[1.75rem] bg-neutral-950 p-6 text-white shadow-sm md:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#9fd0ff]">
-              Learning principles
+          <div className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+              Platform principles
             </p>
 
-            <h3 className="font-serif-academic mt-3 text-3xl font-medium leading-tight tracking-[-0.025em] md:text-4xl">
-              Built around responsible academic support.
+            <h3 className="mt-4 font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-4xl">
+              Built for learning, not shortcutting.
             </h3>
+
+            <p className="mt-5 text-base leading-8 text-white/75">
+              The site is designed around responsible academic guidance:
+              explanation, interpretation, structure and confidence.
+            </p>
 
             <div className="mt-6 grid gap-3">
               {platformPoints.map((point) => (
                 <div
                   key={point}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-4"
+                  className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-bold leading-6 text-white/85"
                 >
-                  <p className="text-sm font-semibold leading-6 text-white/75">
-                    {point}
-                  </p>
+                  {point}
                 </div>
               ))}
             </div>
 
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              <a
-                href={withBasePath("/learning-hub")}
-                className="rounded-full bg-white px-5 py-3 text-center text-sm font-black text-neutral-950 transition hover:-translate-y-0.5"
-              >
-                Open Learning Hub
-              </a>
-
-              <a
-                href={withBasePath("/contact")}
-                className="rounded-full border border-white/15 px-5 py-3 text-center text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/10"
-              >
-                Request support
-              </a>
-            </div>
+            <a
+              href={withBasePath("/academic-integrity")}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 sm:w-auto"
+            >
+              View academic integrity →
+            </a>
           </div>
         </section>
       </div>

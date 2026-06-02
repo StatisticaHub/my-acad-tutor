@@ -1,5 +1,4 @@
-const basePath =
-  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
@@ -49,113 +48,120 @@ const contactRoutes = [
 
 export default function ContactCTA() {
   return (
-    <section className="bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-16">
-      <div className="mx-auto max-w-7xl rounded-[2rem] bg-neutral-950 p-6 text-white shadow-sm md:p-10">
-        <p className="text-sm font-black uppercase tracking-[0.2em] text-[#9fd0ff]">
-          Request support
-        </p>
+    <section className="bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
+      <div className="mx-auto max-w-7xl">
+        <section className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-10">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            Request support
+          </p>
 
-        <div className="mt-4 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-          <div>
-            <h2 className="font-serif-academic max-w-4xl text-3xl font-medium leading-tight tracking-[-0.035em] md:text-5xl">
-              Need help choosing the right learning, support or course route?
-            </h2>
+          <div className="mt-5 grid gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:items-start">
+            <div>
+              <h2 className="max-w-5xl font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-5xl">
+                Need help choosing the right learning, support or course route?
+              </h2>
 
-            <p className="mt-5 max-w-3xl text-base leading-8 text-white/70">
-              Send your subject, level, topic, software needs and deadline. We
-              will guide you towards the most suitable learning route while
-              keeping academic integrity clear.
-            </p>
-
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {contactRoutes.map((route) => (
-                <a
-                  key={route.href}
-                  href={withBasePath(route.href)}
-                  className={`rounded-[1.35rem] border p-5 transition hover:-translate-y-1 ${
-                    route.dark
-                      ? "border-white/10 bg-white text-neutral-950 hover:bg-neutral-100"
-                      : "border-white/10 bg-white/5 text-white hover:bg-white/10"
-                  }`}
-                >
-                  <h3 className="text-lg font-black tracking-[-0.02em]">
-                    {route.title}
-                  </h3>
-
-                  <p
-                    className={`mt-3 text-sm leading-7 ${
-                      route.dark ? "text-neutral-600" : "text-white/65"
-                    }`}
-                  >
-                    {route.description}
-                  </p>
-
-                  <p
-                    className={`mt-4 text-sm font-black ${
-                      route.dark ? "text-[#8b1116]" : "text-white"
-                    }`}
-                  >
-                    {route.label} →
-                  </p>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-5 md:p-6">
-            <p className="text-sm font-bold text-white">Best for:</p>
-
-            <ul className="mt-4 space-y-3 text-sm leading-6 text-white/70">
-              {supportAreas.map((area) => (
-                <li key={area} className="flex gap-3">
-                  <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#9fd0ff]" />
-                  <span>{area}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-6 rounded-2xl border border-white/10 bg-neutral-900 p-4">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-white/45">
-                Academic integrity
+              <p className="mt-5 max-w-4xl text-base leading-8 text-white/70 md:text-lg md:leading-8">
+                Send your subject, level, topic, software needs and deadline.
+                We will guide you towards the most suitable learning route while
+                keeping academic integrity clear.
               </p>
 
-              <p className="mt-3 text-sm leading-7 text-white/65">
-                Support is focused on explanation, planning, interpretation and
-                learning guidance. It does not replace your own academic work.
-              </p>
+              <div className="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                {contactRoutes.map((route) => (
+                  <a
+                    key={route.href}
+                    href={withBasePath(route.href)}
+                    className={`rounded-[1.75rem] border p-5 transition hover:-translate-y-1 ${
+                      route.dark
+                        ? "border-white bg-white text-[#111111] hover:bg-neutral-100"
+                        : "border-white/10 bg-white/5 text-white hover:bg-white/10"
+                    }`}
+                  >
+                    <h3 className="font-sans text-xl font-black leading-tight tracking-[-0.03em]">
+                      {route.title}
+                    </h3>
+
+                    <p
+                      className={`mt-3 text-sm leading-7 ${
+                        route.dark ? "text-neutral-700" : "text-white/65"
+                      }`}
+                    >
+                      {route.description}
+                    </p>
+
+                    <p
+                      className={`mt-5 text-sm font-black ${
+                        route.dark ? "text-[#8b1116]" : "text-white"
+                      }`}
+                    >
+                      {route.label} →
+                    </p>
+                  </a>
+                ))}
+              </div>
             </div>
+
+            <aside className="rounded-[2rem] border border-white/10 bg-white/5 p-5 md:p-6">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+                Best for
+              </p>
+
+              <div className="mt-5 grid gap-3">
+                {supportAreas.map((area) => (
+                  <div
+                    key={area}
+                    className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold leading-6 text-white/75"
+                  >
+                    {area}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-white/40">
+                  Academic integrity
+                </p>
+
+                <p className="mt-3 text-sm leading-7 text-white/65">
+                  Support is focused on explanation, planning, interpretation
+                  and learning guidance. It does not replace your own academic
+                  work.
+                </p>
+              </div>
+            </aside>
           </div>
-        </div>
 
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-          <a
-            href={withBasePath("/contact")}
-            className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-bold text-neutral-950 transition hover:bg-neutral-100 sm:w-auto"
-          >
-            Submit requirement
-          </a>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <a
+              href={withBasePath("/contact")}
+              className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 hover:bg-neutral-100 sm:w-auto"
+            >
+              Submit requirement
+            </a>
 
-          <a
-            href="mailto:contact@myacademictutor.com"
-            className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto"
-          >
-            Email directly
-          </a>
+            <a
+              href="mailto:contact@myacademictutor.com"
+              className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
+            >
+              Email directly
+            </a>
 
-          <a
-            href={withBasePath("/interactive-demos")}
-            className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto"
-          >
-            Try interactive demos
-          </a>
+            <a
+              href={withBasePath("/interactive-demos")}
+              className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
+            >
+              Try interactive demos
+            </a>
 
-          <a
-            href={withBasePath("/academic-integrity")}
-            className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10 sm:w-auto"
-          >
-            Read academic integrity policy
-          </a>
-        </div>
+            <a
+              href={withBasePath("/academic-integrity")}
+              className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
+            >
+              Read integrity policy
+            </a>
+          </div>
+        </section>
       </div>
     </section>
   );

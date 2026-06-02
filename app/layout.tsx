@@ -20,6 +20,15 @@ export const metadata: Metadata = {
   title: "My Academic Tutor | Quantitative Learning and Academic Support",
   description:
     "Structured learning pathways and specialist academic support in statistics, biostatistics, data science, programming and quantitative research methods.",
+  metadataBase: new URL("https://statisticahub.github.io/my-acad-tutor/"),
+  openGraph: {
+    title: "My Academic Tutor | Quantitative Learning and Academic Support",
+    description:
+      "Structured learning pathways and specialist academic support in statistics, biostatistics, data science, programming and quantitative research methods.",
+    url: "https://statisticahub.github.io/my-acad-tutor/",
+    siteName: "My Academic Tutor",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

@@ -19,22 +19,24 @@ const items = [
 
 export default function TrustStrip() {
   return (
-    <section className="border-y border-[#ded9cf] bg-white px-5 py-6 md:px-8">
-      <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-4">
-        {items.map((item) => (
-          <div
-            key={item.value}
-            className="rounded-2xl border border-neutral-200 bg-[#f8f6f1] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-sm"
-          >
-            <p className="text-lg font-semibold tracking-tight text-neutral-950">
-              {item.value}
-            </p>
+    <section className="bg-[#f7f4ee] px-5 py-6 text-[#111111] md:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {items.map((item) => (
+            <article
+              key={item.value}
+              className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            >
+              <p className="font-sans text-2xl font-black tracking-[-0.04em] text-[#111111]">
+                {item.value}
+              </p>
 
-            <p className="mt-2 text-sm leading-6 text-neutral-600">
-              {item.label}
-            </p>
-          </div>
-        ))}
+              <p className="mt-4 text-sm leading-7 text-neutral-700">
+                {item.label}
+              </p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

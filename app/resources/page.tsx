@@ -1,7 +1,6 @@
 import { resourceGuides } from "@/lib/resources";
 
-const basePath =
-  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
@@ -75,479 +74,377 @@ const featureCards = [
   },
 ];
 
-const flagshipGuides = [
-  {
-    title: "How to choose the correct statistical test",
-    href: "/resources/how-to-choose-the-correct-statistical-test",
-    description:
-      "A practical decision guide for choosing between t-tests, ANOVA, chi-square tests, regression, logistic regression and survival analysis.",
-  },
-  {
-    title: "Understanding p-values, confidence intervals and effect sizes",
-    href: "/resources/understanding-p-values-confidence-intervals-and-effect-sizes",
-    description:
-      "A careful guide to statistical evidence, uncertainty, magnitude and responsible interpretation.",
-  },
-  {
-    title: "Linear regression assumptions and diagnostics",
-    href: "/resources/linear-regression-assumptions-and-diagnostics",
-    description:
-      "A guide to residuals, linearity, equal variance, outliers, influence and regression reporting.",
-  },
-  {
-    title: "Survival analysis: Kaplan-Meier curves and Cox regression",
-    href: "/resources/survival-analysis-kaplan-meier-curves-and-cox-regression",
-    description:
-      "A health-data guide to time-to-event outcomes, censoring, Kaplan-Meier curves, log-rank tests and Cox models.",
-  },
-  {
-    title: "R, Python, SPSS, SAS or Stata: which should I use?",
-    href: "/resources/r-python-spss-sas-stata-which-should-i-use",
-    description:
-      "A student-friendly software guide for coursework, dissertation analysis, biostatistics and data science goals.",
-  },
+const flagshipSlugs = [
+  "how-to-choose-the-correct-statistical-test",
+  "understanding-p-values-confidence-intervals-and-effect-sizes",
+  "linear-regression-assumptions-and-diagnostics",
+  "survival-analysis-kaplan-meier-curves-and-cox-regression",
+  "r-python-spss-sas-stata-which-should-i-use",
 ];
 
-const platformPreviewCards = [
-  {
-    title: "Interactive demos",
-    href: "/interactive-demos",
-    description:
-      "Explore visual demos for normal distributions, regression lines and confidence intervals.",
-    cta: "Try demos",
-  },
-  {
-    title: "Dashboard preview",
-    href: "/dashboard",
-    description:
-      "Preview future student progress, saved lessons, coding labs and certificate placeholders.",
-    cta: "Open dashboard",
-  },
-  {
-    title: "Pricing preview",
-    href: "/pricing",
-    description:
-      "View the planned free, premium course, academic support and institution support structure.",
-    cta: "View pricing",
-  },
-];
+const flagshipGuides = flagshipSlugs
+  .map((slug) => resourceGuides.find((guide) => guide.slug === slug))
+  .filter(Boolean);
 
-function getAreaCounts() {
-  const counts = new Map<string, number>();
+const guidesByArea = resourceGuides.reduce<Record<string, typeof resourceGuides>>(
+  (groups, guide) => {
+    if (!groups[guide.area]) {
+      groups[guide.area] = [];
+    }
 
-  resourceGuides.forEach((guide) => {
-    counts.set(guide.area, (counts.get(guide.area) ?? 0) + 1);
-  });
+    groups[guide.area].push(guide);
+    return groups;
+  },
+  {},
+);
 
-  return Array.from(counts.entries()).sort(([a], [b]) => a.localeCompare(b));
-}
+const areaEntries = Object.entries(guidesByArea);
 
 export default function ResourcesPage() {
-  const areaCounts = getAreaCounts();
-
   return (
-    <main className="min-h-screen bg-[#f7f4ee] text-neutral-950">
-      <section className="relative overflow-hidden border-b border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#f6d8d8,transparent_35%)]" />
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
+      <section className="mx-auto max-w-7xl">
+        <a
+          href={withBasePath("/")}
+          className="text-sm font-bold text-[#8b1116] hover:text-[#5f0b0f]"
+        >
+          ← Back to homepage
+        </a>
 
-        <div className="relative mx-auto max-w-7xl">
-          <a
-            href={withBasePath("/")}
-            className="text-sm font-semibold text-[#8b1116] transition hover:text-neutral-950"
-          >
-            ← Back to homepage
-          </a>
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Resources
+          </p>
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#8b1116]">
-                Resources
-              </p>
-
-              <h1 className="font-serif-academic mt-5 max-w-5xl text-3xl font-medium leading-[1.08] tracking-[-0.035em] sm:text-4xl md:text-7xl">
-                In-depth guides for quantitative learning.
+              <h1 className="max-w-5xl font-sans text-4xl font-black leading-[1.02] tracking-[-0.05em] md:text-6xl">
+                Study resources for quantitative subjects.
               </h1>
 
-              <p className="mt-6 max-w-4xl text-lg leading-9 text-neutral-700">
-                Practical, student-friendly resources for statistics,
-                biostatistics, data analysis, software, research methods and
-                academic interpretation.
+              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-8">
+                Explore structured guides for statistics, biostatistics, data
+                science, programming, software, dissertation planning and
+                quantitative research methods.
               </p>
 
-              <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-600">
-                Each guide is designed as a structured learning note. You move
-                from the problem, to intuition, to method, to worked thinking,
-                then into limitations and discussion. The aim is not just to
-                memorise methods, but to understand when and why they should be
-                used.
+              <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-8">
+                Each guide is designed to help students move beyond memorising
+                definitions. The focus is method choice, assumptions,
+                interpretation, limitations and responsible academic reporting.
               </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <a
-                  href="#guide-library"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-neutral-950 px-6 py-3 text-sm font-bold text-white transition hover:bg-neutral-800 sm:w-auto"
-                >
-                  Browse guides
-                </a>
-
-                <a
-                  href={withBasePath("/learning-hub")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-bold text-neutral-950 transition hover:bg-neutral-50 sm:w-auto"
-                >
-                  Visit Learning Hub
-                </a>
-
-                <a
-                  href={withBasePath("/contact")}
-                  className="rounded-md border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-800 transition hover:border-[#8b1116] hover:text-[#8b1116]"
-                >
-                  Ask for support
-                </a>
-              </div>
             </div>
 
-            <div className="rounded-[1.5rem] border border-neutral-200 bg-white/90 p-6 shadow-sm">
-              <p className="text-xs font-bold uppercase tracking-[0.24em] text-neutral-500">
+            <div className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-5">
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
                 Resource library
               </p>
 
-              <div className="mt-5 grid grid-cols-2 gap-3">
-                <div className="rounded-xl border border-neutral-200 bg-[#f8f6f1] p-4">
-                  <p className="text-3xl font-semibold tracking-[-0.03em] text-neutral-950">
-                    {resourceGuides.length}
-                  </p>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-                    Guides
-                  </p>
-                </div>
+              <h2 className="mt-4 font-sans text-2xl font-black tracking-[-0.04em]">
+                Guides built for study, coursework and research planning.
+              </h2>
 
-                <div className="rounded-xl border border-neutral-200 bg-[#f8f6f1] p-4">
-                  <p className="text-3xl font-semibold tracking-[-0.03em] text-neutral-950">
-                    {areaCounts.length}
-                  </p>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.18em] text-neutral-500">
-                    Areas
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-5 rounded-xl border border-neutral-200 bg-[#f8f6f1] p-5">
-                <p className="text-sm leading-7 text-neutral-600">
-                  Search examples: regression, p-value, survival analysis,
-                  missing data, dissertation, confidence interval, logistic
-                  regression.
-                </p>
-              </div>
-
-              <p className="mt-5 text-xs font-bold uppercase tracking-[0.24em] text-neutral-500">
-                Popular searches
+              <p className="mt-4 text-sm leading-7 text-neutral-700">
+                Use these resources when you need a careful explanation of what
+                a method does, when it is appropriate, how to interpret it and
+                what mistakes to avoid.
               </p>
-
-              <div className="mt-3 flex flex-wrap gap-2">
-                {popularSearches.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-semibold text-neutral-600"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section className="border-b border-neutral-200 bg-neutral-950 px-5 py-10 text-white md:px-8">
-        <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
-          {featureCards.map((card) => (
-            <div
-              key={card.title}
-              className="rounded-[1.25rem] border border-white/10 bg-white/5 p-5"
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href="#all-guides"
+              className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 sm:w-auto"
             >
-              <h2 className="text-lg font-semibold">{card.title}</h2>
-              <p className="mt-2 text-sm leading-7 text-white/70">
+              View all guides
+            </a>
+
+            <a
+              href="#flagship-guides"
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 sm:w-auto"
+            >
+              Start with flagship guides
+            </a>
+
+            <a
+              href={withBasePath("/learning-hub")}
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-[#f7f4ee] px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 sm:w-auto"
+            >
+              Open Learning Hub
+            </a>
+          </div>
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              [String(resourceGuides.length), "Resource guides"],
+              [String(areaEntries.length), "Subject areas"],
+              ["Structured", "Guide format"],
+              ["Free", "Study support"],
+            ].map(([value, label]) => (
+              <div
+                key={label}
+                className="rounded-3xl border border-neutral-200 bg-[#f7f4ee] p-5"
+              >
+                <p className="font-sans text-2xl font-black tracking-[-0.04em] text-[#111111]">
+                  {value}
+                </p>
+                <p className="mt-2 text-sm font-bold text-neutral-600">
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-8 grid gap-4 md:grid-cols-3">
+          {featureCards.map((card) => (
+            <article
+              key={card.title}
+              className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+            >
+              <h2 className="font-sans text-2xl font-black tracking-[-0.04em]">
+                {card.title}
+              </h2>
+
+              <p className="mt-4 text-sm leading-7 text-neutral-700">
                 {card.description}
               </p>
-            </div>
+            </article>
           ))}
-        </div>
-      </section>
+        </section>
 
-      <section className="border-b border-neutral-200 bg-white px-5 py-14 md:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-8 grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
-                Resource format
-              </p>
+        <section
+          id="flagship-guides"
+          className="mt-8 scroll-mt-24 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"
+        >
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Flagship guides
+          </p>
 
-              <h2 className="font-serif-academic mt-3 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
-                Every guide follows a clear learning structure.
-              </h2>
-            </div>
+          <div className="mt-4 grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+            <h2 className="max-w-4xl font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Start with the most useful resources.
+            </h2>
 
-            <p className="max-w-3xl text-base leading-8 text-neutral-600">
-              The resources are built like mini-lessons. Students can read them
-              before a lecture, while preparing coursework, or when they need to
-              understand why a method is appropriate.
+            <p className="max-w-3xl text-base leading-8 text-neutral-700">
+              These guides are useful starting points for students who need help
+              with method choice, statistical evidence, regression, survival
+              analysis and software selection.
             </p>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {guideFormat.map((item) => (
-              <div
-                key={item.title}
-                className="rounded-[1.25rem] border border-neutral-200 bg-[#f8f6f1] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-sm"
-              >
-                <h3 className="font-serif-academic text-2xl font-medium tracking-[-0.015em]">
-                  {item.title}
-                </h3>
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            {flagshipGuides.map((guide, index) => {
+              if (!guide) return null;
 
-                <p className="mt-3 text-sm leading-7 text-neutral-600">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-neutral-200 bg-[#f7f4ee] px-5 py-14 md:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-8 grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
-                Flagship resource guides
-              </p>
-
-              <h2 className="font-serif-academic mt-3 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
-                Start with the five most useful public guides.
-              </h2>
-            </div>
-
-            <p className="max-w-3xl text-base leading-8 text-neutral-600">
-              These guides give the Resources page a stronger launch identity:
-              method choice, statistical interpretation, regression diagnostics,
-              survival analysis and software selection.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-            {flagshipGuides.map((guide, index) => (
-              <a
-                key={guide.href}
-                href={withBasePath(guide.href)}
-                className="rounded-[1.5rem] border border-neutral-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
-              >
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#8b1116]">
-                  Guide {index + 1}
-                </p>
-
-                <h3 className="mt-3 text-xl font-black leading-tight tracking-[-0.03em] text-neutral-950">
-                  {guide.title}
-                </h3>
-
-                <p className="mt-4 text-sm leading-7 text-neutral-600">
-                  {guide.description}
-                </p>
-
-                <p className="mt-5 text-sm font-black text-[#8b1116]">
-                  Read guide →
-                </p>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-neutral-200 bg-neutral-950 px-5 py-14 text-white md:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#9fd0ff]">
-                Platform preview
-              </p>
-
-              <h2 className="font-serif-academic mt-3 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
-                Resources are part of a wider learning platform.
-              </h2>
-
-              <p className="mt-5 text-base leading-8 text-white/65">
-                Students can use guides for quick reference, then move into
-                structured courses, visual demos and the future dashboard
-                experience.
-              </p>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              {platformPreviewCards.map((card) => (
+              return (
                 <a
-                  key={card.href}
-                  href={withBasePath(card.href)}
-                  className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 transition hover:-translate-y-1 hover:bg-white/10"
+                  key={guide.slug}
+                  href={withBasePath(`/resources/${guide.slug}`)}
+                  className="group rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white"
                 >
-                  <h3 className="text-xl font-black tracking-[-0.03em]">
-                    {card.title}
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full bg-[#111111] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-white">
+                      Guide {index + 1}
+                    </span>
+
+                    <span className="rounded-full bg-white px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-[#8b1116]">
+                      {guide.area}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-5 font-sans text-2xl font-black leading-tight tracking-[-0.04em] group-hover:text-[#8b1116] md:text-3xl">
+                    {guide.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-7 text-white/65">
-                    {card.description}
+                  <p className="mt-4 text-sm leading-7 text-neutral-700">
+                    {guide.summary}
                   </p>
 
-                  <p className="mt-5 text-sm font-black text-white">
-                    {card.cta} →
+                  <p className="mt-5 text-sm font-black text-[#8b1116]">
+                    Open guide →
                   </p>
                 </a>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Guide structure
+          </p>
+
+          <div className="mt-4 grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div>
+              <h2 className="font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+                Each guide follows a clear learning format.
+              </h2>
+
+              <p className="mt-5 text-base leading-8 text-neutral-700">
+                The guide pages are written to move from the practical problem
+                to intuition, method, working, limitations and academic
+                discussion.
+              </p>
+            </div>
+
+            <div className="grid gap-3 md:grid-cols-2">
+              {guideFormat.map((section) => (
+                <article
+                  key={section.title}
+                  className="rounded-3xl border border-neutral-200 bg-[#f7f4ee] p-5"
+                >
+                  <h3 className="font-sans text-xl font-black tracking-[-0.03em]">
+                    {section.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                    {section.description}
+                  </p>
+                </article>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section
-        id="guide-library"
-        className="mx-auto max-w-7xl px-5 py-14 md:px-8"
-      >
-        <div className="mb-8 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
-              Guide library
-            </p>
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Popular topics
+          </p>
 
-            <h2 className="font-serif-academic mt-3 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
-              Start with a practical guide.
+          <h2 className="mt-4 max-w-4xl font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+            Common searches students usually start with.
+          </h2>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            {popularSearches.map((term) => (
+              <span
+                key={term}
+                className="rounded-full border border-neutral-200 bg-[#f7f4ee] px-4 py-2 text-sm font-black text-neutral-700"
+              >
+                {term}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <section
+          id="all-guides"
+          className="mt-8 scroll-mt-24 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"
+        >
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            All resource guides
+          </p>
+
+          <div className="mt-4 grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+            <h2 className="max-w-4xl font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Browse by subject area.
             </h2>
+
+            <p className="max-w-3xl text-base leading-8 text-neutral-700">
+              The resource library is organised by area so you can find guides
+              for statistics, biostatistics, programming, software and research
+              support.
+            </p>
           </div>
 
-          <p className="max-w-3xl text-base leading-8 text-neutral-600">
-            These resources help students ask better questions, understand
-            analysis decisions and prepare for coursework, dissertations,
-            tutoring or research support.
-          </p>
-        </div>
+          <div className="mt-8 grid gap-8">
+            {areaEntries.map(([area, guides]) => (
+              <section
+                key={area}
+                className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5 md:p-6"
+              >
+                <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                  <div>
+                    <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                      {area}
+                    </p>
 
-        <div className="mb-8 flex flex-wrap gap-2">
-          <span className="rounded-full bg-[#8b1116] px-4 py-2 text-sm font-semibold text-white">
-            All areas · {resourceGuides.length}
-          </span>
-
-          {areaCounts.map(([area, count]) => (
-            <span
-              key={area}
-              className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-600"
-            >
-              {area} · {count}
-            </span>
-          ))}
-        </div>
-
-        <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-center">
-          <p className="text-sm font-semibold text-neutral-600">
-            Showing {resourceGuides.length} resources
-          </p>
-
-          <a
-            href={withBasePath("/contact")}
-            className="w-fit rounded-md bg-neutral-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#8b1116]"
-          >
-            Submit requirement
-          </a>
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {resourceGuides.map((resource, index) => (
-            <a
-              key={resource.slug}
-              href={withBasePath(`/resources/${resource.slug}`)}
-              className="group flex min-h-full flex-col rounded-[1.35rem] border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#d8b6b6] hover:shadow-md"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex flex-wrap gap-2">
-                  <span className="rounded-full bg-[#f7f4ee] px-3 py-1 text-xs font-bold text-neutral-700">
-                    {resource.area}
-                  </span>
-
-                  <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-bold text-neutral-500">
-                    {resource.level}
-                  </span>
+                    <h3 className="mt-2 font-sans text-2xl font-black tracking-[-0.04em] md:text-3xl">
+                      {guides.length} guide{guides.length === 1 ? "" : "s"}
+                    </h3>
+                  </div>
                 </div>
 
-                <span className="text-xs font-bold text-neutral-300">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </div>
+                <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {guides.map((guide) => (
+                    <a
+                      key={guide.slug}
+                      href={withBasePath(`/resources/${guide.slug}`)}
+                      className="group rounded-[1.5rem] border border-neutral-200 bg-white p-5 transition hover:-translate-y-1 hover:shadow-sm"
+                    >
+                      <div className="flex flex-wrap gap-2">
+                        <span className="rounded-full bg-[#f7f4ee] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-[#8b1116]">
+                          {guide.level}
+                        </span>
+                      </div>
 
-              <h3 className="font-serif-academic mt-5 text-2xl font-medium leading-tight tracking-[-0.015em] group-hover:text-[#8b1116]">
-                {resource.title}
-              </h3>
+                      <h4 className="mt-4 font-sans text-xl font-black leading-tight tracking-[-0.03em] group-hover:text-[#8b1116]">
+                        {guide.title}
+                      </h4>
 
-              <p className="mt-4 flex-1 text-sm leading-7 text-neutral-600">
-                {resource.summary}
-              </p>
+                      <p className="mt-3 text-sm leading-7 text-neutral-700">
+                        {guide.summary}
+                      </p>
 
-              <div className="mt-6 rounded-xl border border-neutral-200 bg-[#f8f6f1] p-4">
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
-                  Guide format
-                </p>
-
-                <p className="mt-2 text-sm leading-6 text-neutral-600">
-                  Problem · Intuition · Method · Working · Limitations ·
-                  Discussion
-                </p>
-              </div>
-
-              <p className="mt-6 text-sm font-semibold text-[#8b1116]">
-                Read guide →
-              </p>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-t border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-16">
-        <div className="mx-auto max-w-7xl rounded-[1.5rem] border border-neutral-200 bg-neutral-950 p-8 text-white shadow-sm md:p-12">
-          <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-white/50">
-                Need personalised guidance?
-              </p>
-
-              <h2 className="font-serif-academic mt-4 max-w-3xl text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
-                Use resources first, then ask better questions.
-              </h2>
-
-              <p className="mt-5 max-w-3xl text-base leading-8 text-white/70">
-                Resources can help you understand the foundations. If you need
-                help applying a method to your own course, dissertation or
-                research project, you can submit a support enquiry.
-              </p>
-            </div>
-
-            <div className="grid gap-3">
-              <a
-                href={withBasePath("/contact")}
-                className="rounded-md bg-white px-6 py-4 text-center text-sm font-semibold text-neutral-950 transition hover:bg-[#f7f4ee]"
-              >
-                Submit support requirement
-              </a>
-
-              <a
-                href={withBasePath("/courses")}
-                className="rounded-md border border-white/15 bg-white/10 px-6 py-4 text-center text-sm font-semibold text-white transition hover:bg-white/15"
-              >
-                Explore structured courses
-              </a>
-
-              <a
-                href={withBasePath("/learning-hub")}
-                className="rounded-md border border-white/15 px-6 py-4 text-center text-sm font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
-              >
-                Visit Learning Hub
-              </a>
-            </div>
+                      <p className="mt-5 text-sm font-black text-[#8b1116]">
+                        Read guide →
+                      </p>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            ))}
           </div>
-        </div>
+        </section>
+
+        <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+              Need a full pathway?
+            </p>
+
+            <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Use resources with structured courses.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-white/70">
+              Guides are useful for focused revision and interpretation. For a
+              full sequence, start with Statistics Foundation or Machine
+              Learning in Biostatistics from the Learning Hub.
+            </p>
+
+            <a
+              href={withBasePath("/learning-hub")}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 sm:w-auto"
+            >
+              Open Learning Hub →
+            </a>
+          </article>
+
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+              Need live support?
+            </p>
+
+            <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Send your subject, topic and academic goal.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-white/75">
+              If a guide is not enough, send an enquiry with your subject,
+              academic level, topic, software and deadline.
+            </p>
+
+            <a
+              href={withBasePath("/contact")}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 sm:w-auto"
+            >
+              Request support →
+            </a>
+          </article>
+        </section>
       </section>
     </main>
   );

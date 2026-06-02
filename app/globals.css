@@ -2,7 +2,12 @@
 
 :root {
   --background: #f7f4ee;
-  --foreground: #171717;
+  --foreground: #111111;
+  --brand: #8b1116;
+  --brand-dark: #5f0b0f;
+  --paper: #ffffff;
+  --cream: #f7f4ee;
+  --line: #ded9cf;
   --font-sans: var(--font-inter);
   --font-serif: var(--font-source-serif);
 }
@@ -10,10 +15,12 @@
 html {
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
+  background: var(--background);
 }
 
 body {
   margin: 0;
+  min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont,
@@ -26,9 +33,36 @@ body {
   box-sizing: border-box;
 }
 
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(139, 17, 22, 0.35);
+  outline-offset: 3px;
+}
+
 .font-serif-academic {
   font-family: var(--font-serif), Georgia, Cambria, "Times New Roman", serif;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.025em;
 }
 
@@ -37,6 +71,6 @@ body {
 }
 
 ::selection {
-  background: #8b1116;
+  background: var(--brand);
   color: white;
 }
