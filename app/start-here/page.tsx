@@ -31,7 +31,7 @@ const routes = [
 
 export default function StartHerePage() {
   return (
-    <main className="min-h-screen bg-[#f2efe7] px-5 py-16 text-neutral-950 md:px-8 md:py-20">
+    <main className="min-h-screen bg-[#f2efe7] px-5 py-10 text-neutral-950 md:px-8 md:py-20">
       <section className="mx-auto max-w-7xl">
         <a
           href="/"
@@ -46,7 +46,7 @@ export default function StartHerePage() {
               Start Here
             </p>
 
-            <h1 className="mt-4 text-5xl font-black leading-[0.95] tracking-[-0.06em] md:text-7xl">
+            <h1 className="mt-4 text-3xl font-black leading-[1] tracking-[-0.045em] sm:text-4xl md:text-7xl">
               Choose the right route for your learning goal.
             </h1>
 

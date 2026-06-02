@@ -273,7 +273,7 @@ export default function TablesAndGraphsLesson() {
             </span>
           </div>
 
-          <h1 className="mt-6 max-w-5xl text-4xl font-black tracking-[-0.06em] md:text-6xl">
+          <h1 className="mt-6 max-w-5xl text-3xl font-black tracking-[-0.045em] sm:text-4xl md:text-6xl">
             Tables and graphs
           </h1>
 

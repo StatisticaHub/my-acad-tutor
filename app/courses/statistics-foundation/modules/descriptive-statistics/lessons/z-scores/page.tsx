@@ -209,7 +209,7 @@ export default function ZScoresPage() {
               <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
                 Module 2 · Lesson 2.4
               </p>
-              <h1 className="mt-3 text-4xl font-black tracking-[-0.04em] md:text-6xl">
+              <h1 className="mt-3 text-3xl font-black tracking-[-0.035em] sm:text-4xl md:text-6xl">
                 Standardisation and Z-scores
               </h1>
               <p className="mt-5 max-w-3xl text-base leading-8 text-neutral-600">

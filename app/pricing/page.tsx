@@ -1,6 +1,6 @@
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-slate-50 px-6 py-20">
+    <main className="min-h-screen bg-slate-50 px-5 py-10 md:px-6 md:py-20">
       <section className="mx-auto max-w-6xl">
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-600">
           Pricing

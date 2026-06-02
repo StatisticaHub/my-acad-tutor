@@ -61,7 +61,7 @@ export default function IntroductionToStatisticalThinkingModulePage() {
           Module 1
         </p>
 
-        <h1 className="mt-4 max-w-4xl text-4xl font-bold tracking-tight md:text-6xl">
+        <h1 className="mt-4 max-w-4xl text-3xl font-bold tracking-tight sm:text-4xl md:text-6xl">
           Introduction to Statistical Thinking
         </h1>
 

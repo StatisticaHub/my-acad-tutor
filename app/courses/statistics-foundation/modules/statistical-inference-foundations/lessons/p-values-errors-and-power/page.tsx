@@ -793,7 +793,7 @@ export default function PValuesErrorsPowerLessonPage() {
               Module 4 · Lesson 4.4
             </p>
 
-            <h1 className="mt-3 text-4xl font-black tracking-tight md:text-6xl">
+            <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl md:text-6xl">
               P-values, Errors and Power
             </h1>
 
@@ -1481,7 +1481,7 @@ export default function PValuesErrorsPowerLessonPage() {
                   Quiz complete
                 </p>
 
-                <p className="mt-4 text-6xl font-black">
+                <p className="mt-4 text-4xl font-black md:text-6xl">
                   {score}/{quizQuestions.length}
                 </p>
 

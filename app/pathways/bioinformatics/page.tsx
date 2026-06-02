@@ -12,11 +12,11 @@ const roadmap = [
 export default function BioinformaticsPathwayPage() {
   return (
     <main className="bg-slate-50 text-slate-950">
-      <section className="bg-slate-950 px-6 py-24 text-white md:py-32">
+      <section className="bg-slate-950 px-5 py-12 text-white md:px-6 md:py-32">
         <div className="mx-auto max-w-7xl">
           <Badge variant="violet">Bioinformatics Pathway</Badge>
 
-          <h1 className="mt-6 max-w-5xl text-5xl font-bold tracking-tight md:text-7xl">
+          <h1 className="mt-6 max-w-5xl text-3xl font-bold tracking-tight sm:text-4xl md:text-7xl">
             Understand biological data analysis from the ground up.
           </h1>
 
@@ -27,7 +27,7 @@ export default function BioinformaticsPathwayPage() {
         </div>
       </section>
 
-      <section className="px-6 py-20">
+      <section className="px-5 py-10 md:px-6 md:py-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Pathway roadmap"

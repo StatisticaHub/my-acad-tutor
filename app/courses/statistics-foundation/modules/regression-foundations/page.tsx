@@ -77,7 +77,7 @@ export default function RegressionFoundationsModulePage() {
 
         <div className="mt-4 grid gap-8 lg:grid-cols-[1.4fr_0.8fr] lg:items-end">
           <div>
-            <h1 className="max-w-4xl text-4xl font-black tracking-tight md:text-6xl">
+            <h1 className="max-w-4xl text-3xl font-black tracking-tight sm:text-4xl md:text-6xl">
               Regression Foundations
             </h1>
 

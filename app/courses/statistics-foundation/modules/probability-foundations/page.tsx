@@ -69,7 +69,7 @@ export default function ProbabilityFoundationsModulePage() {
                 Module 3
               </p>
 
-              <h1 className="mt-4 max-w-4xl text-4xl font-black tracking-tight md:text-6xl">
+              <h1 className="mt-4 max-w-4xl text-3xl font-black tracking-tight sm:text-4xl md:text-6xl">
                 Probability Foundations
               </h1>
 

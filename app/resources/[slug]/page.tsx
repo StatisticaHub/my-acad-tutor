@@ -65,7 +65,7 @@ export default async function ResourceGuidePage({
 
   return (
     <main className="min-h-screen bg-[#f7f4ee] text-neutral-950">
-      <section className="relative overflow-hidden border-b border-neutral-200 bg-white px-5 py-16 md:px-8">
+      <section className="relative overflow-hidden border-b border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#f6d8d8,transparent_35%)]" />
 
         <div className="relative mx-auto max-w-5xl">
@@ -90,7 +90,7 @@ export default async function ResourceGuidePage({
             </span>
           </div>
 
-          <h1 className="font-serif-academic mt-6 max-w-4xl text-5xl font-medium leading-tight tracking-[-0.03em] md:text-6xl">
+          <h1 className="font-serif-academic mt-6 max-w-4xl text-3xl font-medium leading-[1.08] tracking-[-0.03em] sm:text-4xl md:text-6xl">
             {guide.title}
           </h1>
 

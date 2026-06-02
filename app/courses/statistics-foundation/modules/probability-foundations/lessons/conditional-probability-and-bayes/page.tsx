@@ -494,7 +494,7 @@ export default function ConditionalProbabilityBayesLessonPage() {
               Module 3 · Lesson 3.2
             </p>
 
-            <h1 className="mt-3 text-4xl font-black tracking-tight md:text-6xl">
+            <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl md:text-6xl">
               Conditional Probability and Bayes' Theorem
             </h1>
 
@@ -1079,7 +1079,7 @@ export default function ConditionalProbabilityBayesLessonPage() {
                   Quiz complete
                 </p>
 
-                <p className="mt-4 text-6xl font-black">
+                <p className="mt-4 text-4xl font-black md:text-6xl">
                   {score}/{quizQuestions.length}
                 </p>
 

@@ -19,7 +19,7 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-16 text-neutral-950 md:px-8 md:py-20">
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-20">
       <section className="mx-auto max-w-7xl">
         <a href="/" className="text-sm font-semibold text-[#8b1116]">
           ← Back to homepage
@@ -31,7 +31,7 @@ export default function AboutPage() {
               About
             </p>
 
-            <h1 className="font-serif-academic mt-4 text-5xl font-semibold leading-[0.98] tracking-[-0.04em] md:text-7xl">
+            <h1 className="font-serif-academic mt-4 text-3xl font-semibold leading-[1.02] tracking-[-0.035em] sm:text-4xl md:text-7xl">
               A founder-led platform for quantitative learning.
             </h1>
           </div>

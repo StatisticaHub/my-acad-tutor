@@ -62,7 +62,7 @@ export default function LearningRouteSelector() {
   const route = routes[active];
 
   return (
-    <section className="bg-white px-5 py-16 text-neutral-950 md:px-8">
+    <section className="bg-white px-5 py-10 text-neutral-950 md:px-8 md:py-16">
       <div className="mx-auto max-w-7xl rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-6 shadow-sm md:p-8">
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr]">
           <div>

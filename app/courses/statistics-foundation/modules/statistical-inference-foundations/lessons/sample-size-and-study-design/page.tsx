@@ -730,7 +730,7 @@ export default function SampleSizeStudyDesignLessonPage() {
               Module 4 · Lesson 4.5
             </p>
 
-            <h1 className="mt-3 text-4xl font-black tracking-tight md:text-6xl">
+            <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl md:text-6xl">
               Sample Size and Study Design
             </h1>
 
@@ -1432,7 +1432,7 @@ export default function SampleSizeStudyDesignLessonPage() {
                   Quiz complete
                 </p>
 
-                <p className="mt-4 text-6xl font-black">
+                <p className="mt-4 text-4xl font-black md:text-6xl">
                   {score}/{quizQuestions.length}
                 </p>
 

@@ -164,7 +164,7 @@ export default function CoursesPage() {
 
   return (
     <main className="min-h-screen bg-[#f7f4ee] text-neutral-950">
-      <section className="relative overflow-hidden border-b border-neutral-200 bg-white px-5 py-16 md:px-8">
+      <section className="relative overflow-hidden border-b border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#f6dede,transparent_34%),radial-gradient(circle_at_bottom_left,#fff3d8,transparent_30%)]" />
 
         <div className="relative mx-auto max-w-7xl">
@@ -174,7 +174,7 @@ export default function CoursesPage() {
 
           <div className="mt-5 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div>
-              <h1 className="font-serif-academic max-w-5xl text-5xl font-medium leading-[1.05] tracking-[-0.03em] md:text-7xl">
+              <h1 className="font-serif-academic max-w-5xl text-3xl font-medium leading-[1.08] tracking-[-0.035em] sm:text-4xl md:text-7xl">
                 Structured courses for serious quantitative learning.
               </h1>
 
@@ -235,7 +235,7 @@ export default function CoursesPage() {
 
       <section
         id="available-courses"
-        className="mx-auto max-w-7xl px-5 py-16 md:px-8"
+        className="mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-16"
       >
         <div className="mb-10 grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <div>
@@ -343,7 +343,7 @@ export default function CoursesPage() {
 
       <section
         id="live-sessions"
-        className="border-y border-neutral-200 bg-white px-5 py-16 md:px-8"
+        className="border-y border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-16"
       >
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
@@ -444,7 +444,7 @@ export default function CoursesPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+      <section className="mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-16">
         <div className="rounded-[1.5rem] border border-neutral-200 bg-neutral-950 p-8 text-white shadow-sm md:p-10">
           <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
             <div>

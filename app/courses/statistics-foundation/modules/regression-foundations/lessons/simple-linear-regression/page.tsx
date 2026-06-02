@@ -453,7 +453,7 @@ function Quiz() {
         <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-700">
           Quiz complete
         </p>
-        <p className="mt-4 text-6xl font-black text-slate-950">
+        <p className="mt-4 text-4xl font-black md:text-6xl text-slate-950">
           {score}/{quizQuestions.length}
         </p>
         <p className="mt-4 text-base leading-8 text-slate-600">
@@ -570,7 +570,7 @@ export default function SimpleLinearRegressionLessonPage() {
               Module 5 · Lesson 5.1
             </p>
 
-            <h1 className="mt-2 text-4xl font-black tracking-tight md:text-6xl">
+            <h1 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl md:text-6xl">
               Simple Linear Regression
             </h1>
 

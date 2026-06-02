@@ -85,7 +85,7 @@ export default function StatisticsFoundationCoursePage() {
 
           <div className="mt-4 grid gap-10 lg:grid-cols-[1.35fr_0.75fr] lg:items-end">
             <div>
-              <h1 className="max-w-5xl text-4xl font-semibold tracking-[-0.03em] md:text-6xl">
+              <h1 className="max-w-5xl text-3xl font-semibold tracking-[-0.03em] sm:text-4xl md:text-6xl">
                 Statistics Foundation for University Students
               </h1>
 

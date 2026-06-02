@@ -10,7 +10,7 @@ function withBasePath(href: string) {
 
 export default function ContactCTA() {
   return (
-    <section className="bg-[#f7f4ee] px-5 py-16 text-neutral-950 md:px-8">
+    <section className="bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-16">
       <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-neutral-200 bg-neutral-950 text-white shadow-sm">
         <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="p-8 md:p-12">

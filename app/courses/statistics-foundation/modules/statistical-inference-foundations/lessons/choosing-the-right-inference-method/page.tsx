@@ -626,7 +626,7 @@ export default function ChoosingInferenceMethodLessonPage() {
               Module 4 · Bonus Lesson 4.6
             </p>
 
-            <h1 className="mt-3 text-4xl font-black tracking-tight md:text-6xl">
+            <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl md:text-6xl">
               Choosing the Right Inference Method
             </h1>
 
@@ -1274,7 +1274,7 @@ export default function ChoosingInferenceMethodLessonPage() {
                   Quiz complete
                 </p>
 
-                <p className="mt-4 text-6xl font-black">
+                <p className="mt-4 text-4xl font-black md:text-6xl">
                   {score}/{quizQuestions.length}
                 </p>
 

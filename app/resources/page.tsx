@@ -88,7 +88,7 @@ export default function ResourcesPage() {
 
   return (
     <main className="min-h-screen bg-[#f7f4ee] text-neutral-950">
-      <section className="relative overflow-hidden border-b border-neutral-200 bg-white px-5 py-16 md:px-8">
+      <section className="relative overflow-hidden border-b border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#f6d8d8,transparent_35%)]" />
 
         <div className="relative mx-auto max-w-7xl">
@@ -105,7 +105,7 @@ export default function ResourcesPage() {
                 Resources
               </p>
 
-              <h1 className="font-serif-academic mt-5 max-w-5xl text-5xl font-medium leading-tight tracking-[-0.035em] md:text-7xl">
+              <h1 className="font-serif-academic mt-5 max-w-5xl text-3xl font-medium leading-[1.08] tracking-[-0.035em] sm:text-4xl md:text-7xl">
                 In-depth guides for quantitative learning.
               </h1>
 
@@ -354,7 +354,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      <section className="border-t border-neutral-200 bg-white px-5 py-16 md:px-8">
+      <section className="border-t border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-16">
         <div className="mx-auto max-w-7xl rounded-[1.5rem] border border-neutral-200 bg-neutral-950 p-8 text-white shadow-sm md:p-12">
           <div className="grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-center">
             <div>

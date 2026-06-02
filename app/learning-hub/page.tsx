@@ -115,7 +115,7 @@ const learningFormats = [
 export default function LearningHubPage() {
   return (
     <main className="min-h-screen bg-[#f7f4ee] text-neutral-950">
-      <section className="relative overflow-hidden border-b border-neutral-200 bg-white px-5 py-16 md:px-8 md:py-20">
+      <section className="relative overflow-hidden border-b border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#f6dede,transparent_34%),radial-gradient(circle_at_bottom_left,#fff3d8,transparent_30%)]" />
 
         <div className="relative mx-auto max-w-7xl">
@@ -132,7 +132,7 @@ export default function LearningHubPage() {
                 Learning Hub
               </p>
 
-              <h1 className="font-serif-academic mt-5 max-w-5xl text-5xl font-medium leading-[1.05] tracking-[-0.03em] md:text-7xl">
+              <h1 className="font-serif-academic mt-5 max-w-5xl text-3xl font-medium leading-[1.08] tracking-[-0.035em] sm:text-4xl md:text-7xl">
                 Learn quantitative subjects through structured pathways.
               </h1>
 
@@ -220,7 +220,7 @@ export default function LearningHubPage() {
         </div>
       </section>
 
-      <section id="pathways" className="mx-auto max-w-7xl px-5 py-16 md:px-8">
+      <section id="pathways" className="mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-16">
         <div className="mb-10 grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#8b1116]">
@@ -314,7 +314,7 @@ export default function LearningHubPage() {
         </div>
       </section>
 
-      <section className="border-y border-neutral-200 bg-white px-5 py-16 md:px-8">
+      <section className="border-y border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-16">
         <div className="mx-auto max-w-7xl">
           <div className="rounded-[1.5rem] border border-neutral-200 bg-[#f8f6f1] p-8 md:p-10">
             <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">

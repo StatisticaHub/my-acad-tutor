@@ -62,7 +62,7 @@ const platformPoints = [
 
 export default function CoursesPreview() {
   return (
-    <section className="bg-[#f7f4ee] px-5 py-16 text-neutral-950 md:px-8">
+    <section className="bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-16">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>

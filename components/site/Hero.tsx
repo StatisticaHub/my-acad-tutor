@@ -3,7 +3,7 @@ const basePath =
 
 export default function Hero() {
   return (
-    <section className="bg-[#f7f4ee] px-5 py-12 text-neutral-950 md:px-8 md:py-20">
+    <section className="bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 rounded-[1.5rem] border border-[#ead8d8] bg-white p-6 shadow-sm md:p-8">
           <p className="text-xs font-bold uppercase tracking-[0.34em] text-[#8b1116]">
@@ -40,7 +40,7 @@ export default function Hero() {
               Statistics · Biostatistics · Data Science · Research Methods
             </p>
 
-            <h1 className="font-serif-academic mt-6 max-w-5xl text-5xl font-medium leading-[1.05] tracking-[-0.03em] md:text-7xl">
+            <h1 className="font-serif-academic mt-6 max-w-5xl text-3xl font-medium leading-[1.08] tracking-[-0.035em] sm:text-4xl md:text-7xl">
               Clear academic support and structured quantitative learning.
             </h1>
 

@@ -428,7 +428,7 @@ export default function ProbabilityBasicsAndAxiomsLessonPage() {
             <p className="mt-5 text-sm font-black uppercase tracking-[0.22em] text-blue-700">
               Module 3 · Lesson 3.1
             </p>
-            <h1 className="mt-3 text-4xl font-black tracking-tight md:text-6xl">
+            <h1 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl md:text-6xl">
               Probability Basics and Axioms
             </h1>
             <p className="mt-4 max-w-4xl text-lg leading-8 text-slate-600">
@@ -949,7 +949,7 @@ export default function ProbabilityBasicsAndAxiomsLessonPage() {
                 <p className="text-sm font-black uppercase tracking-[0.16em] text-blue-700">
                   Quiz complete
                 </p>
-                <p className="mt-4 text-6xl font-black">
+                <p className="mt-4 text-4xl font-black md:text-6xl">
                   {score}/{quizQuestions.length}
                 </p>
                 <p className="mt-4 text-base leading-8 text-slate-600">

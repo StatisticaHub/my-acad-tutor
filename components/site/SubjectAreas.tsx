@@ -49,7 +49,7 @@ const subjects = [
 
 export default function SubjectAreas() {
   return (
-    <section className="bg-white px-5 py-16 text-neutral-950 md:px-8">
+    <section className="bg-white px-5 py-10 text-neutral-950 md:px-8 md:py-16">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>

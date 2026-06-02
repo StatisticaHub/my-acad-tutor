@@ -140,7 +140,7 @@ export default function DescriptiveStatisticsModulePage() {
                 </span>
               </div>
 
-              <h1 className="max-w-5xl text-4xl font-black tracking-[-0.055em] md:text-6xl">
+              <h1 className="max-w-5xl text-3xl font-black tracking-[-0.045em] sm:text-4xl md:text-6xl">
                 Descriptive Statistics
               </h1>
 

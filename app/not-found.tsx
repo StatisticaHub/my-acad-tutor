@@ -1,6 +1,6 @@
 export default function NotFound() {
   return (
-    <main className="min-h-screen bg-[#f2efe7] px-6 py-24 text-neutral-950">
+    <main className="min-h-screen bg-[#f2efe7] px-5 py-12 text-neutral-950 md:px-6 md:py-24">
       <section className="mx-auto max-w-4xl rounded-[2rem] border border-[#ded9cf] bg-white p-8 shadow-sm md:p-12">
         <p className="text-sm font-black uppercase tracking-[0.18em] text-blue-700">
           404 · Page not found
