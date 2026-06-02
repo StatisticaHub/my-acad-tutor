@@ -55,7 +55,7 @@ export default function HowSupportWorks() {
               How support works
             </p>
 
-            <h2 className="font-serif-academic mt-3 text-4xl font-semibold tracking-[-0.035em] md:text-5xl">
+            <h2 className="font-serif-academic mt-3 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
               A clear process for academic guidance.
             </h2>
           </div>
@@ -164,7 +164,7 @@ export default function HowSupportWorks() {
                 Support philosophy
               </p>
 
-              <h3 className="font-serif-academic mt-3 text-3xl font-semibold tracking-tight">
+              <h3 className="font-serif-academic mt-3 text-3xl font-medium leading-tight tracking-[-0.02em]">
                 Understand the method, not just the answer.
               </h3>
             </div>

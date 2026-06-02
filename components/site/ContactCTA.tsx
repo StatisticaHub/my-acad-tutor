@@ -4,7 +4,8 @@ const basePath =
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
   if (href.startsWith("#")) return href;
-  return `${basePath}${href}/`;
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  return `${basePath}${cleanHref}`;
 }
 
 export default function ContactCTA() {

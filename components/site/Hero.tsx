@@ -40,7 +40,7 @@ export default function Hero() {
               Statistics · Biostatistics · Data Science · Research Methods
             </p>
 
-            <h1 className="font-serif-academic mt-6 max-w-5xl text-5xl font-semibold leading-[0.98] tracking-[-0.04em] md:text-7xl">
+            <h1 className="font-serif-academic mt-6 max-w-5xl text-5xl font-medium leading-[1.05] tracking-[-0.03em] md:text-7xl">
               Clear academic support and structured quantitative learning.
             </h1>
 

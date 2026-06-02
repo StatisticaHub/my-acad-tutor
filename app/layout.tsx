@@ -17,9 +17,9 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "My Academic Tutor",
+  title: "My Academic Tutor | Quantitative Learning and Academic Support",
   description:
-    "Specialist academic support and structured courses in statistics, biostatistics, data science and quantitative research methods.",
+    "Structured learning pathways and specialist academic support in statistics, biostatistics, data science, programming and quantitative research methods.",
 };
 
 export default function RootLayout({

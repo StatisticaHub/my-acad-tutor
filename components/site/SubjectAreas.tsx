@@ -4,7 +4,8 @@ const basePath =
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
   if (href.startsWith("#")) return href;
-  return `${basePath}${href}/`;
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  return `${basePath}${cleanHref}`;
 }
 
 const subjects = [
@@ -84,7 +85,7 @@ export default function SubjectAreas() {
               key={subject.title}
               className="rounded-[1.25rem] border border-neutral-200 bg-[#f8f6f1] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-sm md:p-7"
             >
-              <h3 className="font-serif-academic text-2xl font-semibold tracking-tight">
+              <h3 className="font-serif-academic text-2xl font-medium tracking-[-0.015em]">
                 {subject.title}
               </h3>
 
@@ -113,7 +114,7 @@ export default function SubjectAreas() {
                 Academic integrity first
               </p>
 
-              <h3 className="font-serif-academic mt-3 text-3xl font-semibold tracking-tight">
+              <h3 className="font-serif-academic mt-3 text-3xl font-medium leading-tight tracking-[-0.02em]">
                 Support is designed to help students understand, not outsource.
               </h3>
             </div>

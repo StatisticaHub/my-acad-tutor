@@ -4,300 +4,239 @@ const basePath =
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
   if (href.startsWith("#")) return href;
-  return `${basePath}${href}/`;
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  return `${basePath}${cleanHref}`;
 }
 
-const lessons = [
+const modules = [
   {
-    number: "5.1",
-    title: "Simple Linear Regression",
-    href: "/courses/statistics-foundation/modules/regression-foundations/lessons/simple-linear-regression",
+    number: "01",
+    title: "Introduction to Statistical Thinking",
+    href: "/courses/statistics-foundation/modules/introduction-to-statistical-thinking",
     description:
-      "Regression as conditional mean modelling: intercepts, slopes, fitted values, residuals, least-squares intuition and careful statistical interpretation.",
-    topics: [
-      "Conditional means",
-      "Slope and intercept",
-      "Residuals and fitted values",
-    ],
-    status: "Ready",
+      "Build the language of statistics: populations, samples, variables, data types, tables, graphs and sampling methods.",
+    lessons: "5 lessons",
+    status: "Available",
   },
   {
-    number: "5.2",
-    title: "Least Squares Derivation",
-    href: "/courses/statistics-foundation/modules/regression-foundations/lessons/least-squares-derivation",
+    number: "02",
+    title: "Descriptive Statistics",
+    href: "/courses/statistics-foundation/modules/descriptive-statistics",
     description:
-      "Derive the regression line from first principles using residual sums of squares, partial derivatives, normal equations, covariance and variance.",
-    topics: [
-      "SSE minimisation",
-      "Normal equations",
-      "Slope and intercept formulas",
-    ],
-    status: "Ready",
+      "Summarise data using measures of centre, spread, quartiles, skewness, standard deviation and visual interpretation.",
+    lessons: "5 lessons",
+    status: "Available",
   },
   {
-    number: "5.3",
-    title: "Multiple Regression and Confounding",
-    href: "/courses/statistics-foundation/modules/regression-foundations/lessons/multiple-regression-confounding",
+    number: "03",
+    title: "Probability Foundations",
+    href: "/courses/statistics-foundation/modules/probability-foundations",
     description:
-      "Move from one predictor to several predictors. Learn adjusted coefficients, confounding, omitted-variable bias, categorical predictors and multicollinearity.",
-    topics: [
-      "Adjusted coefficients",
-      "Confounding",
-      "Omitted-variable bias",
-    ],
-    status: "Ready",
+      "Learn probability rules, conditional probability, Bayes’ theorem, random variables, expectation and core distributions.",
+    lessons: "5 lessons",
+    status: "Available",
   },
   {
-    number: "5.4",
-    title: "Model Assessment and Diagnostics",
-    href: "/courses/statistics-foundation/modules/regression-foundations/lessons/model-assessment-diagnostics",
+    number: "04",
+    title: "Statistical Inference Foundations",
+    href: "/courses/statistics-foundation/modules/statistical-inference-foundations",
     description:
-      "Assess whether a regression model is trustworthy using residuals, R-squared, adjusted R-squared, residual standard error, assumptions, outliers, leverage and influence.",
-    topics: [
-      "Residual diagnostics",
-      "R-squared and adjusted R-squared",
-      "Outliers and influence",
-    ],
-    status: "Ready",
+      "Understand sampling distributions, standard error, confidence intervals, hypothesis testing, p-values, errors, power and study design.",
+    lessons: "6 lessons",
+    status: "Available",
   },
   {
-    number: "5.5",
-    title: "Logistic Regression Introduction",
-    href: "/courses/statistics-foundation/modules/regression-foundations/lessons/logistic-regression-intro",
+    number: "05",
+    title: "Regression Foundations",
+    href: "/courses/statistics-foundation/modules/regression-foundations",
     description:
-      "Introduce regression for binary outcomes using probability, odds, log-odds, logistic curves, odds ratios, likelihood, predicted probabilities and thresholds.",
-    topics: [
-      "Binary outcomes",
-      "Odds and log-odds",
-      "Odds ratios and thresholds",
-    ],
-    status: "Ready",
+      "Study simple linear regression, least squares, multiple regression, confounding, diagnostics and logistic regression.",
+    lessons: "5 lessons",
+    status: "Available",
   },
 ];
 
-const moduleHighlights = [
-  "Model relationships between variables using regression",
-  "Understand slopes, intercepts, fitted values and residuals",
-  "Derive least-squares estimates mathematically",
-  "Interpret adjusted regression coefficients carefully",
-  "Recognise confounding and omitted-variable bias",
-  "Assess regression models using diagnostics",
-  "Introduce logistic regression for binary outcomes",
+const features = [
+  "Beginner-friendly theoretical explanations",
+  "No coding required",
+  "Mathematical notation and derivations",
+  "Interactive visual labs",
+  "Worked examples and quizzes",
+  "Exam-style reasoning",
 ];
 
-const learningOutcomes = [
-  "Explain regression as conditional mean modelling rather than simply drawing a line.",
-  "Interpret simple and multiple regression coefficients using careful statistical language.",
-  "Derive the ordinary least-squares slope and intercept from the SSE objective.",
-  "Distinguish crude associations from adjusted associations.",
-  "Explain how confounding can distort regression coefficients.",
-  "Use residual diagnostics to identify non-linearity, non-constant variance and influential observations.",
-  "Explain logistic regression using probability, odds, log-odds and odds ratios.",
-];
-
-const moduleFeatures = [
-  {
-    title: "Conversational lectures",
-    description:
-      "Each lesson uses Mr. R, Emma, Oliver, James and Sophia to explain difficult regression ideas step by step.",
-  },
-  {
-    title: "Mathematical derivations",
-    description:
-      "The module develops formulas carefully, including least squares, normal equations, R-squared and logistic transformations.",
-  },
-  {
-    title: "Interactive visual labs",
-    description:
-      "Students can explore residuals, SSE, confounding, diagnostics and logistic probability curves visually.",
-  },
-  {
-    title: "Exam-style practice",
-    description:
-      "Worked examples, exercises and quizzes strengthen interpretation, calculation and reasoning.",
-  },
-];
-
-export default function RegressionFoundationsModulePage() {
+export default function StatisticsFoundationCoursePage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-950">
       <section className="relative overflow-hidden border-b border-slate-200 bg-white px-6 py-16">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#dbeafe,transparent_34%),radial-gradient(circle_at_bottom_left,#ecfeff,transparent_32%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#dbeafe,transparent_35%),radial-gradient(circle_at_bottom_left,#fef3c7,transparent_30%)]" />
 
         <div className="relative mx-auto max-w-7xl">
           <a
-            href={withBasePath("/courses/statistics-foundation")}
-            className="text-sm font-bold text-blue-700 hover:text-blue-900"
+            href={withBasePath("/learning-hub")}
+            className="text-sm font-semibold text-blue-700 hover:text-blue-900"
           >
-            ← Back to Statistics Foundation
+            ← Back to Learning Hub
           </a>
 
-          <div className="mt-8 grid gap-10 lg:grid-cols-[1.35fr_0.75fr] lg:items-end">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-700">
-                Module 5
-              </p>
+          <p className="mt-8 text-sm font-semibold uppercase tracking-[0.22em] text-blue-700">
+            Statistics Foundation
+          </p>
 
-              <h1 className="mt-4 max-w-5xl text-4xl font-black tracking-tight md:text-6xl">
-                Regression Foundations
+          <div className="mt-4 grid gap-10 lg:grid-cols-[1.35fr_0.75fr] lg:items-end">
+            <div>
+              <h1 className="max-w-5xl text-4xl font-semibold tracking-[-0.03em] md:text-6xl">
+                Statistics Foundation for University Students
               </h1>
 
               <p className="mt-6 max-w-4xl text-lg leading-8 text-slate-600">
-                This module introduces regression as a theoretical framework for
-                modelling relationships between variables. Students begin with
-                simple linear regression, derive the least-squares line, move
-                into multiple regression and confounding, learn how to assess
-                model assumptions, and finish with logistic regression for
-                binary outcomes.
+                A theoretical and beginner-friendly course for students who want
+                to build a strong base in statistics before studying
+                biostatistics, epidemiology, data science, machine learning,
+                research methods or quantitative analysis.
+              </p>
+
+              <p className="mt-4 max-w-4xl text-base leading-8 text-slate-600">
+                The course avoids coding and focuses on concepts, notation,
+                mathematical reasoning, derivations, interpretation, interactive
+                visual learning and exam-style thinking.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-black text-blue-800">
-                  5 lessons
-                </span>
-                <span className="rounded-full bg-emerald-100 px-4 py-2 text-sm font-black text-emerald-800">
-                  Fully available
-                </span>
-                <span className="rounded-full bg-violet-100 px-4 py-2 text-sm font-black text-violet-800">
-                  Theory + derivations
-                </span>
-                <span className="rounded-full bg-amber-100 px-4 py-2 text-sm font-black text-amber-800">
-                  Interactive labs
-                </span>
-                <span className="rounded-full bg-slate-900 px-4 py-2 text-sm font-black text-white">
-                  Zero coding
-                </span>
-              </div>
-
-              <div className="mt-9 flex flex-wrap gap-4">
                 <a
                   href={withBasePath(
-                    "/courses/statistics-foundation/modules/regression-foundations/lessons/simple-linear-regression"
+                    "/courses/statistics-foundation/modules/introduction-to-statistical-thinking"
                   )}
-                  className="rounded-full bg-slate-950 px-7 py-4 text-sm font-black text-white transition hover:-translate-y-1 hover:shadow-lg"
+                  className="rounded-full bg-slate-950 px-7 py-4 text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-lg"
                 >
-                  Start Module 5
+                  Start learning
                 </a>
 
                 <a
-                  href="#lessons"
-                  className="rounded-full border border-slate-300 bg-white px-7 py-4 text-sm font-black text-slate-700 transition hover:-translate-y-1 hover:shadow-md"
+                  href="#modules"
+                  className="rounded-full border border-slate-300 bg-white px-7 py-4 text-sm font-semibold text-slate-700 transition hover:-translate-y-1 hover:shadow-md"
                 >
-                  View lessons
+                  View all modules
                 </a>
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-slate-200 bg-white/90 p-6 shadow-sm backdrop-blur">
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-400">
-                Module focus
+            <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
+                Course snapshot
               </p>
 
-              <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-600">
-                {moduleHighlights.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-700" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-5 grid grid-cols-2 gap-3">
+                <div className="rounded-2xl bg-white p-4">
+                  <p className="text-3xl font-semibold text-slate-950">5</p>
+                  <p className="mt-1 text-sm text-slate-600">Core modules</p>
+                </div>
+
+                <div className="rounded-2xl bg-white p-4">
+                  <p className="text-3xl font-semibold text-slate-950">26</p>
+                  <p className="mt-1 text-sm text-slate-600">
+                    Structured lessons
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-white p-4">
+                  <p className="text-3xl font-semibold text-slate-950">0</p>
+                  <p className="mt-1 text-sm text-slate-600">Coding required</p>
+                </div>
+
+                <div className="rounded-2xl bg-white p-4">
+                  <p className="text-3xl font-semibold text-slate-950">100%</p>
+                  <p className="mt-1 text-sm text-slate-600">Concept focused</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       <section className="border-b border-slate-200 bg-slate-950 px-6 py-10 text-white">
-        <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-4">
+        <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
           <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-            <p className="text-3xl font-black">5</p>
-            <p className="mt-2 text-sm font-bold text-white/70">
-              Complete lessons
+            <h2 className="text-lg font-semibold">Lecture-style explanations</h2>
+            <p className="mt-2 text-sm leading-7 text-white/70">
+              Lessons use recurring characters and conversational teaching to
+              make abstract ideas easier to follow.
             </p>
           </div>
 
           <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-            <p className="text-3xl font-black">0</p>
-            <p className="mt-2 text-sm font-bold text-white/70">
-              Coding required
+            <h2 className="text-lg font-semibold">Detailed theoretical notes</h2>
+            <p className="mt-2 text-sm leading-7 text-white/70">
+              Notes include notation, definitions, derivations, interpretation
+              and exam-style reasoning.
             </p>
           </div>
 
           <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-            <p className="text-3xl font-black">5</p>
-            <p className="mt-2 text-sm font-bold text-white/70">
-              Interactive labs
-            </p>
-          </div>
-
-          <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-            <p className="text-3xl font-black">100%</p>
-            <p className="mt-2 text-sm font-bold text-white/70">
-              Concept focused
+            <h2 className="text-lg font-semibold">Interactive visual learning</h2>
+            <p className="mt-2 text-sm leading-7 text-white/70">
+              Visual labs, worked examples and quizzes help students test their
+              understanding as they progress.
             </p>
           </div>
         </div>
       </section>
 
-      <section id="lessons" className="mx-auto max-w-7xl px-6 py-14">
-        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+      <section id="modules" className="mx-auto max-w-7xl px-6 py-14">
+        <div className="mb-8 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-700">
-              Module lessons
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">
+              Course structure
             </p>
 
-            <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-tight md:text-4xl">
-              From straight-line models to binary-outcome regression
+            <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-[-0.025em] md:text-4xl">
+              Five modules from foundations to regression
             </h2>
           </div>
 
-          <p className="max-w-xl text-sm leading-7 text-slate-600">
-            Each lesson includes a character-led lecture, detailed theoretical
-            notes, interactive visual learning, worked examples, exercises and a
-            quiz.
+          <p className="max-w-3xl text-sm leading-7 text-slate-600">
+            Start with the language of data, then move through descriptive
+            statistics, probability, statistical inference and regression
+            foundations.
           </p>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2">
-          {lessons.map((lesson) => (
+          {modules.map((module) => (
             <a
-              key={lesson.number}
-              href={withBasePath(lesson.href)}
+              key={module.number}
+              href={withBasePath(module.href)}
               className="group rounded-[1.8rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-md"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-sm font-black uppercase tracking-[0.18em] text-blue-700">
-                    Lesson {lesson.number}
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-700">
+                    Module {module.number}
                   </p>
 
-                  <h3 className="mt-3 text-2xl font-black tracking-tight group-hover:text-blue-800">
-                    {lesson.title}
+                  <h3 className="mt-3 text-2xl font-semibold tracking-[-0.015em] group-hover:text-blue-800">
+                    {module.title}
                   </h3>
                 </div>
 
-                <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-black text-emerald-700">
-                  {lesson.status}
+                <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-700">
+                  {module.status}
                 </span>
               </div>
 
               <p className="mt-4 text-sm leading-7 text-slate-600">
-                {lesson.description}
+                {module.description}
               </p>
 
-              <div className="mt-5 flex flex-wrap gap-2">
-                {lesson.topics.map((topic) => (
-                  <span
-                    key={topic}
-                    className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600"
-                  >
-                    {topic}
-                  </span>
-                ))}
+              <div className="mt-5 flex items-center justify-between gap-4">
+                <span className="text-sm font-semibold text-slate-500">
+                  {module.lessons}
+                </span>
+
+                <span className="text-sm font-semibold text-blue-700">
+                  Open module →
+                </span>
               </div>
-
-              <p className="mt-6 text-sm font-black text-blue-700">
-                Open lesson →
-              </p>
             </a>
           ))}
         </div>
@@ -305,76 +244,24 @@ export default function RegressionFoundationsModulePage() {
 
       <section className="border-y border-slate-200 bg-white px-6 py-14">
         <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-700">
-            What students will learn
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">
+            What makes this course different
           </p>
 
-          <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-tight md:text-4xl">
-            Regression as theory, interpretation and model checking
+          <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-[-0.025em] md:text-4xl">
+            Designed for understanding, not shortcuts
           </h2>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {learningOutcomes.map((outcome, index) => (
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature) => (
               <div
-                key={outcome}
+                key={feature}
                 className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5"
               >
-                <p className="text-sm font-black text-blue-700">
-                  Outcome {index + 1}
-                </p>
-                <p className="mt-2 text-sm leading-7 text-slate-600">
-                  {outcome}
-                </p>
+                <p className="text-sm leading-7 text-slate-700">{feature}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-14">
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {moduleFeatures.map((feature) => (
-            <div
-              key={feature.title}
-              className="rounded-[1.7rem] border border-slate-200 bg-white p-6 shadow-sm"
-            >
-              <h3 className="text-lg font-black tracking-tight">
-                {feature.title}
-              </h3>
-
-              <p className="mt-3 text-sm leading-7 text-slate-600">
-                {feature.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 rounded-[2rem] border border-blue-200 bg-blue-50 p-8">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-700">
-            Suggested path
-          </p>
-
-          <h2 className="mt-3 text-3xl font-black tracking-tight">
-            Complete lessons 5.1 to 5.5 in order
-          </h2>
-
-          <p className="mt-4 max-w-4xl text-base leading-8 text-slate-700">
-            This module is designed as a sequence. Simple regression introduces
-            the language of fitted values and residuals. Least squares explains
-            where the fitted line comes from. Multiple regression then adds
-            adjustment and confounding. Diagnostics teach students how to check
-            the model. Logistic regression finishes the course by extending
-            regression thinking to binary outcomes.
-          </p>
-
-          <a
-            href={withBasePath(
-              "/courses/statistics-foundation/modules/regression-foundations/lessons/simple-linear-regression"
-            )}
-            className="mt-6 inline-flex rounded-full bg-blue-700 px-7 py-4 text-sm font-black text-white transition hover:-translate-y-1 hover:bg-blue-800 hover:shadow-lg"
-          >
-            Begin with Lesson 5.1 →
-          </a>
         </div>
       </section>
     </main>

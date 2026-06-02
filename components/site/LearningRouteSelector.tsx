@@ -8,7 +8,8 @@ const basePath =
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
   if (href.startsWith("#")) return href;
-  return `${basePath}${href}/`;
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  return `${basePath}${cleanHref}`;
 }
 
 const routes = [
@@ -69,7 +70,7 @@ export default function LearningRouteSelector() {
               Find your route
             </p>
 
-            <h2 className="font-serif-academic mt-3 text-4xl font-semibold tracking-[-0.035em] md:text-5xl">
+            <h2 className="font-serif-academic mt-3 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
               Choose the right starting point.
             </h2>
 

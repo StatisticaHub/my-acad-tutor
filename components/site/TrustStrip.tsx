@@ -26,7 +26,7 @@ export default function TrustStrip() {
             key={item.value}
             className="rounded-2xl border border-neutral-200 bg-[#f8f6f1] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-sm"
           >
-            <p className="text-lg font-black tracking-tight text-neutral-950">
+            <p className="text-lg font-semibold tracking-tight text-neutral-950">
               {item.value}
             </p>
 

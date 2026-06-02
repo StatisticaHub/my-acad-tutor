@@ -4,7 +4,8 @@ const basePath =
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
   if (href.startsWith("#")) return href;
-  return `${basePath}${href}/`;
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  return `${basePath}${cleanHref}`;
 }
 
 const courses = [
@@ -69,7 +70,7 @@ export default function CoursesPreview() {
               Learning Hub
             </p>
 
-            <h2 className="font-serif-academic mt-3 text-4xl font-semibold tracking-[-0.035em] md:text-5xl">
+            <h2 className="font-serif-academic mt-3 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
               Structured courses for quantitative learning.
             </h2>
           </div>
@@ -143,7 +144,7 @@ export default function CoursesPreview() {
                 Upcoming pathways
               </p>
 
-              <h3 className="font-serif-academic mt-3 text-3xl font-semibold tracking-tight">
+              <h3 className="font-serif-academic mt-3 text-3xl font-medium leading-tight tracking-[-0.02em]">
                 More courses are being prepared.
               </h3>
 
@@ -184,7 +185,7 @@ export default function CoursesPreview() {
                 Platform approach
               </p>
 
-              <h3 className="font-serif-academic mt-3 text-3xl font-semibold tracking-tight">
+              <h3 className="font-serif-academic mt-3 text-3xl font-medium leading-tight tracking-[-0.02em]">
                 Built for clarity, interpretation and responsible learning.
               </h3>
 

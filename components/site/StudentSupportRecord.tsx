@@ -49,7 +49,7 @@ export default function StudentSupportRecord() {
               Student support record
             </p>
 
-            <h2 className="font-serif-academic mt-3 text-4xl font-semibold tracking-[-0.035em] md:text-5xl">
+            <h2 className="font-serif-academic mt-3 text-4xl font-medium leading-tight tracking-[-0.025em] md:text-5xl">
               Supporting quantitative learning across subjects and countries.
             </h2>
           </div>
@@ -70,7 +70,7 @@ export default function StudentSupportRecord() {
                   Common requests
                 </p>
 
-                <h3 className="font-serif-academic mt-3 text-3xl font-semibold tracking-tight">
+                <h3 className="font-serif-academic mt-3 text-3xl font-medium leading-tight tracking-[-0.02em]">
                   Areas students commonly ask for support with
                 </h3>
               </div>
@@ -97,7 +97,7 @@ export default function StudentSupportRecord() {
               Student locations
             </p>
 
-            <h3 className="font-serif-academic mt-3 text-3xl font-semibold tracking-tight">
+            <h3 className="font-serif-academic mt-3 text-3xl font-medium leading-tight tracking-[-0.02em]">
               International student experience
             </h3>
 
@@ -125,7 +125,7 @@ export default function StudentSupportRecord() {
               key={item.title}
               className="rounded-[1.25rem] border border-neutral-200 bg-white p-6 shadow-sm"
             >
-              <h3 className="text-lg font-black tracking-tight text-neutral-950">
+              <h3 className="text-lg font-semibold tracking-tight text-neutral-950">
                 {item.title}
               </h3>
 
