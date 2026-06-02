@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { ReactNode } from "react";
 
 const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
@@ -37,23 +37,39 @@ const tabs = [
 ];
 
 const browserRCode = `# Lesson 1.1 browser R lab
+# What is machine learning in biostatistics?
+
 # The website loads diabetes_data from the shared course CSV.
 # You can edit and run this code.
 
-# 1. Look at the data
-dim(diabetes_data)
-names(diabetes_data)
-head(diabetes_data)
+cat("Lesson 1.1: What is machine learning in biostatistics?\\n")
+cat("------------------------------------------------------\\n\\n")
+
+# 1. Inspect the dataset
+cat("Dataset dimensions:\\n")
+print(dim(diabetes_data))
+
+cat("\\nVariable names:\\n")
+print(names(diabetes_data))
+
+cat("\\nFirst rows:\\n")
+print(head(diabetes_data))
 
 # 2. Outcome distribution
-table(diabetes_data$diabetes)
-round(100 * prop.table(table(diabetes_data$diabetes)), 1)
+cat("\\nOutcome distribution:\\n")
+print(table(diabetes_data$diabetes))
+
+cat("\\nOutcome percentages:\\n")
+print(round(100 * prop.table(table(diabetes_data$diabetes)), 1))
 
 # 3. Compare predictor means by diabetes status
-aggregate(
-  cbind(glucose, mass, age) ~ diabetes,
-  data = diabetes_data,
-  FUN = mean
+cat("\\nMean glucose, BMI/mass and age by diabetes status:\\n")
+print(
+  aggregate(
+    cbind(glucose, mass, age) ~ diabetes,
+    data = diabetes_data,
+    FUN = mean
+  )
 )
 
 # 4. Train/test split
@@ -67,14 +83,18 @@ train_id <- sample(
 train_data <- diabetes_data[train_id, ]
 test_data <- diabetes_data[-train_id, ]
 
-# 5. Fit a simple first prediction model
+cat("\\nTraining rows:", nrow(train_data), "\\n")
+cat("Test rows:", nrow(test_data), "\\n")
+
+# 5. Fit a first simple prediction model
 model <- glm(
   diabetes_binary ~ glucose + mass + age,
   data = train_data,
   family = binomial
 )
 
-summary(model)
+cat("\\nModel summary:\\n")
+print(summary(model))
 
 # 6. Predict risk in unseen test data
 test_data$predicted_risk <- predict(
@@ -95,7 +115,8 @@ confusion_matrix <- table(
   Predicted = test_data$predicted_class
 )
 
-confusion_matrix
+cat("\\nConfusion matrix at threshold 0.50:\\n")
+print(confusion_matrix)
 
 accuracy <- mean(test_data$diabetes_binary == test_data$predicted_class)
 
@@ -112,6 +133,8 @@ cat("Sensitivity:", round(sensitivity, 3), "\\n")
 cat("Specificity:", round(specificity, 3), "\\n")
 
 cat("\\nInterpretation:\\n")
+cat("This is a first prediction workflow.\\n")
+cat("The model learns from training data and is checked on test data.\\n")
 cat("Accuracy is only the starting point.\\n")
 cat("Sensitivity tells us how many diabetes-positive patients are detected.\\n")
 cat("Specificity tells us how many diabetes-negative patients are correctly identified.\\n")
@@ -134,7 +157,7 @@ function DialogueLine({
   initials: string;
   name: string;
   children: ReactNode;
-  tone?: "neutral" | "blue" | "green" | "rose";
+  tone?: "neutral" | "blue" | "green" | "rose" | "amber";
 }) {
   const toneClass =
     tone === "blue"
@@ -143,6 +166,8 @@ function DialogueLine({
       ? "bg-emerald-50"
       : tone === "rose"
       ? "bg-rose-50"
+      : tone === "amber"
+      ? "bg-amber-50"
       : "bg-white";
 
   return (
@@ -155,6 +180,21 @@ function DialogueLine({
         <div className="mt-2 text-base leading-7 text-slate-700">{children}</div>
       </div>
     </div>
+  );
+}
+
+function TopicCard({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <article className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+      <h3 className="text-lg font-black text-slate-950">{title}</h3>
+      <div className="mt-3 text-sm leading-7 text-slate-600">{children}</div>
+    </article>
   );
 }
 
@@ -221,7 +261,7 @@ ${code}
               Editable R script
             </p>
             <p className="mt-1 text-xs leading-5 text-slate-400">
-              Runs in the browser using WebR and the shared diabetes CSV
+              Runs in the browser using WebR and the shared diabetes CSV.
             </p>
           </div>
 
@@ -260,17 +300,103 @@ ${code}
   );
 }
 
+const toyPatients = [
+  { id: "A", glucose: 92, mass: 24, age: 26, risk: 0.08, observed: 0 },
+  { id: "B", glucose: 104, mass: 28, age: 31, risk: 0.18, observed: 0 },
+  { id: "C", glucose: 118, mass: 31, age: 39, risk: 0.34, observed: 0 },
+  { id: "D", glucose: 126, mass: 33, age: 42, risk: 0.46, observed: 1 },
+  { id: "E", glucose: 137, mass: 35, age: 45, risk: 0.57, observed: 1 },
+  { id: "F", glucose: 145, mass: 37, age: 48, risk: 0.66, observed: 0 },
+  { id: "G", glucose: 158, mass: 39, age: 52, risk: 0.79, observed: 1 },
+  { id: "H", glucose: 171, mass: 42, age: 56, risk: 0.88, observed: 1 },
+];
+
+const learningTopics = [
+  {
+    title: "Prediction question",
+    body: "What outcome do we want to predict, for whom, and at what moment?",
+  },
+  {
+    title: "Predictors",
+    body: "Which variables are available before the prediction is made?",
+  },
+  {
+    title: "Learning",
+    body: "How does the model estimate a rule from training examples?",
+  },
+  {
+    title: "Validation",
+    body: "Does the rule work on unseen patients, not only the patients used to fit it?",
+  },
+  {
+    title: "Threshold",
+    body: "How do predicted probabilities become clinical categories?",
+  },
+  {
+    title: "Interpretation",
+    body: "What can we say safely, and what would be overclaiming?",
+  },
+];
+
 export default function WhatIsMachineLearningInBiostatisticsPage() {
   const [activeTab, setActiveTab] = useState("Lecture");
   const [threshold, setThreshold] = useState(0.5);
   const [predictionChoice, setPredictionChoice] = useState("classification");
+  const [selectedPatient, setSelectedPatient] = useState("E");
+  const [scenarioChoice, setScenarioChoice] = useState("valid");
+
+  const selectedPatientData =
+    toyPatients.find((patient) => patient.id === selectedPatient) ??
+    toyPatients[0];
+
+  const toyMetrics = useMemo(() => {
+    const predictions = toyPatients.map((patient) => ({
+      ...patient,
+      predicted: patient.risk >= threshold ? 1 : 0,
+    }));
+
+    const tp = predictions.filter(
+      (patient) => patient.observed === 1 && patient.predicted === 1
+    ).length;
+    const fp = predictions.filter(
+      (patient) => patient.observed === 0 && patient.predicted === 1
+    ).length;
+    const tn = predictions.filter(
+      (patient) => patient.observed === 0 && patient.predicted === 0
+    ).length;
+    const fn = predictions.filter(
+      (patient) => patient.observed === 1 && patient.predicted === 0
+    ).length;
+
+    const accuracy = (tp + tn) / predictions.length;
+    const sensitivity = tp + fn === 0 ? 0 : tp / (tp + fn);
+    const specificity = tn + fp === 0 ? 0 : tn / (tn + fp);
+
+    return {
+      predictions,
+      tp,
+      fp,
+      tn,
+      fn,
+      accuracy,
+      sensitivity,
+      specificity,
+    };
+  }, [threshold]);
 
   const thresholdComment =
     threshold < 0.35
-      ? "This threshold is screening-focused. It will detect more possible positive cases, but it will also create more false positives."
+      ? "This threshold is screening-focused. It detects more possible positives, but creates more false positives."
       : threshold < 0.55
-      ? "This threshold is moderately balanced. It tries to avoid too many false positives while still detecting positive cases."
-      : "This threshold is conservative. It will reduce false positives, but more diabetes-positive patients may be missed.";
+      ? "This threshold is moderately balanced. It avoids some false positives while still detecting many positives."
+      : "This threshold is conservative. It reduces false positives, but more diabetes-positive patients may be missed.";
+
+  const scenarioFeedback =
+    scenarioChoice === "valid"
+      ? "Correct direction. This is a valid prediction setup because the model uses baseline clinical variables that are available before the prediction is made."
+      : scenarioChoice === "leakage"
+      ? "This is dangerous. A future diagnosis code or post-outcome information would leak the answer into the model and exaggerate performance."
+      : "This is a different scientific aim. Estimating the causal effect of changing BMI or glucose requires causal assumptions and design, not only a prediction model.";
 
   return (
     <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-slate-950 md:px-8 md:py-16">
@@ -321,9 +447,9 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
 
           <div className="mt-8 grid gap-3 md:grid-cols-4">
             {[
-              ["Time", "50–70 min"],
-              ["Level", "Introductory"],
-              ["Focus", "Prediction"],
+              ["Time", "60–80 min"],
+              ["Level", "Introductory → deeper"],
+              ["Focus", "Prediction workflow"],
               ["Coding", "R in browser"],
             ].map(([label, value]) => (
               <div
@@ -333,7 +459,9 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
                 <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
                   {label}
                 </p>
-                <p className="mt-2 text-xl font-black text-slate-950">{value}</p>
+                <p className="mt-2 text-xl font-black text-slate-950">
+                  {value}
+                </p>
               </div>
             ))}
           </div>
@@ -364,54 +492,145 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              The first machine learning class begins
+              A hospital data lab conversation
             </h2>
 
-            <p className="mt-4 max-w-4xl text-base leading-7 text-slate-600">
-              Scene: Prof Stat walks into a hospital data lab. Curious Learner,
-              Dr Clinic and Leakage Monster are looking at the shared diabetes
-              prediction dataset for the first time.
-            </p>
+            <div className="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
+                Topics being explained in this lecture
+              </p>
+
+              <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                {learningTopics.map((topic) => (
+                  <div
+                    key={topic.title}
+                    className="rounded-2xl border border-slate-200 bg-white p-4"
+                  >
+                    <p className="font-black text-slate-950">{topic.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      {topic.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             <div className="mt-8 space-y-4">
               <DialogueLine initials="CL" name="Curious Learner" tone="blue">
-                I hear machine learning everywhere: diagnosis, screening,
-                hospital readmission, cancer prognosis and genomics. But what
-                exactly is machine learning in biostatistics?
+                I keep hearing that machine learning can predict disease,
+                identify high-risk patients and analyse medical data. But in
+                biostatistics, what does “machine learning” actually mean?
               </DialogueLine>
 
               <DialogueLine initials="PS" name="Prof Stat">
-                Machine learning in biostatistics means learning patterns from
-                health data so that we can make predictions for new patients,
-                samples or populations.
-              </DialogueLine>
-
-              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
-                So it is not just “fit an algorithm and report accuracy”?
-              </DialogueLine>
-
-              <DialogueLine initials="PS" name="Prof Stat">
-                Correct. In medicine, a model must answer a clear prediction
-                question. It must use predictors available at the prediction
-                time, be tested on unseen data and be interpreted in clinical
-                context.
-              </DialogueLine>
-
-              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
-                Unless someone accidentally uses information from the future.
-                Then I can make a model look brilliant during development and
-                useless in real life.
+                In biostatistics, machine learning means learning a prediction
+                rule from health data. The rule uses patient information, which
+                we call predictors, to estimate an outcome for a new patient.
               </DialogueLine>
 
               <DialogueLine initials="CL" name="Curious Learner" tone="blue">
-                So the first question is not “Which algorithm is most advanced?”
-                It is “What are we trying to predict, and can we trust the
-                prediction?”
+                So the first topic is prediction. What is our prediction problem
+                in this lesson?
               </DialogueLine>
 
               <DialogueLine initials="PS" name="Prof Stat">
-                Exactly. That is the heart of machine learning in
-                biostatistics.
+                We ask whether routinely measured clinical variables can predict
+                diabetes status. The outcome is diabetes: negative or positive.
+                The predictors include glucose, BMI/mass and age.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                That sounds clinically meaningful. A risk prediction model could
+                help decide who needs further testing, monitoring or follow-up.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Yes, but the wording matters. We are predicting diabetes status.
+                We are not yet claiming that glucose or BMI causes diabetes in
+                this dataset.
+              </DialogueLine>
+
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                Why not? If glucose is higher in diabetes-positive patients, does
+                that not explain the disease?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                It may help prediction, but prediction and explanation are not
+                the same. A variable can be useful for predicting an outcome
+                without proving a causal mechanism.
+              </DialogueLine>
+
+              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
+                And I have another warning. If you accidentally include future
+                information, like a diagnosis code recorded after the outcome,
+                your model may look amazing but fail in real clinical use.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                So every predictor must be available when the prediction is made.
+                A model used at triage cannot use information recorded after
+                diagnosis.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Exactly. That is why machine learning in biostatistics is more
+                than fitting an algorithm. We need a valid prediction question, a
+                correct prediction time, appropriate predictors and honest
+                validation.
+              </DialogueLine>
+
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                What does the model actually learn from the data?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                It learns a mathematical rule. For a binary outcome, a simple
+                logistic prediction model estimates a probability between 0 and
+                1. For example, a patient may receive predicted risk 0.72, which
+                means the model estimates a 72% probability of diabetes-positive
+                status.
+              </DialogueLine>
+
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                Then why do we need a threshold?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                The probability is continuous. A threshold converts that
+                probability into a class. At threshold 0.50, risk 0.72 becomes
+                predicted positive. But if we choose threshold 0.80, the same
+                patient becomes predicted negative.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                That means the threshold changes clinical behaviour. A low
+                threshold may detect more high-risk patients but also create more
+                false positives.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Correct. That is why we evaluate accuracy, sensitivity and
+                specificity. Accuracy tells us overall correctness. Sensitivity
+                tells us how many positive patients we detect. Specificity tells
+                us how many negative patients we correctly rule out.
+              </DialogueLine>
+
+              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
+                And please do not celebrate high accuracy too early. If the data
+                are imbalanced, a model can look accurate while missing the
+                patients you care most about.
+              </DialogueLine>
+
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                So the answer to “What is machine learning in biostatistics?” is
+                not just “algorithms”. It is a whole prediction workflow.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Exactly. It is a workflow: define the question, check the data,
+                fit a model, test on unseen patients, study errors, interpret
+                clinically and report limitations.
               </DialogueLine>
             </div>
 
@@ -421,28 +640,8 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
               </p>
               <p className="mt-3 text-xl font-black leading-8 md:text-2xl">
                 Machine learning in biostatistics is not algorithm competition.
-                It is prediction modelling with careful validation, clinical
-                interpretation and responsible use.
-              </p>
-            </div>
-
-            <div className="mt-8 space-y-5 text-base leading-8 text-slate-700">
-              <h3 className="text-2xl font-black text-slate-950">
-                Why we use the same dataset across the course
-              </h3>
-
-              <p>
-                This course uses a shared diabetes prediction dataset across the
-                early modules. This keeps the story coherent. In this first
-                lesson, the dataset introduces the idea of prediction. Later, the
-                same setting will be used for logistic regression, validation,
-                classification metrics, ROC/AUC, calibration, regularisation and
-                case-study reporting.
-              </p>
-
-              <p>
-                By keeping the context stable, you can focus on how the modelling
-                ideas develop instead of learning a new dataset every lesson.
+                It is prediction modelling with clinical timing, validation,
+                threshold judgement and responsible interpretation.
               </p>
             </div>
           </section>
@@ -455,133 +654,296 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              Machine learning as prediction modelling
+              Machine learning as a biostatistical prediction workflow
             </h2>
 
-            <div className="mt-8 space-y-7 text-base leading-8 text-slate-700">
+            <div className="mt-8 space-y-8 text-base leading-8 text-slate-700">
               <div>
                 <h3 className="text-2xl font-black text-slate-950">
-                  1. Machine learning
+                  1. The central idea
                 </h3>
-                <p className="mt-2">
-                  Machine learning is a collection of methods that learn
-                  patterns from data. In biostatistics, those patterns are often
-                  used to predict medical or biomedical outcomes, such as disease
-                  status, future risk, treatment response or survival.
+                <p className="mt-3">
+                  Machine learning is often described as a set of algorithms.
+                  In biostatistics, it is better to think of it as a structured
+                  prediction workflow. The aim is to use observed data to build a
+                  rule that can make predictions for new patients, biological
+                  samples or populations.
                 </p>
+
+                <div className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                  <p className="font-mono text-sm leading-7 text-slate-700">
+                    Data: (X₁, Y₁), (X₂, Y₂), ..., (Xₙ, Yₙ)
+                    <br />
+                    Predictors: X = patient measurements
+                    <br />
+                    Outcome: Y = diabetes status
+                    <br />
+                    Model goal: learn f(X) ≈ Y
+                  </p>
+                </div>
               </div>
 
               <div>
                 <h3 className="text-2xl font-black text-slate-950">
                   2. Prediction question
                 </h3>
-                <p className="mt-2">
-                  In this lesson, the prediction question is: can routinely
-                  measured clinical characteristics help predict diabetes status?
-                  The outcome is <strong>diabetes</strong>, coded as{" "}
-                  <strong>neg</strong> or <strong>pos</strong>. The candidate
-                  predictors are pregnant, glucose, pressure, triceps, insulin,
-                  mass, pedigree and age.
+                <p className="mt-3">
+                  A machine learning project should begin with a precise
+                  prediction question. In this lesson, the question is:
+                </p>
+
+                <p className="mt-4 rounded-3xl bg-slate-950 p-6 text-xl font-black leading-8 text-white">
+                  Can routinely measured clinical characteristics help predict
+                  diabetes status?
+                </p>
+
+                <p className="mt-4">
+                  This question defines the outcome, the broad target population
+                  and the intended modelling goal. It is not asking whether a
+                  predictor causes diabetes. It is asking whether available
+                  variables can help estimate the probability of diabetes status.
                 </p>
               </div>
 
               <div>
                 <h3 className="text-2xl font-black text-slate-950">
-                  3. Outcome imbalance
+                  3. Predictors and outcome
                 </h3>
-                <p className="mt-2">
-                  The dataset contains 500 diabetes-negative patients and 268
-                  diabetes-positive patients. That means the negative class is
-                  more common. Later, this will matter because accuracy alone can
-                  hide poor detection of the positive class.
-                </p>
-              </div>
 
-              <figure className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-                <img
-                  src={withBasePath(
-                    "/ml-biostatistics/figures/module-1/lesson-1-1-outcome-distribution.png"
-                  )}
-                  alt="Diabetes outcome distribution"
-                  className="w-full rounded-2xl border border-slate-200 bg-white"
-                />
-                <figcaption className="mt-4 text-sm leading-6 text-slate-600">
-                  Diabetes-negative patients are more common than
-                  diabetes-positive patients. This is why we should not rely only
-                  on accuracy.
-                </figcaption>
-              </figure>
-
-              <div>
-                <h3 className="text-2xl font-black text-slate-950">
-                  4. Predictor patterns
-                </h3>
-                <p className="mt-2">
-                  The diabetes-positive group has higher average glucose and BMI.
-                  In the script output, mean glucose is about 110 in the negative
-                  group and 141 in the positive group. Mean BMI is about 30.3 in
-                  the negative group and 35.1 in the positive group.
-                </p>
-                <p className="mt-2">
-                  This suggests glucose and BMI may help prediction. However,
-                  this does not prove causation. A prediction model may use
-                  variables that are informative without proving that changing
-                  those variables would change the outcome.
-                </p>
-              </div>
-
-              <figure className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-                <img
-                  src={withBasePath(
-                    "/ml-biostatistics/figures/module-1/lesson-1-1-glucose-by-diabetes.png"
-                  )}
-                  alt="Glucose values by diabetes status"
-                  className="w-full rounded-2xl border border-slate-200 bg-white"
-                />
-                <figcaption className="mt-4 text-sm leading-6 text-slate-600">
-                  Glucose values tend to be higher among diabetes-positive
-                  patients, so glucose is likely to be useful for prediction.
-                </figcaption>
-              </figure>
-
-              <div>
-                <h3 className="text-2xl font-black text-slate-950">
-                  5. Training and testing
-                </h3>
-                <p className="mt-2">
-                  The script splits the data into 537 training rows and 231 test
-                  rows. The model learns from the training data. The test data
-                  are held back and used to ask whether the model generalises to
-                  unseen patients.
-                </p>
+                <div className="mt-5 overflow-x-auto rounded-3xl border border-slate-200">
+                  <table className="w-full min-w-[760px] border-collapse text-left text-sm">
+                    <thead className="bg-slate-950 text-white">
+                      <tr>
+                        <th className="p-4">Element</th>
+                        <th className="p-4">In this lesson</th>
+                        <th className="p-4">Why it matters</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        [
+                          "Outcome",
+                          "diabetes / diabetes_binary",
+                          "This is what the model tries to predict.",
+                        ],
+                        [
+                          "Predictors",
+                          "glucose, mass, age and other clinical variables",
+                          "These are the inputs used to estimate risk.",
+                        ],
+                        [
+                          "Prediction time",
+                          "When routine clinical variables are available",
+                          "Only variables available at this time should be used.",
+                        ],
+                        [
+                          "Prediction output",
+                          "A probability between 0 and 1",
+                          "The model estimates risk before a threshold is applied.",
+                        ],
+                      ].map((row) => (
+                        <tr key={row[0]} className="border-t border-slate-200">
+                          <td className="p-4 font-black text-slate-950">
+                            {row[0]}
+                          </td>
+                          <td className="p-4 text-slate-600">{row[1]}</td>
+                          <td className="p-4 text-slate-600">{row[2]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
               <div>
                 <h3 className="text-2xl font-black text-slate-950">
-                  6. First simple model
+                  4. Outcome imbalance
                 </h3>
-                <p className="mt-2">
-                  The first model uses glucose, BMI/mass and age to predict
-                  diabetes status. It produces predicted probabilities for test
-                  patients. At threshold 0.50, the model achieved accuracy 0.779,
-                  sensitivity 0.625 and specificity 0.849.
+                <p className="mt-3">
+                  The dataset contains 768 rows. There are 500
+                  diabetes-negative patients and 268 diabetes-positive patients.
+                  This means the negative class is more common. In imbalanced
+                  outcomes, accuracy can be misleading because a model may appear
+                  accurate while performing poorly for the smaller but clinically
+                  important group.
+                </p>
+
+                <figure className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                  <img
+                    src={withBasePath(
+                      "/ml-biostatistics/figures/module-1/lesson-1-1-outcome-distribution.png"
+                    )}
+                    alt="Diabetes outcome distribution"
+                    className="w-full rounded-2xl border border-slate-200 bg-white"
+                  />
+                  <figcaption className="mt-4 text-sm leading-6 text-slate-600">
+                    The negative class is larger than the positive class. This
+                    motivates reporting sensitivity and specificity, not only
+                    accuracy.
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  5. Predictor signal
+                </h3>
+                <p className="mt-3">
+                  In the local script output, mean glucose is about 110 among
+                  diabetes-negative patients and about 141 among
+                  diabetes-positive patients. Mean BMI/mass is about 30.3 in the
+                  negative group and about 35.1 in the positive group. These
+                  differences suggest predictive signal.
+                </p>
+
+                <p className="mt-3">
+                  Predictive signal means that the predictor contains
+                  information that helps separate outcome groups. It does not
+                  automatically mean the predictor is a causal effect.
+                </p>
+
+                <figure className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                  <img
+                    src={withBasePath(
+                      "/ml-biostatistics/figures/module-1/lesson-1-1-glucose-by-diabetes.png"
+                    )}
+                    alt="Glucose values by diabetes status"
+                    className="w-full rounded-2xl border border-slate-200 bg-white"
+                  />
+                  <figcaption className="mt-4 text-sm leading-6 text-slate-600">
+                    Glucose values tend to be higher among diabetes-positive
+                    patients, although the groups still overlap.
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  6. Logistic prediction model
+                </h3>
+                <p className="mt-3">
+                  Because the outcome is binary, a simple first model is
+                  logistic regression. The model estimates a probability:
+                </p>
+
+                <div className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                  <p className="font-mono text-sm leading-7 text-slate-700">
+                    logit[P(Y = 1 | X)] = β₀ + β₁ glucose + β₂ mass + β₃ age
+                    <br />
+                    P(Y = 1 | X) = 1 / [1 + exp(-η)]
+                  </p>
+                </div>
+
+                <p className="mt-4">
+                  Here, <span className="font-mono">Y = 1</span> means
+                  diabetes-positive status. The model does not directly produce
+                  a diagnosis. It produces a predicted probability.
                 </p>
               </div>
 
-              <figure className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-                <img
-                  src={withBasePath(
-                    "/ml-biostatistics/figures/module-1/lesson-1-1-predicted-risk-distribution.png"
-                  )}
-                  alt="Predicted diabetes risk distribution"
-                  className="w-full rounded-2xl border border-slate-200 bg-white"
-                />
-                <figcaption className="mt-4 text-sm leading-6 text-slate-600">
-                  The model gives each test patient a predicted probability.
-                  Positive cases tend to have higher predicted risks, but the two
-                  groups still overlap.
-                </figcaption>
-              </figure>
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  7. Training and test data
+                </h3>
+                <p className="mt-3">
+                  The script splits the dataset into 537 training rows and 231
+                  test rows. The training data are used to estimate the model.
+                  The test data are held back and used to evaluate performance
+                  on unseen patients.
+                </p>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-2">
+                  <TopicCard title="Training data">
+                    Used to fit the model. The algorithm is allowed to learn
+                    patterns from these rows.
+                  </TopicCard>
+
+                  <TopicCard title="Test data">
+                    Used after fitting. It gives a more honest estimate of how
+                    the model may perform on new patients.
+                  </TopicCard>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  8. Threshold and classification
+                </h3>
+                <p className="mt-3">
+                  The model gives each test patient a predicted probability. To
+                  turn probabilities into predicted classes, we choose a
+                  threshold. At threshold 0.50:
+                </p>
+
+                <div className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                  <p className="font-mono text-sm leading-7 text-slate-700">
+                    If predicted risk ≥ 0.50 → predicted positive
+                    <br />
+                    If predicted risk &lt; 0.50 → predicted negative
+                  </p>
+                </div>
+
+                <p className="mt-4">
+                  The threshold is not purely statistical. It depends on the
+                  clinical consequences of false positives and false negatives.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  9. First performance results
+                </h3>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-3">
+                  {[
+                    [
+                      "Accuracy",
+                      "0.779",
+                      "Overall proportion correctly classified.",
+                    ],
+                    [
+                      "Sensitivity",
+                      "0.625",
+                      "Proportion of diabetes-positive patients detected.",
+                    ],
+                    [
+                      "Specificity",
+                      "0.849",
+                      "Proportion of diabetes-negative patients correctly identified.",
+                    ],
+                  ].map(([label, value, note]) => (
+                    <div
+                      key={label}
+                      className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
+                    >
+                      <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                        {label}
+                      </p>
+                      <p className="mt-2 text-3xl font-black text-blue-700">
+                        {value}
+                      </p>
+                      <p className="mt-3 text-sm leading-6 text-slate-600">
+                        {note}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <figure className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                  <img
+                    src={withBasePath(
+                      "/ml-biostatistics/figures/module-1/lesson-1-1-predicted-risk-distribution.png"
+                    )}
+                    alt="Predicted diabetes risk distribution"
+                    className="w-full rounded-2xl border border-slate-200 bg-white"
+                  />
+                  <figcaption className="mt-4 text-sm leading-6 text-slate-600">
+                    Positive cases tend to have higher predicted risks, but the
+                    two groups overlap. This is why prediction is probabilistic,
+                    not certain.
+                  </figcaption>
+                </figure>
+              </div>
             </div>
           </section>
         )}
@@ -589,17 +951,17 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
         {activeTab === "Interactive Lab" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
             <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
-              Interactive lab
+              Advanced interactive lab
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              Think before fitting the model
+              Explore prediction, threshold behaviour and model interpretation
             </h2>
 
             <div className="mt-8 grid gap-5 lg:grid-cols-2">
               <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
                 <h3 className="text-2xl font-black text-slate-950">
-                  Is this a prediction, explanation or causal question?
+                  Lab 1: classify the scientific question
                 </h3>
 
                 <p className="mt-3 text-base leading-7 text-slate-700">
@@ -639,43 +1001,270 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
 
               <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
                 <h3 className="text-2xl font-black text-slate-950">
-                  Threshold thinking
+                  Lab 2: choose a patient and inspect risk
                 </h3>
 
                 <p className="mt-3 text-base leading-7 text-slate-700">
-                  A threshold turns predicted probabilities into predicted
-                  classes. Move the slider and think about clinical behaviour.
+                  Select a patient from the toy risk table. The values are
+                  simplified for teaching, but the logic matches the real
+                  prediction workflow.
                 </p>
 
-                <label className="mt-5 block text-sm font-black uppercase tracking-[0.18em] text-slate-600">
-                  Threshold: {threshold.toFixed(2)}
-                </label>
+                <div className="mt-5 grid grid-cols-4 gap-2">
+                  {toyPatients.map((patient) => (
+                    <button
+                      key={patient.id}
+                      onClick={() => setSelectedPatient(patient.id)}
+                      className={`rounded-2xl border px-4 py-3 text-sm font-black transition ${
+                        selectedPatient === patient.id
+                          ? "border-slate-950 bg-slate-950 text-white"
+                          : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50"
+                      }`}
+                    >
+                      {patient.id}
+                    </button>
+                  ))}
+                </div>
 
-                <input
-                  type="range"
-                  min={0.2}
-                  max={0.8}
-                  step={0.05}
-                  value={threshold}
-                  onChange={(event) => setThreshold(Number(event.target.value))}
-                  className="mt-4 w-full"
-                />
+                <div className="mt-5 rounded-2xl bg-white p-4">
+                  <div className="grid gap-3 sm:grid-cols-4">
+                    {[
+                      ["Glucose", selectedPatientData.glucose],
+                      ["BMI/mass", selectedPatientData.mass],
+                      ["Age", selectedPatientData.age],
+                      ["Risk", selectedPatientData.risk.toFixed(2)],
+                    ].map(([label, value]) => (
+                      <div key={label}>
+                        <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                          {label}
+                        </p>
+                        <p className="mt-1 text-lg font-black text-slate-950">
+                          {value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
 
-                <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
-                  {thresholdComment}
+                  <div className="mt-4 h-4 overflow-hidden rounded-full bg-slate-100">
+                    <div
+                      className="h-full rounded-full bg-blue-600"
+                      style={{ width: `${selectedPatientData.risk * 100}%` }}
+                    />
+                  </div>
+
+                  <p className="mt-4 text-sm leading-6 text-slate-600">
+                    At threshold {threshold.toFixed(2)}, this patient is
+                    predicted as{" "}
+                    <strong>
+                      {selectedPatientData.risk >= threshold
+                        ? "positive"
+                        : "negative"}
+                    </strong>
+                    .
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 rounded-3xl bg-slate-950 p-6 text-white">
-              <h3 className="text-2xl font-black">Read the figure</h3>
-              <p className="mt-3 text-base leading-7 text-slate-300">
-                In the predicted-risk distribution, the positive and negative
-                groups overlap. This means the model separates the groups
-                imperfectly. Some negative patients receive high predicted risks,
-                and some positive patients receive low predicted risks. This is
-                why medical ML requires uncertainty-aware interpretation.
+            <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <h3 className="text-2xl font-black text-slate-950">
+                Lab 3: threshold slider with live confusion matrix
+              </h3>
+
+              <p className="mt-3 max-w-4xl text-base leading-7 text-slate-700">
+                Move the threshold. Watch how the same predicted risks produce
+                different classifications, different errors and different
+                clinical behaviour.
               </p>
+
+              <label className="mt-6 block text-sm font-black uppercase tracking-[0.18em] text-slate-600">
+                Threshold: {threshold.toFixed(2)}
+              </label>
+
+              <input
+                type="range"
+                min={0.2}
+                max={0.8}
+                step={0.05}
+                value={threshold}
+                onChange={(event) => setThreshold(Number(event.target.value))}
+                className="mt-4 w-full"
+              />
+
+              <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
+                {thresholdComment}
+              </div>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                {[
+                  ["Accuracy", toyMetrics.accuracy.toFixed(3)],
+                  ["Sensitivity", toyMetrics.sensitivity.toFixed(3)],
+                  ["Specificity", toyMetrics.specificity.toFixed(3)],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="rounded-3xl border border-slate-200 bg-white p-5"
+                  >
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                      {label}
+                    </p>
+                    <p className="mt-2 text-3xl font-black text-blue-700">
+                      {value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 overflow-x-auto rounded-3xl border border-slate-200">
+                <table className="w-full min-w-[620px] border-collapse text-center text-sm">
+                  <thead className="bg-slate-950 text-white">
+                    <tr>
+                      <th className="p-4"></th>
+                      <th className="p-4">Predicted negative</th>
+                      <th className="p-4">Predicted positive</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-t border-slate-200">
+                      <th className="bg-white p-4 text-left font-black">
+                        Observed negative
+                      </th>
+                      <td className="bg-emerald-50 p-4 text-2xl font-black text-emerald-700">
+                        {toyMetrics.tn}
+                      </td>
+                      <td className="bg-rose-50 p-4 text-2xl font-black text-rose-700">
+                        {toyMetrics.fp}
+                      </td>
+                    </tr>
+                    <tr className="border-t border-slate-200">
+                      <th className="bg-white p-4 text-left font-black">
+                        Observed positive
+                      </th>
+                      <td className="bg-rose-50 p-4 text-2xl font-black text-rose-700">
+                        {toyMetrics.fn}
+                      </td>
+                      <td className="bg-emerald-50 p-4 text-2xl font-black text-emerald-700">
+                        {toyMetrics.tp}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-6 overflow-x-auto rounded-3xl border border-slate-200">
+                <table className="w-full min-w-[840px] border-collapse text-left text-sm">
+                  <thead className="bg-slate-950 text-white">
+                    <tr>
+                      <th className="p-4">Patient</th>
+                      <th className="p-4">Glucose</th>
+                      <th className="p-4">BMI/mass</th>
+                      <th className="p-4">Age</th>
+                      <th className="p-4">Predicted risk</th>
+                      <th className="p-4">Observed</th>
+                      <th className="p-4">Predicted</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {toyMetrics.predictions.map((patient) => (
+                      <tr key={patient.id} className="border-t border-slate-200">
+                        <td className="p-4 font-black text-slate-950">
+                          {patient.id}
+                        </td>
+                        <td className="p-4 text-slate-600">
+                          {patient.glucose}
+                        </td>
+                        <td className="p-4 text-slate-600">{patient.mass}</td>
+                        <td className="p-4 text-slate-600">{patient.age}</td>
+                        <td className="p-4 text-slate-600">
+                          {patient.risk.toFixed(2)}
+                        </td>
+                        <td className="p-4 text-slate-600">
+                          {patient.observed === 1 ? "Positive" : "Negative"}
+                        </td>
+                        <td
+                          className={`p-4 font-black ${
+                            patient.predicted === patient.observed
+                              ? "text-emerald-700"
+                              : "text-rose-700"
+                          }`}
+                        >
+                          {patient.predicted === 1 ? "Positive" : "Negative"}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 4: simple risk plot
+                </h3>
+
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Each bar is a predicted risk. The vertical threshold line is
+                  represented by the slider value. Patients above the threshold
+                  are predicted positive.
+                </p>
+
+                <div className="mt-6 space-y-3">
+                  {toyPatients.map((patient) => (
+                    <div key={patient.id} className="grid grid-cols-[2rem_1fr_4rem] gap-3">
+                      <p className="font-black text-slate-950">{patient.id}</p>
+                      <div className="h-6 overflow-hidden rounded-full bg-white">
+                        <div
+                          className={`h-full rounded-full ${
+                            patient.risk >= threshold
+                              ? "bg-blue-600"
+                              : "bg-slate-300"
+                          }`}
+                          style={{ width: `${patient.risk * 100}%` }}
+                        />
+                      </div>
+                      <p className="text-right font-mono text-sm text-slate-600">
+                        {patient.risk.toFixed(2)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 5: leakage and causal warning
+                </h3>
+
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Choose the scenario and decide whether it is a valid
+                  prediction setup.
+                </p>
+
+                <div className="mt-5 grid gap-3">
+                  {[
+                    ["valid", "Use baseline glucose, BMI/mass and age"],
+                    ["leakage", "Use a future diagnosis code as a predictor"],
+                    ["causal", "Claim that changing BMI causes diabetes change"],
+                  ].map(([value, label]) => (
+                    <button
+                      key={value}
+                      onClick={() => setScenarioChoice(value)}
+                      className={`rounded-2xl border px-4 py-3 text-left text-sm font-black transition ${
+                        scenarioChoice === value
+                          ? "border-slate-950 bg-slate-950 text-white"
+                          : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
+                  {scenarioFeedback}
+                </div>
+              </div>
             </div>
           </section>
         )}
@@ -692,8 +1281,8 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
 
             <p className="mt-4 max-w-4xl text-base leading-7 text-slate-600">
               This browser lab loads the shared diabetes CSV, fits the first
-              simple prediction model and prints the model output. The full local
-              script also saves the figures used in this lesson.
+              simple prediction model and prints the model output. The full
+              local script also saves the figures used in this lesson.
             </p>
 
             <WebRCodeRunner />
@@ -711,8 +1300,8 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
                 </p>
 
                 <p>
-                  The group summaries compare mean glucose, BMI and age between
-                  diabetes-negative and diabetes-positive groups. These
+                  The group summaries compare mean glucose, BMI/mass and age
+                  between diabetes-negative and diabetes-positive groups. These
                   differences suggest predictive signal.
                 </p>
 
@@ -865,8 +1454,9 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
           </h2>
 
           <p className="mt-5 max-w-4xl text-base leading-7 text-slate-300">
-            The next lesson explains why a model can predict well without proving
-            cause, and why causal language must be used carefully in medical ML.
+            The next lesson explains why a model can predict well without
+            proving cause, and why causal language must be used carefully in
+            medical ML.
           </p>
 
           <a

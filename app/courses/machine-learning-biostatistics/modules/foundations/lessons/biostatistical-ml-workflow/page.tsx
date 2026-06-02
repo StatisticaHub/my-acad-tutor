@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import type { ReactNode } from "react";
 
 const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
@@ -19,19 +20,681 @@ async function getWebR() {
 
   const { WebR } = await import("webr");
   const webR = new WebR();
-  await webR.init();
 
+  await webR.init();
   cachedWebR = webR;
+
   return webR;
 }
 
 const tabs = [
-  { id: "lecture", label: "Lecture" },
-  { id: "notes", label: "Detailed notes" },
-  { id: "interactive", label: "Interactive lab" },
-  { id: "coding", label: "R coding lab" },
-  { id: "report", label: "Report" },
-  { id: "quiz", label: "Quiz" },
+  "Lecture",
+  "Detailed Notes",
+  "Interactive Lab",
+  "R Coding Lab",
+  "Report",
+  "Quiz",
+];
+
+const browserRCode = `# Lesson 1.5 browser R lab
+# Biostatistical machine learning workflow
+
+cat("Lesson 1.5: Biostatistical machine learning workflow\\n")
+cat("------------------------------------------------------\\n\\n")
+
+# The website loads diabetes_data from the shared course CSV.
+# This lab brings together the full Module 1 workflow:
+# question definition, data inspection, predictor timing, train/test split,
+# model fitting, validation, threshold analysis and reporting.
+
+cat("STEP 1: Define the clinical prediction question\\n")
+cat("Question: Can routinely measured clinical characteristics predict diabetes status?\\n")
+cat("Target population: Patients with routinely measured diabetes-related clinical variables.\\n")
+cat("Prediction time: When candidate predictors are available, before final interpretation.\\n\\n")
+
+cat("STEP 2: Inspect the dataset\\n")
+cat("Dataset dimensions:\\n")
+print(dim(diabetes_data))
+
+cat("\\nVariable names:\\n")
+print(names(diabetes_data))
+
+cat("\\nOutcome distribution:\\n")
+print(table(diabetes_data$diabetes))
+
+cat("\\nOutcome percentages:\\n")
+print(round(100 * prop.table(table(diabetes_data$diabetes)), 1))
+
+cat("\\nMean predictors by diabetes status:\\n")
+print(
+  aggregate(
+    cbind(glucose, mass, age, pressure) ~ diabetes,
+    data = diabetes_data,
+    FUN = mean
+  )
+)
+
+cat("\\nSTEP 3: Predictor timing check\\n")
+predictor_timing <- data.frame(
+  predictor = c("pregnant", "glucose", "pressure", "triceps", "insulin", "mass", "pedigree", "age"),
+  available_at_prediction_time = c(TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
+  role = c(
+    "routine/history variable",
+    "clinical measurement",
+    "clinical measurement",
+    "clinical measurement",
+    "clinical measurement",
+    "clinical measurement",
+    "family/genetic risk proxy",
+    "demographic variable"
+  )
+)
+
+print(predictor_timing)
+
+cat("\\nInterpretation:\\n")
+cat("A predictor should only be used if it is available at the real prediction time.\\n")
+cat("Future diagnosis codes, post-outcome treatment variables and outcome-derived variables should not be used.\\n\\n")
+
+cat("STEP 4: Create a train/test split\\n")
+set.seed(2026)
+
+train_id <- sample(
+  seq_len(nrow(diabetes_data)),
+  size = floor(0.7 * nrow(diabetes_data))
+)
+
+train_data <- diabetes_data[train_id, ]
+test_data <- diabetes_data[-train_id, ]
+
+cat("Training rows:", nrow(train_data), "\\n")
+cat("Test rows:", nrow(test_data), "\\n")
+
+cat("\\nTraining outcome distribution:\\n")
+print(table(train_data$diabetes))
+
+cat("\\nTest outcome distribution:\\n")
+print(table(test_data$diabetes))
+
+cat("\\nSTEP 5: Fit a logistic prediction model\\n")
+workflow_model <- glm(
+  diabetes_binary ~ pregnant + glucose + pressure + triceps +
+    insulin + mass + pedigree + age,
+  data = train_data,
+  family = binomial
+)
+
+cat("Model formula:\\n")
+print(formula(workflow_model))
+
+cat("\\nModel coefficients:\\n")
+print(round(coef(workflow_model), 4))
+
+cat("\\nOdds ratios for model associations:\\n")
+print(round(exp(coef(workflow_model)), 3))
+
+cat("\\nImportant reminder:\\n")
+cat("These coefficients describe conditional associations in the fitted model.\\n")
+cat("They are not automatically causal effects.\\n\\n")
+
+cat("STEP 6: Predict risk in unseen test data\\n")
+test_data$predicted_risk <- predict(
+  workflow_model,
+  newdata = test_data,
+  type = "response"
+)
+
+cat("Predicted risk summary in the test data:\\n")
+print(summary(test_data$predicted_risk))
+
+cat("\\nFirst six test predictions:\\n")
+print(
+  head(
+    test_data[, c("diabetes", "diabetes_binary", "predicted_risk")]
+  )
+)
+
+safe_cell <- function(tab, observed, predicted) {
+  if (observed %in% rownames(tab) && predicted %in% colnames(tab)) {
+    return(tab[observed, predicted])
+  }
+  return(0)
+}
+
+classification_metrics <- function(observed, risk, threshold = 0.5) {
+  predicted <- ifelse(risk >= threshold, 1, 0)
+
+  tab <- table(
+    Observed = factor(observed, levels = c(0, 1)),
+    Predicted = factor(predicted, levels = c(0, 1))
+  )
+
+  tn <- safe_cell(tab, "0", "0")
+  fp <- safe_cell(tab, "0", "1")
+  fn <- safe_cell(tab, "1", "0")
+  tp <- safe_cell(tab, "1", "1")
+
+  accuracy <- (tp + tn) / sum(tab)
+  sensitivity <- ifelse(tp + fn == 0, NA, tp / (tp + fn))
+  specificity <- ifelse(tn + fp == 0, NA, tn / (tn + fp))
+  ppv <- ifelse(tp + fp == 0, NA, tp / (tp + fp))
+  npv <- ifelse(tn + fn == 0, NA, tn / (tn + fn))
+
+  list(
+    confusion_matrix = tab,
+    accuracy = accuracy,
+    sensitivity = sensitivity,
+    specificity = specificity,
+    ppv = ppv,
+    npv = npv,
+    tp = tp,
+    fp = fp,
+    tn = tn,
+    fn = fn
+  )
+}
+
+simple_auc <- function(observed, risk) {
+  positive_risk <- risk[observed == 1]
+  negative_risk <- risk[observed == 0]
+
+  if (length(positive_risk) == 0 || length(negative_risk) == 0) {
+    return(NA)
+  }
+
+  comparisons <- outer(positive_risk, negative_risk, "-")
+  mean(comparisons > 0) + 0.5 * mean(comparisons == 0)
+}
+
+brier_score <- function(observed, risk) {
+  mean((observed - risk)^2)
+}
+
+cat("\\nSTEP 7: Evaluate model discrimination and probability error\\n")
+test_auc <- simple_auc(
+  observed = test_data$diabetes_binary,
+  risk = test_data$predicted_risk
+)
+
+test_brier <- brier_score(
+  observed = test_data$diabetes_binary,
+  risk = test_data$predicted_risk
+)
+
+cat("Test AUC:", round(test_auc, 3), "\\n")
+cat("Test Brier score:", round(test_brier, 3), "\\n")
+
+cat("\\nSTEP 8: Evaluate threshold 0.50\\n")
+metrics_050 <- classification_metrics(
+  observed = test_data$diabetes_binary,
+  risk = test_data$predicted_risk,
+  threshold = 0.5
+)
+
+cat("Confusion matrix at threshold 0.50:\\n")
+print(metrics_050$confusion_matrix)
+
+cat("\\nAccuracy:", round(metrics_050$accuracy, 3), "\\n")
+cat("Sensitivity:", round(metrics_050$sensitivity, 3), "\\n")
+cat("Specificity:", round(metrics_050$specificity, 3), "\\n")
+cat("PPV:", round(metrics_050$ppv, 3), "\\n")
+cat("NPV:", round(metrics_050$npv, 3), "\\n")
+
+cat("\\nSTEP 9: Threshold trade-off table\\n")
+thresholds <- seq(0.2, 0.7, by = 0.1)
+
+threshold_table <- data.frame(
+  threshold = thresholds,
+  accuracy = NA,
+  sensitivity = NA,
+  specificity = NA,
+  ppv = NA,
+  npv = NA,
+  true_positive = NA,
+  false_positive = NA,
+  true_negative = NA,
+  false_negative = NA
+)
+
+for (i in seq_along(thresholds)) {
+  threshold <- thresholds[i]
+
+  current_metrics <- classification_metrics(
+    observed = test_data$diabetes_binary,
+    risk = test_data$predicted_risk,
+    threshold = threshold
+  )
+
+  threshold_table$accuracy[i] <- current_metrics$accuracy
+  threshold_table$sensitivity[i] <- current_metrics$sensitivity
+  threshold_table$specificity[i] <- current_metrics$specificity
+  threshold_table$ppv[i] <- current_metrics$ppv
+  threshold_table$npv[i] <- current_metrics$npv
+  threshold_table$true_positive[i] <- current_metrics$tp
+  threshold_table$false_positive[i] <- current_metrics$fp
+  threshold_table$true_negative[i] <- current_metrics$tn
+  threshold_table$false_negative[i] <- current_metrics$fn
+}
+
+print(round(threshold_table, 3))
+
+cat("\\nSTEP 10: Reporting summary\\n")
+reporting_summary <- data.frame(
+  item = c(
+    "Clinical question",
+    "Target population",
+    "Outcome",
+    "Prediction time",
+    "Predictors",
+    "Training rows",
+    "Test rows",
+    "Model",
+    "AUC",
+    "Brier score",
+    "Threshold 0.50 accuracy",
+    "Threshold 0.50 sensitivity",
+    "Threshold 0.50 specificity",
+    "Main limitation"
+  ),
+  value = c(
+    "Can routine clinical characteristics predict diabetes status?",
+    "Patients with diabetes-related routine clinical characteristics",
+    "Diabetes status",
+    "When candidate predictors are available",
+    "pregnant, glucose, pressure, triceps, insulin, mass, pedigree, age",
+    nrow(train_data),
+    nrow(test_data),
+    "Logistic regression",
+    round(test_auc, 3),
+    round(test_brier, 3),
+    round(metrics_050$accuracy, 3),
+    round(metrics_050$sensitivity, 3),
+    round(metrics_050$specificity, 3),
+    "Internal train/test split only; external validation would be needed"
+  )
+)
+
+print(reporting_summary)
+
+cat("\\nFinal interpretation:\\n")
+cat("A responsible ML project is a workflow, not only a fitted model.\\n")
+cat("The workflow begins with a clinical question and prediction time.\\n")
+cat("It checks predictors for timing and leakage.\\n")
+cat("It fits the model on training data and evaluates it on unseen test data.\\n")
+cat("It studies thresholds because clinical decisions depend on false positives and false negatives.\\n")
+cat("It reports limitations honestly, especially the need for external validation.\\n")`;
+
+function Initials({ children }: { children: string }) {
+  return (
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-950 text-xs font-black text-white">
+      {children}
+    </div>
+  );
+}
+
+function DialogueLine({
+  initials,
+  name,
+  children,
+  tone = "neutral",
+}: {
+  initials: string;
+  name: string;
+  children: ReactNode;
+  tone?: "neutral" | "blue" | "green" | "rose" | "amber";
+}) {
+  const toneClass =
+    tone === "blue"
+      ? "bg-blue-50"
+      : tone === "green"
+      ? "bg-emerald-50"
+      : tone === "rose"
+      ? "bg-rose-50"
+      : tone === "amber"
+      ? "bg-amber-50"
+      : "bg-white";
+
+  return (
+    <div
+      className={`flex gap-4 rounded-3xl border border-slate-200 p-5 ${toneClass}`}
+    >
+      <Initials>{initials}</Initials>
+      <div>
+        <p className="text-sm font-black text-slate-950">{name}</p>
+        <div className="mt-2 text-base leading-7 text-slate-700">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+function TopicCard({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <article className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+      <h3 className="text-lg font-black text-slate-950">{title}</h3>
+      <div className="mt-3 text-sm leading-7 text-slate-600">{children}</div>
+    </article>
+  );
+}
+
+function FormulaBox({ children }: { children: ReactNode }) {
+  return (
+    <div className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+      <div className="font-mono text-sm leading-7 text-slate-700">{children}</div>
+    </div>
+  );
+}
+
+function WebRCodeRunner() {
+  const [code, setCode] = useState(browserRCode);
+  const [output, setOutput] = useState(
+    "Click “Run R code”. The first run may take longer because R loads in the browser."
+  );
+  const [running, setRunning] = useState(false);
+
+  async function runCode() {
+    setRunning(true);
+    setOutput("Loading shared diabetes data and starting WebR...");
+
+    try {
+      const dataUrl = withBasePath(
+        "/ml-biostatistics/data/shared-diabetes-prediction-data.csv"
+      );
+
+      const csvResponse = await fetch(dataUrl);
+
+      if (!csvResponse.ok) {
+        throw new Error(
+          "Could not load shared diabetes CSV. Check that public/ml-biostatistics/data/shared-diabetes-prediction-data.csv exists."
+        );
+      }
+
+      const csvText = await csvResponse.text();
+      const webR = await getWebR();
+
+      const wrappedCode = `
+diabetes_csv_text <- ${JSON.stringify(csvText)}
+diabetes_data <- read.csv(text = diabetes_csv_text)
+
+paste(capture.output({
+${code}
+}), collapse = "\\n")
+`;
+
+      const result = await webR.evalR(wrappedCode);
+      const jsResult = await result.toJs();
+
+      const value =
+        jsResult?.values?.[0] ?? jsResult?.value ?? String(jsResult);
+
+      setOutput(String(value));
+    } catch (error) {
+      setOutput(
+        error instanceof Error
+          ? `Error: ${error.message}`
+          : "An unknown error occurred while running R."
+      );
+    } finally {
+      setRunning(false);
+    }
+  }
+
+  return (
+    <div className="mt-8 grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
+      <div className="overflow-hidden rounded-[1.75rem] border border-slate-800 bg-slate-950 shadow-sm">
+        <div className="flex flex-col gap-3 border-b border-white/10 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-300">
+              Editable R script
+            </p>
+            <p className="mt-1 text-xs leading-5 text-slate-400">
+              Runs in the browser using WebR and the shared diabetes CSV.
+            </p>
+          </div>
+
+          <button
+            onClick={runCode}
+            disabled={running}
+            className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-2.5 text-xs font-black text-slate-950 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          >
+            {running ? "Running R..." : "Run R code"}
+          </button>
+        </div>
+
+        <textarea
+          value={code}
+          onChange={(event) => setCode(event.target.value)}
+          spellCheck={false}
+          className="min-h-[780px] w-full resize-y bg-slate-950 p-5 font-mono text-[0.84rem] leading-6 text-slate-100 outline-none selection:bg-blue-400/30"
+        />
+      </div>
+
+      <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <div className="border-b border-slate-200 bg-slate-50 px-4 py-4">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+            R console output
+          </p>
+          <p className="mt-1 text-xs leading-5 text-slate-500">
+            Output and errors appear here.
+          </p>
+        </div>
+
+        <pre className="min-h-[780px] overflow-x-auto whitespace-pre-wrap bg-white p-5 font-mono text-[0.84rem] leading-6 text-slate-800">
+          {output}
+        </pre>
+      </div>
+    </div>
+  );
+}
+
+const learningTopics = [
+  {
+    title: "Clinical question",
+    body: "A workflow begins by defining the clinical prediction question, not by choosing an algorithm.",
+  },
+  {
+    title: "Target population",
+    body: "The model should be built for a clearly described group of patients or samples.",
+  },
+  {
+    title: "Prediction time",
+    body: "The time at which the prediction is made determines which predictors are valid.",
+  },
+  {
+    title: "Predictor timing",
+    body: "Variables must be available before or at the prediction time to avoid leakage.",
+  },
+  {
+    title: "Validation",
+    body: "Performance must be evaluated on data not used for model fitting.",
+  },
+  {
+    title: "Clinical threshold",
+    body: "A risk threshold turns probabilities into decisions and changes false positives and false negatives.",
+  },
+  {
+    title: "Reporting",
+    body: "A responsible report explains model aim, data, validation, metrics, thresholds and limitations.",
+  },
+  {
+    title: "Limitations",
+    body: "Internal validation is not enough for deployment; external validation and clinical evaluation are needed.",
+  },
+];
+
+const workflowSteps = [
+  {
+    step: "1",
+    title: "Define the clinical question",
+    question: "What decision or judgement should the model support?",
+    example:
+      "Can routine clinical characteristics predict diabetes status for patients with diabetes-related measurements?",
+    danger: "Starting with an algorithm before knowing the clinical aim.",
+  },
+  {
+    step: "2",
+    title: "Define the target population",
+    question: "Who will the model be used for?",
+    example:
+      "Patients with routine measurements such as glucose, BMI/mass, age and pressure.",
+    danger: "Training on one population and using the model in a very different one without validation.",
+  },
+  {
+    step: "3",
+    title: "Define the outcome",
+    question: "What exactly is being predicted?",
+    example:
+      "Diabetes-positive versus diabetes-negative status.",
+    danger: "Using a vague or inconsistently measured outcome.",
+  },
+  {
+    step: "4",
+    title: "Define the prediction time",
+    question: "When is the model used?",
+    example:
+      "When candidate predictors are available before outcome interpretation.",
+    danger: "Letting future information leak into the predictor set.",
+  },
+  {
+    step: "5",
+    title: "Select valid predictors",
+    question: "Which variables are available at prediction time?",
+    example:
+      "Pregnant, glucose, pressure, triceps, insulin, mass, pedigree and age.",
+    danger: "Using post-diagnosis, post-treatment or outcome-derived variables.",
+  },
+  {
+    step: "6",
+    title: "Split or resample data",
+    question: "How will unseen-patient performance be estimated?",
+    example:
+      "537 training rows and 231 test rows.",
+    danger: "Reporting training performance as if it were future performance.",
+  },
+  {
+    step: "7",
+    title: "Fit the model",
+    question: "Which prediction rule is estimated from training data?",
+    example:
+      "Logistic regression for binary diabetes status.",
+    danger: "Choosing a complex model without enough validation.",
+  },
+  {
+    step: "8",
+    title: "Validate performance",
+    question: "How well does the model work on unseen observations?",
+    example:
+      "AUC 0.837, Brier score 0.149, threshold 0.50 accuracy 0.792.",
+    danger: "Using accuracy alone or ignoring calibration and threshold behaviour.",
+  },
+  {
+    step: "9",
+    title: "Choose and justify threshold",
+    question: "How should predicted risk become a clinical class or action?",
+    example:
+      "Threshold 0.50 gives sensitivity 0.625 and specificity 0.868.",
+    danger: "Treating 0.50 as automatic without considering false negatives and false positives.",
+  },
+  {
+    step: "10",
+    title: "Report limitations",
+    question: "What should readers not overclaim?",
+    example:
+      "Internal train/test split only; external validation would be needed.",
+    danger: "Writing as if the model is deployment-ready after one internal split.",
+  },
+];
+
+const thresholdRows = [
+  {
+    threshold: 0.2,
+    accuracy: 0.662,
+    sensitivity: 0.958,
+    specificity: 0.528,
+    ppv: 0.479,
+    npv: 0.966,
+    tp: 69,
+    fp: 75,
+    tn: 84,
+    fn: 3,
+    message:
+      "Very sensitive. Detects almost all diabetes-positive patients, but creates many false positives.",
+  },
+  {
+    threshold: 0.3,
+    accuracy: 0.701,
+    sensitivity: 0.819,
+    specificity: 0.648,
+    ppv: 0.513,
+    npv: 0.888,
+    tp: 59,
+    fp: 56,
+    tn: 103,
+    fn: 13,
+    message:
+      "Still screening-focused. Useful if missing high-risk patients is very costly.",
+  },
+  {
+    threshold: 0.4,
+    accuracy: 0.736,
+    sensitivity: 0.681,
+    specificity: 0.761,
+    ppv: 0.563,
+    npv: 0.84,
+    tp: 49,
+    fp: 38,
+    tn: 121,
+    fn: 23,
+    message:
+      "More balanced. Sensitivity has fallen, but false positives are lower than at 0.20 or 0.30.",
+  },
+  {
+    threshold: 0.5,
+    accuracy: 0.792,
+    sensitivity: 0.625,
+    specificity: 0.868,
+    ppv: 0.682,
+    npv: 0.836,
+    tp: 45,
+    fp: 21,
+    tn: 138,
+    fn: 27,
+    message:
+      "Conventional threshold. Good specificity, but some diabetes-positive patients are missed.",
+  },
+  {
+    threshold: 0.6,
+    accuracy: 0.805,
+    sensitivity: 0.542,
+    specificity: 0.925,
+    ppv: 0.765,
+    npv: 0.817,
+    tp: 39,
+    fp: 12,
+    tn: 147,
+    fn: 33,
+    message:
+      "More conservative. Fewer false positives, but more false negatives.",
+  },
+  {
+    threshold: 0.7,
+    accuracy: 0.779,
+    sensitivity: 0.403,
+    specificity: 0.95,
+    ppv: 0.784,
+    npv: 0.778,
+    tp: 29,
+    fp: 8,
+    tn: 151,
+    fn: 43,
+    message:
+      "Very conservative. High specificity, but many diabetes-positive patients are missed.",
+  },
 ];
 
 const figures = [
@@ -40,288 +703,269 @@ const figures = [
     src: "/ml-biostatistics/figures/module-1/lesson-1-5-workflow-roadmap.png",
     alt: "Workflow roadmap from clinical question to reporting.",
     interpretation:
-      "A responsible ML project starts before model fitting. The workflow begins with the clinical question, target population, outcome and prediction time, then moves to modelling, validation, threshold choice and reporting.",
+      "A responsible ML project starts before model fitting. The workflow begins with the clinical question, target population, outcome and prediction time.",
   },
   {
     title: "Predicted diabetes risk in the test data",
     src: "/ml-biostatistics/figures/module-1/lesson-1-5-predicted-risk-distribution.png",
     alt: "Histogram of predicted diabetes risk in the test data by observed diabetes status.",
     interpretation:
-      "Predicted probabilities should be interpreted as risks, not diagnoses. A threshold is needed if the model will classify patients into risk groups.",
+      "Predicted probabilities are risk estimates, not diagnoses. A threshold is needed if risk must become a class or action.",
   },
   {
     title: "Threshold trade-off",
     src: "/ml-biostatistics/figures/module-1/lesson-1-5-threshold-tradeoff.png",
     alt: "Line plot showing sensitivity, specificity and accuracy across thresholds.",
     interpretation:
-      "Lower thresholds detect more diabetes-positive patients but create more false positives. Higher thresholds reduce false positives but miss more true positives.",
+      "Lower thresholds increase sensitivity and false positives. Higher thresholds increase specificity but miss more true positives.",
   },
   {
     title: "Predictor timing checklist",
     src: "/ml-biostatistics/figures/module-1/lesson-1-5-predictor-timing-checklist.png",
     alt: "Predictor timing checklist showing predictors available before prediction.",
     interpretation:
-      "Every predictor must be available at the true prediction time. If a variable is only known after diagnosis, treatment or follow-up, it can create leakage.",
+      "Every predictor must be checked against the true prediction time. This is one of the strongest safeguards against leakage.",
   },
   {
     title: "Reporting dashboard at threshold 0.50",
     src: "/ml-biostatistics/figures/module-1/lesson-1-5-reporting-dashboard.png",
     alt: "Bar chart of accuracy, AUC, sensitivity and specificity at threshold 0.50.",
     interpretation:
-      "A medical ML report should not rely on accuracy alone. Discrimination, threshold performance and calibration-related error all matter.",
+      "A medical ML report should not rely on accuracy alone. Discrimination, threshold performance and probability error all matter.",
   },
 ];
 
-const thresholdRows = [
+const reportItems = [
+  ["Clinical question", "Can routine clinical characteristics predict diabetes status?"],
+  ["Target population", "Patients with diabetes-related routine clinical measurements"],
+  ["Outcome", "Diabetes status"],
+  ["Prediction time", "When candidate predictors are available"],
+  ["Predictors", "pregnant, glucose, pressure, triceps, insulin, mass, pedigree, age"],
+  ["Training rows", "537"],
+  ["Test rows", "231"],
+  ["Model", "Logistic regression"],
+  ["AUC", "0.837"],
+  ["Brier score", "0.149"],
+  ["Threshold 0.50 accuracy", "0.792"],
+  ["Threshold 0.50 sensitivity", "0.625"],
+  ["Threshold 0.50 specificity", "0.868"],
+  ["Main limitation", "Internal train/test split only; external validation would be needed"],
+];
+
+const scenarioCards = [
   {
-    threshold: "0.20",
-    accuracy: "0.662",
-    sensitivity: "0.958",
-    specificity: "0.528",
-    ppv: "0.479",
-    npv: "0.966",
-    message:
-      "Very sensitive. Detects most diabetes-positive patients, but creates many false positives.",
+    id: "question",
+    label: "Unclear question",
+    scenario:
+      "A team says, “Let us use machine learning on diabetes data,” but does not define the patient group, outcome or prediction time.",
+    diagnosis: "Workflow problem",
+    action:
+      "Pause model fitting. Define the target population, outcome, prediction time and intended use before selecting algorithms.",
   },
   {
-    threshold: "0.30",
-    accuracy: "0.701",
-    sensitivity: "0.819",
-    specificity: "0.648",
-    ppv: "0.513",
-    npv: "0.888",
-    message:
-      "Still sensitive. Useful when missing high-risk patients is costly.",
+    id: "timing",
+    label: "Predictor timing problem",
+    scenario:
+      "A predictor is recorded only after confirmatory testing, but the model is supposed to be used before confirmatory testing.",
+    diagnosis: "Leakage risk",
+    action:
+      "Remove the predictor or redefine the prediction time. The model cannot use information unavailable at the real decision point.",
   },
   {
-    threshold: "0.40",
-    accuracy: "0.736",
-    sensitivity: "0.681",
-    specificity: "0.761",
-    ppv: "0.563",
-    npv: "0.840",
-    message:
-      "More balanced, but sensitivity has fallen compared with lower thresholds.",
+    id: "threshold",
+    label: "Threshold problem",
+    scenario:
+      "A model gives useful predicted risks, but the team uses threshold 0.50 automatically without considering false negatives.",
+    diagnosis: "Decision problem",
+    action:
+      "Study sensitivity, specificity, PPV and NPV across thresholds. Choose a threshold based on clinical consequences.",
   },
   {
-    threshold: "0.50",
-    accuracy: "0.792",
-    sensitivity: "0.625",
-    specificity: "0.868",
-    ppv: "0.682",
-    npv: "0.836",
-    message:
-      "Conventional threshold. Good specificity, but misses some diabetes-positive patients.",
+    id: "validation",
+    label: "Validation problem",
+    scenario:
+      "The model reports high training accuracy but no test-set, cross-validation or external validation performance.",
+    diagnosis: "Optimism risk",
+    action:
+      "Report unseen-data performance. Training performance alone is not enough for a medical prediction claim.",
   },
   {
-    threshold: "0.60",
-    accuracy: "0.805",
-    sensitivity: "0.542",
-    specificity: "0.925",
-    ppv: "0.765",
-    npv: "0.817",
-    message:
-      "More conservative. Fewer false positives, but more false negatives.",
-  },
-  {
-    threshold: "0.70",
-    accuracy: "0.779",
-    sensitivity: "0.403",
-    specificity: "0.950",
-    ppv: "0.784",
-    npv: "0.778",
-    message:
-      "Very conservative. High specificity, but many diabetes-positive patients are missed.",
+    id: "deployment",
+    label: "Deployment overclaim",
+    scenario:
+      "The model has one internal test split and the report concludes it is ready for clinical deployment.",
+    diagnosis: "Overclaim",
+    action:
+      "State that the model needs external validation, calibration assessment, clinical usefulness evaluation and implementation review.",
   },
 ];
 
-const rCode = `# Lesson 1.5 browser R lab
-# Biostatistical workflow for ML projects
-
-set.seed(2026)
-
-n <- 280
-
-glucose <- rnorm(n, mean = 120, sd = 28)
-mass <- rnorm(n, mean = 32, sd = 7)
-age <- rnorm(n, mean = 35, sd = 11)
-pressure <- rnorm(n, mean = 70, sd = 12)
-pedigree <- rgamma(n, shape = 2, rate = 4)
-
-linear_predictor <- -8 + 0.035 * glucose + 0.07 * mass + 0.025 * age + 0.5 * pedigree
-risk <- 1 / (1 + exp(-linear_predictor))
-
-diabetes_binary <- rbinom(n, size = 1, prob = risk)
-diabetes <- ifelse(diabetes_binary == 1, "pos", "neg")
-
-data <- data.frame(
-  glucose = glucose,
-  mass = mass,
-  age = age,
-  pressure = pressure,
-  pedigree = pedigree,
-  diabetes = diabetes,
-  diabetes_binary = diabetes_binary
-)
-
-cat("Browser R lab: Lesson 1.5\\n")
-cat("Biostatistical workflow for ML projects\\n")
-cat("------------------------------------------\\n\\n")
-
-cat("STEP 1: Define the prediction question\\n")
-cat("Can routine clinical measurements predict diabetes status?\\n\\n")
-
-cat("STEP 2: Inspect data\\n")
-cat("Rows:", nrow(data), "\\n")
-cat("Outcome table:\\n")
-print(table(data$diabetes))
-
-cat("\\nSTEP 3: Split data into training and test sets\\n")
-train_id <- sample(seq_len(nrow(data)), size = 0.7 * nrow(data))
-train_data <- data[train_id, ]
-test_data <- data[-train_id, ]
-
-cat("Training rows:", nrow(train_data), "\\n")
-cat("Test rows:", nrow(test_data), "\\n")
-
-cat("\\nSTEP 4: Fit prediction model\\n")
-model <- glm(
-  diabetes_binary ~ glucose + mass + age + pressure + pedigree,
-  data = train_data,
-  family = binomial
-)
-
-cat("Model fitted: logistic regression\\n")
-
-cat("\\nSTEP 5: Predict risk in test data\\n")
-test_data$predicted_risk <- predict(model, newdata = test_data, type = "response")
-
-cat("First six predicted risks:\\n")
-print(head(test_data[, c("diabetes", "diabetes_binary", "predicted_risk")]))
-
-cat("\\nSTEP 6: Evaluate threshold 0.50\\n")
-test_data$predicted_class <- ifelse(test_data$predicted_risk >= 0.5, 1, 0)
-
-cm <- table(
-  Observed = test_data$diabetes_binary,
-  Predicted = test_data$predicted_class
-)
-
-print(cm)
-
-accuracy <- mean(test_data$diabetes_binary == test_data$predicted_class)
-
-tn <- cm["0", "0"]
-fp <- cm["0", "1"]
-fn <- cm["1", "0"]
-tp <- cm["1", "1"]
-
-sensitivity <- tp / (tp + fn)
-specificity <- tn / (tn + fp)
-
-cat("\\nAccuracy:", round(accuracy, 3), "\\n")
-cat("Sensitivity:", round(sensitivity, 3), "\\n")
-cat("Specificity:", round(specificity, 3), "\\n")
-
-cat("\\nSTEP 7: Threshold trade-off\\n")
-
-thresholds <- c(0.3, 0.5, 0.7)
-
-for (threshold in thresholds) {
-  predicted_class <- ifelse(test_data$predicted_risk >= threshold, 1, 0)
-  cm_t <- table(
-    Observed = factor(test_data$diabetes_binary, levels = c(0, 1)),
-    Predicted = factor(predicted_class, levels = c(0, 1))
-  )
-
-  tn <- cm_t["0", "0"]
-  fp <- cm_t["0", "1"]
-  fn <- cm_t["1", "0"]
-  tp <- cm_t["1", "1"]
-
-  sens <- tp / (tp + fn)
-  spec <- tn / (tn + fp)
-  acc <- (tp + tn) / sum(cm_t)
-
-  cat("\\nThreshold:", threshold, "\\n")
-  cat("Accuracy:", round(acc, 3), "\\n")
-  cat("Sensitivity:", round(sens, 3), "\\n")
-  cat("Specificity:", round(spec, 3), "\\n")
-}
-
-cat("\\nFinal interpretation:\\n")
-cat("A responsible ML project is a workflow, not just a model.\\n")
-cat("We define the clinical question, check predictor timing, split data, fit the model, validate performance, study thresholds and report limitations.\\n")
-cat("The same predicted risk can lead to different classifications depending on the decision threshold.\\n")`;
+const finalChecklistItems = [
+  {
+    key: "question",
+    label: "Clinical prediction question is clearly defined",
+    explanation:
+      "The project states what is predicted, for whom, and why the prediction matters.",
+  },
+  {
+    key: "population",
+    label: "Target population is described",
+    explanation:
+      "The intended patient group is clear enough to judge whether validation data are relevant.",
+  },
+  {
+    key: "outcome",
+    label: "Outcome definition is precise",
+    explanation:
+      "The report explains how diabetes status is defined and measured.",
+  },
+  {
+    key: "predictionTime",
+    label: "Prediction time is stated",
+    explanation:
+      "The moment of prediction is known before selecting predictors.",
+  },
+  {
+    key: "timing",
+    label: "Predictor timing has been checked",
+    explanation:
+      "Predictors are available at or before prediction time.",
+  },
+  {
+    key: "split",
+    label: "Training and test data are separated",
+    explanation:
+      "The model is evaluated on observations not used for fitting.",
+  },
+  {
+    key: "threshold",
+    label: "Threshold trade-off is studied",
+    explanation:
+      "Sensitivity, specificity, PPV and NPV are compared across thresholds.",
+  },
+  {
+    key: "limitations",
+    label: "Limitations are reported",
+    explanation:
+      "The report does not hide the need for external validation or implementation evaluation.",
+  },
+];
 
 export default function BiostatisticalMLWorkflowPage() {
-  const [activeTab, setActiveTab] = useState("lecture");
-  const [isRunning, setIsRunning] = useState(false);
-  const [output, setOutput] = useState(
-    "Click “Run R code” to start the in-browser R lab."
-  );
+  const [activeTab, setActiveTab] = useState("Lecture");
+  const [selectedStep, setSelectedStep] = useState("1");
+  const [selectedThreshold, setSelectedThreshold] = useState(0.5);
+  const [selectedScenario, setSelectedScenario] = useState("question");
+  const [riskScore, setRiskScore] = useState(0.58);
+  const [falseNegativeCost, setFalseNegativeCost] = useState(8);
+  const [falsePositiveCost, setFalsePositiveCost] = useState(3);
+  const [checklist, setChecklist] = useState({
+    question: true,
+    population: true,
+    outcome: true,
+    predictionTime: true,
+    timing: false,
+    split: true,
+    threshold: false,
+    limitations: false,
+  });
 
-  async function runRCode() {
-    setIsRunning(true);
-    setOutput("Starting WebR. First run can take 20–60 seconds...");
+  const selectedStepData =
+    workflowSteps.find((item) => item.step === selectedStep) ?? workflowSteps[0];
 
-    try {
-      const webR = await getWebR();
+  const selectedThresholdData =
+    thresholdRows.find((item) => item.threshold === selectedThreshold) ??
+    thresholdRows[3];
 
-      const result = await webR.evalR(`
-        paste(
-          capture.output({
-            ${rCode}
-          }),
-          collapse = "\\n"
-        )
-      `);
+  const selectedScenarioData =
+    scenarioCards.find((item) => item.id === selectedScenario) ??
+    scenarioCards[0];
 
-      const jsResult = await result.toJs();
-      setOutput(String(jsResult.values[0]));
-    } catch (error) {
-      setOutput(
-        `Something went wrong while running R in the browser.\n\n${String(error)}`
-      );
-    } finally {
-      setIsRunning(false);
-    }
+  const expectedCost = useMemo(() => {
+    const fnCost = selectedThresholdData.fn * falseNegativeCost;
+    const fpCost = selectedThresholdData.fp * falsePositiveCost;
+    return {
+      fnCost,
+      fpCost,
+      totalCost: fnCost + fpCost,
+    };
+  }, [selectedThresholdData, falseNegativeCost, falsePositiveCost]);
+
+  const checklistScore = Object.values(checklist).filter(Boolean).length;
+
+  const patientDecision =
+    riskScore >= selectedThreshold
+      ? "Predicted positive / consider further assessment"
+      : "Predicted negative / lower priority for further assessment";
+
+  const thresholdStyle =
+    selectedThreshold < 0.35
+      ? "Screening-focused"
+      : selectedThreshold < 0.6
+      ? "Moderately balanced"
+      : "Conservative";
+
+  function toggleChecklist(key: keyof typeof checklist) {
+    setChecklist((current) => ({
+      ...current,
+      [key]: !current[key],
+    }));
   }
 
   return (
     <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-slate-950 md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
-        <a
-          href={withBasePath(
-            "/courses/machine-learning-biostatistics/modules/foundations"
-          )}
-          className="text-sm font-black text-blue-600 transition hover:text-blue-700"
-        >
-          ← Back to Module 1
-        </a>
+        <div className="flex items-center justify-between gap-4">
+          <a
+            href={withBasePath(
+              "/courses/machine-learning-biostatistics/modules/foundations"
+            )}
+            className="text-sm font-black text-blue-600 transition hover:text-blue-700"
+          >
+            ← Back to Module 1
+          </a>
 
-        <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
-            Module 1 · Lesson 1.5
-          </p>
+          <a
+            href={withBasePath("/courses/machine-learning-biostatistics")}
+            className="hidden rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-black text-slate-700 shadow-sm sm:inline-flex"
+          >
+            ML in Biostatistics
+          </a>
+        </div>
 
-          <h1 className="mt-5 max-w-5xl text-4xl font-black tracking-tight md:text-6xl">
-            Biostatistical workflow for ML projects
+        <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
+          <div className="flex flex-wrap gap-3">
+            <span className="rounded-full bg-blue-100 px-4 py-2 text-xs font-black text-blue-800">
+              Module 1
+            </span>
+            <span className="rounded-full bg-emerald-100 px-4 py-2 text-xs font-black text-emerald-800">
+              Lesson 1.5
+            </span>
+            <span className="rounded-full bg-amber-100 px-4 py-2 text-xs font-black text-amber-800">
+              Workflow
+            </span>
+            <span className="rounded-full bg-rose-100 px-4 py-2 text-xs font-black text-rose-800">
+              Reporting discipline
+            </span>
+          </div>
+
+          <h1 className="mt-7 max-w-5xl text-4xl font-black tracking-tight md:text-6xl">
+            Biostatistical workflow for machine learning projects
           </h1>
 
           <p className="mt-6 max-w-4xl text-base leading-8 text-slate-600 md:text-lg">
-            Bring the whole foundation module together into a responsible
-            medical machine learning workflow: define the question, check
-            predictors, split data, fit the model, validate performance, study
-            thresholds and report limitations honestly.
+            This final foundation lesson brings Module 1 together. A medical ML
+            project should move from clinical question to predictor timing,
+            validation, threshold judgement, interpretation and transparent
+            reporting — not simply from dataset to algorithm.
           </p>
 
           <div className="mt-8 grid gap-3 md:grid-cols-4">
             {[
-              ["Dataset", "768 patients"],
-              ["Training rows", "537"],
-              ["Test rows", "231"],
-              ["Module status", "Complete"],
+              ["Time", "80–100 min"],
+              ["Level", "Introductory → deeper"],
+              ["Focus", "Complete ML workflow"],
+              ["Coding", "R in browser"],
             ].map(([label, value]) => (
               <div
                 key={label}
@@ -338,28 +982,27 @@ export default function BiostatisticalMLWorkflowPage() {
           </div>
         </section>
 
-        <section className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-3 shadow-sm">
-          <div className="grid gap-2 md:grid-cols-6">
+        <section className="mt-8 border-y border-slate-200 py-4">
+          <div className="flex gap-3 overflow-x-auto pb-1">
             {tabs.map((tab) => (
               <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveTab(tab.id)}
-                className={`rounded-2xl px-4 py-3 text-sm font-black transition ${
-                  activeTab === tab.id
-                    ? "bg-slate-950 text-white"
-                    : "bg-slate-50 text-slate-700 hover:bg-slate-100"
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`shrink-0 rounded-full border px-6 py-3 text-sm font-black transition ${
+                  activeTab === tab
+                    ? "border-slate-950 bg-slate-950 text-white"
+                    : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-950"
                 }`}
               >
-                {tab.label}
+                {tab}
               </button>
             ))}
           </div>
         </section>
 
-        {activeTab === "lecture" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+        {activeTab === "Lecture" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
               Conversational lecture
             </p>
 
@@ -367,95 +1010,147 @@ export default function BiostatisticalMLWorkflowPage() {
               The team builds the full ML workflow
             </h2>
 
-            <p className="mt-4 text-base leading-8 text-slate-600">
-              Scene: Prof Stat has written the complete workflow on the board.
-              Curious Learner wants to start with the model. Dr Clinic wants to
-              begin with the decision. Leakage Monster is waiting near the
-              predictor list.
-            </p>
+            <div className="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
+                Topics being explained in this lecture
+              </p>
 
-            <div className="mt-8 space-y-5">
-              {[
-                {
-                  initials: "CL",
-                  name: "Curious Learner",
-                  text: "We have already fitted models, checked prediction, looked at learning types and studied leakage. Is Lesson 1.5 where we put it all together?",
-                },
-                {
-                  initials: "PS",
-                  name: "Prof Stat",
-                  text: "Exactly. A biostatistical ML project is not just choosing an algorithm. It is a workflow. The model is only one part of the process.",
-                },
-                {
-                  initials: "DC",
-                  name: "Dr Clinic",
-                  text: "In clinical work, we should not begin with ‘Which model should I use?’ We should begin with ‘What decision are we trying to support?’",
-                },
-                {
-                  initials: "PS",
-                  name: "Prof Stat",
-                  text: "Correct. First define the prediction question, target population, outcome, prediction time and candidate predictors. Only then does model fitting make sense.",
-                },
-                {
-                  initials: "LM",
-                  name: "Leakage Monster",
-                  text: "And remember me. If a predictor is only known after the outcome, after diagnosis or after follow-up, I can make your model look better than it really is.",
-                },
-                {
-                  initials: "CL",
-                  name: "Curious Learner",
-                  text: "So the workflow protects us from building a model that looks good but answers the wrong question?",
-                },
-                {
-                  initials: "PS",
-                  name: "Prof Stat",
-                  text: "Yes. The workflow forces us to ask whether the predictors are available, whether the model generalises, whether the threshold is clinically sensible and whether the report is honest.",
-                },
-                {
-                  initials: "DC",
-                  name: "Dr Clinic",
-                  text: "And even if AUC is good, we still need to ask what happens to patients. A low threshold may detect more high-risk patients, but it can also create more false positives.",
-                },
-                {
-                  initials: "PS",
-                  name: "Prof Stat",
-                  text: "That is the heart of medical ML: prediction, validation, threshold judgement, clinical usefulness and transparent reporting.",
-                },
-              ].map((line) => (
-                <div
-                  key={`${line.name}-${line.text}`}
-                  className="grid gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-5 md:grid-cols-[0.16fr_1fr]"
-                >
-                  <div>
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-sm font-black text-white">
-                      {line.initials}
-                    </div>
-                    <p className="mt-2 text-sm font-black text-slate-950">
-                      {line.name}
+              <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+                {learningTopics.map((topic) => (
+                  <div
+                    key={topic.title}
+                    className="rounded-2xl border border-slate-200 bg-white p-4"
+                  >
+                    <p className="font-black text-slate-950">{topic.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      {topic.body}
                     </p>
                   </div>
-                  <p className="text-base leading-8 text-slate-700">
-                    “{line.text}”
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 space-y-4">
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                We have learned what machine learning means in biostatistics,
+                how prediction differs from explanation and causation, the types
+                of learning, and why training and testing matter. Is this lesson
+                where we connect everything?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Exactly. Lesson 1.5 is the workflow lesson. It teaches that a
+                biostatistical ML project is not just a fitted model. It is a
+                chain of decisions from clinical question to reporting.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                In clinical work, I would not start by asking whether we should
+                use logistic regression, random forests or neural networks. I
+                would start by asking what decision the model should support.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Correct. The first question is clinical: who are the patients,
+                what outcome is predicted, when is the prediction made, and what
+                could happen after the prediction?
+              </DialogueLine>
+
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                So for our diabetes example, the question is whether routine
+                clinical characteristics can predict diabetes status?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Yes. Then we define the target population, the outcome, the
+                prediction time and the predictors. Only after that should we fit
+                a model.
+              </DialogueLine>
+
+              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
+                And this is where I wait. If someone forgets prediction time, I
+                can sneak in future diagnosis codes, post-treatment information
+                or variables created using the outcome.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                That would make the model look better than it would be in real
+                practice. A predictor must be available when the clinical
+                decision is made.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Exactly. Predictor timing is not a small technical detail. It is
+                one of the main differences between a useful prediction model and
+                an invalid one.
+              </DialogueLine>
+
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                After predictor timing, we split the data into training and test
+                sets?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Yes. Training data estimate the model. Test data estimate how
+                the model behaves on observations it has not seen. In our
+                teaching run, we use 537 training rows and 231 test rows.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                But the report should not only say accuracy. If the model misses
+                many diabetes-positive patients, that matters clinically.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Correct. We report AUC, Brier score, sensitivity, specificity,
+                PPV and NPV. We also study thresholds because different
+                thresholds create different clinical behaviour.
+              </DialogueLine>
+
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                At threshold 0.50, the model may have good specificity but lower
+                sensitivity. So it may be better at ruling out negatives than
+                detecting all positives?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                That is the correct style of interpretation. The model is not
+                just a number; it is a decision tool with consequences.
+              </DialogueLine>
+
+              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
+                And please remember, if performance looks magical, inspect the
+                workflow. A perfect model often means a broken design.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                So the final report should say what the model can support, what
+                it cannot support, and what validation is still needed.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Exactly. This is responsible biostatistical machine learning:
+                define, check, fit, validate, interpret, report and limit.
+              </DialogueLine>
             </div>
 
             <div className="mt-8 rounded-3xl bg-slate-950 p-6 text-white">
-              <h3 className="text-2xl font-black">Big idea</h3>
-              <p className="mt-4 max-w-4xl text-base leading-8 text-slate-300">
-                A responsible biostatistical ML project is a workflow, not just
-                a model. It begins with the clinical question and ends with
-                honest reporting of validation, thresholds, usefulness and
-                limitations.
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
+                Big idea
+              </p>
+              <p className="mt-3 text-xl font-black leading-8 md:text-2xl">
+                A medical ML model is only as trustworthy as the workflow that
+                produced it. The workflow must protect the clinical question,
+                predictor timing, validation, threshold choice and reporting
+                language.
               </p>
             </div>
           </section>
         )}
 
-        {activeTab === "notes" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+        {activeTab === "Detailed Notes" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
               Detailed notes
             </p>
 
@@ -463,392 +1158,1058 @@ export default function BiostatisticalMLWorkflowPage() {
               The workflow before, during and after model fitting
             </h2>
 
-            <div className="mt-6 max-w-4xl space-y-5 text-base leading-8 text-slate-700">
-              <p>
-                A biostatistical machine learning project should not begin with
-                the algorithm. It should begin with a clearly defined prediction
-                problem. The first questions are: who are the patients, what is
-                the outcome, when is the prediction made, and what action might
-                follow the prediction?
-              </p>
+            <div className="mt-8 space-y-8 text-base leading-8 text-slate-700">
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  1. Why workflow matters more than the algorithm name
+                </h3>
 
-              <p>
-                In this lesson, the clinical prediction question is:{" "}
-                <strong>
-                  Can routinely measured clinical characteristics predict
-                  diabetes status?
-                </strong>{" "}
-                The target population is patients with diabetes-related clinical
-                measurements. The predictors include glucose, BMI/mass, age,
-                pressure, insulin, pedigree and related variables.
-              </p>
+                <p className="mt-3">
+                  Many beginners think the main task in machine learning is to
+                  choose the most advanced algorithm. In biostatistics, the
+                  first task is different. We must define the clinical question,
+                  the target population, the outcome, the prediction time and
+                  the intended use. Without these, even a technically impressive
+                  model can answer the wrong question.
+                </p>
 
-              <p>
-                Predictor timing is central. A variable is only valid if it
-                would be available at the true prediction time. If a predictor
-                is measured after diagnosis, treatment or follow-up, it can
-                create leakage.
-              </p>
+                <p className="mt-3">
+                  A responsible medical ML workflow protects against common
+                  failures: vague outcomes, poorly defined patient populations,
+                  leakage, overfitting, unvalidated performance, inappropriate
+                  thresholds and overconfident reporting.
+                </p>
 
-              <p>
-                After fitting the model, the workflow moves to validation. In
-                this analysis, the model was fitted on 537 training patients and
-                evaluated on 231 test patients. At threshold 0.50, the model
-                achieved accuracy 0.792, sensitivity 0.625 and specificity
-                0.868. The AUC was 0.837 and the Brier score was 0.149.
-              </p>
+                <FormulaBox>
+                  Responsible workflow = clinical question + valid predictors +
+                  honest validation + threshold judgement + transparent
+                  reporting
+                </FormulaBox>
+              </div>
 
-              <p>
-                The workflow does not end with one metric. Thresholds change the
-                clinical behaviour of the model. Lower thresholds increase
-                sensitivity and detect more positives, but create more false
-                positives. Higher thresholds increase specificity, but miss more
-                diabetes-positive patients.
-              </p>
-            </div>
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  2. The ten-step workflow
+                </h3>
 
-            <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200">
-              <table className="w-full border-collapse text-left text-sm">
-                <thead className="bg-slate-950 text-white">
-                  <tr>
-                    <th className="p-4">Workflow step</th>
-                    <th className="p-4">Main question</th>
-                    <th className="p-4">Why it matters</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    [
-                      "Question",
-                      "What are we trying to predict?",
-                      "The model must answer a meaningful clinical question.",
-                    ],
-                    [
-                      "Population",
-                      "Who does the model apply to?",
-                      "Predictions should match the intended target patients.",
-                    ],
-                    [
-                      "Outcome",
-                      "What exactly counts as the outcome?",
-                      "Ambiguous outcomes lead to ambiguous models.",
-                    ],
-                    [
-                      "Prediction time",
-                      "When is the prediction made?",
-                      "Predictors must be available at that time.",
-                    ],
-                    [
-                      "Validation",
-                      "Does the model work on unseen patients?",
-                      "Training performance alone is not enough.",
-                    ],
-                    [
-                      "Threshold",
-                      "What risk cut-off supports action?",
-                      "Sensitivity and specificity depend on the threshold.",
-                    ],
-                    [
-                      "Reporting",
-                      "What are the limitations?",
-                      "Transparent reporting prevents overclaiming.",
-                    ],
-                  ].map((row) => (
-                    <tr key={row[0]} className="border-t border-slate-200">
-                      {row.map((cell, index) => (
-                        <td
-                          key={cell}
-                          className={`p-4 leading-6 ${
-                            index === 0
-                              ? "font-black text-slate-950"
-                              : "text-slate-600"
-                          }`}
-                        >
-                          {cell}
-                        </td>
+                <div className="mt-5 overflow-x-auto rounded-3xl border border-slate-200">
+                  <table className="w-full min-w-[980px] border-collapse text-left text-sm">
+                    <thead className="bg-slate-950 text-white">
+                      <tr>
+                        <th className="p-4">Step</th>
+                        <th className="p-4">Workflow step</th>
+                        <th className="p-4">Main question</th>
+                        <th className="p-4">Diabetes example</th>
+                        <th className="p-4">Danger if skipped</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {workflowSteps.map((item) => (
+                        <tr key={item.step} className="border-t border-slate-200">
+                          <td className="p-4 font-black text-blue-700">
+                            {item.step}
+                          </td>
+                          <td className="p-4 font-black text-slate-950">
+                            {item.title}
+                          </td>
+                          <td className="p-4 text-slate-600">
+                            {item.question}
+                          </td>
+                          <td className="p-4 text-slate-600">
+                            {item.example}
+                          </td>
+                          <td className="p-4 text-rose-700">{item.danger}</td>
+                        </tr>
                       ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
 
-            <div className="mt-8 grid gap-6">
-              {figures.map((figure) => (
-                <article
-                  key={figure.src}
-                  className="rounded-[2rem] border border-slate-200 bg-slate-50 p-5"
-                >
-                  <h3 className="text-xl font-black text-slate-950">
-                    {figure.title}
-                  </h3>
-                  <img
-                    src={withBasePath(figure.src)}
-                    alt={figure.alt}
-                    className="mt-5 w-full rounded-3xl border border-slate-200 bg-white"
-                  />
-                  <p className="mt-4 text-sm leading-7 text-slate-600">
-                    {figure.interpretation}
-                  </p>
-                </article>
-              ))}
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  3. Define the prediction question
+                </h3>
+
+                <p className="mt-3">
+                  A prediction question should be precise enough that another
+                  analyst could understand the modelling target. It should name
+                  the outcome, target population and prediction time.
+                </p>
+
+                <FormulaBox>
+                  Prediction question:
+                  <br />
+                  Can routinely measured clinical characteristics predict
+                  diabetes status for patients with diabetes-related routine
+                  measurements at the time these candidate predictors are
+                  available?
+                </FormulaBox>
+
+                <p className="mt-4">
+                  This is a prediction question, not a causal question. It asks
+                  whether patient information can estimate diabetes status. It
+                  does not ask whether changing BMI, glucose or age would cause a
+                  change in diabetes risk.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  4. Define the data structure
+                </h3>
+
+                <p className="mt-3">
+                  The shared diabetes dataset contains 768 observations. In the
+                  teaching workflow, the outcome is diabetes status and the
+                  predictors are routine diabetes-related variables.
+                </p>
+
+                <div className="mt-5 overflow-x-auto rounded-3xl border border-slate-200">
+                  <table className="w-full min-w-[760px] border-collapse text-left text-sm">
+                    <thead className="bg-slate-950 text-white">
+                      <tr>
+                        <th className="p-4">Component</th>
+                        <th className="p-4">Value in this lesson</th>
+                        <th className="p-4">Interpretation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        [
+                          "Rows",
+                          "768",
+                          "Each row represents one patient record in the teaching dataset.",
+                        ],
+                        [
+                          "Outcome",
+                          "diabetes / diabetes_binary",
+                          "The target variable to be predicted.",
+                        ],
+                        [
+                          "Predictors",
+                          "pregnant, glucose, pressure, triceps, insulin, mass, pedigree, age",
+                          "Candidate variables used to estimate risk.",
+                        ],
+                        [
+                          "Training data",
+                          "537 rows",
+                          "Used to estimate the logistic model.",
+                        ],
+                        [
+                          "Test data",
+                          "231 rows",
+                          "Used to evaluate unseen-observation performance.",
+                        ],
+                        [
+                          "Prediction output",
+                          "Predicted probability between 0 and 1",
+                          "A risk estimate that may later be converted into a class.",
+                        ],
+                      ].map((row) => (
+                        <tr key={row[0]} className="border-t border-slate-200">
+                          <td className="p-4 font-black text-slate-950">
+                            {row[0]}
+                          </td>
+                          <td className="p-4 text-slate-600">{row[1]}</td>
+                          <td className="p-4 text-slate-600">{row[2]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  5. Predictor timing and leakage control
+                </h3>
+
+                <p className="mt-3">
+                  Predictor timing asks whether each variable would be known at
+                  the moment the model is supposed to make a prediction. This is
+                  one of the most important workflow checks in medical ML.
+                </p>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-2">
+                  <TopicCard title="Valid predictor">
+                    A variable measured before or at the prediction time, such
+                    as baseline glucose if the prediction is made after glucose
+                    is measured.
+                  </TopicCard>
+
+                  <TopicCard title="Invalid predictor">
+                    A variable only known after diagnosis, treatment,
+                    confirmatory testing or follow-up.
+                  </TopicCard>
+
+                  <TopicCard title="Outcome-derived variable">
+                    A variable created using the outcome or strongly encoding
+                    the outcome. This can make performance look unrealistically
+                    strong.
+                  </TopicCard>
+
+                  <TopicCard title="Clinical workflow variable">
+                    A variable that reflects clinician suspicion or later
+                    testing decisions. It may be predictive but invalid for an
+                    earlier prediction time.
+                  </TopicCard>
+                </div>
+
+                <FormulaBox>
+                  Predictor is valid only if:
+                  <br />
+                  time(predictor measurement) ≤ time(prediction)
+                  <br />
+                  and the predictor is not derived from the outcome.
+                </FormulaBox>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  6. Model fitting and validation
+                </h3>
+
+                <p className="mt-3">
+                  The teaching workflow fits a logistic regression model using
+                  training data. The model estimates a predicted probability for
+                  each test patient:
+                </p>
+
+                <FormulaBox>
+                  logit[P(Y = 1 | X)] = β₀ + β₁X₁ + β₂X₂ + ... + βₚXₚ
+                  <br />
+                  P̂(Y = 1 | X) = 1 / [1 + exp(-η̂)]
+                </FormulaBox>
+
+                <p className="mt-4">
+                  Coefficients describe conditional associations in the fitted
+                  model. They should not be reported as causal effects. The
+                  model is then evaluated on held-out test rows to estimate
+                  unseen-observation performance.
+                </p>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-3">
+                  <TopicCard title="AUC = 0.837">
+                    A discrimination measure. It summarises how well predicted
+                    risks rank positive patients above negative patients.
+                  </TopicCard>
+
+                  <TopicCard title="Brier score = 0.149">
+                    A probability error measure. Lower values indicate smaller
+                    squared differences between observed outcomes and predicted
+                    risks.
+                  </TopicCard>
+
+                  <TopicCard title="Accuracy = 0.792">
+                    The proportion correctly classified at threshold 0.50. It
+                    depends on the chosen threshold.
+                  </TopicCard>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  7. Thresholds and clinical consequences
+                </h3>
+
+                <p className="mt-3">
+                  A predicted probability is not automatically a clinical
+                  decision. A threshold converts risk into a predicted class.
+                  The threshold controls the balance between false positives and
+                  false negatives.
+                </p>
+
+                <FormulaBox>
+                  If predicted risk ≥ threshold → predicted positive
+                  <br />
+                  If predicted risk &lt; threshold → predicted negative
+                </FormulaBox>
+
+                <div className="mt-5 overflow-x-auto rounded-3xl border border-slate-200">
+                  <table className="w-full min-w-[980px] border-collapse text-left text-sm">
+                    <thead className="bg-slate-950 text-white">
+                      <tr>
+                        <th className="p-4">Threshold</th>
+                        <th className="p-4">Accuracy</th>
+                        <th className="p-4">Sensitivity</th>
+                        <th className="p-4">Specificity</th>
+                        <th className="p-4">PPV</th>
+                        <th className="p-4">NPV</th>
+                        <th className="p-4">Interpretation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {thresholdRows.map((row) => (
+                        <tr
+                          key={row.threshold}
+                          className="border-t border-slate-200"
+                        >
+                          <td className="p-4 font-black text-blue-700">
+                            {row.threshold.toFixed(2)}
+                          </td>
+                          <td className="p-4 text-slate-600">
+                            {row.accuracy.toFixed(3)}
+                          </td>
+                          <td className="p-4 text-slate-600">
+                            {row.sensitivity.toFixed(3)}
+                          </td>
+                          <td className="p-4 text-slate-600">
+                            {row.specificity.toFixed(3)}
+                          </td>
+                          <td className="p-4 text-slate-600">
+                            {row.ppv.toFixed(3)}
+                          </td>
+                          <td className="p-4 text-slate-600">
+                            {row.npv.toFixed(3)}
+                          </td>
+                          <td className="p-4 text-slate-600">{row.message}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                <p className="mt-4">
+                  In many medical screening settings, false negatives are costly
+                  because they miss patients who may need further assessment. In
+                  other settings, false positives may be costly because they
+                  create anxiety, unnecessary testing or resource burden. The
+                  threshold should reflect the clinical context.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  8. Visual interpretation
+                </h3>
+
+                <div className="mt-5 grid gap-6">
+                  {figures.map((figure) => (
+                    <figure
+                      key={figure.src}
+                      className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
+                    >
+                      <h4 className="text-xl font-black text-slate-950">
+                        {figure.title}
+                      </h4>
+                      <img
+                        src={withBasePath(figure.src)}
+                        alt={figure.alt}
+                        className="mt-5 w-full rounded-2xl border border-slate-200 bg-white"
+                      />
+                      <figcaption className="mt-4 text-sm leading-6 text-slate-600">
+                        {figure.interpretation}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  9. Reporting discipline
+                </h3>
+
+                <p className="mt-3">
+                  The report should not simply say that the model “works”.
+                  Instead, it should state the clinical question, population,
+                  outcome, prediction time, predictors, validation design,
+                  performance metrics, threshold behaviour and limitations.
+                </p>
+
+                <div className="mt-5 overflow-x-auto rounded-3xl border border-slate-200">
+                  <table className="w-full min-w-[780px] border-collapse text-left text-sm">
+                    <thead className="bg-slate-950 text-white">
+                      <tr>
+                        <th className="p-4">Report item</th>
+                        <th className="p-4">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {reportItems.map(([item, value]) => (
+                        <tr key={item} className="border-t border-slate-200">
+                          <td className="p-4 font-black text-slate-950">
+                            {item}
+                          </td>
+                          <td className="p-4 text-slate-600">{value}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  10. What this module has built
+                </h3>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-2">
+                  <TopicCard title="Lesson 1.1">
+                    Machine learning in biostatistics is a prediction workflow,
+                    not simply an algorithm competition.
+                  </TopicCard>
+
+                  <TopicCard title="Lesson 1.2">
+                    Prediction, explanation and causality are different aims and
+                    require different language.
+                  </TopicCard>
+
+                  <TopicCard title="Lesson 1.3">
+                    Supervised, unsupervised and semi-supervised learning depend
+                    on how outcome labels are used.
+                  </TopicCard>
+
+                  <TopicCard title="Lesson 1.4">
+                    Training performance can mislead. Test performance,
+                    overfitting checks and leakage checks are essential.
+                  </TopicCard>
+
+                  <TopicCard title="Lesson 1.5">
+                    The complete workflow connects clinical question,
+                    prediction time, validation, thresholds and reporting.
+                  </TopicCard>
+
+                  <TopicCard title="Next module">
+                    Module 2 can now move into supervised learning methods with
+                    a stronger foundation.
+                  </TopicCard>
+                </div>
+              </div>
             </div>
           </section>
         )}
 
-        {activeTab === "interactive" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
-              Interactive lab
+        {activeTab === "Interactive Lab" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+              Advanced interactive lab
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              Walk through the medical ML workflow
+              Build, inspect and report the workflow
             </h2>
 
-            <p className="mt-5 max-w-4xl text-base leading-8 text-slate-600">
-              Open each item and decide whether the workflow is ready to move
-              forward, or whether the modelling team needs to pause.
-            </p>
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 1: workflow step explorer
+                </h3>
 
-            <div className="mt-8 space-y-4">
-              {[
-                {
-                  scenario:
-                    "The team has not defined when the diabetes prediction is made.",
-                  answer: "Pause",
-                  reason:
-                    "Prediction time determines which predictors are valid. Without this, leakage risk cannot be assessed.",
-                },
-                {
-                  scenario:
-                    "The predictors are measured before outcome interpretation and are available at the prediction time.",
-                  answer: "Proceed carefully",
-                  reason:
-                    "Predictor timing appears reasonable, but measurement quality and missingness still need checking.",
-                },
-                {
-                  scenario:
-                    "The model is reported using accuracy only.",
-                  answer: "Pause",
-                  reason:
-                    "Accuracy alone is not enough. Report sensitivity, specificity, AUC, Brier score and threshold trade-offs.",
-                },
-                {
-                  scenario:
-                    "Threshold 0.20 gives sensitivity 0.958 and specificity 0.528.",
-                  answer: "High-sensitivity option",
-                  reason:
-                    "This threshold detects most positive cases but creates many false positives. It may be useful when missing high-risk patients is costly.",
-                },
-                {
-                  scenario:
-                    "Threshold 0.70 gives sensitivity 0.403 and specificity 0.950.",
-                  answer: "High-specificity option",
-                  reason:
-                    "This threshold avoids many false positives but misses many diabetes-positive patients.",
-                },
-              ].map((item, index) => (
-                <details
-                  key={item.scenario}
-                  className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
-                >
-                  <summary className="cursor-pointer text-base font-black leading-7 text-slate-950">
-                    Scenario {index + 1}: {item.scenario}
-                  </summary>
-                  <div className="mt-4 rounded-2xl bg-white p-4">
-                    <p className="text-sm font-black uppercase tracking-[0.16em] text-blue-600">
-                      Workflow decision
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Choose a workflow step. The aim is to learn what each step
+                  asks, how it appears in the diabetes example and what can go
+                  wrong if it is skipped.
+                </p>
+
+                <div className="mt-5 grid grid-cols-5 gap-2">
+                  {workflowSteps.map((item) => (
+                    <button
+                      key={item.step}
+                      onClick={() => setSelectedStep(item.step)}
+                      className={`rounded-2xl border px-4 py-3 text-sm font-black transition ${
+                        selectedStep === item.step
+                          ? "border-slate-950 bg-slate-950 text-white"
+                          : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50"
+                      }`}
+                    >
+                      {item.step}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-blue-600">
+                    Step {selectedStepData.step}
+                  </p>
+                  <p className="mt-2 text-xl font-black text-slate-950">
+                    {selectedStepData.title}
+                  </p>
+                  <div className="mt-4 grid gap-3">
+                    <p>
+                      <strong>Main question:</strong>{" "}
+                      {selectedStepData.question}
                     </p>
-                    <p className="mt-2 text-xl font-black text-slate-950">
-                      {item.answer}
+                    <p>
+                      <strong>Diabetes example:</strong>{" "}
+                      {selectedStepData.example}
                     </p>
-                    <p className="mt-3 text-sm leading-7 text-slate-600">
-                      {item.reason}
+                    <p className="text-rose-700">
+                      <strong>Danger if skipped:</strong>{" "}
+                      {selectedStepData.danger}
                     </p>
                   </div>
-                </details>
-              ))}
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 2: workflow problem diagnosis
+                </h3>
+
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Select a workflow problem. The feedback shows what kind of
+                  problem it is and what action should be taken.
+                </p>
+
+                <div className="mt-5 grid gap-3">
+                  {scenarioCards.map((scenario) => (
+                    <button
+                      key={scenario.id}
+                      onClick={() => setSelectedScenario(scenario.id)}
+                      className={`rounded-2xl border px-4 py-3 text-left text-sm font-black transition ${
+                        selectedScenario === scenario.id
+                          ? "border-slate-950 bg-slate-950 text-white"
+                          : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50"
+                      }`}
+                    >
+                      {scenario.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
+                  <p className="font-black text-slate-950">
+                    {selectedScenarioData.scenario}
+                  </p>
+                  <p className="mt-4 text-xs font-black uppercase tracking-[0.16em] text-blue-600">
+                    Diagnosis
+                  </p>
+                  <p className="mt-2 text-xl font-black text-slate-950">
+                    {selectedScenarioData.diagnosis}
+                  </p>
+                  <p className="mt-3">
+                    <strong>Action:</strong> {selectedScenarioData.action}
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200">
-              <table className="w-full border-collapse text-left text-sm">
-                <thead className="bg-slate-950 text-white">
-                  <tr>
-                    <th className="p-4">Threshold</th>
-                    <th className="p-4">Accuracy</th>
-                    <th className="p-4">Sensitivity</th>
-                    <th className="p-4">Specificity</th>
-                    <th className="p-4">Interpretation</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {thresholdRows.map((row) => (
-                    <tr key={row.threshold} className="border-t border-slate-200">
-                      <td className="p-4 font-black text-slate-950">
-                        {row.threshold}
-                      </td>
-                      <td className="p-4 text-slate-600">{row.accuracy}</td>
-                      <td className="p-4 text-slate-600">{row.sensitivity}</td>
-                      <td className="p-4 text-slate-600">{row.specificity}</td>
-                      <td className="p-4 text-slate-600">{row.message}</td>
+            <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <h3 className="text-2xl font-black text-slate-950">
+                Lab 3: threshold dashboard
+              </h3>
+
+              <p className="mt-3 max-w-4xl text-base leading-7 text-slate-700">
+                Choose a threshold. Watch how sensitivity, specificity, PPV, NPV
+                and confusion-matrix counts change. This is why threshold choice
+                is a clinical decision, not a default.
+              </p>
+
+              <label className="mt-6 block text-sm font-black uppercase tracking-[0.18em] text-slate-600">
+                Threshold: {selectedThreshold.toFixed(2)} · {thresholdStyle}
+              </label>
+
+              <input
+                type="range"
+                min={0.2}
+                max={0.7}
+                step={0.1}
+                value={selectedThreshold}
+                onChange={(event) =>
+                  setSelectedThreshold(Number(event.target.value))
+                }
+                className="mt-4 w-full"
+              />
+
+              <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
+                {selectedThresholdData.message}
+              </div>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-5">
+                {[
+                  ["Accuracy", selectedThresholdData.accuracy],
+                  ["Sensitivity", selectedThresholdData.sensitivity],
+                  ["Specificity", selectedThresholdData.specificity],
+                  ["PPV", selectedThresholdData.ppv],
+                  ["NPV", selectedThresholdData.npv],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="rounded-3xl border border-slate-200 bg-white p-5"
+                  >
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                      {label}
+                    </p>
+                    <p className="mt-2 text-3xl font-black text-blue-700">
+                      {Number(value).toFixed(3)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 overflow-x-auto rounded-3xl border border-slate-200">
+                <table className="w-full min-w-[620px] border-collapse text-center text-sm">
+                  <thead className="bg-slate-950 text-white">
+                    <tr>
+                      <th className="p-4"></th>
+                      <th className="p-4">Predicted negative</th>
+                      <th className="p-4">Predicted positive</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    <tr className="border-t border-slate-200">
+                      <th className="bg-white p-4 text-left font-black">
+                        Observed negative
+                      </th>
+                      <td className="bg-emerald-50 p-4 text-2xl font-black text-emerald-700">
+                        {selectedThresholdData.tn}
+                      </td>
+                      <td className="bg-rose-50 p-4 text-2xl font-black text-rose-700">
+                        {selectedThresholdData.fp}
+                      </td>
+                    </tr>
+                    <tr className="border-t border-slate-200">
+                      <th className="bg-white p-4 text-left font-black">
+                        Observed positive
+                      </th>
+                      <td className="bg-rose-50 p-4 text-2xl font-black text-rose-700">
+                        {selectedThresholdData.fn}
+                      </td>
+                      <td className="bg-emerald-50 p-4 text-2xl font-black text-emerald-700">
+                        {selectedThresholdData.tp}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-6 space-y-3">
+                {[
+                  ["Sensitivity", selectedThresholdData.sensitivity],
+                  ["Specificity", selectedThresholdData.specificity],
+                  ["PPV", selectedThresholdData.ppv],
+                  ["NPV", selectedThresholdData.npv],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="grid grid-cols-[7rem_1fr_4rem] items-center gap-3"
+                  >
+                    <p className="font-black text-slate-950">{label}</p>
+                    <div className="h-6 overflow-hidden rounded-full bg-white">
+                      <div
+                        className="h-full rounded-full bg-blue-600"
+                        style={{ width: `${Number(value) * 100}%` }}
+                      />
+                    </div>
+                    <p className="text-right font-mono text-sm text-slate-600">
+                      {Number(value).toFixed(2)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 4: individual risk and threshold decision
+                </h3>
+
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Move the patient risk score. The threshold converts a
+                  probability into a class or action.
+                </p>
+
+                <label className="mt-6 block text-sm font-black uppercase tracking-[0.18em] text-slate-600">
+                  Patient predicted risk: {riskScore.toFixed(2)}
+                </label>
+
+                <input
+                  type="range"
+                  min={0.01}
+                  max={0.99}
+                  step={0.01}
+                  value={riskScore}
+                  onChange={(event) => setRiskScore(Number(event.target.value))}
+                  className="mt-4 w-full"
+                />
+
+                <div className="mt-5 rounded-2xl bg-white p-4">
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-blue-600">
+                    Decision at threshold {selectedThreshold.toFixed(2)}
+                  </p>
+                  <p className="mt-2 text-2xl font-black text-slate-950">
+                    {patientDecision}
+                  </p>
+
+                  <div className="mt-5 h-5 overflow-hidden rounded-full bg-slate-100">
+                    <div
+                      className="h-full rounded-full bg-blue-600"
+                      style={{ width: `${riskScore * 100}%` }}
+                    />
+                  </div>
+
+                  <p className="mt-4 text-sm leading-6 text-slate-600">
+                    The probability did not change. Only the classification rule
+                    changed when the threshold changed.
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 5: false-positive and false-negative cost
+                </h3>
+
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Give simple cost weights to false negatives and false
+                  positives. This is not a full decision curve analysis, but it
+                  shows why clinical consequences matter.
+                </p>
+
+                <div className="mt-6 grid gap-5">
+                  <div>
+                    <label className="block text-sm font-black uppercase tracking-[0.18em] text-slate-600">
+                      False negative cost: {falseNegativeCost}
+                    </label>
+                    <input
+                      type="range"
+                      min={1}
+                      max={15}
+                      step={1}
+                      value={falseNegativeCost}
+                      onChange={(event) =>
+                        setFalseNegativeCost(Number(event.target.value))
+                      }
+                      className="mt-4 w-full"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-black uppercase tracking-[0.18em] text-slate-600">
+                      False positive cost: {falsePositiveCost}
+                    </label>
+                    <input
+                      type="range"
+                      min={1}
+                      max={15}
+                      step={1}
+                      value={falsePositiveCost}
+                      onChange={(event) =>
+                        setFalsePositiveCost(Number(event.target.value))
+                      }
+                      className="mt-4 w-full"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                  <div className="rounded-3xl border border-slate-200 bg-white p-5">
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                      FN cost
+                    </p>
+                    <p className="mt-2 text-3xl font-black text-rose-700">
+                      {expectedCost.fnCost}
+                    </p>
+                  </div>
+
+                  <div className="rounded-3xl border border-slate-200 bg-white p-5">
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                      FP cost
+                    </p>
+                    <p className="mt-2 text-3xl font-black text-amber-700">
+                      {expectedCost.fpCost}
+                    </p>
+                  </div>
+
+                  <div className="rounded-3xl border border-slate-200 bg-white p-5">
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                      Total
+                    </p>
+                    <p className="mt-2 text-3xl font-black text-blue-700">
+                      {expectedCost.totalCost}
+                    </p>
+                  </div>
+                </div>
+
+                <p className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
+                  When false negatives are costly, lower thresholds may be
+                  preferred. When false positives are costly, higher thresholds
+                  may be preferred. The “best” threshold depends on context.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <h3 className="text-2xl font-black text-slate-950">
+                Lab 6: final workflow readiness checklist
+              </h3>
+
+              <p className="mt-3 max-w-4xl text-base leading-7 text-slate-700">
+                Tick the elements that are ready in the project. The goal is to
+                identify what can be reported confidently and what must remain a
+                limitation.
+              </p>
+
+              <div className="mt-5 grid gap-3 md:grid-cols-2">
+                {finalChecklistItems.map((item) => (
+                  <button
+                    key={item.key}
+                    onClick={() =>
+                      toggleChecklist(item.key as keyof typeof checklist)
+                    }
+                    className={`rounded-2xl border px-4 py-3 text-left text-sm font-black transition ${
+                      checklist[item.key as keyof typeof checklist]
+                        ? "border-emerald-300 bg-emerald-50 text-emerald-800"
+                        : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50"
+                    }`}
+                  >
+                    {checklist[item.key as keyof typeof checklist] ? "✓ " : "○ "}
+                    {item.label}
+                    <span className="mt-1 block text-xs font-medium leading-5">
+                      {item.explanation}
+                    </span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="mt-5 rounded-2xl bg-white p-4">
+                <p className="text-sm font-black uppercase tracking-[0.16em] text-blue-600">
+                  Workflow readiness score
+                </p>
+                <p className="mt-2 text-3xl font-black text-slate-950">
+                  {checklistScore}/8
+                </p>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {checklistScore < 5
+                    ? "The project is not ready for strong reporting. Strengthen question definition, timing, validation and limitations."
+                    : checklistScore < 8
+                    ? "The project has a reasonable foundation, but missing items should be reported clearly as limitations."
+                    : "The workflow is strong for an internal teaching analysis. External validation and clinical usefulness would still be needed before deployment."}
+                </p>
+              </div>
             </div>
           </section>
         )}
 
-        {activeTab === "coding" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+        {activeTab === "R Coding Lab" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
               R coding lab
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              Run a complete mini-workflow in the browser
+              Run the complete Module 1 workflow in the browser
             </h2>
 
-            <p className="mt-5 max-w-4xl text-base leading-8 text-slate-600">
-              This browser lab runs a small version of the complete workflow.
-              The downloadable script uses the full shared diabetes dataset and
-              generated the figures used in this lesson.
+            <p className="mt-4 max-w-4xl text-base leading-7 text-slate-600">
+              This browser lab loads the shared diabetes CSV and performs the
+              full foundation workflow: define the question, inspect the data,
+              check predictor timing, split into training and test data, fit a
+              logistic model, evaluate AUC and Brier score, analyse thresholds
+              and produce a reporting summary.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <button
-                type="button"
-                onClick={runRCode}
-                disabled={isRunning}
-                className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-black text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {isRunning ? "Running R..." : "Run R code"}
-              </button>
+            <WebRCodeRunner />
+
+            <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <h3 className="text-2xl font-black text-slate-950">
+                How to interpret the output
+              </h3>
+
+              <div className="mt-5 space-y-4 text-base leading-7 text-slate-700">
+                <p>
+                  The first section defines the clinical prediction question,
+                  target population and prediction time. This is the foundation
+                  of the workflow.
+                </p>
+
+                <p>
+                  The second section inspects the dataset, outcome distribution
+                  and group summaries. This prevents modelling from becoming a
+                  blind algorithm exercise.
+                </p>
+
+                <p>
+                  The predictor timing table asks whether each candidate
+                  predictor is available at the real prediction time. This is a
+                  leakage-control step.
+                </p>
+
+                <p>
+                  The train/test split separates model fitting from performance
+                  evaluation. The model is fitted on training data and evaluated
+                  on unseen test data.
+                </p>
+
+                <p>
+                  The threshold table shows that sensitivity, specificity, PPV
+                  and NPV change when the threshold changes. This is why clinical
+                  threshold choice must be discussed.
+                </p>
+
+                <p>
+                  The final reporting summary collects the items needed for a
+                  responsible model report and states the main limitation:
+                  internal validation only.
+                </p>
+              </div>
 
               <a
                 href={withBasePath(
                   "/ml-biostatistics/r/module-1/lesson-1-5-biostatistical-ml-workflow.R"
                 )}
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-black text-slate-900 transition hover:bg-slate-50"
+                download
+                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-black text-white transition hover:bg-slate-800 sm:w-auto"
               >
                 Download full R script
               </a>
             </div>
-
-            <div className="mt-8 grid gap-6 lg:grid-cols-2">
-              <div>
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
-                  Code
-                </p>
-                <pre className="mt-3 max-h-[540px] overflow-auto rounded-3xl bg-slate-950 p-5 text-sm leading-6 text-slate-100">
-                  <code>{rCode}</code>
-                </pre>
-              </div>
-
-              <div>
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
-                  Output
-                </p>
-                <pre className="mt-3 min-h-[540px] overflow-auto rounded-3xl border border-slate-200 bg-slate-50 p-5 text-sm leading-6 text-slate-800">
-                  <code>{output}</code>
-                </pre>
-              </div>
-            </div>
           </section>
         )}
 
-        {activeTab === "report" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
-              Reporting and interpretation
+        {activeTab === "Report" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+              Reporting
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              Reporting-ready workflow summary
+              How to report the complete ML workflow
             </h2>
 
+            <div className="mt-8 space-y-6 text-base leading-8 text-slate-700">
+              <p>
+                This teaching analysis used a diabetes prediction dataset to
+                demonstrate a complete introductory biostatistical machine
+                learning workflow. The clinical prediction question was whether
+                routinely measured clinical characteristics could predict
+                diabetes status.
+              </p>
+
+              <p>
+                The target population was patients with routine diabetes-related
+                clinical measurements. The outcome was diabetes status. The
+                candidate predictors were pregnant, glucose, pressure, triceps,
+                insulin, BMI/mass, pedigree and age. These predictors were
+                treated as available at the prediction time for this teaching
+                exercise.
+              </p>
+
+              <p>
+                The dataset contained 768 observations and was split into 537
+                training rows and 231 test rows. A logistic regression model was
+                fitted on the training data and evaluated on the test data. The
+                model achieved AUC 0.837 and Brier score 0.149 in the test data.
+              </p>
+
+              <p>
+                At threshold 0.50, the model achieved accuracy 0.792,
+                sensitivity 0.625 and specificity 0.868. This means the model
+                was better at identifying diabetes-negative patients than
+                detecting all diabetes-positive patients at this threshold.
+              </p>
+
+              <p>
+                Threshold analysis showed that lower thresholds increased
+                sensitivity but created more false positives, while higher
+                thresholds increased specificity but missed more
+                diabetes-positive patients. Therefore, threshold choice should be
+                connected to the clinical consequences of false positives and
+                false negatives.
+              </p>
+
+              <p>
+                This analysis is an introductory internal validation exercise.
+                It should not be interpreted as a deployable clinical model.
+                External validation, calibration assessment, clinical usefulness
+                analysis, fairness checks and implementation evaluation would be
+                needed before real-world use.
+              </p>
+            </div>
+
             <div className="mt-8 grid gap-5 md:grid-cols-2">
-              {[
-                {
-                  title: "Clinical question",
-                  body: "Can routinely measured clinical characteristics predict diabetes status?",
-                },
-                {
-                  title: "Model",
-                  body: "A logistic regression model was fitted using pregnant, glucose, pressure, triceps, insulin, mass, pedigree and age.",
-                },
-                {
-                  title: "Validation",
-                  body: "The data were split into 537 training patients and 231 test patients. The model was evaluated on the held-out test set.",
-                },
-                {
-                  title: "Performance",
-                  body: "At threshold 0.50, accuracy was 0.792, sensitivity was 0.625 and specificity was 0.868. AUC was 0.837 and Brier score was 0.149.",
-                },
-                {
-                  title: "Threshold judgement",
-                  body: "Threshold 0.20 produced high sensitivity of 0.958 but low specificity of 0.528. Threshold 0.70 produced high specificity of 0.950 but low sensitivity of 0.403.",
-                },
-                {
-                  title: "Main limitation",
-                  body: "This is an internal train/test split only. External validation would be needed before real-world use.",
-                },
-              ].map((item) => (
-                <article
-                  key={item.title}
-                  className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
-                >
-                  <h3 className="text-xl font-black text-slate-950">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">
-                    {item.body}
-                  </p>
-                </article>
-              ))}
+              <article className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Good report language
+                </h3>
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  “The model was developed as an internal teaching analysis. It
+                  used routine predictors available at the defined prediction
+                  time and was evaluated on held-out test data. Results should
+                  be interpreted as internal validation only, and external
+                  validation would be required before clinical use.”
+                </p>
+              </article>
+
+              <article className="rounded-3xl border border-rose-200 bg-rose-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Poor report language
+                </h3>
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  “The machine learning model is ready for clinical use because
+                  it achieved good accuracy.” This overclaims because accuracy
+                  alone is incomplete and internal validation does not prove
+                  deployment readiness.
+                </p>
+              </article>
+            </div>
+
+            <div className="mt-8 overflow-x-auto rounded-3xl border border-slate-200">
+              <table className="w-full min-w-[780px] border-collapse text-left text-sm">
+                <thead className="bg-slate-950 text-white">
+                  <tr>
+                    <th className="p-4">Report item</th>
+                    <th className="p-4">Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reportItems.map(([item, value]) => (
+                    <tr key={item} className="border-t border-slate-200">
+                      <td className="p-4 font-black text-slate-950">{item}</td>
+                      <td className="p-4 text-slate-600">{value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
 
             <div className="mt-8 rounded-3xl bg-slate-950 p-6 text-white">
-              <h3 className="text-2xl font-black">
-                Example report paragraph
-              </h3>
+              <h3 className="text-2xl font-black">Example report paragraph</h3>
               <p className="mt-4 text-base leading-8 text-slate-300">
-                A logistic diabetes prediction model was fitted using routinely
-                measured clinical predictors. The data were split into 537
-                training patients and 231 test patients, with the model fitted
-                only on the training data. On the held-out test set, the model
-                achieved AUC 0.837 and Brier score 0.149. At threshold 0.50,
-                accuracy was 0.792, sensitivity was 0.625 and specificity was
-                0.868. Threshold analysis showed a clear trade-off: lower
-                thresholds increased sensitivity but reduced specificity, while
-                higher thresholds increased specificity but missed more
-                diabetes-positive patients. The model should be interpreted as
-                an educational internal validation workflow, not as a deployable
-                clinical tool. External validation, calibration assessment and
-                clinical usefulness analysis would be required before real-world
-                use.
+                In this teaching analysis, a logistic regression model was used
+                to predict diabetes status from routinely measured
+                diabetes-related clinical variables. The prediction question,
+                target population, outcome and prediction time were defined
+                before model fitting. Candidate predictors were checked for
+                availability at the prediction time to reduce leakage risk. The
+                data were split into 537 training observations and 231 test
+                observations. The model achieved test AUC 0.837 and Brier score
+                0.149. At threshold 0.50, accuracy was 0.792, sensitivity was
+                0.625 and specificity was 0.868. Threshold analysis showed a
+                trade-off between detecting diabetes-positive patients and
+                avoiding false positives. These results should be interpreted as
+                internal validation only. External validation, calibration
+                assessment and clinical usefulness evaluation would be required
+                before considering real-world implementation.
               </p>
             </div>
 
-            <div className="mt-8 rounded-3xl border border-red-100 bg-red-50 p-6">
-              <h3 className="text-xl font-black text-slate-950">
-                What not to write
-              </h3>
-              <p className="mt-3 text-base leading-8 text-slate-700">
-                Do not write: “The model is clinically ready because accuracy is
-                0.792.” A responsible report must discuss the target population,
-                prediction time, leakage risk, threshold trade-offs,
-                calibration, validation and limitations.
-              </p>
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              <TopicCard title="What can be claimed">
+                The model shows internally validated predictive performance in a
+                teaching dataset.
+              </TopicCard>
+
+              <TopicCard title="What cannot be claimed">
+                The model is not proven deployable, causal or externally
+                transportable.
+              </TopicCard>
+
+              <TopicCard title="What comes next">
+                External validation, calibration, decision-curve thinking,
+                fairness checks and clinical implementation review.
+              </TopicCard>
             </div>
           </section>
         )}
 
-        {activeTab === "quiz" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
-              Module 1 completion quiz
+        {activeTab === "Quiz" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+              Quiz
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
@@ -858,68 +2219,98 @@ export default function BiostatisticalMLWorkflowPage() {
             <div className="mt-8 space-y-4">
               {[
                 {
-                  q: "Why should an ML project begin with the clinical question rather than the algorithm?",
-                  a: "Because the clinical question defines the target population, outcome, prediction time, predictors, validation plan and interpretation.",
+                  q: "Why should a medical ML project not begin with the algorithm?",
+                  a: "Because the clinical question, target population, outcome, prediction time and intended use determine what kind of model and validation are appropriate.",
                 },
                 {
-                  q: "Why is predictor timing important?",
-                  a: "Predictors must be available at the real prediction time. Variables measured after outcome, diagnosis or follow-up can create leakage.",
+                  q: "What is the prediction question in this lesson?",
+                  a: "Can routinely measured clinical characteristics predict diabetes status?",
+                },
+                {
+                  q: "Why is prediction time important?",
+                  a: "Prediction time determines which predictors are valid. Variables unavailable at that time can create leakage.",
+                },
+                {
+                  q: "What predictors are used in the full workflow model?",
+                  a: "Pregnant, glucose, pressure, triceps, insulin, BMI/mass, pedigree and age.",
+                },
+                {
+                  q: "What is the purpose of the train/test split?",
+                  a: "The training data fit the model, while the test data estimate performance on observations not used for fitting.",
+                },
+                {
+                  q: "What does AUC measure?",
+                  a: "AUC measures discrimination: how well predicted risks rank positive patients above negative patients.",
+                },
+                {
+                  q: "What does the Brier score measure?",
+                  a: "The Brier score measures the mean squared difference between observed outcomes and predicted probabilities.",
+                },
+                {
+                  q: "At threshold 0.50, what are the sensitivity and specificity in this lesson?",
+                  a: "Sensitivity is 0.625 and specificity is 0.868.",
                 },
                 {
                   q: "Why is accuracy alone not enough?",
-                  a: "Accuracy can hide poor sensitivity or poor specificity, especially when outcomes are imbalanced. Multiple metrics are needed.",
+                  a: "Accuracy can hide the balance between false positives and false negatives, especially when outcomes are imbalanced or clinical costs differ.",
                 },
                 {
                   q: "What happens when the threshold is lowered?",
-                  a: "Sensitivity usually increases, meaning more positives are detected, but specificity usually decreases, meaning more false positives occur.",
+                  a: "Sensitivity usually increases and more positives are detected, but false positives usually increase.",
                 },
                 {
-                  q: "What is the main limitation of this lesson's model?",
-                  a: "It uses an internal train/test split only. External validation would be needed before considering real-world use.",
+                  q: "What happens when the threshold is raised?",
+                  a: "Specificity usually increases and false positives decrease, but more true positive cases may be missed.",
                 },
                 {
-                  q: "What is the key message of Module 1?",
-                  a: "Medical ML is not just algorithm fitting. It requires prediction thinking, careful question definition, validation, leakage control, threshold judgement and honest reporting.",
+                  q: "Why is internal validation not enough for clinical deployment?",
+                  a: "Internal validation uses the same source dataset. External validation tests whether the model transports to new hospitals, time periods or populations.",
+                },
+                {
+                  q: "What is the safest final interpretation of this Module 1 workflow?",
+                  a: "The model is an internally validated teaching example that demonstrates the workflow. It is not yet a deployable clinical model.",
                 },
               ].map((item, index) => (
                 <details
                   key={item.q}
                   className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
                 >
-                  <summary className="cursor-pointer text-base font-black leading-7 text-slate-950">
+                  <summary className="cursor-pointer text-base font-black text-slate-950">
                     Question {index + 1}: {item.q}
                   </summary>
-                  <p className="mt-4 text-sm leading-7 text-slate-600">
+                  <p className="mt-4 text-sm leading-6 text-slate-600">
                     {item.a}
                   </p>
                 </details>
               ))}
             </div>
-
-            <section className="mt-10 rounded-[2rem] bg-slate-950 p-6 text-white md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-300">
-                Module 1 complete
-              </p>
-              <h3 className="mt-3 text-3xl font-black tracking-tight">
-                Foundations of Machine Learning in Biostatistics
-              </h3>
-              <p className="mt-4 max-w-3xl text-base leading-8 text-slate-300">
-                You have completed the foundation module: what ML means in
-                biostatistics, prediction vs explanation vs causality, types of
-                learning, training/testing, overfitting, leakage and the full
-                responsible workflow.
-              </p>
-              <a
-                href={withBasePath(
-                  "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data"
-                )}
-                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-blue-50 sm:w-auto"
-              >
-                Continue to Module 2 →
-              </a>
-            </section>
           </section>
         )}
+
+        <section className="mt-10 rounded-[2rem] bg-slate-950 p-6 text-white md:p-10">
+          <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
+            Module 1 complete
+          </p>
+
+          <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
+            Next, move into supervised learning for clinical prediction.
+          </h2>
+
+          <p className="mt-5 max-w-4xl text-base leading-7 text-slate-300">
+            Module 2 can now build on this foundation: binary classification,
+            logistic regression, decision thresholds, ROC/AUC, calibration and
+            clinical prediction performance.
+          </p>
+
+          <a
+            href={withBasePath(
+              "/courses/machine-learning-biostatistics/modules/supervised-learning"
+            )}
+            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-slate-100 sm:w-auto"
+          >
+            Open Module 2 →
+          </a>
+        </section>
       </section>
     </main>
   );

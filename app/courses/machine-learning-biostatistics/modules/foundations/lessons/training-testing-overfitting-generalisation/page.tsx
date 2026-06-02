@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import type { ReactNode } from "react";
 
 const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
@@ -19,19 +20,588 @@ async function getWebR() {
 
   const { WebR } = await import("webr");
   const webR = new WebR();
-  await webR.init();
 
+  await webR.init();
   cachedWebR = webR;
+
   return webR;
 }
 
 const tabs = [
-  { id: "lecture", label: "Lecture" },
-  { id: "notes", label: "Detailed notes" },
-  { id: "interactive", label: "Interactive lab" },
-  { id: "coding", label: "R coding lab" },
-  { id: "report", label: "Report" },
-  { id: "quiz", label: "Quiz" },
+  "Lecture",
+  "Detailed Notes",
+  "Interactive Lab",
+  "R Coding Lab",
+  "Report",
+  "Quiz",
+];
+
+const browserRCode = `# Lesson 1.4 browser R lab
+# Training, testing, overfitting and generalisation
+
+cat("Lesson 1.4: Training, testing, overfitting and generalisation\\n")
+cat("----------------------------------------------------------------\\n\\n")
+
+# The website loads diabetes_data from the shared course CSV.
+# We use the same data to compare training performance, test performance,
+# overfitting and leakage.
+
+cat("Dataset dimensions:\\n")
+print(dim(diabetes_data))
+
+cat("\\nVariable names:\\n")
+print(names(diabetes_data))
+
+cat("\\nOutcome distribution:\\n")
+print(table(diabetes_data$diabetes))
+
+cat("\\nOutcome percentages:\\n")
+print(round(100 * prop.table(table(diabetes_data$diabetes)), 1))
+
+# ----------------------------------------------------------
+# Helper functions
+# ----------------------------------------------------------
+
+safe_cell <- function(tab, observed, predicted) {
+  if (observed %in% rownames(tab) && predicted %in% colnames(tab)) {
+    return(tab[observed, predicted])
+  }
+  return(0)
+}
+
+classification_metrics <- function(observed, risk, threshold = 0.5) {
+  predicted <- ifelse(risk >= threshold, 1, 0)
+
+  tab <- table(
+    Observed = observed,
+    Predicted = predicted
+  )
+
+  tn <- safe_cell(tab, "0", "0")
+  fp <- safe_cell(tab, "0", "1")
+  fn <- safe_cell(tab, "1", "0")
+  tp <- safe_cell(tab, "1", "1")
+
+  accuracy <- mean(observed == predicted)
+  sensitivity <- ifelse(tp + fn == 0, NA, tp / (tp + fn))
+  specificity <- ifelse(tn + fp == 0, NA, tn / (tn + fp))
+
+  list(
+    confusion_matrix = tab,
+    accuracy = accuracy,
+    sensitivity = sensitivity,
+    specificity = specificity,
+    tp = tp,
+    fp = fp,
+    tn = tn,
+    fn = fn
+  )
+}
+
+simple_auc <- function(observed, risk) {
+  # Rank-based AUC without external packages.
+  # AUC is the probability that a randomly chosen positive patient
+  # has a higher predicted risk than a randomly chosen negative patient.
+
+  positive_risk <- risk[observed == 1]
+  negative_risk <- risk[observed == 0]
+
+  if (length(positive_risk) == 0 || length(negative_risk) == 0) {
+    return(NA)
+  }
+
+  comparisons <- outer(positive_risk, negative_risk, "-")
+  mean(comparisons > 0) + 0.5 * mean(comparisons == 0)
+}
+
+# ----------------------------------------------------------
+# Part 1: Train/test split
+# ----------------------------------------------------------
+
+set.seed(2026)
+
+train_id <- sample(
+  seq_len(nrow(diabetes_data)),
+  size = floor(0.7 * nrow(diabetes_data))
+)
+
+train_data <- diabetes_data[train_id, ]
+test_data <- diabetes_data[-train_id, ]
+
+cat("\\nTraining rows:", nrow(train_data), "\\n")
+cat("Test rows:", nrow(test_data), "\\n")
+
+cat("\\nTraining outcome distribution:\\n")
+print(table(train_data$diabetes))
+
+cat("\\nTest outcome distribution:\\n")
+print(table(test_data$diabetes))
+
+# ----------------------------------------------------------
+# Part 2: Simple model
+# ----------------------------------------------------------
+
+simple_model <- glm(
+  diabetes_binary ~ glucose + mass + age,
+  data = train_data,
+  family = binomial
+)
+
+train_data$simple_risk <- predict(
+  simple_model,
+  newdata = train_data,
+  type = "response"
+)
+
+test_data$simple_risk <- predict(
+  simple_model,
+  newdata = test_data,
+  type = "response"
+)
+
+simple_train <- classification_metrics(
+  observed = train_data$diabetes_binary,
+  risk = train_data$simple_risk,
+  threshold = 0.5
+)
+
+simple_test <- classification_metrics(
+  observed = test_data$diabetes_binary,
+  risk = test_data$simple_risk,
+  threshold = 0.5
+)
+
+simple_train_auc <- simple_auc(
+  observed = train_data$diabetes_binary,
+  risk = train_data$simple_risk
+)
+
+simple_test_auc <- simple_auc(
+  observed = test_data$diabetes_binary,
+  risk = test_data$simple_risk
+)
+
+cat("\\nSIMPLE MODEL: glucose + mass + age\\n")
+cat("Training accuracy:", round(simple_train$accuracy, 3), "\\n")
+cat("Test accuracy:", round(simple_test$accuracy, 3), "\\n")
+cat("Training AUC:", round(simple_train_auc, 3), "\\n")
+cat("Test AUC:", round(simple_test_auc, 3), "\\n")
+cat("Test sensitivity:", round(simple_test$sensitivity, 3), "\\n")
+cat("Test specificity:", round(simple_test$specificity, 3), "\\n")
+cat("Test confusion matrix:\\n")
+print(simple_test$confusion_matrix)
+
+# ----------------------------------------------------------
+# Part 3: Larger model
+# ----------------------------------------------------------
+
+larger_model <- glm(
+  diabetes_binary ~ pregnant + glucose + pressure + triceps +
+    insulin + mass + pedigree + age,
+  data = train_data,
+  family = binomial
+)
+
+train_data$larger_risk <- predict(
+  larger_model,
+  newdata = train_data,
+  type = "response"
+)
+
+test_data$larger_risk <- predict(
+  larger_model,
+  newdata = test_data,
+  type = "response"
+)
+
+larger_train <- classification_metrics(
+  observed = train_data$diabetes_binary,
+  risk = train_data$larger_risk,
+  threshold = 0.5
+)
+
+larger_test <- classification_metrics(
+  observed = test_data$diabetes_binary,
+  risk = test_data$larger_risk,
+  threshold = 0.5
+)
+
+larger_train_auc <- simple_auc(
+  observed = train_data$diabetes_binary,
+  risk = train_data$larger_risk
+)
+
+larger_test_auc <- simple_auc(
+  observed = test_data$diabetes_binary,
+  risk = test_data$larger_risk
+)
+
+cat("\\nLARGER MODEL: all available routine predictors\\n")
+cat("Training accuracy:", round(larger_train$accuracy, 3), "\\n")
+cat("Test accuracy:", round(larger_test$accuracy, 3), "\\n")
+cat("Training AUC:", round(larger_train_auc, 3), "\\n")
+cat("Test AUC:", round(larger_test_auc, 3), "\\n")
+cat("Test sensitivity:", round(larger_test$sensitivity, 3), "\\n")
+cat("Test specificity:", round(larger_test$specificity, 3), "\\n")
+cat("Test confusion matrix:\\n")
+print(larger_test$confusion_matrix)
+
+# ----------------------------------------------------------
+# Part 4: Over-flexible model
+# ----------------------------------------------------------
+
+over_model <- glm(
+  diabetes_binary ~ glucose + mass + age + pressure + insulin +
+    I(glucose^2) + I(mass^2) + I(age^2) +
+    glucose:mass + glucose:age + mass:age,
+  data = train_data,
+  family = binomial
+)
+
+train_data$over_risk <- predict(
+  over_model,
+  newdata = train_data,
+  type = "response"
+)
+
+test_data$over_risk <- predict(
+  over_model,
+  newdata = test_data,
+  type = "response"
+)
+
+over_train <- classification_metrics(
+  observed = train_data$diabetes_binary,
+  risk = train_data$over_risk,
+  threshold = 0.5
+)
+
+over_test <- classification_metrics(
+  observed = test_data$diabetes_binary,
+  risk = test_data$over_risk,
+  threshold = 0.5
+)
+
+over_train_auc <- simple_auc(
+  observed = train_data$diabetes_binary,
+  risk = train_data$over_risk
+)
+
+over_test_auc <- simple_auc(
+  observed = test_data$diabetes_binary,
+  risk = test_data$over_risk
+)
+
+cat("\\nOVER-FLEXIBLE MODEL: extra squared terms and interactions\\n")
+cat("Training accuracy:", round(over_train$accuracy, 3), "\\n")
+cat("Test accuracy:", round(over_test$accuracy, 3), "\\n")
+cat("Training AUC:", round(over_train_auc, 3), "\\n")
+cat("Test AUC:", round(over_test_auc, 3), "\\n")
+cat("Training-test AUC gap:", round(over_train_auc - over_test_auc, 3), "\\n")
+cat("Test confusion matrix:\\n")
+print(over_test$confusion_matrix)
+
+# ----------------------------------------------------------
+# Part 5: Leakage demonstration
+# ----------------------------------------------------------
+
+# This artificial leakage marker is created from the outcome.
+# It would not be available in a real prediction setting.
+# It is included only to show why leakage is dangerous.
+
+set.seed(2026)
+
+train_data$leakage_marker <- train_data$diabetes_binary + rnorm(nrow(train_data), 0, 0.02)
+test_data$leakage_marker <- test_data$diabetes_binary + rnorm(nrow(test_data), 0, 0.02)
+
+leakage_model <- glm(
+  diabetes_binary ~ glucose + mass + age + leakage_marker,
+  data = train_data,
+  family = binomial
+)
+
+train_data$leakage_risk <- predict(
+  leakage_model,
+  newdata = train_data,
+  type = "response"
+)
+
+test_data$leakage_risk <- predict(
+  leakage_model,
+  newdata = test_data,
+  type = "response"
+)
+
+leakage_train <- classification_metrics(
+  observed = train_data$diabetes_binary,
+  risk = train_data$leakage_risk,
+  threshold = 0.5
+)
+
+leakage_test <- classification_metrics(
+  observed = test_data$diabetes_binary,
+  risk = test_data$leakage_risk,
+  threshold = 0.5
+)
+
+leakage_train_auc <- simple_auc(
+  observed = train_data$diabetes_binary,
+  risk = train_data$leakage_risk
+)
+
+leakage_test_auc <- simple_auc(
+  observed = test_data$diabetes_binary,
+  risk = test_data$leakage_risk
+)
+
+cat("\\nLEAKAGE MODEL: includes an outcome-derived marker\\n")
+cat("Training accuracy:", round(leakage_train$accuracy, 3), "\\n")
+cat("Test accuracy:", round(leakage_test$accuracy, 3), "\\n")
+cat("Training AUC:", round(leakage_train_auc, 3), "\\n")
+cat("Test AUC:", round(leakage_test_auc, 3), "\\n")
+cat("Test confusion matrix:\\n")
+print(leakage_test$confusion_matrix)
+
+# ----------------------------------------------------------
+# Summary table
+# ----------------------------------------------------------
+
+summary_table <- data.frame(
+  model = c("Simple", "Larger", "Over-flexible", "Leakage"),
+  train_accuracy = round(c(
+    simple_train$accuracy,
+    larger_train$accuracy,
+    over_train$accuracy,
+    leakage_train$accuracy
+  ), 3),
+  test_accuracy = round(c(
+    simple_test$accuracy,
+    larger_test$accuracy,
+    over_test$accuracy,
+    leakage_test$accuracy
+  ), 3),
+  train_auc = round(c(
+    simple_train_auc,
+    larger_train_auc,
+    over_train_auc,
+    leakage_train_auc
+  ), 3),
+  test_auc = round(c(
+    simple_test_auc,
+    larger_test_auc,
+    over_test_auc,
+    leakage_test_auc
+  ), 3)
+)
+
+summary_table$auc_gap <- round(
+  summary_table$train_auc - summary_table$test_auc,
+  3
+)
+
+cat("\\nMODEL COMPARISON TABLE\\n")
+print(summary_table)
+
+cat("\\nInterpretation discipline:\\n")
+cat("1. Training performance tells us how well the model fits data it has already seen.\\n")
+cat("2. Test performance is a more honest estimate of unseen-patient performance.\\n")
+cat("3. A large training-test gap suggests overfitting or instability.\\n")
+cat("4. Perfect-looking performance should trigger a leakage investigation.\\n")
+cat("5. A clinically useful model must use predictors available at the real prediction time.\\n")`;
+
+function Initials({ children }: { children: string }) {
+  return (
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-950 text-xs font-black text-white">
+      {children}
+    </div>
+  );
+}
+
+function DialogueLine({
+  initials,
+  name,
+  children,
+  tone = "neutral",
+}: {
+  initials: string;
+  name: string;
+  children: ReactNode;
+  tone?: "neutral" | "blue" | "green" | "rose" | "amber";
+}) {
+  const toneClass =
+    tone === "blue"
+      ? "bg-blue-50"
+      : tone === "green"
+      ? "bg-emerald-50"
+      : tone === "rose"
+      ? "bg-rose-50"
+      : tone === "amber"
+      ? "bg-amber-50"
+      : "bg-white";
+
+  return (
+    <div
+      className={`flex gap-4 rounded-3xl border border-slate-200 p-5 ${toneClass}`}
+    >
+      <Initials>{initials}</Initials>
+      <div>
+        <p className="text-sm font-black text-slate-950">{name}</p>
+        <div className="mt-2 text-base leading-7 text-slate-700">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+function TopicCard({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <article className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+      <h3 className="text-lg font-black text-slate-950">{title}</h3>
+      <div className="mt-3 text-sm leading-7 text-slate-600">{children}</div>
+    </article>
+  );
+}
+
+function FormulaBox({ children }: { children: ReactNode }) {
+  return (
+    <div className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+      <div className="font-mono text-sm leading-7 text-slate-700">{children}</div>
+    </div>
+  );
+}
+
+function WebRCodeRunner() {
+  const [code, setCode] = useState(browserRCode);
+  const [output, setOutput] = useState(
+    "Click “Run R code”. The first run may take longer because R loads in the browser."
+  );
+  const [running, setRunning] = useState(false);
+
+  async function runCode() {
+    setRunning(true);
+    setOutput("Loading shared diabetes data and starting WebR...");
+
+    try {
+      const dataUrl = withBasePath(
+        "/ml-biostatistics/data/shared-diabetes-prediction-data.csv"
+      );
+
+      const csvResponse = await fetch(dataUrl);
+
+      if (!csvResponse.ok) {
+        throw new Error(
+          "Could not load shared diabetes CSV. Check that public/ml-biostatistics/data/shared-diabetes-prediction-data.csv exists."
+        );
+      }
+
+      const csvText = await csvResponse.text();
+      const webR = await getWebR();
+
+      const wrappedCode = `
+diabetes_csv_text <- ${JSON.stringify(csvText)}
+diabetes_data <- read.csv(text = diabetes_csv_text)
+
+paste(capture.output({
+${code}
+}), collapse = "\\n")
+`;
+
+      const result = await webR.evalR(wrappedCode);
+      const jsResult = await result.toJs();
+
+      const value =
+        jsResult?.values?.[0] ?? jsResult?.value ?? String(jsResult);
+
+      setOutput(String(value));
+    } catch (error) {
+      setOutput(
+        error instanceof Error
+          ? `Error: ${error.message}`
+          : "An unknown error occurred while running R."
+      );
+    } finally {
+      setRunning(false);
+    }
+  }
+
+  return (
+    <div className="mt-8 grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
+      <div className="overflow-hidden rounded-[1.75rem] border border-slate-800 bg-slate-950 shadow-sm">
+        <div className="flex flex-col gap-3 border-b border-white/10 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-300">
+              Editable R script
+            </p>
+            <p className="mt-1 text-xs leading-5 text-slate-400">
+              Runs in the browser using WebR and the shared diabetes CSV.
+            </p>
+          </div>
+
+          <button
+            onClick={runCode}
+            disabled={running}
+            className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-2.5 text-xs font-black text-slate-950 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          >
+            {running ? "Running R..." : "Run R code"}
+          </button>
+        </div>
+
+        <textarea
+          value={code}
+          onChange={(event) => setCode(event.target.value)}
+          spellCheck={false}
+          className="min-h-[760px] w-full resize-y bg-slate-950 p-5 font-mono text-[0.84rem] leading-6 text-slate-100 outline-none selection:bg-blue-400/30"
+        />
+      </div>
+
+      <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <div className="border-b border-slate-200 bg-slate-50 px-4 py-4">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+            R console output
+          </p>
+          <p className="mt-1 text-xs leading-5 text-slate-500">
+            Output and errors appear here.
+          </p>
+        </div>
+
+        <pre className="min-h-[760px] overflow-x-auto whitespace-pre-wrap bg-white p-5 font-mono text-[0.84rem] leading-6 text-slate-800">
+          {output}
+        </pre>
+      </div>
+    </div>
+  );
+}
+
+const learningTopics = [
+  {
+    title: "Training data",
+    body: "The rows used to estimate model parameters and learn the prediction rule.",
+  },
+  {
+    title: "Test data",
+    body: "Held-out rows used after model fitting to estimate unseen-patient performance.",
+  },
+  {
+    title: "Generalisation",
+    body: "The ability of a model to work on patients it did not see during training.",
+  },
+  {
+    title: "Overfitting",
+    body: "When a model learns training-specific noise, producing optimistic training performance.",
+  },
+  {
+    title: "Leakage",
+    body: "When unavailable future or outcome-derived information enters the model.",
+  },
+  {
+    title: "Honest reporting",
+    body: "Reporting performance in a way that reflects the intended clinical prediction time.",
+  },
 ];
 
 const figures = [
@@ -40,235 +610,276 @@ const figures = [
     src: "/ml-biostatistics/figures/module-1/lesson-1-4-train-test-distribution.png",
     alt: "Bar chart showing diabetes outcome distribution in training and test data.",
     interpretation:
-      "The model learns from the training data and is evaluated on a separate test set. The test set acts as a small rehearsal for future unseen patients.",
+      "Training data are used to fit the model. Test data are held back to estimate how the model behaves on unseen patients.",
   },
   {
     title: "Training accuracy vs test accuracy",
     src: "/ml-biostatistics/figures/module-1/lesson-1-4-training-vs-test-accuracy.png",
     alt: "Bar chart comparing training and test accuracy for simple, larger and over-flexible models.",
     interpretation:
-      "Training performance alone is not enough. A model should be judged mainly by how well it performs on held-out test data.",
+      "A model should not be judged only by training accuracy. A gap between training and test performance suggests weaker generalisation.",
   },
   {
     title: "Training AUC vs test AUC",
     src: "/ml-biostatistics/figures/module-1/lesson-1-4-training-vs-test-auc.png",
     alt: "Bar chart comparing training and test AUC for three models.",
     interpretation:
-      "AUC compares how well predicted risks separate positive and negative patients. A growing training-test gap is a warning sign.",
+      "AUC measures how well predicted risks separate positive from negative patients. A training-test AUC gap is a warning sign.",
   },
   {
     title: "Predicted risk distributions in the test data",
     src: "/ml-biostatistics/figures/module-1/lesson-1-4-test-risk-distributions.png",
     alt: "Faceted histograms showing predicted risk distributions for three models in the test set.",
     interpretation:
-      "The model should separate risk among unseen patients, not merely reproduce patterns in the training data.",
+      "The model should separate risk among unseen test patients, not merely reproduce patterns found in training rows.",
   },
   {
     title: "Leakage can make a model look unrealistically strong",
     src: "/ml-biostatistics/figures/module-1/lesson-1-4-leakage-warning.png",
     alt: "Bar chart comparing valid model and leakage model performance.",
     interpretation:
-      "The leakage model looks perfect because it uses information too close to the outcome. This is not valid medical prediction.",
+      "A leakage model can look perfect because it uses information too close to the outcome. This is not valid medical prediction.",
   },
 ];
 
-const rCode = `# Lesson 1.4 browser R lab
-# Training, testing, overfitting and generalisation
+const validationScenarios = [
+  {
+    id: "honest-split",
+    label: "Honest train/test split",
+    scenario:
+      "A model is fitted on 537 training patients and evaluated once on 231 held-out test patients.",
+    diagnosis: "Reasonable internal validation",
+    explanation:
+      "The test set was not used to fit the model, so test performance is more honest than training performance. It is still internal validation, not external validation.",
+  },
+  {
+    id: "overfitting-gap",
+    label: "Large performance gap",
+    scenario:
+      "A model has training AUC 0.95 but test AUC 0.72 after adding many transformations and interactions.",
+    diagnosis: "Possible overfitting",
+    explanation:
+      "The model may be learning noise or training-specific patterns. The training performance is high, but the model does not generalise as well.",
+  },
+  {
+    id: "leakage-future",
+    label: "Future diagnosis code",
+    scenario:
+      "A model uses a diagnosis code recorded after confirmatory testing to predict diabetes status at the initial visit.",
+    diagnosis: "Leakage",
+    explanation:
+      "The predictor would not be available at the real prediction time. It leaks future information and makes the model clinically invalid.",
+  },
+  {
+    id: "duplicate-records",
+    label: "Duplicate patient rows",
+    scenario:
+      "Rows from the same patient appear in both training and test data, with nearly identical measurements.",
+    diagnosis: "Data splitting problem",
+    explanation:
+      "The test set is no longer fully independent. The model may recognise patient-specific patterns rather than generalising to new patients.",
+  },
+  {
+    id: "external-validation",
+    label: "Different hospital",
+    scenario:
+      "A model trained in one hospital is tested in another hospital with different patient demographics and measurement practices.",
+    diagnosis: "External validation",
+    explanation:
+      "This is stronger than a simple random split because it tests transportability to a genuinely different clinical setting.",
+  },
+];
 
-set.seed(2026)
+const modelProfiles = [
+  {
+    id: "simple",
+    name: "Simple model",
+    predictors: "glucose + BMI/mass + age",
+    trainAccuracy: 0.786,
+    testAccuracy: 0.779,
+    trainAuc: 0.832,
+    testAuc: 0.819,
+    sensitivity: 0.625,
+    specificity: 0.849,
+    note: "Low complexity. Easier to explain and less likely to chase noise, but may miss useful signal.",
+  },
+  {
+    id: "larger",
+    name: "Larger model",
+    predictors: "all routine clinical predictors",
+    trainAccuracy: 0.790,
+    testAccuracy: 0.792,
+    trainAuc: 0.843,
+    testAuc: 0.837,
+    sensitivity: 0.625,
+    specificity: 0.868,
+    note: "Uses more available predictors. Slightly better test performance in this teaching run.",
+  },
+  {
+    id: "over",
+    name: "Over-flexible model",
+    predictors: "extra squared terms + interactions",
+    trainAccuracy: 0.812,
+    testAccuracy: 0.766,
+    trainAuc: 0.881,
+    testAuc: 0.838,
+    sensitivity: 0.639,
+    specificity: 0.824,
+    note: "Higher training performance but a larger training-test gap. This raises an overfitting warning.",
+  },
+  {
+    id: "leakage",
+    name: "Leakage model",
+    predictors: "valid predictors + outcome-derived marker",
+    trainAccuracy: 1.0,
+    testAccuracy: 1.0,
+    trainAuc: 1.0,
+    testAuc: 1.0,
+    sensitivity: 1.0,
+    specificity: 1.0,
+    note: "Perfect performance is not trustworthy because the model uses information derived from the outcome.",
+  },
+];
 
-n <- 260
+const toyPatients = [
+  { id: "A", risk: 0.08, observed: 0 },
+  { id: "B", risk: 0.16, observed: 0 },
+  { id: "C", risk: 0.29, observed: 0 },
+  { id: "D", risk: 0.43, observed: 1 },
+  { id: "E", risk: 0.54, observed: 1 },
+  { id: "F", risk: 0.62, observed: 0 },
+  { id: "G", risk: 0.77, observed: 1 },
+  { id: "H", risk: 0.89, observed: 1 },
+];
 
-glucose <- rnorm(n, mean = 120, sd = 28)
-mass <- rnorm(n, mean = 32, sd = 7)
-age <- rnorm(n, mean = 35, sd = 11)
-pressure <- rnorm(n, mean = 70, sd = 12)
+export default function TrainingTestingOverfittingGeneralisationPage() {
+  const [activeTab, setActiveTab] = useState("Lecture");
+  const [selectedScenario, setSelectedScenario] = useState("honest-split");
+  const [selectedModel, setSelectedModel] = useState("simple");
+  const [threshold, setThreshold] = useState(0.5);
+  const [trainAccuracy, setTrainAccuracy] = useState(0.86);
+  const [testAccuracy, setTestAccuracy] = useState(0.76);
+  const [checklist, setChecklist] = useState({
+    predictionTime: true,
+    noFutureData: false,
+    splitBeforeModelling: true,
+    externalValidation: false,
+  });
 
-linear_predictor <- -8 + 0.035 * glucose + 0.07 * mass + 0.025 * age
-risk <- 1 / (1 + exp(-linear_predictor))
+  const selectedScenarioData =
+    validationScenarios.find((item) => item.id === selectedScenario) ??
+    validationScenarios[0];
 
-diabetes_binary <- rbinom(n, size = 1, prob = risk)
-diabetes <- ifelse(diabetes_binary == 1, "pos", "neg")
+  const selectedModelData =
+    modelProfiles.find((item) => item.id === selectedModel) ?? modelProfiles[0];
 
-data <- data.frame(
-  glucose = glucose,
-  mass = mass,
-  age = age,
-  pressure = pressure,
-  diabetes = diabetes,
-  diabetes_binary = diabetes_binary
-)
+  const toyMetrics = useMemo(() => {
+    const predictions = toyPatients.map((patient) => ({
+      ...patient,
+      predicted: patient.risk >= threshold ? 1 : 0,
+    }));
 
-cat("Browser R lab: Lesson 1.4\\n")
-cat("Training, testing, overfitting and generalisation\\n")
-cat("------------------------------------------\\n")
-cat("Rows:", nrow(data), "\\n")
-cat("Outcome table:\\n")
-print(table(data$diabetes))
+    const tp = predictions.filter(
+      (patient) => patient.observed === 1 && patient.predicted === 1
+    ).length;
+    const fp = predictions.filter(
+      (patient) => patient.observed === 0 && patient.predicted === 1
+    ).length;
+    const tn = predictions.filter(
+      (patient) => patient.observed === 0 && patient.predicted === 0
+    ).length;
+    const fn = predictions.filter(
+      (patient) => patient.observed === 1 && patient.predicted === 0
+    ).length;
 
-train_id <- sample(seq_len(nrow(data)), size = 0.7 * nrow(data))
+    const accuracy = (tp + tn) / predictions.length;
+    const sensitivity = tp + fn === 0 ? 0 : tp / (tp + fn);
+    const specificity = tn + fp === 0 ? 0 : tn / (tn + fp);
 
-train_data <- data[train_id, ]
-test_data <- data[-train_id, ]
+    return {
+      predictions,
+      tp,
+      fp,
+      tn,
+      fn,
+      accuracy,
+      sensitivity,
+      specificity,
+    };
+  }, [threshold]);
 
-cat("\\nTraining rows:", nrow(train_data), "\\n")
-cat("Test rows:", nrow(test_data), "\\n")
+  const generalisationGap = Math.max(0, trainAccuracy - testAccuracy);
 
-cat("\\nTraining outcome table:\\n")
-print(table(train_data$diabetes))
+  const gapInterpretation =
+    generalisationGap < 0.04
+      ? "Small gap. This suggests stable performance in this simplified display, but external validation is still needed."
+      : generalisationGap < 0.12
+      ? "Moderate gap. The model may still be useful, but the training result is clearly optimistic."
+      : "Large gap. This is a strong overfitting warning: the model performs much better on seen data than unseen data.";
 
-cat("\\nTest outcome table:\\n")
-print(table(test_data$diabetes))
+  const checklistScore = Object.values(checklist).filter(Boolean).length;
 
-# Simple model
-simple_model <- glm(
-  diabetes_binary ~ glucose + mass + age,
-  data = train_data,
-  family = binomial
-)
-
-train_data$simple_risk <- predict(simple_model, newdata = train_data, type = "response")
-test_data$simple_risk <- predict(simple_model, newdata = test_data, type = "response")
-
-train_data$simple_class <- ifelse(train_data$simple_risk >= 0.5, 1, 0)
-test_data$simple_class <- ifelse(test_data$simple_risk >= 0.5, 1, 0)
-
-simple_train_accuracy <- mean(train_data$diabetes_binary == train_data$simple_class)
-simple_test_accuracy <- mean(test_data$diabetes_binary == test_data$simple_class)
-
-cat("\\nSIMPLE MODEL\\n")
-cat("Training accuracy:", round(simple_train_accuracy, 3), "\\n")
-cat("Test accuracy:", round(simple_test_accuracy, 3), "\\n")
-cat("Test confusion matrix:\\n")
-print(table(
-  Observed = test_data$diabetes_binary,
-  Predicted = test_data$simple_class
-))
-
-# Over-flexible model
-over_model <- glm(
-  diabetes_binary ~ glucose + mass + age + pressure +
-    I(glucose^2) + I(mass^2) + I(age^2) +
-    glucose:mass + glucose:age + mass:age,
-  data = train_data,
-  family = binomial
-)
-
-train_data$over_risk <- predict(over_model, newdata = train_data, type = "response")
-test_data$over_risk <- predict(over_model, newdata = test_data, type = "response")
-
-train_data$over_class <- ifelse(train_data$over_risk >= 0.5, 1, 0)
-test_data$over_class <- ifelse(test_data$over_risk >= 0.5, 1, 0)
-
-over_train_accuracy <- mean(train_data$diabetes_binary == train_data$over_class)
-over_test_accuracy <- mean(test_data$diabetes_binary == test_data$over_class)
-
-cat("\\nOVER-FLEXIBLE MODEL\\n")
-cat("Training accuracy:", round(over_train_accuracy, 3), "\\n")
-cat("Test accuracy:", round(over_test_accuracy, 3), "\\n")
-cat("Test confusion matrix:\\n")
-print(table(
-  Observed = test_data$diabetes_binary,
-  Predicted = test_data$over_class
-))
-
-# Leakage demonstration
-test_data$leakage_marker <- test_data$diabetes_binary + rnorm(nrow(test_data), 0, 0.05)
-train_data$leakage_marker <- train_data$diabetes_binary + rnorm(nrow(train_data), 0, 0.05)
-
-leakage_model <- glm(
-  diabetes_binary ~ glucose + mass + age + leakage_marker,
-  data = train_data,
-  family = binomial
-)
-
-test_data$leakage_risk <- predict(leakage_model, newdata = test_data, type = "response")
-test_data$leakage_class <- ifelse(test_data$leakage_risk >= 0.5, 1, 0)
-
-leakage_accuracy <- mean(test_data$diabetes_binary == test_data$leakage_class)
-
-cat("\\nLEAKAGE MODEL\\n")
-cat("Test accuracy:", round(leakage_accuracy, 3), "\\n")
-cat("Test confusion matrix:\\n")
-print(table(
-  Observed = test_data$diabetes_binary,
-  Predicted = test_data$leakage_class
-))
-
-cat("\\nInterpretation:\\n")
-cat("Training data are used to fit the model.\\n")
-cat("Test data estimate performance on unseen patients.\\n")
-cat("Overfitting occurs when training-specific patterns do not generalise.\\n")
-cat("Leakage occurs when future or outcome information enters the model.\\n")
-cat("A perfect-looking leakage model is not clinically trustworthy.\\n")`;
-
-export default function TrainingTestingOverfittingPage() {
-  const [activeTab, setActiveTab] = useState("lecture");
-  const [isRunning, setIsRunning] = useState(false);
-  const [output, setOutput] = useState(
-    "Click “Run R code” to start the in-browser R lab."
-  );
-
-  async function runRCode() {
-    setIsRunning(true);
-    setOutput("Starting WebR. First run can take 20–60 seconds...");
-
-    try {
-      const webR = await getWebR();
-
-      const result = await webR.evalR(`
-        paste(
-          capture.output({
-            ${rCode}
-          }),
-          collapse = "\\n"
-        )
-      `);
-
-      const jsResult = await result.toJs();
-      setOutput(String(jsResult.values[0]));
-    } catch (error) {
-      setOutput(
-        `Something went wrong while running R in the browser.\n\n${String(error)}`
-      );
-    } finally {
-      setIsRunning(false);
-    }
+  function toggleChecklist(key: keyof typeof checklist) {
+    setChecklist((current) => ({
+      ...current,
+      [key]: !current[key],
+    }));
   }
 
   return (
     <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-slate-950 md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
-        <a
-          href={withBasePath(
-            "/courses/machine-learning-biostatistics/modules/foundations"
-          )}
-          className="text-sm font-black text-blue-600 transition hover:text-blue-700"
-        >
-          ← Back to Module 1
-        </a>
+        <div className="flex items-center justify-between gap-4">
+          <a
+            href={withBasePath(
+              "/courses/machine-learning-biostatistics/modules/foundations"
+            )}
+            className="text-sm font-black text-blue-600 transition hover:text-blue-700"
+          >
+            ← Back to Module 1
+          </a>
 
-        <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
-            Module 1 · Lesson 1.4
-          </p>
+          <a
+            href={withBasePath("/courses/machine-learning-biostatistics")}
+            className="hidden rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-black text-slate-700 shadow-sm sm:inline-flex"
+          >
+            ML in Biostatistics
+          </a>
+        </div>
 
-          <h1 className="mt-5 max-w-5xl text-4xl font-black tracking-tight md:text-6xl">
+        <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
+          <div className="flex flex-wrap gap-3">
+            <span className="rounded-full bg-blue-100 px-4 py-2 text-xs font-black text-blue-800">
+              Module 1
+            </span>
+            <span className="rounded-full bg-emerald-100 px-4 py-2 text-xs font-black text-emerald-800">
+              Lesson 1.4
+            </span>
+            <span className="rounded-full bg-amber-100 px-4 py-2 text-xs font-black text-amber-800">
+              Validation
+            </span>
+            <span className="rounded-full bg-rose-100 px-4 py-2 text-xs font-black text-rose-800">
+              Leakage warning
+            </span>
+          </div>
+
+          <h1 className="mt-7 max-w-5xl text-4xl font-black tracking-tight md:text-6xl">
             Training, testing, overfitting and generalisation
           </h1>
 
           <p className="mt-6 max-w-4xl text-base leading-8 text-slate-600 md:text-lg">
-            Learn why a model must be tested on unseen patients, why training
-            performance can be misleading, and why leakage can make a medical
-            machine learning model look unrealistically strong.
+            A model that performs well on the data it has already seen may still
+            fail on new patients. This lesson explains why honest validation,
+            unseen test data, overfitting checks and leakage prevention are
+            central to medical machine learning.
           </p>
 
           <div className="mt-8 grid gap-3 md:grid-cols-4">
             {[
-              ["Dataset", "768 patients"],
-              ["Training rows", "537"],
-              ["Test rows", "231"],
-              ["Big warning", "Leakage"],
+              ["Time", "80–100 min"],
+              ["Level", "Introductory → deeper"],
+              ["Focus", "Generalisation"],
+              ["Coding", "R in browser"],
             ].map(([label, value]) => (
               <div
                 key={label}
@@ -285,28 +896,27 @@ export default function TrainingTestingOverfittingPage() {
           </div>
         </section>
 
-        <section className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-3 shadow-sm">
-          <div className="grid gap-2 md:grid-cols-6">
+        <section className="mt-8 border-y border-slate-200 py-4">
+          <div className="flex gap-3 overflow-x-auto pb-1">
             {tabs.map((tab) => (
               <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveTab(tab.id)}
-                className={`rounded-2xl px-4 py-3 text-sm font-black transition ${
-                  activeTab === tab.id
-                    ? "bg-slate-950 text-white"
-                    : "bg-slate-50 text-slate-700 hover:bg-slate-100"
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`shrink-0 rounded-full border px-6 py-3 text-sm font-black transition ${
+                  activeTab === tab
+                    ? "border-slate-950 bg-slate-950 text-white"
+                    : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-950"
                 }`}
               >
-                {tab.label}
+                {tab}
               </button>
             ))}
           </div>
         </section>
 
-        {activeTab === "lecture" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+        {activeTab === "Lecture" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
               Conversational lecture
             </p>
 
@@ -314,89 +924,127 @@ export default function TrainingTestingOverfittingPage() {
               The model that looked perfect
             </h2>
 
-            <p className="mt-4 text-base leading-8 text-slate-600">
-              Scene: Prof Stat has split the diabetes dataset into training and
-              test data. Curious Learner is impressed by a model with perfect
-              performance. Dr Clinic is suspicious. Leakage Monster is smiling.
-            </p>
+            <div className="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
+                Topics being explained in this lecture
+              </p>
 
-            <div className="mt-8 space-y-5">
-              {[
-                {
-                  initials: "CL",
-                  name: "Curious Learner",
-                  text: "The leakage model has test accuracy 1 and AUC 1. That means it is the best model, right?",
-                },
-                {
-                  initials: "PS",
-                  name: "Prof Stat",
-                  text: "Not necessarily. Perfect performance in medical prediction is often a warning sign. We must ask whether the model used information that would be available at the real prediction time.",
-                },
-                {
-                  initials: "DC",
-                  name: "Dr Clinic",
-                  text: "If the model uses future diagnosis information, post-outcome treatment or follow-up data, it may look excellent in analysis but be useless when a clinician actually needs the prediction.",
-                },
-                {
-                  initials: "LM",
-                  name: "Leakage Monster",
-                  text: "Exactly. Give me a variable that is almost a copy of the outcome, and I can make any model look brilliant.",
-                },
-                {
-                  initials: "CL",
-                  name: "Curious Learner",
-                  text: "So we should not only ask whether performance is high. We should ask whether the performance is honest.",
-                },
-                {
-                  initials: "PS",
-                  name: "Prof Stat",
-                  text: "Correct. That is why we split data into training and test sets. Training data are used to fit the model. Test data are held back to estimate generalisation to unseen patients.",
-                },
-                {
-                  initials: "DC",
-                  name: "Dr Clinic",
-                  text: "In clinical prediction, generalisation matters more than memorising past patients. A model must work for future patients, different clinics and real decision points.",
-                },
-                {
-                  initials: "PS",
-                  name: "Prof Stat",
-                  text: "Overfitting happens when the model learns training-specific noise. Leakage happens when the model receives information it should not have. Both can make performance misleading.",
-                },
-              ].map((line) => (
-                <div
-                  key={`${line.name}-${line.text}`}
-                  className="grid gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-5 md:grid-cols-[0.16fr_1fr]"
-                >
-                  <div>
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-sm font-black text-white">
-                      {line.initials}
-                    </div>
-                    <p className="mt-2 text-sm font-black text-slate-950">
-                      {line.name}
+              <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                {learningTopics.map((topic) => (
+                  <div
+                    key={topic.title}
+                    className="rounded-2xl border border-slate-200 bg-white p-4"
+                  >
+                    <p className="font-black text-slate-950">{topic.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      {topic.body}
                     </p>
                   </div>
-                  <p className="text-base leading-8 text-slate-700">
-                    “{line.text}”
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 space-y-4">
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                In Lesson 1.3, we learned that supervised learning uses labelled
+                examples. If the model learns from labelled patients, why can we
+                not simply check how well it predicts those same patients?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Because predicting patients already used for training is easier
+                than predicting genuinely new patients. Training performance
+                tells us how well the model fits the data it has seen. Medical
+                prediction requires generalisation.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                In clinic, I do not need a model that memorises historical
+                patients. I need a model that helps with tomorrow’s patients,
+                who were not part of model fitting.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Exactly. That is why we split the data. The training set is used
+                to estimate the model. The test set is held back and touched
+                only after the model is fitted.
+              </DialogueLine>
+
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                So the test set is like a rehearsal for future patients?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Yes, but only a limited rehearsal. It is still from the same
+                dataset. It is better than training performance, but external
+                validation in another hospital or time period is stronger.
+              </DialogueLine>
+
+              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
+                I prefer when people do the split after looking at everything,
+                tune the model repeatedly on the test set, or accidentally add
+                future information. Then the model looks wonderful.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                But that would not be valid. If a predictor would not be
+                available when the decision is made, the model cannot use it in
+                real clinical practice.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Correct. That is leakage. It can happen through future diagnosis
+                codes, post-outcome treatment, lab results ordered after
+                suspicion, duplicate records, or variables created using the
+                outcome.
+              </DialogueLine>
+
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                What about overfitting? Is that the same as leakage?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                They are different. Overfitting means the model learns
+                training-specific noise or accidental patterns. Leakage means
+                the model receives information it should not have. Both make
+                performance too optimistic.
+              </DialogueLine>
+
+              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
+                If the model gets perfect accuracy in a realistic clinical
+                problem, be suspicious. Real patients are messy. Perfect results
+                often mean the answer leaked into the predictors.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                So the safest question is not “Which model has the highest
+                number?” It is “Which model performs honestly using information
+                available at the real prediction time?”
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Perfect. Honest validation is the foundation of trustworthy
+                medical machine learning.
+              </DialogueLine>
             </div>
 
             <div className="mt-8 rounded-3xl bg-slate-950 p-6 text-white">
-              <h3 className="text-2xl font-black">Big idea</h3>
-              <p className="mt-4 max-w-4xl text-base leading-8 text-slate-300">
-                A prediction model should be judged by how well it generalises
-                to unseen patients. High training performance is not enough.
-                Perfect-looking performance can be invalid if the model is
-                overfitted or contaminated by leakage.
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
+                Big idea
+              </p>
+              <p className="mt-3 text-xl font-black leading-8 md:text-2xl">
+                A model is not trustworthy because it performs well on training
+                data. It becomes more trustworthy when it performs well on
+                genuinely unseen data without leakage and with predictors
+                available at the intended clinical prediction time.
               </p>
             </div>
           </section>
         )}
 
-        {activeTab === "notes" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+        {activeTab === "Detailed Notes" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
               Detailed notes
             </p>
 
@@ -404,335 +1052,885 @@ export default function TrainingTestingOverfittingPage() {
               Why unseen-data performance matters
             </h2>
 
-            <div className="mt-6 max-w-4xl space-y-5 text-base leading-8 text-slate-700">
-              <p>
-                In supervised machine learning, the model learns from examples.
-                If it is evaluated only on the same examples used for learning,
-                the performance estimate can be too optimistic. The model may
-                have learned patterns that are specific to the training data,
-                rather than patterns that generalise to future patients.
-              </p>
+            <div className="mt-8 space-y-8 text-base leading-8 text-slate-700">
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  1. The central problem
+                </h3>
+                <p className="mt-3">
+                  In supervised learning, a model is trained on examples where
+                  both predictors and outcomes are observed. If we evaluate the
+                  model on the same observations used to train it, performance
+                  can be misleadingly high. The model may have learned patterns
+                  specific to the training data rather than patterns that
+                  generalise to new patients.
+                </p>
 
-              <p>
-                The <strong>training set</strong> is used to estimate model
-                parameters. The <strong>test set</strong> is held back and used
-                only after the model is fitted. Test performance is not perfect
-                evidence of real-world performance, but it is more honest than
-                training performance.
-              </p>
+                <FormulaBox>
+                  Training data: used to estimate the model
+                  <br />
+                  Test data: held back until after model fitting
+                  <br />
+                  Main aim: estimate performance on unseen patients
+                </FormulaBox>
+              </div>
 
-              <p>
-                <strong>Overfitting</strong> occurs when a model captures noise,
-                accidental structure or idiosyncrasies of the training sample.
-                The model may look good during training but perform less well on
-                unseen patients.
-              </p>
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  2. Training error and test error
+                </h3>
+                <p className="mt-3">
+                  Let a fitted model be written as{" "}
+                  <span className="font-mono">f̂</span>. For a binary outcome,
+                  a patient is classified correctly if the predicted class
+                  matches the observed outcome. Training error is calculated on
+                  rows used for fitting. Test error is calculated on held-out
+                  rows.
+                </p>
 
-              <p>
-                <strong>Leakage</strong> is even more dangerous. Leakage happens
-                when predictors include information that would not be available
-                at the real prediction time. A leaked variable can create
-                excellent apparent performance while making the model invalid
-                for clinical use.
-              </p>
-            </div>
+                <FormulaBox>
+                  Training error = average loss on training observations
+                  <br />
+                  Test error = average loss on held-out observations
+                  <br />
+                  Generalisation gap = test error − training error
+                </FormulaBox>
 
-            <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200">
-              <table className="w-full border-collapse text-left text-sm">
-                <thead className="bg-slate-950 text-white">
-                  <tr>
-                    <th className="p-4">Concept</th>
-                    <th className="p-4">Meaning</th>
-                    <th className="p-4">Medical ML danger</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    [
-                      "Training data",
-                      "Data used to fit the model.",
-                      "Performance may look too good if judged only here.",
-                    ],
-                    [
-                      "Test data",
-                      "Held-out data used to estimate performance on unseen patients.",
-                      "Still not a replacement for external validation.",
-                    ],
-                    [
-                      "Overfitting",
-                      "The model learns training-specific noise or accidental patterns.",
-                      "The model fails to generalise to new patients.",
-                    ],
-                    [
-                      "Leakage",
-                      "Unavailable future or outcome information enters the model.",
-                      "The model looks excellent but is clinically invalid.",
-                    ],
-                    [
-                      "Generalisation",
-                      "The ability to perform well beyond the training data.",
-                      "Essential before trusting a medical prediction model.",
-                    ],
-                  ].map((row) => (
-                    <tr key={row[0]} className="border-t border-slate-200">
-                      {row.map((cell, index) => (
-                        <td
-                          key={cell}
-                          className={`p-4 leading-6 ${
-                            index === 0
-                              ? "font-black text-slate-950"
-                              : "text-slate-600"
-                          }`}
-                        >
-                          {cell}
-                        </td>
+                <p className="mt-4">
+                  A small gap suggests that the model behaves similarly on
+                  training and test data. A large gap suggests instability,
+                  overfitting, distribution shift or another validation problem.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  3. Summary table of key concepts
+                </h3>
+
+                <div className="mt-5 overflow-x-auto rounded-3xl border border-slate-200">
+                  <table className="w-full min-w-[900px] border-collapse text-left text-sm">
+                    <thead className="bg-slate-950 text-white">
+                      <tr>
+                        <th className="p-4">Concept</th>
+                        <th className="p-4">Meaning</th>
+                        <th className="p-4">Medical ML danger</th>
+                        <th className="p-4">Good practice</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        [
+                          "Training data",
+                          "Rows used to fit the model.",
+                          "Performance can look too optimistic.",
+                          "Use only for fitting and tuning inside a proper validation scheme.",
+                        ],
+                        [
+                          "Test data",
+                          "Held-out rows used after model fitting.",
+                          "Repeated use can turn it into training information.",
+                          "Use once for final internal performance estimation.",
+                        ],
+                        [
+                          "Overfitting",
+                          "The model learns noise or accidental training patterns.",
+                          "High training performance but weaker test performance.",
+                          "Prefer validation, regularisation and simpler models when appropriate.",
+                        ],
+                        [
+                          "Leakage",
+                          "Unavailable future or outcome-derived information enters predictors.",
+                          "Performance may look unrealistically strong.",
+                          "Define prediction time before selecting predictors.",
+                        ],
+                        [
+                          "Generalisation",
+                          "Performance on patients beyond the fitting data.",
+                          "Poor generalisation causes failure in practice.",
+                          "Use test sets, resampling and external validation.",
+                        ],
+                      ].map((row) => (
+                        <tr key={row[0]} className="border-t border-slate-200">
+                          <td className="p-4 font-black text-slate-950">
+                            {row[0]}
+                          </td>
+                          <td className="p-4 text-slate-600">{row[1]}</td>
+                          <td className="p-4 text-slate-600">{row[2]}</td>
+                          <td className="p-4 text-slate-600">{row[3]}</td>
+                        </tr>
                       ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
 
-            <div className="mt-8 grid gap-6">
-              {figures.map((figure) => (
-                <article
-                  key={figure.src}
-                  className="rounded-[2rem] border border-slate-200 bg-slate-50 p-5"
-                >
-                  <h3 className="text-xl font-black text-slate-950">
-                    {figure.title}
-                  </h3>
-                  <img
-                    src={withBasePath(figure.src)}
-                    alt={figure.alt}
-                    className="mt-5 w-full rounded-3xl border border-slate-200 bg-white"
-                  />
-                  <p className="mt-4 text-sm leading-7 text-slate-600">
-                    {figure.interpretation}
-                  </p>
-                </article>
-              ))}
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  4. Model complexity and overfitting
+                </h3>
+                <p className="mt-3">
+                  More complex models can capture more patterns, but they can
+                  also capture noise. In medical datasets, especially small or
+                  moderate datasets, a highly flexible model may fit the training
+                  sample very well but perform less well on new patients.
+                </p>
+
+                <FormulaBox>
+                  Low complexity: may underfit if too simple
+                  <br />
+                  Appropriate complexity: captures useful signal
+                  <br />
+                  Excessive complexity: may overfit training-specific noise
+                </FormulaBox>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-3">
+                  <TopicCard title="Underfitting">
+                    The model is too simple to capture important predictive
+                    signal. Both training and test performance may be weak.
+                  </TopicCard>
+                  <TopicCard title="Reasonable fit">
+                    The model captures useful structure and maintains similar
+                    performance on unseen data.
+                  </TopicCard>
+                  <TopicCard title="Overfitting">
+                    The model learns noise, outliers or accidental patterns that
+                    do not generalise.
+                  </TopicCard>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  5. Leakage is different from ordinary overfitting
+                </h3>
+                <p className="mt-3">
+                  Leakage occurs when the modelling process uses information
+                  that would not be available at the real prediction time. It is
+                  especially dangerous because it can produce extremely high test
+                  performance even when the model is invalid.
+                </p>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-2">
+                  <TopicCard title="Overfitting example">
+                    A model uses many interactions and learns random noise from
+                    the training sample.
+                  </TopicCard>
+                  <TopicCard title="Leakage example">
+                    A model uses a future diagnosis code, discharge medication
+                    or an outcome-derived variable as a predictor.
+                  </TopicCard>
+                  <TopicCard title="Overfitting symptom">
+                    Training performance is much better than test performance.
+                  </TopicCard>
+                  <TopicCard title="Leakage symptom">
+                    Performance may be suspiciously perfect or far stronger
+                    than clinically plausible.
+                  </TopicCard>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  6. Internal validation vs external validation
+                </h3>
+                <p className="mt-3">
+                  A random train/test split is a form of internal validation. It
+                  checks whether the model can predict held-out rows from the
+                  same source dataset. External validation is stronger because
+                  it evaluates the model in a different hospital, time period,
+                  population or data collection process.
+                </p>
+
+                <div className="mt-5 overflow-x-auto rounded-3xl border border-slate-200">
+                  <table className="w-full min-w-[760px] border-collapse text-left text-sm">
+                    <thead className="bg-slate-950 text-white">
+                      <tr>
+                        <th className="p-4">Validation type</th>
+                        <th className="p-4">What it tests</th>
+                        <th className="p-4">Limitation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        [
+                          "Training performance",
+                          "Fit to already-seen data.",
+                          "Usually optimistic and not enough for reporting model usefulness.",
+                        ],
+                        [
+                          "Random test split",
+                          "Held-out performance within the same dataset.",
+                          "Still internal; may not represent new hospitals or time periods.",
+                        ],
+                        [
+                          "Cross-validation",
+                          "Average internal performance across multiple splits.",
+                          "Still internal unless data sources differ meaningfully.",
+                        ],
+                        [
+                          "External validation",
+                          "Transportability to a new setting.",
+                          "Requires suitable independent data.",
+                        ],
+                      ].map((row) => (
+                        <tr key={row[0]} className="border-t border-slate-200">
+                          <td className="p-4 font-black text-slate-950">
+                            {row[0]}
+                          </td>
+                          <td className="p-4 text-slate-600">{row[1]}</td>
+                          <td className="p-4 text-slate-600">{row[2]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  7. Visual interpretation
+                </h3>
+
+                <div className="mt-5 grid gap-6">
+                  {figures.map((figure) => (
+                    <figure
+                      key={figure.src}
+                      className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
+                    >
+                      <h4 className="text-xl font-black text-slate-950">
+                        {figure.title}
+                      </h4>
+                      <img
+                        src={withBasePath(figure.src)}
+                        alt={figure.alt}
+                        className="mt-5 w-full rounded-2xl border border-slate-200 bg-white"
+                      />
+                      <figcaption className="mt-4 text-sm leading-6 text-slate-600">
+                        {figure.interpretation}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  8. Safe interpretation checklist
+                </h3>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-2">
+                  <TopicCard title="Define prediction time">
+                    State exactly when the prediction is made and which
+                    predictors are available at that moment.
+                  </TopicCard>
+                  <TopicCard title="Split before modelling">
+                    Separate training and test data before exploring model
+                    performance or choosing a final model.
+                  </TopicCard>
+                  <TopicCard title="Avoid test-set tuning">
+                    Do not repeatedly adjust the model based on the final test
+                    set.
+                  </TopicCard>
+                  <TopicCard title="Investigate perfect results">
+                    Perfect or near-perfect performance in realistic medical
+                    prediction should trigger a leakage check.
+                  </TopicCard>
+                </div>
+              </div>
             </div>
           </section>
         )}
 
-        {activeTab === "interactive" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
-              Interactive lab
+        {activeTab === "Interactive Lab" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+              Advanced interactive lab
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              Diagnose the modelling problem
+              Diagnose validation problems before trusting performance
             </h2>
 
-            <p className="mt-5 max-w-4xl text-base leading-8 text-slate-600">
-              Open each scenario and decide whether it describes normal
-              validation, possible overfitting or leakage.
-            </p>
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 1: scenario diagnosis
+                </h3>
 
-            <div className="mt-8 space-y-4">
-              {[
-                {
-                  scenario:
-                    "A model is fitted on 537 training patients and evaluated on 231 held-out test patients.",
-                  answer: "Train/test validation",
-                  reason:
-                    "The test set was not used to fit the model, so it gives a more honest estimate of unseen-patient performance.",
-                },
-                {
-                  scenario:
-                    "A model has much higher training AUC than test AUC.",
-                  answer: "Possible overfitting",
-                  reason:
-                    "A large training-test gap suggests the model may have learned training-specific patterns.",
-                },
-                {
-                  scenario:
-                    "A model uses a follow-up diagnosis code recorded after the prediction time.",
-                  answer: "Leakage",
-                  reason:
-                    "The predictor would not be available when the prediction is supposed to be made.",
-                },
-                {
-                  scenario:
-                    "A model has perfect accuracy and perfect AUC in a realistic clinical prediction problem.",
-                  answer: "Suspicious result",
-                  reason:
-                    "Perfect performance is often a warning sign. Check for leakage, duplicate records or outcome-derived predictors.",
-                },
-              ].map((item, index) => (
-                <details
-                  key={item.scenario}
-                  className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
-                >
-                  <summary className="cursor-pointer text-base font-black leading-7 text-slate-950">
-                    Scenario {index + 1}: {item.scenario}
-                  </summary>
-                  <div className="mt-4 rounded-2xl bg-white p-4">
-                    <p className="text-sm font-black uppercase tracking-[0.16em] text-blue-600">
-                      Diagnosis
-                    </p>
-                    <p className="mt-2 text-xl font-black text-slate-950">
-                      {item.answer}
-                    </p>
-                    <p className="mt-3 text-sm leading-7 text-slate-600">
-                      {item.reason}
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Choose a scenario and decide whether it describes honest
+                  validation, overfitting, leakage, duplicate-data bias or
+                  external validation.
+                </p>
+
+                <div className="mt-5 grid gap-3">
+                  {validationScenarios.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => setSelectedScenario(item.id)}
+                      className={`rounded-2xl border px-4 py-3 text-left text-sm font-black transition ${
+                        selectedScenario === item.id
+                          ? "border-slate-950 bg-slate-950 text-white"
+                          : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50"
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
+                  <p className="font-black text-slate-950">
+                    {selectedScenarioData.scenario}
+                  </p>
+                  <p className="mt-4 text-sm font-black uppercase tracking-[0.16em] text-blue-600">
+                    Diagnosis
+                  </p>
+                  <p className="mt-2 text-xl font-black text-slate-950">
+                    {selectedScenarioData.diagnosis}
+                  </p>
+                  <p className="mt-3">{selectedScenarioData.explanation}</p>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 2: compare model profiles
+                </h3>
+
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Choose a model. Look at both training and test performance,
+                  not only the best-looking number.
+                </p>
+
+                <div className="mt-5 grid gap-3">
+                  {modelProfiles.map((model) => (
+                    <button
+                      key={model.id}
+                      onClick={() => setSelectedModel(model.id)}
+                      className={`rounded-2xl border px-4 py-3 text-left text-sm font-black transition ${
+                        selectedModel === model.id
+                          ? "border-slate-950 bg-slate-950 text-white"
+                          : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50"
+                      }`}
+                    >
+                      {model.name}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl bg-white p-4">
+                  <p className="text-lg font-black text-slate-950">
+                    {selectedModelData.name}
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    <strong>Predictors:</strong> {selectedModelData.predictors}
+                  </p>
+
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                    {[
+                      ["Train accuracy", selectedModelData.trainAccuracy],
+                      ["Test accuracy", selectedModelData.testAccuracy],
+                      ["Train AUC", selectedModelData.trainAuc],
+                      ["Test AUC", selectedModelData.testAuc],
+                    ].map(([label, value]) => (
+                      <div
+                        key={label}
+                        className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
+                      >
+                        <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                          {label}
+                        </p>
+                        <p className="mt-1 text-2xl font-black text-blue-700">
+                          {typeof value === "number" ? value.toFixed(3) : value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <p className="mt-4 text-sm leading-6 text-slate-600">
+                    {selectedModelData.note}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <h3 className="text-2xl font-black text-slate-950">
+                Lab 3: training-test gap simulator
+              </h3>
+
+              <p className="mt-3 max-w-4xl text-base leading-7 text-slate-700">
+                Move the sliders. A model can look strong on training data while
+                generalising poorly. The gap is not proof by itself, but it is a
+                warning signal.
+              </p>
+
+              <div className="mt-6 grid gap-5 md:grid-cols-2">
+                <div>
+                  <label className="block text-sm font-black uppercase tracking-[0.18em] text-slate-600">
+                    Training accuracy: {trainAccuracy.toFixed(2)}
+                  </label>
+                  <input
+                    type="range"
+                    min={0.5}
+                    max={1}
+                    step={0.01}
+                    value={trainAccuracy}
+                    onChange={(event) =>
+                      setTrainAccuracy(Number(event.target.value))
+                    }
+                    className="mt-4 w-full"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-black uppercase tracking-[0.18em] text-slate-600">
+                    Test accuracy: {testAccuracy.toFixed(2)}
+                  </label>
+                  <input
+                    type="range"
+                    min={0.5}
+                    max={1}
+                    step={0.01}
+                    value={testAccuracy}
+                    onChange={(event) =>
+                      setTestAccuracy(Number(event.target.value))
+                    }
+                    className="mt-4 w-full"
+                  />
+                </div>
+              </div>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                <div className="rounded-3xl border border-slate-200 bg-white p-5">
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                    Training accuracy
+                  </p>
+                  <p className="mt-2 text-3xl font-black text-blue-700">
+                    {trainAccuracy.toFixed(2)}
+                  </p>
+                </div>
+
+                <div className="rounded-3xl border border-slate-200 bg-white p-5">
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                    Test accuracy
+                  </p>
+                  <p className="mt-2 text-3xl font-black text-emerald-700">
+                    {testAccuracy.toFixed(2)}
+                  </p>
+                </div>
+
+                <div className="rounded-3xl border border-slate-200 bg-white p-5">
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                    Generalisation gap
+                  </p>
+                  <p className="mt-2 text-3xl font-black text-rose-700">
+                    {generalisationGap.toFixed(2)}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
+                {gapInterpretation}
+              </div>
+
+              <div className="mt-6 space-y-3">
+                {[
+                  ["Training", trainAccuracy],
+                  ["Test", testAccuracy],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="grid grid-cols-[5rem_1fr_4rem] items-center gap-3"
+                  >
+                    <p className="font-black text-slate-950">{label}</p>
+                    <div className="h-6 overflow-hidden rounded-full bg-white">
+                      <div
+                        className="h-full rounded-full bg-blue-600"
+                        style={{
+                          width: `${Number(value) * 100}%`,
+                        }}
+                      />
+                    </div>
+                    <p className="text-right font-mono text-sm text-slate-600">
+                      {Number(value).toFixed(2)}
                     </p>
                   </div>
-                </details>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <h3 className="text-2xl font-black text-slate-950">
+                Lab 4: threshold behaviour on held-out patients
+              </h3>
+
+              <p className="mt-3 max-w-4xl text-base leading-7 text-slate-700">
+                Once predictions are made on test data, a threshold converts
+                risks into classes. Threshold choice changes sensitivity and
+                specificity, but it does not fix overfitting or leakage.
+              </p>
+
+              <label className="mt-6 block text-sm font-black uppercase tracking-[0.18em] text-slate-600">
+                Threshold: {threshold.toFixed(2)}
+              </label>
+
+              <input
+                type="range"
+                min={0.2}
+                max={0.8}
+                step={0.05}
+                value={threshold}
+                onChange={(event) => setThreshold(Number(event.target.value))}
+                className="mt-4 w-full"
+              />
+
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                {[
+                  ["Accuracy", toyMetrics.accuracy.toFixed(3)],
+                  ["Sensitivity", toyMetrics.sensitivity.toFixed(3)],
+                  ["Specificity", toyMetrics.specificity.toFixed(3)],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="rounded-3xl border border-slate-200 bg-white p-5"
+                  >
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                      {label}
+                    </p>
+                    <p className="mt-2 text-3xl font-black text-blue-700">
+                      {value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 overflow-x-auto rounded-3xl border border-slate-200">
+                <table className="w-full min-w-[620px] border-collapse text-center text-sm">
+                  <thead className="bg-slate-950 text-white">
+                    <tr>
+                      <th className="p-4"></th>
+                      <th className="p-4">Predicted negative</th>
+                      <th className="p-4">Predicted positive</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-t border-slate-200">
+                      <th className="bg-white p-4 text-left font-black">
+                        Observed negative
+                      </th>
+                      <td className="bg-emerald-50 p-4 text-2xl font-black text-emerald-700">
+                        {toyMetrics.tn}
+                      </td>
+                      <td className="bg-rose-50 p-4 text-2xl font-black text-rose-700">
+                        {toyMetrics.fp}
+                      </td>
+                    </tr>
+                    <tr className="border-t border-slate-200">
+                      <th className="bg-white p-4 text-left font-black">
+                        Observed positive
+                      </th>
+                      <td className="bg-rose-50 p-4 text-2xl font-black text-rose-700">
+                        {toyMetrics.fn}
+                      </td>
+                      <td className="bg-emerald-50 p-4 text-2xl font-black text-emerald-700">
+                        {toyMetrics.tp}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 5: leakage checklist
+                </h3>
+
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Tick what is true about your modelling workflow. The goal is
+                  not a high score only; the goal is to identify weak points
+                  before trusting the model.
+                </p>
+
+                <div className="mt-5 grid gap-3">
+                  {[
+                    ["predictionTime", "Prediction time is clearly defined"],
+                    ["noFutureData", "No future or outcome-derived predictors are used"],
+                    ["splitBeforeModelling", "Data split was made before model selection"],
+                    ["externalValidation", "External validation is available"],
+                  ].map(([key, label]) => (
+                    <button
+                      key={key}
+                      onClick={() =>
+                        toggleChecklist(key as keyof typeof checklist)
+                      }
+                      className={`rounded-2xl border px-4 py-3 text-left text-sm font-black transition ${
+                        checklist[key as keyof typeof checklist]
+                          ? "border-emerald-300 bg-emerald-50 text-emerald-800"
+                          : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50"
+                      }`}
+                    >
+                      {checklist[key as keyof typeof checklist] ? "✓ " : "○ "}
+                      {label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl bg-white p-4">
+                  <p className="text-sm font-black uppercase tracking-[0.16em] text-blue-600">
+                    Validation readiness score
+                  </p>
+                  <p className="mt-2 text-3xl font-black text-slate-950">
+                    {checklistScore}/4
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {checklistScore < 2
+                      ? "High risk of misleading performance. Strengthen the validation design before trusting the result."
+                      : checklistScore < 4
+                      ? "Some important safeguards are present, but the missing items should be discussed as limitations."
+                      : "Strong checklist result. Still report assumptions, uncertainty and the need for ongoing monitoring."}
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 6: performance table interpretation
+                </h3>
+
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Compare four model profiles. The leakage model has the best
+                  numbers but the worst validity.
+                </p>
+
+                <div className="mt-5 overflow-x-auto rounded-3xl border border-slate-200">
+                  <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+                    <thead className="bg-slate-950 text-white">
+                      <tr>
+                        <th className="p-4">Model</th>
+                        <th className="p-4">Train AUC</th>
+                        <th className="p-4">Test AUC</th>
+                        <th className="p-4">Warning</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {modelProfiles.map((model) => (
+                        <tr key={model.id} className="border-t border-slate-200">
+                          <td className="p-4 font-black text-slate-950">
+                            {model.name}
+                          </td>
+                          <td className="p-4 text-slate-600">
+                            {model.trainAuc.toFixed(3)}
+                          </td>
+                          <td className="p-4 text-slate-600">
+                            {model.testAuc.toFixed(3)}
+                          </td>
+                          <td
+                            className={`p-4 ${
+                              model.id === "leakage"
+                                ? "font-black text-rose-700"
+                                : "text-slate-600"
+                            }`}
+                          >
+                            {model.id === "leakage"
+                              ? "Invalid due to leakage"
+                              : model.id === "over"
+                              ? "Check overfitting"
+                              : "More plausible"}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="mt-5 rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm leading-6 text-slate-700">
+                  Do not choose a model purely because it has the highest
+                  apparent performance. First check whether the validation
+                  design is honest.
+                </div>
+              </div>
             </div>
           </section>
         )}
 
-        {activeTab === "coding" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+        {activeTab === "R Coding Lab" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
               R coding lab
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              Run training, testing and leakage examples
+              Run training, testing, overfitting and leakage examples
             </h2>
 
-            <p className="mt-5 max-w-4xl text-base leading-8 text-slate-600">
-              This browser lab uses a small simulated dataset so it runs quickly
-              in WebR. The full downloadable script uses the shared diabetes
-              dataset and generated the figures used in this lesson.
+            <p className="mt-4 max-w-4xl text-base leading-7 text-slate-600">
+              This browser lab loads the shared diabetes CSV, creates a
+              train/test split, compares simple, larger and over-flexible
+              logistic models, and then deliberately creates a leakage model to
+              show why perfect-looking performance can be invalid.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <button
-                type="button"
-                onClick={runRCode}
-                disabled={isRunning}
-                className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-black text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {isRunning ? "Running R..." : "Run R code"}
-              </button>
+            <WebRCodeRunner />
+
+            <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <h3 className="text-2xl font-black text-slate-950">
+                How to interpret the output
+              </h3>
+
+              <div className="mt-5 space-y-4 text-base leading-7 text-slate-700">
+                <p>
+                  The first section confirms the dataset size, variable names
+                  and outcome distribution. This is important because validation
+                  depends on the available rows and outcome balance.
+                </p>
+
+                <p>
+                  The simple and larger models show how training and test
+                  performance are compared. Test accuracy and test AUC are more
+                  relevant than training performance when judging
+                  generalisation.
+                </p>
+
+                <p>
+                  The over-flexible model adds extra squared terms and
+                  interactions. If training performance rises more than test
+                  performance, that suggests possible overfitting.
+                </p>
+
+                <p>
+                  The leakage model includes an artificial outcome-derived
+                  marker. Its perfect-looking performance should be rejected,
+                  not celebrated, because the predictor would not be available
+                  in a valid clinical prediction setting.
+                </p>
+              </div>
 
               <a
                 href={withBasePath(
                   "/ml-biostatistics/r/module-1/lesson-1-4-training-testing-overfitting.R"
                 )}
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-black text-slate-900 transition hover:bg-slate-50"
+                download
+                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-black text-white transition hover:bg-slate-800 sm:w-auto"
               >
                 Download full R script
               </a>
             </div>
-
-            <div className="mt-8 grid gap-6 lg:grid-cols-2">
-              <div>
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
-                  Code
-                </p>
-                <pre className="mt-3 max-h-[540px] overflow-auto rounded-3xl bg-slate-950 p-5 text-sm leading-6 text-slate-100">
-                  <code>{rCode}</code>
-                </pre>
-              </div>
-
-              <div>
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
-                  Output
-                </p>
-                <pre className="mt-3 min-h-[540px] overflow-auto rounded-3xl border border-slate-200 bg-slate-50 p-5 text-sm leading-6 text-slate-800">
-                  <code>{output}</code>
-                </pre>
-              </div>
-            </div>
           </section>
         )}
 
-        {activeTab === "report" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
-              Reporting and interpretation
+        {activeTab === "Report" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+              Reporting
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              How to report Lesson 1.4 correctly
+              How to report training, testing and leakage correctly
             </h2>
 
+            <div className="mt-8 space-y-6 text-base leading-8 text-slate-700">
+              <p>
+                The shared diabetes dataset was used to demonstrate why medical
+                prediction models should be evaluated on data not used for model
+                fitting. The model was trained on a training set and evaluated
+                on a held-out test set to obtain a more honest estimate of
+                unseen-patient performance.
+              </p>
+
+              <p>
+                Training performance describes how well the model fits the data
+                it has already seen. Test performance is more relevant for
+                assessing generalisation, although a single random split remains
+                internal validation and does not replace external validation in
+                another clinical setting.
+              </p>
+
+              <p>
+                A comparison of simple, larger and over-flexible models
+                illustrates the importance of model complexity. A model with
+                higher training performance is not necessarily better if its
+                test performance does not improve or if the training-test gap
+                becomes larger.
+              </p>
+
+              <p>
+                A deliberately leaked model can produce perfect or near-perfect
+                performance by using outcome-derived information. Such
+                performance should be treated as invalid because it does not
+                represent information available at the real prediction time.
+              </p>
+            </div>
+
             <div className="mt-8 grid gap-5 md:grid-cols-2">
-              {[
-                {
-                  title: "Train/test split",
-                  body: "The dataset was split into 537 training patients and 231 test patients. The model was fitted on the training set and evaluated on the test set.",
-                },
-                {
-                  title: "Simple model",
-                  body: "The simple model achieved test accuracy 0.779, test AUC 0.819, sensitivity 0.625 and specificity 0.849.",
-                },
-                {
-                  title: "Larger model",
-                  body: "The larger model achieved test accuracy 0.792, test AUC 0.837, sensitivity 0.625 and specificity 0.868.",
-                },
-                {
-                  title: "Over-flexible model",
-                  body: "The over-flexible model achieved test accuracy 0.766 and test AUC 0.838, with a larger AUC generalisation gap than the simpler models.",
-                },
-                {
-                  title: "Leakage warning",
-                  body: "The leakage model achieved perfect performance, but this was caused by a variable almost copying the outcome. This is invalid clinical prediction.",
-                },
-                {
-                  title: "Main conclusion",
-                  body: "Model quality should be judged by honest unseen-data performance, not by training performance or leaked information.",
-                },
-              ].map((item) => (
-                <article
-                  key={item.title}
-                  className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
-                >
-                  <h3 className="text-xl font-black text-slate-950">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">
-                    {item.body}
-                  </p>
-                </article>
-              ))}
+              <article className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Good report language
+                </h3>
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  “The model was fitted on training data and evaluated on a
+                  held-out test set. Test performance was interpreted as an
+                  internal estimate of unseen-patient performance. The analysis
+                  remains limited because external validation was not performed.”
+                </p>
+              </article>
+
+              <article className="rounded-3xl border border-rose-200 bg-rose-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Poor report language
+                </h3>
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  “The leakage model is the best model because it has perfect
+                  accuracy.” This is wrong because perfect performance caused by
+                  outcome-derived information is invalid, not superior.
+                </p>
+              </article>
             </div>
 
             <div className="mt-8 rounded-3xl bg-slate-950 p-6 text-white">
-              <h3 className="text-2xl font-black">
-                Example report paragraph
-              </h3>
+              <h3 className="text-2xl font-black">Example report paragraph</h3>
               <p className="mt-4 text-base leading-8 text-slate-300">
-                The shared diabetes dataset was split into 537 training patients
-                and 231 test patients. A simple logistic prediction model
-                achieved test accuracy of 0.779 and test AUC of 0.819. A larger
-                model using all available clinical predictors achieved slightly
-                higher test accuracy of 0.792 and test AUC of 0.837. An
-                over-flexible model had higher training AUC but showed a larger
-                training-test AUC gap, suggesting possible loss of
-                generalisation. A deliberately leaked model achieved perfect
-                test accuracy and AUC, but this performance is invalid because
-                the leakage variable contained information too close to the
-                outcome. This illustrates why medical prediction models must be
-                evaluated using honest data separation and predictors available
-                at the true prediction time.
+                In this teaching analysis, the diabetes dataset was divided into
+                training and test sets to demonstrate internal validation. The
+                training set was used to estimate model parameters, while the
+                test set was used only after fitting to estimate performance on
+                unseen observations. A simple model using glucose, BMI/mass and
+                age was compared with a larger model and an over-flexible model.
+                Performance was interpreted using both training and test
+                results, with attention to the training-test gap. A deliberately
+                leaked model achieved perfect-looking performance, but this was
+                rejected as invalid because the leakage marker was derived from
+                the outcome. This illustrates that trustworthy medical machine
+                learning requires honest data separation, appropriate predictor
+                timing and careful leakage checks.
               </p>
             </div>
 
-            <div className="mt-8 rounded-3xl border border-red-100 bg-red-50 p-6">
-              <h3 className="text-xl font-black text-slate-950">
-                What not to write
-              </h3>
-              <p className="mt-3 text-base leading-8 text-slate-700">
-                Do not write: “The leakage model is best because it has perfect
-                accuracy.” Perfect performance caused by future or
-                outcome-derived information is not valid prediction. It is a
-                warning sign.
-              </p>
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              <TopicCard title="Report the split">
+                State how many observations were used for training and testing,
+                and whether the split was random, temporal, grouped or external.
+              </TopicCard>
+              <TopicCard title="Report performance honestly">
+                Give test performance, not only training performance. Include
+                sensitivity, specificity, AUC and calibration later in the
+                course.
+              </TopicCard>
+              <TopicCard title="Report limitations">
+                Say clearly when validation is internal only and when external
+                validation is still needed.
+              </TopicCard>
             </div>
           </section>
         )}
 
-        {activeTab === "quiz" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+        {activeTab === "Quiz" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
               Quiz
             </p>
 
@@ -747,58 +1945,82 @@ export default function TrainingTestingOverfittingPage() {
                   a: "Training data are used to fit the model and estimate its parameters.",
                 },
                 {
-                  q: "Why do we need a test set?",
-                  a: "A test set gives a more honest estimate of how the model performs on unseen patients.",
+                  q: "What is the purpose of the test data?",
+                  a: "Test data are held back during model fitting and used to estimate performance on unseen observations.",
+                },
+                {
+                  q: "Why is training performance usually optimistic?",
+                  a: "Because the model has already seen the training observations and may have adapted to their specific patterns.",
                 },
                 {
                   q: "What is overfitting?",
-                  a: "Overfitting occurs when a model learns noise or accidental patterns from the training data that do not generalise well.",
+                  a: "Overfitting occurs when a model learns noise or accidental patterns in the training data that do not generalise well to new patients.",
                 },
                 {
-                  q: "Why is leakage dangerous?",
-                  a: "Leakage can make a model look extremely accurate by using information that would not be available at the real prediction time.",
+                  q: "What is leakage?",
+                  a: "Leakage occurs when information unavailable at the intended prediction time enters the model, such as future diagnosis codes or outcome-derived variables.",
                 },
                 {
-                  q: "Why should perfect performance make us suspicious in medical ML?",
-                  a: "Because real clinical prediction is rarely perfect. Perfect performance may indicate leakage, duplicate data, outcome-derived predictors or another design problem.",
+                  q: "Why should perfect performance make us suspicious in realistic medical prediction?",
+                  a: "Real clinical prediction is rarely perfect. Perfect results may indicate leakage, duplicate records, outcome-derived predictors or another design problem.",
+                },
+                {
+                  q: "What is the difference between internal and external validation?",
+                  a: "Internal validation evaluates performance within the same source dataset. External validation evaluates performance in a genuinely different setting, such as another hospital or time period.",
+                },
+                {
+                  q: "Can changing the classification threshold fix leakage?",
+                  a: "No. Threshold choice changes the sensitivity-specificity trade-off, but it cannot make leaked predictors valid.",
+                },
+                {
+                  q: "What should be defined before choosing predictors?",
+                  a: "The prediction time should be defined first, so only predictors available at that time are used.",
+                },
+                {
+                  q: "What is a safe conclusion from this lesson?",
+                  a: "Medical ML models should be judged by honest unseen-data performance using predictors available at the intended prediction time, not by training performance or leaked information.",
                 },
               ].map((item, index) => (
                 <details
                   key={item.q}
                   className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
                 >
-                  <summary className="cursor-pointer text-base font-black leading-7 text-slate-950">
+                  <summary className="cursor-pointer text-base font-black text-slate-950">
                     Question {index + 1}: {item.q}
                   </summary>
-                  <p className="mt-4 text-sm leading-7 text-slate-600">
+                  <p className="mt-4 text-sm leading-6 text-slate-600">
                     {item.a}
                   </p>
                 </details>
               ))}
             </div>
-
-            <section className="mt-10 rounded-[2rem] bg-slate-950 p-6 text-white md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-300">
-                Next lesson
-              </p>
-              <h3 className="mt-3 text-3xl font-black tracking-tight">
-                Biostatistical workflow for ML projects
-              </h3>
-              <p className="mt-4 max-w-3xl text-base leading-8 text-slate-300">
-                Next, we combine the first four lessons into a complete
-                responsible medical ML workflow.
-              </p>
-              <a
-                href={withBasePath(
-                  "/courses/machine-learning-biostatistics/modules/foundations/lessons/biostatistical-ml-workflow"
-                )}
-                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-blue-50 sm:w-auto"
-              >
-                Next lesson →
-              </a>
-            </section>
           </section>
         )}
+
+        <section className="mt-10 rounded-[2rem] bg-slate-950 p-6 text-white md:p-10">
+          <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
+            Lesson complete
+          </p>
+
+          <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
+            Next, combine the foundations into a complete ML workflow.
+          </h2>
+
+          <p className="mt-5 max-w-4xl text-base leading-7 text-slate-300">
+            The next lesson brings prediction questions, learning types,
+            validation, leakage checks and reporting discipline into one
+            responsible biostatistical machine learning workflow.
+          </p>
+
+          <a
+            href={withBasePath(
+              "/courses/machine-learning-biostatistics/modules/foundations/lessons/biostatistical-ml-workflow"
+            )}
+            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-slate-100 sm:w-auto"
+          >
+            Next lesson →
+          </a>
+        </section>
       </section>
     </main>
   );

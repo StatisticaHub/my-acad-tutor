@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import type { ReactNode } from "react";
 
 const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
@@ -19,88 +20,64 @@ async function getWebR() {
 
   const { WebR } = await import("webr");
   const webR = new WebR();
-  await webR.init();
 
+  await webR.init();
   cachedWebR = webR;
+
   return webR;
 }
 
 const tabs = [
-  { id: "lecture", label: "Lecture" },
-  { id: "notes", label: "Detailed notes" },
-  { id: "interactive", label: "Interactive lab" },
-  { id: "coding", label: "R coding lab" },
-  { id: "report", label: "Report" },
-  { id: "quiz", label: "Quiz" },
+  "Lecture",
+  "Detailed Notes",
+  "Interactive Lab",
+  "R Coding Lab",
+  "Report",
+  "Quiz",
 ];
 
-const figures = [
-  {
-    title: "Glucose distribution by diabetes status",
-    src: "/ml-biostatistics/figures/module-1/lesson-1-2-glucose-density.png",
-    alt: "Density plot showing glucose distribution for diabetes negative and positive groups.",
-    interpretation:
-      "The diabetes-positive group is shifted towards higher glucose values. This makes glucose useful for prediction, but the plot alone does not prove that glucose is a causal intervention target.",
-  },
-  {
-    title: "Predicted risk by observed diabetes status",
-    src: "/ml-biostatistics/figures/module-1/lesson-1-2-predicted-risk-boxplot.png",
-    alt: "Boxplot showing predicted diabetes risk by observed diabetes status.",
-    interpretation:
-      "The model assigns higher predicted risks to many diabetes-positive patients. This shows prediction separation, not proof that the predictors are causal effects.",
-  },
-  {
-    title: "Prediction, explanation and causal thinking",
-    src: "/ml-biostatistics/figures/module-1/lesson-1-2-three-questions.png",
-    alt: "Diagram comparing prediction, explanation and causal thinking.",
-    interpretation:
-      "The same dataset can support different questions, but each question needs a different interpretation strategy.",
-  },
-];
-
-const rCode = `# Lesson 1.2 browser R lab
+const browserRCode = `# Lesson 1.2 browser R lab
 # Prediction vs explanation vs causal thinking
-# This browser-safe version uses a small teaching dataset.
 
-set.seed(2026)
+cat("Lesson 1.2: Prediction, explanation and causal thinking\\n")
+cat("----------------------------------------------------------\\n\\n")
 
-n <- 220
+# The website loads diabetes_data from the shared course CSV.
+# The dataset should contain diabetes_binary plus predictors such as glucose,
+# mass/BMI and age.
 
-glucose <- rnorm(n, mean = 120, sd = 28)
-mass <- rnorm(n, mean = 32, sd = 7)
-age <- rnorm(n, mean = 34, sd = 11)
+cat("Dataset dimensions:\\n")
+print(dim(diabetes_data))
 
-linear_predictor <- -8 + 0.035 * glucose + 0.07 * mass + 0.025 * age
-risk <- 1 / (1 + exp(-linear_predictor))
+cat("\\nVariable names:\\n")
+print(names(diabetes_data))
 
-diabetes_binary <- rbinom(n, size = 1, prob = risk)
-diabetes <- ifelse(diabetes_binary == 1, "pos", "neg")
+cat("\\nOutcome distribution:\\n")
+print(table(diabetes_data$diabetes))
 
-data <- data.frame(
-  glucose = glucose,
-  mass = mass,
-  age = age,
-  diabetes = diabetes,
-  diabetes_binary = diabetes_binary
+cat("\\nMean glucose, mass and age by observed diabetes status:\\n")
+print(
+  aggregate(
+    cbind(glucose, mass, age) ~ diabetes,
+    data = diabetes_data,
+    FUN = mean
+  )
 )
 
-cat("Browser R lab: Lesson 1.2\\n")
-cat("------------------------------------------\\n")
-cat("Rows:", nrow(data), "\\n")
-cat("Outcome table:\\n")
-print(table(data$diabetes))
+# ----------------------------------------------------------
+# Part 1: Prediction question
+# ----------------------------------------------------------
+# Question: Can we estimate diabetes status for a new patient?
+# Evidence: performance on data not used to train the model.
 
-cat("\\nMean predictors by diabetes status:\\n")
-print(aggregate(
-  cbind(glucose, mass, age) ~ diabetes,
-  data = data,
-  FUN = mean
-))
+set.seed(2026)
+train_id <- sample(
+  seq_len(nrow(diabetes_data)),
+  size = floor(0.7 * nrow(diabetes_data))
+)
 
-train_id <- sample(seq_len(nrow(data)), size = 0.7 * nrow(data))
-
-train_data <- data[train_id, ]
-test_data <- data[-train_id, ]
+train_data <- diabetes_data[train_id, ]
+test_data <- diabetes_data[-train_id, ]
 
 prediction_model <- glm(
   diabetes_binary ~ glucose + mass + age,
@@ -121,90 +98,501 @@ confusion_matrix <- table(
   Predicted = test_data$predicted_class
 )
 
-cat("\\nTest confusion matrix:\\n")
+cat("\\nPrediction model coefficients:\\n")
+print(round(coef(prediction_model), 4))
+
+cat("\\nConfusion matrix at threshold 0.50:\\n")
 print(confusion_matrix)
 
 accuracy <- mean(test_data$diabetes_binary == test_data$predicted_class)
 
-cat("\\nAccuracy:", round(accuracy, 3), "\\n")
+# Use safe extraction in case a row/column is missing in a small split
+get_cell <- function(tab, observed, predicted) {
+  if (observed %in% rownames(tab) && predicted %in% colnames(tab)) {
+    return(tab[observed, predicted])
+  }
+  return(0)
+}
 
-cat("\\nCoefficient table from the logistic model:\\n")
-print(round(summary(prediction_model)$coefficients, 4))
+tn <- get_cell(confusion_matrix, "0", "0")
+fp <- get_cell(confusion_matrix, "0", "1")
+fn <- get_cell(confusion_matrix, "1", "0")
+tp <- get_cell(confusion_matrix, "1", "1")
 
-cat("\\nInterpretation:\\n")
-cat("This model predicts diabetes status using glucose, BMI/mass and age.\\n")
-cat("The coefficients describe associations inside this prediction model.\\n")
-cat("They should not automatically be interpreted as causal effects.\\n")
-cat("Prediction asks whether the model estimates risk well for new patients.\\n")
-cat("Causality asks what would happen under an intervention.\\n")`;
+sensitivity <- tp / (tp + fn)
+specificity <- tn / (tn + fp)
 
-export default function PredictionExplanationCausalThinkingPage() {
-  const [activeTab, setActiveTab] = useState("lecture");
-  const [isRunning, setIsRunning] = useState(false);
-  const [output, setOutput] = useState(
-    "Click “Run R code” to start the in-browser R lab."
+cat("\\nPrediction performance:\\n")
+cat("Accuracy:", round(accuracy, 3), "\\n")
+cat("Sensitivity:", round(sensitivity, 3), "\\n")
+cat("Specificity:", round(specificity, 3), "\\n")
+
+# ----------------------------------------------------------
+# Part 2: Explanation question
+# ----------------------------------------------------------
+# Question: Which variables are associated with diabetes status in the
+# observed dataset, conditional on the variables included in the model?
+# Evidence: coefficients, odds ratios and uncertainty.
+
+explanatory_model <- glm(
+  diabetes_binary ~ glucose + mass + age,
+  data = diabetes_data,
+  family = binomial
+)
+
+coef_table <- summary(explanatory_model)$coefficients
+odds_ratios <- exp(coef(explanatory_model))
+
+cat("\\nExplanatory association model coefficient table:\\n")
+print(round(coef_table, 4))
+
+cat("\\nOdds ratios from the explanatory model:\\n")
+print(round(odds_ratios, 3))
+
+# ----------------------------------------------------------
+# Part 3: Causal thinking
+# ----------------------------------------------------------
+# A causal question is different:
+# What would happen to future diabetes risk if a specific intervention changed
+# BMI/mass, glucose, diet, medication or another exposure?
+# This cannot be answered by a prediction model alone.
+
+cat("\\nInterpretation discipline:\\n")
+cat("Prediction question: Does the model estimate risk well for new patients?\\n")
+cat("Explanation question: Which variables are associated with the outcome?\\n")
+cat("Causal question: What would happen under an intervention?\\n")
+cat("\\nSafe conclusion:\\n")
+cat("Glucose, BMI/mass and age may help predict diabetes status and may be associated with diabetes status.\\n")
+cat("But this fitted model alone does not prove the causal effect of changing glucose, BMI/mass or age.\\n")`;
+
+function Initials({ children }: { children: string }) {
+  return (
+    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-950 text-xs font-black text-white">
+      {children}
+    </div>
   );
+}
 
-  async function runRCode() {
-    setIsRunning(true);
-    setOutput("Starting WebR. First run can take 20–60 seconds...");
+function DialogueLine({
+  initials,
+  name,
+  children,
+  tone = "neutral",
+}: {
+  initials: string;
+  name: string;
+  children: ReactNode;
+  tone?: "neutral" | "blue" | "green" | "rose" | "amber";
+}) {
+  const toneClass =
+    tone === "blue"
+      ? "bg-blue-50"
+      : tone === "green"
+      ? "bg-emerald-50"
+      : tone === "rose"
+      ? "bg-rose-50"
+      : tone === "amber"
+      ? "bg-amber-50"
+      : "bg-white";
+
+  return (
+    <div
+      className={`flex gap-4 rounded-3xl border border-slate-200 p-5 ${toneClass}`}
+    >
+      <Initials>{initials}</Initials>
+      <div>
+        <p className="text-sm font-black text-slate-950">{name}</p>
+        <div className="mt-2 text-base leading-7 text-slate-700">{children}</div>
+      </div>
+    </div>
+  );
+}
+
+function TopicCard({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <article className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+      <h3 className="text-lg font-black text-slate-950">{title}</h3>
+      <div className="mt-3 text-sm leading-7 text-slate-600">{children}</div>
+    </article>
+  );
+}
+
+function FormulaBox({ children }: { children: ReactNode }) {
+  return (
+    <div className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+      <div className="font-mono text-sm leading-7 text-slate-700">{children}</div>
+    </div>
+  );
+}
+
+function WebRCodeRunner() {
+  const [code, setCode] = useState(browserRCode);
+  const [output, setOutput] = useState(
+    "Click “Run R code”. The first run may take longer because R loads in the browser."
+  );
+  const [running, setRunning] = useState(false);
+
+  async function runCode() {
+    setRunning(true);
+    setOutput("Loading shared diabetes data and starting WebR...");
 
     try {
+      const dataUrl = withBasePath(
+        "/ml-biostatistics/data/shared-diabetes-prediction-data.csv"
+      );
+
+      const csvResponse = await fetch(dataUrl);
+
+      if (!csvResponse.ok) {
+        throw new Error(
+          "Could not load shared diabetes CSV. Check that public/ml-biostatistics/data/shared-diabetes-prediction-data.csv exists."
+        );
+      }
+
+      const csvText = await csvResponse.text();
       const webR = await getWebR();
 
-      const result = await webR.evalR(`
-        paste(
-          capture.output({
-            ${rCode}
-          }),
-          collapse = "\\n"
-        )
-      `);
+      const wrappedCode = `
+diabetes_csv_text <- ${JSON.stringify(csvText)}
+diabetes_data <- read.csv(text = diabetes_csv_text)
 
+paste(capture.output({
+${code}
+}), collapse = "\\n")
+`;
+
+      const result = await webR.evalR(wrappedCode);
       const jsResult = await result.toJs();
-      setOutput(String(jsResult.values[0]));
+
+      const value =
+        jsResult?.values?.[0] ?? jsResult?.value ?? String(jsResult);
+
+      setOutput(String(value));
     } catch (error) {
       setOutput(
-        `Something went wrong while running R in the browser.\n\n${String(error)}`
+        error instanceof Error
+          ? `Error: ${error.message}`
+          : "An unknown error occurred while running R."
       );
     } finally {
-      setIsRunning(false);
+      setRunning(false);
     }
+  }
+
+  return (
+    <div className="mt-8 grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
+      <div className="overflow-hidden rounded-[1.75rem] border border-slate-800 bg-slate-950 shadow-sm">
+        <div className="flex flex-col gap-3 border-b border-white/10 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-300">
+              Editable R script
+            </p>
+            <p className="mt-1 text-xs leading-5 text-slate-400">
+              Runs in the browser using WebR and the shared diabetes CSV.
+            </p>
+          </div>
+
+          <button
+            onClick={runCode}
+            disabled={running}
+            className="inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-2.5 text-xs font-black text-slate-950 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          >
+            {running ? "Running R..." : "Run R code"}
+          </button>
+        </div>
+
+        <textarea
+          value={code}
+          onChange={(event) => setCode(event.target.value)}
+          spellCheck={false}
+          className="min-h-[700px] w-full resize-y bg-slate-950 p-5 font-mono text-[0.84rem] leading-6 text-slate-100 outline-none selection:bg-blue-400/30"
+        />
+      </div>
+
+      <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+        <div className="border-b border-slate-200 bg-slate-50 px-4 py-4">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+            R console output
+          </p>
+          <p className="mt-1 text-xs leading-5 text-slate-500">
+            Output and errors appear here.
+          </p>
+        </div>
+
+        <pre className="min-h-[700px] overflow-x-auto whitespace-pre-wrap bg-white p-5 font-mono text-[0.84rem] leading-6 text-slate-800">
+          {output}
+        </pre>
+      </div>
+    </div>
+  );
+}
+
+const learningTopics = [
+  {
+    title: "Prediction",
+    body: "Can we estimate an outcome for a new patient, using information available at the prediction time?",
+  },
+  {
+    title: "Explanation",
+    body: "Which variables are associated with the outcome in the observed data, conditional on the fitted model?",
+  },
+  {
+    title: "Causality",
+    body: "What would happen to the outcome if we intervened on an exposure, treatment or behaviour?",
+  },
+  {
+    title: "Timing",
+    body: "Were the predictors measured before the prediction and before the outcome process being discussed?",
+  },
+  {
+    title: "Confounding",
+    body: "Could a third variable influence both the exposure and outcome, creating a misleading association?",
+  },
+  {
+    title: "Safe reporting",
+    body: "Does the language match the actual aim: prediction, association or causal effect estimation?",
+  },
+];
+
+const toyPatients = [
+  { id: "A", glucose: 91, mass: 23, age: 24, risk: 0.07, observed: 0 },
+  { id: "B", glucose: 103, mass: 27, age: 32, risk: 0.17, observed: 0 },
+  { id: "C", glucose: 116, mass: 30, age: 37, risk: 0.32, observed: 0 },
+  { id: "D", glucose: 128, mass: 33, age: 41, risk: 0.47, observed: 1 },
+  { id: "E", glucose: 139, mass: 35, age: 45, risk: 0.58, observed: 1 },
+  { id: "F", glucose: 146, mass: 38, age: 49, risk: 0.68, observed: 0 },
+  { id: "G", glucose: 160, mass: 40, age: 53, risk: 0.80, observed: 1 },
+  { id: "H", glucose: 173, mass: 43, age: 57, risk: 0.90, observed: 1 },
+];
+
+const questionExamples = [
+  {
+    id: "prediction",
+    label: "Prediction question",
+    question:
+      "Can routinely measured clinical characteristics estimate diabetes status for a new patient?",
+    correctAim: "Prediction",
+    evidence: "Discrimination, calibration, sensitivity, specificity and validation on unseen data.",
+    unsafeClaim:
+      "The model proves that changing glucose or BMI will change diabetes risk.",
+    safeClaim:
+      "The model may help estimate diabetes risk when the same predictors are available at the prediction time.",
+  },
+  {
+    id: "explanation",
+    label: "Explanation question",
+    question:
+      "Which variables are associated with diabetes status in the observed dataset?",
+    correctAim: "Explanation / association",
+    evidence: "Regression coefficients, odds ratios, uncertainty intervals and model assumptions.",
+    unsafeClaim:
+      "Every statistically important variable is automatically a useful intervention target.",
+    safeClaim:
+      "The fitted model describes conditional associations in the observed data.",
+  },
+  {
+    id: "causal",
+    label: "Causal question",
+    question:
+      "Would reducing BMI through an intervention reduce future diabetes risk?",
+    correctAim: "Causal thinking",
+    evidence: "Time order, intervention definition, confounder control and causal assumptions.",
+    unsafeClaim:
+      "A prediction coefficient alone estimates the intervention effect.",
+    safeClaim:
+      "A causal question requires a causal design, even if prediction models provide useful background information.",
+  },
+];
+
+const causalScenarios = [
+  {
+    id: "valid-prediction",
+    label: "Baseline prediction",
+    text: "Use glucose, BMI/mass and age measured at the clinic visit to predict current diabetes status.",
+    feedback:
+      "This is a reasonable prediction setup if the variables are available at the decision time and the model is validated on relevant patients.",
+  },
+  {
+    id: "leakage",
+    label: "Future information",
+    text: "Use a diagnosis code recorded after confirmatory testing as a predictor of diabetes status.",
+    feedback:
+      "This is leakage. The predictor contains information from after the prediction time, so performance would be exaggerated and clinically invalid.",
+  },
+  {
+    id: "association",
+    label: "Association statement",
+    text: "Report that higher glucose is associated with diabetes-positive status in the fitted model.",
+    feedback:
+      "This is an association statement. It may be acceptable if phrased carefully, but it still does not prove an intervention effect.",
+  },
+  {
+    id: "causal-overclaim",
+    label: "Causal overclaim",
+    text: "Conclude that lowering BMI will reduce diabetes risk because the BMI coefficient is positive.",
+    feedback:
+      "This overclaims. The coefficient is not automatically a causal effect. Confounding, time order and intervention definition must be addressed.",
+  },
+];
+
+const assumptionCards = [
+  {
+    title: "Exchangeability",
+    body: "Patients compared across exposure levels should be comparable after controlling for relevant confounders.",
+  },
+  {
+    title: "Positivity",
+    body: "There should be realistic variation in exposure or treatment levels across patient types.",
+  },
+  {
+    title: "Consistency",
+    body: "The intervention being imagined must be clearly defined, not vague language such as simply “better lifestyle”.",
+  },
+  {
+    title: "Correct timing",
+    body: "Confounders should be measured before the exposure, and the exposure before the outcome.",
+  },
+];
+
+export default function PredictionExplanationCausalThinkingPage() {
+  const [activeTab, setActiveTab] = useState("Lecture");
+  const [questionChoice, setQuestionChoice] = useState("prediction");
+  const [selectedScenario, setSelectedScenario] = useState("valid-prediction");
+  const [threshold, setThreshold] = useState(0.5);
+  const [selectedCoefficient, setSelectedCoefficient] = useState("glucose");
+  const [causalChecklist, setCausalChecklist] = useState({
+    timeOrder: true,
+    confounding: false,
+    intervention: false,
+    validation: true,
+  });
+
+  const selectedQuestion =
+    questionExamples.find((item) => item.id === questionChoice) ??
+    questionExamples[0];
+
+  const selectedScenarioData =
+    causalScenarios.find((item) => item.id === selectedScenario) ??
+    causalScenarios[0];
+
+  const toyMetrics = useMemo(() => {
+    const predictions = toyPatients.map((patient) => ({
+      ...patient,
+      predicted: patient.risk >= threshold ? 1 : 0,
+    }));
+
+    const tp = predictions.filter(
+      (patient) => patient.observed === 1 && patient.predicted === 1
+    ).length;
+    const fp = predictions.filter(
+      (patient) => patient.observed === 0 && patient.predicted === 1
+    ).length;
+    const tn = predictions.filter(
+      (patient) => patient.observed === 0 && patient.predicted === 0
+    ).length;
+    const fn = predictions.filter(
+      (patient) => patient.observed === 1 && patient.predicted === 0
+    ).length;
+
+    const accuracy = (tp + tn) / predictions.length;
+    const sensitivity = tp + fn === 0 ? 0 : tp / (tp + fn);
+    const specificity = tn + fp === 0 ? 0 : tn / (tn + fp);
+
+    return {
+      predictions,
+      tp,
+      fp,
+      tn,
+      fn,
+      accuracy,
+      sensitivity,
+      specificity,
+    };
+  }, [threshold]);
+
+  const causalReadinessScore = Object.values(causalChecklist).filter(Boolean).length;
+
+  const coefficientExplanation =
+    selectedCoefficient === "glucose"
+      ? "A positive glucose coefficient means higher glucose is associated with higher predicted log-odds of diabetes status, conditional on the variables in the model. It is not automatically the causal effect of changing glucose."
+      : selectedCoefficient === "mass"
+      ? "A positive BMI/mass coefficient means higher BMI/mass is associated with higher predicted log-odds in this fitted model. Causal interpretation would require a defined intervention and confounder control."
+      : "An age coefficient may improve prediction because diabetes risk patterns vary by age. Age is usually not an intervention target, so causal wording must be especially careful.";
+
+  const thresholdComment =
+    threshold < 0.35
+      ? "A low threshold is screening-oriented. It increases detection of positive cases but creates more false positives. This is a prediction decision, not a causal conclusion."
+      : threshold < 0.6
+      ? "A middle threshold balances sensitivity and specificity in this toy example. The threshold changes classification behaviour without changing any causal effect."
+      : "A high threshold is conservative. It reduces false positives but may miss more positive cases. This reflects decision trade-offs, not causation.";
+
+  function toggleChecklist(key: keyof typeof causalChecklist) {
+    setCausalChecklist((current) => ({
+      ...current,
+      [key]: !current[key],
+    }));
   }
 
   return (
     <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-slate-950 md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
-        <a
-          href={withBasePath(
-            "/courses/machine-learning-biostatistics/modules/foundations"
-          )}
-          className="text-sm font-black text-blue-600 transition hover:text-blue-700"
-        >
-          ← Back to Module 1
-        </a>
+        <div className="flex items-center justify-between gap-4">
+          <a
+            href={withBasePath(
+              "/courses/machine-learning-biostatistics/modules/foundations"
+            )}
+            className="text-sm font-black text-blue-600 transition hover:text-blue-700"
+          >
+            ← Back to Module 1
+          </a>
 
-        <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
-            Module 1 · Lesson 1.2
-          </p>
+          <a
+            href={withBasePath("/courses/machine-learning-biostatistics")}
+            className="hidden rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-black text-slate-700 shadow-sm sm:inline-flex"
+          >
+            ML in Biostatistics
+          </a>
+        </div>
 
-          <h1 className="mt-5 max-w-5xl text-4xl font-black tracking-tight md:text-6xl">
+        <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
+          <div className="flex flex-wrap gap-3">
+            <span className="rounded-full bg-blue-100 px-4 py-2 text-xs font-black text-blue-800">
+              Module 1
+            </span>
+            <span className="rounded-full bg-emerald-100 px-4 py-2 text-xs font-black text-emerald-800">
+              Lesson 1.2
+            </span>
+            <span className="rounded-full bg-amber-100 px-4 py-2 text-xs font-black text-amber-800">
+              Interpretation
+            </span>
+            <span className="rounded-full bg-rose-100 px-4 py-2 text-xs font-black text-rose-800">
+              Causal warning
+            </span>
+          </div>
+
+          <h1 className="mt-7 max-w-5xl text-4xl font-black tracking-tight md:text-6xl">
             Prediction vs explanation vs causal thinking
           </h1>
 
           <p className="mt-6 max-w-4xl text-base leading-8 text-slate-600 md:text-lg">
-            Learn why a model that predicts well is not automatically an
-            explanatory model, and why neither prediction nor association should
-            be treated as causal proof without careful causal reasoning.
+            A prediction model may estimate risk well, an explanatory model may
+            describe associations, and a causal study may estimate what would
+            happen under an intervention. This lesson teaches students to keep
+            those three aims separate before interpreting any model output.
           </p>
 
           <div className="mt-8 grid gap-3 md:grid-cols-4">
             {[
-              ["Dataset", "768 patients"],
-              ["Outcome", "Diabetes status"],
-              ["Model", "Logistic prediction"],
-              ["Key warning", "Prediction ≠ causation"],
+              ["Time", "70–90 min"],
+              ["Level", "Introductory → deeper"],
+              ["Focus", "Interpretation discipline"],
+              ["Coding", "R in browser"],
             ].map(([label, value]) => (
               <div
                 key={label}
@@ -221,450 +609,1006 @@ export default function PredictionExplanationCausalThinkingPage() {
           </div>
         </section>
 
-        <section className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-3 shadow-sm">
-          <div className="grid gap-2 md:grid-cols-6">
+        <section className="mt-8 border-y border-slate-200 py-4">
+          <div className="flex gap-3 overflow-x-auto pb-1">
             {tabs.map((tab) => (
               <button
-                key={tab.id}
-                type="button"
-                onClick={() => setActiveTab(tab.id)}
-                className={`rounded-2xl px-4 py-3 text-sm font-black transition ${
-                  activeTab === tab.id
-                    ? "bg-slate-950 text-white"
-                    : "bg-slate-50 text-slate-700 hover:bg-slate-100"
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`shrink-0 rounded-full border px-6 py-3 text-sm font-black transition ${
+                  activeTab === tab
+                    ? "border-slate-950 bg-slate-950 text-white"
+                    : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-950"
                 }`}
               >
-                {tab.label}
+                {tab}
               </button>
             ))}
           </div>
         </section>
 
-        {activeTab === "lecture" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+        {activeTab === "Lecture" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
               Conversational lecture
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              The hospital data team asks three different questions
+              One dataset, three scientific questions
             </h2>
 
-            <p className="mt-4 text-base leading-8 text-slate-600">
-              Scene: Prof Stat is standing beside a screen showing the shared
-              diabetes prediction dataset. Curious Learner is looking at the
-              model output. Dr Clinic is thinking about patient decisions.
-              Leakage Monster is hiding near the variable list.
-            </p>
+            <div className="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
+                Topics being explained in this lecture
+              </p>
 
-            <div className="mt-8 space-y-5">
-              {[
-                {
-                  initials: "CL",
-                  name: "Curious Learner",
-                  text: "The model predicts diabetes using glucose, BMI and age. If glucose is important in the model, does that mean glucose causes diabetes?",
-                },
-                {
-                  initials: "PS",
-                  name: "Prof Stat",
-                  text: "That is the first major trap. Prediction, explanation and causality are different questions. A prediction model asks whether we can estimate an outcome for a new patient. It does not automatically prove cause and effect.",
-                },
-                {
-                  initials: "DC",
-                  name: "Dr Clinic",
-                  text: "In clinical work, that distinction matters. A model might identify high-risk patients, but treatment decisions need more than prediction. We need to know what action is safe, justified and likely to help.",
-                },
-                {
-                  initials: "CL",
-                  name: "Curious Learner",
-                  text: "So when the model gives a high predicted probability, it is saying this patient looks high risk, not that one variable caused the outcome?",
-                },
-                {
-                  initials: "PS",
-                  name: "Prof Stat",
-                  text: "Exactly. The model learns patterns. It may use biological signals, proxies, markers, historical patterns or measurement artefacts. Some predictors may be causal, but the prediction model alone does not prove that.",
-                },
-                {
-                  initials: "LM",
-                  name: "Leakage Monster",
-                  text: "And if you accidentally include information from after diagnosis, your prediction can look amazing. But it is cheating. Future information makes me very powerful.",
-                },
-                {
-                  initials: "DC",
-                  name: "Dr Clinic",
-                  text: "That is dangerous. If a model uses information unavailable at the time of decision, it may perform well in analysis but fail in real clinical use.",
-                },
-                {
-                  initials: "PS",
-                  name: "Prof Stat",
-                  text: "Good machine learning in biostatistics begins by asking: Are we predicting, explaining association, or making a causal claim? The same dataset can be used in different ways, but the interpretation must match the question.",
-                },
-              ].map((line) => (
-                <div
-                  key={`${line.name}-${line.text}`}
-                  className="grid gap-4 rounded-3xl border border-slate-200 bg-slate-50 p-5 md:grid-cols-[0.16fr_1fr]"
-                >
-                  <div>
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-sm font-black text-white">
-                      {line.initials}
-                    </div>
-                    <p className="mt-2 text-sm font-black text-slate-950">
-                      {line.name}
+              <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+                {learningTopics.map((topic) => (
+                  <div
+                    key={topic.title}
+                    className="rounded-2xl border border-slate-200 bg-white p-4"
+                  >
+                    <p className="font-black text-slate-950">{topic.title}</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      {topic.body}
                     </p>
                   </div>
-                  <p className="text-base leading-8 text-slate-700">
-                    “{line.text}”
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 space-y-4">
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                In Lesson 1.1, we built the idea of a prediction workflow. Now I
+                am confused. If the model uses glucose, BMI and age to predict
+                diabetes, can I say those variables explain diabetes?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                You can say they may be useful predictors. You can also say
+                they are associated with diabetes status in the fitted model.
+                But you must not jump straight to causal language.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                Clinically, that distinction matters. A prediction model may
+                help decide who needs further testing. But deciding what to do
+                next requires a different question: which action would improve
+                patient outcomes?
+              </DialogueLine>
+
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                So prediction is about estimating the outcome, explanation is
+                about describing associations, and causality is about what would
+                happen if we intervene?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Exactly. Prediction asks, “Can we estimate Y for a new patient?”
+                Explanation asks, “Which variables are associated with Y in this
+                model?” Causality asks, “What would happen to Y if we changed X?”
+              </DialogueLine>
+
+              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
+                And I love it when people mix these up. If they include a future
+                diagnosis code, their prediction looks excellent. Then they
+                start explaining and making causal claims from a broken model.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                That is why timing is essential. A predictor must be available
+                at the prediction time. For causal thinking, timing is even more
+                demanding: causes must occur before effects, and confounders
+                must be handled carefully.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                Suppose glucose is high before diagnosis. It can be useful for
+                prediction. But a treatment question, such as “Would lowering
+                glucose reduce future complications?”, needs intervention-level
+                evidence.
+              </DialogueLine>
+
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                What about coefficients? If the logistic model gives a positive
+                coefficient for BMI, what does that mean safely?
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Safely, it means that within this fitted model, higher BMI is
+                associated with higher predicted log-odds of diabetes status,
+                conditional on the other variables included. It does not by
+                itself estimate the effect of reducing BMI.
+              </DialogueLine>
+
+              <DialogueLine initials="CL" name="Curious Learner" tone="blue">
+                So a coefficient is not automatically an intervention effect.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Correct. An intervention effect needs a target intervention,
+                time order, confounder adjustment and assumptions. A prediction
+                coefficient is optimised for prediction, not necessarily for
+                causal interpretation.
+              </DialogueLine>
+
+              <DialogueLine initials="LM" name="Leakage Monster" tone="rose">
+                Also remember proxies. A model may use postcode, hospital code
+                or previous testing history as a strong predictor. That does not
+                mean those variables biologically cause disease.
+              </DialogueLine>
+
+              <DialogueLine initials="DC" name="Dr Clinic" tone="green">
+                This is why safe reporting matters. In a medical report, we must
+                write “predictive information” or “associated with”, unless the
+                study was designed to estimate causal effects.
+              </DialogueLine>
+
+              <DialogueLine initials="PS" name="Prof Stat">
+                Perfect. The discipline is simple but powerful: before reading
+                the model output, name the question. Then interpret only within
+                that question.
+              </DialogueLine>
             </div>
 
             <div className="mt-8 rounded-3xl bg-slate-950 p-6 text-white">
-              <h3 className="text-2xl font-black">Big idea</h3>
-              <p className="mt-4 max-w-4xl text-base leading-8 text-slate-300">
-                Prediction asks whether we can estimate an outcome for a new
-                patient. Explanation asks which variables are associated with
-                the outcome. Causal thinking asks what would happen if we
-                intervened. These questions are related, but they are not the
-                same.
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
+                Big idea
+              </p>
+              <p className="mt-3 text-xl font-black leading-8 md:text-2xl">
+                Good biostatistical machine learning is not only about building
+                models. It is about matching the model, the validation strategy
+                and the interpretation to the scientific question.
               </p>
             </div>
           </section>
         )}
 
-        {activeTab === "notes" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+        {activeTab === "Detailed Notes" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
               Detailed notes
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              Three questions, three interpretations
+              Separating prediction, association and causation
             </h2>
 
-            <div className="mt-6 max-w-4xl space-y-5 text-base leading-8 text-slate-700">
-              <p>
-                In machine learning for biostatistics, the same dataset may be
-                used to answer different types of questions. A common mistake is
-                to fit one model and then interpret it as if it answers every
-                possible question.
-              </p>
+            <div className="mt-8 space-y-8 text-base leading-8 text-slate-700">
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  1. Why this distinction is essential
+                </h3>
+                <p className="mt-3">
+                  In health data science, the same dataset can tempt us into
+                  three different interpretations. A model may predict who has
+                  diabetes, describe which variables are associated with
+                  diabetes, or be used as background evidence for a causal
+                  question. These are not interchangeable aims.
+                </p>
+                <p className="mt-3">
+                  The most common beginner mistake is to fit one model and then
+                  interpret it as if it answers all three aims at once. A model
+                  with strong test accuracy does not automatically explain the
+                  disease process. A statistically significant coefficient does
+                  not automatically estimate a causal effect. A causal claim
+                  requires a causal question and a causal design.
+                </p>
+              </div>
 
-              <p>
-                A <strong>prediction question</strong> asks whether we can
-                estimate an outcome for a new patient, sample or setting. For
-                example: can glucose, BMI and age predict diabetes status? The
-                focus is performance on unseen data.
-              </p>
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  2. Three aims in one table
+                </h3>
 
-              <p>
-                An <strong>explanation question</strong> asks which variables
-                are associated with the outcome in the observed data. For
-                example: are glucose, BMI and age associated with diabetes
-                status in this dataset? The focus is model coefficients,
-                uncertainty and interpretation.
-              </p>
-
-              <p>
-                A <strong>causal question</strong> asks what would happen under
-                an intervention. For example: would reducing BMI reduce future
-                diabetes risk? The focus is time order, confounding,
-                intervention definition, design and causal assumptions.
-              </p>
-            </div>
-
-            <div className="mt-8 overflow-hidden rounded-3xl border border-slate-200">
-              <table className="w-full border-collapse text-left text-sm">
-                <thead className="bg-slate-950 text-white">
-                  <tr>
-                    <th className="p-4">Question type</th>
-                    <th className="p-4">Main question</th>
-                    <th className="p-4">Main evidence</th>
-                    <th className="p-4">Main danger</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    [
-                      "Prediction",
-                      "Can we estimate the outcome for a new patient?",
-                      "Test performance, calibration, discrimination, validation",
-                      "Assuming good prediction means causal understanding",
-                    ],
-                    [
-                      "Explanation",
-                      "Which variables are associated with the outcome?",
-                      "Coefficients, odds ratios, confidence intervals, p-values",
-                      "Forgetting model assumptions or confounding",
-                    ],
-                    [
-                      "Causal thinking",
-                      "What would happen if we intervened?",
-                      "Design, time order, confounder control, causal assumptions",
-                      "Treating association as intervention evidence",
-                    ],
-                  ].map((row) => (
-                    <tr key={row[0]} className="border-t border-slate-200">
-                      {row.map((cell, index) => (
-                        <td
-                          key={cell}
-                          className={`p-4 leading-6 ${
-                            index === 0
-                              ? "font-black text-slate-950"
-                              : "text-slate-600"
-                          }`}
-                        >
-                          {cell}
-                        </td>
+                <div className="mt-5 overflow-x-auto rounded-3xl border border-slate-200">
+                  <table className="w-full min-w-[900px] border-collapse text-left text-sm">
+                    <thead className="bg-slate-950 text-white">
+                      <tr>
+                        <th className="p-4">Aim</th>
+                        <th className="p-4">Main question</th>
+                        <th className="p-4">Main output</th>
+                        <th className="p-4">Evidence needed</th>
+                        <th className="p-4">Unsafe leap</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        [
+                          "Prediction",
+                          "Can we estimate Y for a new patient?",
+                          "Predicted risk or predicted class",
+                          "Validation, discrimination, calibration, clinical usefulness",
+                          "Good prediction proves cause",
+                        ],
+                        [
+                          "Explanation",
+                          "Which variables are associated with Y?",
+                          "Coefficients, odds ratios, intervals, p-values",
+                          "Model assumptions, uncertainty, sensitivity checks",
+                          "Association is an intervention effect",
+                        ],
+                        [
+                          "Causal thinking",
+                          "What would happen to Y if we intervened on X?",
+                          "Causal contrast, risk difference, causal odds ratio, treatment effect",
+                          "Time order, confounder control, design, causal assumptions",
+                          "A prediction coefficient is causal",
+                        ],
+                      ].map((row) => (
+                        <tr key={row[0]} className="border-t border-slate-200">
+                          <td className="p-4 font-black text-slate-950">
+                            {row[0]}
+                          </td>
+                          <td className="p-4 text-slate-600">{row[1]}</td>
+                          <td className="p-4 text-slate-600">{row[2]}</td>
+                          <td className="p-4 text-slate-600">{row[3]}</td>
+                          <td className="p-4 text-rose-700">{row[4]}</td>
+                        </tr>
                       ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
 
-            <div className="mt-8 grid gap-6">
-              {figures.map((figure) => (
-                <article
-                  key={figure.src}
-                  className="rounded-[2rem] border border-slate-200 bg-slate-50 p-5"
-                >
-                  <h3 className="text-xl font-black text-slate-950">
-                    {figure.title}
-                  </h3>
-                  <img
-                    src={withBasePath(figure.src)}
-                    alt={figure.alt}
-                    className="mt-5 w-full rounded-3xl border border-slate-200 bg-white"
-                  />
-                  <p className="mt-4 text-sm leading-7 text-slate-600">
-                    {figure.interpretation}
-                  </p>
-                </article>
-              ))}
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  3. Prediction notation
+                </h3>
+                <p className="mt-3">
+                  Let <span className="font-mono">Y</span> be the diabetes
+                  outcome and <span className="font-mono">X</span> be a vector
+                  of predictors such as glucose, BMI/mass and age. A prediction
+                  model tries to learn a function that estimates the outcome for
+                  new patients.
+                </p>
+
+                <FormulaBox>
+                  Data: (X₁, Y₁), (X₂, Y₂), ..., (Xₙ, Yₙ)
+                  <br />
+                  Prediction rule: f̂(X) ≈ Y
+                  <br />
+                  Binary risk prediction: p̂(X) = P̂(Y = 1 | X)
+                </FormulaBox>
+
+                <p className="mt-4">
+                  The key word is <strong>new</strong>. A prediction model must
+                  be evaluated on patients not used to fit the model. That is
+                  why test sets, cross-validation and external validation matter.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  4. Explanation and model coefficients
+                </h3>
+                <p className="mt-3">
+                  In a logistic regression model, coefficients describe changes
+                  in the log-odds of the outcome associated with predictors,
+                  conditional on the variables in the model. For a simple
+                  diabetes model:
+                </p>
+
+                <FormulaBox>
+                  logit[P(Y = 1 | X)] = β₀ + β₁ glucose + β₂ mass + β₃ age
+                  <br />
+                  Odds ratio for glucose = exp(β₁)
+                </FormulaBox>
+
+                <p className="mt-4">
+                  If <span className="font-mono">β₁</span> is positive, the
+                  safe interpretation is that higher glucose is associated with
+                  higher modelled odds of diabetes status, conditional on mass
+                  and age. This does not automatically mean that intervening on
+                  glucose would change the outcome by that coefficient.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  5. Causal thinking and counterfactual language
+                </h3>
+                <p className="mt-3">
+                  A causal question asks what would happen under a hypothetical
+                  intervention. For example, it does not merely ask whether BMI
+                  is associated with diabetes. It asks whether a defined BMI
+                  reduction intervention would change future diabetes risk.
+                </p>
+
+                <FormulaBox>
+                  Association question: Is Y related to X in the observed data?
+                  <br />
+                  Causal question: What would Y have been if X had been set to x?
+                  <br />
+                  Causal contrast: E[Y(1) - Y(0)]
+                </FormulaBox>
+
+                <p className="mt-4">
+                  The notation <span className="font-mono">Y(1)</span> and
+                  <span className="font-mono"> Y(0)</span> represents potential
+                  outcomes under two intervention states. This is a different
+                  scientific object from a prediction probability
+                  <span className="font-mono"> p̂(X)</span>.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  6. Confounding
+                </h3>
+                <p className="mt-3">
+                  Confounding occurs when another variable influences both the
+                  exposure and the outcome. For example, lifestyle, diet,
+                  medication use, socioeconomic conditions or genetic
+                  predisposition may affect both BMI and diabetes risk. If these
+                  are not handled properly, the association between BMI and
+                  diabetes may not represent a causal effect.
+                </p>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-3">
+                  <TopicCard title="Exposure">
+                    The variable or intervention being discussed, such as
+                    BMI/mass or glucose.
+                  </TopicCard>
+                  <TopicCard title="Outcome">
+                    The endpoint of interest, such as diabetes status or future
+                    diabetes incidence.
+                  </TopicCard>
+                  <TopicCard title="Confounder">
+                    A pre-exposure factor related to both the exposure and the
+                    outcome.
+                  </TopicCard>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  7. Why predictive variables may not be causal
+                </h3>
+                <p className="mt-3">
+                  A variable can be predictive for several reasons. It may be a
+                  biological marker, a proxy for healthcare access, a proxy for
+                  disease severity, a measurement recorded after the outcome, or
+                  a pattern that exists only in one dataset. Prediction models
+                  are allowed to use associations if they improve future
+                  performance, but causal interpretation requires more.
+                </p>
+
+                <div className="mt-5 overflow-x-auto rounded-3xl border border-slate-200">
+                  <table className="w-full min-w-[760px] border-collapse text-left text-sm">
+                    <thead className="bg-slate-950 text-white">
+                      <tr>
+                        <th className="p-4">Variable type</th>
+                        <th className="p-4">May predict?</th>
+                        <th className="p-4">Automatically causal?</th>
+                        <th className="p-4">Example warning</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        [
+                          "Biomarker",
+                          "Yes",
+                          "No",
+                          "May reflect disease process but still needs causal evidence.",
+                        ],
+                        [
+                          "Proxy variable",
+                          "Yes",
+                          "No",
+                          "May capture access, behaviour or historical practice.",
+                        ],
+                        [
+                          "Future measurement",
+                          "Yes, but invalid",
+                          "No",
+                          "This is leakage if unavailable at prediction time.",
+                        ],
+                        [
+                          "Treatment decision",
+                          "Yes",
+                          "No",
+                          "May reflect clinician judgement and disease severity.",
+                        ],
+                      ].map((row) => (
+                        <tr key={row[0]} className="border-t border-slate-200">
+                          <td className="p-4 font-black text-slate-950">
+                            {row[0]}
+                          </td>
+                          <td className="p-4 text-slate-600">{row[1]}</td>
+                          <td className="p-4 text-slate-600">{row[2]}</td>
+                          <td className="p-4 text-slate-600">{row[3]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  8. Visual interpretation
+                </h3>
+                <p className="mt-3">
+                  The figures below support interpretation. They are useful for
+                  teaching, but each figure must be interpreted according to the
+                  correct scientific aim.
+                </p>
+
+                <div className="mt-5 grid gap-6">
+                  {[
+                    {
+                      title: "Glucose distribution by diabetes status",
+                      src: "/ml-biostatistics/figures/module-1/lesson-1-2-glucose-density.png",
+                      alt: "Density plot showing glucose distribution for diabetes negative and positive groups.",
+                      note: "The positive group tends to have higher glucose, but the groups overlap. This suggests predictive information and association, not automatic causal proof.",
+                    },
+                    {
+                      title: "Predicted risk by observed diabetes status",
+                      src: "/ml-biostatistics/figures/module-1/lesson-1-2-predicted-risk-boxplot.png",
+                      alt: "Boxplot showing predicted diabetes risk by observed diabetes status.",
+                      note: "The model gives higher risks to many positive patients, but probability separation is a prediction concept, not an intervention effect.",
+                    },
+                    {
+                      title: "Prediction, explanation and causal thinking",
+                      src: "/ml-biostatistics/figures/module-1/lesson-1-2-three-questions.png",
+                      alt: "Diagram comparing prediction, explanation and causal thinking.",
+                      note: "The same dataset can support different questions, but each question requires different evidence and different reporting language.",
+                    },
+                  ].map((figure) => (
+                    <figure
+                      key={figure.src}
+                      className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
+                    >
+                      <h4 className="text-xl font-black text-slate-950">
+                        {figure.title}
+                      </h4>
+                      <img
+                        src={withBasePath(figure.src)}
+                        alt={figure.alt}
+                        className="mt-5 w-full rounded-2xl border border-slate-200 bg-white"
+                      />
+                      <figcaption className="mt-4 text-sm leading-6 text-slate-600">
+                        {figure.note}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-black text-slate-950">
+                  9. Safe language checklist
+                </h3>
+                <div className="mt-5 grid gap-4 md:grid-cols-2">
+                  <TopicCard title="Use this for prediction">
+                    “The model predicted”, “estimated risk”, “classified”,
+                    “showed test-set performance”, “requires validation”.
+                  </TopicCard>
+                  <TopicCard title="Use this for explanation">
+                    “Was associated with”, “conditional on the fitted model”,
+                    “coefficient”, “odds ratio”, “uncertainty”.
+                  </TopicCard>
+                  <TopicCard title="Use this only with causal design">
+                    “Caused”, “effect of”, “if we intervened”, “reduced risk by”,
+                    “counterfactual”, “treatment effect”.
+                  </TopicCard>
+                  <TopicCard title="Avoid this overclaim">
+                    “The ML model proves that X causes Y.” This is almost never
+                    justified from prediction modelling alone.
+                  </TopicCard>
+                </div>
+              </div>
             </div>
           </section>
         )}
 
-        {activeTab === "interactive" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
-              Interactive lab
+        {activeTab === "Interactive Lab" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+              Advanced interactive lab
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              Classify the question before interpreting the model
+              Practise interpretation before reading the model output
             </h2>
 
-            <p className="mt-5 max-w-4xl text-base leading-8 text-slate-600">
-              Open each scenario and decide whether it is mainly a prediction,
-              explanation or causal question. The purpose is to practise
-              interpretation before looking at coefficients or model accuracy.
-            </p>
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 1: classify the scientific aim
+                </h3>
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Select the question type. The feedback shows what evidence is
+                  needed and what would be unsafe to claim.
+                </p>
 
-            <div className="mt-8 space-y-4">
-              {[
-                {
-                  scenario:
-                    "A hospital wants to estimate which patients are likely to develop diabetes based on routine clinical measurements.",
-                  answer: "Prediction",
-                  reason:
-                    "The goal is to estimate diabetes risk for new patients. The focus should be validation, calibration and usefulness.",
-                },
-                {
-                  scenario:
-                    "A researcher wants to describe whether glucose and BMI are statistically associated with diabetes status in this dataset.",
-                  answer: "Explanation",
-                  reason:
-                    "The goal is to understand association patterns in the observed data. Coefficients may be useful, but they are not automatically causal.",
-                },
-                {
-                  scenario:
-                    "A public health team wants to know whether reducing BMI would reduce future diabetes risk.",
-                  answer: "Causal thinking",
-                  reason:
-                    "This asks about an intervention. It needs time order, confounder control and causal assumptions.",
-                },
-                {
-                  scenario:
-                    "A model includes a variable measured after diabetes diagnosis and gives excellent prediction accuracy.",
-                  answer: "Leakage warning",
-                  reason:
-                    "The variable is not available at the correct prediction time. The model may look strong but be invalid for real use.",
-                },
-              ].map((item, index) => (
-                <details
-                  key={item.scenario}
-                  className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
-                >
-                  <summary className="cursor-pointer text-base font-black leading-7 text-slate-950">
-                    Scenario {index + 1}: {item.scenario}
-                  </summary>
-                  <div className="mt-4 rounded-2xl bg-white p-4">
-                    <p className="text-sm font-black uppercase tracking-[0.16em] text-blue-600">
-                      Best classification
+                <div className="mt-5 grid gap-3">
+                  {questionExamples.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => setQuestionChoice(item.id)}
+                      className={`rounded-2xl border px-4 py-3 text-left text-sm font-black transition ${
+                        questionChoice === item.id
+                          ? "border-slate-950 bg-slate-950 text-white"
+                          : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50"
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
+                  <p className="font-black text-slate-950">
+                    {selectedQuestion.question}
+                  </p>
+                  <div className="mt-4 grid gap-3">
+                    <p>
+                      <strong>Correct aim:</strong> {selectedQuestion.correctAim}
                     </p>
-                    <p className="mt-2 text-xl font-black text-slate-950">
-                      {item.answer}
+                    <p>
+                      <strong>Evidence:</strong> {selectedQuestion.evidence}
                     </p>
-                    <p className="mt-3 text-sm leading-7 text-slate-600">
-                      {item.reason}
+                    <p className="text-rose-700">
+                      <strong>Unsafe claim:</strong>{" "}
+                      {selectedQuestion.unsafeClaim}
+                    </p>
+                    <p className="text-emerald-700">
+                      <strong>Safe claim:</strong> {selectedQuestion.safeClaim}
                     </p>
                   </div>
-                </details>
-              ))}
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 2: coefficient interpretation
+                </h3>
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Choose a coefficient and practise the safe interpretation.
+                  The aim is to avoid converting association into causation.
+                </p>
+
+                <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                  {[
+                    ["glucose", "Glucose"],
+                    ["mass", "BMI/mass"],
+                    ["age", "Age"],
+                  ].map(([value, label]) => (
+                    <button
+                      key={value}
+                      onClick={() => setSelectedCoefficient(value)}
+                      className={`rounded-2xl border px-4 py-3 text-sm font-black transition ${
+                        selectedCoefficient === value
+                          ? "border-slate-950 bg-slate-950 text-white"
+                          : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl bg-white p-4">
+                  <p className="text-sm font-black uppercase tracking-[0.16em] text-blue-600">
+                    Safe interpretation
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-slate-700">
+                    {coefficientExplanation}
+                  </p>
+                </div>
+
+                <div className="mt-5 rounded-2xl border border-rose-200 bg-rose-50 p-4">
+                  <p className="text-sm font-black text-slate-950">
+                    Do not write
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-slate-700">
+                    “This coefficient proves that changing this variable will
+                    cause diabetes risk to change.”
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div className="mt-8 rounded-3xl border border-amber-200 bg-amber-50 p-6">
-              <h3 className="text-xl font-black text-slate-950">
-                Interpretation rule
+            <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <h3 className="text-2xl font-black text-slate-950">
+                Lab 3: threshold changes prediction, not causation
               </h3>
-              <p className="mt-3 text-base leading-8 text-slate-700">
-                Before interpreting any model output, ask: What question was the
-                model built to answer? Prediction output should be interpreted
-                as prediction output. Association output should be interpreted
-                as association output. Causal claims need causal reasoning.
+              <p className="mt-3 max-w-4xl text-base leading-7 text-slate-700">
+                Move the threshold. The same predicted risks turn into different
+                classifications. This is a decision rule for prediction; it does
+                not change the causal relationship between any variable and the
+                outcome.
               </p>
+
+              <label className="mt-6 block text-sm font-black uppercase tracking-[0.18em] text-slate-600">
+                Threshold: {threshold.toFixed(2)}
+              </label>
+              <input
+                type="range"
+                min={0.2}
+                max={0.8}
+                step={0.05}
+                value={threshold}
+                onChange={(event) => setThreshold(Number(event.target.value))}
+                className="mt-4 w-full"
+              />
+
+              <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
+                {thresholdComment}
+              </div>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                {[
+                  ["Accuracy", toyMetrics.accuracy.toFixed(3)],
+                  ["Sensitivity", toyMetrics.sensitivity.toFixed(3)],
+                  ["Specificity", toyMetrics.specificity.toFixed(3)],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="rounded-3xl border border-slate-200 bg-white p-5"
+                  >
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                      {label}
+                    </p>
+                    <p className="mt-2 text-3xl font-black text-blue-700">
+                      {value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 overflow-x-auto rounded-3xl border border-slate-200">
+                <table className="w-full min-w-[620px] border-collapse text-center text-sm">
+                  <thead className="bg-slate-950 text-white">
+                    <tr>
+                      <th className="p-4"></th>
+                      <th className="p-4">Predicted negative</th>
+                      <th className="p-4">Predicted positive</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-t border-slate-200">
+                      <th className="bg-white p-4 text-left font-black">
+                        Observed negative
+                      </th>
+                      <td className="bg-emerald-50 p-4 text-2xl font-black text-emerald-700">
+                        {toyMetrics.tn}
+                      </td>
+                      <td className="bg-rose-50 p-4 text-2xl font-black text-rose-700">
+                        {toyMetrics.fp}
+                      </td>
+                    </tr>
+                    <tr className="border-t border-slate-200">
+                      <th className="bg-white p-4 text-left font-black">
+                        Observed positive
+                      </th>
+                      <td className="bg-rose-50 p-4 text-2xl font-black text-rose-700">
+                        {toyMetrics.fn}
+                      </td>
+                      <td className="bg-emerald-50 p-4 text-2xl font-black text-emerald-700">
+                        {toyMetrics.tp}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-6 overflow-x-auto rounded-3xl border border-slate-200">
+                <table className="w-full min-w-[860px] border-collapse text-left text-sm">
+                  <thead className="bg-slate-950 text-white">
+                    <tr>
+                      <th className="p-4">Patient</th>
+                      <th className="p-4">Glucose</th>
+                      <th className="p-4">BMI/mass</th>
+                      <th className="p-4">Age</th>
+                      <th className="p-4">Predicted risk</th>
+                      <th className="p-4">Observed</th>
+                      <th className="p-4">Predicted</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {toyMetrics.predictions.map((patient) => (
+                      <tr key={patient.id} className="border-t border-slate-200">
+                        <td className="p-4 font-black text-slate-950">
+                          {patient.id}
+                        </td>
+                        <td className="p-4 text-slate-600">
+                          {patient.glucose}
+                        </td>
+                        <td className="p-4 text-slate-600">{patient.mass}</td>
+                        <td className="p-4 text-slate-600">{patient.age}</td>
+                        <td className="p-4 text-slate-600">
+                          {patient.risk.toFixed(2)}
+                        </td>
+                        <td className="p-4 text-slate-600">
+                          {patient.observed === 1 ? "Positive" : "Negative"}
+                        </td>
+                        <td
+                          className={`p-4 font-black ${
+                            patient.predicted === patient.observed
+                              ? "text-emerald-700"
+                              : "text-rose-700"
+                          }`}
+                        >
+                          {patient.predicted === 1 ? "Positive" : "Negative"}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 4: leakage and overclaim detector
+                </h3>
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Choose a scenario. The feedback tells you whether the problem
+                  is valid prediction, association language, leakage or causal
+                  overclaiming.
+                </p>
+
+                <div className="mt-5 grid gap-3">
+                  {causalScenarios.map((scenario) => (
+                    <button
+                      key={scenario.id}
+                      onClick={() => setSelectedScenario(scenario.id)}
+                      className={`rounded-2xl border px-4 py-3 text-left text-sm font-black transition ${
+                        selectedScenario === scenario.id
+                          ? "border-slate-950 bg-slate-950 text-white"
+                          : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50"
+                      }`}
+                    >
+                      {scenario.label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-700">
+                  <p className="font-black text-slate-950">
+                    {selectedScenarioData.text}
+                  </p>
+                  <p className="mt-3">{selectedScenarioData.feedback}</p>
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Lab 5: causal readiness checklist
+                </h3>
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  Tick the elements available in your analysis. Prediction
+                  validation is useful, but by itself it does not make a causal
+                  claim ready.
+                </p>
+
+                <div className="mt-5 grid gap-3">
+                  {[
+                    ["timeOrder", "Correct time order is established"],
+                    ["confounding", "Important confounders are measured and controlled"],
+                    ["intervention", "The intervention is clearly defined"],
+                    ["validation", "Prediction performance has been validated"],
+                  ].map(([key, label]) => (
+                    <button
+                      key={key}
+                      onClick={() =>
+                        toggleChecklist(key as keyof typeof causalChecklist)
+                      }
+                      className={`rounded-2xl border px-4 py-3 text-left text-sm font-black transition ${
+                        causalChecklist[key as keyof typeof causalChecklist]
+                          ? "border-emerald-300 bg-emerald-50 text-emerald-800"
+                          : "border-slate-200 bg-white text-slate-700 hover:bg-blue-50"
+                      }`}
+                    >
+                      {causalChecklist[key as keyof typeof causalChecklist]
+                        ? "✓ "
+                        : "○ "}
+                      {label}
+                    </button>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl bg-white p-4">
+                  <p className="text-sm font-black uppercase tracking-[0.16em] text-blue-600">
+                    Readiness score
+                  </p>
+                  <p className="mt-2 text-3xl font-black text-slate-950">
+                    {causalReadinessScore}/4
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {causalReadinessScore < 3
+                      ? "Not enough for a causal claim. Use prediction or association language only."
+                      : causalReadinessScore === 3
+                      ? "Closer, but check whether the missing condition changes the interpretation."
+                      : "The checklist is stronger, but causal conclusions still require careful design, assumptions and sensitivity analysis."}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <h3 className="text-2xl font-black text-slate-950">
+                Lab 6: assumptions behind causal language
+              </h3>
+              <p className="mt-3 max-w-4xl text-base leading-7 text-slate-700">
+                These assumptions are not fully taught in this introductory
+                lesson, but students should see that causal language requires
+                more than a fitted model.
+              </p>
+
+              <div className="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                {assumptionCards.map((card) => (
+                  <TopicCard key={card.title} title={card.title}>
+                    {card.body}
+                  </TopicCard>
+                ))}
+              </div>
             </div>
           </section>
         )}
 
-        {activeTab === "coding" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+        {activeTab === "R Coding Lab" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
               R coding lab
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              Run the idea directly in the browser
+              Compare prediction output, association output and causal language
             </h2>
 
-            <p className="mt-5 max-w-4xl text-base leading-8 text-slate-600">
-              This browser lab uses a small teaching dataset so it runs quickly
-              in WebR. The full downloadable script uses the shared diabetes
-              dataset and generated the figures used in this lesson.
+            <p className="mt-4 max-w-4xl text-base leading-7 text-slate-600">
+              This browser lab loads the shared diabetes CSV, fits a prediction
+              model on training data, fits an explanatory association model on
+              the full teaching dataset, and prints safe interpretation
+              reminders. The goal is not to treat R output as causal proof, but
+              to learn how different outputs support different claims.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <button
-                type="button"
-                onClick={runRCode}
-                disabled={isRunning}
-                className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-black text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {isRunning ? "Running R..." : "Run R code"}
-              </button>
+            <WebRCodeRunner />
+
+            <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6">
+              <h3 className="text-2xl font-black text-slate-950">
+                How to interpret the output
+              </h3>
+
+              <div className="mt-5 space-y-4 text-base leading-7 text-slate-700">
+                <p>
+                  The first section prints dataset dimensions, variable names
+                  and outcome counts. This confirms the structure of the data
+                  before modelling.
+                </p>
+                <p>
+                  The prediction section splits the data into training and test
+                  sets. Performance metrics belong to the prediction aim: they
+                  describe how well the fitted model classifies unseen test
+                  observations at a chosen threshold.
+                </p>
+                <p>
+                  The explanatory section fits a logistic regression model and
+                  prints coefficients and odds ratios. These describe
+                  conditional associations in the fitted model. They are not
+                  automatically causal effects.
+                </p>
+                <p>
+                  The final printed interpretation separates three questions:
+                  prediction, explanation and causality. This is the central
+                  reporting discipline for the lesson.
+                </p>
+              </div>
 
               <a
                 href={withBasePath(
                   "/ml-biostatistics/r/module-1/lesson-1-2-prediction-explanation-causality.R"
                 )}
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-black text-slate-900 transition hover:bg-slate-50"
+                download
+                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-black text-white transition hover:bg-slate-800 sm:w-auto"
               >
                 Download full R script
               </a>
             </div>
-
-            <div className="mt-8 grid gap-6 lg:grid-cols-2">
-              <div>
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
-                  Code
-                </p>
-                <pre className="mt-3 max-h-[540px] overflow-auto rounded-3xl bg-slate-950 p-5 text-sm leading-6 text-slate-100">
-                  <code>{rCode}</code>
-                </pre>
-              </div>
-
-              <div>
-                <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-500">
-                  Output
-                </p>
-                <pre className="mt-3 min-h-[540px] overflow-auto rounded-3xl border border-slate-200 bg-slate-50 p-5 text-sm leading-6 text-slate-800">
-                  <code>{output}</code>
-                </pre>
-              </div>
-            </div>
           </section>
         )}
 
-        {activeTab === "report" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
-              Reporting and interpretation
+        {activeTab === "Report" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+              Reporting
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
-              How to report Lesson 1.2 correctly
+              How to report prediction, explanation and causality correctly
             </h2>
 
-            <div className="mt-8 grid gap-5 md:grid-cols-2">
-              {[
-                {
-                  title: "Dataset",
-                  body: "The shared diabetes dataset contains 768 patients and 10 variables. The outcome is diabetes status, coded as negative or positive.",
-                },
-                {
-                  title: "Descriptive pattern",
-                  body: "The diabetes-positive group had higher average glucose, BMI/mass and age than the diabetes-negative group. This is an observed association pattern.",
-                },
-                {
-                  title: "Prediction result",
-                  body: "Using glucose, BMI/mass and age, the prediction model achieved accuracy 0.779, sensitivity 0.625 and specificity 0.849 on the test set.",
-                },
-                {
-                  title: "Interpretation caution",
-                  body: "The model estimates risk. The coefficients and predictions should not be interpreted as causal effects without a causal study design.",
-                },
-              ].map((item) => (
-                <article
-                  key={item.title}
-                  className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
-                >
-                  <h3 className="text-xl font-black text-slate-950">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">
-                    {item.body}
-                  </p>
-                </article>
-              ))}
-            </div>
+            <div className="mt-8 space-y-6 text-base leading-8 text-slate-700">
+              <p>
+                The shared diabetes dataset can be used to introduce three
+                different scientific aims. A prediction aim asks whether routine
+                clinical variables can estimate diabetes status for new
+                patients. An explanation aim asks whether variables such as
+                glucose, BMI/mass and age are associated with diabetes status in
+                the observed dataset. A causal aim asks what would happen under
+                a defined intervention, such as a strategy to reduce BMI or
+                improve glycaemic control.
+              </p>
 
-            <div className="mt-8 rounded-3xl bg-slate-950 p-6 text-white">
-              <h3 className="text-2xl font-black">
-                Example report paragraph
-              </h3>
-              <p className="mt-4 text-base leading-8 text-slate-300">
-                In the shared diabetes prediction dataset, diabetes-positive
-                patients showed higher average glucose and BMI/mass than
-                diabetes-negative patients. A logistic prediction model using
-                glucose, BMI/mass and age achieved test accuracy of 0.779,
-                sensitivity of 0.625 and specificity of 0.849. These results
-                suggest that the selected variables contain predictive
-                information for diabetes status. However, the model should not
-                be interpreted causally. The coefficients describe associations
-                within the fitted model, not the effect of intervening on
-                glucose, BMI or age.
+              <p>
+                In a prediction workflow, the model should be fitted on training
+                data and evaluated on unseen test data or through resampling and
+                external validation. Performance measures such as sensitivity,
+                specificity, calibration and discrimination support prediction
+                claims. They do not by themselves prove causal effects.
+              </p>
+
+              <p>
+                In an explanatory regression analysis, coefficients and odds
+                ratios describe associations conditional on the fitted model.
+                These quantities may be scientifically useful, but they must be
+                interpreted with attention to model assumptions, measurement,
+                uncertainty and possible confounding.
+              </p>
+
+              <p>
+                A causal claim needs stronger design logic. The analyst must
+                define the intervention, establish time order, identify and
+                control confounders, consider selection bias and state the
+                assumptions under which the causal contrast is interpretable.
               </p>
             </div>
 
-            <div className="mt-8 rounded-3xl border border-red-100 bg-red-50 p-6">
-              <h3 className="text-xl font-black text-slate-950">
-                What not to write
-              </h3>
-              <p className="mt-3 text-base leading-8 text-slate-700">
-                Do not write: “Glucose causes diabetes because it is important
-                in the model.” A variable can be predictive, associated and
-                clinically meaningful without the fitted prediction model proving
-                a causal effect.
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              <article className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Good report language
+                </h3>
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  “Glucose, BMI/mass and age contained predictive information
+                  for diabetes status in this dataset. The fitted model should
+                  be interpreted as a prediction model. Coefficients describe
+                  conditional associations and should not be treated as causal
+                  effects without a causal design.”
+                </p>
+              </article>
+
+              <article className="rounded-3xl border border-rose-200 bg-rose-50 p-6">
+                <h3 className="text-2xl font-black text-slate-950">
+                  Poor report language
+                </h3>
+                <p className="mt-3 text-base leading-7 text-slate-700">
+                  “The machine learning model proves that BMI causes diabetes
+                  because BMI is included in the model and improves accuracy.”
+                  This incorrectly converts prediction and association into a
+                  causal conclusion.
+                </p>
+              </article>
+            </div>
+
+            <div className="mt-8 rounded-3xl bg-slate-950 p-6 text-white">
+              <h3 className="text-2xl font-black">Example report paragraph</h3>
+              <p className="mt-4 text-base leading-8 text-slate-300">
+                In this teaching analysis, routinely measured clinical variables
+                were considered for diabetes status modelling. The prediction
+                aim was to estimate diabetes status for patients using variables
+                available at the prediction time. Glucose, BMI/mass and age may
+                contain useful predictive information, and their coefficients in
+                a logistic model describe conditional associations with the
+                outcome. However, these results should not be interpreted as
+                evidence that changing any individual predictor would cause a
+                change in diabetes risk. Causal interpretation would require a
+                clearly defined intervention, correct temporal ordering,
+                adjustment for confounders and explicit causal assumptions.
               </p>
             </div>
           </section>
         )}
 
-        {activeTab === "quiz" && (
-          <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+        {activeTab === "Quiz" && (
+          <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
               Quiz
             </p>
 
@@ -675,62 +1619,78 @@ export default function PredictionExplanationCausalThinkingPage() {
             <div className="mt-8 space-y-4">
               {[
                 {
-                  q: "A model predicts diabetes risk for a new patient. What type of question is this?",
-                  a: "Prediction. The goal is to estimate an outcome for a new individual or patient.",
+                  q: "What is the main aim of a prediction model?",
+                  a: "To estimate an outcome, risk or class for new patients or samples using information available at the prediction time.",
                 },
                 {
-                  q: "The glucose coefficient is large in a logistic regression model. Does that prove glucose causes diabetes?",
-                  a: "No. The coefficient describes an association in the fitted model. Causal interpretation requires causal design and assumptions.",
+                  q: "What is the main aim of an explanatory association model?",
+                  a: "To describe how variables are associated with the outcome in the observed data, conditional on the fitted model and assumptions.",
                 },
                 {
-                  q: "Why might a highly accurate medical model still be invalid?",
-                  a: "It may use leaked information, fail on external patients, be poorly calibrated, or answer the wrong clinical question.",
+                  q: "What is the main aim of a causal question?",
+                  a: "To ask what would happen to an outcome under a defined intervention or exposure change.",
                 },
                 {
-                  q: "What does a causal question ask?",
-                  a: "It asks what would happen under an intervention, such as whether reducing BMI would reduce future diabetes risk.",
+                  q: "A glucose coefficient is positive in a logistic regression model. What is the safe interpretation?",
+                  a: "Higher glucose is associated with higher modelled log-odds of diabetes status, conditional on the other variables in the model. It is not automatically a causal effect.",
                 },
                 {
-                  q: "Why is prediction useful even when it is not causal?",
-                  a: "Prediction can identify high-risk patients, support screening, guide monitoring and inform clinical workflow, provided the model is valid and useful.",
+                  q: "Why does test-set accuracy not prove causality?",
+                  a: "Accuracy measures predictive performance. It does not establish time order, define an intervention, remove confounding or estimate a counterfactual contrast.",
+                },
+                {
+                  q: "What is leakage?",
+                  a: "Leakage occurs when information unavailable at the prediction time, often future or post-outcome information, is used as a predictor. It can make performance look unrealistically strong.",
+                },
+                {
+                  q: "Why might a proxy variable predict well without being causal?",
+                  a: "A proxy may capture healthcare access, disease severity, clinical workflow or measurement patterns. It can help prediction without being an intervention target.",
+                },
+                {
+                  q: "Give one example of safe report language for this lesson.",
+                  a: "The variables contained predictive information and were associated with diabetes status in the fitted model, but the analysis does not prove causal effects.",
                 },
               ].map((item, index) => (
                 <details
                   key={item.q}
                   className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
                 >
-                  <summary className="cursor-pointer text-base font-black leading-7 text-slate-950">
+                  <summary className="cursor-pointer text-base font-black text-slate-950">
                     Question {index + 1}: {item.q}
                   </summary>
-                  <p className="mt-4 text-sm leading-7 text-slate-600">
+                  <p className="mt-4 text-sm leading-6 text-slate-600">
                     {item.a}
                   </p>
                 </details>
               ))}
             </div>
-
-            <section className="mt-10 rounded-[2rem] bg-slate-950 p-6 text-white md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-300">
-                Next lesson
-              </p>
-              <h3 className="mt-3 text-3xl font-black tracking-tight">
-                Types of learning: supervised, unsupervised and semi-supervised
-              </h3>
-              <p className="mt-4 max-w-3xl text-base leading-8 text-slate-300">
-                Next, we classify machine learning problems by the kind of data
-                and learning signal available.
-              </p>
-              <a
-                href={withBasePath(
-                  "/courses/machine-learning-biostatistics/modules/foundations/lessons/types-of-learning"
-                )}
-                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-blue-50 sm:w-auto"
-              >
-                Next lesson →
-              </a>
-            </section>
           </section>
         )}
+
+        <section className="mt-10 rounded-[2rem] bg-slate-950 p-6 text-white md:p-10">
+          <p className="text-sm font-black uppercase tracking-[0.2em] text-blue-300">
+            Lesson complete
+          </p>
+
+          <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
+            Next, classify the types of learning problems.
+          </h2>
+
+          <p className="mt-5 max-w-4xl text-base leading-7 text-slate-300">
+            The next lesson introduces supervised, unsupervised and
+            semi-supervised learning, and explains how the outcome structure
+            determines the learning task.
+          </p>
+
+          <a
+            href={withBasePath(
+              "/courses/machine-learning-biostatistics/modules/foundations/lessons/types-of-learning"
+            )}
+            className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-slate-100 sm:w-auto"
+          >
+            Next lesson →
+          </a>
+        </section>
       </section>
     </main>
   );
