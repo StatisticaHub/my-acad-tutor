@@ -79,26 +79,25 @@ export default function Hero() {
             className="h-[300px] w-full object-cover object-center md:h-[560px]"
           />
 
-          <div className="absolute inset-x-3 bottom-3 rounded-2xl bg-white/90 p-4 shadow-sm backdrop-blur md:inset-x-6 md:bottom-6 md:rounded-3xl md:p-6">
+          <div className="absolute inset-x-4 bottom-4 max-w-[82%] rounded-2xl bg-white/92 p-4 shadow-sm backdrop-blur md:inset-x-6 md:bottom-6 md:max-w-[560px] md:rounded-3xl md:p-6">
             <p className="hidden text-xs font-black uppercase tracking-[0.18em] text-[#8b1116] md:block">
-              Research and analysis workspace
+              Research workspace
             </p>
 
             <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
-              Quantitative learning environment
+              Learning environment
             </p>
 
-            <h2 className="mt-2 text-lg font-bold tracking-tight text-neutral-950 md:text-2xl">
-              Master complex methods with clarity and confidence.
+            <h2 className="mt-2 text-2xl font-bold leading-tight tracking-tight text-neutral-950 md:text-3xl">
+              Methods made clearer.
             </h2>
 
-            <p className="mt-2 text-sm leading-6 text-neutral-700 md:text-base md:leading-7">
+            <p className="mt-3 text-sm leading-6 text-neutral-700 md:text-base md:leading-7">
               <span className="md:hidden">
-                Ethical support for learning, analysis and interpretation.
+                Ethical support for learning and interpretation.
               </span>
               <span className="hidden md:inline">
-                Designed for clearer explanation, responsible academic support
-                and stronger confidence with quantitative methods.
+                Designed for clearer explanation, responsible academic support and stronger confidence with quantitative methods.
               </span>
             </p>
           </div>
