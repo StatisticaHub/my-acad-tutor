@@ -30,7 +30,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2.5 md:px-8 md:py-4">
         <a
           href={withBasePath("/")}
-          className="flex min-w-0 items-center gap-3 md:gap-4"
+          className="flex min-w-0 items-center gap-3 md:gap-5"
           aria-label="My Academic Tutor home"
         >
           <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden md:h-14 md:w-14">
@@ -42,11 +42,11 @@ export default function Header() {
           </div>
 
           <div className="min-w-0">
-            <p className="font-serif-academic text-[0.82rem] font-semibold uppercase tracking-[0.22em] text-[#8b1116] sm:text-[0.95rem] sm:tracking-[0.28em]">
+            <p className="truncate font-sans text-[1.45rem] font-bold leading-none tracking-[-0.03em] text-[#111111] sm:text-[1.8rem] md:text-[2rem]">
               My Academic Tutor
             </p>
 
-            <p className="mt-1 text-[0.82rem] font-medium leading-snug tracking-[0.01em] text-neutral-700 sm:text-sm md:text-base">
+            <p className="mt-1 hidden text-[0.78rem] font-medium leading-snug tracking-[0.01em] text-neutral-700 sm:block md:text-sm">
               Quantitative Learning Support
             </p>
           </div>
