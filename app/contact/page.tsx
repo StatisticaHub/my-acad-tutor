@@ -1,3 +1,4 @@
+import ContactForm from "./ContactForm";
 const basePath = "";
 
 function withBasePath(href: string) {
@@ -158,6 +159,10 @@ export default function ContactPage() {
               Explore Learning Hub
             </a>
           </div>
+        </section>
+
+        <section className="mt-8">
+          <ContactForm />
         </section>
 
         <section className="mt-8 grid gap-4 md:grid-cols-3">
