@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const basePath = process.env.NODE_ENV === "production" ? "" : "";
+const basePath = "";
 
 const navLinks = [
   { label: "Start Here", href: "/start-here" },

@@ -1,4 +1,4 @@
-const basePath = process.env.NODE_ENV === "production" ? "" : "";
+const basePath = "";
 function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
 const supportAreas = ["Statistics and biostatistics topics", "Dissertation or research planning", "R, Python, SPSS, Stata or SAS guidance", "Interpreting methods and results", "Premium course access enquiries", "Small research or student group support"];
 const contactRoutes = [

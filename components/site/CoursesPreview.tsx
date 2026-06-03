@@ -1,4 +1,4 @@
-const basePath = process.env.NODE_ENV === "production" ? "" : "";
+const basePath = "";
 function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
 const courses = [
   { title: "Statistics Foundation", tag: "Available", href: "/courses/statistics-foundation", description: "Zero-coding theoretical statistics course for university students." },

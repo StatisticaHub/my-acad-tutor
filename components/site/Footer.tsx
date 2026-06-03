@@ -1,4 +1,4 @@
-const basePath = process.env.NODE_ENV === "production" ? "" : "";
+const basePath = "";
 
 const footerLinks = [
   {
