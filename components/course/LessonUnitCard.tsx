@@ -15,10 +15,10 @@ export default function LessonUnitCard({
   hasCoding = false,
 }: LessonUnitCardProps) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-      <h4 className="text-lg font-bold text-slate-950">{title}</h4>
+    <div className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] p-5">
+      <h4 className="text-lg font-bold text-[#111111]">{title}</h4>
 
-      <p className="mt-3 text-sm leading-6 text-slate-600">{description}</p>
+      <p className="mt-3 text-sm leading-6 text-neutral-700">{description}</p>
 
       <div className="mt-5 flex flex-wrap gap-2">
         <Badge variant="blue">Lecture</Badge>
@@ -30,7 +30,7 @@ export default function LessonUnitCard({
       <div className="mt-6">
         <Link
           href={href}
-          className="text-sm font-semibold text-blue-600 hover:text-blue-700"
+          className="text-sm font-semibold text-[#8b1116] hover:text-[#8b1116]"
         >
           Open lesson →
         </Link>

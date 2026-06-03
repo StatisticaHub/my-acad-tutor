@@ -11,8 +11,8 @@ const roadmap = [
 
 export default function DataSciencePathwayPage() {
   return (
-    <main className="bg-slate-50 text-slate-950">
-      <section className="bg-slate-950 px-5 py-12 text-white md:px-6 md:py-32">
+    <main className="bg-[#f7f4ee] text-[#111111]">
+      <section className="bg-[#111111] px-5 py-12 text-white md:px-6 md:py-32">
         <div className="mx-auto max-w-7xl">
           <Badge variant="blue">Data Science Pathway</Badge>
 
@@ -20,7 +20,7 @@ export default function DataSciencePathwayPage() {
             Build practical data science skills with statistical thinking.
           </h1>
 
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/70">
             This pathway connects data exploration, modelling, machine learning,
             validation and communication for students working with real datasets.
           </p>
@@ -39,17 +39,17 @@ export default function DataSciencePathwayPage() {
             {roadmap.map((item, index) => (
               <div
                 key={item}
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#8b1116] text-sm font-bold text-white">
                   {String(index + 1).padStart(2, "0")}
                 </div>
 
-                <h3 className="mt-6 text-xl font-bold text-slate-950">
+                <h3 className="mt-6 text-xl font-bold text-[#111111]">
                   {item}
                 </h3>
 
-                <p className="mt-4 text-sm leading-6 text-slate-600">
+                <p className="mt-4 text-sm leading-6 text-neutral-700">
                   Each stage focuses on understanding, implementation and careful
                   interpretation of results.
                 </p>

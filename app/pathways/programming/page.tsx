@@ -11,8 +11,8 @@ const roadmap = [
 
 export default function ProgrammingPathwayPage() {
   return (
-    <main className="bg-slate-50 text-slate-950">
-      <section className="bg-slate-950 px-5 py-12 text-white md:px-6 md:py-32">
+    <main className="bg-[#f7f4ee] text-[#111111]">
+      <section className="bg-[#111111] px-5 py-12 text-white md:px-6 md:py-32">
         <div className="mx-auto max-w-7xl">
           <Badge variant="dark">Programming Pathway</Badge>
 
@@ -20,7 +20,7 @@ export default function ProgrammingPathwayPage() {
             Learn R and Python for academic data analysis.
           </h1>
 
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/70">
             This pathway helps students learn programming through real academic
             data analysis tasks, reproducible workflows and statistical examples.
           </p>
@@ -39,17 +39,17 @@ export default function ProgrammingPathwayPage() {
             {roadmap.map((item, index) => (
               <div
                 key={item}
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#111111] text-sm font-bold text-white">
                   {String(index + 1).padStart(2, "0")}
                 </div>
 
-                <h3 className="mt-6 text-xl font-bold text-slate-950">
+                <h3 className="mt-6 text-xl font-bold text-[#111111]">
                   {item}
                 </h3>
 
-                <p className="mt-4 text-sm leading-6 text-slate-600">
+                <p className="mt-4 text-sm leading-6 text-neutral-700">
                   The focus is not only writing code, but understanding what the code
                   is doing and why it matters.
                 </p>

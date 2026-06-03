@@ -11,8 +11,8 @@ const roadmap = [
 
 export default function BioinformaticsPathwayPage() {
   return (
-    <main className="bg-slate-50 text-slate-950">
-      <section className="bg-slate-950 px-5 py-12 text-white md:px-6 md:py-32">
+    <main className="bg-[#f7f4ee] text-[#111111]">
+      <section className="bg-[#111111] px-5 py-12 text-white md:px-6 md:py-32">
         <div className="mx-auto max-w-7xl">
           <Badge variant="violet">Bioinformatics Pathway</Badge>
 
@@ -20,7 +20,7 @@ export default function BioinformaticsPathwayPage() {
             Understand biological data analysis from the ground up.
           </h1>
 
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/70">
             This pathway introduces omics data, RNA-seq, single-cell concepts,
             spatial transcriptomics and reproducible bioinformatics thinking.
           </p>
@@ -39,17 +39,17 @@ export default function BioinformaticsPathwayPage() {
             {roadmap.map((item, index) => (
               <div
                 key={item}
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-violet-600 text-sm font-bold text-white">
                   {String(index + 1).padStart(2, "0")}
                 </div>
 
-                <h3 className="mt-6 text-xl font-bold text-slate-950">
+                <h3 className="mt-6 text-xl font-bold text-[#111111]">
                   {item}
                 </h3>
 
-                <p className="mt-4 text-sm leading-6 text-slate-600">
+                <p className="mt-4 text-sm leading-6 text-neutral-700">
                   Learn the purpose of each analysis step, common outputs and how
                   results should be interpreted biologically.
                 </p>
