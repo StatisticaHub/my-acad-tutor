@@ -1,12 +1,13 @@
+import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const dynamic = "force-dynamic";
 
-type ContactRequest = {
+type ContactPayload = {
   name?: string;
   email?: string;
   subject?: string;
-  level?: string;
+  academicLevel?: string;
   topic?: string;
   software?: string;
   deadline?: string;
@@ -18,76 +19,63 @@ function clean(value: unknown) {
 }
 
 export async function POST(request: Request) {
-  try {
-    if (!process.env.RESEND_API_KEY) {
-      return Response.json(
-        { error: "Email service is not configured." },
-        { status: 500 }
-      );
-    }
+  const apiKey = process.env.RESEND_API_KEY;
 
-    const body = (await request.json()) as ContactRequest;
+  if (!apiKey) {
+    return NextResponse.json(
+      { error: "Contact form is not configured yet." },
+      { status: 500 }
+    );
+  }
+
+  const resend = new Resend(apiKey);
+
+  try {
+    const body = (await request.json()) as ContactPayload;
 
     const name = clean(body.name);
     const email = clean(body.email);
     const subject = clean(body.subject);
-    const level = clean(body.level);
+    const academicLevel = clean(body.academicLevel);
     const topic = clean(body.topic);
     const software = clean(body.software);
     const deadline = clean(body.deadline);
     const message = clean(body.message);
 
     if (!name || !email || !subject || !message) {
-      return Response.json(
-        { error: "Name, email, subject and message are required." },
+      return NextResponse.json(
+        { error: "Please complete name, email, subject and message." },
         { status: 400 }
       );
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(email)) {
-      return Response.json(
-        { error: "Please enter a valid email address." },
-        { status: 400 }
-      );
-    }
-
-    const { error } = await resend.emails.send({
+    await resend.emails.send({
       from: "My Academic Tutor <onboarding@resend.dev>",
       to: ["statisticahub@gmail.com"],
       replyTo: email,
-      subject: `Website enquiry: ${subject}`,
+      subject: `Support request: ${subject}`,
       text: `
-New support request from My Academic Tutor website.
+New support request from My Academic Tutor
 
 Name: ${name}
 Email: ${email}
 Subject: ${subject}
-Academic level: ${level || "Not provided"}
-Topic/method: ${topic || "Not provided"}
+Academic level: ${academicLevel || "Not provided"}
+Topic or method: ${topic || "Not provided"}
 Software: ${software || "Not provided"}
-Deadline: ${deadline || "Not provided"}
+Deadline / preferred time: ${deadline || "Not provided"}
 
 Message:
 ${message}
       `.trim(),
     });
 
-    if (error) {
-      return Response.json(
-        { error: "Could not send message. Please try again later." },
-        { status: 500 }
-      );
-    }
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    console.error("Contact form error:", error);
 
-    return Response.json({
-      success: true,
-      message: "Message sent successfully.",
-    });
-  } catch {
-    return Response.json(
-      { error: "Something went wrong. Please try again." },
+    return NextResponse.json(
+      { error: "Could not send message. Please email contact@myacademictutor.com directly." },
       { status: 500 }
     );
   }
