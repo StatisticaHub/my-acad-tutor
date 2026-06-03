@@ -113,7 +113,7 @@ export default function StartWithThis() {
               href={withBasePath(route.href)}
               className={`group rounded-[2rem] border p-6 shadow-sm transition hover:-translate-y-0.5 ${
                 route.dark
-                  ? "border-[#8b1116] bg-[#8b1116] text-white hover:bg-[#5f0b0f] [&_h3]:text-white [&_p]:text-white [&_span]:text-white"
+                  ? "border-[#8b1116] bg-[#8b1116] text-white hover:bg-[#5f0b0f] [&_h3]:text-white [&_p]:text-white"
                   : "border-[#ded9cf] bg-white text-[#111111] hover:shadow-md"
               }`}
             >
