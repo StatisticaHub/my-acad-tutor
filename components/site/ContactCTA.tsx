@@ -1,9 +1,90 @@
 const basePath = "";
-function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
-const supportAreas = ["Statistics and biostatistics topics", "Dissertation or research planning", "R, Python, SPSS, Stata or SAS guidance", "Interpreting methods and results", "Premium course access enquiries", "Small research or student group support"];
-const contactRoutes = [
-  { title: "Request academic support", description: "Share your topic, level, software needs, deadline and the kind of explanation you need.", href: "/contact", label: "Submit requirement", dark: false },
-  { title: "Join course waitlist", description: "Register interest in premium course access, full lessons and downloadable resources.", href: "/pricing", label: "View pricing preview", dark: false },
-  { title: "Preview the platform", description: "See the future dashboard experience with progress cards, saved lessons and certificates.", href: "/dashboard", label: "Open dashboard preview", dark: true },
+
+function withBasePath(href: string) {
+  if (href === "/") return "/";
+  if (
+    href.startsWith("#") ||
+    href.startsWith("http") ||
+    href.startsWith("mailto:")
+  ) {
+    return href;
+  }
+
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
+
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
+}
+
+const supportPoints = [
+  "Statistics",
+  "Biostatistics",
+  "Research methods",
+  "Dissertation planning",
 ];
-export default function ContactCTA() { return (<section className="bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16"><div className="mx-auto max-w-7xl"><section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Request support</p><div className="mt-4 grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end"><div><h2 className="font-sans text-3xl font-black tracking-[-0.04em] md:text-5xl">Need help with a quantitative subject, course or research project?</h2><p className="mt-5 max-w-3xl text-base leading-8 text-neutral-700">Send a focused enquiry with your academic level, topic, software and what you need help understanding.</p></div><aside className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-6"><p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">Responsible support</p><p className="mt-4 text-sm leading-7 text-neutral-700">Support is guidance-based. It helps you understand concepts, methods and interpretation. It does not replace your own academic work.</p></aside></div><div className="mt-8 grid gap-5 lg:grid-cols-3">{contactRoutes.map((route) => (<a key={route.title} href={withBasePath(route.href)} className={`rounded-[2rem] border p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md ${route.dark ? "border-[#111111] bg-[#111111] text-white" : "border-neutral-200 bg-[#f7f4ee] text-[#111111] hover:bg-white"}`}><h3 className="font-sans text-2xl font-black tracking-[-0.04em]">{route.title}</h3><p className={`mt-4 text-sm leading-7 ${route.dark ? "text-white/90" : "text-neutral-700"}`}>{route.description}</p><p className={`mt-5 text-sm font-black ${route.dark ? "text-white" : "text-[#8b1116]"}`}>{route.label} →</p></a>))}</div><div className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3">{supportAreas.map((area) => (<div key={area} className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-800">{area}</div>))}</div><div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"><a href={withBasePath("/contact")} className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-4 text-sm font-black text-white sm:w-auto">Submit requirement</a><a href="mailto:contact@myacademictutor.com" className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 px-6 py-4 text-sm font-black text-[#111111] sm:w-auto">Email directly</a><a href={withBasePath("/interactive-demos")} className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 px-6 py-4 text-sm font-black text-[#111111] sm:w-auto">Try interactive demos</a><a href={withBasePath("/academic-integrity")} className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 px-6 py-4 text-sm font-black text-[#111111] sm:w-auto">Read integrity policy</a></div></section></div></section>); }
+
+export default function ContactCTA() {
+  return (
+    <section className="bg-[#f7f4ee] px-4 py-5 text-[#111111] sm:px-5 md:px-8 md:py-14">
+      <div className="mx-auto max-w-7xl">
+        <section className="overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-[#111111] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-10">
+          <div className="grid gap-5 lg:grid-cols-[1fr_0.72fr] lg:items-end">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55 md:text-sm md:tracking-[0.22em]">
+                Tutoring support
+              </p>
+
+              <h2 className="mt-3 max-w-4xl text-3xl font-semibold leading-tight tracking-[-0.045em] md:mt-4 md:text-5xl">
+                Need focused academic guidance?
+              </h2>
+
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/70 md:mt-5 md:text-base md:leading-8">
+                Send your topic, level, software and the type of explanation
+                you need. Support is focused on learning, planning and
+                responsible interpretation.
+              </p>
+            </div>
+
+            <aside className="rounded-[1.5rem] border border-white/10 bg-white/[0.06] p-4 md:rounded-[1.75rem] md:p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55 md:text-sm md:tracking-[0.2em]">
+                Academic integrity
+              </p>
+
+              <p className="mt-3 text-sm leading-7 text-white/70 md:mt-4">
+                Guidance supports learning. It does not replace independent
+                academic work.
+              </p>
+            </aside>
+          </div>
+
+          <div className="mt-5 grid grid-cols-2 gap-2.5 md:mt-8 md:gap-3 lg:grid-cols-4">
+            {supportPoints.map((point) => (
+              <div
+                key={point}
+                className="rounded-2xl border border-white/10 bg-white/[0.06] px-3 py-2.5 text-xs font-semibold leading-5 text-white/85 md:px-4 md:py-3 md:text-sm"
+              >
+                {point}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center md:mt-8">
+            <a
+              href={withBasePath("/contact")}
+              className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+            >
+              Request support →
+            </a>
+
+            <a
+              href="mailto:contact@myacademictutor.com"
+              className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10 sm:w-auto md:py-4"
+            >
+              Email directly
+            </a>
+          </div>
+        </section>
+      </div>
+    </section>
+  );
+}

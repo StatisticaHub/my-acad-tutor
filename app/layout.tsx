@@ -18,14 +18,16 @@ const sourceSerif = Source_Serif_4({
 
 const siteUrl = "https://myacademictutor.com";
 
+const siteDescription =
+  "Structured courses, interactive demos and responsible academic support for statistics, biostatistics, health data science and quantitative research methods.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "My Academic Tutor | Quantitative Learning and Academic Support",
+    default: "My Academic Tutor | Quantitative Learning",
     template: "%s | My Academic Tutor",
   },
-  description:
-    "Structured learning pathways and specialist academic support in statistics, biostatistics, data science, programming and quantitative research methods.",
+  description: siteDescription,
   applicationName: "My Academic Tutor",
   authors: [{ name: "My Academic Tutor" }],
   creator: "My Academic Tutor",
@@ -33,9 +35,8 @@ export const metadata: Metadata = {
   keywords: [
     "statistics tutoring",
     "biostatistics tutoring",
-    "data science learning",
+    "health data science",
     "research methods support",
-    "academic support",
     "statistics course",
     "machine learning in biostatistics",
     "quantitative research methods",
@@ -47,9 +48,8 @@ export const metadata: Metadata = {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "My Academic Tutor | Quantitative Learning and Academic Support",
-    description:
-      "Structured learning pathways and specialist academic support in statistics, biostatistics, data science, programming and quantitative research methods.",
+    title: "My Academic Tutor | Quantitative Learning",
+    description: siteDescription,
     url: siteUrl,
     siteName: "My Academic Tutor",
     type: "website",
@@ -57,9 +57,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "My Academic Tutor | Quantitative Learning and Academic Support",
-    description:
-      "Structured learning pathways and specialist academic support in statistics, biostatistics, data science, programming and quantitative research methods.",
+    title: "My Academic Tutor | Quantitative Learning",
+    description: siteDescription,
   },
   robots: {
     index: true,

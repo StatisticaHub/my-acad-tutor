@@ -1,20 +1,158 @@
 import { resourceGuides } from "@/lib/resources";
 
 const basePath = "";
-function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
 
-const flagshipSlugs = ["how-to-choose-the-correct-statistical-test", "understanding-p-values-confidence-intervals-and-effect-sizes", "linear-regression-assumptions-and-diagnostics", "survival-analysis-kaplan-meier-curves-and-cox-regression", "r-python-spss-sas-stata-which-should-i-use"];
-const flagshipGuides = flagshipSlugs.map((slug) => resourceGuides.find((guide) => guide.slug === slug)).filter((guide): guide is (typeof resourceGuides)[number] => Boolean(guide));
-const guidesByArea = resourceGuides.reduce<Record<string, typeof resourceGuides>>((groups, guide) => { if (!groups[guide.area]) groups[guide.area] = []; groups[guide.area].push(guide); return groups; }, {});
-const areaEntries = Object.entries(guidesByArea);
-const guideFormat = ["Problem", "Intuition", "Method", "Working", "Limitations", "Discussion"];
-const popularSearches = ["regression", "p-value", "confidence interval", "missing data", "survival analysis", "logistic regression", "dissertation analysis", "SPSS"];
+function withBasePath(href: string) {
+  if (href === "/") return "/";
+  if (
+    href.startsWith("#") ||
+    href.startsWith("http") ||
+    href.startsWith("mailto:")
+  ) {
+    return href;
+  }
 
-export default function ResourcesPage() { return (<main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-20"><section className="mx-auto max-w-7xl"><a href={withBasePath("/")} className="text-sm font-bold text-[#8b1116] hover:text-[#5f0b0f]">← Back to homepage</a>
-<section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Resources</p><div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end"><div><h1 className="max-w-5xl font-sans text-4xl font-black leading-[1.02] tracking-[-0.055em] sm:text-5xl md:text-7xl">Study resources for quantitative subjects.</h1><p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">Explore structured guides for statistics, biostatistics, data science, programming, software, dissertation planning and quantitative research methods.</p></div><div className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-6"><p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">Resource library</p><h2 className="mt-4 font-sans text-2xl font-black tracking-[-0.04em]">Guides built for study, coursework and research planning.</h2><p className="mt-4 text-sm leading-7 text-neutral-700">Use these resources when you need a careful explanation of what a method does, when it is appropriate and how to interpret it.</p></div></div><div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap"><a href="#all-guides" className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-4 text-sm font-black text-white sm:w-auto">View all guides</a><a href="#flagship-guides" className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 px-6 py-4 text-sm font-black text-[#111111] sm:w-auto">Start with flagship guides</a><a href={withBasePath("/learning-hub")} className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 px-6 py-4 text-sm font-black text-[#111111] sm:w-auto">Open Learning Hub</a></div></section>
-<section id="flagship-guides" className="mt-8 scroll-mt-24 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Flagship guides</p><div className="mt-8 grid gap-5 md:grid-cols-2">{flagshipGuides.map((guide, index) => (<a key={guide.slug} href={withBasePath(`/resources/${guide.slug}`)} className="group rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md"><div className="flex flex-wrap items-center gap-2"><span className="rounded-full bg-[#111111] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-white">Guide {index + 1}</span><span className="rounded-full bg-white px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-neutral-600">{guide.area}</span></div><h2 className="mt-5 font-sans text-2xl font-black leading-tight tracking-[-0.04em]">{guide.title}</h2><p className="mt-4 text-sm leading-7 text-neutral-700">{guide.summary}</p><p className="mt-5 text-sm font-black text-[#8b1116]">Open guide →</p></a>))}</div></section>
-<section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Guide structure</p><h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">Each guide follows a clear learning format.</h2><div className="mt-6 grid gap-3 md:grid-cols-3">{guideFormat.map((section) => (<article key={section} className="rounded-3xl border border-neutral-200 bg-[#f7f4ee] p-5"><h3 className="font-sans text-xl font-black tracking-[-0.03em]">{section}</h3><p className="mt-3 text-sm leading-7 text-neutral-700">A focused section to move from the practical problem toward interpretation and responsible use.</p></article>))}</div></section>
-<section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Popular topics</p><div className="mt-6 flex flex-wrap gap-3">{popularSearches.map((term) => <span key={term} className="rounded-full border border-neutral-200 bg-[#f7f4ee] px-4 py-2 text-sm font-bold text-neutral-700">{term}</span>)}</div></section>
-<section id="all-guides" className="mt-8 scroll-mt-24 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">All resource guides</p><div className="mt-8 grid gap-8">{areaEntries.map(([area, guides]) => (<section key={area} className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5 md:p-6"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">{area}</p><h2 className="mt-2 font-sans text-2xl font-black tracking-[-0.04em]">{guides.length} {guides.length === 1 ? "guide" : "guides"}</h2><div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{guides.map((guide) => (<a key={guide.slug} href={withBasePath(`/resources/${guide.slug}`)} className="group rounded-[1.5rem] border border-neutral-200 bg-white p-5 transition hover:-translate-y-1 hover:shadow-md"><span className="rounded-full bg-[#f7f4ee] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-neutral-600">{guide.level}</span><h3 className="mt-4 font-sans text-xl font-black leading-tight tracking-[-0.03em]">{guide.title}</h3><p className="mt-3 text-sm leading-7 text-neutral-700">{guide.summary}</p><p className="mt-5 text-sm font-black text-[#8b1116]">Read guide →</p></a>))}</div></section>))}</div></section>
-<section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]"><article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">Need a full pathway?</p><h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">Use resources with structured courses.</h2><p className="mt-5 text-base leading-8 text-white/90">Guides are useful for focused revision. For a full sequence, start from the Learning Hub.</p><a href={withBasePath("/learning-hub")} className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111]">Open Learning Hub →</a></article><article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-white/90">Need live support?</p><h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">Send your subject, topic and academic goal.</h2><p className="mt-5 text-base leading-8 text-white/80">If a guide is not enough, send an enquiry with your subject, level, topic, software and deadline.</p><a href={withBasePath("/contact")} className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111]">Request support →</a></article></section>
-</section></main>); }
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
+
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
+}
+
+const featuredSlugs = [
+  "how-to-choose-the-correct-statistical-test",
+  "understanding-p-values-confidence-intervals-and-effect-sizes",
+  "linear-regression-assumptions-and-diagnostics",
+  "survival-analysis-kaplan-meier-curves-and-cox-regression",
+];
+
+const featuredGuides = featuredSlugs
+  .map((slug) => resourceGuides.find((guide) => guide.slug === slug))
+  .filter((guide): guide is (typeof resourceGuides)[number] => Boolean(guide));
+
+const areas = Array.from(new Set(resourceGuides.map((guide) => guide.area)));
+
+export default function ResourcesPage() {
+  return (
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
+      <section className="mx-auto max-w-7xl">
+        <a
+          href={withBasePath("/")}
+          className="text-sm font-semibold text-[#8b1116] hover:text-[#5f0b0f]"
+        >
+          ← Back to homepage
+        </a>
+
+        <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
+            Resources
+          </p>
+
+          <div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div>
+              <h1 className="max-w-5xl text-4xl font-semibold leading-[1.03] tracking-[-0.055em] md:text-7xl">
+                Focused guides for quantitative study.
+              </h1>
+
+              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+                Read clear guides on statistical methods, interpretation,
+                research planning and applied data analysis.
+              </p>
+            </div>
+
+            <div className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
+                Guide areas
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {areas.slice(0, 8).map((area) => (
+                  <span
+                    key={area}
+                    className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-700"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {featuredGuides.length > 0 && (
+          <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+            <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
+                  Start with these
+                </p>
+
+                <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.045em] md:text-5xl">
+                  Essential study guides.
+                </h2>
+              </div>
+
+              <p className="text-base leading-8 text-neutral-700">
+                These guides cover the ideas students commonly need when
+                learning statistics and research methods.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              {featuredGuides.map((guide) => (
+                <a
+                  key={guide.slug}
+                  href={withBasePath(`/resources/${guide.slug}`)}
+                  className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8b1116]">
+                    {guide.area} · {guide.level}
+                  </p>
+
+                  <h3 className="mt-4 text-2xl font-semibold tracking-[-0.04em]">
+                    {guide.title}
+                  </h3>
+
+                  <p className="mt-4 text-sm leading-7 text-neutral-700">
+                    {guide.summary}
+                  </p>
+
+                  <p className="mt-6 text-sm font-semibold text-[#8b1116]">
+                    Read guide →
+                  </p>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
+            All guides
+          </p>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {resourceGuides.map((guide) => (
+              <a
+                key={guide.slug}
+                href={withBasePath(`/resources/${guide.slug}`)}
+                className="rounded-[1.75rem] border border-neutral-200 bg-[#f7f4ee] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-md"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
+                  {guide.area}
+                </p>
+
+                <h2 className="mt-3 text-xl font-semibold tracking-[-0.04em]">
+                  {guide.title}
+                </h2>
+
+                <p className="mt-3 line-clamp-3 text-sm leading-7 text-neutral-700">
+                  {guide.summary}
+                </p>
+              </a>
+            ))}
+          </div>
+        </section>
+      </section>
+    </main>
+  );
+}

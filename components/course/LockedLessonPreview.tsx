@@ -13,17 +13,17 @@ export default function LockedLessonPreview({
 }: LockedLessonPreviewProps) {
   return (
     <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-16">
-      <section className="mx-auto max-w-5xl rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+      <section className="mx-auto max-w-5xl rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
           Lesson preview
         </p>
 
-        <h1 className="mt-5 font-sans text-4xl font-black tracking-[-0.05em] md:text-6xl">
+        <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-[-0.055em] md:text-6xl">
           {lessonTitle}
         </h1>
 
-        <p className="mt-5 max-w-3xl text-base leading-8 text-neutral-700 md:text-lg">
-          This lesson is part of <strong>{courseTitle}</strong>
+        <p className="mt-5 max-w-3xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+          This lesson belongs to <strong>{courseTitle}</strong>
           {moduleTitle ? (
             <>
               {" "}
@@ -32,54 +32,63 @@ export default function LockedLessonPreview({
           ) : null}
         </p>
 
-        <div className="mt-8 rounded-[1.5rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5 md:p-6">
-          <h2 className="font-sans text-2xl font-black tracking-[-0.04em] text-[#8b1116]">
-            Full lesson opens in July 2026.
+        <section className="mt-8 rounded-[2rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5 md:p-6">
+          <h2 className="text-2xl font-semibold tracking-[-0.04em] text-[#8b1116]">
+            Full lesson content opens in July 2026.
           </h2>
 
           <p className="mt-4 text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
-            This preview shows the lesson title and its position in the course pathway.
-            Full lecture notes, visual labs, worked examples, exercises and quizzes will
-            be released with premium course access.
+            This preview shows the lesson title and its place in the course
+            pathway. Full lecture notes, visual labs, worked examples,
+            exercises and quizzes will be added as the course release expands.
           </p>
-        </div>
+        </section>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <section className="mt-8 grid gap-4 md:grid-cols-3">
           <div className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-            <p className="text-sm font-black text-neutral-950">Available now</p>
+            <p className="text-sm font-semibold text-neutral-950">
+              Available now
+            </p>
+
             <p className="mt-2 text-sm leading-7 text-neutral-700">
               Course homepage, module overview and lesson pathway.
             </p>
           </div>
 
           <div className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-            <p className="text-sm font-black text-neutral-950">Opening in July</p>
+            <p className="text-sm font-semibold text-neutral-950">
+              Opening soon
+            </p>
+
             <p className="mt-2 text-sm leading-7 text-neutral-700">
-              Full notes, examples, labs, quizzes and structured study material.
+              Detailed notes, examples, labs, exercises and quizzes.
             </p>
           </div>
 
           <div className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-            <p className="text-sm font-black text-neutral-950">Course access</p>
+            <p className="text-sm font-semibold text-neutral-950">
+              Need support?
+            </p>
+
             <p className="mt-2 text-sm leading-7 text-neutral-700">
-              Premium access details will be shared before release.
+              Ask for guidance with concepts, methods or study planning.
             </p>
           </div>
-        </div>
+        </section>
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <a
             href={backHref}
-            className="inline-flex items-center justify-center rounded-full bg-[#8b1116] px-5 py-3 text-sm font-black text-white transition hover:bg-[#6f0d12]"
+            className="inline-flex items-center justify-center rounded-full bg-[#111111] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#8b1116]"
           >
             Back to lesson list →
           </a>
 
           <a
             href="/contact/"
-            className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-black text-neutral-950 transition hover:bg-neutral-50"
+            className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-semibold text-neutral-950 transition hover:bg-[#f7f4ee]"
           >
-            Ask about course access →
+            Ask for guidance →
           </a>
         </div>
       </section>

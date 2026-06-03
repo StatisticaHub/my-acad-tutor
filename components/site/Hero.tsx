@@ -1,126 +1,100 @@
+import HeroInteractiveVisual from "./HeroInteractiveVisual";
+
 const basePath = "";
 
 function withBasePath(href: string) {
   if (href === "/") return "/";
-  if (href.startsWith("#")) return href;
-  if (href.startsWith("http")) return href;
-  if (href.startsWith("mailto:")) return href;
+  if (
+    href.startsWith("#") ||
+    href.startsWith("http") ||
+    href.startsWith("mailto:")
+  ) {
+    return href;
+  }
 
   const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
   const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
 
-  return `${cleanHref}${hasFileExtension ? "" : "/"}`;
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
 }
 
 const subjects = [
   "Statistics",
   "Biostatistics",
-  "Data Science",
+  "Health Data Science",
   "Research Methods",
+  "Machine Learning",
+  "Programming",
 ];
 
 const platformStats = [
-  ["5", "Statistics modules"],
-  ["26", "Foundation lessons"],
-  ["3", "Interactive demos"],
-  ["July 2026", "Course release"],
-];
-
-const learningRoutes = [
-  {
-    title: "Structured courses",
-    text: "Follow ordered lessons with lectures, detailed notes, visual labs, worked examples and quizzes.",
-  },
-  {
-    title: "Academic support",
-    text: "Get guidance with concepts, methods, software, research planning and interpretation.",
-  },
-  {
-    title: "Resource guides",
-    text: "Use focused guides for revision, method choice, statistical reporting and dissertation planning.",
-  },
-];
-
-const previewItems = [
-  "Statistics Foundation",
-  "ML in Biostatistics",
-  "Interactive demos",
+  ["5+", "Study areas"],
+  ["2", "Course pathways"],
+  ["20+", "Resource guides"],
+  ["Live", "Visual demos"],
 ];
 
 export default function Hero() {
   return (
-    <section className="bg-[#f7f4ee] px-5 py-8 !text-[#111111] md:px-8 md:py-12">
+    <section className="bg-[#f7f4ee] px-4 pb-6 pt-4 text-[#111111] sm:px-5 md:px-8 md:pb-12 md:pt-8">
       <div className="mx-auto max-w-7xl">
-        <section className="overflow-hidden rounded-[2rem] border border-[#ded9cf] bg-white shadow-sm">
-          <div className="grid gap-0 lg:grid-cols-[1.02fr_0.98fr]">
-            <div className="p-6 md:p-10 lg:p-12">
-              <div className="flex flex-wrap gap-2">
-                {subjects.map((subject) => (
-                  <span
-                    key={subject}
-                    className="rounded-full border border-[#ded9cf] bg-[#f7f4ee] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-neutral-700"
+        <section className="overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:rounded-[2.5rem]">
+          <div className="grid lg:min-h-[520px] lg:grid-cols-[1fr_1fr]">
+            <div className="flex flex-col justify-between p-5 sm:p-6 md:p-7 lg:p-8">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
+                  My Academic Tutor
+                </p>
+
+                <h1 className="mt-4 max-w-5xl text-4xl font-semibold leading-[1.02] tracking-[-0.055em] text-[#111111] sm:text-5xl md:mt-6 md:text-5xl xl:text-6xl">
+                  Build confidence in statistics, biostatistics and health data
+                  science.
+                </h1>
+
+                <p className="mt-4 max-w-3xl text-base leading-7 text-neutral-700 md:mt-6 md:text-lg md:leading-9">
+                  Structured courses, visual demos and focused academic
+                  guidance for students learning quantitative subjects.
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2 md:mt-7">
+                  {subjects.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-neutral-200 bg-[#f7f4ee] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-neutral-700 md:px-4 md:py-2 md:text-xs md:tracking-[0.14em]"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center md:mt-8">
+                  <a
+                    href={withBasePath("/learning-hub")}
+                    className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#8b1116] sm:w-auto md:py-4"
                   >
-                    {subject}
-                  </span>
-                ))}
+                    Open Learning Hub
+                  </a>
+
+                  <a
+                    href={withBasePath("/interactive-demos")}
+                    className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] shadow-sm transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                  >
+                    Explore demos
+                  </a>
+                </div>
               </div>
 
-              <p className="mt-8 max-w-4xl text-sm font-black uppercase leading-6 tracking-[0.2em] text-[#8b1116]">
-                Academic support for quantitative learning, analysis and research
-              </p>
-
-              <h1 className="mt-5 max-w-5xl text-balance font-sans text-4xl font-black leading-[1.04] tracking-[-0.052em] !text-[#111111] sm:text-5xl md:text-6xl xl:text-7xl">
-                Structured quantitative learning for university students and
-                researchers.
-              </h1>
-
-              <p className="mt-6 max-w-4xl text-pretty text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
-                My Academic Tutor helps students, researchers and early-career
-                professionals understand statistics, biostatistics, data science
-                and research methods with clarity, structure and responsible
-                academic guidance.
-              </p>
-
-              <p className="mt-4 max-w-4xl text-pretty text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
-                Learn through structured course pathways, focused study
-                resources, interactive demos and support for statistical
-                thinking, programming, analysis and research interpretation.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <a
-                  href={withBasePath("/learning-hub")}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#8b1116] px-6 py-3 text-sm font-black !text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#5f0b0f] sm:w-auto"
-                >
-                  Start learning
-                </a>
-
-                <a
-                  href={withBasePath("/courses/statistics-foundation")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-[#ded9cf] bg-white px-6 py-3 text-sm font-black !text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:border-[#8b1116] hover:text-[#8b1116] sm:w-auto"
-                >
-                  View Statistics Foundation
-                </a>
-
-                <a
-                  href={withBasePath("/contact")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-[#ded9cf] bg-white px-6 py-3 text-sm font-black !text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:border-[#8b1116] hover:text-[#8b1116] sm:w-auto"
-                >
-                  Request support
-                </a>
-              </div>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {platformStats.map(([value, label]) => (
                   <div
                     key={label}
-                    className="rounded-3xl border border-[#ded9cf] bg-[#f7f4ee] p-5"
+                    className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4"
                   >
-                    <p className="font-sans text-2xl font-black tracking-[-0.04em] !text-[#111111]">
+                    <p className="text-2xl font-semibold tracking-[-0.06em] text-[#8b1116]">
                       {value}
                     </p>
 
-                    <p className="mt-2 text-sm font-bold text-neutral-600">
+                    <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
                       {label}
                     </p>
                   </div>
@@ -128,71 +102,10 @@ export default function Hero() {
               </div>
             </div>
 
-            <aside className="border-t border-[#ded9cf] bg-[#f7f4ee] p-5 md:p-7 lg:border-l lg:border-t-0 lg:p-8">
-              <div className="overflow-hidden rounded-[2rem] border border-[#ded9cf] bg-white shadow-sm">
-                <img
-                  src={`${basePath}/images/academic-tutoring-hero.jpg`}
-                  alt="Academic workspace for quantitative learning and research support"
-                  className="h-[250px] w-full object-cover object-center sm:h-[300px] lg:h-[350px]"
-                />
-
-                <div className="p-6">
-                  <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
-                    Platform preview
-                  </p>
-
-                  <h2 className="mt-3 text-balance font-sans text-2xl font-black leading-tight tracking-[-0.04em] !text-[#111111] md:text-3xl">
-                    Courses, demos, resources and guidance in one academic
-                    platform.
-                  </h2>
-
-                  <p className="mt-4 text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
-                    Designed for clearer explanations, stronger quantitative
-                    reasoning and responsible academic support.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-4 grid gap-3">
-                {previewItems.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl border border-[#ded9cf] bg-white px-5 py-4 text-sm font-black !text-[#111111] shadow-sm"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-4 rounded-[1.75rem] border border-[#ded9cf] bg-white p-5 text-[#111111] shadow-sm">
-                <p className="text-xs font-black uppercase tracking-[0.18em] !text-neutral-700">
-                  Responsible academic support
-                </p>
-
-                <p className="mt-3 text-sm leading-7 !text-neutral-700">
-                  Guidance is focused on explanation, planning, interpretation
-                  and independent learning — not assignment completion.
-                </p>
-              </div>
+            <aside className="border-t border-neutral-200 bg-[#fdfbf7] p-4 sm:p-5 md:p-7 lg:border-l lg:border-t-0 lg:p-8">
+              <HeroInteractiveVisual />
             </aside>
           </div>
-        </section>
-
-        <section className="mt-6 grid gap-4 md:grid-cols-3">
-          {learningRoutes.map((route) => (
-            <article
-              key={route.title}
-              className="rounded-[2rem] border border-[#ded9cf] bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-            >
-              <h2 className="font-sans text-2xl font-black tracking-[-0.04em] !text-[#111111]">
-                {route.title}
-              </h2>
-
-              <p className="mt-4 text-sm leading-7 text-neutral-700">
-                {route.text}
-              </p>
-            </article>
-          ))}
         </section>
       </div>
     </section>

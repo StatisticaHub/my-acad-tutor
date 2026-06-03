@@ -1,7 +1,105 @@
 const basePath = "";
-function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
-const informationTypes = ["Name and email you choose to share", "Subject and academic level", "Support request details", "Messages sent by email or forms", "Website usage if analytics are added", "Payment or account details if systems are added later"];
-const uses = ["Responding to enquiries", "Understanding support needs", "Arranging support", "Improving resources", "Communication records", "Maintaining integrity boundaries"];
-const notUsedFor = ["Selling student information", "Sharing with advertisers", "Completing academic work", "Using confidential material without permission", "Publishing messages publicly", "Collecting unnecessary sensitive data"];
-const advice = ["Do not send passwords or logins.", "Do not send confidential datasets unless agreed.", "Do not send restricted exam material.", "Remove unnecessary identifiers where possible.", "Check institution rules before sharing.", "Ask first if unsure."];
-export default function PrivacyPolicyPage() { return (<main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-20"><section className="mx-auto max-w-7xl"><a href={withBasePath("/")} className="text-sm font-bold text-[#8b1116] hover:text-[#5f0b0f]">← Back to homepage</a><section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Privacy policy</p><div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end"><div><h1 className="max-w-5xl font-sans text-4xl font-black leading-[1.02] tracking-[-0.055em] sm:text-5xl md:text-7xl">Privacy and student information.</h1><p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">My Academic Tutor treats student information responsibly. Support requests and academic details are used only to understand and respond to learning or support needs.</p></div><div className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-6"><p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">Contact for privacy</p><h2 className="mt-4 font-sans text-2xl font-black tracking-[-0.04em]">Email privacy-related questions.</h2><p className="mt-4 text-sm leading-7 text-neutral-700">For privacy-related questions, correction requests or concerns, email contact@myacademictutor.com.</p><a href="mailto:contact@myacademictutor.com?subject=Privacy%20question" className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-4 text-sm font-black text-white">Email privacy question →</a></div></div></section><section className="mt-8 grid gap-6 lg:grid-cols-2"><article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Information you may share</p><div className="mt-6 grid gap-3">{informationTypes.map((item) => <div key={item} className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-800">{item}</div>)}</div></article><article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">How information may be used</p><div className="mt-6 grid gap-3">{uses.map((item) => <div key={item} className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-800">{item}</div>)}</div></article></section><section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]"><article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">Not used for</p><div className="mt-6 grid gap-3">{notUsedFor.map((item) => <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold text-white/85">{item}</div>)}</div></article><article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-white/90">Student guidance</p><div className="mt-6 grid gap-3">{advice.map((item) => <div key={item} className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-bold text-white/90">{item}</div>)}</div></article></section><section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]"><article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Future platform features</p><h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">Login, payments and dashboards may require updates.</h2><p className="mt-5 text-base leading-8 text-neutral-700">If accounts, progress, certificates, payments or analytics are added, this privacy page should be reviewed and updated.</p></article><article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-white/90">Privacy contact</p><h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">Ask about your information.</h2><p className="mt-5 text-base leading-8 text-white/80">For privacy-related questions, email contact@myacademictutor.com.</p><a href="mailto:contact@myacademictutor.com?subject=Privacy%20question" className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111]">Email privacy question →</a></article></section></section></main>); }
+
+function withBasePath(href: string) {
+  if (href === "/") return "/";
+  if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href;
+
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
+
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
+}
+
+const collected = [
+  "Name and email",
+  "Academic level",
+  "Subject or topic",
+  "Support request details",
+  "Messages sent through forms or email",
+];
+
+const usedFor = [
+  "Responding to enquiries",
+  "Understanding support needs",
+  "Arranging guidance",
+  "Maintaining communication records",
+];
+
+const notUsedFor = [
+  "Selling student information",
+  "Sharing with advertisers",
+  "Completing academic work",
+  "Publishing messages publicly",
+];
+
+export default function PrivacyPolicyPage() {
+  return (
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-20">
+      <section className="mx-auto max-w-7xl">
+        <a href={withBasePath("/")} className="text-sm font-semibold text-[#8b1116] hover:text-[#5f0b0f]">
+          ← Back to homepage
+        </a>
+
+        <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
+            Privacy policy
+          </p>
+
+          <h1 className="mt-5 max-w-5xl text-4xl font-semibold leading-[1.03] tracking-[-0.055em] md:text-7xl">
+            Privacy and student information.
+          </h1>
+
+          <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+            My Academic Tutor uses information you choose to share only to understand and respond to learning or support requests.
+          </p>
+        </section>
+
+        <section className="mt-8 grid gap-6 lg:grid-cols-3">
+          <PolicyCard title="Information you may share" items={collected} />
+          <PolicyCard title="How it may be used" items={usedFor} />
+          <PolicyCard title="Not used for" items={notUsedFor} dark />
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <h2 className="text-3xl font-semibold tracking-[-0.045em]">
+            Contact about privacy.
+          </h2>
+
+          <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-700">
+            For privacy questions, correction requests or concerns, email contact@myacademictutor.com.
+          </p>
+
+          <a href="mailto:contact@myacademictutor.com?subject=Privacy%20question" className="mt-6 inline-flex rounded-full bg-[#111111] px-6 py-4 text-sm font-semibold text-white">
+            Email privacy question →
+          </a>
+        </section>
+      </section>
+    </main>
+  );
+}
+
+function PolicyCard({
+  title,
+  items,
+  dark = false,
+}: {
+  title: string;
+  items: string[];
+  dark?: boolean;
+}) {
+  return (
+    <article className={`rounded-[2rem] border p-6 shadow-sm md:p-8 ${dark ? "border-neutral-900 bg-[#111111] text-white" : "border-neutral-200 bg-white text-neutral-950"}`}>
+      <p className={`text-sm font-semibold uppercase tracking-[0.22em] ${dark ? "text-white/70" : "text-[#8b1116]"}`}>
+        {title}
+      </p>
+
+      <div className="mt-6 grid gap-3">
+        {items.map((item) => (
+          <div key={item} className={`rounded-2xl px-4 py-3 text-sm font-semibold ${dark ? "border border-white/10 bg-white/5 text-white/85" : "border border-neutral-200 bg-[#f7f4ee] text-neutral-800"}`}>
+            {item}
+          </div>
+        ))}
+      </div>
+    </article>
+  );
+}

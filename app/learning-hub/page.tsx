@@ -2,9 +2,13 @@ const basePath = "";
 
 function withBasePath(href: string) {
   if (href === "/") return "/";
-  if (href.startsWith("#")) return href;
-  if (href.startsWith("http")) return href;
-  if (href.startsWith("mailto:")) return href;
+  if (
+    href.startsWith("#") ||
+    href.startsWith("http") ||
+    href.startsWith("mailto:")
+  ) {
+    return href;
+  }
 
   const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
   const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
@@ -14,103 +18,107 @@ function withBasePath(href: string) {
 
 const mainRoutes = [
   {
-    label: "Courses",
-    title: "Structured course pathways",
+    title: "Start a course",
     description:
-      "Explore Statistics Foundation and Machine Learning in Biostatistics. Full lesson content opens with the July 2026 release.",
+      "Follow a structured pathway in statistics or health data science.",
     href: "/courses",
-    cta: "View courses",
+    label: "View courses",
   },
   {
-    label: "Resources",
-    title: "Focused study guides",
+    title: "Explore a demo",
     description:
-      "Use short guides for statistics, biostatistics, research planning, software learning and interpretation support.",
-    href: "/resources",
-    cta: "Browse resources",
-  },
-  {
-    label: "Interactive demos",
-    title: "Visual learning tools",
-    description:
-      "Try selected interactive demonstrations for key statistical ideas and model-based thinking.",
+      "Use interactive visuals to understand models, uncertainty and applied examples.",
     href: "/interactive-demos",
-    cta: "Open demos",
+    label: "Open demos",
+  },
+  {
+    title: "Read a guide",
+    description:
+      "Use focused resources for methods, interpretation and research planning.",
+    href: "/resources",
+    label: "Browse resources",
   },
 ];
 
-const courseRoutes = [
+const courses = [
   {
     title: "Statistics Foundation",
     description:
-      "A zero-coding theoretical course for statistical thinking, probability, inference and regression foundations.",
+      "A zero-coding route through probability, inference, regression and uncertainty.",
     href: "/courses/statistics-foundation",
-    status: "Preview open",
   },
   {
     title: "Machine Learning in Biostatistics",
     description:
-      "A structured pathway for prediction modelling, validation, calibration and responsible health-data machine learning.",
+      "Clinical prediction, validation, calibration and responsible health-data modelling.",
     href: "/courses/machine-learning-biostatistics",
-    status: "Preview open",
   },
+];
+
+const studyFocus = [
+  "Statistics",
+  "Biostatistics",
+  "Research methods",
+  "Health data science",
+  "Machine learning",
+  "Bioinformatics",
 ];
 
 export default function LearningHubPage() {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-16">
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
-        <div className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+        <a
+          href={withBasePath("/")}
+          className="text-sm font-semibold text-[#8b1116] hover:text-[#5f0b0f]"
+        >
+          ← Back to homepage
+        </a>
+
+        <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
             Learning Hub
           </p>
 
-          <h1 className="mt-5 max-w-5xl font-sans text-4xl font-black leading-[1.02] tracking-[-0.055em] sm:text-5xl md:text-7xl">
-            Start with the right learning route.
-          </h1>
+          <div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div>
+              <h1 className="max-w-5xl text-4xl font-semibold leading-[1.03] tracking-[-0.055em] md:text-7xl">
+                Your starting point for structured quantitative learning.
+              </h1>
 
-          <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
-            The Learning Hub brings together course previews, study resources and
-            interactive demos for statistics, biostatistics, data science, programming,
-            research methods and quantitative academic development.
-          </p>
+              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+                Choose a course, explore an interactive demo or read a focused
+                guide. Everything is organised to help you learn with clarity.
+              </p>
+            </div>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a
-              href={withBasePath("/courses")}
-              className="inline-flex items-center justify-center rounded-full bg-[#8b1116] px-6 py-4 text-sm font-black text-white transition hover:bg-[#6f0d12]"
-            >
-              View courses →
-            </a>
+            <div className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
+                Subjects covered
+              </p>
 
-            <a
-              href={withBasePath("/resources")}
-              className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-4 text-sm font-black text-neutral-950 transition hover:bg-neutral-50"
-            >
-              Browse resources →
-            </a>
-
-            <a
-              href={withBasePath("/contact")}
-              className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-4 text-sm font-black text-neutral-950 transition hover:bg-neutral-50"
-            >
-              Request support →
-            </a>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {studyFocus.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-700"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
 
-        <section className="mt-8 grid gap-6 lg:grid-cols-3">
+        <section className="mt-8 grid gap-5 md:grid-cols-3">
           {mainRoutes.map((route) => (
             <a
               key={route.title}
               href={withBasePath(route.href)}
-              className="group rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:p-8"
+              className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                {route.label}
-              </p>
-
-              <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em]">
+              <h2 className="text-2xl font-semibold tracking-[-0.04em]">
                 {route.title}
               </h2>
 
@@ -118,99 +126,52 @@ export default function LearningHubPage() {
                 {route.description}
               </p>
 
-              <p className="mt-6 text-sm font-black text-[#8b1116]">
-                {route.cta} →
+              <p className="mt-6 text-sm font-semibold text-[#8b1116]">
+                {route.label} →
               </p>
             </a>
           ))}
         </section>
 
-        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-            Course previews
-          </p>
+        <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
+                Course pathways
+              </p>
 
-          <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
-            Two structured pathways are open for preview.
-          </h2>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.045em] md:text-5xl">
+                Learn in a clear sequence.
+              </h2>
+            </div>
 
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
-            Course homepages, module outlines and lesson pathways are public now.
-            Full lessons, notes, labs, worked examples and quizzes open in July 2026.
-          </p>
+            <p className="text-base leading-8 text-neutral-700">
+              Start with foundations, then move into applied health data
+              modelling when you are ready.
+            </p>
+          </div>
 
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
-            {courseRoutes.map((course) => (
+            {courses.map((course) => (
               <a
                 key={course.title}
                 href={withBasePath(course.href)}
-                className="rounded-[1.75rem] border border-neutral-200 bg-[#f7f4ee] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:p-6"
+                className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md"
               >
-                <span className="rounded-full bg-white px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-[#8b1116]">
-                  {course.status}
-                </span>
-
-                <h3 className="mt-4 font-sans text-2xl font-black tracking-[-0.04em]">
+                <h3 className="text-2xl font-semibold tracking-[-0.04em]">
                   {course.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                <p className="mt-4 text-sm leading-7 text-neutral-700">
                   {course.description}
                 </p>
 
-                <p className="mt-5 text-sm font-black text-[#8b1116]">
-                  Open course preview →
+                <p className="mt-6 text-sm font-semibold text-[#8b1116]">
+                  Open pathway →
                 </p>
               </a>
             ))}
           </div>
-        </section>
-
-        <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_0.9fr]">
-          <article className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
-              July 2026 release
-            </p>
-
-            <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
-              Full course content is currently hidden.
-            </h2>
-
-            <p className="mt-4 text-sm leading-7 text-white/75 md:text-base md:leading-8">
-              This soft-launch version shows the structure of the platform without
-              releasing the full lesson materials. Premium access details will be added
-              closer to release.
-            </p>
-
-            <a
-              href={withBasePath("/pricing")}
-              className="mt-7 inline-flex items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-neutral-950 transition hover:bg-[#f7f4ee]"
-            >
-              View access status →
-            </a>
-          </article>
-
-          <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-              Need guidance?
-            </p>
-
-            <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
-              Send a focused support request.
-            </h2>
-
-            <p className="mt-4 text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
-              If you are unsure which route fits your topic, send your subject area,
-              academic level, method, software and deadline.
-            </p>
-
-            <a
-              href={withBasePath("/contact")}
-              className="mt-7 inline-flex items-center justify-center rounded-full bg-[#8b1116] px-6 py-4 text-sm font-black text-white transition hover:bg-[#6f0d12]"
-            >
-              Request support →
-            </a>
-          </article>
         </section>
       </section>
     </main>

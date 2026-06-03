@@ -2,287 +2,299 @@ const basePath = "";
 
 function withBasePath(href: string) {
   if (href === "/") return "/";
-  if (href.startsWith("#")) return href;
-  if (href.startsWith("http")) return href;
-  if (href.startsWith("mailto:")) return href;
+  if (
+    href.startsWith("#") ||
+    href.startsWith("http") ||
+    href.startsWith("mailto:")
+  ) {
+    return href;
+  }
 
   const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
   const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
 
-  return `${cleanHref}${hasFileExtension ? "" : "/"}`;
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
 }
 
 const lessons = [
   {
-    number: "2.1",
-    title: "Regression as a prediction model",
-    description:
-      "Learn how regression can be used as a prediction tool, not only as an explanatory model, and how fitted values become risk estimates.",
-    href: "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/regression-as-a-prediction-model",
+    "number": "2.1",
+    "title": "Supervised learning and labelled outcomes",
+    "description": "Understand supervised learning through predictors, labelled outcomes, training examples and clinical target definitions.",
+    "href": "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/supervised-learning-labelled-outcomes"
   },
   {
-    number: "2.2",
-    title: "Logistic regression as a classifier",
-    description:
-      "Understand logistic regression as a clinical classification model for binary outcomes, predicted probabilities and risk thresholds.",
-    href: "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/logistic-regression-as-a-classifier",
+    "number": "2.2",
+    "title": "Regression models for prediction",
+    "description": "Use regression as a prediction method and understand how fitted values, errors and prediction targets connect.",
+    "href": "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/regression-models-for-prediction"
   },
   {
-    number: "2.3",
-    title: "k-nearest neighbours and distance-based learning",
-    description:
-      "Study how distance-based prediction works, why scaling matters and why local neighbourhood methods can be sensitive in health data.",
-    href: "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/k-nearest-neighbours-and-distance-based-learning",
+    "number": "2.3",
+    "title": "Logistic classification and clinical risk",
+    "description": "Learn how logistic models estimate probabilities, classify patients and support binary health outcomes.",
+    "href": "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/logistic-classification-clinical-risk"
   },
   {
-    number: "2.4",
-    title: "Decision trees and rule-based prediction",
-    description:
-      "Learn how decision trees split data into clinical decision rules, why they are interpretable and why they can easily overfit.",
-    href: "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/decision-trees-and-rule-based-prediction",
+    "number": "2.4",
+    "title": "K-nearest neighbours and decision boundaries",
+    "description": "Understand neighbourhood-based classification, distance, scaling and how decision boundaries form.",
+    "href": "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/k-nearest-neighbours-decision-boundaries"
   },
   {
-    number: "2.5",
-    title: "Model pipelines for clinical datasets",
-    description:
-      "Bring supervised learning together through a clinical modelling pipeline: preprocessing, fitting, prediction, validation and reporting.",
-    href: "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/model-pipelines-for-clinical-datasets",
-  },
-];
+    "number": "2.5",
+    "title": "Decision trees and clinical rules",
+    "description": "Study how tree models split data, create prediction rules and why unstable rules need careful validation.",
+    "href": "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/decision-trees-clinical-rules"
+  }
+] as const;
 
 const moduleStats = [
-  ["5", "Lessons"],
-  ["R", "Coding labs"],
-  ["Preparing", "Module status"],
-  ["Supervised", "Learning focus"],
-];
+  [
+    "5",
+    "Lessons"
+  ],
+  [
+    "R",
+    "Labs"
+  ],
+  [
+    "Preparing",
+    "Status"
+  ],
+  [
+    "Prediction",
+    "Focus"
+  ]
+] as const;
 
 const moduleFocus = [
   {
-    title: "Regression for prediction",
-    body: "Students learn to treat regression models as tools for estimating outcomes and risks for new patients.",
+    "title": "Regression as prediction",
+    "body": "Understand regression models as prediction tools, not only as explanatory statistical models."
   },
   {
-    title: "Clinical classification",
-    body: "The module introduces probability-based classification, thresholds and supervised learning for health outcomes.",
+    "title": "Classification",
+    "body": "Learn how logistic models and classifiers estimate risk groups and binary outcomes."
   },
   {
-    title: "Model workflow",
-    body: "Each method is placed inside a practical clinical-data pipeline rather than taught as an isolated algorithm.",
-  },
-];
+    "title": "Clinical pipelines",
+    "body": "Connect preprocessing, predictors, outcome timing and model choice into one workflow."
+  }
+] as const;
+
+const outcomes = [
+  "Define supervised learning",
+  "Identify predictors and outcomes",
+  "Use regression for prediction",
+  "Understand classification tasks",
+  "Explain decision trees",
+  "Describe clinical prediction pipelines"
+] as const;
 
 export default function SupervisedLearningClinicalHealthDataModulePage() {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
+    <main className="min-h-screen bg-[#f7f4ee] px-4 py-8 text-[#111111] sm:px-5 md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
         <a
-          href={withBasePath("/courses/machine-learning-biostatistics/modules")}
-          className="text-sm font-bold text-[#8b1116] transition hover:text-[#5f0b0f]"
+          href={withBasePath("/courses/machine-learning-biostatistics")}
+          className="text-sm font-semibold text-[#8b1116] transition hover:text-[#5f0b0f]"
         >
-          ← Back to ML modules
+          ← Back to Machine Learning in Biostatistics
         </a>
 
-        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-            Module 2
-          </p>
+        <section className="mt-6 overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:mt-8 md:rounded-[2.5rem]">
+          <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="p-5 sm:p-6 md:p-10 lg:p-12">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
+                Module 2 · ML in Biostatistics
+              </p>
 
-          <div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-            <div>
-              <h1 className="max-w-5xl text-4xl font-black leading-[1.02] tracking-[-0.05em] text-[#111111] sm:text-5xl md:text-6xl">
-                Supervised Learning for Clinical and Health Data
+              <h1 className="mt-4 max-w-5xl text-4xl font-semibold leading-[1.03] tracking-[-0.055em] md:mt-5 md:text-6xl">
+                Supervised learning for clinical health data.
               </h1>
 
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
-                This module moves from foundational prediction thinking into
-                supervised learning methods used for clinical and health-data
-                problems: regression, logistic classification, k-nearest
-                neighbours, decision trees and modelling pipelines.
-              </p>
-            </div>
-
-            <div className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-6">
-              <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
-                Module aim
+              <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700 md:mt-6 md:text-lg md:leading-9">
+                Learn how supervised learning models use predictors and labelled outcomes to estimate risk, classify patients and support health-data prediction tasks.
               </p>
 
-              <h2 className="mt-4 text-2xl font-black tracking-[-0.04em] text-[#111111]">
-                Learn core supervised models for health prediction.
-              </h2>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a
+                  href={withBasePath(lessons[0].href)}
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#8b1116] sm:w-auto md:py-4"
+                >
+                  Start Lesson {lessons[0].number} →
+                </a>
 
-              <p className="mt-4 text-sm leading-7 text-neutral-700">
-                The purpose of this module is to connect familiar statistical
-                models and beginner machine learning methods to prediction
-                tasks in medical and public health datasets.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {moduleStats.map(([value, label]) => (
-              <div
-                key={label}
-                className="rounded-3xl border border-neutral-200 bg-[#f7f4ee] p-5"
-              >
-                <p className="text-2xl font-black tracking-[-0.04em] text-[#111111]">
-                  {value}
-                </p>
-                <p className="mt-2 text-sm font-bold text-neutral-700">
-                  {label}
-                </p>
+                <a
+                  href={withBasePath("/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance")}
+                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                >
+                  Next module
+                </a>
               </div>
-            ))}
-          </div>
+            </div>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a
-              href={withBasePath(
-                "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/regression-as-a-prediction-model"
-              )}
-              className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-4 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#2a2a2a] sm:w-auto"
-            >
-              Start Lesson 2.1
-            </a>
+            <aside className="border-t border-neutral-200 bg-[#fdfbf7] p-5 md:p-8 lg:border-l lg:border-t-0">
+              <div className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2rem] md:p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8b1116] md:text-sm">
+                  Module aim
+                </p>
 
-            <a
-              href={withBasePath(
-                "/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance"
-              )}
-              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-4 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f7f4ee] sm:w-auto"
-            >
-              Next module →
-            </a>
+                <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em]">
+                  Connect model type to clinical prediction task.
+                </h2>
 
-            <a
-              href={withBasePath(
-                "/courses/machine-learning-biostatistics/modules/foundations"
-              )}
-              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-4 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f7f4ee] sm:w-auto"
-            >
-              Previous module
-            </a>
+                <p className="mt-4 text-sm leading-7 text-neutral-700">
+                  This module focuses on matching prediction questions to appropriate supervised learning approaches before moving into evaluation and validation.
+                </p>
+
+                <div className="mt-5 grid grid-cols-2 gap-3">
+                  {moduleStats.map(([value, label]) => (
+                    <div
+                      key={label}
+                      className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4"
+                    >
+                      <p className="text-2xl font-semibold tracking-[-0.05em]">
+                        {value}
+                      </p>
+
+                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+                        {label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </aside>
           </div>
         </section>
 
-        <section className="mt-8 grid gap-4 md:grid-cols-3">
-          {moduleFocus.map((item) => (
-            <article
-              key={item.title}
-              className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
-            >
-              <h2 className="text-xl font-black tracking-[-0.03em] text-[#111111]">
-                {item.title}
-              </h2>
+        <section className="mt-6 grid gap-4 md:mt-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <article className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              What this module builds
+            </p>
 
-              <p className="mt-4 text-sm leading-7 text-neutral-700">
-                {item.body}
-              </p>
-            </article>
-          ))}
-        </section>
-
-        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-            Module lessons
-          </p>
-
-          <div className="mt-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-            <h2 className="max-w-4xl text-3xl font-black tracking-[-0.04em] text-[#111111] md:text-4xl">
-              Study the supervised learning sequence in order.
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] md:text-4xl">
+              Models as clinical prediction tools.
             </h2>
 
-            <p className="max-w-3xl text-base leading-8 text-neutral-700">
-              Each lesson introduces a different supervised learning idea, then
-              connects it back to clinical prediction, model interpretation and
-              responsible use with health data.
+            <div className="mt-6 grid gap-3">
+              {moduleFocus.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] p-4"
+                >
+                  <h3 className="text-sm font-semibold text-neutral-950">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-2 text-sm leading-7 text-neutral-700">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <article className="rounded-[1.75rem] border border-neutral-200 bg-[#111111] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55 md:text-sm">
+              By the end
+            </p>
+
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] md:text-4xl">
+              You should be able to match methods to prediction problems.
+            </h2>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {outcomes.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-semibold text-white/85"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </article>
+        </section>
+
+        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+          <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+                Module lessons
+              </p>
+
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] md:text-5xl">
+                Study the lessons in order.
+              </h2>
+            </div>
+
+            <p className="text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+              The lessons move from supervised learning concepts to regression, classification, neighbours, trees and clinical prediction pipelines.
             </p>
           </div>
 
-          <div className="mt-8 grid gap-5">
+          <div className="mt-6 grid gap-3 md:mt-8">
             {lessons.map((lesson) => (
               <a
                 key={lesson.number}
                 href={withBasePath(lesson.href)}
-                className="group rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:p-7"
+                className="group rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:rounded-[2rem] md:p-6"
               >
-                <div className="grid gap-5 md:grid-cols-[0.18fr_1fr_auto] md:items-center">
-                  <div>
-                    <p className="text-3xl font-black tracking-[-0.05em] text-[#8b1116]">
-                      {lesson.number}
-                    </p>
-                  </div>
+                <div className="grid gap-4 md:grid-cols-[0.18fr_1fr_auto] md:items-center">
+                  <p className="text-3xl font-semibold tracking-[-0.055em] text-[#8b1116]">
+                    {lesson.number}
+                  </p>
 
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-700">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
                       Lesson {lesson.number}
                     </p>
 
-                    <h3 className="mt-2 text-2xl font-black leading-tight tracking-[-0.04em] text-[#111111]">
+                    <h3 className="mt-2 text-2xl font-semibold leading-tight tracking-[-0.04em]">
                       {lesson.title}
                     </h3>
 
-                    <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-700">
+                    <p className="mt-3 text-sm leading-7 text-neutral-700">
                       {lesson.description}
                     </p>
                   </div>
 
-                  <p className="text-sm font-black text-[#8b1116] transition group-hover:translate-x-1">
-                    Open lesson →
-                  </p>
+                  <span className="text-sm font-semibold text-[#8b1116]">
+                    Open →
+                  </span>
                 </div>
               </a>
             ))}
           </div>
         </section>
 
-        <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
-              Learning route
-            </p>
+        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-[#8b1116] p-5 text-white shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+          <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70 md:text-sm">
+                Recommended next step
+              </p>
 
-            <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] md:text-4xl">
-              Use Module 2 before studying validation and performance.
-            </h2>
+              <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-[-0.045em] md:text-5xl">
+                Move from fitting models to checking them.
+              </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/90">
-              Module 3 assumes that students understand how supervised models
-              are trained, how they generate predictions and why prediction
-              pipelines must be built before performance is judged.
-            </p>
-
-            <a
-              href={withBasePath(
-                "/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance"
-              )}
-              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
-            >
-              Continue to Module 3 →
-            </a>
-          </article>
-
-          <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
-              Course pathway
-            </p>
-
-            <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] md:text-4xl">
-              Return to the full ML in Biostatistics course.
-            </h2>
-
-            <p className="mt-5 text-base leading-8 text-white/90">
-              Use the course homepage to move between modules, case studies,
-              datasets, scripts and the full medical machine learning pathway.
-            </p>
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/80 md:text-base md:leading-8">
+                After learning supervised methods, the next step is evaluation: discrimination, calibration, validation, uncertainty and clinical usefulness.
+              </p>
+            </div>
 
             <a
-              href={withBasePath("/courses/machine-learning-biostatistics")}
-              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+              href={withBasePath("/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance")}
+              className="inline-flex w-full justify-center rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
             >
-              Back to course →
+              Open Module 3 →
             </a>
-          </article>
+          </div>
         </section>
       </section>
     </main>

@@ -1,12 +1,87 @@
 const basePath = "";
-function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
+
+function withBasePath(href: string) {
+  if (href === "/") return "/";
+  if (
+    href.startsWith("#") ||
+    href.startsWith("http") ||
+    href.startsWith("mailto:")
+  ) {
+    return href;
+  }
+
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
+
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
+}
+
 const courses = [
-  { title: "Statistics Foundation", tag: "Available", href: "/courses/statistics-foundation", description: "Zero-coding theoretical statistics course for university students." },
-  { title: "Machine Learning in Biostatistics", tag: "Module 1 available", href: "/courses/machine-learning-biostatistics", description: "Prediction, validation and responsible health-data machine learning." },
+  {
+    title: "Statistics Foundation",
+    tag: "Foundation",
+    href: "/courses/statistics-foundation",
+    description:
+      "A zero-coding route through probability, inference, regression and uncertainty.",
+  },
+  {
+    title: "Machine Learning in Biostatistics",
+    tag: "Health data",
+    href: "/courses/machine-learning-biostatistics",
+    description:
+      "Clinical prediction, validation, calibration and responsible model interpretation.",
+  },
 ];
-const upcoming = [
-  { title: "Research Methods & Data Analysis", description: "Future support for dissertations, study design, variables and reporting." },
-  { title: "R and Python for Academic Data Analysis", description: "Future practical pathway for reproducible academic analysis." },
-];
-const platformPoints = ["Theory before shortcuts", "Interpretation throughout", "Responsible academic support", "Clear learning routes"];
-export default function CoursesPreview() { return (<section className="bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16"><div className="mx-auto max-w-7xl"><section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Courses</p><div className="mt-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end"><h2 className="font-sans text-3xl font-black tracking-[-0.04em] md:text-5xl">Structured courses for quantitative learning.</h2><p className="text-base leading-8 text-neutral-700">Start with a pathway that matches your current level: foundations first, then applied biostatistics and machine learning.</p></div><div className="mt-8 grid gap-5 lg:grid-cols-2">{courses.map((course) => (<a key={course.title} href={withBasePath(course.href)} className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md"><span className="rounded-full bg-[#111111] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-white">{course.tag}</span><h3 className="mt-5 font-sans text-2xl font-black tracking-[-0.04em]">{course.title}</h3><p className="mt-4 text-sm leading-7 text-neutral-700">{course.description}</p><p className="mt-5 text-sm font-black text-[#8b1116]">Open course →</p></a>))}</div><section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]"><div className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Preparing next</p><h3 className="mt-4 font-sans text-3xl font-black leading-tight tracking-[-0.04em]">Future learning pathways.</h3><div className="mt-6 grid gap-4">{upcoming.map((item) => (<div key={item.title} className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"><h4 className="font-sans text-xl font-black tracking-[-0.03em]">{item.title}</h4><p className="mt-3 text-sm leading-7 text-neutral-700">{item.description}</p></div>))}</div></div><div className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm"><p className="text-sm font-black uppercase tracking-[0.22em] text-white/90">Platform principles</p><h3 className="mt-4 font-sans text-3xl font-black leading-tight tracking-[-0.04em]">Built for learning, not shortcutting.</h3><p className="mt-5 text-base leading-8 text-white/80">The site is designed around responsible academic guidance: explanation, interpretation, structure and confidence.</p><div className="mt-6 grid gap-3">{platformPoints.map((point) => (<div key={point} className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-bold text-white/90">{point}</div>))}</div><a href={withBasePath("/academic-integrity")} className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111]">View academic integrity →</a></div></section></section></div></section>); }
+
+export default function CoursesPreview() {
+  return (
+    <section className="bg-[#f7f4ee] px-4 py-5 text-[#111111] sm:px-5 md:px-8 md:py-8">
+      <div className="mx-auto max-w-7xl">
+        <section className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-10">
+          <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
+                Courses
+              </p>
+
+              <h2 className="mt-3 max-w-4xl text-3xl font-semibold leading-tight tracking-[-0.045em] md:mt-4 md:text-5xl">
+                Structured courses for deeper understanding.
+              </h2>
+            </div>
+
+            <p className="max-w-3xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+              Clear pathways for organised explanations, worked interpretation
+              and applied quantitative thinking.
+            </p>
+          </div>
+
+          <div className="mt-6 grid gap-3 md:mt-8 lg:grid-cols-2 lg:gap-5">
+            {courses.map((course) => (
+              <a
+                key={course.title}
+                href={withBasePath(course.href)}
+                className="group rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:rounded-[2rem] md:p-6"
+              >
+                <span className="rounded-full bg-[#111111] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white md:text-xs">
+                  {course.tag}
+                </span>
+
+                <h3 className="mt-4 text-xl font-semibold tracking-[-0.04em] md:mt-5 md:text-3xl">
+                  {course.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-neutral-700 md:mt-4">
+                  {course.description}
+                </p>
+
+                <p className="mt-5 text-sm font-semibold text-[#8b1116] md:mt-6">
+                  View course →
+                </p>
+              </a>
+            ))}
+          </div>
+        </section>
+      </div>
+    </section>
+  );
+}

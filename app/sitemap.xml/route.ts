@@ -2,19 +2,17 @@ const siteUrl = "https://myacademictutor.com";
 
 const routes = [
   "",
-  "/start-here",
   "/learning-hub",
+  "/interactive-demos",
   "/courses",
   "/courses/statistics-foundation",
   "/courses/machine-learning-biostatistics",
   "/resources",
-  "/interactive-demos",
-  "/services",
-  "/pricing",
-  "/dashboard",
-  "/about",
   "/contact",
   "/academic-integrity",
+  "/privacy-policy",
+  "/terms-and-conditions",
+  "/certificate-policy",
 ];
 
 export const dynamic = "force-static";

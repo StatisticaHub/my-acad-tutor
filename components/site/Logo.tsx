@@ -1,12 +1,11 @@
-const basePath =
-  process.env.NODE_ENV === "production" ? "" : "";
+const basePath = "";
 
 export default function Logo({ dark = false }: { dark?: boolean }) {
   return (
     <a href={`${basePath}/`} className="flex items-center gap-3">
       <div
-        className={`flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border ${
-          dark ? "border-[#ded9cf] bg-white" : "border-neutral-200 bg-white"
+        className={`flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border shadow-sm ${
+          dark ? "border-white/15 bg-white" : "border-neutral-200 bg-white"
         }`}
       >
         <img
@@ -16,18 +15,18 @@ export default function Logo({ dark = false }: { dark?: boolean }) {
         />
       </div>
 
-      <div>
+      <div className="leading-none">
         <p
-          className={`text-xs font-black uppercase tracking-[0.2em] ${
-            dark ? "text-neutral-700" : "text-neutral-700"
+          className={`text-xs font-semibold uppercase tracking-[0.18em] ${
+            dark ? "text-white/65" : "text-neutral-500"
           }`}
         >
           My Academic Tutor
         </p>
 
         <p
-          className={`text-base font-black tracking-tight ${
-            dark ? "text-[#111111]" : "text-neutral-950"
+          className={`mt-1 text-base font-semibold tracking-[-0.035em] ${
+            dark ? "text-white" : "text-neutral-950"
           }`}
         >
           Quantitative Learning

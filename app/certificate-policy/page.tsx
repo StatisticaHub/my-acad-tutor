@@ -1,5 +1,93 @@
 const basePath = "";
-function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
-const canShow = ["Course title", "Learner name", "Completion date", "Platform learning activity", "Completion status", "Record ID if implemented"];
-const doesNotMean = ["University degree", "Regulated qualification", "Academic credit", "Professional licence", "University accreditation", "Statutory recognition"];
-export default function CertificatePolicyPage() { return (<main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-20"><section className="mx-auto max-w-7xl"><a href={withBasePath("/")} className="text-sm font-bold text-[#8b1116] hover:text-[#5f0b0f]">← Back to homepage</a><section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Certificate policy</p><div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end"><div><h1 className="max-w-5xl font-sans text-4xl font-black leading-[1.02] tracking-[-0.055em] sm:text-5xl md:text-7xl">Course completion certificates.</h1><p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">My Academic Tutor may provide private course completion certificates for selected structured courses. They confirm platform-based learning activity only.</p></div><div className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-6"><p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">Important limitation</p><h2 className="mt-4 font-sans text-2xl font-black tracking-[-0.04em]">Certificates are platform completion records only.</h2><p className="mt-4 text-sm leading-7 text-neutral-700">They are not degrees, regulated qualifications, academic credits, recognised diplomas or professional licences.</p></div></div></section><section className="mt-8 grid gap-6 lg:grid-cols-2"><article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">A certificate may show</p><div className="mt-6 grid gap-3">{canShow.map((item) => <div key={item} className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-800">{item}</div>)}</div></article><article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">A certificate does not mean</p><div className="mt-6 grid gap-3">{doesNotMean.map((item) => <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold text-white/85">{item}</div>)}</div></article></section><section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]"><article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Use of certificates</p><h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">Certificates should be described accurately.</h2><p className="mt-5 text-base leading-8 text-neutral-700">Learners may describe a certificate as evidence of completing a private online learning activity from My Academic Tutor, where accurate.</p></article><article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-white/90">Need clarification?</p><h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">Ask before using a certificate formally.</h2><p className="mt-5 text-base leading-8 text-white/80">Check receiving institution rules before relying on a certificate for any formal purpose.</p><a href={withBasePath("/contact")} className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111]">Contact us →</a></article></section></section></main>); }
+
+function withBasePath(href: string) {
+  if (href === "/") return "/";
+  if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href;
+
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
+
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
+}
+
+const certificateCanShow = [
+  "Course title",
+  "Learner name",
+  "Completion date",
+  "Platform learning activity",
+  "Completion status",
+];
+
+const certificateDoesNotMean = [
+  "University degree",
+  "Academic credit",
+  "Regulated qualification",
+  "Professional licence",
+  "University accreditation",
+];
+
+export default function CertificatePolicyPage() {
+  return (
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-20">
+      <section className="mx-auto max-w-7xl">
+        <a href={withBasePath("/")} className="text-sm font-semibold text-[#8b1116] hover:text-[#5f0b0f]">
+          ← Back to homepage
+        </a>
+
+        <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
+            Certificate policy
+          </p>
+
+          <h1 className="mt-5 max-w-5xl text-4xl font-semibold leading-[1.03] tracking-[-0.055em] md:text-7xl">
+            Course completion certificates.
+          </h1>
+
+          <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+            My Academic Tutor may provide completion certificates for selected structured courses. These confirm platform-based learning activity only.
+          </p>
+        </section>
+
+        <section className="mt-8 grid gap-6 lg:grid-cols-2">
+          <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
+              A certificate may show
+            </p>
+
+            <div className="mt-6 grid gap-3">
+              {certificateCanShow.map((item) => (
+                <div key={item} className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-semibold text-neutral-800">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/70">
+              A certificate does not mean
+            </p>
+
+            <div className="mt-6 grid gap-3">
+              {certificateDoesNotMean.map((item) => (
+                <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/85">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </article>
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <h2 className="text-3xl font-semibold tracking-[-0.045em]">
+            Use certificates accurately.
+          </h2>
+
+          <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-700">
+            A certificate should be described as evidence of completing a private online learning activity. It should not be presented as a degree, credit-bearing award or regulated qualification.
+          </p>
+        </section>
+      </section>
+    </main>
+  );
+}

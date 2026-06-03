@@ -2,167 +2,92 @@ const basePath = "";
 
 function withBasePath(href: string) {
   if (href === "/") return "/";
-  if (href.startsWith("#")) return href;
-  if (href.startsWith("http")) return href;
-  if (href.startsWith("mailto:")) return href;
+  if (
+    href.startsWith("#") ||
+    href.startsWith("http") ||
+    href.startsWith("mailto:")
+  ) {
+    return href;
+  }
 
   const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
   const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
 
-  return `${cleanHref}${hasFileExtension ? "" : "/"}`;
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
 }
 
 const routes = [
   {
     number: "01",
-    eyebrow: "Learn from zero",
-    title: "Start Statistics Foundation",
-    body: "Best if you want a structured, zero-coding statistics course with theory, examples, visual labs and quizzes.",
-    href: "/courses/statistics-foundation",
-    dark: false,
+    title: "Learn",
+    body: "Follow structured lessons and guided study routes.",
+    href: "/learning-hub",
+    label: "Open Hub",
   },
   {
     number: "02",
-    eyebrow: "Explore visually",
-    title: "Try interactive demos",
-    body: "Use visual demos for normal distributions, regression lines and confidence intervals to understand ideas before formulas.",
+    title: "Explore",
+    body: "Use visuals to understand models and applied examples.",
     href: "/interactive-demos",
-    dark: false,
+    label: "Explore demos",
   },
   {
     number: "03",
-    eyebrow: "Need quick help",
-    title: "Browse resources",
-    body: "Use in-depth guides for statistical tests, p-values, confidence intervals, regression, survival analysis and software choice.",
-    href: "/resources",
-    dark: false,
-  },
-  {
-    number: "04",
-    eyebrow: "Need guidance",
-    title: "Request academic support",
-    body: "Best for topic explanation, research planning, software guidance, interpretation or dissertation support.",
+    title: "Get support",
+    body: "Request focused tutoring when you need guidance.",
     href: "/contact",
-    dark: true,
-  },
-];
-
-const previewLinks = [
-  {
-    label: "Open Learning Hub",
-    href: "/learning-hub",
-  },
-  {
-    label: "View dashboard preview",
-    href: "/dashboard",
-  },
-  {
-    label: "View pricing preview",
-    href: "/pricing",
+    label: "Request support",
   },
 ];
 
 export default function StartWithThis() {
   return (
-    <section className="bg-[#f7f4ee] px-5 py-10 !text-[#111111] md:px-8 md:py-14">
+    <section className="bg-[#f7f4ee] px-4 py-5 text-[#111111] sm:px-5 md:px-8 md:py-8">
       <div className="mx-auto max-w-7xl">
-        <section className="rounded-[2rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-            Start with this
-          </p>
-
-          <div className="mt-4 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+        <section className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-10">
+          <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
-              <h2 className="max-w-4xl text-balance font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-5xl">
-                Choose your route in less than a minute.
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
+                Start here
+              </p>
+
+              <h2 className="mt-3 max-w-4xl text-3xl font-semibold leading-tight tracking-[-0.045em] md:mt-4 md:text-5xl">
+                Choose how to begin.
               </h2>
-
-              <p className="mt-5 max-w-3xl text-pretty text-base leading-8 text-neutral-700">
-                The platform has clear starting points: learn through a
-                structured course, explore a visual demo, use a focused guide,
-                or request personalised academic support.
-              </p>
             </div>
 
-            <div className="rounded-[1.75rem] border border-[#ded9cf] bg-[#f7f4ee] p-5">
-              <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
-                Platform preview
-              </p>
-
-              <h3 className="mt-3 text-balance font-sans text-2xl font-black tracking-[-0.04em]">
-                Explore the learning ecosystem.
-              </h3>
-
-              <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-                {previewLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={withBasePath(link.href)}
-                    className="rounded-full border border-[#ded9cf] bg-white px-4 py-2.5 text-center text-sm font-black !text-[#111111] transition hover:-translate-y-0.5 hover:border-[#8b1116] hover:text-[#8b1116]"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </div>
+            <p className="max-w-3xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+              Start with structured learning, explore a visual explanation, or
+              request support when you need individual guidance.
+            </p>
           </div>
-        </section>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {routes.map((route) => (
-            <a
-              key={route.title}
-              href={withBasePath(route.href)}
-              className={`group rounded-[2rem] border p-6 shadow-sm transition hover:-translate-y-0.5 ${
-                route.dark
-                  ? "border-[#ded9cf] bg-white text-[#111111] hover:bg-[#5f0b0f]  "
-                  : "border-[#ded9cf] bg-white !text-[#111111] hover:shadow-md"
-              }`}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <p
-                  className={`font-sans text-3xl font-black tracking-[-0.05em] ${
-                    route.dark ? "!text-[#111111]" : "text-[#8b1116]"
-                  }`}
-                >
+          <div className="mt-5 grid gap-3 md:mt-8 md:grid-cols-3 md:gap-4">
+            {routes.map((route) => (
+              <a
+                key={route.title}
+                href={withBasePath(route.href)}
+                className="group rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:rounded-[2rem] md:p-6"
+              >
+                <p className="text-2xl font-semibold tracking-[-0.055em] text-[#8b1116] md:text-3xl">
                   {route.number}
                 </p>
 
-                <span
-                  className={`rounded-full px-3 py-1 text-xs font-black uppercase tracking-[0.16em] ${
-                    route.dark
-                      ? "bg-white text-[#8b1116]"
-                      : "bg-[#f7f4ee] text-[#8b1116]"
-                  }`}
-                >
-                  {route.eyebrow}
-                </span>
-              </div>
+                <h3 className="mt-4 text-xl font-semibold tracking-[-0.04em] md:mt-5 md:text-2xl">
+                  {route.title}
+                </h3>
 
-              <h3 className="mt-5 text-balance font-sans text-2xl font-black leading-tight tracking-[-0.04em]">
-                {route.title}
-              </h3>
+                <p className="mt-3 text-sm leading-7 text-neutral-700 md:mt-4">
+                  {route.body}
+                </p>
 
-              <p
-                className={`mt-4 text-sm leading-7 ${
-                  route.dark ? "!text-[#111111]" : "text-neutral-700"
-                }`}
-              >
-                {route.body}
-              </p>
-
-              <span
-                className={`mt-6 inline-flex text-sm font-black ${
-                  route.dark
-                    ? "!text-[#111111]"
-                    : "!text-[#111111] group-hover:text-[#8b1116]"
-                }`}
-              >
-                Continue →
-              </span>
-            </a>
-          ))}
-        </div>
+                <p className="mt-5 text-sm font-semibold text-[#8b1116] md:mt-6">
+                  {route.label} →
+                </p>
+              </a>
+            ))}
+          </div>
+        </section>
       </div>
     </section>
   );
