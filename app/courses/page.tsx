@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Learning Hub",
+  description:
+    "Explore structured learning pathways, course modules, interactive demos and study resources for statistics, biostatistics, machine learning and academic data analysis.",
+};
 const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 function withBasePath(href: string) {
