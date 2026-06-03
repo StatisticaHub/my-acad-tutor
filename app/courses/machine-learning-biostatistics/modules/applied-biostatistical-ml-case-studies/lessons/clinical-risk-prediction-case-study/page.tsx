@@ -2,7 +2,7 @@ export default function Page() {
   return (
     <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-slate-950 md:px-8 md:py-16">
       <section className="mx-auto max-w-5xl rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+        <p className="eyebrow-light">
           Machine Learning in Biostatistics
         </p>
 

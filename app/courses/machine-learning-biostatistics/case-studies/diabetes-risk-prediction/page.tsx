@@ -328,7 +328,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
             href={withBasePath(
               "/courses/machine-learning-biostatistics/case-studies"
             )}
-            className="text-sm font-black text-blue-600 transition hover:text-blue-700"
+            className="text-sm font-black text-[#6f0d12] transition hover:text-[#5f0b0f]"
           >
             ← Back to case studies
           </a>
@@ -381,7 +381,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                 key={label}
                 className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
               >
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                   {label}
                 </p>
                 <p className="mt-2 text-xl font-black text-slate-950">
@@ -429,7 +429,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
           id="executive-summary"
           className="mt-10 scroll-mt-24 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10"
         >
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
             Executive summary
           </p>
 
@@ -477,7 +477,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
 
         <section id="results" className="mt-10 scroll-mt-24">
           <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
               Results first
             </p>
 
@@ -491,13 +491,13 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                   key={metric.label}
                   className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                     {metric.label}
                   </p>
                   <p className="mt-2 text-3xl font-black text-blue-700">
                     {metric.value}
                   </p>
-                  <p className="mt-2 text-xs font-black leading-5 text-slate-500">
+                  <p className="mt-2 text-xs font-black leading-5 text-slate-700">
                     {metric.note}
                   </p>
                   <p className="mt-3 text-sm leading-6 text-slate-600">
@@ -522,7 +522,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
         </section>
 
         <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
             Clinical question
           </p>
 
@@ -552,7 +552,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
         </section>
 
         <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
             Dataset and predictors
           </p>
 
@@ -610,7 +610,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
         </section>
 
         <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
             Workflow
           </p>
 
@@ -642,7 +642,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
         </section>
 
         <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
             Confusion matrix
           </p>
 
@@ -726,7 +726,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
         </section>
 
         <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
             Discrimination
           </p>
 
@@ -772,7 +772,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
         </section>
 
         <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
             Calibration
           </p>
 
@@ -821,7 +821,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
           id="threshold-lab"
           className="mt-10 scroll-mt-24 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10"
         >
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
             Interactive threshold lab
           </p>
 
@@ -861,7 +861,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                 ["NPV", thresholdInfo.npv],
               ].map(([label, value]) => (
                 <div key={label} className="rounded-2xl bg-white p-4">
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                     {label}
                   </p>
                   <p className="mt-2 text-lg font-black text-slate-950">
@@ -879,7 +879,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                 ["False negative", thresholdInfo.fn],
               ].map(([label, value]) => (
                 <div key={label} className="rounded-2xl bg-white p-4">
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                     {label}
                   </p>
                   <p className="mt-2 text-2xl font-black text-blue-700">
@@ -941,7 +941,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
         </section>
 
         <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
             Interpretation checklist
           </p>
 
@@ -967,7 +967,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
         </section>
 
         <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
             Limitations
           </p>
 
@@ -1022,7 +1022,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
         </section>
 
         <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+          <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
             Report-style conclusion
           </p>
 

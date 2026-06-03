@@ -20,7 +20,7 @@ export default function BioinformaticsPathwayPage() {
             Understand biological data analysis from the ground up.
           </h1>
 
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/70">
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/90">
             This pathway introduces omics data, RNA-seq, single-cell concepts,
             spatial transcriptomics and reproducible bioinformatics thinking.
           </p>

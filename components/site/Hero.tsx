@@ -47,7 +47,7 @@ const previewItems = [
 
 export default function Hero() {
   return (
-    <section className="bg-[#f7f4ee] px-5 py-8 text-[#111111] md:px-8 md:py-12">
+    <section className="bg-[#f7f4ee] px-5 py-8 !text-[#111111] md:px-8 md:py-12">
       <div className="mx-auto max-w-7xl">
         <section className="overflow-hidden rounded-[2rem] border border-[#ded9cf] bg-white shadow-sm">
           <div className="grid gap-0 lg:grid-cols-[1.02fr_0.98fr]">
@@ -67,7 +67,7 @@ export default function Hero() {
                 Academic support for quantitative learning, analysis and research
               </p>
 
-              <h1 className="mt-5 max-w-5xl text-balance font-sans text-4xl font-black leading-[1.04] tracking-[-0.052em] text-[#111111] sm:text-5xl md:text-6xl xl:text-7xl">
+              <h1 className="mt-5 max-w-5xl text-balance font-sans text-4xl font-black leading-[1.04] tracking-[-0.052em] !text-[#111111] sm:text-5xl md:text-6xl xl:text-7xl">
                 Structured quantitative learning for university students and
                 researchers.
               </h1>
@@ -88,21 +88,21 @@ export default function Hero() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <a
                   href={withBasePath("/learning-hub")}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#8b1116] px-6 py-3 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#5f0b0f] sm:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#8b1116] px-6 py-3 text-sm font-black !text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#5f0b0f] sm:w-auto"
                 >
                   Start learning
                 </a>
 
                 <a
                   href={withBasePath("/courses/statistics-foundation")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-[#ded9cf] bg-white px-6 py-3 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:border-[#8b1116] hover:text-[#8b1116] sm:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#ded9cf] bg-white px-6 py-3 text-sm font-black !text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:border-[#8b1116] hover:text-[#8b1116] sm:w-auto"
                 >
                   View Statistics Foundation
                 </a>
 
                 <a
                   href={withBasePath("/contact")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-[#ded9cf] bg-white px-6 py-3 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:border-[#8b1116] hover:text-[#8b1116] sm:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#ded9cf] bg-white px-6 py-3 text-sm font-black !text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:border-[#8b1116] hover:text-[#8b1116] sm:w-auto"
                 >
                   Request support
                 </a>
@@ -114,7 +114,7 @@ export default function Hero() {
                     key={label}
                     className="rounded-3xl border border-[#ded9cf] bg-[#f7f4ee] p-5"
                   >
-                    <p className="font-sans text-2xl font-black tracking-[-0.04em] text-[#111111]">
+                    <p className="font-sans text-2xl font-black tracking-[-0.04em] !text-[#111111]">
                       {value}
                     </p>
 
@@ -139,7 +139,7 @@ export default function Hero() {
                     Platform preview
                   </p>
 
-                  <h2 className="mt-3 text-balance font-sans text-2xl font-black leading-tight tracking-[-0.04em] text-[#111111] md:text-3xl">
+                  <h2 className="mt-3 text-balance font-sans text-2xl font-black leading-tight tracking-[-0.04em] !text-[#111111] md:text-3xl">
                     Courses, demos, resources and guidance in one academic
                     platform.
                   </h2>
@@ -155,19 +155,19 @@ export default function Hero() {
                 {previewItems.map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-[#ded9cf] bg-white px-5 py-4 text-sm font-black text-[#111111] shadow-sm"
+                    className="rounded-2xl border border-[#ded9cf] bg-white px-5 py-4 text-sm font-black !text-[#111111] shadow-sm"
                   >
                     {item}
                   </div>
                 ))}
               </div>
 
-              <div className="mt-4 rounded-[1.75rem] border border-[#8b1116]/20 bg-[#8b1116] p-5 text-white shadow-sm">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-white/90">
+              <div className="mt-4 rounded-[1.75rem] border border-[#ded9cf] bg-white p-5 text-[#111111] shadow-sm">
+                <p className="text-xs font-black uppercase tracking-[0.18em] !text-neutral-700">
                   Responsible academic support
                 </p>
 
-                <p className="mt-3 text-sm leading-7 text-white/80">
+                <p className="mt-3 text-sm leading-7 !text-neutral-700">
                   Guidance is focused on explanation, planning, interpretation
                   and independent learning — not assignment completion.
                 </p>
@@ -182,7 +182,7 @@ export default function Hero() {
               key={route.title}
               className="rounded-[2rem] border border-[#ded9cf] bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
-              <h2 className="font-sans text-2xl font-black tracking-[-0.04em] text-[#111111]">
+              <h2 className="font-sans text-2xl font-black tracking-[-0.04em] !text-[#111111]">
                 {route.title}
               </h2>
 

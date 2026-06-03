@@ -107,7 +107,7 @@ function DialogueLine({
             : "border-slate-200 bg-white"
         }`}
       >
-        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-700">
           {name}
         </p>
         <p className="text-sm leading-7 text-slate-700">{children}</p>
@@ -144,7 +144,7 @@ function ProbabilityBarChart({
     <div className="mt-5 space-y-3">
       {values.map((v) => (
         <div key={v.label}>
-          <div className="mb-1 flex justify-between text-xs font-bold text-slate-500">
+          <div className="mb-1 flex justify-between text-xs font-bold text-slate-700">
             <span>{v.label}</span>
             <span>{v.probability.toFixed(2)}</span>
           </div>
@@ -265,13 +265,13 @@ function VennExplorer() {
 
           <div className="mt-4 grid grid-cols-2 gap-3">
             <div className="rounded-2xl bg-slate-50 p-4 text-center">
-              <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">
+              <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                 Union
               </p>
               <p className="mt-1 text-3xl font-black">{union.toFixed(2)}</p>
             </div>
             <div className="rounded-2xl bg-slate-50 p-4 text-center">
-              <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">
+              <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                 Neither
               </p>
               <p className="mt-1 text-3xl font-black">
@@ -439,7 +439,7 @@ export default function ProbabilityBasicsAndAxiomsLessonPage() {
           </div>
 
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-700">
               Lesson structure
             </p>
             <p className="mt-2 text-sm leading-7 text-slate-600">

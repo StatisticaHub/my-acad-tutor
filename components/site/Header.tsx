@@ -48,7 +48,7 @@ export default function Header() {
               My Academic Tutor
             </p>
 
-            <p className="mt-0.5 whitespace-nowrap text-[0.68rem] font-bold uppercase tracking-[0.16em] text-neutral-500 sm:text-[0.72rem] md:text-[0.76rem]">
+            <p className="mt-0.5 whitespace-nowrap text-[0.68rem] font-bold uppercase tracking-[0.16em] text-neutral-700 sm:text-[0.72rem] md:text-[0.76rem]">
               Quantitative Learning
             </p>
           </div>

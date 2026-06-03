@@ -136,13 +136,13 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses/machine-learning-biostatistics")}
-          className="text-sm font-black text-blue-600 transition hover:text-blue-700"
+          className="text-sm font-black text-[#6f0d12] transition hover:text-[#5f0b0f]"
         >
           ← Back to course homepage
         </a>
 
         <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+          <p className="eyebrow-light">
             Applied case studies
           </p>
 
@@ -195,7 +195,7 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
                 key={label}
                 className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
               >
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                   {label}
                 </p>
                 <p className="mt-2 text-2xl font-black text-slate-950">
@@ -227,7 +227,7 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
           className="mt-10 scroll-mt-24 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10"
         >
           <div className="max-w-4xl">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-600">
+            <p className="eyebrow-light">
               Case study pathway
             </p>
 
@@ -251,10 +251,10 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
               >
                 <div className="grid gap-6 lg:grid-cols-[0.18fr_1fr_0.25fr] lg:items-start">
                   <div>
-                    <p className="text-5xl font-black text-blue-600">
+                    <p className="text-5xl font-black text-[#6f0d12]">
                       {caseStudy.number}
                     </p>
-                    <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-slate-500">
+                    <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-slate-700">
                       Case study
                     </p>
                   </div>
@@ -276,7 +276,7 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
                       </span>
                     </div>
 
-                    <p className="mt-4 text-sm font-black uppercase tracking-[0.18em] text-slate-500">
+                    <p className="mt-4 text-sm font-black uppercase tracking-[0.18em] text-slate-700">
                       {caseStudy.moduleTitle}
                     </p>
 

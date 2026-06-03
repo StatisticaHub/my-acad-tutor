@@ -100,7 +100,7 @@ export default async function ResourceGuidePage({
 
           <div className="mt-8 grid gap-3 rounded-[1.25rem] border border-neutral-200 bg-[#f8f6f1] p-5 md:grid-cols-3">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-700">
                 Structure
               </p>
               <p className="mt-2 text-sm leading-6 text-neutral-700">
@@ -109,7 +109,7 @@ export default async function ResourceGuidePage({
             </div>
 
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-700">
                 Best for
               </p>
               <p className="mt-2 text-sm leading-6 text-neutral-700">
@@ -119,7 +119,7 @@ export default async function ResourceGuidePage({
             </div>
 
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-500">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-neutral-700">
                 Use with
               </p>
               <p className="mt-2 text-sm leading-6 text-neutral-700">
@@ -133,7 +133,7 @@ export default async function ResourceGuidePage({
 
       <section className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:px-8 lg:grid-cols-[0.75fr_1.25fr]">
         <aside className="h-fit rounded-[1.5rem] border border-neutral-200 bg-white p-6 shadow-sm lg:sticky lg:top-24">
-          <p className="text-xs font-bold uppercase tracking-[0.24em] text-neutral-500">
+          <p className="text-xs font-bold uppercase tracking-[0.24em] text-neutral-700">
             Guide structure
           </p>
 
@@ -327,7 +327,7 @@ export default async function ResourceGuidePage({
               {guide.related.map((item) => (
                 <div
                   key={item}
-                  className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm leading-7 text-white/75"
+                  className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm leading-7 text-white/90"
                 >
                   {item}
                 </div>

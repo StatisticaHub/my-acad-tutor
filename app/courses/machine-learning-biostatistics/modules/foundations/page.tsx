@@ -111,7 +111,7 @@ export default function FoundationsMachineLearningModulePage() {
               key={label}
               className="rounded-3xl border border-neutral-200 bg-white p-5 shadow-sm"
             >
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-700">
                 {label}
               </p>
               <p className="mt-2 font-sans text-2xl font-black tracking-[-0.04em] text-[#111111]">

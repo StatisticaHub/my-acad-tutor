@@ -471,7 +471,7 @@ ${code}
             <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-300">
               Editable R script
             </p>
-            <p className="mt-1 text-xs leading-5 text-slate-400">
+            <p className="mt-1 text-xs leading-5 text-slate-700">
               Runs in the browser using WebR and the shared diabetes CSV.
             </p>
           </div>
@@ -498,7 +498,7 @@ ${code}
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
             R console output
           </p>
-          <p className="mt-1 text-xs leading-5 text-slate-500">
+          <p className="mt-1 text-xs leading-5 text-slate-700">
             Output and errors appear here.
           </p>
         </div>
@@ -990,7 +990,7 @@ export default function BiostatisticalMLWorkflowPage() {
                 key={label}
                 className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
               >
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                   {label}
                 </p>
                 <p className="mt-2 text-xl font-black text-slate-950">
@@ -1841,7 +1841,7 @@ export default function BiostatisticalMLWorkflowPage() {
                     key={label}
                     className="rounded-3xl border border-slate-200 bg-white p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                       {label}
                     </p>
                     <p className="mt-2 text-3xl font-black text-blue-700">
@@ -2009,7 +2009,7 @@ export default function BiostatisticalMLWorkflowPage() {
 
                 <div className="mt-5 grid gap-4 sm:grid-cols-3">
                   <div className="rounded-3xl border border-slate-200 bg-white p-5">
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                       FN cost
                     </p>
                     <p className="mt-2 text-3xl font-black text-rose-700">
@@ -2018,7 +2018,7 @@ export default function BiostatisticalMLWorkflowPage() {
                   </div>
 
                   <div className="rounded-3xl border border-slate-200 bg-white p-5">
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                       FP cost
                     </p>
                     <p className="mt-2 text-3xl font-black text-amber-700">
@@ -2027,7 +2027,7 @@ export default function BiostatisticalMLWorkflowPage() {
                   </div>
 
                   <div className="rounded-3xl border border-slate-200 bg-white p-5">
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                       Total
                     </p>
                     <p className="mt-2 text-3xl font-black text-blue-700">
@@ -2408,7 +2408,7 @@ export default function BiostatisticalMLWorkflowPage() {
             Next, move into supervised learning for clinical prediction.
           </h2>
 
-          <p className="mt-4 max-w-4xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-white/90 md:text-base md:leading-8">
             Module 2 can now build on this foundation: binary classification,
             logistic regression, decision thresholds, ROC/AUC, calibration and
             clinical prediction performance.

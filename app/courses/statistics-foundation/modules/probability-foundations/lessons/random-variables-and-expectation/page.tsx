@@ -124,7 +124,7 @@ function DialogueLine({
             : "border-slate-200 bg-white"
         }`}
       >
-        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-700">
           {name}
         </p>
         <p className="text-sm leading-7 text-slate-700">{children}</p>
@@ -161,7 +161,7 @@ function DistributionBarChart({
     <div className="mt-5 space-y-3">
       {probabilities.map((p, index) => (
         <div key={index}>
-          <div className="mb-1 flex justify-between text-xs font-bold text-slate-500">
+          <div className="mb-1 flex justify-between text-xs font-bold text-slate-700">
             <span>X = {index}</span>
             <span>{p.toFixed(2)}</span>
           </div>
@@ -291,7 +291,7 @@ function ExpectationVarianceLab() {
         </div>
 
         <div className="rounded-2xl bg-slate-100 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             E(X²)
           </p>
           <p className="mt-2 text-3xl font-black">{values.ex2.toFixed(3)}</p>
@@ -359,14 +359,14 @@ function BernoulliIndicatorLab() {
 
       <div className="mt-6 grid gap-4 md:grid-cols-5">
         <div className="rounded-2xl bg-slate-50 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             P(I = 1)
           </p>
           <p className="mt-2 text-3xl font-black">{p.toFixed(2)}</p>
         </div>
 
         <div className="rounded-2xl bg-slate-50 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             P(I = 0)
           </p>
           <p className="mt-2 text-3xl font-black">{(1 - p).toFixed(2)}</p>
@@ -461,7 +461,7 @@ export default function RandomVariablesExpectationLessonPage() {
           </div>
 
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-700">
               Lesson structure
             </p>
             <p className="mt-2 text-sm leading-7 text-slate-600">

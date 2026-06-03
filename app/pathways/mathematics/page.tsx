@@ -20,7 +20,7 @@ export default function MathematicsPathwayPage() {
             Strengthen the mathematics behind statistics and data science.
           </h1>
 
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/70">
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/90">
             This pathway helps students build confidence in algebra, calculus,
             matrices, probability and optimisation ideas used in modern quantitative
             subjects.

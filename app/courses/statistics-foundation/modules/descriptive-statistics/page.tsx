@@ -189,7 +189,7 @@ export default function DescriptiveStatisticsModulePage() {
                     <strong className="block text-2xl font-black tracking-tight">
                       {item.value}
                     </strong>
-                    <span className="mt-1 block text-xs font-bold text-neutral-500">
+                    <span className="mt-1 block text-xs font-bold text-neutral-700">
                       {item.label}
                     </span>
                   </div>

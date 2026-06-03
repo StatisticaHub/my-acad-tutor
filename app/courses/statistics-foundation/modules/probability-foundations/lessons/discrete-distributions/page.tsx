@@ -131,7 +131,7 @@ function DialogueLine({
             : "border-slate-200 bg-white"
         }`}
       >
-        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-700">
           {name}
         </p>
         <p className="text-sm leading-7 text-slate-700">{children}</p>
@@ -168,7 +168,7 @@ function ProbabilityBars({
     <div className="mt-5 space-y-3">
       {values.map((v) => (
         <div key={v.label}>
-          <div className="mb-1 flex justify-between text-xs font-bold text-slate-500">
+          <div className="mb-1 flex justify-between text-xs font-bold text-slate-700">
             <span>{v.label}</span>
             <span>{v.probability.toFixed(4)}</span>
           </div>
@@ -495,7 +495,7 @@ export default function DiscreteDistributionsLessonPage() {
           </div>
 
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-700">
               Lesson structure
             </p>
             <p className="mt-2 text-sm leading-7 text-slate-600">

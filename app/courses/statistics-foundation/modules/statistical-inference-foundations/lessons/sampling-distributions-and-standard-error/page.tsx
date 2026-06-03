@@ -134,7 +134,7 @@ function DialogueLine({
             : "border-slate-200 bg-white"
         }`}
       >
-        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-700">
           {name}
         </p>
         <p className="text-sm leading-7 text-slate-700">{children}</p>
@@ -173,7 +173,7 @@ function MiniBarChart({
     <div className="mt-6 space-y-3">
       {values.map((v) => (
         <div key={v.label}>
-          <div className="mb-1 flex justify-between text-xs font-bold text-slate-500">
+          <div className="mb-1 flex justify-between text-xs font-bold text-slate-700">
             <span>{v.label}</span>
             <span>
               {labelPrefix}
@@ -367,7 +367,7 @@ function ProportionStandardErrorLab() {
         </div>
 
         <div className="rounded-2xl bg-slate-100 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             p(1 − p)
           </p>
           <p className="mt-2 text-3xl font-black">
@@ -623,7 +623,7 @@ function BiasPrecisionLab() {
             className="absolute top-0 h-full w-1 rounded-full bg-red-500"
             style={{ left: "50%" }}
           />
-          <p className="absolute left-[calc(50%+8px)] top-1 text-xs font-black text-red-600">
+          <p className="absolute left-[calc(50%+8px)] top-1 text-xs font-black text-[#6f0d12]">
             True target θ = 100
           </p>
 
@@ -716,7 +716,7 @@ export default function SamplingDistributionsStandardErrorLessonPage() {
           </div>
 
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-700">
               Lesson structure
             </p>
             <p className="mt-2 text-sm leading-7 text-slate-600">

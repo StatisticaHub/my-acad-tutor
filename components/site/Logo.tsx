@@ -6,7 +6,7 @@ export default function Logo({ dark = false }: { dark?: boolean }) {
     <a href={`${basePath}/`} className="flex items-center gap-3">
       <div
         className={`flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border ${
-          dark ? "border-white/15 bg-white" : "border-neutral-200 bg-white"
+          dark ? "border-[#ded9cf] bg-white" : "border-neutral-200 bg-white"
         }`}
       >
         <img
@@ -19,7 +19,7 @@ export default function Logo({ dark = false }: { dark?: boolean }) {
       <div>
         <p
           className={`text-xs font-black uppercase tracking-[0.2em] ${
-            dark ? "text-white/80" : "text-neutral-500"
+            dark ? "text-neutral-700" : "text-neutral-700"
           }`}
         >
           My Academic Tutor
@@ -27,7 +27,7 @@ export default function Logo({ dark = false }: { dark?: boolean }) {
 
         <p
           className={`text-base font-black tracking-tight ${
-            dark ? "text-white" : "text-neutral-950"
+            dark ? "text-[#111111]" : "text-neutral-950"
           }`}
         >
           Quantitative Learning

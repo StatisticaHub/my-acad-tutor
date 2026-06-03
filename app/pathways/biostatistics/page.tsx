@@ -20,7 +20,7 @@ export default function BiostatisticsPathwayPage() {
             Learn statistics for health research and clinical data.
           </h1>
 
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/70">
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/90">
             This pathway focuses on the statistical methods used in epidemiology,
             clinical studies, survival analysis and medical prediction modelling.
           </p>

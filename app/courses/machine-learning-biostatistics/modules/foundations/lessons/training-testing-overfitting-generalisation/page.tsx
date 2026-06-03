@@ -556,7 +556,7 @@ ${code}
             <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-300">
               Editable R script
             </p>
-            <p className="mt-1 text-xs leading-5 text-slate-400">
+            <p className="mt-1 text-xs leading-5 text-slate-700">
               Runs in the browser using WebR and the shared diabetes CSV.
             </p>
           </div>
@@ -583,7 +583,7 @@ ${code}
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
             R console output
           </p>
-          <p className="mt-1 text-xs leading-5 text-slate-500">
+          <p className="mt-1 text-xs leading-5 text-slate-700">
             Output and errors appear here.
           </p>
         </div>
@@ -904,7 +904,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
                 key={label}
                 className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
               >
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                   {label}
                 </p>
                 <p className="mt-2 text-xl font-black text-slate-950">
@@ -1526,7 +1526,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
                         key={label}
                         className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
                       >
-                        <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                        <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                           {label}
                         </p>
                         <p className="mt-1 text-2xl font-black text-blue-700">
@@ -1592,7 +1592,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
 
               <div className="mt-6 grid gap-4 md:grid-cols-3">
                 <div className="rounded-3xl border border-slate-200 bg-white p-5">
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                     Training accuracy
                   </p>
                   <p className="mt-2 text-3xl font-black text-blue-700">
@@ -1601,7 +1601,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
                 </div>
 
                 <div className="rounded-3xl border border-slate-200 bg-white p-5">
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                     Test accuracy
                   </p>
                   <p className="mt-2 text-3xl font-black text-emerald-700">
@@ -1610,7 +1610,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
                 </div>
 
                 <div className="rounded-3xl border border-slate-200 bg-white p-5">
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                     Generalisation gap
                   </p>
                   <p className="mt-2 text-3xl font-black text-rose-700">
@@ -1684,7 +1684,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
                     key={label}
                     className="rounded-3xl border border-slate-200 bg-white p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                       {label}
                     </p>
                     <p className="mt-2 text-3xl font-black text-blue-700">
@@ -2093,7 +2093,7 @@ export default function TrainingTestingOverfittingGeneralisationPage() {
             Next, combine the foundations into a complete ML workflow.
           </h2>
 
-          <p className="mt-4 max-w-4xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-white/90 md:text-base md:leading-8">
             The next lesson brings prediction questions, learning types,
             validation, leakage checks and reporting discipline into one
             responsible biostatistical machine learning workflow.

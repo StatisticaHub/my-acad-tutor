@@ -62,7 +62,7 @@ const previewLinks = [
 
 export default function StartWithThis() {
   return (
-    <section className="bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-14">
+    <section className="bg-[#f7f4ee] px-5 py-10 !text-[#111111] md:px-8 md:py-14">
       <div className="mx-auto max-w-7xl">
         <section className="rounded-[2rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-8">
           <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
@@ -96,7 +96,7 @@ export default function StartWithThis() {
                   <a
                     key={link.href}
                     href={withBasePath(link.href)}
-                    className="rounded-full border border-[#ded9cf] bg-white px-4 py-2.5 text-center text-sm font-black text-[#111111] transition hover:-translate-y-0.5 hover:border-[#8b1116] hover:text-[#8b1116]"
+                    className="rounded-full border border-[#ded9cf] bg-white px-4 py-2.5 text-center text-sm font-black !text-[#111111] transition hover:-translate-y-0.5 hover:border-[#8b1116] hover:text-[#8b1116]"
                   >
                     {link.label}
                   </a>
@@ -113,14 +113,14 @@ export default function StartWithThis() {
               href={withBasePath(route.href)}
               className={`group rounded-[2rem] border p-6 shadow-sm transition hover:-translate-y-0.5 ${
                 route.dark
-                  ? "border-[#8b1116] bg-[#8b1116] text-white hover:bg-[#5f0b0f] [&_h3]:text-white [&_p]:text-white"
-                  : "border-[#ded9cf] bg-white text-[#111111] hover:shadow-md"
+                  ? "border-[#ded9cf] bg-white text-[#111111] hover:bg-[#5f0b0f]  "
+                  : "border-[#ded9cf] bg-white !text-[#111111] hover:shadow-md"
               }`}
             >
               <div className="flex items-start justify-between gap-4">
                 <p
                   className={`font-sans text-3xl font-black tracking-[-0.05em] ${
-                    route.dark ? "text-white" : "text-[#8b1116]"
+                    route.dark ? "!text-[#111111]" : "text-[#8b1116]"
                   }`}
                 >
                   {route.number}
@@ -143,7 +143,7 @@ export default function StartWithThis() {
 
               <p
                 className={`mt-4 text-sm leading-7 ${
-                  route.dark ? "text-white" : "text-neutral-700"
+                  route.dark ? "!text-[#111111]" : "text-neutral-700"
                 }`}
               >
                 {route.body}
@@ -152,8 +152,8 @@ export default function StartWithThis() {
               <span
                 className={`mt-6 inline-flex text-sm font-black ${
                   route.dark
-                    ? "text-white"
-                    : "text-[#111111] group-hover:text-[#8b1116]"
+                    ? "!text-[#111111]"
+                    : "!text-[#111111] group-hover:text-[#8b1116]"
                 }`}
               >
                 Continue →

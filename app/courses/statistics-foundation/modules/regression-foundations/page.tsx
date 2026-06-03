@@ -106,7 +106,7 @@ export default function RegressionFoundationsModulePage() {
           </div>
 
           <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-400">
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-700">
               Module focus
             </p>
 

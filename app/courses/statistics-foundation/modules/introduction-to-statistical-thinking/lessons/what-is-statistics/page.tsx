@@ -176,7 +176,7 @@ function DialogueLine({
           right ? "bg-blue-50" : "bg-[#f8f6f1]"
         }`}
       >
-        <p className="mb-1 text-xs font-bold text-neutral-500">{speaker}</p>
+        <p className="mb-1 text-xs font-bold text-neutral-700">{speaker}</p>
         <div className="text-sm leading-7 text-neutral-800">{children}</div>
       </div>
     </div>
@@ -306,19 +306,19 @@ function InteractiveSamplingDemo() {
 
       <div className="mt-6 grid gap-3 md:grid-cols-3">
         <div className="rounded-2xl border border-[#ded9cf] bg-[#f8f6f1] p-4">
-          <p className="text-xs font-bold text-neutral-500">Population mean</p>
+          <p className="text-xs font-bold text-neutral-700">Population mean</p>
           <p className="mt-1 text-3xl font-black">
             {populationMean.toFixed(1)}
           </p>
         </div>
 
         <div className="rounded-2xl border border-[#ded9cf] bg-[#f8f6f1] p-4">
-          <p className="text-xs font-bold text-neutral-500">Sample mean</p>
+          <p className="text-xs font-bold text-neutral-700">Sample mean</p>
           <p className="mt-1 text-3xl font-black">{sampleMean.toFixed(1)}</p>
         </div>
 
         <div className="rounded-2xl border border-[#ded9cf] bg-[#f8f6f1] p-4">
-          <p className="text-xs font-bold text-neutral-500">
+          <p className="text-xs font-bold text-neutral-700">
             Sample mean − population mean
           </p>
           <p className="mt-1 text-3xl font-black">{difference.toFixed(1)}</p>
@@ -340,7 +340,7 @@ function InteractiveSamplingDemo() {
                   }`}
                   style={{ height: `${value * 1.6}px` }}
                 />
-                <span className="text-xs font-bold text-neutral-500">
+                <span className="text-xs font-bold text-neutral-700">
                   {value}
                 </span>
               </div>
@@ -638,19 +638,19 @@ export default function WhatIsStatisticsLessonPage() {
 
           <div className="mt-8 grid gap-3 md:grid-cols-4">
             <div className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4">
-              <p className="text-xs font-bold text-neutral-500">Time</p>
+              <p className="text-xs font-bold text-neutral-700">Time</p>
               <p className="mt-1 text-lg font-black">40–50 min</p>
             </div>
             <div className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4">
-              <p className="text-xs font-bold text-neutral-500">Level</p>
+              <p className="text-xs font-bold text-neutral-700">Level</p>
               <p className="mt-1 text-lg font-black">Beginner</p>
             </div>
             <div className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4">
-              <p className="text-xs font-bold text-neutral-500">Focus</p>
+              <p className="text-xs font-bold text-neutral-700">Focus</p>
               <p className="mt-1 text-lg font-black">Concepts</p>
             </div>
             <div className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4">
-              <p className="text-xs font-bold text-neutral-500">Coding</p>
+              <p className="text-xs font-bold text-neutral-700">Coding</p>
               <p className="mt-1 text-lg font-black">None</p>
             </div>
           </div>
@@ -1184,7 +1184,7 @@ export default function WhatIsStatisticsLessonPage() {
             <h2 className="text-2xl font-black tracking-tight">
               Lesson complete
             </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-white/70">
+            <p className="mt-2 max-w-2xl text-sm leading-7 text-white/90">
               Next, move to populations, samples and variables. That lesson
               will make the structure of every statistical study much clearer.
             </p>

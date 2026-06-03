@@ -127,7 +127,7 @@ function Speaker({
           right ? "bg-blue-50" : "bg-white"
         }`}
       >
-        <p className="mb-1 text-xs font-black uppercase tracking-[0.18em] text-slate-400">
+        <p className="mb-1 text-xs font-black uppercase tracking-[0.18em] text-slate-700">
           {name}
         </p>
         <div className="text-sm leading-7 text-slate-700">{children}</div>
@@ -237,7 +237,7 @@ function RegressionSvg({
     <div className="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm">
       <div className="mb-4 grid gap-3 md:grid-cols-3">
         <div className="rounded-2xl bg-slate-50 p-4">
-          <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+          <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-700">
             Slope
           </p>
           <p className="mt-1 text-2xl font-black text-slate-950">
@@ -245,7 +245,7 @@ function RegressionSvg({
           </p>
         </div>
         <div className="rounded-2xl bg-slate-50 p-4">
-          <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+          <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-700">
             Intercept
           </p>
           <p className="mt-1 text-2xl font-black text-slate-950">
@@ -253,7 +253,7 @@ function RegressionSvg({
           </p>
         </div>
         <div className="rounded-2xl bg-slate-50 p-4">
-          <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+          <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-700">
             SSE
           </p>
           <p className="mt-1 text-2xl font-black text-slate-950">
@@ -478,7 +478,7 @@ function Quiz() {
 
   return (
     <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
-      <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-400">
+      <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-700">
         Question {current + 1} of {quizQuestions.length}
       </p>
 
@@ -583,7 +583,7 @@ export default function SimpleLinearRegressionLessonPage() {
           </div>
 
           <div className="rounded-[2rem] border border-slate-200 bg-slate-50 p-5">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-400">
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-700">
               Lesson tools
             </p>
             <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-600">
@@ -606,7 +606,7 @@ export default function SimpleLinearRegressionLessonPage() {
               className={`rounded-full px-5 py-2 text-sm font-black transition ${
                 tab === item.id
                   ? "bg-blue-700 text-white"
-                  : "bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-700"
+                  : "bg-slate-100 text-slate-600 hover:bg-blue-50 hover:text-[#5f0b0f]"
               }`}
             >
               {item.label}
@@ -618,7 +618,7 @@ export default function SimpleLinearRegressionLessonPage() {
       <section className="mx-auto grid max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[260px_1fr]">
         <aside className="hidden lg:block">
           <div className="sticky top-8 rounded-[2rem] border border-slate-200 bg-white p-5 shadow-sm">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-700">
               Module 5 lessons
             </p>
 
@@ -654,7 +654,7 @@ export default function SimpleLinearRegressionLessonPage() {
                 comparing groups to modelling relationships between variables.
               </SectionTitle>
 
-              <div className="rounded-2xl bg-slate-50 px-5 py-3 text-sm font-black uppercase tracking-[0.18em] text-slate-500">
+              <div className="rounded-2xl bg-slate-50 px-5 py-3 text-sm font-black uppercase tracking-[0.18em] text-slate-700">
                 Scene: Mr. R’s classroom, after the inference module
               </div>
 
@@ -1442,7 +1442,7 @@ export default function SimpleLinearRegressionLessonPage() {
                         {exercise.title}
                       </h3>
                     </div>
-                    <span className="text-2xl font-black text-slate-400">
+                    <span className="text-2xl font-black text-slate-700">
                       {openExercise === index ? "−" : "+"}
                     </span>
                   </button>

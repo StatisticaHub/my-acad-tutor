@@ -120,7 +120,7 @@ function DialogueLine({
             : "border-slate-200 bg-white"
         }`}
       >
-        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-700">
           {name}
         </p>
         <p className="text-sm leading-7 text-slate-700">{children}</p>
@@ -260,7 +260,7 @@ function BayesMedicalLab() {
         </div>
 
         <div className="rounded-2xl bg-red-50 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-red-700">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-[#6f0d12]">
             False positives
           </p>
           <p className="mt-2 text-3xl font-black">
@@ -278,7 +278,7 @@ function BayesMedicalLab() {
         </div>
 
         <div className="rounded-2xl bg-slate-100 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             P(no disease|−)
           </p>
           <p className="mt-2 text-3xl font-black">
@@ -405,21 +405,21 @@ function ConditionalProbabilityTableLab() {
 
       <div className="mt-6 grid gap-4 md:grid-cols-5">
         <div className="rounded-2xl bg-slate-50 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             P(S)
           </p>
           <p className="mt-2 text-2xl font-black">{pStats.toFixed(2)}</p>
         </div>
 
         <div className="rounded-2xl bg-slate-50 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             P(D)
           </p>
           <p className="mt-2 text-2xl font-black">{pDist.toFixed(2)}</p>
         </div>
 
         <div className="rounded-2xl bg-slate-50 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             P(S ∩ D)
           </p>
           <p className="mt-2 text-2xl font-black">{pBoth.toFixed(2)}</p>
@@ -507,7 +507,7 @@ export default function ConditionalProbabilityBayesLessonPage() {
           </div>
 
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-700">
               Lesson structure
             </p>
             <p className="mt-2 text-sm leading-7 text-slate-600">

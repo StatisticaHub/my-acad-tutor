@@ -199,7 +199,7 @@ function DialogueLine({
             : "border-slate-200 bg-white"
         }`}
       >
-        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-700">
           {name}
         </p>
         <p className="text-sm leading-7 text-slate-700">{children}</p>
@@ -391,7 +391,7 @@ function NormalCurveLab() {
         </div>
 
         <div className="rounded-2xl bg-slate-100 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             z for lower
           </p>
           <p className="mt-2 text-3xl font-black">
@@ -400,7 +400,7 @@ function NormalCurveLab() {
         </div>
 
         <div className="rounded-2xl bg-slate-100 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             z for upper
           </p>
           <p className="mt-2 text-3xl font-black">
@@ -604,14 +604,14 @@ function StandardErrorLab() {
 
       <div className="mt-6 grid gap-4 md:grid-cols-3">
         <div className="rounded-2xl bg-slate-100 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             σ
           </p>
           <p className="mt-2 text-3xl font-black">{sd.toFixed(2)}</p>
         </div>
 
         <div className="rounded-2xl bg-slate-100 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             n
           </p>
           <p className="mt-2 text-3xl font-black">{n}</p>
@@ -680,7 +680,7 @@ export default function NormalDistributionCLTLessonPage() {
           </div>
 
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-700">
               Lesson structure
             </p>
             <p className="mt-2 text-sm leading-7 text-slate-600">

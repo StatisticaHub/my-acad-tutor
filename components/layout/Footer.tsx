@@ -33,7 +33,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-neutral-200 px-6 py-6 text-center text-sm text-neutral-500">
+      <div className="border-t border-neutral-200 px-6 py-6 text-center text-sm text-neutral-700">
         © 2026 My Academic Tutor. Built for responsible academic learning.
       </div>
     </footer>

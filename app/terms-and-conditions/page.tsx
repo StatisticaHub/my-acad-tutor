@@ -179,8 +179,8 @@ export default function TermsAndConditionsPage() {
             </div>
           </article>
 
-          <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
+          <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 text-[#111111] shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-neutral-700">
               Not allowed
             </p>
 
@@ -188,7 +188,7 @@ export default function TermsAndConditionsPage() {
               You must not use support dishonestly.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/90">
+            <p className="mt-5 text-base leading-8 text-neutral-700">
               Requests involving academic misconduct, impersonation,
               misrepresentation or dishonest completion may be refused.
             </p>
@@ -197,7 +197,7 @@ export default function TermsAndConditionsPage() {
               {notAllowed.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold leading-6 text-white/80"
+                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold leading-6 text-neutral-700"
                 >
                   {item}
                 </div>
@@ -278,7 +278,7 @@ export default function TermsAndConditionsPage() {
 
             <a
               href={withBasePath("/pricing")}
-              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 sm:w-auto"
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 sm:w-auto"
             >
               View pricing preview →
             </a>
@@ -286,8 +286,8 @@ export default function TermsAndConditionsPage() {
         </section>
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
+          <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 text-[#111111] shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-neutral-700">
               Disclaimer
             </p>
 
@@ -296,7 +296,7 @@ export default function TermsAndConditionsPage() {
               advice.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/90">
+            <p className="mt-5 text-base leading-8 text-neutral-700">
               My Academic Tutor provides educational support and learning
               resources. Students should follow their course instructions,
               university regulations, supervisor guidance and any applicable
@@ -304,8 +304,8 @@ export default function TermsAndConditionsPage() {
             </p>
           </article>
 
-          <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
+          <article className="rounded-[2rem] border border-[#ded9cf] bg-white p-6 text-[#111111] shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-neutral-700">
               Questions about terms?
             </p>
 
@@ -313,7 +313,7 @@ export default function TermsAndConditionsPage() {
               Contact us before using support in an uncertain situation.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/75">
+            <p className="mt-5 text-base leading-8 text-neutral-700">
               If you are unsure whether a request is appropriate, send a short
               message with your topic, goal and academic context.
             </p>

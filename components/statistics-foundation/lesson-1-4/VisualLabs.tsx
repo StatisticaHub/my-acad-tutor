@@ -113,7 +113,7 @@ export function HistogramLab() {
                   height: `${(bin.count / maxBinCount) * 230}px`,
                 }}
               />
-              <span className="mt-2 rotate-[-35deg] text-[10px] font-bold text-neutral-500">
+              <span className="mt-2 rotate-[-35deg] text-[10px] font-bold text-neutral-700">
                 {bin.start}-{bin.end}
               </span>
             </div>

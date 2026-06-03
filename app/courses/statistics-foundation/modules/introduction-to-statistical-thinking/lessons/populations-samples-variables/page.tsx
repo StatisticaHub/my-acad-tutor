@@ -203,7 +203,7 @@ function DialogueLine({
           right ? "bg-blue-50" : "bg-[#f8f6f1]"
         }`}
       >
-        <p className="mb-1 text-xs font-bold text-neutral-500">{speaker}</p>
+        <p className="mb-1 text-xs font-bold text-neutral-700">{speaker}</p>
         <div className="text-sm leading-7 text-neutral-800">{children}</div>
       </div>
     </div>
@@ -617,19 +617,19 @@ export default function PopulationsSamplesVariablesLessonPage() {
 
           <div className="mt-8 grid gap-3 md:grid-cols-4">
             <div className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4">
-              <p className="text-xs font-bold text-neutral-500">Time</p>
+              <p className="text-xs font-bold text-neutral-700">Time</p>
               <p className="mt-1 text-lg font-black">45–55 min</p>
             </div>
             <div className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4">
-              <p className="text-xs font-bold text-neutral-500">Level</p>
+              <p className="text-xs font-bold text-neutral-700">Level</p>
               <p className="mt-1 text-lg font-black">Foundation+</p>
             </div>
             <div className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4">
-              <p className="text-xs font-bold text-neutral-500">Focus</p>
+              <p className="text-xs font-bold text-neutral-700">Focus</p>
               <p className="mt-1 text-lg font-black">Study structure</p>
             </div>
             <div className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4">
-              <p className="text-xs font-bold text-neutral-500">Coding</p>
+              <p className="text-xs font-bold text-neutral-700">Coding</p>
               <p className="mt-1 text-lg font-black">None</p>
             </div>
           </div>
@@ -1079,7 +1079,7 @@ export default function PopulationsSamplesVariablesLessonPage() {
             <h2 className="text-2xl font-black tracking-tight">
               Lesson complete
             </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-white/70">
+            <p className="mt-2 max-w-2xl text-sm leading-7 text-white/90">
               Next, move to types of data. That lesson explains why the kind of
               variable determines the correct summary, graph and method.
             </p>

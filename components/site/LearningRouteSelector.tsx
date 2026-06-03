@@ -106,7 +106,7 @@ export default function LearningRouteSelector() {
             <div className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 shadow-sm md:p-8">
               <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                 <div>
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-neutral-500">
+                  <p className="text-sm font-black uppercase tracking-[0.22em] text-neutral-700">
                     Recommended route
                   </p>
 
@@ -140,7 +140,7 @@ export default function LearningRouteSelector() {
                     key={step}
                     className="rounded-[1.5rem] border border-neutral-200 bg-white p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.2em] text-neutral-400">
+                    <p className="text-xs font-black uppercase tracking-[0.2em] text-neutral-700">
                       Step {index + 1}
                     </p>
 
@@ -153,7 +153,7 @@ export default function LearningRouteSelector() {
 
               <a
                 href={withBasePath(route.href)}
-                className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 sm:w-auto"
+                className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 sm:w-auto"
               >
                 Continue →
               </a>

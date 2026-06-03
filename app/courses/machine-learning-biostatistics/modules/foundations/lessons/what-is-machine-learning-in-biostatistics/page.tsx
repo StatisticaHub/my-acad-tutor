@@ -277,7 +277,7 @@ ${code}
             <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-300">
               Editable R script
             </p>
-            <p className="mt-1 text-xs leading-5 text-slate-400">
+            <p className="mt-1 text-xs leading-5 text-slate-700">
               Runs in the browser using WebR and the shared diabetes CSV.
             </p>
           </div>
@@ -301,10 +301,10 @@ ${code}
 
       <div className="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
         <div className="border-b border-slate-200 bg-slate-50 px-4 py-4">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#6f0d12]">
             R console output
           </p>
-          <p className="mt-1 text-xs leading-5 text-slate-500">
+          <p className="mt-1 text-xs leading-5 text-slate-700">
             Output and errors appear here.
           </p>
         </div>
@@ -423,7 +423,7 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
             href={withBasePath(
               "/courses/machine-learning-biostatistics/modules/foundations"
             )}
-            className="text-sm font-black text-blue-600 transition hover:text-blue-700"
+            className="text-sm font-black text-[#6f0d12] transition hover:text-[#5f0b0f]"
           >
             ← Back to Module 1
           </a>
@@ -473,7 +473,7 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
                 key={label}
                 className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
               >
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                   {label}
                 </p>
                 <p className="mt-2 text-xl font-black text-slate-950">
@@ -716,7 +716,7 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
                 Next, separate prediction from explanation and causation.
               </h3>
 
-              <p className="mt-4 max-w-4xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
+              <p className="mt-4 max-w-4xl text-sm leading-7 text-white/90 md:text-base md:leading-8">
                 The next lesson explains why a model can predict well without
                 proving cause, and why causal language must be used carefully in
                 medical machine learning.
@@ -736,7 +736,7 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
 
         {activeTab === "Detailed Notes" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
               Detailed notes
             </p>
 
@@ -1003,7 +1003,7 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
                       key={label}
                       className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
                     >
-                      <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                      <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                         {label}
                       </p>
                       <p className="mt-2 text-3xl font-black text-blue-700">
@@ -1037,7 +1037,7 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
 
         {activeTab === "Interactive Lab" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
               Advanced interactive lab
             </p>
 
@@ -1122,7 +1122,7 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
                       ["Risk", selectedPatientData.risk.toFixed(2)],
                     ].map(([label, value]) => (
                       <div key={label}>
-                        <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                        <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                           {label}
                         </p>
                         <p className="mt-1 text-lg font-black text-slate-950">
@@ -1192,7 +1192,7 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
                     key={label}
                     className="rounded-3xl border border-slate-200 bg-white p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                       {label}
                     </p>
                     <p className="mt-2 text-3xl font-black text-blue-700">
@@ -1358,7 +1358,7 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
 
         {activeTab === "R Coding Lab" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
               R coding lab
             </p>
 
@@ -1420,7 +1420,7 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
 
         {activeTab === "Report" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
               Reporting
             </p>
 
@@ -1480,7 +1480,7 @@ export default function WhatIsMachineLearningInBiostatisticsPage() {
 
         {activeTab === "Quiz" && (
           <section className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.24em] text-blue-600">
+            <p className="text-sm font-black uppercase tracking-[0.24em] text-[#6f0d12]">
               Quiz
             </p>
 

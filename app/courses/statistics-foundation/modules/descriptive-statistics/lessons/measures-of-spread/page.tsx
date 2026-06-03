@@ -162,7 +162,7 @@ export default function MeasuresOfSpreadPage() {
           </div>
 
           <nav className="p-4">
-            <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-neutral-400">
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-neutral-700">
               Course modules
             </p>
 
@@ -188,7 +188,7 @@ export default function MeasuresOfSpreadPage() {
               label="Module 5 · Inference foundations"
             />
 
-            <p className="mb-3 mt-7 text-xs font-black uppercase tracking-[0.18em] text-neutral-400">
+            <p className="mb-3 mt-7 text-xs font-black uppercase tracking-[0.18em] text-neutral-700">
               Module 2 lessons
             </p>
 
@@ -213,7 +213,7 @@ export default function MeasuresOfSpreadPage() {
                   className={`whitespace-nowrap border-b-2 px-4 py-4 text-sm font-black transition ${
                     activeTab === tab
                       ? "border-blue-600 text-neutral-950"
-                      : "border-transparent text-neutral-500 hover:text-neutral-950"
+                      : "border-transparent text-neutral-700 hover:text-neutral-950"
                   }`}
                 >
                   {tab}
@@ -257,7 +257,7 @@ export default function MeasuresOfSpreadPage() {
                 <h2 className="text-2xl font-black tracking-tight">
                   Next lesson: Shape, skewness and outliers
                 </h2>
-                <p className="mt-2 max-w-2xl text-sm leading-7 text-white/70">
+                <p className="mt-2 max-w-2xl text-sm leading-7 text-white/90">
                   Centre and spread are not enough. Next, we study the shape of
                   a distribution and learn how skewness changes interpretation.
                 </p>
@@ -1005,7 +1005,7 @@ function QuizSection() {
       </h2>
 
       <div className="mt-6 rounded-[1.5rem] border border-[#ded9cf] bg-[#fbfaf6] p-6">
-        <p className="text-sm font-black text-neutral-500">
+        <p className="text-sm font-black text-neutral-700">
           Question {quizIndex + 1} of {quizQuestions.length}
         </p>
 
@@ -1121,7 +1121,7 @@ function Badge({ children }: { children: ReactNode }) {
 
 function SceneLabel({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-6 inline-flex rounded-full bg-[#f8f6f1] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+    <div className="mt-6 inline-flex rounded-full bg-[#f8f6f1] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-neutral-700">
       {children}
     </div>
   );
@@ -1166,7 +1166,7 @@ function Dialogue({
             : "border-[#ded9cf] bg-[#fbfaf6]"
         }`}
       >
-        <p className="text-xs font-black uppercase tracking-[0.14em] text-neutral-400">
+        <p className="text-xs font-black uppercase tracking-[0.14em] text-neutral-700">
           {speaker}
         </p>
         <p className="mt-2 leading-7 text-neutral-700">{text}</p>
@@ -1253,7 +1253,7 @@ function DerivationBox({
 function Takeaway({ points }: { points: string[] }) {
   return (
     <div className="mt-8 rounded-[1.5rem] border border-[#ded9cf] bg-[#f8f6f1] p-5">
-      <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+      <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-700">
         Key takeaways
       </p>
       <ul className="mt-4 list-disc space-y-2 pl-6 text-sm leading-7 text-neutral-700">
@@ -1268,7 +1268,7 @@ function Takeaway({ points }: { points: string[] }) {
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-2xl border border-[#ded9cf] bg-white p-4 text-center">
-      <p className="text-xs font-black uppercase tracking-[0.14em] text-neutral-400">
+      <p className="text-xs font-black uppercase tracking-[0.14em] text-neutral-700">
         {label}
       </p>
       <p className="mt-2 text-xl font-black tracking-tight">{value}</p>

@@ -20,7 +20,7 @@ export default function ResearchDissertationPathwayPage() {
             Plan research and dissertation work with statistical clarity.
           </h1>
 
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/70">
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/90">
             This pathway supports students with research planning, analysis thinking,
             interpretation, methods writing and responsible academic development.
           </p>

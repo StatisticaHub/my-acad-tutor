@@ -312,7 +312,7 @@ ${code}
             <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-300">
               Editable R script
             </p>
-            <p className="mt-1 text-xs leading-5 text-slate-400">
+            <p className="mt-1 text-xs leading-5 text-slate-700">
               Runs in the browser using WebR and the shared diabetes CSV.
             </p>
           </div>
@@ -339,7 +339,7 @@ ${code}
           <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
             R console output
           </p>
-          <p className="mt-1 text-xs leading-5 text-slate-500">
+          <p className="mt-1 text-xs leading-5 text-slate-700">
             Output and errors appear here.
           </p>
         </div>
@@ -617,7 +617,7 @@ export default function PredictionExplanationCausalThinkingPage() {
                 key={label}
                 className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
               >
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                   {label}
                 </p>
                 <p className="mt-2 text-xl font-black text-slate-950">
@@ -1333,7 +1333,7 @@ export default function PredictionExplanationCausalThinkingPage() {
                     key={label}
                     className="rounded-3xl border border-slate-200 bg-white p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+                    <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
                       {label}
                     </p>
                     <p className="mt-2 text-3xl font-black text-blue-700">
@@ -1760,7 +1760,7 @@ export default function PredictionExplanationCausalThinkingPage() {
             Next, classify the types of learning problems.
           </h2>
 
-          <p className="mt-4 max-w-4xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-white/90 md:text-base md:leading-8">
             The next lesson introduces supervised, unsupervised and
             semi-supervised learning, and explains how the outcome structure
             determines the learning task.

@@ -256,7 +256,7 @@ function DialogueLine({
           right ? "bg-blue-50" : "bg-[#f8f6f1]"
         }`}
       >
-        <p className="mb-1 text-xs font-bold text-neutral-500">{speaker}</p>
+        <p className="mb-1 text-xs font-bold text-neutral-700">{speaker}</p>
         <div className="text-sm leading-7 text-neutral-800">{children}</div>
       </div>
     </div>
@@ -898,7 +898,7 @@ export default function SamplingMethodsLessonPage() {
                 key={label}
                 className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4"
               >
-                <p className="text-xs font-bold text-neutral-500">{label}</p>
+                <p className="text-xs font-bold text-neutral-700">{label}</p>
                 <p className="mt-1 text-lg font-black">{value}</p>
               </div>
             ))}
@@ -1422,7 +1422,7 @@ export default function SamplingMethodsLessonPage() {
             <h2 className="text-2xl font-black tracking-tight">
               Module 1 complete
             </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-7 text-white/70">
+            <p className="mt-2 max-w-2xl text-sm leading-7 text-white/90">
               You have completed the introductory statistical thinking module.
               Next, move to descriptive statistics and learn how to summarise
               numerical data more formally.

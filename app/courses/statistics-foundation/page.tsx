@@ -142,7 +142,7 @@ export default function StatisticsFoundationCoursePage() {
             </div>
 
             <div className="rounded-[2rem] border border-neutral-200 bg-[#f8f6f1] p-6 shadow-sm">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-neutral-700">
                 Course snapshot
               </p>
 
@@ -178,7 +178,7 @@ export default function StatisticsFoundationCoursePage() {
         <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
           <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
             <h2 className="text-lg font-semibold">Lecture-style explanations</h2>
-            <p className="mt-2 text-sm leading-7 text-white/70">
+            <p className="mt-2 text-sm leading-7 text-white/90">
               Lessons use recurring characters and conversational teaching to
               make abstract ideas easier to follow.
             </p>
@@ -186,7 +186,7 @@ export default function StatisticsFoundationCoursePage() {
 
           <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
             <h2 className="text-lg font-semibold">Detailed theoretical notes</h2>
-            <p className="mt-2 text-sm leading-7 text-white/70">
+            <p className="mt-2 text-sm leading-7 text-white/90">
               Notes include notation, definitions, derivations, interpretation
               and exam-style reasoning.
             </p>
@@ -194,7 +194,7 @@ export default function StatisticsFoundationCoursePage() {
 
           <div className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
             <h2 className="text-lg font-semibold">Interactive visual learning</h2>
-            <p className="mt-2 text-sm leading-7 text-white/70">
+            <p className="mt-2 text-sm leading-7 text-white/90">
               Visual labs, worked examples and quizzes help students test their
               understanding as they progress.
             </p>
@@ -299,7 +299,7 @@ export default function StatisticsFoundationCoursePage() {
               </p>
 
               <div className="mt-5 flex items-center justify-between gap-4">
-                <span className="text-sm font-semibold text-neutral-500">
+                <span className="text-sm font-semibold text-neutral-700">
                   {module.lessons}
                 </span>
 

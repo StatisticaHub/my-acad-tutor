@@ -172,7 +172,7 @@ export default function MachineLearningBiostatisticsCoursePage() {
           </div>
 
           <div className="mt-10">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-neutral-500">
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-neutral-700">
               Course snapshot
             </p>
 

@@ -12,7 +12,7 @@ export default function LessonSection({
   return (
     <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
       {eyebrow && (
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#6f0d12]">
           {eyebrow}
         </p>
       )}

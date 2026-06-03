@@ -20,7 +20,7 @@ export default function DataSciencePathwayPage() {
             Build practical data science skills with statistical thinking.
           </h1>
 
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/70">
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-white/90">
             This pathway connects data exploration, modelling, machine learning,
             validation and communication for students working with real datasets.
           </p>

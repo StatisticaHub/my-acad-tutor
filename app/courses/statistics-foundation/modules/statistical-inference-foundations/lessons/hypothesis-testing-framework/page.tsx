@@ -188,7 +188,7 @@ function DialogueLine({
             : "border-slate-200 bg-white"
         }`}
       >
-        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+        <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-slate-700">
           {name}
         </p>
         <p className="text-sm leading-7 text-slate-700">{children}</p>
@@ -348,7 +348,7 @@ function TestStatisticLab() {
         </div>
 
         <div className="rounded-2xl bg-slate-100 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             p-value
           </p>
           <p className="mt-2 text-3xl font-black">{p.toFixed(4)}</p>
@@ -368,7 +368,7 @@ function TestStatisticLab() {
         >
           <p
             className={`text-xs font-black uppercase tracking-[0.14em] ${
-              reject ? "text-red-700" : "text-emerald-700"
+              reject ? "text-[#6f0d12]" : "text-emerald-700"
             }`}
           >
             decision
@@ -613,7 +613,7 @@ function PowerLab() {
         </div>
 
         <div className="rounded-2xl bg-slate-100 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             critical z
           </p>
           <p className="mt-2 text-3xl font-black">{critical.toFixed(3)}</p>
@@ -704,7 +704,7 @@ function SignificancePracticalLab() {
         </div>
 
         <div className="rounded-2xl bg-slate-100 p-4 text-center">
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
             p-value
           </p>
           <p className="mt-2 text-3xl font-black">{p.toFixed(4)}</p>
@@ -792,7 +792,7 @@ export default function HypothesisTestingFrameworkLessonPage() {
           </div>
 
           <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5">
-            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-400">
+            <p className="text-xs font-black uppercase tracking-[0.16em] text-slate-700">
               Lesson structure
             </p>
             <p className="mt-2 text-sm leading-7 text-slate-600">

@@ -255,7 +255,7 @@ export default function CorrelationAssociationPage() {
           </div>
 
           <nav className="p-4">
-            <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-neutral-400">
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-neutral-700">
               Course modules
             </p>
 
@@ -281,7 +281,7 @@ export default function CorrelationAssociationPage() {
               label="Module 5 · Inference foundations"
             />
 
-            <p className="mb-3 mt-7 text-xs font-black uppercase tracking-[0.18em] text-neutral-400">
+            <p className="mb-3 mt-7 text-xs font-black uppercase tracking-[0.18em] text-neutral-700">
               Module 2 lessons
             </p>
 
@@ -306,7 +306,7 @@ export default function CorrelationAssociationPage() {
                   className={`whitespace-nowrap border-b-2 px-4 py-4 text-sm font-black transition ${
                     activeTab === tab
                       ? "border-blue-600 text-neutral-950"
-                      : "border-transparent text-neutral-500 hover:text-neutral-950"
+                      : "border-transparent text-neutral-700 hover:text-neutral-950"
                   }`}
                 >
                   {tab}
@@ -351,7 +351,7 @@ export default function CorrelationAssociationPage() {
                 <h2 className="text-2xl font-black tracking-tight">
                   Module 2 complete
                 </h2>
-                <p className="mt-2 max-w-2xl text-sm leading-7 text-white/70">
+                <p className="mt-2 max-w-2xl text-sm leading-7 text-white/90">
                   You have now covered centre, spread, shape, standardisation
                   and association. Next, we move into probability foundations.
                 </p>
@@ -1055,7 +1055,7 @@ function QuizSection() {
       </h2>
 
       <div className="mt-6 rounded-[1.5rem] border border-[#ded9cf] bg-[#fbfaf6] p-6">
-        <p className="text-sm font-black text-neutral-500">
+        <p className="text-sm font-black text-neutral-700">
           Question {quizIndex + 1} of {quizQuestions.length}
         </p>
 
@@ -1189,10 +1189,10 @@ function ScatterPlot({
         ))}
       </div>
 
-      <p className="absolute bottom-3 left-1/2 -translate-x-1/2 text-xs font-black uppercase tracking-[0.14em] text-neutral-500">
+      <p className="absolute bottom-3 left-1/2 -translate-x-1/2 text-xs font-black uppercase tracking-[0.14em] text-neutral-700">
         x variable
       </p>
-      <p className="absolute left-2 top-1/2 -translate-y-1/2 -rotate-90 text-xs font-black uppercase tracking-[0.14em] text-neutral-500">
+      <p className="absolute left-2 top-1/2 -translate-y-1/2 -rotate-90 text-xs font-black uppercase tracking-[0.14em] text-neutral-700">
         y variable
       </p>
     </div>
@@ -1245,7 +1245,7 @@ function Badge({ children }: { children: ReactNode }) {
 
 function SceneLabel({ children }: { children: ReactNode }) {
   return (
-    <div className="mt-6 inline-flex rounded-full bg-[#f8f6f1] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+    <div className="mt-6 inline-flex rounded-full bg-[#f8f6f1] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-neutral-700">
       {children}
     </div>
   );
@@ -1290,7 +1290,7 @@ function Dialogue({
             : "border-[#ded9cf] bg-[#fbfaf6]"
         }`}
       >
-        <p className="text-xs font-black uppercase tracking-[0.14em] text-neutral-400">
+        <p className="text-xs font-black uppercase tracking-[0.14em] text-neutral-700">
           {speaker}
         </p>
         <p className="mt-2 leading-7 text-neutral-700">{text}</p>
@@ -1377,7 +1377,7 @@ function DerivationBox({
 function Takeaway({ points }: { points: string[] }) {
   return (
     <div className="mt-8 rounded-[1.5rem] border border-[#ded9cf] bg-[#f8f6f1] p-5">
-      <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+      <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-700">
         Key takeaways
       </p>
       <ul className="mt-4 list-disc space-y-2 pl-6 text-sm leading-7 text-neutral-700">
@@ -1392,7 +1392,7 @@ function Takeaway({ points }: { points: string[] }) {
 function StatCard({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-2xl border border-[#ded9cf] bg-white p-4 text-center">
-      <p className="text-xs font-black uppercase tracking-[0.14em] text-neutral-400">
+      <p className="text-xs font-black uppercase tracking-[0.14em] text-neutral-700">
         {label}
       </p>
       <p className="mt-2 text-xl font-black tracking-tight">{value}</p>

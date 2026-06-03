@@ -52,12 +52,12 @@ export default function IntroductionToStatisticalThinkingModulePage() {
       <section className="mx-auto max-w-6xl">
         <a
           href={withBasePath("/courses/statistics-foundation")}
-          className="text-sm font-semibold text-blue-600 hover:text-blue-700"
+          className="text-sm font-semibold text-[#6f0d12] hover:text-[#5f0b0f]"
         >
           ← Back to Statistics Foundation
         </a>
 
-        <p className="mt-8 text-sm font-semibold uppercase tracking-[0.2em] text-blue-600">
+        <p className="mt-8 text-sm font-semibold uppercase tracking-[0.2em] text-[#6f0d12]">
           Module 1
         </p>
 
@@ -98,7 +98,7 @@ export default function IntroductionToStatisticalThinkingModulePage() {
               href={withBasePath(lesson.href)}
               className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
-              <p className="text-sm font-semibold text-blue-600">
+              <p className="text-sm font-semibold text-[#6f0d12]">
                 Lesson {lesson.number}
               </p>
 

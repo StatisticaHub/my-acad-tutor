@@ -41,7 +41,7 @@ export default function CourseCard({
         {description}
       </p>
 
-      <div className="mt-6 flex flex-wrap gap-3 text-xs font-medium text-neutral-500">
+      <div className="mt-6 flex flex-wrap gap-3 text-xs font-medium text-neutral-700">
         <span>{level}</span>
         <span>•</span>
         <span>{duration}</span>
