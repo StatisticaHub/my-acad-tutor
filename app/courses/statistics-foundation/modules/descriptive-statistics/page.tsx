@@ -1,11 +1,15 @@
-const basePath =
-  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
   if (href.startsWith("#")) return href;
+  if (href.startsWith("http")) return href;
+  if (href.startsWith("mailto:")) return href;
+
   const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
-  return `${basePath}${cleanHref}`;
+  const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
+
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
 }
 
 const lessons = [
@@ -13,356 +17,276 @@ const lessons = [
     number: "2.1",
     title: "Measures of centre",
     description:
-      "Study mean, median and mode as different ways of describing a typical value, including outlier sensitivity and skewed data interpretation.",
+      "Learn how the mean, median and mode describe a typical value, and when each measure is appropriate.",
     href: "/courses/statistics-foundation/modules/descriptive-statistics/lessons/measures-of-centre",
-    status: "Complete",
   },
   {
     number: "2.2",
     title: "Measures of spread",
     description:
-      "Understand range, quartiles, IQR, variance, standard deviation and coefficient of variation as tools for describing variability.",
+      "Understand range, interquartile range, variance and standard deviation as ways of describing variability.",
     href: "/courses/statistics-foundation/modules/descriptive-statistics/lessons/measures-of-spread",
-    status: "Complete",
   },
   {
     number: "2.3",
-    title: "Shape, skewness and outliers",
+    title: "Quartiles, percentiles and five-number summaries",
     description:
-      "Learn how distribution shape, symmetry, skewness, modality and outliers affect how we summarise and interpret data.",
-    href: "/courses/statistics-foundation/modules/descriptive-statistics/lessons/shape-skewness-outliers",
-    status: "Complete",
+      "Study how ordered data can be divided into positions, quartiles, percentiles and boxplot summaries.",
+    href: "/courses/statistics-foundation/modules/descriptive-statistics/lessons/quartiles-percentiles-five-number-summaries",
   },
   {
     number: "2.4",
-    title: "Standardisation and z-scores",
+    title: "Shape, skewness and outliers",
     description:
-      "Convert raw values into standard deviation units to compare observations across different distributions, scales and contexts.",
-    href: "/courses/statistics-foundation/modules/descriptive-statistics/lessons/z-scores",
-    status: "Complete",
+      "Learn how distributions can be symmetric, skewed, heavy-tailed or affected by unusual observations.",
+    href: "/courses/statistics-foundation/modules/descriptive-statistics/lessons/shape-skewness-and-outliers",
   },
   {
     number: "2.5",
-    title: "Correlation and association",
+    title: "Comparing groups descriptively",
     description:
-      "Move from one-variable description to two-variable association using scatterplots, covariance, Pearson correlation and causal caution.",
-    href: "/courses/statistics-foundation/modules/descriptive-statistics/lessons/correlation-association",
-    status: "Complete",
+      "Bring centre, spread, shape and graphical summaries together to compare groups carefully.",
+    href: "/courses/statistics-foundation/modules/descriptive-statistics/lessons/comparing-groups-descriptively",
   },
 ];
 
 const moduleStats = [
-  {
-    label: "Lessons",
-    value: "5",
-  },
-  {
-    label: "Interactive labs",
-    value: "5",
-  },
-  {
-    label: "Coding required",
-    value: "0",
-  },
-  {
-    label: "Focus",
-    value: "Theory",
-  },
+  ["5", "Lessons"],
+  ["Zero", "Coding"],
+  ["Foundation", "Level"],
+  ["Summary", "Focus"],
 ];
 
-const learningFlow = [
+const moduleFocus = [
   {
-    title: "Summarise location",
-    body: "Start by learning how mean, median and mode define the centre of a dataset in different ways.",
+    title: "Centre",
+    body: "Students learn how typical values can be summarised using the mean, median and mode.",
   },
   {
-    title: "Describe variation",
-    body: "Then study how far values spread from the centre using range, IQR, variance and standard deviation.",
+    title: "Spread",
+    body: "The module explains why variability matters and how range, IQR, variance and standard deviation describe it.",
   },
   {
-    title: "Read the distribution",
-    body: "Move beyond numbers by interpreting shape, skewness, modality and outliers using graphs and rules.",
-  },
-  {
-    title: "Compare positions",
-    body: "Use z-scores to compare raw values fairly across distributions with different means and spreads.",
-  },
-  {
-    title: "Describe relationships",
-    body: "Finish by studying how two numerical variables move together through scatterplots and correlation.",
+    title: "Shape",
+    body: "Students connect numerical summaries to distribution shape, skewness, outliers and group comparison.",
   },
 ];
 
 export default function DescriptiveStatisticsModulePage() {
   return (
-    <main className="min-h-screen bg-[#f2efe7] text-neutral-950">
-      <div className="mx-auto max-w-7xl px-5 py-8 md:px-8 md:py-12">
-        <header className="mb-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-          <a
-            href={withBasePath("/courses/statistics-foundation")}
-            className="inline-flex items-center gap-2 text-sm font-black text-blue-700 hover:text-blue-800"
-          >
-            ← Back to Statistics Foundation
-          </a>
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
+      <section className="mx-auto max-w-7xl">
+        <a
+          href={withBasePath("/courses/statistics-foundation")}
+          className="text-sm font-bold text-[#8b1116] transition hover:text-[#5f0b0f]"
+        >
+          ← Back to Statistics Foundation
+        </a>
 
-          <nav className="flex flex-wrap gap-2">
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Module 2
+          </p>
+
+          <div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div>
+              <h1 className="max-w-5xl text-4xl font-black leading-[1.02] tracking-[-0.05em] text-[#111111] sm:text-5xl md:text-6xl">
+                Descriptive Statistics
+              </h1>
+
+              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+                This module teaches students how to summarise data using
+                measures of centre, spread, position, shape and group comparison.
+                The focus is not only on calculating summaries, but on
+                interpreting what they reveal about a dataset.
+              </p>
+            </div>
+
+            <div className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-6">
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
+                Module aim
+              </p>
+
+              <h2 className="mt-4 text-2xl font-black tracking-[-0.04em] text-[#111111]">
+                Learn how to describe data clearly before probability and inference.
+              </h2>
+
+              <p className="mt-4 text-sm leading-7 text-neutral-700">
+                Descriptive statistics gives students the language needed to
+                explain what a dataset looks like before moving into probability,
+                uncertainty, statistical inference and regression.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {moduleStats.map(([value, label]) => (
+              <div
+                key={label}
+                className="rounded-3xl border border-neutral-200 bg-[#f7f4ee] p-5"
+              >
+                <p className="text-2xl font-black tracking-[-0.04em] text-[#111111]">
+                  {value}
+                </p>
+
+                <p className="mt-2 text-sm font-bold text-neutral-700">
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href={withBasePath(
-                "/courses/statistics-foundation/modules/introduction-to-statistical-thinking"
+                "/courses/statistics-foundation/modules/descriptive-statistics/lessons/measures-of-centre"
               )}
-              className="rounded-full border border-[#ded9cf] bg-white/80 px-4 py-2 text-sm font-bold text-neutral-700 hover:bg-white"
+              className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-4 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#2a2a2a] sm:w-auto"
             >
-              Module 1
+              Start Lesson 2.1
             </a>
+
             <a
               href={withBasePath(
                 "/courses/statistics-foundation/modules/probability-foundations"
               )}
-              className="rounded-full border border-[#ded9cf] bg-white/80 px-4 py-2 text-sm font-bold text-neutral-700 hover:bg-white"
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-4 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f7f4ee] sm:w-auto"
             >
-              Module 3 →
+              Next module →
             </a>
-          </nav>
-        </header>
 
-        <section className="overflow-hidden rounded-[2.2rem] border border-[#ded9cf] bg-white p-7 shadow-sm md:p-10">
-          <div className="grid gap-10 lg:grid-cols-[1.35fr_0.75fr] lg:items-end">
-            <div>
-              <div className="mb-5 flex flex-wrap gap-2">
-                <span className="rounded-full bg-blue-100 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-blue-800">
-                  Module 2
-                </span>
-                <span className="rounded-full bg-emerald-100 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-emerald-800">
-                  Descriptive Statistics
-                </span>
-                <span className="rounded-full bg-amber-100 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-amber-800">
-                  Zero coding
-                </span>
-              </div>
-
-              <h1 className="max-w-5xl text-3xl font-black tracking-[-0.045em] sm:text-4xl md:text-6xl">
-                Descriptive Statistics
-              </h1>
-
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-600">
-                This module teaches students how to describe data carefully
-                before moving into probability and inference. It begins with
-                centre and spread, then moves into distribution shape, outliers,
-                standardisation and correlation.
-              </p>
-
-              <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-600">
-                The aim is not just to calculate statistics. The aim is to
-                decide which summaries are meaningful, how they can mislead,
-                and how graphical and numerical summaries work together.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href={withBasePath(
-                    "/courses/statistics-foundation/modules/descriptive-statistics/lessons/measures-of-centre"
-                  )}
-                  className="rounded-full bg-neutral-950 px-6 py-3 text-sm font-black text-white transition hover:bg-neutral-800"
-                >
-                  Start Lesson 2.1
-                </a>
-                <a
-                  href="#module-lessons"
-                  className="rounded-full border border-[#ded9cf] bg-white px-6 py-3 text-sm font-black text-neutral-950 transition hover:bg-[#f8f6f1]"
-                >
-                  View lessons
-                </a>
-              </div>
-            </div>
-
-            <aside className="rounded-[1.7rem] border border-[#ded9cf] bg-[#fbfaf6] p-5">
-              <h2 className="text-lg font-black tracking-tight">
-                Module snapshot
-              </h2>
-
-              <div className="mt-5 grid grid-cols-2 gap-3">
-                {moduleStats.map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-2xl border border-[#ded9cf] bg-white p-4"
-                  >
-                    <strong className="block text-2xl font-black tracking-tight">
-                      {item.value}
-                    </strong>
-                    <span className="mt-1 block text-xs font-bold text-neutral-700">
-                      {item.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-5 rounded-2xl border border-[#ded9cf] bg-white p-4">
-                <p className="text-xs font-black uppercase tracking-[0.16em] text-blue-700">
-                  Skills developed
-                </p>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-neutral-600">
-                  <li>Choosing suitable descriptive summaries.</li>
-                  <li>Reading graphs and distribution shape.</li>
-                  <li>Detecting and interpreting outliers responsibly.</li>
-                  <li>Comparing values using standard units.</li>
-                  <li>
-                    Understanding correlation without overclaiming causation.
-                  </li>
-                </ul>
-              </div>
-            </aside>
+            <a
+              href={withBasePath(
+                "/courses/statistics-foundation/modules/introduction-to-statistical-thinking"
+              )}
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-4 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f7f4ee] sm:w-auto"
+            >
+              Previous module
+            </a>
           </div>
         </section>
 
-        <section id="module-lessons" className="mt-12">
-          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
-                Module lessons
-              </p>
-              <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
-                Five lessons from summaries to association
+        <section className="mt-8 grid gap-4 md:grid-cols-3">
+          {moduleFocus.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+            >
+              <h2 className="text-xl font-black tracking-[-0.03em] text-[#111111]">
+                {item.title}
               </h2>
-            </div>
 
-            <p className="max-w-2xl text-sm leading-7 text-neutral-600">
-              Each lesson contains a character-based lecture, detailed notes,
-              an interactive lab, worked examples and a quiz.
+              <p className="mt-4 text-sm leading-7 text-neutral-700">
+                {item.body}
+              </p>
+            </article>
+          ))}
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Module lessons
+          </p>
+
+          <div className="mt-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <h2 className="max-w-4xl text-3xl font-black tracking-[-0.04em] text-[#111111] md:text-4xl">
+              Study descriptive summaries in order.
+            </h2>
+
+            <p className="max-w-3xl text-base leading-8 text-neutral-700">
+              Each lesson builds a different descriptive skill: identifying the
+              centre of data, measuring variability, using ordered positions,
+              recognising shape and comparing groups responsibly.
             </p>
           </div>
 
-          <div className="grid gap-4">
+          <div className="mt-8 grid gap-5">
             {lessons.map((lesson) => (
               <a
                 key={lesson.number}
                 href={withBasePath(lesson.href)}
-                className="group rounded-[1.5rem] border border-[#ded9cf] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                className="group rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:p-7"
               >
-                <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
-                  <div className="flex gap-5">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-100 text-lg font-black text-blue-800">
+                <div className="grid gap-5 md:grid-cols-[0.18fr_1fr_auto] md:items-center">
+                  <div>
+                    <p className="text-3xl font-black tracking-[-0.05em] text-[#8b1116]">
                       {lesson.number}
-                    </div>
-
-                    <div>
-                      <h3 className="text-2xl font-black tracking-tight">
-                        {lesson.title}
-                      </h3>
-                      <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-600">
-                        {lesson.description}
-                      </p>
-
-                      <div className="mt-5 flex flex-wrap gap-2">
-                        <span className="rounded-full bg-[#f8f6f1] px-3 py-2 text-xs font-black text-neutral-600">
-                          Lecture
-                        </span>
-                        <span className="rounded-full bg-[#f8f6f1] px-3 py-2 text-xs font-black text-neutral-600">
-                          Detailed notes
-                        </span>
-                        <span className="rounded-full bg-[#f8f6f1] px-3 py-2 text-xs font-black text-neutral-600">
-                          Interactive lab
-                        </span>
-                        <span className="rounded-full bg-[#f8f6f1] px-3 py-2 text-xs font-black text-neutral-600">
-                          Quiz
-                        </span>
-                      </div>
-                    </div>
+                    </p>
                   </div>
 
-                  <div className="flex shrink-0 items-center gap-3 md:flex-col md:items-end">
-                    <span className="rounded-full bg-emerald-100 px-3 py-2 text-xs font-black text-emerald-800">
-                      {lesson.status}
-                    </span>
-                    <span className="text-sm font-black text-blue-700 opacity-100 transition group-hover:translate-x-1">
-                      Open lesson →
-                    </span>
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-700">
+                      Lesson {lesson.number}
+                    </p>
+
+                    <h3 className="mt-2 text-2xl font-black leading-tight tracking-[-0.04em] text-[#111111]">
+                      {lesson.title}
+                    </h3>
+
+                    <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-700">
+                      {lesson.description}
+                    </p>
                   </div>
+
+                  <p className="text-sm font-black text-[#8b1116] transition group-hover:translate-x-1">
+                    Open lesson →
+                  </p>
                 </div>
               </a>
             ))}
           </div>
         </section>
 
-        <section className="mt-12">
-          <div className="mb-6">
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
-              Learning flow
+        <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
+              Learning route
             </p>
-            <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
-              How Module 2 becomes more advanced
+
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Complete descriptive statistics before studying probability.
             </h2>
-          </div>
 
-          <div className="grid gap-4 md:grid-cols-5">
-            {learningFlow.map((step, index) => (
-              <div
-                key={step.title}
-                className="rounded-[1.35rem] border border-[#ded9cf] bg-white p-5 shadow-sm"
-              >
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-neutral-950 text-sm font-black text-white">
-                  {index + 1}
-                </div>
-
-                <h3 className="mt-5 text-lg font-black tracking-tight">
-                  {step.title}
-                </h3>
-
-                <p className="mt-3 text-sm leading-7 text-neutral-600">
-                  {step.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-12 grid gap-4 md:grid-cols-2">
-          <div className="rounded-[1.5rem] border border-[#ded9cf] bg-white p-6 shadow-sm">
-            <h2 className="text-2xl font-black tracking-tight">
-              What students should understand by the end
-            </h2>
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-7 text-neutral-600">
-              <li>
-                Why mean, median and mode answer different “typical value”
-                questions.
-              </li>
-              <li>
-                Why spread is essential for understanding consistency and
-                variability.
-              </li>
-              <li>How skewness and outliers affect centre and spread.</li>
-              <li>
-                How z-scores compare raw values using standard deviation units.
-              </li>
-              <li>
-                How correlation summarises linear association but does not prove
-                causation.
-              </li>
-            </ul>
-          </div>
-
-          <div className="rounded-[1.5rem] border border-[#ded9cf] bg-white p-6 shadow-sm">
-            <h2 className="text-2xl font-black tracking-tight">
-              Preparation for Module 3
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-neutral-600">
-              Descriptive statistics prepares students for probability by
-              making them comfortable with distributions, variability, unusual
-              observations and standardised scales. These ideas will return when
-              we study random events, probability rules, conditional probability
-              and later statistical inference.
+            <p className="mt-5 text-base leading-8 text-white/90">
+              Module 3 assumes that students can describe data clearly using
+              centre, spread, position, shape and comparisons before moving into
+              chance, events and probability rules.
             </p>
 
             <a
               href={withBasePath(
                 "/courses/statistics-foundation/modules/probability-foundations"
               )}
-              className="mt-6 inline-flex rounded-full bg-neutral-950 px-5 py-3 text-sm font-black text-white"
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
             >
               Continue to Module 3 →
             </a>
-          </div>
+          </article>
+
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
+              Course pathway
+            </p>
+
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Return to the full Statistics Foundation course.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-white/90">
+              Use the course homepage to move between all five modules, review
+              the full structure and continue through the 26-lesson foundation
+              pathway.
+            </p>
+
+            <a
+              href={withBasePath("/courses/statistics-foundation")}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+            >
+              Back to course →
+            </a>
+          </article>
         </section>
-      </div>
+      </section>
     </main>
   );
 }

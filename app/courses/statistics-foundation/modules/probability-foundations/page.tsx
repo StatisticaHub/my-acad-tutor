@@ -1,211 +1,294 @@
-const basePath =
-  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
   if (href.startsWith("#")) return href;
+  if (href.startsWith("http")) return href;
+  if (href.startsWith("mailto:")) return href;
+
   const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
-  return `${basePath}${cleanHref}`;
+  const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
+
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
 }
 
 const lessons = [
   {
     number: "3.1",
-    title: "Probability Basics and Axioms",
-    href: "/courses/statistics-foundation/modules/probability-foundations/lessons/probability-basics-and-axioms",
+    title: "What is probability?",
     description:
-      "Sample spaces, events, complements, unions, intersections, probability axioms and the addition rule.",
-    status: "Ready",
+      "Understand probability as a mathematical language for uncertainty, chance, events and long-run behaviour.",
+    href: "/courses/statistics-foundation/modules/probability-foundations/lessons/what-is-probability",
   },
   {
     number: "3.2",
-    title: "Conditional Probability and Bayes' Theorem",
-    href: "/courses/statistics-foundation/modules/probability-foundations/lessons/conditional-probability-and-bayes",
+    title: "Events, sample spaces and probability rules",
     description:
-      "Conditional probability, independence, multiplication rule, Bayes' theorem and diagnostic testing.",
-    status: "Ready",
+      "Learn how outcomes, events, complements, unions, intersections and probability rules are used to reason about chance.",
+    href: "/courses/statistics-foundation/modules/probability-foundations/lessons/events-sample-spaces-probability-rules",
   },
   {
     number: "3.3",
-    title: "Random Variables and Expectation",
-    href: "/courses/statistics-foundation/modules/probability-foundations/lessons/random-variables-and-expectation",
+    title: "Conditional probability",
     description:
-      "Random variables, probability distributions, expectation, variance and indicator variables.",
-    status: "Ready",
+      "Study how probabilities change when information is known, and why conditional thinking is central to statistics.",
+    href: "/courses/statistics-foundation/modules/probability-foundations/lessons/conditional-probability",
   },
   {
     number: "3.4",
-    title: "Discrete Distributions",
-    href: "/courses/statistics-foundation/modules/probability-foundations/lessons/discrete-distributions",
+    title: "Independence and dependence",
     description:
-      "Bernoulli, binomial, geometric and Poisson distributions with assumptions and interpretation.",
-    status: "Ready",
+      "Understand when events are independent, when they are dependent and why this distinction matters in statistical reasoning.",
+    href: "/courses/statistics-foundation/modules/probability-foundations/lessons/independence-and-dependence",
   },
   {
     number: "3.5",
-    title: "Normal Distribution and Central Limit Theorem",
-    href: "/courses/statistics-foundation/modules/probability-foundations/lessons/normal-distribution-and-clt",
+    title: "Bayes’ theorem and diagnostic reasoning",
     description:
-      "Normal curves, z-scores, areas, standardisation, sampling distributions and the CLT.",
-    status: "Ready",
+      "Learn how Bayes’ theorem connects prior probability, evidence and updated probability using diagnostic-style examples.",
+    href: "/courses/statistics-foundation/modules/probability-foundations/lessons/bayes-theorem-and-diagnostic-reasoning",
+  },
+];
+
+const moduleStats = [
+  ["5", "Lessons"],
+  ["Zero", "Coding"],
+  ["Foundation", "Level"],
+  ["Probability", "Focus"],
+];
+
+const moduleFocus = [
+  {
+    title: "Uncertainty",
+    body: "Students learn probability as the formal language used to describe chance, uncertainty and long-run behaviour.",
+  },
+  {
+    title: "Rules",
+    body: "The module builds core probability rules using outcomes, events, complements, unions, intersections and conditions.",
+  },
+  {
+    title: "Reasoning",
+    body: "Students connect probability to conditional thinking, independence, dependence, Bayes’ theorem and diagnostic interpretation.",
   },
 ];
 
 export default function ProbabilityFoundationsModulePage() {
   return (
-    <main className="min-h-screen bg-slate-50 px-6 py-16 text-slate-950">
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses/statistics-foundation")}
-          className="text-sm font-semibold text-blue-700 hover:text-blue-900"
+          className="text-sm font-bold text-[#8b1116] transition hover:text-[#5f0b0f]"
         >
           ← Back to Statistics Foundation
         </a>
 
-        <div className="mt-10 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-sm">
-          <div className="grid gap-8 p-8 md:p-10 lg:grid-cols-[1.35fr_0.75fr] lg:items-end">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-700">
-                Module 3
-              </p>
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Module 3
+          </p>
 
-              <h1 className="mt-4 max-w-4xl text-3xl font-black tracking-tight sm:text-4xl md:text-6xl">
+          <div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div>
+              <h1 className="max-w-5xl text-4xl font-black leading-[1.02] tracking-[-0.05em] text-[#111111] sm:text-5xl md:text-6xl">
                 Probability Foundations
               </h1>
 
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-                Probability is the mathematical language of uncertainty. This
-                module moves from simple events to conditional probability,
-                random variables, key distributions and the central limit
-                theorem.
+              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+                This module introduces probability as the mathematical language
+                of uncertainty. Students learn sample spaces, events,
+                probability rules, conditional probability, independence,
+                dependence, Bayes’ theorem, expectation and core distribution
+                ideas needed for inference.
               </p>
-
-              <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">
-                The focus is theoretical and conceptual. Students learn not only
-                formulas, but also the assumptions, interpretations and common
-                mistakes behind each probability rule.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href={withBasePath(
-                    "/courses/statistics-foundation/modules/probability-foundations/lessons/probability-basics-and-axioms"
-                  )}
-                  className="rounded-full bg-slate-950 px-6 py-3 text-sm font-black text-white transition hover:bg-slate-800"
-                >
-                  Start lesson 3.1
-                </a>
-
-                <a
-                  href="#lessons"
-                  className="rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-black text-slate-900 transition hover:bg-slate-100"
-                >
-                  View lessons
-                </a>
-              </div>
             </div>
 
-            <aside className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6">
-              <h2 className="text-2xl font-black tracking-tight">
-                What students will master
+            <div className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-6">
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
+                Module aim
+              </p>
+
+              <h2 className="mt-4 text-2xl font-black tracking-[-0.04em] text-[#111111]">
+                Build the probability language needed for inference.
               </h2>
 
-              <ul className="mt-5 space-y-3 text-sm leading-7 text-slate-600">
-                <li>• Events, sample spaces and probability notation</li>
-                <li>• Probability axioms and derived rules</li>
-                <li>• Conditional probability and Bayes' theorem</li>
-                <li>• Random variables, expectation and variance</li>
-                <li>• Discrete and continuous distribution thinking</li>
-                <li>• Central limit reasoning before inference</li>
-              </ul>
-            </aside>
+              <p className="mt-4 text-sm leading-7 text-neutral-700">
+                Probability is the bridge between descriptive statistics and
+                statistical inference. It helps students understand uncertainty,
+                conditional information, independence and probability-based
+                reasoning before confidence intervals and hypothesis testing.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <section id="lessons" className="mt-12">
-          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-700">
-                Module lessons
-              </p>
-              <h2 className="mt-2 text-3xl font-black tracking-tight md:text-4xl">
-                Five lessons from uncertainty to distributions
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {moduleStats.map(([value, label]) => (
+              <div
+                key={label}
+                className="rounded-3xl border border-neutral-200 bg-[#f7f4ee] p-5"
+              >
+                <p className="text-2xl font-black tracking-[-0.04em] text-[#111111]">
+                  {value}
+                </p>
+
+                <p className="mt-2 text-sm font-bold text-neutral-700">
+                  {label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href={withBasePath(
+                "/courses/statistics-foundation/modules/probability-foundations/lessons/what-is-probability"
+              )}
+              className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-4 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#2a2a2a] sm:w-auto"
+            >
+              Start Lesson 3.1
+            </a>
+
+            <a
+              href={withBasePath(
+                "/courses/statistics-foundation/modules/statistical-inference-foundations"
+              )}
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-4 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f7f4ee] sm:w-auto"
+            >
+              Next module →
+            </a>
+
+            <a
+              href={withBasePath(
+                "/courses/statistics-foundation/modules/descriptive-statistics"
+              )}
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-4 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f7f4ee] sm:w-auto"
+            >
+              Previous module
+            </a>
+          </div>
+        </section>
+
+        <section className="mt-8 grid gap-4 md:grid-cols-3">
+          {moduleFocus.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+            >
+              <h2 className="text-xl font-black tracking-[-0.03em] text-[#111111]">
+                {item.title}
               </h2>
-            </div>
 
-            <p className="max-w-2xl text-sm leading-7 text-slate-600">
-              Work through the lessons in order. Each lesson contains a
-              conversational lecture, detailed notes, interactive labs, worked
-              examples, exercises and a quiz.
+              <p className="mt-4 text-sm leading-7 text-neutral-700">
+                {item.body}
+              </p>
+            </article>
+          ))}
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Module lessons
+          </p>
+
+          <div className="mt-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <h2 className="max-w-4xl text-3xl font-black tracking-[-0.04em] text-[#111111] md:text-4xl">
+              Study probability step by step.
+            </h2>
+
+            <p className="max-w-3xl text-base leading-8 text-neutral-700">
+              Each lesson builds a different part of probabilistic thinking:
+              chance, events, probability rules, conditional information,
+              independence, dependence and updating beliefs using Bayes’
+              theorem.
             </p>
           </div>
 
-          <div className="grid gap-4">
+          <div className="mt-8 grid gap-5">
             {lessons.map((lesson) => (
               <a
                 key={lesson.number}
                 href={withBasePath(lesson.href)}
-                className="group grid gap-4 rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:grid-cols-[auto_1fr_auto] md:items-center"
+                className="group rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:p-7"
               >
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100 text-xl font-black text-blue-800">
-                  {lesson.number}
-                </div>
+                <div className="grid gap-5 md:grid-cols-[0.18fr_1fr_auto] md:items-center">
+                  <div>
+                    <p className="text-3xl font-black tracking-[-0.05em] text-[#8b1116]">
+                      {lesson.number}
+                    </p>
+                  </div>
 
-                <div>
-                  <h3 className="text-2xl font-black tracking-tight">
-                    {lesson.title}
-                  </h3>
-                  <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">
-                    {lesson.description}
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-700">
+                      Lesson {lesson.number}
+                    </p>
+
+                    <h3 className="mt-2 text-2xl font-black leading-tight tracking-[-0.04em] text-[#111111]">
+                      {lesson.title}
+                    </h3>
+
+                    <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-700">
+                      {lesson.description}
+                    </p>
+                  </div>
+
+                  <p className="text-sm font-black text-[#8b1116] transition group-hover:translate-x-1">
+                    Open lesson →
                   </p>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <span className="rounded-full bg-emerald-100 px-4 py-2 text-xs font-black text-emerald-800">
-                    {lesson.status}
-                  </span>
-                  <span className="text-sm font-black text-blue-700">
-                    Open →
-                  </span>
                 </div>
               </a>
             ))}
           </div>
         </section>
 
-        <section className="mt-12 grid gap-5 md:grid-cols-3">
-          <div className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-blue-700">
-              Step 1
+        <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
+              Learning route
             </p>
-            <h3 className="mt-3 text-2xl font-black">Reason with events</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
-              Students first learn how to translate real situations into events,
-              complements, unions and intersections.
-            </p>
-          </div>
 
-          <div className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-blue-700">
-              Step 2
-            </p>
-            <h3 className="mt-3 text-2xl font-black">Build probability laws</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
-              The module develops probability rules from axioms rather than
-              presenting formulas as isolated facts.
-            </p>
-          </div>
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Complete probability before studying statistical inference.
+            </h2>
 
-          <div className="rounded-[1.5rem] border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-blue-700">
-              Step 3
+            <p className="mt-5 text-base leading-8 text-white/90">
+              Module 4 assumes that students understand events, probability
+              rules, conditional probability, independence, dependence and
+              Bayes’ theorem before moving into sampling distributions,
+              confidence intervals and hypothesis testing.
             </p>
-            <h3 className="mt-3 text-2xl font-black">Prepare for inference</h3>
-            <p className="mt-3 text-sm leading-7 text-slate-600">
-              By the end, students understand why sampling distributions and
-              uncertainty statements appear in statistical inference.
+
+            <a
+              href={withBasePath(
+                "/courses/statistics-foundation/modules/statistical-inference-foundations"
+              )}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+            >
+              Continue to Module 4 →
+            </a>
+          </article>
+
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
+              Course pathway
             </p>
-          </div>
+
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Return to the full Statistics Foundation course.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-white/90">
+              Use the course homepage to move between all five modules, review
+              the full structure and continue through the 26-lesson foundation
+              pathway.
+            </p>
+
+            <a
+              href={withBasePath("/courses/statistics-foundation")}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+            >
+              Back to course →
+            </a>
+          </article>
         </section>
       </section>
     </main>

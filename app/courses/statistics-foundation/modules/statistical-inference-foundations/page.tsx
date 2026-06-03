@@ -1,11 +1,15 @@
-const basePath =
-  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
   if (href.startsWith("#")) return href;
+  if (href.startsWith("http")) return href;
+  if (href.startsWith("mailto:")) return href;
+
   const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
-  return `${basePath}${cleanHref}`;
+  const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
+
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
 }
 
 const lessons = [
@@ -59,176 +63,302 @@ const lessons = [
   },
 ];
 
+const moduleStats = [
+  ["6", "Lessons"],
+  ["Zero", "Coding"],
+  ["Foundation", "Level"],
+  ["Inference", "Focus"],
+];
+
+const moduleFocus = [
+  {
+    title: "Sampling uncertainty",
+    body: "Students learn how sample statistics vary from sample to sample and why standard error is central to inference.",
+  },
+  {
+    title: "Estimation and testing",
+    body: "The module connects confidence intervals, hypotheses, p-values, errors and power as one reasoning framework.",
+  },
+  {
+    title: "Method choice",
+    body: "Students learn to choose inference methods from the research question, outcome type, assumptions and study design.",
+  },
+];
+
+const outcomes = [
+  "Explain standard error and sampling variability.",
+  "Interpret confidence intervals correctly.",
+  "Set up null and alternative hypotheses.",
+  "Interpret p-values without common mistakes.",
+  "Explain Type I error, Type II error and power.",
+  "Choose an inference method from outcome and design.",
+];
+
 export default function StatisticalInferenceFoundationsModulePage() {
   return (
-    <main className="min-h-screen bg-slate-50 px-6 py-16 text-slate-950">
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses/statistics-foundation")}
-          className="text-sm font-bold text-blue-700 hover:text-blue-900"
+          className="text-sm font-bold text-[#8b1116] transition hover:text-[#5f0b0f]"
         >
           ← Back to Statistics Foundation
         </a>
 
-        <p className="mt-8 text-sm font-black uppercase tracking-[0.22em] text-blue-700">
-          Module 4
-        </p>
-
-        <div className="mt-4 grid gap-8 lg:grid-cols-[1.4fr_0.8fr] lg:items-end">
-          <div>
-            <h1 className="max-w-4xl text-3xl font-black tracking-tight sm:text-4xl md:text-6xl">
-              Statistical Inference Foundations
-            </h1>
-
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
-              This module moves from probability models to statistical
-              reasoning. Students learn how sample statistics vary, how
-              uncertainty is measured, how confidence intervals and hypothesis
-              tests are built, and how to choose an appropriate inference method
-              for real research questions.
-            </p>
-          </div>
-
-          <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-700">
-              Module focus
-            </p>
-
-            <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-600">
-              <li>Sampling distributions and standard error</li>
-              <li>Confidence intervals and long-run coverage</li>
-              <li>Hypothesis testing and null distributions</li>
-              <li>P-values, Type I error, Type II error and power</li>
-              <li>Sample size, precision and study design</li>
-              <li>Choosing and reporting inference methods</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          <div className="rounded-[1.5rem] border border-blue-100 bg-blue-50 p-5">
-            <p className="text-sm font-black uppercase tracking-[0.16em] text-blue-700">
-              Core idea
-            </p>
-            <p className="mt-3 text-sm leading-7 text-blue-950">
-              Inference begins when a statistic from one sample is used to learn
-              about an unknown population parameter.
-            </p>
-          </div>
-
-          <div className="rounded-[1.5rem] border border-emerald-100 bg-emerald-50 p-5">
-            <p className="text-sm font-black uppercase tracking-[0.16em] text-emerald-700">
-              Mathematical thread
-            </p>
-            <p className="mt-3 text-sm leading-7 text-emerald-950">
-              Estimate, standard error, sampling distribution, critical value,
-              interval, p-value and power are connected ideas.
-            </p>
-          </div>
-
-          <div className="rounded-[1.5rem] border border-amber-100 bg-amber-50 p-5">
-            <p className="text-sm font-black uppercase tracking-[0.16em] text-amber-700">
-              Practical outcome
-            </p>
-            <p className="mt-3 text-sm leading-7 text-amber-950">
-              Students learn not only how to calculate inference, but also how
-              to interpret and report it responsibly.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto mt-12 max-w-7xl">
-        <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-blue-700">
-              Module lessons
-            </p>
-            <h2 className="mt-2 text-3xl font-black tracking-tight">
-              Learn inference step by step
-            </h2>
-          </div>
-
-          <p className="max-w-2xl text-sm leading-7 text-slate-600">
-            Lessons 4.1 to 4.5 form the core inference pathway. Lesson 4.6 is a
-            bonus capstone that helps students choose the correct method in
-            applied problems.
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Module 4
           </p>
-        </div>
 
-        <div className="grid gap-5 md:grid-cols-2">
-          {lessons.map((lesson) => (
-            <a
-              key={lesson.number}
-              href={withBasePath(lesson.href)}
-              className={`rounded-[1.7rem] border p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md ${
-                lesson.status === "Bonus"
-                  ? "border-blue-200 bg-blue-50"
-                  : "border-slate-200 bg-white"
-              }`}
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm font-black uppercase tracking-[0.18em] text-blue-700">
-                    {lesson.status === "Bonus"
-                      ? `Bonus Lesson ${lesson.number}`
-                      : `Lesson ${lesson.number}`}
-                  </p>
+          <div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div>
+              <h1 className="max-w-5xl text-4xl font-black leading-[1.02] tracking-[-0.05em] text-[#111111] sm:text-5xl md:text-6xl">
+                Statistical Inference Foundations
+              </h1>
 
-                  <h3 className="mt-3 text-2xl font-black tracking-tight">
-                    {lesson.title}
-                  </h3>
-                </div>
-
-                <span
-                  className={`rounded-full px-3 py-1 text-xs font-black ${
-                    lesson.status === "Bonus"
-                      ? "bg-blue-100 text-blue-700"
-                      : "bg-emerald-100 text-emerald-700"
-                  }`}
-                >
-                  {lesson.status}
-                </span>
-              </div>
-
-              <p className="mt-4 text-sm leading-7 text-slate-600">
-                {lesson.description}
+              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+                This module moves from probability models to statistical
+                reasoning. Students learn how sample statistics vary, how
+                uncertainty is measured, how confidence intervals and hypothesis
+                tests are built, and how to choose an appropriate inference
+                method for real research questions.
               </p>
-            </a>
-          ))}
-        </div>
-      </section>
+            </div>
 
-      <section className="mx-auto mt-12 max-w-7xl rounded-[2rem] bg-slate-950 p-8 text-white">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-          <div>
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-blue-300">
-              End of module outcome
-            </p>
+            <div className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-6">
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
+                Module aim
+              </p>
 
-            <h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">
-              Students should be able to reason, not just calculate.
-            </h2>
+              <h2 className="mt-4 text-2xl font-black tracking-[-0.04em] text-[#111111]">
+                Learn how sample evidence supports conclusions under uncertainty.
+              </h2>
+
+              <p className="mt-4 text-sm leading-7 text-neutral-700">
+                The purpose of this module is to help students reason about
+                estimates, uncertainty, testing, errors, power, study design and
+                method choice rather than only memorising calculations.
+              </p>
+            </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            {[
-              "Explain standard error and sampling variability.",
-              "Interpret confidence intervals correctly.",
-              "Set up null and alternative hypotheses.",
-              "Interpret p-values without common mistakes.",
-              "Explain Type I error, Type II error and power.",
-              "Choose an inference method from outcome and design.",
-            ].map((item) => (
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {moduleStats.map(([value, label]) => (
               <div
-                key={item}
-                className="rounded-2xl border border-white/10 bg-white/5 p-4"
+                key={label}
+                className="rounded-3xl border border-neutral-200 bg-[#f7f4ee] p-5"
               >
-                <p className="text-sm leading-7 text-white/80">{item}</p>
+                <p className="text-2xl font-black tracking-[-0.04em] text-[#111111]">
+                  {value}
+                </p>
+
+                <p className="mt-2 text-sm font-bold text-neutral-700">
+                  {label}
+                </p>
               </div>
             ))}
           </div>
-        </div>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href={withBasePath(
+                "/courses/statistics-foundation/modules/statistical-inference-foundations/lessons/sampling-distributions-and-standard-error"
+              )}
+              className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-4 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#2a2a2a] sm:w-auto"
+            >
+              Start Lesson 4.1
+            </a>
+
+            <a
+              href={withBasePath(
+                "/courses/statistics-foundation/modules/regression-foundations"
+              )}
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-4 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f7f4ee] sm:w-auto"
+            >
+              Next module →
+            </a>
+
+            <a
+              href={withBasePath(
+                "/courses/statistics-foundation/modules/probability-foundations"
+              )}
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-4 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f7f4ee] sm:w-auto"
+            >
+              Previous module
+            </a>
+          </div>
+        </section>
+
+        <section className="mt-8 grid gap-4 md:grid-cols-3">
+          {moduleFocus.map((item) => (
+            <article
+              key={item.title}
+              className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+            >
+              <h2 className="text-xl font-black tracking-[-0.03em] text-[#111111]">
+                {item.title}
+              </h2>
+
+              <p className="mt-4 text-sm leading-7 text-neutral-700">
+                {item.body}
+              </p>
+            </article>
+          ))}
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Module lessons
+          </p>
+
+          <div className="mt-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <h2 className="max-w-4xl text-3xl font-black tracking-[-0.04em] text-[#111111] md:text-4xl">
+              Learn inference step by step.
+            </h2>
+
+            <p className="max-w-3xl text-base leading-8 text-neutral-700">
+              Lessons 4.1 to 4.5 form the core inference pathway. Lesson 4.6 is
+              a bonus capstone that helps students choose the correct method in
+              applied problems.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-5">
+            {lessons.map((lesson) => (
+              <a
+                key={lesson.number}
+                href={withBasePath(lesson.href)}
+                className={`group rounded-[2rem] border p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:p-7 ${
+                  lesson.status === "Bonus"
+                    ? "border-[#ead8d8] bg-[#fff7ed]"
+                    : "border-neutral-200 bg-[#f7f4ee]"
+                }`}
+              >
+                <div className="grid gap-5 md:grid-cols-[0.18fr_1fr_auto] md:items-center">
+                  <div>
+                    <p className="text-3xl font-black tracking-[-0.05em] text-[#8b1116]">
+                      {lesson.number}
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="flex flex-wrap gap-2">
+                      <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-700">
+                        Lesson {lesson.number}
+                      </p>
+
+                      <span
+                        className={`rounded-full px-3 py-1 text-xs font-black uppercase tracking-[0.12em] ${
+                          lesson.status === "Bonus"
+                            ? "bg-[#8b1116] text-white"
+                            : "bg-white text-emerald-700"
+                        }`}
+                      >
+                        {lesson.status}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-2 text-2xl font-black leading-tight tracking-[-0.04em] text-[#111111]">
+                      {lesson.title}
+                    </h3>
+
+                    <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-700">
+                      {lesson.description}
+                    </p>
+                  </div>
+
+                  <p className="text-sm font-black text-[#8b1116] transition group-hover:translate-x-1">
+                    Open lesson →
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            End of module outcome
+          </p>
+
+          <div className="mt-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <h2 className="max-w-4xl text-3xl font-black tracking-[-0.04em] text-[#111111] md:text-4xl">
+                Students should be able to reason, not just calculate.
+              </h2>
+
+              <p className="mt-5 max-w-3xl text-base leading-8 text-neutral-700">
+                By the end of this module, students should understand how
+                sampling variability, uncertainty, intervals, tests and design
+                choices shape responsible statistical conclusions.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {outcomes.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] p-4"
+                >
+                  <p className="text-sm font-bold leading-7 text-neutral-800">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
+              Learning route
+            </p>
+
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Complete inference before moving into regression.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-white/90">
+              Module 5 assumes that students understand sampling distributions,
+              standard error, confidence intervals, hypothesis testing, p-values,
+              errors, power and study design before moving into regression
+              modelling.
+            </p>
+
+            <a
+              href={withBasePath(
+                "/courses/statistics-foundation/modules/regression-foundations"
+              )}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+            >
+              Continue to Module 5 →
+            </a>
+          </article>
+
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
+              Course pathway
+            </p>
+
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Return to the full Statistics Foundation course.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-white/90">
+              Use the course homepage to move between all five modules, review
+              the full structure and continue through the 26-lesson foundation
+              pathway.
+            </p>
+
+            <a
+              href={withBasePath("/courses/statistics-foundation")}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+            >
+              Back to course →
+            </a>
+          </article>
+        </section>
       </section>
     </main>
   );

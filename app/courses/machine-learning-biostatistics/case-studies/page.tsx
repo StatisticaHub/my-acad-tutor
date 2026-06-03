@@ -5,7 +5,11 @@ function withBasePath(href: string) {
   if (href.startsWith("#")) return href;
   if (href.startsWith("http")) return href;
   if (href.startsWith("mailto:")) return href;
-  return `${basePath}${href}`;
+
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
+
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
 }
 
 const caseStudies = [
@@ -130,39 +134,67 @@ const caseStudyPrinciples = [
   },
 ];
 
+const snapshot = [
+  ["5", "Planned case studies"],
+  ["1", "Available now"],
+  ["5", "Course modules"],
+  ["R + report", "Format"],
+];
+
 export default function MachineLearningBiostatisticsCaseStudiesPage() {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-slate-950 md:px-8 md:py-16">
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses/machine-learning-biostatistics")}
-          className="text-sm font-black text-[#6f0d12] transition hover:text-[#5f0b0f]"
+          className="text-sm font-bold text-[#8b1116] transition hover:text-[#5f0b0f]"
         >
           ← Back to course homepage
         </a>
 
-        <section className="mt-8 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
-          <p className="eyebrow-light">
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
             Applied case studies
           </p>
 
-          <h1 className="mt-5 max-w-5xl text-4xl font-black tracking-tight md:text-6xl">
-            Machine Learning in Biostatistics Case Studies
-          </h1>
+          <div className="mt-5 grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
+            <div>
+              <h1 className="max-w-5xl text-4xl font-black leading-[1.02] tracking-[-0.05em] text-[#111111] sm:text-5xl md:text-6xl">
+                Machine Learning in Biostatistics Case Studies
+              </h1>
 
-          <p className="mt-6 max-w-4xl text-base leading-8 text-slate-600 md:text-lg">
-            Each module will include one applied case study. These case studies
-            connect the lessons to realistic medical machine learning workflows:
-            prediction question, data structure, modelling, validation,
-            threshold interpretation, reporting and limitations.
-          </p>
+              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+                Each module will include one applied case study. These case
+                studies connect the lessons to realistic medical machine
+                learning workflows: prediction question, data structure,
+                modelling, validation, threshold interpretation, reporting and
+                limitations.
+              </p>
+            </div>
+
+            <div className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-6">
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
+                Case-study aim
+              </p>
+
+              <h2 className="mt-4 text-2xl font-black tracking-[-0.04em] text-[#111111]">
+                Turn lessons into report-ready medical ML workflows.
+              </h2>
+
+              <p className="mt-4 text-sm leading-7 text-neutral-700">
+                The case studies are designed to help students move from model
+                output to careful biostatistical interpretation, limitations and
+                transparent conclusions.
+              </p>
+            </div>
+          </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href={withBasePath(
                 "/courses/machine-learning-biostatistics/case-studies/diabetes-risk-prediction"
               )}
-              className="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-6 py-3 text-sm font-black text-white transition hover:bg-slate-800 sm:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-4 text-sm font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#2a2a2a] sm:w-auto"
             >
               Open Case Study 1
             </a>
@@ -171,51 +203,48 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
               href={withBasePath(
                 "/courses/machine-learning-biostatistics/modules/foundations"
               )}
-              className="inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-black text-slate-900 transition hover:bg-slate-50 sm:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-4 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f7f4ee] sm:w-auto"
             >
               Open Module 1
             </a>
 
             <a
               href="#case-study-list"
-              className="inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-black text-slate-900 transition hover:bg-slate-50 sm:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-4 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f7f4ee] sm:w-auto"
             >
               View all case studies
             </a>
           </div>
 
-          <div className="mt-8 grid gap-3 md:grid-cols-4">
-            {[
-              ["Planned case studies", "5"],
-              ["Available now", "1"],
-              ["Course modules", "5"],
-              ["Format", "R + report"],
-            ].map(([label, value]) => (
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {snapshot.map(([value, label]) => (
               <div
                 key={label}
-                className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
+                className="rounded-3xl border border-neutral-200 bg-[#f7f4ee] p-5"
               >
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-700">
-                  {label}
-                </p>
-                <p className="mt-2 text-2xl font-black text-slate-950">
+                <p className="text-2xl font-black tracking-[-0.04em] text-[#111111]">
                   {value}
+                </p>
+
+                <p className="mt-2 text-sm font-bold text-neutral-700">
+                  {label}
                 </p>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <section className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {caseStudyPrinciples.map((item) => (
             <article
               key={item.title}
-              className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm"
+              className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
             >
-              <h2 className="text-xl font-black tracking-tight text-slate-950">
+              <h2 className="text-xl font-black tracking-[-0.03em] text-[#111111]">
                 {item.title}
               </h2>
-              <p className="mt-3 text-sm leading-7 text-slate-600">
+
+              <p className="mt-4 text-sm leading-7 text-neutral-700">
                 {item.body}
               </p>
             </article>
@@ -224,18 +253,18 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
 
         <section
           id="case-study-list"
-          className="mt-10 scroll-mt-24 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10"
+          className="mt-8 scroll-mt-24 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10"
         >
-          <div className="max-w-4xl">
-            <p className="eyebrow-light">
-              Case study pathway
-            </p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Case study pathway
+          </p>
 
-            <h2 className="mt-4 text-3xl font-black tracking-tight md:text-4xl">
+          <div className="mt-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <h2 className="max-w-4xl text-3xl font-black tracking-[-0.04em] text-[#111111] md:text-5xl">
               Five applied projects, one for each course module.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-slate-600">
+            <p className="max-w-3xl text-base leading-8 text-neutral-700">
               The case studies are designed to grow with the course. The first
               case study uses the Module 1 foundation workflow. Later case
               studies will introduce supervised learning, validation,
@@ -247,14 +276,15 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
             {caseStudies.map((caseStudy) => (
               <article
                 key={caseStudy.number}
-                className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6"
+                className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:bg-white hover:shadow-md md:p-7"
               >
                 <div className="grid gap-6 lg:grid-cols-[0.18fr_1fr_0.25fr] lg:items-start">
                   <div>
-                    <p className="text-5xl font-black text-[#6f0d12]">
+                    <p className="text-5xl font-black tracking-[-0.05em] text-[#8b1116]">
                       {caseStudy.number}
                     </p>
-                    <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-slate-700">
+
+                    <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-neutral-700">
                       Case study
                     </p>
                   </div>
@@ -265,26 +295,26 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
                         className={`rounded-full px-3 py-1 text-xs font-black uppercase tracking-[0.12em] ${
                           caseStudy.status === "Available"
                             ? "bg-emerald-50 text-emerald-700"
-                            : "bg-white text-slate-600"
+                            : "bg-white text-neutral-700"
                         }`}
                       >
                         {caseStudy.status}
                       </span>
 
-                      <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-black text-blue-700">
+                      <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-[#8b1116]">
                         {caseStudy.module}
                       </span>
                     </div>
 
-                    <p className="mt-4 text-sm font-black uppercase tracking-[0.18em] text-slate-700">
+                    <p className="mt-4 text-sm font-black uppercase tracking-[0.18em] text-neutral-700">
                       {caseStudy.moduleTitle}
                     </p>
 
-                    <h3 className="mt-3 text-2xl font-black tracking-tight text-slate-950 md:text-3xl">
+                    <h3 className="mt-3 text-2xl font-black tracking-[-0.04em] text-[#111111] md:text-3xl">
                       {caseStudy.title}
                     </h3>
 
-                    <p className="mt-4 max-w-4xl text-sm leading-7 text-slate-600 md:text-base">
+                    <p className="mt-4 max-w-4xl text-sm leading-7 text-neutral-700 md:text-base">
                       {caseStudy.summary}
                     </p>
 
@@ -292,7 +322,7 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
                       {caseStudy.focus.map((item) => (
                         <div
                           key={item}
-                          className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700"
+                          className="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-bold text-neutral-700"
                         >
                           {item}
                         </div>
@@ -302,7 +332,7 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
                     <div className="mt-5">
                       <a
                         href={withBasePath(caseStudy.script)}
-                        className="inline-flex w-full items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-black text-slate-900 transition hover:bg-blue-50 sm:w-auto"
+                        className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-black text-[#111111] shadow-sm transition hover:-translate-y-0.5 hover:bg-[#f7f4ee] hover:text-[#8b1116] sm:w-auto"
                       >
                         Download planned R script →
                       </a>
@@ -312,10 +342,10 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
                   <div className="lg:text-right">
                     <a
                       href={withBasePath(caseStudy.href)}
-                      className={`inline-flex w-full items-center justify-center rounded-full px-5 py-3 text-sm font-black transition sm:w-auto ${
+                      className={`inline-flex w-full items-center justify-center rounded-full px-5 py-4 text-sm font-black shadow-sm transition hover:-translate-y-0.5 sm:w-auto ${
                         caseStudy.status === "Available"
-                          ? "bg-slate-950 text-white hover:bg-slate-800"
-                          : "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
+                          ? "bg-[#111111] text-white hover:bg-[#8b1116]"
+                          : "border border-neutral-300 bg-white text-neutral-700 hover:bg-white hover:text-[#8b1116]"
                       }`}
                     >
                       {caseStudy.status === "Available"
@@ -329,40 +359,45 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
           </div>
         </section>
 
-        <section className="mt-10 rounded-[2rem] bg-slate-950 p-6 text-white shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-blue-300">
+        <section className="mt-8 rounded-[2rem] bg-[#111111] p-6 text-white shadow-sm md:p-10">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
             Current progress
           </p>
 
-          <h2 className="mt-4 max-w-4xl text-3xl font-black tracking-tight md:text-4xl">
-            Case Study 1 is available. Four more will be added as the course
-            develops.
-          </h2>
+          <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+            <div>
+              <h2 className="max-w-4xl text-3xl font-black tracking-[-0.04em] md:text-4xl">
+                Case Study 1 is available. Four more will be added as the course
+                develops.
+              </h2>
 
-          <p className="mt-5 max-w-4xl text-base leading-8 text-slate-300">
-            The case-study plan mirrors the five-module course structure: one
-            applied project per module. This gives students repeated practice in
-            turning ML outputs into careful biostatistical interpretation.
-          </p>
+              <p className="mt-5 max-w-4xl text-base leading-8 text-white/90">
+                The case-study plan mirrors the five-module course structure:
+                one applied project per module. This gives students repeated
+                practice in turning ML outputs into careful biostatistical
+                interpretation.
+              </p>
+            </div>
 
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a
-              href={withBasePath(
-                "/courses/machine-learning-biostatistics/case-studies/diabetes-risk-prediction"
-              )}
-              className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-slate-950 transition hover:bg-blue-50 sm:w-auto"
-            >
-              Open Case Study 1 →
-            </a>
+            <div className="grid gap-3">
+              <a
+                href={withBasePath(
+                  "/courses/machine-learning-biostatistics/case-studies/diabetes-risk-prediction"
+                )}
+                className="rounded-full bg-white px-6 py-4 text-center text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+              >
+                Open Case Study 1 →
+              </a>
 
-            <a
-              href={withBasePath(
-                "/courses/machine-learning-biostatistics/modules"
-              )}
-              className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-6 py-3 text-sm font-black text-white transition hover:bg-white/10 sm:w-auto"
-            >
-              View course modules →
-            </a>
+              <a
+                href={withBasePath(
+                  "/courses/machine-learning-biostatistics/modules"
+                )}
+                className="rounded-full border border-white/25 bg-white/10 px-6 py-4 text-center text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-white/15"
+              >
+                View course modules →
+              </a>
+            </div>
           </div>
         </section>
       </section>

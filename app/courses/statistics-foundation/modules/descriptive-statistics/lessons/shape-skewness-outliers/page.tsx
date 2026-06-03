@@ -203,7 +203,7 @@ export default function ShapeSkewnessOutliersPage() {
               label="Module 3 · Probability foundations"
             />
             <SidebarLink
-              href="/courses/statistics-foundation/modules/random-variables-distributions"
+              href="/courses/statistics-foundation/modules/probability-foundations"
               label="Module 4 · Random variables"
             />
             <SidebarLink
