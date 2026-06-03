@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "View free access, planned premium course access and 1-to-1 academic support options for My Academic Tutor.",
 };
+
 const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 function withBasePath(href: string) {
@@ -23,7 +24,7 @@ const tiers = [
   {
     name: "Free",
     badge: "Start learning",
-    price: "$0",
+    price: "£0",
     period: "public access",
     summary:
       "Public learning materials for students exploring statistics, biostatistics, data science and research methods.",
@@ -81,9 +82,50 @@ const tiers = [
 
 const notes = [
   "Payments are not live yet.",
-  "Premium course pricing will be announced before launch.",
-  "1-to-1 support is quoted individually.",
-  "Academic integrity comes first.",
+  "Final premium course pricing will be announced before paid access opens.",
+  "1-to-1 academic support is quoted individually based on topic, level and support type.",
+  "Free resources and public course previews will remain available.",
+  "Academic integrity comes first in every support route.",
+  "Stripe or another secure payment flow can be connected later when paid access is ready.",
+];
+
+const comparison = [
+  {
+    feature: "Public website and Learning Hub",
+    free: "Included",
+    premium: "Included",
+    support: "Included",
+  },
+  {
+    feature: "Free resource guides",
+    free: "Included",
+    premium: "Included",
+    support: "Included",
+  },
+  {
+    feature: "Full structured courses",
+    free: "Preview access",
+    premium: "Planned full access",
+    support: "Not the main route",
+  },
+  {
+    feature: "Interactive labs and quizzes",
+    free: "Limited previews",
+    premium: "Planned full access",
+    support: "Used when relevant",
+  },
+  {
+    feature: "Personal academic guidance",
+    free: "Not included",
+    premium: "Not the main route",
+    support: "Included by request",
+  },
+  {
+    feature: "Research or dissertation support",
+    free: "General resources",
+    premium: "Course-based support",
+    support: "Personal guidance",
+  },
 ];
 
 export default function PricingPage() {
@@ -117,16 +159,17 @@ export default function PricingPage() {
 
             <div className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-6">
               <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
-                Currency
+                Pricing preview
               </p>
 
               <h2 className="mt-4 text-2xl font-black tracking-[-0.04em]">
-                Pricing shown in dollars.
+                Final paid pricing will be announced before launch.
               </h2>
 
               <p className="mt-4 text-sm leading-7 text-neutral-700">
-                Payments are not live yet. This page is a pricing preview for
-                the public launch and can later connect to Stripe Checkout.
+                Payments are not live yet. This page explains the planned access
+                model for free learning, premium courses and 1-to-1 academic
+                support.
               </p>
             </div>
           </div>
@@ -161,7 +204,7 @@ export default function PricingPage() {
 
                 <p
                   className={`mt-2 text-sm font-bold ${
-                    tier.highlighted ? "text-white/75" : "text-neutral-700"
+                    tier.highlighted ? "text-white/85" : "text-neutral-700"
                   }`}
                 >
                   {tier.period}
@@ -170,7 +213,7 @@ export default function PricingPage() {
 
               <p
                 className={`mt-5 text-sm leading-7 ${
-                  tier.highlighted ? "text-white/85" : "text-neutral-700"
+                  tier.highlighted ? "text-white/90" : "text-neutral-700"
                 }`}
               >
                 {tier.summary}
@@ -207,6 +250,45 @@ export default function PricingPage() {
 
         <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
           <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Compare access
+          </p>
+
+          <h2 className="mt-4 max-w-4xl text-3xl font-black tracking-[-0.04em] md:text-5xl">
+            Choose the route that matches your learning need.
+          </h2>
+
+          <div className="mt-8 overflow-hidden rounded-[1.5rem] border border-neutral-200">
+            <div className="grid grid-cols-4 bg-[#111111] text-white">
+              <div className="p-4 text-sm font-black">Feature</div>
+              <div className="p-4 text-sm font-black">Free</div>
+              <div className="p-4 text-sm font-black">Premium</div>
+              <div className="p-4 text-sm font-black">1-to-1 support</div>
+            </div>
+
+            {comparison.map((row) => (
+              <div
+                key={row.feature}
+                className="grid grid-cols-4 border-t border-neutral-200 bg-[#f7f4ee]"
+              >
+                <div className="p-4 text-sm font-black text-[#111111]">
+                  {row.feature}
+                </div>
+                <div className="p-4 text-sm leading-6 text-neutral-700">
+                  {row.free}
+                </div>
+                <div className="p-4 text-sm leading-6 text-neutral-700">
+                  {row.premium}
+                </div>
+                <div className="p-4 text-sm leading-6 text-neutral-700">
+                  {row.support}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
             Important notes
           </p>
 
@@ -228,30 +310,51 @@ export default function PricingPage() {
           </div>
         </section>
 
-        <section className="mt-8 rounded-[2rem] bg-[#111111] p-6 text-white shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
-            Register interest
-          </p>
+        <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
+              Academic integrity
+            </p>
 
-          <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
-            <div>
-              <h2 className="max-w-4xl text-3xl font-black tracking-[-0.04em] md:text-4xl">
-                Want access when premium courses open?
-              </h2>
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Support is guidance-based, not replacement work.
+            </h2>
 
-              <p className="mt-5 max-w-4xl text-base leading-8 text-white/90">
-                Send a request to join the interest list for premium course
-                access, tutoring support or future dashboard features.
-              </p>
-            </div>
+            <p className="mt-5 text-base leading-8 text-white/90">
+              My Academic Tutor supports learning, interpretation, planning and
+              responsible academic development. It does not provide dishonest
+              coursework completion, exam help, impersonation or ghostwriting.
+            </p>
+
+            <a
+              href={withBasePath("/academic-integrity")}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+            >
+              Read academic integrity policy →
+            </a>
+          </article>
+
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/90">
+              Register interest
+            </p>
+
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Want access when premium courses open?
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-white/90">
+              Send a request to join the interest list for premium course
+              access, tutoring support or future dashboard features.
+            </p>
 
             <a
               href={withBasePath("/contact")}
-              className="rounded-full bg-white px-6 py-4 text-center text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
             >
               Contact My Academic Tutor →
             </a>
-          </div>
+          </article>
         </section>
       </section>
     </main>

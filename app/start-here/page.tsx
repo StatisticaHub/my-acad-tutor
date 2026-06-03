@@ -1,21 +1,329 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Start Here",
+  description:
+    "Choose the right learning route for statistics, biostatistics, machine learning, research support and free resources at My Academic Tutor.",
+};
+
 const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
-function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
+
+function withBasePath(href: string) {
+  if (href === "/") return `${basePath}/`;
+  if (href.startsWith("#")) return href;
+  if (href.startsWith("http")) return href;
+  if (href.startsWith("mailto:")) return href;
+
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
+
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
+}
 
 const routes = [
-  { number: "01", title: "I want to learn statistics from the beginning", href: "/courses/statistics-foundation", recommendation: "Start with Statistics Foundation", description: "Best for students who want a structured, zero-coding course covering statistical ideas from the ground up.", bestFor: ["New to statistics", "Want a clear pathway", "Prefer theory", "No coding yet"] },
-  { number: "02", title: "I want to learn machine learning for health data", href: "/courses/machine-learning-biostatistics", recommendation: "Open Machine Learning in Biostatistics", description: "Best for students who already know some statistics and want prediction, validation and clinical interpretation.", bestFor: ["Clinical prediction", "Model validation", "Health-data examples", "Biostatistical ML"] },
-  { number: "03", title: "I need help with a topic or assignment concept", href: "/services", recommendation: "Explore academic support services", description: "Best if you need guided explanation, tutoring, method clarification or software support.", bestFor: ["Stuck on a topic", "Need explanation", "Need methods help", "Guided support"] },
-  { number: "04", title: "I am working on a dissertation or research project", href: "/contact", recommendation: "Request research support", description: "Best if you need help thinking through variables, study design, methods or interpretation.", bestFor: ["Planning a project", "Method guidance", "Interpretation", "Analysis plan"] },
-  { number: "05", title: "I want free resources and guides", href: "/resources", recommendation: "Open resources", description: "Best if you want short guides, checklists and interpretation resources.", bestFor: ["Quick guides", "Checklists", "Revision", "Extra support"] },
+  {
+    number: "01",
+    title: "I want to learn statistics from the beginning",
+    href: "/courses/statistics-foundation",
+    recommendation: "Start with Statistics Foundation",
+    description:
+      "Best for students who want a structured, zero-coding course covering statistical ideas from the ground up.",
+    bestFor: ["New to statistics", "Want a clear pathway", "Prefer theory", "No coding yet"],
+  },
+  {
+    number: "02",
+    title: "I want to learn machine learning for health data",
+    href: "/courses/machine-learning-biostatistics",
+    recommendation: "Open Machine Learning in Biostatistics",
+    description:
+      "Best for students who already know some statistics and want prediction, validation and clinical interpretation.",
+    bestFor: ["Clinical prediction", "Model validation", "Health-data examples", "Biostatistical ML"],
+  },
+  {
+    number: "03",
+    title: "I need help with a topic or assignment concept",
+    href: "/services",
+    recommendation: "Explore academic support services",
+    description:
+      "Best if you need guided explanation, tutoring, method clarification or software support.",
+    bestFor: ["Stuck on a topic", "Need explanation", "Need methods help", "Guided support"],
+  },
+  {
+    number: "04",
+    title: "I am working on a dissertation or research project",
+    href: "/contact",
+    recommendation: "Request research support",
+    description:
+      "Best if you need help thinking through variables, study design, methods or interpretation.",
+    bestFor: ["Planning a project", "Method guidance", "Interpretation", "Analysis plan"],
+  },
+  {
+    number: "05",
+    title: "I want free resources and guides",
+    href: "/resources",
+    recommendation: "Open resources",
+    description:
+      "Best if you want short guides, checklists and interpretation resources before choosing a full course.",
+    bestFor: ["Quick guides", "Checklists", "Revision", "Extra support"],
+  },
+];
+
+const quickLinks = [
+  {
+    title: "Learning Hub",
+    text: "Browse courses, resources, demos and student pathways.",
+    href: "/learning-hub",
+  },
+  {
+    title: "Interactive Demos",
+    text: "Explore visual learning tools for statistics and data analysis.",
+    href: "/interactive-demos",
+  },
+  {
+    title: "Pricing",
+    text: "See free access, planned premium access and support options.",
+    href: "/pricing",
+  },
 ];
 
 export default function StartHerePage() {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-20"><section className="mx-auto max-w-7xl">
-      <a href={withBasePath("/")} className="text-sm font-bold text-[#8b1116] hover:text-[#5f0b0f]">← Back to homepage</a>
-      <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Start here</p><div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end"><div><h1 className="max-w-5xl font-sans text-4xl font-black leading-[1.02] tracking-[-0.055em] sm:text-5xl md:text-7xl">Choose the right route for your learning goal.</h1><p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">Use this page to decide whether you should begin with a course, explore resources, request subject support or ask for research guidance.</p></div><div className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-6"><p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">Academic responsibility</p><h2 className="mt-4 font-sans text-2xl font-black tracking-[-0.04em]">Guidance-based support only.</h2><p className="mt-4 text-sm leading-7 text-neutral-700">We help you understand methods, plan analysis and interpret ideas. We do not complete assessed work, exams, dissertations or submissions for students.</p></div></div></section>
-      <section className="mt-8 grid gap-5">{routes.map((route) => (<a key={route.title} href={withBasePath(route.href)} className="group rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:bg-[#f7f4ee] hover:shadow-md"><div className="grid gap-6 lg:grid-cols-[0.18fr_1fr_0.7fr] lg:items-start"><p className="font-sans text-4xl font-black tracking-[-0.05em] text-[#8b1116]">{route.number}</p><div><h2 className="font-sans text-2xl font-black leading-tight tracking-[-0.04em] md:text-3xl">{route.title}</h2><p className="mt-4 text-sm font-black uppercase tracking-[0.16em] text-[#8b1116]">{route.recommendation}</p><p className="mt-4 max-w-3xl text-base leading-8 text-neutral-700">{route.description}</p><p className="mt-5 text-sm font-black text-[#111111] group-hover:text-[#8b1116]">Continue →</p></div><div className="grid gap-2">{route.bestFor.map((item) => (<div key={item} className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold leading-6 text-neutral-800">{item}</div>))}</div></div></a>))}</section>
-      <section className="mt-8 grid gap-6 lg:grid-cols-2"><article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Best first course</p><h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">New to statistics? Start with the foundation course.</h2><p className="mt-5 text-base leading-8 text-neutral-700">The Statistics Foundation course is the best starting point before biostatistics, machine learning, research methods, data science or quantitative analysis.</p><a href={withBasePath("/courses/statistics-foundation")} className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-4 text-sm font-black text-white">Start Statistics Foundation →</a></article><article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8"><p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">Need personal guidance?</p><h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">Send an enquiry with your subject and goal.</h2><p className="mt-5 text-base leading-8 text-white/90">Mention your subject, academic level, topic, software, deadline and the kind of support you need.</p><a href={withBasePath("/contact")} className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111]">Request support →</a></article></section>
-    </section></main>
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-20">
+      <section className="mx-auto max-w-7xl">
+        <a
+          href={withBasePath("/")}
+          className="text-sm font-bold text-[#8b1116] transition hover:text-[#5f0b0f]"
+        >
+          ← Back to homepage
+        </a>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Start here
+          </p>
+
+          <div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div>
+              <h1 className="max-w-5xl font-sans text-4xl font-black leading-[1.02] tracking-[-0.055em] sm:text-5xl md:text-7xl">
+                Choose the right route for your learning goal.
+              </h1>
+
+              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+                Use this page to decide whether you should begin with a course,
+                explore resources, request subject support or ask for research
+                guidance.
+              </p>
+            </div>
+
+            <div className="rounded-[1.75rem] border border-[#ead8d8] bg-[#f7f4ee] p-6">
+              <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
+                Academic responsibility
+              </p>
+
+              <h2 className="mt-4 font-sans text-2xl font-black tracking-[-0.04em]">
+                Guidance-based support only.
+              </h2>
+
+              <p className="mt-4 text-sm leading-7 text-neutral-700">
+                We help you understand methods, plan analysis and interpret
+                ideas. We do not complete assessed work, exams, dissertations or
+                submissions for students.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href={withBasePath("/learning-hub")}
+              className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-4 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-[#2a2a2a] sm:w-auto"
+            >
+              Explore Learning Hub →
+            </a>
+
+            <a
+              href={withBasePath("/courses/statistics-foundation")}
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-200 bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 hover:shadow-sm sm:w-auto"
+            >
+              Start Statistics Foundation
+            </a>
+
+            <a
+              href={withBasePath("/contact")}
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-200 bg-[#f7f4ee] px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 hover:shadow-sm sm:w-auto"
+            >
+              Request support
+            </a>
+          </div>
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Recommended routes
+          </p>
+
+          <div className="mt-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <h2 className="max-w-4xl font-sans text-3xl font-black tracking-[-0.04em] md:text-5xl">
+              Pick the route that matches your current need.
+            </h2>
+
+            <p className="max-w-3xl text-base leading-8 text-neutral-700">
+              You do not need to know the perfect starting point. Choose the
+              closest option and move from there.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-5">
+            {routes.map((route) => (
+              <a
+                key={route.title}
+                href={withBasePath(route.href)}
+                className="group rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 shadow-sm transition hover:-translate-y-1 hover:bg-white hover:shadow-md"
+              >
+                <div className="grid gap-6 lg:grid-cols-[0.18fr_1fr_0.7fr] lg:items-start">
+                  <p className="font-sans text-4xl font-black tracking-[-0.05em] text-[#8b1116]">
+                    {route.number}
+                  </p>
+
+                  <div>
+                    <h3 className="font-sans text-2xl font-black leading-tight tracking-[-0.04em] md:text-3xl">
+                      {route.title}
+                    </h3>
+
+                    <p className="mt-4 text-sm font-black uppercase tracking-[0.16em] text-[#8b1116]">
+                      {route.recommendation}
+                    </p>
+
+                    <p className="mt-4 max-w-3xl text-base leading-8 text-neutral-700">
+                      {route.description}
+                    </p>
+
+                    <p className="mt-5 text-sm font-black text-[#111111] transition group-hover:text-[#8b1116]">
+                      Continue →
+                    </p>
+                  </div>
+
+                  <div className="grid gap-2">
+                    {route.bestFor.map((item) => (
+                      <div
+                        key={item}
+                        className="rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-bold leading-6 text-neutral-800"
+                      >
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-8 grid gap-6 lg:grid-cols-2">
+          <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              Best first course
+            </p>
+
+            <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              New to statistics? Start with the foundation course.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-neutral-700">
+              The Statistics Foundation course is the best starting point before
+              biostatistics, machine learning, research methods, data science or
+              quantitative analysis.
+            </p>
+
+            <a
+              href={withBasePath("/courses/statistics-foundation")}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-4 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-[#2a2a2a]"
+            >
+              Start Statistics Foundation →
+            </a>
+          </article>
+
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
+              Need personal guidance?
+            </p>
+
+            <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Send an enquiry with your subject and goal.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-white/90">
+              Mention your subject, academic level, topic, software, deadline
+              and the kind of support you need.
+            </p>
+
+            <a
+              href={withBasePath("/contact")}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+            >
+              Request support →
+            </a>
+          </article>
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Quick links
+          </p>
+
+          <h2 className="mt-4 max-w-4xl font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+            Explore the platform from another angle.
+          </h2>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {quickLinks.map((item) => (
+              <a
+                key={item.title}
+                href={withBasePath(item.href)}
+                className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md"
+              >
+                <h3 className="font-sans text-2xl font-black tracking-[-0.04em]">
+                  {item.title}
+                </h3>
+
+                <p className="mt-4 text-sm leading-7 text-neutral-700">
+                  {item.text}
+                </p>
+
+                <p className="mt-5 text-sm font-black text-[#8b1116]">
+                  Open →
+                </p>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-8 rounded-[2rem] bg-[#8b1116] p-6 text-white shadow-sm md:p-10">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/90">
+            Still unsure?
+          </p>
+
+          <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+            <div>
+              <h2 className="max-w-4xl font-sans text-3xl font-black tracking-[-0.04em] md:text-5xl">
+                Start with your current problem.
+              </h2>
+
+              <p className="mt-5 max-w-3xl text-base leading-8 text-white/90">
+                You do not need to choose the perfect route immediately. Send a
+                short message explaining what you are studying, what you are
+                stuck on and what kind of guidance you need.
+              </p>
+            </div>
+
+            <a
+              href={withBasePath("/contact")}
+              className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+            >
+              Ask for route guidance →
+            </a>
+          </div>
+        </section>
+      </section>
+    </main>
   );
 }

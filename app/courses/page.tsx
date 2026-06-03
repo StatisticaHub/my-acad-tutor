@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Learning Hub",
+  title: "Courses",
   description:
-    "Explore structured learning pathways, course modules, interactive demos and study resources for statistics, biostatistics, machine learning and academic data analysis.",
+    "Explore structured courses in statistics, biostatistics, machine learning, software support and academic data analysis at My Academic Tutor.",
 };
+
 const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
 
 function withBasePath(href: string) {
@@ -68,7 +69,12 @@ const courses = [
     href: "/resources",
     summary:
       "A planned pathway covering clinical research, epidemiology, survival analysis, regression modelling and interpretation for health data.",
-    points: ["Clinical data", "Survival analysis", "Epidemiology", "Medical interpretation"],
+    points: [
+      "Clinical data",
+      "Survival analysis",
+      "Epidemiology",
+      "Medical interpretation",
+    ],
   },
 ];
 
@@ -87,9 +93,30 @@ const highlights = [
   },
 ];
 
+const courseRoutes = [
+  {
+    title: "Start from foundations",
+    text: "Choose Statistics Foundation if you want a careful route into statistical thinking before coding or advanced modelling.",
+    href: "/courses/statistics-foundation",
+    cta: "Open Statistics Foundation",
+  },
+  {
+    title: "Move into health-data prediction",
+    text: "Choose Machine Learning in Biostatistics if you want prediction, validation and clinical modelling interpretation.",
+    href: "/courses/machine-learning-biostatistics",
+    cta: "Open ML in Biostatistics",
+  },
+  {
+    title: "Browse supporting resources",
+    text: "Use resources if you need short guides, checklists and interpretation support before choosing a full course.",
+    href: "/resources",
+    cta: "Open Resources",
+  },
+];
+
 export default function CoursesPage() {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
+    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-20">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/")}
@@ -105,7 +132,7 @@ export default function CoursesPage() {
 
           <div className="mt-5 grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
             <div>
-              <h1 className="max-w-5xl text-4xl font-black leading-[1.02] tracking-[-0.05em] sm:text-5xl md:text-6xl">
+              <h1 className="max-w-5xl font-sans text-4xl font-black leading-[1.02] tracking-[-0.055em] sm:text-5xl md:text-7xl">
                 Structured quantitative courses for university students.
               </h1>
 
@@ -121,7 +148,7 @@ export default function CoursesPage() {
                 Current priority
               </p>
 
-              <h2 className="mt-4 text-2xl font-black tracking-[-0.04em]">
+              <h2 className="mt-4 font-sans text-2xl font-black tracking-[-0.04em]">
                 Statistics Foundation and ML in Biostatistics.
               </h2>
 
@@ -163,7 +190,7 @@ export default function CoursesPage() {
               key={item.title}
               className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
             >
-              <h2 className="text-xl font-black tracking-[-0.03em]">
+              <h2 className="font-sans text-xl font-black tracking-[-0.03em]">
                 {item.title}
               </h2>
 
@@ -180,7 +207,7 @@ export default function CoursesPage() {
           </p>
 
           <div className="mt-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-            <h2 className="max-w-4xl text-3xl font-black tracking-[-0.04em] md:text-5xl">
+            <h2 className="max-w-4xl font-sans text-3xl font-black tracking-[-0.04em] md:text-5xl">
               Start with the flagship learning pathways.
             </h2>
 
@@ -199,13 +226,19 @@ export default function CoursesPage() {
                 className="group rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:border-[#8b1116]/30 hover:bg-white hover:shadow-md md:p-7"
               >
                 <div className="grid gap-5 lg:grid-cols-[0.16fr_1fr_auto] lg:items-start">
-                  <p className="text-4xl font-black tracking-[-0.05em] text-[#8b1116]">
+                  <p className="font-sans text-4xl font-black tracking-[-0.05em] text-[#8b1116]">
                     {course.number}
                   </p>
 
                   <div>
                     <div className="flex flex-wrap gap-2">
-                      <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-emerald-700">
+                      <span
+                        className={`rounded-full px-3 py-1 text-xs font-black ${
+                          course.status === "Preparing"
+                            ? "bg-white text-neutral-700"
+                            : "bg-white text-emerald-700"
+                        }`}
+                      >
                         {course.status}
                       </span>
 
@@ -214,7 +247,7 @@ export default function CoursesPage() {
                       </span>
                     </div>
 
-                    <h3 className="mt-4 text-2xl font-black tracking-[-0.035em] md:text-3xl">
+                    <h3 className="mt-4 font-sans text-2xl font-black tracking-[-0.035em] md:text-3xl">
                       {course.title}
                     </h3>
 
@@ -240,6 +273,128 @@ export default function CoursesPage() {
                 </div>
               </a>
             ))}
+          </div>
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Course routes
+          </p>
+
+          <div className="mt-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <h2 className="max-w-4xl font-sans text-3xl font-black tracking-[-0.04em] md:text-5xl">
+              Choose the route that matches your current level.
+            </h2>
+
+            <p className="max-w-3xl text-base leading-8 text-neutral-700">
+              Some students need foundations first. Others already know the
+              basics and need applied modelling, interpretation or research
+              support.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {courseRoutes.map((route) => (
+              <a
+                key={route.title}
+                href={withBasePath(route.href)}
+                className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md"
+              >
+                <h3 className="font-sans text-2xl font-black tracking-[-0.04em]">
+                  {route.title}
+                </h3>
+
+                <p className="mt-4 text-sm leading-7 text-neutral-700">
+                  {route.text}
+                </p>
+
+                <p className="mt-5 text-sm font-black text-[#8b1116]">
+                  {route.cta} →
+                </p>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
+              Learning route
+            </p>
+
+            <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              New to quantitative subjects? Start with Statistics Foundation.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-white/90">
+              The foundation course gives the language needed for later
+              biostatistics, machine learning, research methods and data
+              analysis.
+            </p>
+
+            <a
+              href={withBasePath("/courses/statistics-foundation")}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+            >
+              Start Statistics Foundation →
+            </a>
+          </article>
+
+          <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/90">
+              Applied route
+            </p>
+
+            <h2 className="mt-4 font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              Ready for prediction modelling? Open ML in Biostatistics.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-white/90">
+              This route focuses on medical machine learning, validation,
+              leakage, calibration, thresholds and responsible reporting.
+            </p>
+
+            <a
+              href={withBasePath("/courses/machine-learning-biostatistics")}
+              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5"
+            >
+              Open ML in Biostatistics →
+            </a>
+          </article>
+        </section>
+
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            Need help choosing?
+          </p>
+
+          <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
+            <div>
+              <h2 className="max-w-4xl font-sans text-3xl font-black tracking-[-0.04em] md:text-5xl">
+                Use the Start Here page or send a support request.
+              </h2>
+
+              <p className="mt-5 max-w-3xl text-base leading-8 text-neutral-700">
+                If you are unsure whether you need a course, a resource guide or
+                personal support, start with the route selector.
+              </p>
+            </div>
+
+            <div className="grid gap-3">
+              <a
+                href={withBasePath("/start-here")}
+                className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-4 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-[#2a2a2a]"
+              >
+                Start here →
+              </a>
+
+              <a
+                href={withBasePath("/contact")}
+                className="inline-flex w-full items-center justify-center rounded-full border border-neutral-200 bg-[#f7f4ee] px-6 py-4 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 hover:shadow-sm"
+              >
+                Request support →
+              </a>
+            </div>
           </div>
         </section>
       </section>
