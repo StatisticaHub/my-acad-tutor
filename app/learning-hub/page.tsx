@@ -510,7 +510,7 @@ export default function LearningHubPage() {
         </section>
 
         <section className="mt-8 rounded-[2rem] bg-[#111111] p-6 text-white shadow-sm md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
             Need live guidance?
           </p>
 
@@ -520,7 +520,7 @@ export default function LearningHubPage() {
                 Enquire for subject-wise live sessions.
               </h2>
 
-              <p className="mt-5 max-w-3xl text-base leading-8 text-white/70">
+              <p className="mt-5 max-w-3xl text-base leading-8 text-white/90">
                 Alongside structured pathways, students can enquire about live
                 support in statistics, biostatistics, programming, data science,
                 bioinformatics and dissertation data analysis.

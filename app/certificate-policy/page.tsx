@@ -177,7 +177,7 @@ export default function CertificatePolicyPage() {
           </article>
 
           <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
               A certificate does not mean
             </p>
 
@@ -185,7 +185,7 @@ export default function CertificatePolicyPage() {
               Formal academic or professional accreditation.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/70">
+            <p className="mt-5 text-base leading-8 text-white/90">
               Certificates must not be misrepresented as formal academic credit,
               a regulated qualification or proof of professional authorisation.
             </p>
@@ -263,7 +263,7 @@ export default function CertificatePolicyPage() {
           </article>
 
           <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
               Need clarification?
             </p>
 

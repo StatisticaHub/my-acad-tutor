@@ -147,7 +147,7 @@ export default function SubjectAreas() {
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
               Academic integrity first
             </p>
 
@@ -155,7 +155,7 @@ export default function SubjectAreas() {
               Support is designed to help students understand, not outsource.
             </h3>
 
-            <p className="mt-5 text-base leading-8 text-white/70">
+            <p className="mt-5 text-base leading-8 text-white/90">
               Sessions can support concept explanation, software guidance,
               analysis planning, interpretation and revision. They are not used
               for ghostwriting, impersonation, dishonest completion of assessed

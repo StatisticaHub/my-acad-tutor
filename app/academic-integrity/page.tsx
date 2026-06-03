@@ -181,7 +181,7 @@ export default function AcademicIntegrityPage() {
           </article>
 
           <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
               We do not provide
             </p>
 
@@ -189,7 +189,7 @@ export default function AcademicIntegrityPage() {
               Work that breaches academic rules.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/70">
+            <p className="mt-5 text-base leading-8 text-white/90">
               We will decline requests that involve dishonest completion,
               misrepresentation, impersonation or manipulation of academic
               work.
@@ -279,7 +279,7 @@ export default function AcademicIntegrityPage() {
           </article>
 
           <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
               Unsure about a request?
             </p>
 

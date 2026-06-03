@@ -257,7 +257,7 @@ export default function DashboardPreviewPage() {
           </article>
 
           <article className="rounded-[2rem] bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
               Coding lab preview
             </p>
 
@@ -265,12 +265,12 @@ export default function DashboardPreviewPage() {
               R and Python labs will appear here.
             </h2>
 
-            <p className="mt-5 text-sm leading-7 text-white/70">
+            <p className="mt-5 text-sm leading-7 text-white/90">
               Future dashboard versions can show WebR labs, Pyodide Python
               exercises, saved code, output panels and downloadable scripts.
             </p>
 
-            <div className="mt-6 rounded-3xl border border-white/10 bg-white/5 p-5 font-mono text-xs leading-7 text-white/70">
+            <div className="mt-6 rounded-3xl border border-white/10 bg-white/5 p-5 font-mono text-xs leading-7 text-white/90">
               {`# Coming soon
 run_lesson_lab("logistic-regression")
 view_progress()
@@ -427,7 +427,7 @@ download_notes()`}
         </section>
 
         <section className="mt-8 rounded-[2rem] bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
             Platform direction
           </p>
 

@@ -51,7 +51,7 @@ export default function ContactCTA() {
     <section className="bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
       <div className="mx-auto max-w-7xl">
         <section className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
             Request support
           </p>
 
@@ -61,7 +61,7 @@ export default function ContactCTA() {
                 Need help choosing the right learning, support or course route?
               </h2>
 
-              <p className="mt-5 max-w-4xl text-pretty text-base leading-8 text-white/70 md:text-lg md:leading-8">
+              <p className="mt-5 max-w-4xl text-pretty text-base leading-8 text-white/90 md:text-lg md:leading-8">
                 Send your subject, level, topic, software needs and deadline.
                 We will guide you towards the most suitable learning route while
                 keeping academic integrity clear.
@@ -84,7 +84,7 @@ export default function ContactCTA() {
 
                     <p
                       className={`mt-3 text-sm leading-7 ${
-                        route.dark ? "text-neutral-700" : "text-white/65"
+                        route.dark ? "text-neutral-700" : "text-white/90"
                       }`}
                     >
                       {route.description}
@@ -103,7 +103,7 @@ export default function ContactCTA() {
             </div>
 
             <aside className="rounded-[2rem] border border-white/10 bg-white/5 p-5 md:p-6">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
                 Best for
               </p>
 
@@ -123,7 +123,7 @@ export default function ContactCTA() {
                   Academic integrity
                 </p>
 
-                <p className="mt-3 text-sm leading-7 text-white/65">
+                <p className="mt-3 text-sm leading-7 text-white/90">
                   Support is focused on explanation, planning, interpretation
                   and learning guidance. It does not replace your own academic
                   work.

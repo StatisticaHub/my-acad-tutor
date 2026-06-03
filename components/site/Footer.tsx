@@ -81,13 +81,13 @@ export default function Footer() {
                   My Academic Tutor
                 </p>
 
-                <p className="mt-1 text-xs font-bold uppercase tracking-[0.22em] text-white/45">
+                <p className="mt-1 text-xs font-bold uppercase tracking-[0.22em] text-white/75">
                   Quantitative Learning
                 </p>
               </div>
             </a>
 
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-white/60">
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-white/85">
               Specialist academic support and structured learning pathways for
               statistics, biostatistics, data science, programming, research
               methods and quantitative academic development.
@@ -114,7 +114,7 @@ export default function Footer() {
                 Academic responsibility
               </p>
 
-              <p className="mt-3 text-sm leading-7 text-white/60">
+              <p className="mt-3 text-sm leading-7 text-white/85">
                 Support is guidance-based. We help students understand methods,
                 plan analysis and interpret ideas. We do not complete assessed
                 work on behalf of students.
@@ -134,7 +134,7 @@ export default function Footer() {
                     <a
                       key={`${group.title}-${link.href}`}
                       href={withBasePath(link.href)}
-                      className="text-sm font-semibold leading-6 text-white/65 transition hover:text-white"
+                      className="text-sm font-semibold leading-6 text-white/90 transition hover:text-white"
                     >
                       {link.label}
                     </a>
@@ -151,7 +151,7 @@ export default function Footer() {
             reserved.
           </p>
 
-          <div className="flex flex-wrap gap-4 text-xs font-bold text-white/45">
+          <div className="flex flex-wrap gap-4 text-xs font-bold text-white/75">
             <a
               href="https://www.linkedin.com/company/myacademictutor/"
               target="_blank"

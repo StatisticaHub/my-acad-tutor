@@ -129,7 +129,7 @@ export default function StartWithThis() {
                 <span
                   className={`rounded-full px-3 py-1 text-xs font-black uppercase tracking-[0.16em] ${
                     route.dark
-                      ? "bg-white/10 text-white/70"
+                      ? "bg-white/10 text-white/90"
                       : "bg-[#f7f4ee] text-[#8b1116]"
                   }`}
                 >
@@ -143,7 +143,7 @@ export default function StartWithThis() {
 
               <p
                 className={`mt-4 text-sm leading-7 ${
-                  route.dark ? "text-white/70" : "text-neutral-700"
+                  route.dark ? "text-white/90" : "text-neutral-700"
                 }`}
               >
                 {route.body}

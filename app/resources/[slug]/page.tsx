@@ -315,7 +315,7 @@ export default async function ResourceGuidePage({
           </section>
 
           <section className="rounded-[1.5rem] border border-neutral-200 bg-neutral-950 p-6 text-white md:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-white/50">
+            <p className="text-xs font-bold uppercase tracking-[0.24em] text-white/80">
               Related guides
             </p>
 

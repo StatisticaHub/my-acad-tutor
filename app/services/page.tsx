@@ -265,7 +265,7 @@ export default function ServicesPage() {
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
               Academic integrity
             </p>
 
@@ -273,7 +273,7 @@ export default function ServicesPage() {
               Support is guidance-based.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/70">
+            <p className="mt-5 text-base leading-8 text-white/90">
               We help students understand concepts, software, methods and
               interpretation. We do not complete assessed work, write
               assignments, submit work, impersonate students or support academic
@@ -311,7 +311,7 @@ export default function ServicesPage() {
         </section>
 
         <section className="mt-8 rounded-[2rem] bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
             Request support
           </p>
 

@@ -19,7 +19,7 @@ export default function Logo({ dark = false }: { dark?: boolean }) {
       <div>
         <p
           className={`text-xs font-black uppercase tracking-[0.2em] ${
-            dark ? "text-white/55" : "text-neutral-500"
+            dark ? "text-white/80" : "text-neutral-500"
           }`}
         >
           My Academic Tutor

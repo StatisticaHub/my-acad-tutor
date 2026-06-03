@@ -215,7 +215,7 @@ export default function InteractiveDemosPage() {
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
               Use with courses
             </p>
 
@@ -223,7 +223,7 @@ export default function InteractiveDemosPage() {
               Pair demos with the full Statistics Foundation course.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/70">
+            <p className="mt-5 text-base leading-8 text-white/90">
               Interactive tools are strongest when combined with lecture
               explanations, detailed notes, worked examples and quizzes.
             </p>
@@ -237,7 +237,7 @@ export default function InteractiveDemosPage() {
           </article>
 
           <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
               Need help interpreting?
             </p>
 

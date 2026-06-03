@@ -141,7 +141,7 @@ export default function CoursesPreview() {
                 <span
                   className={`rounded-full border px-3 py-1 text-xs font-black ${
                     course.dark
-                      ? "border-white/15 text-white/65"
+                      ? "border-white/15 text-white/90"
                       : "border-neutral-200 text-neutral-500"
                   }`}
                 >
@@ -155,7 +155,7 @@ export default function CoursesPreview() {
 
               <p
                 className={`mt-5 text-pretty text-base leading-8 ${
-                  course.dark ? "text-white/70" : "text-neutral-700"
+                  course.dark ? "text-white/90" : "text-neutral-700"
                 }`}
               >
                 {course.description}
@@ -173,7 +173,7 @@ export default function CoursesPreview() {
                   >
                     <p
                       className={`text-xs font-black uppercase tracking-[0.18em] ${
-                        course.dark ? "text-white/45" : "text-neutral-500"
+                        course.dark ? "text-white/75" : "text-neutral-500"
                       }`}
                     >
                       {label}

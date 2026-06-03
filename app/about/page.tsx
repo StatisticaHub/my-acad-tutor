@@ -125,7 +125,7 @@ export default function AboutPage() {
           </article>
 
           <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
               Platform purpose
             </p>
 
@@ -133,7 +133,7 @@ export default function AboutPage() {
               Quantitative learning should feel structured, not overwhelming.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/70">
+            <p className="mt-5 text-base leading-8 text-white/90">
               Many students struggle not because they lack ability, but because
               quantitative subjects are often presented too quickly, too
               abstractly or without enough connection to interpretation. My
@@ -216,7 +216,7 @@ export default function AboutPage() {
         </section>
 
         <section className="mt-8 rounded-[2rem] bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
             Start learning
           </p>
 

@@ -232,7 +232,7 @@ export default function ContactPage() {
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
               Academic integrity
             </p>
 
@@ -240,7 +240,7 @@ export default function ContactPage() {
               Please ask for guidance, not replacement work.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/70">
+            <p className="mt-5 text-base leading-8 text-white/90">
               My Academic Tutor supports understanding, planning,
               interpretation and independent learning. We do not complete
               assessed work, exams, dissertations, submissions or tasks that
@@ -256,7 +256,7 @@ export default function ContactPage() {
           </article>
 
           <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
               Quick email template
             </p>
 

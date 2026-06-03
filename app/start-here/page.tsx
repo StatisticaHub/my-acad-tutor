@@ -284,7 +284,7 @@ export default function StartHerePage() {
           </article>
 
           <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
               Need personal guidance?
             </p>
 
@@ -292,7 +292,7 @@ export default function StartHerePage() {
               Send an enquiry with your subject and goal.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/70">
+            <p className="mt-5 text-base leading-8 text-white/90">
               Mention your subject, academic level, topic, software, deadline
               and what kind of support you need: concept explanation, revision,
               coding guidance, research planning or interpretation.

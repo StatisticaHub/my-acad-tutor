@@ -474,7 +474,7 @@ export default function CoursesPage() {
         </section>
 
         <section className="mt-8 rounded-[2rem] bg-[#111111] p-6 text-white shadow-sm md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
             Not sure where to begin?
           </p>
 
@@ -484,7 +484,7 @@ export default function CoursesPage() {
                 Start with your goal, and choose the right route.
               </h2>
 
-              <p className="mt-5 max-w-3xl text-base leading-8 text-white/70">
+              <p className="mt-5 max-w-3xl text-base leading-8 text-white/90">
                 You can start with a structured course, request subject support
                 or enquire about live sessions for a specific topic.
               </p>

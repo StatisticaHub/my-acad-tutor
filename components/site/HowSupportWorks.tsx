@@ -204,7 +204,7 @@ export default function HowSupportWorks() {
             </div>
 
             <div className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-5 text-white md:p-6">
-              <h4 className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+              <h4 className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
                 We do not provide
               </h4>
 
@@ -225,7 +225,7 @@ export default function HowSupportWorks() {
         <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
           <div className="grid gap-6 md:grid-cols-[0.86fr_1.14fr] md:items-center">
             <div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
                 Support philosophy
               </p>
 

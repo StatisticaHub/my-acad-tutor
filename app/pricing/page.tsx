@@ -233,7 +233,7 @@ export default function PricingPage() {
 
               <p
                 className={`mt-2 text-sm font-bold ${
-                  tier.highlighted ? "text-white/55" : "text-neutral-500"
+                  tier.highlighted ? "text-white/80" : "text-neutral-500"
                 }`}
               >
                 {tier.period}
@@ -241,7 +241,7 @@ export default function PricingPage() {
 
               <p
                 className={`mt-5 text-sm leading-7 ${
-                  tier.highlighted ? "text-white/70" : "text-neutral-700"
+                  tier.highlighted ? "text-white/90" : "text-neutral-700"
                 }`}
               >
                 {tier.summary}
@@ -337,7 +337,7 @@ export default function PricingPage() {
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
               Want course access later?
             </p>
 
@@ -345,7 +345,7 @@ export default function PricingPage() {
               Register interest for premium course release.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/70">
+            <p className="mt-5 text-base leading-8 text-white/90">
               Premium course access can be launched later with full lessons,
               labs, quizzes, downloadable materials and certificate policies.
             </p>
@@ -359,7 +359,7 @@ export default function PricingPage() {
           </article>
 
           <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
               Need personal support?
             </p>
 

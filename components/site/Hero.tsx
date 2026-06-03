@@ -163,7 +163,7 @@ export default function Hero() {
               </div>
 
               <div className="mt-4 rounded-[1.75rem] border border-[#8b1116]/20 bg-[#8b1116] p-5 text-white shadow-sm">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-white/65">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-white/90">
                   Responsible academic support
                 </p>
 

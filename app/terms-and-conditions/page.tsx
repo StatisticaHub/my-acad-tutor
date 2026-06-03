@@ -180,7 +180,7 @@ export default function TermsAndConditionsPage() {
           </article>
 
           <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
               Not allowed
             </p>
 
@@ -188,7 +188,7 @@ export default function TermsAndConditionsPage() {
               You must not use support dishonestly.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/70">
+            <p className="mt-5 text-base leading-8 text-white/90">
               Requests involving academic misconduct, impersonation,
               misrepresentation or dishonest completion may be refused.
             </p>
@@ -287,7 +287,7 @@ export default function TermsAndConditionsPage() {
 
         <section className="mt-8 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">
               Disclaimer
             </p>
 
@@ -296,7 +296,7 @@ export default function TermsAndConditionsPage() {
               advice.
             </h2>
 
-            <p className="mt-5 text-base leading-8 text-white/70">
+            <p className="mt-5 text-base leading-8 text-white/90">
               My Academic Tutor provides educational support and learning
               resources. Students should follow their course instructions,
               university regulations, supervisor guidance and any applicable
@@ -305,7 +305,7 @@ export default function TermsAndConditionsPage() {
           </article>
 
           <article className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/85">
               Questions about terms?
             </p>
 
