@@ -1,5 +1,5 @@
 const basePath =
-  process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+  process.env.NODE_ENV === "production" ? "" : "";
 
 export default function Logo({ dark = false }: { dark?: boolean }) {
   return (

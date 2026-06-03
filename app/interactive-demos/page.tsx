@@ -9,10 +9,10 @@ export const metadata: Metadata = {
     "Explore interactive statistics demos for normal distributions, regression lines and confidence intervals at My Academic Tutor.",
 };
 
-const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = "";
 
 function withBasePath(href: string) {
-  if (href === "/") return `${basePath}/`;
+  if (href === "/") return "/";
   if (href.startsWith("#")) return href;
   if (href.startsWith("http")) return href;
   if (href.startsWith("mailto:")) return href;
@@ -20,7 +20,7 @@ function withBasePath(href: string) {
   const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
   const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
 
-  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
+  return `${cleanHref}${hasFileExtension ? "" : "/"}`;
 }
 
 const demoCards = [

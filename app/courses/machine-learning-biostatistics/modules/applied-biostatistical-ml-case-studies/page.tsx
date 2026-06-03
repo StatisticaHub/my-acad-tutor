@@ -1,13 +1,15 @@
-const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = "";
 
 function withBasePath(href: string) {
-  if (href === "/") return `${basePath}/`;
+  if (href === "/") return "/";
   if (href.startsWith("#")) return href;
   if (href.startsWith("http")) return href;
   if (href.startsWith("mailto:")) return href;
 
   const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
-  return `${basePath}${cleanHref}/`;
+  const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
+
+  return `${cleanHref}${hasFileExtension ? "" : "/"}`;
 }
 
 const lessons = [

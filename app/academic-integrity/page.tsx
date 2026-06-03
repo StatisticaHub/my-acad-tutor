@@ -1,4 +1,4 @@
-const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "" : "";
 function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
 const allowedSupport = ["Concept explanation", "Statistical method guidance", "Software guidance and debugging", "Research planning and interpretation", "Exam preparation and revision", "Assumptions, limitations and reporting"];
 const notProvided = ["Ghostwriting assessed work", "Submitting work for students", "Impersonation in exams", "Changing results to fit a conclusion", "Academic misconduct", "Completing dissertations or exams"];

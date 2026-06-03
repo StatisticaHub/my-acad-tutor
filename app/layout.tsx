@@ -16,7 +16,7 @@ const sourceSerif = Source_Serif_4({
   display: "swap",
 });
 
-const siteUrl = "https://statisticahub.github.io/my-acad-tutor/";
+const siteUrl = "https://myacademictutor.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/my-acad-tutor/favicon.ico",
+    icon: "/favicon.ico",
   },
 };
 

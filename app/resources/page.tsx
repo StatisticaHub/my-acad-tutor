@@ -1,6 +1,6 @@
 import { resourceGuides } from "@/lib/resources";
 
-const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "" : "";
 function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
 
 const flagshipSlugs = ["how-to-choose-the-correct-statistical-test", "understanding-p-values-confidence-intervals-and-effect-sizes", "linear-regression-assumptions-and-diagnostics", "survival-analysis-kaplan-meier-curves-and-cox-regression", "r-python-spss-sas-stata-which-should-i-use"];

@@ -1,4 +1,4 @@
-const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "" : "";
 function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
 const informationTypes = ["Name and email you choose to share", "Subject and academic level", "Support request details", "Messages sent by email or forms", "Website usage if analytics are added", "Payment or account details if systems are added later"];
 const uses = ["Responding to enquiries", "Understanding support needs", "Arranging support", "Improving resources", "Communication records", "Maintaining integrity boundaries"];

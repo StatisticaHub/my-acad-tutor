@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "" : "";
 
 const navLinks = [
   { label: "Start Here", href: "/start-here" },

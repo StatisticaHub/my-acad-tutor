@@ -1,4 +1,4 @@
-const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "" : "";
 function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
 const subjects = [
   { number: "01", title: "Statistics", description: "Support with probability, descriptive statistics, inference, regression and interpretation.", points: ["Probability", "Inference", "Regression"] },

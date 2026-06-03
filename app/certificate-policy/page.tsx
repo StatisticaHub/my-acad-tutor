@@ -1,4 +1,4 @@
-const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = process.env.NODE_ENV === "production" ? "" : "";
 function withBasePath(href: string) { if (href === "/") return `${basePath}/`; if (href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:")) return href; const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href; return `${basePath}${cleanHref}/`; }
 const canShow = ["Course title", "Learner name", "Completion date", "Platform learning activity", "Completion status", "Record ID if implemented"];
 const doesNotMean = ["University degree", "Regulated qualification", "Academic credit", "Professional licence", "University accreditation", "Statutory recognition"];
