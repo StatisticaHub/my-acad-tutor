@@ -26,9 +26,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-neutral-200 bg-[#f7f4ee]/95 px-5 py-4 backdrop-blur md:px-8">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-5">
-        <a href={withBasePath("/")} className="shrink-0">
+        <div className="shrink-0">
           <Logo />
-        </a>
+        </div>
 
         <nav
           aria-label="Main navigation"

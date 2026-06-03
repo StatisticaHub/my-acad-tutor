@@ -39,9 +39,9 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
           <section>
-            <a href={withBasePath("/")} className="inline-flex">
+            <div className="inline-flex">
               <Logo />
-            </a>
+            </div>
 
             <p className="mt-5 max-w-md text-sm leading-7 text-white/70">
               Specialist learning pathways and responsible academic support for
