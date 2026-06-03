@@ -1,7 +1,6 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
-import "./globals.css";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 
@@ -40,7 +39,13 @@ export const metadata: Metadata = {
     "statistics course",
     "machine learning in biostatistics",
     "quantitative research methods",
+    "R programming support",
+    "Python data analysis support",
+    "university statistics support",
   ],
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
     title: "My Academic Tutor | Quantitative Learning and Academic Support",
     description:
@@ -65,7 +70,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport = {
+export const viewport: Viewport = {
   themeColor: "#f7f4ee",
   colorScheme: "light",
 };
