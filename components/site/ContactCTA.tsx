@@ -57,11 +57,11 @@ export default function ContactCTA() {
 
           <div className="mt-5 grid gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:items-start">
             <div>
-              <h2 className="max-w-5xl font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-5xl">
+              <h2 className="max-w-5xl text-balance font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-5xl">
                 Need help choosing the right learning, support or course route?
               </h2>
 
-              <p className="mt-5 max-w-4xl text-base leading-8 text-white/70 md:text-lg md:leading-8">
+              <p className="mt-5 max-w-4xl text-pretty text-base leading-8 text-white/70 md:text-lg md:leading-8">
                 Send your subject, level, topic, software needs and deadline.
                 We will guide you towards the most suitable learning route while
                 keeping academic integrity clear.
@@ -72,13 +72,13 @@ export default function ContactCTA() {
                   <a
                     key={route.href}
                     href={withBasePath(route.href)}
-                    className={`rounded-[1.75rem] border p-5 transition hover:-translate-y-1 ${
+                    className={`rounded-[1.75rem] border p-5 transition hover:-translate-y-0.5 ${
                       route.dark
                         ? "border-white bg-white text-[#111111] hover:bg-neutral-100"
                         : "border-white/10 bg-white/5 text-white hover:bg-white/10"
                     }`}
                   >
-                    <h3 className="font-sans text-xl font-black leading-tight tracking-[-0.03em]">
+                    <h3 className="text-balance font-sans text-xl font-black leading-tight tracking-[-0.03em]">
                       {route.title}
                     </h3>
 

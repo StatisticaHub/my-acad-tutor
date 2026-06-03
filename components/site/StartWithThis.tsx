@@ -71,11 +71,11 @@ export default function StartWithThis() {
 
           <div className="mt-4 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
             <div>
-              <h2 className="max-w-4xl font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-5xl">
+              <h2 className="max-w-4xl text-balance font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-5xl">
                 Choose your route in less than a minute.
               </h2>
 
-              <p className="mt-5 max-w-3xl text-base leading-8 text-neutral-700">
+              <p className="mt-5 max-w-3xl text-pretty text-base leading-8 text-neutral-700">
                 The platform has clear starting points: learn through a
                 structured course, explore a visual demo, use a focused guide,
                 or request personalised academic support.
@@ -87,7 +87,7 @@ export default function StartWithThis() {
                 Platform preview
               </p>
 
-              <h3 className="mt-3 font-sans text-2xl font-black tracking-[-0.04em]">
+              <h3 className="mt-3 text-balance font-sans text-2xl font-black tracking-[-0.04em]">
                 Explore the learning ecosystem.
               </h3>
 
@@ -111,7 +111,7 @@ export default function StartWithThis() {
             <a
               key={route.title}
               href={withBasePath(route.href)}
-              className={`group rounded-[2rem] border p-6 shadow-sm transition hover:-translate-y-1 ${
+              className={`group rounded-[2rem] border p-6 shadow-sm transition hover:-translate-y-0.5 ${
                 route.dark
                   ? "border-[#111111] bg-[#111111] text-white hover:bg-neutral-900"
                   : "border-neutral-200 bg-white text-[#111111] hover:shadow-md"
@@ -137,7 +137,7 @@ export default function StartWithThis() {
                 </span>
               </div>
 
-              <h3 className="mt-5 font-sans text-2xl font-black leading-tight tracking-[-0.04em]">
+              <h3 className="mt-5 text-balance font-sans text-2xl font-black leading-tight tracking-[-0.04em]">
                 {route.title}
               </h3>
 

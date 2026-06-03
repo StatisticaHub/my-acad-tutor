@@ -103,12 +103,12 @@ export default function CoursesPreview() {
                 Courses and platform preview
               </p>
 
-              <h2 className="mt-4 max-w-4xl font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-5xl">
+              <h2 className="mt-4 max-w-4xl text-balance font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-5xl">
                 Structured courses for quantitative learning.
               </h2>
             </div>
 
-            <p className="max-w-4xl text-base leading-8 text-neutral-700">
+            <p className="max-w-4xl text-pretty text-base leading-8 text-neutral-700">
               My Academic Tutor is developing structured learning pathways for
               students who want clear explanations, strong foundations and
               applied quantitative understanding across statistics,
@@ -121,7 +121,7 @@ export default function CoursesPreview() {
           {courses.map((course) => (
             <article
               key={course.title}
-              className={`rounded-[2rem] border p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:p-8 ${
+              className={`rounded-[2rem] border p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:p-8 ${
                 course.dark
                   ? "border-[#111111] bg-[#111111] text-white"
                   : "border-neutral-200 bg-white text-[#111111]"
@@ -149,12 +149,12 @@ export default function CoursesPreview() {
                 </span>
               </div>
 
-              <h3 className="mt-6 max-w-2xl font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-4xl">
+              <h3 className="mt-6 max-w-2xl text-balance font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-4xl">
                 {course.title}
               </h3>
 
               <p
-                className={`mt-5 text-base leading-8 ${
+                className={`mt-5 text-pretty text-base leading-8 ${
                   course.dark ? "text-white/70" : "text-neutral-700"
                 }`}
               >
@@ -165,7 +165,7 @@ export default function CoursesPreview() {
                 {course.details.map(([label, value]) => (
                   <div
                     key={label}
-                    className={`rounded-2xl border p-4 ${
+                    className={`rounded-2xl border px-4 py-3 ${
                       course.dark
                         ? "border-white/10 bg-white/5"
                         : "border-neutral-200 bg-[#f7f4ee]"
@@ -180,7 +180,7 @@ export default function CoursesPreview() {
                     </p>
 
                     <p
-                      className={`mt-2 text-sm font-bold leading-6 ${
+                      className={`mt-1 text-sm font-bold leading-6 ${
                         course.dark ? "text-white/80" : "text-neutral-700"
                       }`}
                     >
@@ -192,10 +192,10 @@ export default function CoursesPreview() {
 
               <a
                 href={withBasePath(course.href)}
-                className={`mt-7 inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-black transition hover:-translate-y-0.5 sm:w-auto ${
+                className={`mt-7 inline-flex w-full items-center justify-center rounded-full px-6 py-3 text-sm font-black transition hover:-translate-y-0.5 ${
                   course.dark
-                    ? "bg-white text-[#111111]"
-                    : "bg-[#8b1116] text-white"
+                    ? "bg-white text-[#111111] hover:bg-[#f7f4ee]"
+                    : "bg-[#8b1116] text-white hover:bg-[#711014]"
                 }`}
               >
                 {course.cta} →
@@ -204,111 +204,112 @@ export default function CoursesPreview() {
           ))}
         </div>
 
-        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-          <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                Platform proof
-              </p>
-
-              <h3 className="mt-4 max-w-3xl font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-4xl">
-                More than course pages.
-              </h3>
-
-              <p className="mt-5 text-base leading-8 text-neutral-700">
-                The platform includes preview routes for demos, pricing and the
-                future student dashboard. These pages help visitors understand
-                the direction of the learning experience before login and
-                payments are added.
-              </p>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              {platformCards.map((card) => (
-                <a
-                  key={card.href}
-                  href={withBasePath(card.href)}
-                  className="rounded-[1.75rem] border border-neutral-200 bg-[#f7f4ee] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-sm"
-                >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
-                    {card.label}
-                  </p>
-
-                  <h4 className="mt-3 font-sans text-xl font-black tracking-[-0.03em]">
-                    {card.title}
-                  </h4>
-
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
-                    {card.description}
-                  </p>
-
-                  <p className="mt-5 text-sm font-black text-[#8b1116]">
-                    Open →
-                  </p>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-8 grid gap-6 lg:grid-cols-[1fr_0.9fr]">
-          <div className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+        <section className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
             <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-              Preparing next
+              Platform features
             </p>
 
-            <h3 className="mt-4 font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-4xl">
-              Future learning pathways.
-            </h3>
+            <h2 className="mt-4 text-balance font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+              More than a course list.
+            </h2>
 
-            <div className="mt-6 grid gap-4">
-              {upcoming.map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
-                >
-                  <h4 className="font-sans text-xl font-black tracking-[-0.03em]">
-                    {item.title}
-                  </h4>
-
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-white/60">
-              Platform principles
-            </p>
-
-            <h3 className="mt-4 font-sans text-3xl font-black leading-tight tracking-[-0.04em] md:text-4xl">
-              Built for learning, not shortcutting.
-            </h3>
-
-            <p className="mt-5 text-base leading-8 text-white/75">
-              The site is designed around responsible academic guidance:
-              explanation, interpretation, structure and confidence.
+            <p className="mt-5 text-pretty text-base leading-8 text-neutral-700">
+              The platform is being built as a learning ecosystem with public
+              guides, structured courses, visual demos, dashboard previews and
+              responsible academic support.
             </p>
 
             <div className="mt-6 grid gap-3">
               {platformPoints.map((point) => (
                 <div
                   key={point}
-                  className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-bold leading-6 text-white/85"
+                  className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold leading-6 text-neutral-700"
                 >
                   {point}
                 </div>
               ))}
             </div>
+          </article>
+
+          <div className="grid gap-4">
+            {platformCards.map((card) => (
+              <a
+                key={card.href}
+                href={withBasePath(card.href)}
+                className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <h3 className="text-balance font-sans text-2xl font-black tracking-[-0.04em]">
+                    {card.title}
+                  </h3>
+
+                  <span className="rounded-full bg-[#f7f4ee] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-[#8b1116]">
+                    {card.label}
+                  </span>
+                </div>
+
+                <p className="mt-4 text-sm leading-7 text-neutral-700">
+                  {card.description}
+                </p>
+
+                <p className="mt-5 text-sm font-black text-[#8b1116]">
+                  Open →
+                </p>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-6 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+          <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <div>
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                Upcoming pathways
+              </p>
+
+              <h2 className="mt-4 text-balance font-sans text-3xl font-black tracking-[-0.04em] md:text-4xl">
+                More subject routes can be added after launch.
+              </h2>
+
+              <p className="mt-5 text-pretty text-base leading-8 text-neutral-700">
+                The current priority is to polish the public platform,
+                Statistics Foundation, Machine Learning in Biostatistics,
+                resources and interactive demos.
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              {upcoming.map((item) => (
+                <article
+                  key={item.title}
+                  className="rounded-[1.75rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                >
+                  <h3 className="text-balance font-sans text-xl font-black tracking-[-0.03em]">
+                    {item.title}
+                  </h3>
+
+                  <p className="mt-4 text-sm leading-7 text-neutral-700">
+                    {item.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href={withBasePath("/courses")}
+              className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-black sm:w-auto"
+            >
+              View all courses
+            </a>
 
             <a
-              href={withBasePath("/academic-integrity")}
-              className="mt-7 inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 sm:w-auto"
+              href={withBasePath("/learning-hub")}
+              className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-black text-[#111111] transition hover:-translate-y-0.5 hover:border-[#8b1116] hover:text-[#8b1116] sm:w-auto"
             >
-              View academic integrity →
+              Open Learning Hub
             </a>
           </div>
         </section>

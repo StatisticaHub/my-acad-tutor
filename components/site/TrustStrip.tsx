@@ -5,7 +5,7 @@ const items = [
   },
   {
     value: "Responsible",
-    label: "Guidance-based academic support focused on learning and integrity.",
+    label: "Guidance-based academic support focused on learning, integrity and independent work.",
   },
   {
     value: "Interactive",
@@ -25,7 +25,7 @@ export default function TrustStrip() {
           {items.map((item) => (
             <article
               key={item.value}
-              className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
               <p className="font-sans text-2xl font-black tracking-[-0.04em] text-[#111111]">
                 {item.value}
