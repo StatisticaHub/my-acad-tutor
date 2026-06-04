@@ -27,7 +27,7 @@ const learningLinks = [
 
 const supportLinks = [
   { label: "Contact", href: "/contact" },
-  { label: "Live Tutoring", href: "/contact#support-form" },
+  { label: "Book Customised Tutoring", href: "/contact#support-form" },
   { label: "Academic Integrity", href: "/academic-integrity" },
   { label: "Certificate Policy", href: "/certificate-policy" },
 ];
@@ -87,7 +87,7 @@ export default function Footer() {
                 href={`${withBasePath("/contact")}#support-form`}
                 className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto"
               >
-                Live Tutoring →
+                Book Customised Tutoring →
               </a>
             </div>
           </div>

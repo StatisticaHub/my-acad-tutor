@@ -53,13 +53,13 @@ const courses = [
   {
     title: "Statistics Foundation",
     description:
-      "Releasing July 2026 in an interactive format with animated explanations, worked examples and quizzes.",
+      "A zero-coding route through probability, inference, regression and uncertainty.",
     href: "/courses/statistics-foundation",
   },
   {
     title: "Machine Learning in Biostatistics",
     description:
-      "Coming soon: prediction modelling, validation, calibration and responsible clinical machine learning.",
+      "Clinical prediction, validation, calibration and responsible health-data modelling.",
     href: "/courses/machine-learning-biostatistics",
   },
 ];
@@ -67,8 +67,8 @@ const courses = [
 const studyFocus = [
   "Statistics",
   "Biostatistics",
-  "Survival analysis",
-  "Regression analysis",
+  "Research methods",
+  "Health data science",
   "Machine learning",
   "Bioinformatics",
 ];
@@ -101,7 +101,7 @@ export default function LearningHubPage() {
             Try Interactive Demos
           </a>
           <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/contact/">
-            Book Customised Tutoring
+            Request Academic Support
           </a>
         </div>
       </section>
@@ -206,7 +206,7 @@ export default function LearningHubPage() {
                 </p>
 
                 <p className="mt-6 text-sm font-semibold text-[#8b1116]">
-                  Join waitlist →
+                  Open pathway →
                 </p>
               </a>
             ))}

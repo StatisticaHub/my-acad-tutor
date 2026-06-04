@@ -33,8 +33,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-[#f7f4ee]/90 px-4 py-3 backdrop-blur sm:px-5 md:px-8">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-[#f7f4ee]/90 px-3 py-3 backdrop-blur sm:px-5 md:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 sm:gap-4">
         <Logo />
 
         <nav className="hidden items-center gap-1 lg:flex">
@@ -49,18 +49,19 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <a
             href={`${withBasePath("/contact")}#support-form`}
-            className="inline-flex items-center justify-center rounded-full bg-[#8b1116] px-4 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:bg-[#111111] sm:px-5 sm:text-sm"
+            className="inline-flex items-center justify-center rounded-full bg-[#8b1116] px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-[#111111] sm:px-5 sm:text-sm"
           >
-            Live Tutoring
+            <span className="md:hidden">Book</span>
+            <span className="hidden md:inline">Book Customised Tutoring</span>
           </a>
 
           <button
             type="button"
             onClick={() => setOpen((current) => !current)}
-            className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-4 py-2.5 text-xs font-semibold text-[#111111] shadow-sm transition hover:bg-[#f7f4ee] sm:text-sm lg:hidden"
+            className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-4 py-2.5 text-xs font-black text-[#111111] shadow-sm transition hover:bg-[#f7f4ee] sm:text-sm lg:hidden"
             aria-expanded={open}
             aria-label="Toggle navigation menu"
           >
@@ -86,9 +87,9 @@ export default function Header() {
             <a
               href={`${withBasePath("/contact")}#support-form`}
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-[#8b1116] px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#111111]"
+              className="mt-2 rounded-full bg-[#8b1116] px-4 py-3 text-center text-sm font-black text-white transition hover:bg-[#111111]"
             >
-              Live Tutoring →
+              Book Customised Tutoring →
             </a>
           </nav>
         </div>

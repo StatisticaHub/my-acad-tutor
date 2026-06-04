@@ -27,7 +27,7 @@ const routes = [
   },
   {
     title: "Ask",
-    body: "Request live tutoring when you need focused support.",
+    body: "Request book customised tutoring when you need focused support.",
   },
 ];
 
@@ -92,12 +92,12 @@ export default function Hero() {
                       </p>
 
                       <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-[-0.05em] text-neutral-950 md:text-4xl">
-                        Tutoring support, now built into a learning platform.
+                        Book customised tutoring, now built into a learning platform.
                       </h2>
                     </div>
 
                     <span className="hidden rounded-full bg-[#f7f4ee] px-3 py-1 text-xs font-semibold text-[#8b1116] sm:inline-flex">
-                      Live
+                      Premium
                     </span>
                   </div>
 
@@ -122,7 +122,7 @@ export default function Hero() {
                       className="group rounded-[1.25rem] border border-neutral-200 bg-[#111111] p-4 text-white transition hover:bg-[#8b1116]"
                     >
                       <p className="text-3xl font-semibold tracking-[-0.06em]">
-                        Live
+                        Premium
                       </p>
 
                       <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/55">
