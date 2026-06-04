@@ -4,7 +4,7 @@ import CourseWaitlist from "@/components/site/CourseWaitlist";
 export const metadata: Metadata = {
   title: "Courses | My Academic Tutor",
   description:
-    "Structured and upcoming courses in statistics, biostatistics, epidemiology, regression analysis, survival analysis and machine learning in biostatistics.",
+    "Structured courses in Statistics Foundation, Machine Learning in Biostatistics, biostatistics, epidemiology, regression analysis, survival analysis and bioinformatics.",
   alternates: {
     canonical: "https://www.myacademictutor.com/courses/",
   },
@@ -28,27 +28,42 @@ function withBasePath(href: string) {
   return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
 }
 
-const featuredCourse = {
-  number: "01",
-  title: "Statistics Foundation",
-  status: "Releasing July 2026",
-  level: "Beginner to intermediate",
-  format: "Interactive format / Animation",
-  summary:
-    "A zero-coding course for statistical thinking, probability, inference, regression, uncertainty and worked examples.",
-  points: ["Theory first", "No coding", "Interactive visuals", "Animated explanations"],
-};
-
-const upcomingCourses = [
+const featuredCourses = [
+  {
+    number: "01",
+    title: "Statistics Foundation",
+    area: "Statistics",
+    status: "Releasing July 2026",
+    level: "Beginner to intermediate",
+    format: "Zero-coding / Interactive / Theory-first",
+    summary:
+      "A structured foundation course for statistical thinking, probability, distributions, inference, regression, uncertainty and worked examples.",
+    points: [
+      "Theory first",
+      "No coding",
+      "Interactive visuals",
+      "Worked examples",
+    ],
+  },
   {
     number: "02",
     title: "Machine Learning in Biostatistics",
-    area: "Machine learning",
+    area: "Medical machine learning",
+    status: "Releasing soon",
     level: "Intermediate",
+    format: "Clinical prediction / Validation / Case studies",
     summary:
-      "A health-data course on prediction modelling, validation, calibration, clinical usefulness and responsible model interpretation.",
-    points: ["Clinical prediction", "Validation", "Calibration", "Case studies"],
+      "A health-data course on prediction modelling, overfitting, validation, calibration, clinical usefulness and responsible interpretation.",
+    points: [
+      "Clinical prediction",
+      "Validation",
+      "Calibration",
+      "Case studies",
+    ],
   },
+];
+
+const upcomingCourses = [
   {
     number: "03",
     title: "Biostatistics Foundation",
@@ -74,7 +89,12 @@ const upcomingCourses = [
     level: "Beginner to intermediate",
     summary:
       "Learn linear regression, logistic regression, interpretation, assumptions, model checking and applied examples.",
-    points: ["Linear regression", "Logistic regression", "Assumptions", "Interpretation"],
+    points: [
+      "Linear regression",
+      "Logistic regression",
+      "Assumptions",
+      "Interpretation",
+    ],
   },
   {
     number: "06",
@@ -103,6 +123,15 @@ const principles = [
   "Responsible interpretation",
 ];
 
+const featuredTopics = [
+  "Probability and uncertainty",
+  "Distributions and inference",
+  "Regression foundations",
+  "Clinical prediction",
+  "Validation and calibration",
+  "Responsible interpretation",
+];
+
 export default function CoursesPage() {
   return (
     <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
@@ -122,29 +151,35 @@ export default function CoursesPage() {
           <div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div>
               <h1 className="max-w-5xl text-4xl font-black leading-[1.03] tracking-[-0.055em] md:text-7xl">
-                Structured courses and upcoming learning routes.
+                Structured courses for statistics and health data learning.
               </h1>
 
               <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
-                Start with the upcoming Statistics Foundation release, then join
-                the waitlist for future courses in biostatistics, medical
-                statistics, health data science, research methods, bioinformatics
-                and machine learning in biostatistics.
+                Start with Statistics Foundation or Machine Learning in
+                Biostatistics. Both courses connect to the Learning Hub and
+                include waitlist access while full releases are prepared.
               </p>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
-                  href="#featured-course"
+                  href="#featured-courses"
                   className="inline-flex items-center justify-center rounded-full bg-neutral-950 px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#8b1116]"
                 >
-                  View featured course →
+                  View featured courses →
                 </a>
 
                 <a
-                  href="#upcoming-courses"
+                  href={withBasePath("/learning-hub")}
                   className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-neutral-950 transition hover:bg-[#f7f4ee]"
                 >
-                  See upcoming courses →
+                  Open Learning Hub →
+                </a>
+
+                <a
+                  href="#course-waitlist"
+                  className="inline-flex items-center justify-center rounded-full border border-[#8b1116]/20 bg-[#fff7f7] px-6 py-3.5 text-sm font-black text-[#8b1116] transition hover:bg-[#8b1116] hover:text-white"
+                >
+                  Join waitlist →
                 </a>
               </div>
             </div>
@@ -169,18 +204,24 @@ export default function CoursesPage() {
         </section>
 
         <section
-          id="featured-course"
+          id="featured-courses"
           className="mt-8 scroll-mt-28 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"
         >
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
-                Featured course release
+                Featured courses
               </p>
 
               <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Statistics Foundation is coming next.
+                Two main learning routes are now featured.
               </h2>
+
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+                Statistics Foundation builds the core ideas. Machine Learning in
+                Biostatistics extends those ideas into prediction, validation and
+                clinical interpretation.
+              </p>
             </div>
 
             <a
@@ -191,91 +232,102 @@ export default function CoursesPage() {
             </a>
           </div>
 
-          <div className="mt-6 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-            <article className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:p-8">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <span className="rounded-full bg-[#111111] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-white">
-                  {featuredCourse.number}
-                </span>
-
-                <span className="rounded-full border border-[#8b1116]/20 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#8b1116]">
-                  {featuredCourse.status}
-                </span>
-              </div>
-
-              <p className="mt-5 text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
-                Statistics
-              </p>
-
-              <h3 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-4xl">
-                {featuredCourse.title}
-              </h3>
-
-              <p className="mt-2 text-sm font-black text-neutral-500">
-                {featuredCourse.level}
-              </p>
-
-              <p className="mt-2 text-sm font-black text-[#8b1116]">
-                {featuredCourse.format}
-              </p>
-
-              <p className="mt-5 text-base leading-8 text-neutral-700">
-                {featuredCourse.summary}
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                {featuredCourse.points.map((point) => (
-                  <span
-                    key={point}
-                    className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-neutral-600"
-                  >
-                    {point}
-                  </span>
-                ))}
-              </div>
-
-              <a
-                href="#course-waitlist"
-                className="mt-7 inline-flex items-center justify-center rounded-full bg-neutral-950 px-5 py-3 text-sm font-black text-white transition hover:bg-[#8b1116]"
+          <div className="mt-6 grid gap-6 lg:grid-cols-2">
+            {featuredCourses.map((course) => (
+              <article
+                key={course.title}
+                className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:p-8"
               >
-                Join waitlist →
-              </a>
-            </article>
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <span className="rounded-full bg-[#111111] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-white">
+                    {course.number}
+                  </span>
 
-            <article className="overflow-hidden rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white md:p-8">
+                  <span className="rounded-full border border-[#8b1116]/20 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#8b1116]">
+                    {course.status}
+                  </span>
+                </div>
+
+                <p className="mt-5 text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  {course.area}
+                </p>
+
+                <h3 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-4xl">
+                  {course.title}
+                </h3>
+
+                <p className="mt-2 text-sm font-black text-neutral-500">
+                  {course.level}
+                </p>
+
+                <p className="mt-2 text-sm font-black text-[#8b1116]">
+                  {course.format}
+                </p>
+
+                <p className="mt-5 text-base leading-8 text-neutral-700">
+                  {course.summary}
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {course.points.map((point) => (
+                    <span
+                      key={point}
+                      className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-neutral-600"
+                    >
+                      {point}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <a
+                    href="#course-waitlist"
+                    className="inline-flex items-center justify-center rounded-full bg-neutral-950 px-5 py-3 text-sm font-black text-white transition hover:bg-[#8b1116]"
+                  >
+                    Join waitlist →
+                  </a>
+
+                  <a
+                    href={withBasePath("/learning-hub")}
+                    className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-black text-neutral-950 transition hover:bg-[#111111] hover:text-white"
+                  >
+                    Open Learning Hub →
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+          <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div>
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
-                Course experience
+                Learning experience
               </p>
 
-              <h3 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-4xl">
-                Interactive explanations, animated intuition and worked examples.
-              </h3>
+              <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                Learn foundations first, then apply them to real health data
+                problems.
+              </h2>
 
               <p className="mt-5 text-sm leading-7 text-white/70 md:text-base md:leading-8">
-                The course is planned as a visual, beginner-friendly learning
-                route. Students will learn concepts through explanations,
-                diagrams, interactive activities, examples and quizzes before
-                moving to more advanced interpretation.
+                The courses are designed to move from intuition to equations,
+                from examples to interpretation, and from statistical thinking
+                to applied biostatistical decision-making.
               </p>
+            </div>
 
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {[
-                  "Probability basics",
-                  "Distributions",
-                  "Confidence intervals",
-                  "Hypothesis testing",
-                  "Regression intuition",
-                  "Interpretation",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4 text-sm font-bold text-white/80"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </article>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {featuredTopics.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4 text-sm font-bold text-white/80"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -290,7 +342,7 @@ export default function CoursesPage() {
               </p>
 
               <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Join the waitlist for future course releases.
+                More courses will be added after the main releases.
               </h2>
             </div>
 
