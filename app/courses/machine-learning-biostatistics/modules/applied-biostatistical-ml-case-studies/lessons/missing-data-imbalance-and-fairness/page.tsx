@@ -1,12 +1,11 @@
-import LockedLessonPreview from "@/components/course/LockedLessonPreview";
+import LockedMachineLearningLessonGate from "@/components/course/LockedMachineLearningLessonGate";
 
-export default function LessonPreviewPage() {
+export default function LockedMachineLearningLessonPage() {
   return (
-    <LockedLessonPreview
-      courseTitle="Machine Learning in Biostatistics"
-      moduleTitle="Applied Biostatistical Ml Case Studies"
-      lessonTitle="Missing Data Imbalance and Fairness"
-      backHref="/app/courses/machine-learning-biostatistics/modules/applied-biostatistical-ml-case-studies/lessons/"
+    <LockedMachineLearningLessonGate
+      lessonCode="5.4"
+      lessonTitle="Missing data, imbalance and fairness"
+      moduleTitle="Module 5 · Applied Biostatistical ML Case Studies"
     />
   );
 }

@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Model Evaluation, Validation and Performance",
+  description:
+    "Module 3 of Machine Learning in Biostatistics covering train/test splitting, classification metrics, ROC, AUC, calibration, bootstrap validation, leakage and reproducible model evaluation.",
+};
+
 const basePath = "";
 
 function withBasePath(href: string) {
@@ -18,79 +26,150 @@ function withBasePath(href: string) {
 
 const lessons = [
   {
-    "number": "3.1",
-    "title": "Confusion matrices and classification metrics",
-    "description": "Understand sensitivity, specificity, predictive values, accuracy and why threshold choice changes model decisions.",
-    "href": "/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance/lessons/confusion-matrices-classification-metrics"
+    number: "3.1",
+    title: "Train/test split and resampling",
+    duration: "95–110 min",
+    status: "Locked until July 2026",
+    open: false,
+    theme: "Honest validation",
+    description:
+      "Understand why training performance is optimistic, how test sets imitate unseen patients, and why resampling gives more stable performance estimates.",
+    href: "#join-waitlist",
+    skills: ["Train/test split", "Resampling", "Generalisation"],
   },
   {
-    "number": "3.2",
-    "title": "ROC curves and AUC",
-    "description": "Learn how ROC curves and AUC describe ranking ability across decision thresholds.",
-    "href": "/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance/lessons/roc-curves-and-auc"
+    number: "3.2",
+    title: "Classification metrics, sensitivity, specificity, ROC and AUC",
+    duration: "100–120 min",
+    status: "Locked until July 2026",
+    open: false,
+    theme: "Discrimination",
+    description:
+      "Interpret confusion matrices, accuracy, sensitivity, specificity, ROC curves and AUC in clinical prediction models.",
+    href: "#join-waitlist",
+    skills: ["Confusion matrix", "ROC/AUC", "Thresholds"],
   },
   {
-    "number": "3.3",
-    "title": "Calibration and predicted probabilities",
-    "description": "Understand why probability accuracy matters when models are used for clinical risk communication.",
-    "href": "/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance/lessons/calibration-and-predicted-probabilities"
+    number: "3.3",
+    title: "Calibration, clinical usefulness and decision curves",
+    duration: "100–120 min",
+    status: "Locked until July 2026",
+    open: false,
+    theme: "Risk reliability",
+    description:
+      "Assess whether predicted probabilities agree with observed risk, and connect model predictions to decision thresholds and clinical usefulness.",
+    href: "#join-waitlist",
+    skills: ["Calibration", "Risk prediction", "Decision curves"],
   },
   {
-    "number": "3.4",
-    "title": "Cross-validation and bootstrap validation",
-    "description": "Use resampling approaches to estimate performance while avoiding optimistic model assessment.",
-    "href": "/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance/lessons/cross-validation-bootstrap-validation"
+    number: "3.4",
+    title: "Cross-validation and bootstrap validation",
+    duration: "100–120 min",
+    status: "Locked until July 2026",
+    open: false,
+    theme: "Internal validation",
+    description:
+      "Use cross-validation and bootstrap validation to estimate model performance more honestly than a single training performance summary.",
+    href: "#join-waitlist",
+    skills: ["Cross-validation", "Bootstrap", "Optimism"],
   },
   {
-    "number": "3.5",
-    "title": "Clinical usefulness and reporting",
-    "description": "Connect performance metrics to clinical decision thresholds, reporting standards and model limitations.",
-    "href": "/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance/lessons/clinical-usefulness-and-reporting"
-  }
-] as const;
+    number: "3.5",
+    title: "Bias, leakage and reproducibility in health ML",
+    duration: "100–120 min",
+    status: "Locked until July 2026",
+    open: false,
+    theme: "Responsible evaluation",
+    description:
+      "Identify common sources of biased model evaluation, including leakage, poor predictor timing, unrepresentative data and irreproducible workflows.",
+    href: "#join-waitlist",
+    skills: ["Leakage", "Bias", "Reproducibility"],
+  },
+];
 
 const moduleStats = [
-  [
-    "5",
-    "Lessons"
-  ],
-  [
-    "R",
-    "Labs"
-  ],
-  [
-    "Preparing",
-    "Status"
-  ],
-  [
-    "Validation",
-    "Focus"
-  ]
-] as const;
+  ["5", "Lessons"],
+  ["0", "Open now"],
+  ["R", "Labs planned"],
+  ["July 2026", "Full release"],
+];
 
 const moduleFocus = [
   {
-    "title": "Discrimination",
-    "body": "Understand how well a model separates higher-risk and lower-risk individuals."
+    title: "Performance is not one number",
+    body: "Accuracy, sensitivity, specificity, ROC, AUC and calibration answer different questions. This module teaches students to read them together rather than choosing one headline metric.",
   },
   {
-    "title": "Calibration",
-    "body": "Check whether predicted probabilities agree with observed risk across the prediction range."
+    title: "Validation protects against overconfidence",
+    body: "A model can look excellent on the data that trained it and fail on new patients. Test sets, cross-validation and bootstrap validation help estimate future-patient performance more honestly.",
   },
   {
-    "title": "Validation",
-    "body": "Use resampling, test data and leakage checks to estimate performance honestly."
-  }
-] as const;
+    title: "Thresholds change decisions",
+    body: "A predicted risk is not a clinical decision until a threshold is chosen. Threshold choice changes false positives, false negatives and clinical workload.",
+  },
+  {
+    title: "Calibration matters in medicine",
+    body: "Clinical prediction models often communicate risk. If a model says 30% risk, the observed risk should be close to 30% among similar patients.",
+  },
+  {
+    title: "Leakage can destroy trust",
+    body: "If information from the future, the outcome process or the test set enters model fitting, the reported performance can become dangerously optimistic.",
+  },
+];
 
 const outcomes = [
-  "Explain discrimination",
-  "Interpret ROC and AUC",
-  "Assess calibration",
-  "Use cross-validation",
-  "Understand bootstrap validation",
-  "Report performance limitations"
-] as const;
+  "Explain why training performance is usually too optimistic.",
+  "Interpret confusion matrices in clinical prediction settings.",
+  "Calculate and explain accuracy, sensitivity and specificity.",
+  "Understand ROC curves and AUC as discrimination summaries.",
+  "Explain why calibration is different from discrimination.",
+  "Use cross-validation and bootstrap validation conceptually.",
+  "Recognise data leakage and poor predictor timing.",
+  "Write cautious performance reports for medical ML models.",
+];
+
+const pathway = [
+  {
+    step: "1",
+    title: "Split",
+    body: "Separate model fitting from model evaluation so performance is not judged only on data already seen by the model.",
+  },
+  {
+    step: "2",
+    title: "Classify",
+    body: "Convert predicted risks into classifications using thresholds, then inspect true positives, false positives, false negatives and true negatives.",
+  },
+  {
+    step: "3",
+    title: "Discriminate",
+    body: "Use ROC curves and AUC to understand how well the model ranks higher-risk and lower-risk observations.",
+  },
+  {
+    step: "4",
+    title: "Calibrate",
+    body: "Check whether predicted probabilities match observed risk, especially when predictions are used for risk communication.",
+  },
+  {
+    step: "5",
+    title: "Validate",
+    body: "Use cross-validation, bootstrap validation and leakage checks to estimate performance honestly.",
+  },
+  {
+    step: "6",
+    title: "Report",
+    body: "Write a transparent performance summary that includes uncertainty, limitations and clinical caution.",
+  },
+];
+
+const learningDesign = [
+  "Clinical prediction examples based on health-data decisions",
+  "Detailed notes linking model evaluation to biostatistical reasoning",
+  "Browser R coding labs planned for every full lesson",
+  "Downloadable R scripts for local practice",
+  "Confusion matrix, ROC, calibration and validation outputs",
+  "Report sections translating output into interpretation",
+  "Caution boxes for leakage, optimism and threshold misuse",
+];
 
 export default function ModelEvaluationValidationPerformanceModulePage() {
   return (
@@ -98,7 +177,7 @@ export default function ModelEvaluationValidationPerformanceModulePage() {
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses/machine-learning-biostatistics")}
-          className="text-sm font-semibold text-[#8b1116] transition hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#8b1116] transition hover:text-[#5f0b0f]"
         >
           ← Back to Machine Learning in Biostatistics
         </a>
@@ -106,65 +185,92 @@ export default function ModelEvaluationValidationPerformanceModulePage() {
         <section className="mt-6 overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:mt-8 md:rounded-[2.5rem]">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-5 sm:p-6 md:p-10 lg:p-12">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
-                Module 3 · ML in Biostatistics
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
+                Module 3 · Machine Learning in Biostatistics
               </p>
 
-              <h1 className="mt-4 max-w-5xl text-4xl font-semibold leading-[1.03] tracking-[-0.055em] md:mt-5 md:text-6xl">
+              <h1 className="mt-4 max-w-5xl text-4xl font-black leading-[1.03] tracking-[-0.055em] md:mt-5 md:text-7xl">
                 Model evaluation, validation and performance.
               </h1>
 
               <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700 md:mt-6 md:text-lg md:leading-9">
-                Learn how to judge whether a prediction model works beyond the data used to fit it. Focus on discrimination, calibration, cross-validation, bootstrap validation and honest reporting.
+                This module teaches how to judge whether a prediction model
+                works beyond the data used to fit it. Students move from
+                confusion matrices and ROC curves to calibration, resampling,
+                bootstrap validation, leakage checks and responsible reporting.
               </p>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
-                  href={withBasePath(lessons[0].href)}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#8b1116] sm:w-auto md:py-4"
+                  href={withBasePath("#module-lessons")}
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#8b1116] sm:w-auto md:py-4"
                 >
-                  Start Lesson {lessons[0].number} →
+                  View Module 3 lessons →
                 </a>
 
                 <a
-                  href={withBasePath("/courses/machine-learning-biostatistics/modules/regularisation-ensembles-modern-prediction-models")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                  href={withBasePath(
+                    "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics",
+                  )}
+                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
                 >
-                  Next module
+                  Open Lesson 1.1
                 </a>
+
+                <a
+                  href={withBasePath("#join-waitlist")}
+                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                >
+                  Join waitlist
+                </a>
+              </div>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {moduleStats.map(([value, label]) => (
+                  <div
+                    key={label}
+                    className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4"
+                  >
+                    <p className="text-2xl font-black tracking-[-0.05em]">
+                      {value}
+                    </p>
+                    <p className="mt-1 text-xs font-black uppercase tracking-[0.14em] text-neutral-500">
+                      {label}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-[#fdfbf7] p-5 md:p-8 lg:border-l lg:border-t-0">
-              <div className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2rem] md:p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8b1116] md:text-sm">
-                  Module aim
-                </p>
+            <aside className="border-t border-neutral-200 bg-neutral-950 p-5 text-white md:p-8 lg:border-l lg:border-t-0">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50 md:text-sm">
+                Module aim
+              </p>
 
-                <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em]">
-                  Evaluate models honestly before trusting them.
-                </h2>
+              <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                Evaluate models honestly before trusting them.
+              </h2>
 
-                <p className="mt-4 text-sm leading-7 text-neutral-700">
-                  A model that performs well on training data can still fail on new patients. This module teaches validation as a central biostatistical habit.
-                </p>
+              <p className="mt-5 text-sm leading-7 text-white/70">
+                A model that performs well on training data can still fail on
+                new patients. This module makes validation a central
+                biostatistical habit, not an optional technical step.
+              </p>
 
-                <div className="mt-5 grid grid-cols-2 gap-3">
-                  {moduleStats.map(([value, label]) => (
-                    <div
-                      key={label}
-                      className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4"
-                    >
-                      <p className="text-2xl font-semibold tracking-[-0.05em]">
-                        {value}
-                      </p>
-
-                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
-                        {label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+              <div className="mt-7 grid gap-3">
+                {[
+                  "All Module 3 lessons are currently locked.",
+                  "Lesson 1.1 remains open as the full course preview.",
+                  "Full Module 3 lessons will include R labs and output-driven reports.",
+                  "The complete release is planned for July 2026.",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] px-4 py-3 text-sm font-bold text-white/80"
+                  >
+                    {item}
+                  </div>
+                ))}
               </div>
             </aside>
           </div>
@@ -172,12 +278,12 @@ export default function ModelEvaluationValidationPerformanceModulePage() {
 
         <section className="mt-6 grid gap-4 md:mt-8 lg:grid-cols-[0.9fr_1.1fr]">
           <article className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
               What this module builds
             </p>
 
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] md:text-4xl">
-              Performance means more than accuracy.
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+              Performance judgement beyond accuracy.
             </h2>
 
             <div className="mt-6 grid gap-3">
@@ -186,10 +292,9 @@ export default function ModelEvaluationValidationPerformanceModulePage() {
                   key={item.title}
                   className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] p-4"
                 >
-                  <h3 className="text-sm font-semibold text-neutral-950">
+                  <h3 className="text-sm font-black text-neutral-950">
                     {item.title}
                   </h3>
-
                   <p className="mt-2 text-sm leading-7 text-neutral-700">
                     {item.body}
                   </p>
@@ -199,19 +304,19 @@ export default function ModelEvaluationValidationPerformanceModulePage() {
           </article>
 
           <article className="rounded-[1.75rem] border border-neutral-200 bg-[#111111] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55 md:text-sm">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-white/55 md:text-sm">
               By the end
             </p>
 
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] md:text-4xl">
-              You should be able to evaluate prediction models carefully.
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+              Students should evaluate health prediction models carefully.
             </h2>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               {outcomes.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-semibold text-white/85"
+                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-bold text-white/85"
                 >
                   {item}
                 </div>
@@ -221,78 +326,330 @@ export default function ModelEvaluationValidationPerformanceModulePage() {
         </section>
 
         <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
-          <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+                Module pathway
+              </p>
+
+              <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                From test sets to responsible reporting.
+              </h2>
+            </div>
+
+            <p className="text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+              The module shows how model evaluation moves from splitting data
+              and counting errors to discrimination, calibration, validation,
+              leakage prevention and transparent reporting.
+            </p>
+          </div>
+
+          <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {pathway.map((item) => (
+              <article
+                key={item.step}
+                className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+              >
+                <span className="rounded-full bg-[#111111] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-white">
+                  Step {item.step}
+                </span>
+
+                <h3 className="mt-4 text-xl font-black tracking-[-0.04em]">
+                  {item.title}
+                </h3>
+
+                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  {item.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-6 grid gap-4 md:mt-8 lg:grid-cols-[1.05fr_0.95fr]">
+          <article className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              Lesson design
+            </p>
+
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+              The evaluation lessons will be output-led.
+            </h2>
+
+            <div className="mt-6 grid gap-3">
+              {learningDesign.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-700"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <article className="rounded-[1.75rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              Current release state
+            </p>
+
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] text-[#8b1116] md:text-5xl">
+              Module 3 is open for preview.
+            </h2>
+
+            <p className="mt-4 text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+              Students can see the Module 3 pathway now. The full lessons are
+              locked while they are redesigned with R scripts, confusion-matrix
+              outputs, ROC and calibration visuals, validation reports and
+              clinical interpretation.
+            </p>
+
+            <a
+              href={withBasePath("#join-waitlist")}
+              className="mt-6 inline-flex w-full justify-center rounded-full bg-[#8b1116] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#5f0b0f] sm:w-auto"
+            >
+              Join waitlist →
+            </a>
+          </article>
+        </section>
+
+        <section
+          id="module-lessons"
+          className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
+        >
+          <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
                 Module lessons
               </p>
 
-              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] md:text-5xl">
+              <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
                 Study the lessons in order.
               </h2>
             </div>
 
             <p className="text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
-              The lessons move from confusion matrices and discrimination to calibration, resampling validation and transparent reporting.
+              All Module 3 lessons currently route to the waitlist. The full
+              release will move from train/test splitting to classification
+              metrics, calibration, validation and leakage prevention.
             </p>
           </div>
 
-          <div className="mt-6 grid gap-3 md:mt-8">
+          <div className="mt-6 grid gap-3">
             {lessons.map((lesson) => (
               <a
                 key={lesson.number}
                 href={withBasePath(lesson.href)}
-                className="group rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:rounded-[2rem] md:p-6"
+                className="group rounded-[1.5rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:rounded-[2rem] md:p-6"
               >
-                <div className="grid gap-4 md:grid-cols-[0.18fr_1fr_auto] md:items-center">
-                  <p className="text-3xl font-semibold tracking-[-0.055em] text-[#8b1116]">
-                    {lesson.number}
-                  </p>
-
+                <div className="grid gap-5 lg:grid-cols-[0.18fr_1fr_0.22fr] lg:items-start">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
-                      Lesson {lesson.number}
+                    <p className="text-5xl font-black tracking-[-0.06em] text-[#8b1116]">
+                      {lesson.number}
                     </p>
-
-                    <h3 className="mt-2 text-2xl font-semibold leading-tight tracking-[-0.04em]">
-                      {lesson.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-7 text-neutral-700">
-                      {lesson.description}
+                    <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+                      Lesson
                     </p>
                   </div>
 
-                  <span className="text-sm font-semibold text-[#8b1116]">
-                    Open →
-                  </span>
+                  <div>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="rounded-full bg-[#8b1116] px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-white">
+                        Locked
+                      </span>
+
+                      <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-neutral-600">
+                        {lesson.duration}
+                      </span>
+
+                      <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-[#8b1116]">
+                        {lesson.theme}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-4 text-2xl font-black tracking-[-0.04em]">
+                      {lesson.title}
+                    </h3>
+
+                    <p className="mt-3 max-w-4xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+                      {lesson.description}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {lesson.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-xs font-bold text-neutral-600"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="lg:text-right">
+                    <span className="inline-flex rounded-full border border-[#8b1116]/20 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#8b1116]">
+                      {lesson.status}
+                    </span>
+
+                    <p className="mt-5 text-sm font-black text-[#8b1116] transition group-hover:translate-x-1">
+                      Join waitlist →
+                    </p>
+                  </div>
                 </div>
               </a>
             ))}
           </div>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-[#8b1116] p-5 text-white shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
-          <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70 md:text-sm">
-                Recommended next step
+        <section
+          id="join-waitlist"
+          className="mt-6 overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-neutral-950 shadow-sm md:mt-8 md:rounded-[2.5rem]"
+        >
+          <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="p-5 text-white md:p-10">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50 md:text-sm">
+                Join the waitlist
               </p>
 
-              <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-[-0.045em] md:text-5xl">
-                Move from evaluation to model control.
+              <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                Get access updates when Module 3 opens in July 2026.
               </h2>
 
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/80 md:text-base md:leading-8">
-                Once performance is understood, regularisation and ensemble methods help manage complexity, instability and overfitting.
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/75 md:text-base md:leading-8">
+                Module 3 lessons are currently locked while they are redesigned
+                with validation R labs, ROC and calibration visuals, bootstrap
+                workflows, leakage checks and report-style interpretation.
+              </p>
+
+              <div className="mt-6 grid gap-3">
+                {[
+                  "Module 3 overview stays open.",
+                  "All Module 3 lessons remain locked until July 2026.",
+                  "Lesson 1.1 remains open as the course preview.",
+                  "Waitlist visitors can request early access or release updates.",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] px-4 py-3 text-sm font-bold text-white/80"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-white/10 bg-white p-5 md:p-8 lg:border-l lg:border-t-0">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
+                Waitlist form
+              </p>
+
+              <h3 className="mt-3 text-3xl font-black tracking-[-0.045em]">
+                Request access.
+              </h3>
+
+              <form
+                action={withBasePath("/contact")}
+                method="get"
+                className="mt-6 grid gap-4"
+              >
+                <label className="grid gap-2">
+                  <span className="text-sm font-black text-neutral-700">
+                    Name
+                  </span>
+                  <input
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Your name"
+                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                  />
+                </label>
+
+                <label className="grid gap-2">
+                  <span className="text-sm font-black text-neutral-700">
+                    Email
+                  </span>
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                  />
+                </label>
+
+                <label className="grid gap-2">
+                  <span className="text-sm font-black text-neutral-700">
+                    Interest
+                  </span>
+                  <select
+                    name="interest"
+                    defaultValue="ML Biostatistics Module 3 waitlist"
+                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                  >
+                    <option>ML Biostatistics Module 3 waitlist</option>
+                    <option>Machine Learning in Biostatistics waitlist</option>
+                    <option>Early access</option>
+                    <option>Private tutoring support</option>
+                    <option>Full course release updates</option>
+                  </select>
+                </label>
+
+                <label className="grid gap-2">
+                  <span className="text-sm font-black text-neutral-700">
+                    Message
+                  </span>
+                  <textarea
+                    name="message"
+                    rows={4}
+                    defaultValue="I want to join the Machine Learning in Biostatistics Module 3 waitlist."
+                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                  />
+                </label>
+
+                <button
+                  type="submit"
+                  className="rounded-full bg-[#8b1116] px-6 py-4 text-sm font-black text-white transition hover:bg-[#5f0b0f]"
+                >
+                  Join waitlist →
+                </button>
+
+                <p className="text-xs leading-6 text-neutral-500">
+                  This currently routes to the contact page. Later, connect this
+                  form to Resend, Formspree, Google Forms or your preferred
+                  mailing list system.
+                </p>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-6 rounded-[1.75rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+          <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+                Recommended start
+              </p>
+
+              <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-[-0.045em] text-[#8b1116] md:text-5xl">
+                Begin with the open foundation lesson.
+              </h2>
+
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+                Lesson 1.1 introduces the course structure: prediction question,
+                R script, model output, interpretation, report writing and
+                responsible modelling caution.
               </p>
             </div>
 
             <a
-              href={withBasePath("/courses/machine-learning-biostatistics/modules/regularisation-ensembles-modern-prediction-models")}
-              className="inline-flex w-full justify-center rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+              href={withBasePath(
+                "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics",
+              )}
+              className="inline-flex w-full justify-center rounded-full bg-[#8b1116] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#5f0b0f] sm:w-auto md:py-4"
             >
-              Open Module 4 →
+              Open Lesson 1.1 →
             </a>
           </div>
         </section>

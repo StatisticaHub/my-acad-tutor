@@ -1,12 +1,11 @@
-import LockedLessonPreview from "@/components/course/LockedLessonPreview";
+import LockedMachineLearningLessonGate from "@/components/course/LockedMachineLearningLessonGate";
 
-export default function LessonPreviewPage() {
+export default function LockedMachineLearningLessonPage() {
   return (
-    <LockedLessonPreview
-      courseTitle="Machine Learning in Biostatistics"
-      moduleTitle="Model Evaluation Validation Performance"
-      lessonTitle="Calibration Clinical Usefulness Decision Curves"
-      backHref="/app/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance/lessons/"
+    <LockedMachineLearningLessonGate
+      lessonCode="3.3"
+      lessonTitle="Calibration, clinical usefulness and decision curves"
+      moduleTitle="Module 3 · Model Evaluation, Validation and Performance"
     />
   );
 }

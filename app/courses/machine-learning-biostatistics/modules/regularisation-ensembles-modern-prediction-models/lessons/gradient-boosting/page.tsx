@@ -1,12 +1,11 @@
-import LockedLessonPreview from "@/components/course/LockedLessonPreview";
+import LockedMachineLearningLessonGate from "@/components/course/LockedMachineLearningLessonGate";
 
-export default function LessonPreviewPage() {
+export default function LockedMachineLearningLessonPage() {
   return (
-    <LockedLessonPreview
-      courseTitle="Machine Learning in Biostatistics"
-      moduleTitle="Regularisation Ensembles Modern Prediction Models"
-      lessonTitle="Gradient Boosting"
-      backHref="/app/courses/machine-learning-biostatistics/modules/regularisation-ensembles-modern-prediction-models/lessons/"
+    <LockedMachineLearningLessonGate
+      lessonCode="4.3"
+      lessonTitle="Gradient boosting"
+      moduleTitle="Module 4 · Regularisation, Ensembles and Modern Prediction Models"
     />
   );
 }

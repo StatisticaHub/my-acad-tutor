@@ -1,12 +1,11 @@
-import LockedLessonPreview from "@/components/course/LockedLessonPreview";
+import LockedMachineLearningLessonGate from "@/components/course/LockedMachineLearningLessonGate";
 
-export default function LessonPreviewPage() {
+export default function LockedMachineLearningLessonPage() {
   return (
-    <LockedLessonPreview
-      courseTitle="Machine Learning in Biostatistics"
-      moduleTitle="Applied Biostatistical Ml Case Studies"
-      lessonTitle="High Dimensional Omics and Feature Selection"
-      backHref="/app/courses/machine-learning-biostatistics/modules/applied-biostatistical-ml-case-studies/lessons/"
+    <LockedMachineLearningLessonGate
+      lessonCode="5.3"
+      lessonTitle="High-dimensional omics and feature selection"
+      moduleTitle="Module 5 · Applied Biostatistical ML Case Studies"
     />
   );
 }

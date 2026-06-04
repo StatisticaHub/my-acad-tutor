@@ -1,12 +1,11 @@
-import LockedLessonPreview from "@/components/course/LockedLessonPreview";
+import LockedMachineLearningLessonGate from "@/components/course/LockedMachineLearningLessonGate";
 
-export default function LessonPreviewPage() {
+export default function LockedMachineLearningLessonPage() {
   return (
-    <LockedLessonPreview
-      courseTitle="Machine Learning in Biostatistics"
-      moduleTitle="Applied Biostatistical Ml Case Studies"
-      lessonTitle="Clinical Risk Prediction Case Study"
-      backHref="/app/courses/machine-learning-biostatistics/modules/applied-biostatistical-ml-case-studies/lessons/"
+    <LockedMachineLearningLessonGate
+      lessonCode="5.1"
+      lessonTitle="Clinical risk prediction case study"
+      moduleTitle="Module 5 · Applied Biostatistical ML Case Studies"
     />
   );
 }

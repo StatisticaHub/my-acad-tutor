@@ -97,7 +97,7 @@ export default function Hero() {
                     </div>
 
                     <span className="hidden rounded-full bg-[#f7f4ee] px-3 py-1 text-xs font-semibold text-[#8b1116] sm:inline-flex">
-                      Premium
+                      Customised
                     </span>
                   </div>
 
@@ -122,7 +122,7 @@ export default function Hero() {
                       className="group rounded-[1.25rem] border border-neutral-200 bg-[#111111] p-4 text-white transition hover:bg-[#8b1116]"
                     >
                       <p className="text-3xl font-semibold tracking-[-0.06em]">
-                        Premium
+                        Customised
                       </p>
 
                       <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/55">

@@ -1,12 +1,11 @@
-import LockedLessonPreview from "@/components/course/LockedLessonPreview";
+import LockedMachineLearningLessonGate from "@/components/course/LockedMachineLearningLessonGate";
 
-export default function LessonPreviewPage() {
+export default function LockedMachineLearningLessonPage() {
   return (
-    <LockedLessonPreview
-      courseTitle="Machine Learning in Biostatistics"
-      moduleTitle="Foundations"
-      lessonTitle="Prediction Explanation Causal Thinking"
-      backHref="/app/courses/machine-learning-biostatistics/modules/foundations/lessons/"
+    <LockedMachineLearningLessonGate
+      lessonCode="1.2"
+      lessonTitle="Prediction, explanation and causal thinking"
+      moduleTitle="Module 1 · Foundations of Machine Learning in Biostatistics"
     />
   );
 }

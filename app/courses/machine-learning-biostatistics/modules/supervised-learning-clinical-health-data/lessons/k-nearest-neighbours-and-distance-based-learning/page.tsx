@@ -1,12 +1,11 @@
-import LockedLessonPreview from "@/components/course/LockedLessonPreview";
+import LockedMachineLearningLessonGate from "@/components/course/LockedMachineLearningLessonGate";
 
-export default function LessonPreviewPage() {
+export default function LockedMachineLearningLessonPage() {
   return (
-    <LockedLessonPreview
-      courseTitle="Machine Learning in Biostatistics"
-      moduleTitle="Supervised Learning Clinical Health Data"
-      lessonTitle="K Nearest Neighbours and Distance Based Learning"
-      backHref="/app/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/"
+    <LockedMachineLearningLessonGate
+      lessonCode="2.3"
+      lessonTitle="K-nearest neighbours and distance-based learning"
+      moduleTitle="Module 2 · Supervised Learning for Clinical Health Data"
     />
   );
 }

@@ -1,12 +1,11 @@
-import LockedLessonPreview from "@/components/course/LockedLessonPreview";
+import LockedMachineLearningLessonGate from "@/components/course/LockedMachineLearningLessonGate";
 
-export default function LessonPreviewPage() {
+export default function LockedMachineLearningLessonPage() {
   return (
-    <LockedLessonPreview
-      courseTitle="Machine Learning in Biostatistics"
-      moduleTitle="Supervised Learning Clinical Health Data"
-      lessonTitle="Model Pipelines for Clinical Datasets"
-      backHref="/app/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/"
+    <LockedMachineLearningLessonGate
+      lessonCode="2.5"
+      lessonTitle="Model pipelines for clinical datasets"
+      moduleTitle="Module 2 · Supervised Learning for Clinical Health Data"
     />
   );
 }

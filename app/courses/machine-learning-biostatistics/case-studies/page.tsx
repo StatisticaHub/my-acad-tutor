@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Machine Learning in Biostatistics Case Studies",
+  description:
+    "Applied case studies for the Machine Learning in Biostatistics course, covering diabetes risk prediction, supervised learning, validation, regularisation, ensembles, missing data, imbalance and responsible reporting.",
+};
+
 const basePath = "";
 
 function withBasePath(href: string) {
@@ -21,7 +29,8 @@ const caseStudies = [
     number: "01",
     module: "Module 1",
     title: "Diabetes risk prediction workflow",
-    status: "Available",
+    status: "Available now",
+    open: true,
     href: "/courses/machine-learning-biostatistics/case-studies/diabetes-risk-prediction",
     summary:
       "A complete introductory case study showing how to define a clinical prediction question, check predictors, split data, fit a model, evaluate performance and report limitations.",
@@ -29,7 +38,7 @@ const caseStudies = [
       "Prediction question",
       "Predictor timing",
       "Train/test split",
-      "AUC and Brier score",
+      "Model output",
       "Threshold trade-offs",
       "Responsible reporting",
     ],
@@ -38,8 +47,9 @@ const caseStudies = [
     number: "02",
     module: "Module 2",
     title: "Clinical classification with supervised learning",
-    status: "Planned",
-    href: "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data",
+    status: "Locked until July 2026",
+    open: false,
+    href: "#join-waitlist",
     summary:
       "A supervised learning case study comparing logistic regression, k-nearest neighbours and decision trees for a clinical binary outcome.",
     focus: [
@@ -55,10 +65,11 @@ const caseStudies = [
     number: "03",
     module: "Module 3",
     title: "Model validation and calibration case study",
-    status: "Planned",
-    href: "/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance",
+    status: "Locked until July 2026",
+    open: false,
+    href: "#join-waitlist",
     summary:
-      "A validation-focused case study comparing apparent performance, test performance, calibration and clinical usefulness.",
+      "A validation-focused case study comparing apparent performance, test performance, calibration, decision thresholds and clinical usefulness.",
     focus: [
       "Discrimination",
       "Calibration",
@@ -72,8 +83,9 @@ const caseStudies = [
     number: "04",
     module: "Module 4",
     title: "Regularised and ensemble prediction models",
-    status: "Planned",
-    href: "/courses/machine-learning-biostatistics/modules/regularisation-ensembles-modern-prediction-models",
+    status: "Locked until July 2026",
+    open: false,
+    href: "#join-waitlist",
     summary:
       "A model-comparison case study using penalised regression, random forests and boosting with careful validation and interpretation.",
     focus: [
@@ -89,8 +101,9 @@ const caseStudies = [
     number: "05",
     module: "Module 5",
     title: "Applied health-data modelling limitations",
-    status: "Planned",
-    href: "/courses/machine-learning-biostatistics/modules/applied-biostatistical-ml-case-studies",
+    status: "Locked until July 2026",
+    open: false,
+    href: "#join-waitlist",
     summary:
       "A final applied case study focusing on missing data, imbalance, fairness, transparent reporting and model limitations.",
     focus: [
@@ -104,15 +117,62 @@ const caseStudies = [
   },
 ];
 
+const snapshot = [
+  ["5", "Case studies"],
+  ["1", "Available now"],
+  ["4", "Waitlisted"],
+  ["July 2026", "Full release"],
+];
+
 const workflow = [
-  "Define the clinical question",
-  "Specify outcome timing",
-  "Check predictors and leakage",
-  "Split data honestly",
-  "Fit a simple baseline model",
-  "Evaluate discrimination and calibration",
-  "Interpret thresholds",
-  "Report limitations clearly",
+  {
+    step: "1",
+    title: "Question",
+    body: "State the clinical prediction question, target population, outcome and intended use.",
+  },
+  {
+    step: "2",
+    title: "Data",
+    body: "Check variables, predictor timing, missingness, outcome balance and leakage risk.",
+  },
+  {
+    step: "3",
+    title: "Model",
+    body: "Fit a baseline model first, then compare alternatives only when the question justifies it.",
+  },
+  {
+    step: "4",
+    title: "Validate",
+    body: "Evaluate model performance on data not used for fitting, using discrimination, calibration and threshold behaviour.",
+  },
+  {
+    step: "5",
+    title: "Interpret",
+    body: "Translate R output into statistical and clinical meaning without turning prediction into causation.",
+  },
+  {
+    step: "6",
+    title: "Report",
+    body: "Write a transparent conclusion with limitations, cautions and next steps.",
+  },
+];
+
+const learningDesign = [
+  "Applied health-data case studies linked to each module",
+  "R workflow thinking rather than isolated code snippets",
+  "Dataset summaries, model outputs and validation results",
+  "Interpretation of confusion matrices, risk scores and thresholds",
+  "Report-writing guidance from actual model output",
+  "Caution around leakage, overfitting, imbalance and causal overclaiming",
+];
+
+const outcomes = [
+  "Define applied clinical prediction problems clearly",
+  "Connect modelling choices to predictor timing and outcome definition",
+  "Interpret model results in clinical language",
+  "Evaluate performance using more than one metric",
+  "Recognise limitations in real health-data modelling",
+  "Write responsible reports from R output",
 ];
 
 export default function MachineLearningBiostatisticsCaseStudiesPage() {
@@ -121,7 +181,7 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses/machine-learning-biostatistics")}
-          className="text-sm font-semibold text-[#8b1116] transition hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#8b1116] transition hover:text-[#5f0b0f]"
         >
           ← Back to Machine Learning in Biostatistics
         </a>
@@ -129,18 +189,19 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
         <section className="mt-6 overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:mt-8 md:rounded-[2.5rem]">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-5 sm:p-6 md:p-10 lg:p-12">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
-                Case studies
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
+                Machine Learning in Biostatistics · Case studies
               </p>
 
-              <h1 className="mt-4 max-w-5xl text-4xl font-semibold leading-[1.03] tracking-[-0.055em] md:mt-5 md:text-6xl">
-                Learn machine learning through health-data cases.
+              <h1 className="mt-4 max-w-5xl text-4xl font-black leading-[1.03] tracking-[-0.055em] md:mt-5 md:text-7xl">
+                Learn machine learning through applied health-data cases.
               </h1>
 
               <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700 md:mt-6 md:text-lg md:leading-9">
-                These case studies connect course theory to realistic
+                These case studies connect the course theory to realistic
                 biostatistical workflows: clinical question, data structure,
-                prediction target, validation, interpretation and reporting.
+                prediction target, R output, validation, interpretation,
+                reporting and modelling cautions.
               </p>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -148,92 +209,111 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
                   href={withBasePath(
                     "/courses/machine-learning-biostatistics/case-studies/diabetes-risk-prediction"
                   )}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#8b1116] sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#8b1116] sm:w-auto md:py-4"
                 >
                   Open available case study →
                 </a>
 
                 <a
-                  href={withBasePath(
-                    "/courses/machine-learning-biostatistics/modules/foundations"
-                  )}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                  href={withBasePath("#case-study-preview")}
+                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
                 >
-                  Start Module 1
+                  Preview case studies
                 </a>
+
+                <a
+                  href={withBasePath("#join-waitlist")}
+                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                >
+                  Join waitlist
+                </a>
+              </div>
+
+              <div className="mt-8 rounded-[1.5rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  Current access policy
+                </p>
+                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  The diabetes risk prediction case study is available now. The
+                  remaining case studies are locked until July 2026 while they
+                  are being redesigned with R scripts, output interpretation,
+                  validation summaries and report-style explanations.
+                </p>
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-[#fdfbf7] p-5 md:p-8 lg:border-l lg:border-t-0">
-              <div className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2rem] md:p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8b1116] md:text-sm">
-                  Case-study purpose
-                </p>
+            <aside className="border-t border-neutral-200 bg-neutral-950 p-5 text-white md:p-8 lg:border-l lg:border-t-0">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50 md:text-sm">
+                Case-study snapshot
+              </p>
 
-                <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em]">
-                  Apply the full modelling workflow.
-                </h2>
+              <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                A bridge from lessons to applied modelling reports.
+              </h2>
 
-                <p className="mt-4 text-sm leading-7 text-neutral-700">
-                  Each case study is designed to show how prediction modelling
-                  decisions are made, checked, interpreted and reported.
-                </p>
-
-                <div className="mt-5 grid grid-cols-2 gap-3">
-                  {[
-                    ["5", "Case studies"],
-                    ["1", "Available now"],
-                    ["R", "Workflow"],
-                    ["Health", "Data focus"],
-                  ].map(([value, label]) => (
-                    <div
-                      key={label}
-                      className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4"
-                    >
-                      <p className="text-2xl font-semibold tracking-[-0.05em]">
-                        {value}
-                      </p>
-
-                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
-                        {label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+              <div className="mt-7 grid grid-cols-2 gap-3">
+                {snapshot.map(([value, label]) => (
+                  <div
+                    key={label}
+                    className="rounded-[1.35rem] border border-white/10 bg-white/[0.07] p-4"
+                  >
+                    <p className="text-3xl font-black tracking-[-0.06em]">
+                      {value}
+                    </p>
+                    <p className="mt-1 text-xs font-black uppercase tracking-[0.14em] text-white/50">
+                      {label}
+                    </p>
+                  </div>
+                ))}
               </div>
+
+              <p className="mt-6 text-sm leading-7 text-white/70">
+                Best for learners who want to see how prediction modelling
+                decisions are made, checked, interpreted and reported in
+                realistic health-data workflows.
+              </p>
             </aside>
           </div>
         </section>
 
         <section className="mt-6 grid gap-4 md:mt-8 lg:grid-cols-[0.9fr_1.1fr]">
           <article className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
               How to use case studies
             </p>
 
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] md:text-4xl">
-              Read them like a modelling report.
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+              Read them like modelling reports.
             </h2>
 
-            <p className="mt-4 text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
-              Do not treat a case study as only code. Focus on the question,
-              assumptions, decisions, diagnostics, performance results and
-              limitations.
-            </p>
+            <div className="mt-6 grid gap-3">
+              {learningDesign.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-700"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
           </article>
 
           <article className="rounded-[1.75rem] border border-neutral-200 bg-[#111111] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55 md:text-sm">
-              Workflow checklist
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-white/55 md:text-sm">
+              By the end
             </p>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              {workflow.map((item, index) => (
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+              Students should connect code, output and reporting.
+            </h2>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {outcomes.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-semibold text-white/85"
+                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-bold text-white/85"
                 >
-                  {String(index + 1).padStart(2, "0")} · {item}
+                  {item}
                 </div>
               ))}
             </div>
@@ -241,86 +321,289 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
         </section>
 
         <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
-          <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
-                Case-study pathway
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+                Case-study workflow
               </p>
 
-              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.045em] md:text-5xl">
-                One applied case for each module.
+              <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                From applied question to responsible conclusion.
               </h2>
             </div>
 
             <p className="text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
-              The first case study is available now. Later case studies will
-              extend the same workflow to supervised learning, validation,
-              regularisation, ensembles and applied health-data challenges.
+              Every case study follows the same applied loop: define the
+              question, inspect data, fit the model, validate the output,
+              interpret carefully and report limitations clearly.
             </p>
           </div>
 
-          <div className="mt-6 grid gap-4 md:mt-8 lg:grid-cols-2">
-            {caseStudies.map((study) => (
-              <a
-                key={study.number}
-                href={withBasePath(study.href)}
-                className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:rounded-[2rem] md:p-6"
+          <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {workflow.map((item) => (
+              <article
+                key={item.step}
+                className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
               >
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <span className="rounded-full bg-[#111111] px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white">
-                    {study.number}
-                  </span>
+                <span className="rounded-full bg-[#111111] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-white">
+                  Step {item.step}
+                </span>
 
-                  <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
-                    {study.status}
-                  </span>
-                </div>
-
-                <p className="mt-5 text-xs font-semibold uppercase tracking-[0.16em] text-[#8b1116]">
-                  {study.module}
-                </p>
-
-                <h3 className="mt-2 text-2xl font-semibold leading-tight tracking-[-0.045em]">
-                  {study.title}
+                <h3 className="mt-4 text-xl font-black tracking-[-0.04em]">
+                  {item.title}
                 </h3>
 
-                <p className="mt-4 text-sm leading-7 text-neutral-700">
-                  {study.summary}
+                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  {item.body}
                 </p>
+              </article>
+            ))}
+          </div>
+        </section>
 
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {study.focus.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-semibold text-neutral-600"
+        <section
+          id="case-study-preview"
+          className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
+        >
+          <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+                Case-study library
+              </p>
+
+              <h2 className="mt-3 text-3xl font-black leading-tight tracking-[-0.045em] md:text-5xl">
+                One case study is open. Four are waitlisted.
+              </h2>
+            </div>
+
+            <p className="text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+              The open case study previews the final format. Planned case
+              studies will be added as the course is redesigned module by module.
+            </p>
+          </div>
+
+          <div className="mt-6 grid gap-3 md:mt-8">
+            {caseStudies.map((caseStudy) => (
+              <a
+                key={caseStudy.number}
+                href={withBasePath(caseStudy.href)}
+                className={`group rounded-[1.5rem] border p-5 transition hover:-translate-y-1 hover:shadow-md md:rounded-[2rem] md:p-6 ${
+                  caseStudy.open
+                    ? "border-neutral-200 bg-[#f7f4ee] hover:bg-white"
+                    : "border-[#8b1116]/20 bg-[#fff7f7] hover:bg-white"
+                }`}
+              >
+                <div className="grid gap-5 lg:grid-cols-[0.18fr_1fr_0.22fr] lg:items-start">
+                  <div>
+                    <p
+                      className={`text-5xl font-black tracking-[-0.06em] ${
+                        caseStudy.open ? "text-[#111111]" : "text-[#8b1116]"
+                      }`}
                     >
-                      {item}
-                    </span>
-                  ))}
-                </div>
+                      {caseStudy.number}
+                    </p>
+                    <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+                      Case
+                    </p>
+                  </div>
 
-                <p className="mt-6 text-sm font-semibold text-[#8b1116]">
-                  {study.status === "Available" ? "Open case study" : "View related module"} →
-                </p>
+                  <div>
+                    <div className="flex flex-wrap gap-2">
+                      <span
+                        className={`rounded-full px-3 py-1 text-xs font-black uppercase tracking-[0.14em] ${
+                          caseStudy.open
+                            ? "bg-neutral-950 text-white"
+                            : "bg-[#8b1116] text-white"
+                        }`}
+                      >
+                        {caseStudy.open ? "Open" : "Locked"}
+                      </span>
+
+                      <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-neutral-600">
+                        {caseStudy.module}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-4 text-2xl font-black tracking-[-0.04em]">
+                      {caseStudy.title}
+                    </h3>
+
+                    <p className="mt-3 max-w-4xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+                      {caseStudy.summary}
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {caseStudy.focus.map((item) => (
+                        <span
+                          key={item}
+                          className="rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-xs font-bold text-neutral-600"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="lg:text-right">
+                    <span
+                      className={`inline-flex rounded-full border px-4 py-2 text-xs font-black uppercase tracking-[0.14em] ${
+                        caseStudy.open
+                          ? "border-neutral-200 bg-white text-neutral-600"
+                          : "border-[#8b1116]/20 bg-white text-[#8b1116]"
+                      }`}
+                    >
+                      {caseStudy.status}
+                    </span>
+
+                    <p className="mt-5 text-sm font-black text-[#8b1116] transition group-hover:translate-x-1">
+                      {caseStudy.open ? "Open case study →" : "Join waitlist →"}
+                    </p>
+                  </div>
+                </div>
               </a>
             ))}
           </div>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-[#8b1116] p-5 text-white shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+        <section
+          id="join-waitlist"
+          className="mt-6 overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-neutral-950 shadow-sm md:mt-8 md:rounded-[2.5rem]"
+        >
+          <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="p-5 text-white md:p-10">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50 md:text-sm">
+                Join the waitlist
+              </p>
+
+              <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                Get access updates when the full case-study library opens in July 2026.
+              </h2>
+
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/75 md:text-base md:leading-8">
+                Planned case studies are being redesigned with applied R
+                scripts, validation outputs, visual interpretation, report
+                sections and modelling cautions.
+              </p>
+
+              <div className="mt-6 grid gap-3">
+                {[
+                  "The diabetes risk case study stays open.",
+                  "Four case studies remain locked until July 2026.",
+                  "Case studies will follow the same output-to-report structure.",
+                  "Waitlist visitors can request early access or release updates.",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] px-4 py-3 text-sm font-bold text-white/80"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="border-t border-white/10 bg-white p-5 md:p-8 lg:border-l lg:border-t-0">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
+                Waitlist form
+              </p>
+
+              <h3 className="mt-3 text-3xl font-black tracking-[-0.045em]">
+                Request access.
+              </h3>
+
+              <form
+                action={withBasePath("/contact")}
+                method="get"
+                className="mt-6 grid gap-4"
+              >
+                <label className="grid gap-2">
+                  <span className="text-sm font-black text-neutral-700">
+                    Name
+                  </span>
+                  <input
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Your name"
+                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                  />
+                </label>
+
+                <label className="grid gap-2">
+                  <span className="text-sm font-black text-neutral-700">
+                    Email
+                  </span>
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                  />
+                </label>
+
+                <label className="grid gap-2">
+                  <span className="text-sm font-black text-neutral-700">
+                    Interest
+                  </span>
+                  <select
+                    name="interest"
+                    defaultValue="Machine Learning in Biostatistics case studies waitlist"
+                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                  >
+                    <option>
+                      Machine Learning in Biostatistics case studies waitlist
+                    </option>
+                    <option>Early access</option>
+                    <option>Private tutoring support</option>
+                    <option>Full course release updates</option>
+                  </select>
+                </label>
+
+                <label className="grid gap-2">
+                  <span className="text-sm font-black text-neutral-700">
+                    Message
+                  </span>
+                  <textarea
+                    name="message"
+                    rows={4}
+                    defaultValue="I want to join the Machine Learning in Biostatistics case studies waitlist."
+                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                  />
+                </label>
+
+                <button
+                  type="submit"
+                  className="rounded-full bg-[#8b1116] px-6 py-4 text-sm font-black text-white transition hover:bg-[#5f0b0f]"
+                >
+                  Join waitlist →
+                </button>
+
+                <p className="text-xs leading-6 text-neutral-500">
+                  This currently routes to the contact page. Later, connect this
+                  form to Resend, Formspree, Google Forms or your preferred
+                  mailing list system.
+                </p>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-6 rounded-[1.75rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70 md:text-sm">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
                 Recommended start
               </p>
 
-              <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-[-0.045em] md:text-5xl">
-                Begin with diabetes risk prediction.
+              <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-[-0.045em] text-[#8b1116] md:text-5xl">
+                Begin with the diabetes risk prediction case study.
               </h2>
 
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/80 md:text-base md:leading-8">
-                This case study shows the full introductory workflow from
-                prediction question to test-set evaluation and reporting.
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+                This case study shows how a prediction question becomes a full
+                modelling workflow with data checks, model output, validation
+                interpretation and reporting cautions.
               </p>
             </div>
 
@@ -328,7 +611,7 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
               href={withBasePath(
                 "/courses/machine-learning-biostatistics/case-studies/diabetes-risk-prediction"
               )}
-              className="inline-flex w-full justify-center rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+              className="inline-flex w-full justify-center rounded-full bg-[#8b1116] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#5f0b0f] sm:w-auto md:py-4"
             >
               Open case study →
             </a>

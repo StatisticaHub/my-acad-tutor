@@ -1,12 +1,11 @@
-import LockedLessonPreview from "@/components/course/LockedLessonPreview";
+import LockedMachineLearningLessonGate from "@/components/course/LockedMachineLearningLessonGate";
 
-export default function LessonPreviewPage() {
+export default function LockedMachineLearningLessonPage() {
   return (
-    <LockedLessonPreview
-      courseTitle="Machine Learning in Biostatistics"
-      moduleTitle="Model Evaluation Validation Performance"
-      lessonTitle="Classification Metrics Sensitivity Specificity Roc Auc"
-      backHref="/app/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance/lessons/"
+    <LockedMachineLearningLessonGate
+      lessonCode="3.2"
+      lessonTitle="Classification metrics, sensitivity, specificity, ROC and AUC"
+      moduleTitle="Module 3 · Model Evaluation, Validation and Performance"
     />
   );
 }

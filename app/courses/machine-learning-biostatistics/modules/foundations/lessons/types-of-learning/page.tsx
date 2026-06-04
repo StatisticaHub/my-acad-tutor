@@ -1,12 +1,11 @@
-import LockedLessonPreview from "@/components/course/LockedLessonPreview";
+import LockedMachineLearningLessonGate from "@/components/course/LockedMachineLearningLessonGate";
 
-export default function LessonPreviewPage() {
+export default function LockedMachineLearningLessonPage() {
   return (
-    <LockedLessonPreview
-      courseTitle="Machine Learning in Biostatistics"
-      moduleTitle="Foundations"
-      lessonTitle="Types of Learning"
-      backHref="/app/courses/machine-learning-biostatistics/modules/foundations/lessons/"
+    <LockedMachineLearningLessonGate
+      lessonCode="1.3"
+      lessonTitle="Types of learning in medical data"
+      moduleTitle="Module 1 · Foundations of Machine Learning in Biostatistics"
     />
   );
 }
