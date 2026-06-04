@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "A zero-coding statistics foundation course covering statistical thinking, descriptive statistics, probability, inference and regression.",
 };
 
-const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = "";
 
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;

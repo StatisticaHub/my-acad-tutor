@@ -1,4 +1,4 @@
-const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = "";
 
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;

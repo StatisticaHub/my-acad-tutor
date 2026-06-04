@@ -7,7 +7,7 @@ import { isStatisticsFoundationLessonOpen } from "@/lib/statisticsFoundationAcce
 import { useMemo, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 
-const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = "";
 
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;

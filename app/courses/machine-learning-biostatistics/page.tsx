@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     "A health-data focused machine learning course covering prediction, validation, calibration, overfitting, leakage and responsible modelling.",
 };
 
-const basePath = process.env.NODE_ENV === "production" ? "/my-acad-tutor" : "";
+const basePath = "";
 
 function withBasePath(href: string) {
   if (href === "/") return `${basePath}/`;
