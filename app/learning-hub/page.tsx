@@ -114,38 +114,37 @@ export default function LearningHubPage() {
           ← Back to homepage
         </a>
 
-        <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
-            Learning Hub
-          </p>
-
-          <div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white px-6 py-5 shadow-sm md:px-8">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <h1 className="max-w-5xl text-4xl font-semibold leading-[1.03] tracking-[-0.055em] md:text-7xl">
-                Your starting point for structured quantitative learning.
-              </h1>
-
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
-                Choose a course, explore an interactive demo or read a focused
-                guide. Everything is organised to help you learn with clarity.
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                Learning Hub
               </p>
+
+              <h1 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                Explore by subject.
+              </h1>
             </div>
 
-            <div className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
-                Subjects covered
-              </p>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                {studyFocus.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-semibold text-neutral-700"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
+            <div className="flex flex-wrap gap-2 lg:max-w-3xl lg:justify-end">
+              {[
+                "Statistics",
+                "Mathematics",
+                "Biostatistics",
+                "Health data science",
+                "Research methods",
+                "Regression analysis",
+                "Survival analysis",
+                "Machine learning",
+                "Bioinformatics",
+              ].map((subject) => (
+                <span
+                  key={subject}
+                  className="rounded-full border border-neutral-200 bg-[#f7f4ee] px-4 py-2 text-sm font-black text-neutral-700"
+                >
+                  {subject}
+                </span>
+              ))}
             </div>
           </div>
         </section>
