@@ -1,3 +1,12 @@
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Learning Hub",
+  description:
+    "Explore structured courses in statistics, biostatistics, health data science, research methods and medical statistics with interactive learning support.",
+  alternates: {
+    canonical: "https://www.myacademictutor.com/learning-hub/",
+  },
+};
 const basePath = "";
 
 function withBasePath(href: string) {
@@ -67,6 +76,36 @@ const studyFocus = [
 export default function LearningHubPage() {
   return (
     <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
+
+      <section className="mx-auto mt-8 max-w-7xl rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#6f0d12]">
+          Structured learning
+        </p>
+
+        <h2 className="mt-3 text-2xl font-black tracking-tight text-neutral-950 md:text-3xl">
+          Build a clear route through statistics, biostatistics and health data science.
+        </h2>
+
+        <p className="mt-4 max-w-4xl text-base leading-7 text-neutral-700">
+          The Learning Hub brings together beginner-friendly statistics courses,
+          biostatistics learning routes, interactive demos and detailed resources.
+          It is designed for students who want to understand quantitative methods
+          clearly, not just memorise formulas.
+        </p>
+
+        <div className="mt-5 flex flex-wrap gap-3 text-sm font-bold">
+          <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/resources/">
+            Read Statistics Resources
+          </a>
+          <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/interactive-demos/">
+            Try Interactive Demos
+          </a>
+          <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/contact/">
+            Request Academic Support
+          </a>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/")}

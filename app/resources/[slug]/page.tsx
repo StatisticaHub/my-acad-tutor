@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { resourceGuides } from "@/lib/resources";
 
+const siteUrl = "https://www.myacademictutor.com";
 const basePath = "";
 
 function withBasePath(href: string) {
@@ -58,6 +60,33 @@ export default async function ResourceGuidePage({
     notFound();
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.summary,
+    author: {
+      "@type": "Organization",
+      name: "My Academic Tutor",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "My Academic Tutor",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.myacademictutor.com/resources/${guide.slug}/`,
+    },
+    about: [
+      "Statistics",
+      "Biostatistics",
+      "Health Data Science",
+      "Research Methods",
+      guide.area,
+    ],
+  };
+
+
   const blocks = [
     guide.problem,
     guide.intuition,
@@ -69,6 +98,13 @@ export default async function ResourceGuidePage({
 
   return (
     <main className="min-h-screen bg-[#f7f4ee] text-neutral-950">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(articleSchema),
+          }}
+        />
+
       <section className="relative overflow-hidden border-b border-neutral-200 bg-white px-5 py-10 md:px-8 md:py-16">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#f6d8d8,transparent_35%)]" />
 

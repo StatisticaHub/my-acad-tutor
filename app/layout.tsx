@@ -79,9 +79,53 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteUrl = "https://www.myacademictutor.com";
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    name: "My Academic Tutor",
+    url: siteUrl,
+    description:
+      "Online learning platform for statistics, biostatistics, health data science and research methods.",
+    areaServed: "Worldwide",
+    knowsAbout: [
+      "Statistics",
+      "Biostatistics",
+      "Health Data Science",
+      "Research Methods",
+      "Medical Statistics",
+      "Data Analysis",
+      "Regression",
+      "Probability",
+    ],
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "My Academic Tutor",
+    url: siteUrl,
+    description:
+      "Structured courses, interactive demos and academic support for quantitative subjects.",
+  };
+
   return (
     <html lang="en-GB">
       <body className={`${inter.variable} ${sourceSerif.variable} font-sans`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
+
         <Header />
         {children}
         <Footer />

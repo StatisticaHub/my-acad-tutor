@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import ConfidenceIntervalMeanExplorer from "@/components/interactive/ConfidenceIntervalMeanExplorer";
+export const metadata: Metadata = {
+  title: "Interactive Statistics Demos",
+  description:
+    "Try interactive statistics demonstrations for normal distributions, regression lines, confidence intervals, uncertainty, sampling and data interpretation.",
+  alternates: {
+    canonical: "https://www.myacademictutor.com/interactive-demos/",
+  },
+};
 
 const basePath = "";
 
@@ -39,6 +48,36 @@ const upcomingDemos = [
 export default function InteractiveDemosPage() {
   return (
     <main className="min-h-screen bg-[#f7f4ee] px-4 py-8 text-neutral-950 sm:px-5 md:px-8 md:py-14">
+
+      <section className="mx-auto mt-8 max-w-7xl rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#6f0d12]">
+          Interactive statistics demos
+        </p>
+
+        <h2 className="mt-3 text-2xl font-black tracking-tight text-neutral-950 md:text-3xl">
+          Explore statistics visually through distributions, regression and uncertainty.
+        </h2>
+
+        <p className="mt-4 max-w-4xl text-base leading-7 text-neutral-700">
+          These interactive statistics demos help students understand important
+          concepts such as normal distributions, regression lines, confidence
+          intervals, sampling variation and uncertainty. Each demo is designed to
+          connect formulas with visual intuition and practical interpretation.
+        </p>
+
+        <div className="mt-5 flex flex-wrap gap-3 text-sm font-bold">
+          <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/learning-hub/">
+            Explore the Learning Hub
+          </a>
+          <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/resources/">
+            Read Statistics Resources
+          </a>
+          <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/contact/">
+            Request Academic Support
+          </a>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl">
         <section className="overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:rounded-[2.5rem]">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">

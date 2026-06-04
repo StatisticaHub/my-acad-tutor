@@ -38,11 +38,9 @@ export default function Hero() {
         <section className="overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:rounded-[2.5rem]">
           <div className="grid lg:grid-cols-[1fr_0.92fr]">
             <div className="p-5 sm:p-6 md:p-8 lg:p-10">
-              <div className="inline-flex w-fit items-center rounded-full border border-[#6f0d12]/20 bg-white/85 px-4 py-2 shadow-sm backdrop-blur">
-            <span className="font-serif text-sm font-black uppercase tracking-[0.28em] text-[#6f0d12] md:text-base">
-              My Academic Tutor
-            </span>
-          </div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
+                My Academic Tutor
+              </p>
 
               <h1 className="mt-4 max-w-5xl text-4xl font-semibold leading-[1.02] tracking-[-0.055em] text-[#111111] sm:text-5xl md:text-6xl">
                 Dive into Quantitative Learning.
@@ -76,7 +74,7 @@ export default function Hero() {
                     href={`${withBasePath("/contact")}#support-form`}
                     className="inline-flex w-full items-center justify-center rounded-full bg-[#8b1116] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#111111] sm:w-auto"
                   >
-                    Resources →
+                    Live Tutoring →
                   </a>
                 </div>
               </div>

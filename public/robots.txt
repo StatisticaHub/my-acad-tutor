@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://statisticahub.github.io/my-acad-tutor/sitemap.xml
+Sitemap: https://www.myacademictutor.com/sitemap.xml
