@@ -64,7 +64,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form
+    <form id="support-form"
       onSubmit={handleSubmit}
       className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8"
     >
