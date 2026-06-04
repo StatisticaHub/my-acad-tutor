@@ -143,62 +143,45 @@ export default function CoursesPage() {
           ← Back to homepage
         </a>
 
-        <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-            Courses
-          </p>
-
-          <div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white px-6 py-5 shadow-sm md:px-8">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <h1 className="max-w-5xl text-4xl font-black leading-[1.03] tracking-[-0.055em] md:text-7xl">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                Courses
+              </p>
+
+              <h1 className="mt-3 max-w-4xl text-3xl font-black tracking-[-0.045em] md:text-5xl">
                 Structured courses for statistics and health data learning.
               </h1>
 
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-4 max-w-4xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
                 Start with Statistics Foundation or Machine Learning in
                 Biostatistics. Both courses connect to the Learning Hub and
-                include waitlist access while full releases are prepared.
+                waitlist access.
               </p>
-
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <a
-                  href="#featured-courses"
-                  className="inline-flex items-center justify-center rounded-full bg-neutral-950 px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#8b1116]"
-                >
-                  View featured courses →
-                </a>
-
-                <a
-                  href={withBasePath("/learning-hub")}
-                  className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-neutral-950 transition hover:bg-[#f7f4ee]"
-                >
-                  Open Learning Hub →
-                </a>
-
-                <a
-                  href="#course-waitlist"
-                  className="inline-flex items-center justify-center rounded-full border border-[#8b1116]/20 bg-[#fff7f7] px-6 py-3.5 text-sm font-black text-[#8b1116] transition hover:bg-[#8b1116] hover:text-white"
-                >
-                  Join waitlist →
-                </a>
-              </div>
             </div>
 
-            <div className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-neutral-500">
-                Course design
-              </p>
+            <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
+              <a
+                href="#featured-courses"
+                className="inline-flex items-center justify-center rounded-full bg-neutral-950 px-5 py-3 text-sm font-black text-white transition hover:bg-[#8b1116]"
+              >
+                Featured courses →
+              </a>
 
-              <div className="mt-4 grid gap-2 sm:grid-cols-2">
-                {principles.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-full border border-neutral-200 bg-white px-4 py-2 text-sm font-bold text-neutral-700"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
+              <a
+                href={withBasePath("/learning-hub")}
+                className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-black text-neutral-950 transition hover:bg-[#f7f4ee]"
+              >
+                Learning Hub →
+              </a>
+
+              <a
+                href="#course-waitlist"
+                className="inline-flex items-center justify-center rounded-full border border-[#8b1116]/20 bg-[#fff7f7] px-5 py-3 text-sm font-black text-[#8b1116] transition hover:bg-[#8b1116] hover:text-white"
+              >
+                Join waitlist →
+              </a>
             </div>
           </div>
         </section>
