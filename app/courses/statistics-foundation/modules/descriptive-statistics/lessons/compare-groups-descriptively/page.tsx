@@ -10,7 +10,7 @@ const tabs = [
   "Learning Route",
   "Lecture",
   "Detailed Notes",
-  "Shape Lab",
+  "Comparison Lab",
   "Animated Mentor",
   "Worked Examples",
   "Practice Studio",
@@ -21,363 +21,366 @@ const tabs = [
 const learningRoute = [
   {
     time: "0–10 min",
-    title: "Why shape matters",
+    title: "Why group comparison matters",
     body:
-      "Understand that centre and spread are not enough. The overall shape tells us whether data are balanced, skewed, clustered or affected by unusual values.",
+      "Understand that descriptive statistics often become more meaningful when we compare two or more groups carefully.",
   },
   {
     time: "10–25 min",
-    title: "Symmetry and skewness",
+    title: "Compare centres",
     body:
-      "Learn how symmetric, right-skewed and left-skewed distributions differ, and how the mean and median respond to skewness.",
+      "Use means and medians to compare typical values, while checking whether those summaries are appropriate for the data shape.",
   },
   {
-    time: "25–40 min",
-    title: "Tails and unusual values",
+    time: "25–45 min",
+    title: "Compare spread",
     body:
-      "Study how long tails, heavy tails and extreme observations influence descriptive summaries.",
+      "Compare range, IQR and standard deviation to decide which group is more consistent or more variable.",
   },
   {
-    time: "40–60 min",
-    title: "Outlier detection",
+    time: "45–65 min",
+    title: "Compare shape",
     body:
-      "Use context, graphs and the 1.5 × IQR rule to flag possible outliers without automatically deleting them.",
+      "Look for skewness, clusters, long tails and outliers. Two groups may have similar centres but very different shapes.",
   },
   {
-    time: "60–85 min",
-    title: "Interactive shape lab",
+    time: "65–90 min",
+    title: "Interactive comparison lab",
     body:
-      "Adjust skewness, tail length, clusters and outlier strength to see how the mean, median, IQR and boxplot change.",
+      "Adjust group differences, spread, skewness and outliers to see how descriptive comparisons change.",
   },
   {
-    time: "85–105 min",
-    title: "Careful interpretation",
+    time: "90–110 min",
+    title: "Careful reporting",
     body:
-      "Practise describing shape in realistic examples such as income, waiting times, exam scores and clinical measurements.",
+      "Practise writing cautious descriptive comparisons without making unsupported causal claims.",
   },
 ];
 
 const lectureConcepts = [
   {
-    title: "Shape describes the pattern of the whole distribution",
+    title: "Comparison needs more than one statistic",
     body:
-      "Centre gives a location and spread gives variability, but shape tells us how values are arranged across the scale.",
+      "A group comparison should not rely only on one number. Centre, spread, shape and outliers all contribute to the interpretation.",
     example:
-      "Two datasets can have the same mean and standard deviation but one may be symmetric while the other has two clusters.",
+      "Two classes may have the same median score, but one class may have much wider variation.",
   },
   {
-    title: "Symmetric data are balanced",
+    title: "Compare like with like",
     body:
-      "A symmetric distribution has roughly similar left and right sides. The mean and median are usually close together.",
+      "When comparing groups, use the same summary measures for each group. If one group is described by median and IQR, the other should usually be described the same way.",
     example:
-      "Repeated measurements from a stable process may form a roughly balanced pattern around the centre.",
+      "Compare median waiting time and IQR for both hospitals, rather than median for one hospital and mean for another.",
   },
   {
-    title: "Right skew means a long upper tail",
+    title: "Difference does not automatically mean importance",
     body:
-      "A right-skewed distribution has most values lower down, with a smaller number of large values stretching the tail to the right.",
+      "A numerical difference may be small, large, meaningful or not meaningful depending on context.",
     example:
-      "Income, hospital waiting time and house prices are often right-skewed.",
+      "A 1-minute difference in waiting time may be trivial in one setting but important in an emergency department.",
   },
   {
-    title: "Left skew means a long lower tail",
+    title: "Descriptive comparison is not causal proof",
     body:
-      "A left-skewed distribution has most values higher up, with a smaller number of low values stretching the tail to the left.",
+      "Descriptive statistics can show that groups differ, but they do not by themselves explain why the difference exists.",
     example:
-      "An easy exam can produce many high scores with a few low scores, creating left skew.",
+      "If one class scores higher than another, descriptive statistics alone do not prove that the teacher caused the difference.",
   },
   {
-    title: "Outliers need investigation, not automatic removal",
+    title: "Graphs reveal hidden patterns",
     body:
-      "An outlier may be a data error, a rare but real observation, or an important signal. It should be checked carefully before any decision is made.",
+      "Tables are useful, but graphs can reveal skewness, outliers, overlap and clusters that numerical summaries may hide.",
     example:
-      "A very high blood pressure reading may be a measurement error, but it could also indicate a genuine clinical concern.",
+      "Two groups can have similar means but one group may contain two clusters of students.",
   },
 ];
 
 const notes = [
   {
-    title: "Distribution shape",
-    formula: "Shape = pattern of values across the scale",
+    title: "Comparing centres",
+    formula: "Difference in centre = centre of Group A − centre of Group B",
     body:
-      "The shape of a distribution describes how observations are arranged. We look for symmetry, skewness, tails, clusters, gaps and unusual observations. Shape helps us decide whether the mean and standard deviation are appropriate or whether robust summaries are safer.",
+      "The first comparison often asks which group has the higher typical value. If the data are balanced and numerical, means may be suitable. If the data are skewed or contain outliers, medians are often safer.",
     strength:
-      "It gives context to centre and spread.",
+      "Centre comparisons are simple and easy to communicate.",
     limitation:
-      "Shape often needs a graph; one number rarely captures it fully.",
+      "A centre difference ignores spread, overlap and shape.",
     bestFor:
-      "Choosing appropriate summaries and writing careful interpretations.",
+      "Initial comparison of typical values between groups.",
   },
   {
-    title: "Symmetry",
-    formula: "Mean ≈ Median",
+    title: "Comparing spread",
+    formula: "Compare SDs or compare IQRs",
     body:
-      "A distribution is approximately symmetric when the left and right sides look balanced around the centre. In such cases, the mean and median are usually similar.",
+      "Spread comparison asks which group is more consistent or variable. If mean and standard deviation are appropriate, compare standard deviations. If median and IQR are more appropriate, compare IQRs.",
     strength:
-      "Symmetric data are often easy to summarise using mean and standard deviation.",
+      "It shows whether one group is more variable than another.",
     limitation:
-      "Perfect symmetry is rare in real data, so judgement is needed.",
+      "A single spread measure may hide clusters or outliers.",
     bestFor:
-      "Exam scores, repeated measurements or controlled process data when no strong skew is present.",
+      "Comparing consistency, inequality, variation or reliability.",
   },
   {
-    title: "Right skew",
-    formula: "Mean > Median in many right-skewed datasets",
+    title: "Comparing shape",
+    formula: "Shape = symmetry, skewness, tails, clusters and outliers",
     body:
-      "Right skew occurs when a distribution has a long tail toward larger values. A few large observations pull the mean upward, often making the mean larger than the median.",
+      "Shape comparison asks whether groups differ in their whole distribution. One group may be symmetric while another is skewed. One may have outliers while another does not.",
     strength:
-      "Identifying right skew prevents overinterpreting the mean as typical.",
+      "It prevents misleading conclusions from centre alone.",
     limitation:
-      "The mean-median relationship is a guide, not an absolute rule for every dataset.",
+      "Shape is difficult to summarise with one number and often needs a graph.",
     bestFor:
-      "Income, waiting times, length of hospital stay and house prices.",
+      "Boxplots, dot plots, histograms and visual comparison.",
   },
   {
-    title: "Left skew",
-    formula: "Mean < Median in many left-skewed datasets",
+    title: "Comparing overlap",
+    formula: "Overlap = how much the group distributions share values",
     body:
-      "Left skew occurs when a distribution has a long tail toward smaller values. A few small observations pull the mean downward.",
+      "Groups may differ in centre but still overlap strongly. Strong overlap means many observations from both groups occupy similar values.",
     strength:
-      "It helps explain why the mean may sit below the typical high values.",
+      "It makes comparisons more realistic and less exaggerated.",
     limitation:
-      "Left skew can be less common in some everyday examples, so context matters.",
+      "Overlap can be hard to describe without a visual display.",
     bestFor:
-      "High-scoring tests, age at retirement in a selected group or ceiling-limited measurements.",
+      "Avoiding overstatement when group differences are small.",
   },
   {
-    title: "Modality",
-    formula: "Mode count = number of peaks",
+    title: "Descriptive difference",
+    formula: "Descriptive difference ≠ causal effect",
     body:
-      "Modality describes the number of peaks or clusters in a distribution. A unimodal distribution has one main peak. A bimodal distribution has two. Multiple peaks may suggest that different groups are mixed together.",
+      "A descriptive difference tells us what is observed in the data. It does not prove what caused the difference. Causal claims need stronger study design, control of confounding and careful reasoning.",
     strength:
-      "It can reveal hidden subgroups.",
+      "It keeps interpretation honest and responsible.",
     limitation:
-      "Numerical summaries may hide modality unless a graph is used.",
+      "It may feel less dramatic than a simple claim, but it is statistically safer.",
     bestFor:
-      "Comparing mixed populations, such as combining beginners and advanced students.",
+      "Careful reporting in education, health, business and research contexts.",
   },
   {
-    title: "Outliers",
-    formula: "Possible outlier if value < Q1 − 1.5 × IQR or value > Q3 + 1.5 × IQR",
+    title: "Standardised difference",
+    formula: "Approximate standardised difference = difference in means ÷ pooled SD",
     body:
-      "Outliers are observations that sit unusually far from the main body of the data. The 1.5 × IQR rule is a common descriptive method for flagging possible outliers.",
+      "Sometimes a raw difference is hard to judge because the scale is unfamiliar. A standardised difference compares the difference in group means with the amount of variation in the data.",
     strength:
-      "It gives a systematic starting point for identifying unusual observations.",
+      "It gives a scale-free sense of how large a difference is relative to variability.",
     limitation:
-      "It does not prove a value is wrong. Outliers require context and investigation.",
+      "It is only appropriate when mean and standard deviation are meaningful summaries.",
     bestFor:
-      "Data screening, boxplots and checking the influence of extreme values.",
+      "Balanced numerical data where relative difference size is useful.",
   },
 ];
 
 const comparisonRows = [
   {
-    shape: "Symmetric",
-    meanMedian: "Mean and median usually close",
-    summary: "Mean and standard deviation often suitable",
-    warning:
-      "Still check for clusters, gaps or unusual values.",
+    question: "Which group has the higher typical value?",
+    lookAt: "Mean or median",
+    interpretation:
+      "Use mean for balanced numerical data and median for skewed or outlier-affected data.",
   },
   {
-    shape: "Right-skewed",
-    meanMedian: "Mean often greater than median",
-    summary: "Median and IQR often safer",
-    warning:
-      "The mean may exaggerate the typical value.",
+    question: "Which group is more consistent?",
+    lookAt: "Standard deviation or IQR",
+    interpretation:
+      "Smaller spread suggests values are more tightly grouped.",
   },
   {
-    shape: "Left-skewed",
-    meanMedian: "Mean often less than median",
-    summary: "Median and IQR often useful",
-    warning:
-      "A few low values may pull the mean downward.",
+    question: "Which group has more extreme values?",
+    lookAt: "Range, boxplot and outlier points",
+    interpretation:
+      "Extreme values may indicate rare cases, errors or important subgroup behaviour.",
   },
   {
-    shape: "Bimodal",
-    meanMedian: "Mean and median may hide two groups",
-    summary: "Use graphs and group-specific summaries",
-    warning:
-      "A single centre may be misleading.",
+    question: "Do the groups overlap strongly?",
+    lookAt: "Dot plots, boxplots or distribution plots",
+    interpretation:
+      "Strong overlap means the difference in centre should be interpreted cautiously.",
   },
   {
-    shape: "Outlier-affected",
-    meanMedian: "Mean may shift strongly",
-    summary: "Compare mean/SD with median/IQR",
-    warning:
-      "Investigate outliers before removing them.",
+    question: "Are the group shapes similar?",
+    lookAt: "Skewness, clusters and tails",
+    interpretation:
+      "Different shapes may require different summaries or separate explanation.",
+  },
+  {
+    question: "Can we explain why groups differ?",
+    lookAt: "Study design and context",
+    interpretation:
+      "Descriptive statistics alone show difference, not cause.",
   },
 ];
 
 const scenarios = [
   {
-    title: "Income data",
+    title: "Two classes",
     question:
-      "A city income dataset has many moderate incomes and a few extremely high incomes. What shape is likely, and what summaries should be used?",
+      "Class A scores: 62, 64, 65, 67, 68. Class B scores: 50, 58, 65, 72, 80. Compare the groups descriptively.",
     answer:
-      "The distribution is likely right-skewed. The median and IQR are usually safer than the mean and standard deviation.",
+      "Both classes have the same median score of 65, but Class B has much greater spread.",
     working:
-      "A few very high incomes stretch the upper tail and pull the mean upward.",
+      "Class A range = 6, while Class B range = 30. Class A is more consistent, while Class B has wider variation.",
     caution:
-      "The mean income may sound higher than what a typical resident earns.",
+      "It would be misleading to say the classes are identical just because their medians are the same.",
   },
   {
-    title: "Easy exam",
+    title: "Hospital waiting times",
     question:
-      "An exam is very easy. Most students score between 80 and 100, but a few score much lower. What shape might appear?",
+      "Hospital A has median waiting time 28 minutes and IQR 12 minutes. Hospital B has median waiting time 35 minutes and IQR 30 minutes. Compare them.",
     answer:
-      "The distribution may be left-skewed because the tail stretches toward lower scores.",
+      "Hospital A has a lower typical waiting time and more consistent waiting times.",
     working:
-      "Most values are high, while a small number of low scores pull the lower tail left.",
+      "The median is lower for Hospital A, and its IQR is much smaller. Hospital B has both a higher typical wait and more variability.",
     caution:
-      "The mean may be lower than the median because of the few low scores.",
+      "This is descriptive only. It does not prove why the hospitals differ.",
   },
   {
-    title: "Mixed ability class",
+    title: "House prices",
     question:
-      "A test combines beginners and advanced students. Scores cluster around 40 and 85. What issue appears?",
+      "Area A has mean house price £260k and median £245k. Area B has mean £390k and median £255k. What does this suggest?",
     answer:
-      "The distribution is likely bimodal, meaning there are two peaks or clusters.",
+      "Area B may be strongly right-skewed because its mean is much higher than its median.",
     working:
-      "One centre may not represent either group well. Separate group summaries may be more meaningful.",
+      "The large gap between mean and median in Area B suggests a few expensive houses may be pulling the mean upward.",
     caution:
-      "A single mean could sit between the two clusters and describe almost nobody.",
+      "For skewed house prices, medians and IQRs are usually more informative than means alone.",
   },
   {
-    title: "Clinical measurement",
+    title: "Clinical measurements",
     question:
-      "A dataset contains one extremely high blood pressure reading. Should it be deleted?",
+      "Two treatment groups have similar mean blood pressure, but Group B has a much larger standard deviation. What does this imply?",
     answer:
-      "No. It should be investigated first. It may be a recording error, measurement problem or genuine clinical signal.",
+      "The typical blood pressure may be similar, but Group B is more variable.",
     working:
-      "Outlier checks can flag the value, but context is needed before deciding what to do.",
+      "A larger standard deviation means values tend to sit farther from the mean.",
     caution:
-      "Automatic deletion can remove important information and bias the analysis.",
+      "Higher variability may matter clinically, but interpretation needs clinical context and study design.",
   },
 ];
 
 const mentorTopics = [
   {
-    id: "symmetry",
-    label: "Symmetry",
+    id: "centre",
+    label: "Comparing centre",
     answer:
-      "A symmetric distribution is roughly balanced on both sides. The mean and median are usually close, so mean and standard deviation may be suitable.",
+      "Compare centres to ask which group has the higher typical value. Use means for balanced data and medians for skewed or outlier-affected data.",
   },
   {
-    id: "right",
-    label: "Right skew",
+    id: "spread",
+    label: "Comparing spread",
     answer:
-      "Right skew means the tail stretches toward larger values. A few large observations can pull the mean above the median.",
+      "Compare spread to ask which group is more consistent. Smaller IQR or standard deviation means values are more tightly grouped.",
   },
   {
-    id: "left",
-    label: "Left skew",
+    id: "shape",
+    label: "Comparing shape",
     answer:
-      "Left skew means the tail stretches toward smaller values. A few small observations can pull the mean below the median.",
+      "Shape comparison checks whether groups differ in symmetry, skewness, clusters or outliers. This can change which summaries are appropriate.",
   },
   {
-    id: "bimodal",
-    label: "Bimodal data",
+    id: "overlap",
+    label: "Overlap",
     answer:
-      "Bimodal data have two peaks or clusters. This may mean two groups have been mixed together, so one centre may be misleading.",
+      "Groups can differ in centre but still overlap strongly. Overlap reminds us not to exaggerate group differences.",
   },
   {
-    id: "outlier",
-    label: "Outliers",
+    id: "causal",
+    label: "Careful claims",
     answer:
-      "Outliers are unusual observations. They should be checked carefully because they may be errors, rare genuine values or important signals.",
+      "Descriptive comparisons show what is observed. They do not prove why groups differ. Avoid causal language unless the study design supports it.",
   },
 ];
 
 const quizQuestions = [
   {
-    question: "In a right-skewed distribution, where is the long tail?",
-    options: ["Toward smaller values", "Toward larger values", "Exactly in the middle", "There is no tail"],
-    answer: 1,
-    feedback:
-      "Right skew means the long tail stretches toward larger values.",
-  },
-  {
-    question: "Which summaries are often safer for skewed data?",
+    question: "Why is centre alone not enough when comparing groups?",
     options: [
-      "Mean and standard deviation only",
-      "Median and IQR",
-      "Mode and range only",
-      "Maximum and mean only",
-    ],
-    answer: 1,
-    feedback:
-      "Median and IQR are robust summaries that are less affected by skewness and outliers.",
-  },
-  {
-    question: "What does bimodal mean?",
-    options: [
-      "The data have two peaks or clusters.",
-      "The data have no values.",
-      "The mean equals the median.",
-      "The range is zero.",
+      "Because groups can have the same centre but different spread or shape.",
+      "Because centre can never be calculated.",
+      "Because spread is always zero.",
+      "Because graphs are not useful.",
     ],
     answer: 0,
     feedback:
-      "Bimodal data have two main peaks or clusters.",
+      "Groups may share a centre but differ in spread, skewness, outliers or overlap.",
   },
   {
-    question: "What is the upper outlier fence using the 1.5 × IQR rule?",
+    question: "Which pair is often suitable for skewed group comparisons?",
     options: [
-      "Q1 − 1.5 × IQR",
-      "Q3 + 1.5 × IQR",
-      "Mean + median",
-      "Maximum − minimum",
+      "Mean and standard deviation",
+      "Median and IQR",
+      "Mode and variance only",
+      "Maximum and sample size only",
     ],
     answer: 1,
     feedback:
-      "The upper outlier fence is Q3 + 1.5 × IQR.",
+      "Median and IQR are robust summaries for skewed or outlier-affected data.",
   },
   {
-    question: "Why should outliers not be automatically deleted?",
+    question: "What does larger spread suggest in a group?",
     options: [
-      "They are always correct.",
-      "They are always errors.",
-      "They may be errors, rare genuine values or important signals.",
-      "They do not affect any statistic.",
+      "The group is more variable.",
+      "The group has no data.",
+      "The group must have a higher median.",
+      "The group is always better.",
+    ],
+    answer: 0,
+    feedback:
+      "Larger spread means the observations are more dispersed or less consistent.",
+  },
+  {
+    question: "What does strong overlap between groups mean?",
+    options: [
+      "The groups have no values in common.",
+      "Many values from both groups occupy similar ranges.",
+      "The groups must have identical means.",
+      "The study is causal.",
+    ],
+    answer: 1,
+    feedback:
+      "Strong overlap means many observations from the groups lie in similar value ranges.",
+  },
+  {
+    question: "Can descriptive statistics alone prove why two groups differ?",
+    options: [
+      "Yes, always.",
+      "Only if the mean is high.",
+      "No, they show observed differences but not causal explanations.",
+      "Only if the range is small.",
     ],
     answer: 2,
     feedback:
-      "Outliers need investigation before any decision is made.",
+      "Descriptive statistics describe patterns. Causal explanation requires stronger design and reasoning.",
   },
   {
-    question: "In many right-skewed datasets, what often happens to the mean?",
-    options: [
-      "It is pulled upward above the median.",
-      "It is always zero.",
-      "It disappears.",
-      "It is always smaller than the minimum.",
-    ],
+    question: "Which display is especially useful for comparing medians, IQRs and outliers across groups?",
+    options: ["Boxplot", "Pie chart", "Single number only", "Unordered list"],
     answer: 0,
     feedback:
-      "Large values in the right tail often pull the mean upward.",
+      "Boxplots are useful for comparing medians, IQRs, whiskers and possible outliers across groups.",
   },
 ];
 
-export default function ShapeSkewnessOutliersLesson() {
-  const lessonCode = "2.4";
+export default function ComparingGroupsDescriptivelyLesson() {
+  const lessonCode = "2.5";
 
   if (!isStatisticsFoundationLessonOpen(lessonCode)) {
     return (
       <LockedLessonGate
         lessonCode={lessonCode}
-        lessonTitle="Shape, skewness and outliers"
+        lessonTitle="Comparing groups descriptively"
         moduleTitle="Module 2: Descriptive Statistics"
       />
     );
   }
 
   const [activeTab, setActiveTab] = useState("Learning Route");
-  const [shapeType, setShapeType] = useState("symmetric");
-  const [tailStrength, setTailStrength] = useState(85);
-  const [spread, setSpread] = useState(9);
-  const [sampleSize, setSampleSize] = useState(17);
+  const [difference, setDifference] = useState(8);
+  const [spreadA, setSpreadA] = useState(8);
+  const [spreadB, setSpreadB] = useState(16);
+  const [shapeType, setShapeType] = useState("balanced");
+  const [outlierStrength, setOutlierStrength] = useState(95);
+  const [sampleSize, setSampleSize] = useState(15);
   const [scenarioIndex, setScenarioIndex] = useState(0);
-  const [mentorTopic, setMentorTopic] = useState("symmetry");
+  const [mentorTopic, setMentorTopic] = useState("centre");
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>(
     {},
   );
@@ -386,105 +389,63 @@ export default function ShapeSkewnessOutliersLesson() {
   const activeMentor =
     mentorTopics.find((topic) => topic.id === mentorTopic) ?? mentorTopics[0];
 
-  const values = useMemo(() => {
-    const centre = 55;
-    let data: number[] = [];
+  const groupA = useMemo(() => {
+    return makeGroup({
+      centre: 60,
+      spread: spreadA,
+      count: sampleSize,
+      shape: "balanced",
+      outlier: outlierStrength,
+    });
+  }, [outlierStrength, sampleSize, spreadA]);
 
-    if (shapeType === "symmetric") {
-      data = Array.from({ length: sampleSize }, (_, index) => {
-        const offset = index - Math.floor(sampleSize / 2);
-        return Math.round(centre + offset * (spread / 5));
-      });
-    }
+  const groupB = useMemo(() => {
+    return makeGroup({
+      centre: 60 + difference,
+      spread: spreadB,
+      count: sampleSize,
+      shape: shapeType,
+      outlier: outlierStrength,
+    });
+  }, [difference, outlierStrength, sampleSize, shapeType, spreadB]);
 
-    if (shapeType === "right-skewed") {
-      data = Array.from({ length: sampleSize - 2 }, (_, index) =>
-        Math.round(32 + index * 1.7),
-      );
-      data.push(Math.round(tailStrength), Math.round(tailStrength + 18));
-    }
+  const summaryA = useMemo(() => summarise(groupA), [groupA]);
+  const summaryB = useMemo(() => summarise(groupB), [groupB]);
 
-    if (shapeType === "left-skewed") {
-      data = [
-        Math.max(2, 115 - tailStrength - 18),
-        Math.max(4, 115 - tailStrength),
-        ...Array.from({ length: sampleSize - 2 }, (_, index) =>
-          Math.round(58 + index * 1.7),
-        ),
-      ];
-    }
+  const pooledSd = useMemo(() => {
+    return Math.sqrt((summaryA.sd ** 2 + summaryB.sd ** 2) / 2);
+  }, [summaryA.sd, summaryB.sd]);
 
-    if (shapeType === "bimodal") {
-      const lower = Math.floor(sampleSize / 2);
-      const upper = sampleSize - lower;
+  const standardisedDifference = useMemo(() => {
+    if (pooledSd === 0) return 0;
+    return (summaryB.mean - summaryA.mean) / pooledSd;
+  }, [pooledSd, summaryA.mean, summaryB.mean]);
 
-      data = [
-        ...Array.from({ length: lower }, (_, index) =>
-          Math.round(36 + index * 1.5),
-        ),
-        ...Array.from({ length: upper }, (_, index) =>
-          Math.round(74 + index * 1.5),
-        ),
-      ];
-    }
+  const labAdvice = useMemo(() => {
+    const medianGap = summaryB.median - summaryA.median;
 
     if (shapeType === "outlier") {
-      data = Array.from({ length: sampleSize - 1 }, (_, index) => {
-        const offset = index - Math.floor((sampleSize - 1) / 2);
-        return Math.round(centre + offset * 1.4);
-      });
-      data.push(tailStrength + 28);
-    }
-
-    return data.sort((a, b) => a - b);
-  }, [sampleSize, shapeType, spread, tailStrength]);
-
-  const mean = useMemo(() => {
-    return values.reduce((total, value) => total + value, 0) / values.length;
-  }, [values]);
-
-  const median = useMemo(() => medianOf(values), [values]);
-  const lowerHalf = values.slice(0, Math.floor(values.length / 2));
-  const upperHalf = values.slice(Math.ceil(values.length / 2));
-  const q1 = medianOf(lowerHalf);
-  const q3 = medianOf(upperHalf);
-  const iqr = q3 - q1;
-  const minimum = values[0];
-  const maximum = values[values.length - 1];
-  const range = maximum - minimum;
-  const lowerFence = q1 - 1.5 * iqr;
-  const upperFence = q3 + 1.5 * iqr;
-  const flaggedOutliers = values.filter(
-    (value) => value < lowerFence || value > upperFence,
-  );
-
-  const sd = useMemo(() => {
-    const variance =
-      values.reduce((total, value) => total + (value - mean) ** 2, 0) /
-      (values.length - 1);
-
-    return Math.sqrt(variance);
-  }, [mean, values]);
-
-  const shapeAdvice = useMemo(() => {
-    if (shapeType === "symmetric") {
-      return "The distribution is roughly balanced. The mean and median are close, so mean and standard deviation may be suitable.";
+      return "Group B contains an extreme value. Compare mean/SD with median/IQR before making a strong statement about typical difference.";
     }
 
     if (shapeType === "right-skewed") {
-      return "The distribution has a long upper tail. The mean is pulled upward, so the median and IQR give a safer typical summary.";
-    }
-
-    if (shapeType === "left-skewed") {
-      return "The distribution has a long lower tail. The mean is pulled downward, so compare it with the median before interpreting.";
+      return "Group B is right-skewed. The median and IQR are safer summaries than the mean and standard deviation alone.";
     }
 
     if (shapeType === "bimodal") {
-      return "The distribution has two clusters. A single centre may hide the fact that two groups are mixed together.";
+      return "Group B has two clusters. A single centre may hide important subgroup structure.";
     }
 
-    return "An extreme value is affecting the summaries. Investigate the outlier and compare mean/SD with median/IQR.";
-  }, [shapeType]);
+    if (Math.abs(medianGap) < 3 && summaryB.iqr > summaryA.iqr * 1.5) {
+      return "The groups have similar centres, but Group B is more variable. Spread is the main difference.";
+    }
+
+    if (medianGap > 6) {
+      return "Group B has a higher typical value. Check overlap and spread before overstating the difference.";
+    }
+
+    return "The groups are fairly close in centre. Compare spread, overlap and shape before making a strong interpretation.";
+  }, [shapeType, summaryA.iqr, summaryA.median, summaryB.iqr, summaryB.median]);
 
   const score = quizQuestions.reduce((total, question, index) => {
     return selectedAnswers[index] === question.answer ? total + 1 : total;
@@ -505,7 +466,7 @@ export default function ShapeSkewnessOutliersLesson() {
 
         @keyframes dotPulse {
           0%, 100% { transform: scale(1); opacity: 0.86; }
-          50% { transform: scale(1.22); opacity: 1; }
+          50% { transform: scale(1.2); opacity: 1; }
         }
 
         @keyframes signalMove {
@@ -527,27 +488,27 @@ export default function ShapeSkewnessOutliersLesson() {
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-6 md:p-10">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                Statistics Foundation · Lesson 2.4
+                Statistics Foundation · Lesson 2.5
               </p>
 
               <h1 className="mt-5 max-w-5xl text-4xl font-black leading-[1.02] tracking-[-0.055em] md:text-7xl">
-                Shape, skewness and outliers.
+                Comparing groups descriptively.
               </h1>
 
               <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
-                Shape describes the full pattern of a distribution. This lesson
-                teaches students how to recognise symmetry, right skew, left
-                skew, long tails, clusters and outliers, then decide whether
-                mean/standard deviation or median/IQR gives the more honest
-                description.
+                Descriptive comparison brings together centre, spread, shape,
+                quartiles, boxplots and careful interpretation. This lesson
+                teaches students how to compare groups honestly, recognise
+                overlap and variability, and avoid making unsupported causal
+                claims from descriptive statistics alone.
               </p>
 
               <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {[
-                  "100–105 minutes",
+                  "105–110 minutes",
                   "No coding",
-                  "Shape visual lab",
-                  "Outlier reasoning",
+                  "Group comparison lab",
+                  "Careful reporting",
                 ].map((item) => (
                   <div
                     key={item}
@@ -565,17 +526,17 @@ export default function ShapeSkewnessOutliersLesson() {
               </p>
 
               <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                From summaries to distribution shape.
+                From separate summaries to fair comparison.
               </h2>
 
               <div className="mt-8 grid gap-3">
                 {[
-                  "Check graph",
-                  "Compare mean/median",
-                  "Inspect tails",
-                  "Look for clusters",
-                  "Flag outliers",
-                  "Report carefully",
+                  "Compare centre",
+                  "Compare spread",
+                  "Compare shape",
+                  "Check overlap",
+                  "Inspect outliers",
+                  "Report cautiously",
                 ].map((item, index) => (
                   <div
                     key={item}
@@ -615,18 +576,18 @@ export default function ShapeSkewnessOutliersLesson() {
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                100–105 minute lesson plan
+                105–110 minute lesson plan
               </p>
 
               <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Learn how to describe the whole distribution, not just one number.
+                Learn how to compare groups without oversimplifying the data.
               </h2>
 
               <p className="mt-5 text-base leading-8 text-neutral-700">
-                Centre, spread and quartiles are powerful, but they can still
-                hide important patterns. Shape helps us decide whether a summary
-                is honest. A graph can reveal skewness, clusters and outliers
-                that a single number may miss.
+                This lesson completes Module 2 by combining everything learned
+                so far. Students compare groups using centre, spread, shape,
+                quartiles and outliers. The main goal is not only to identify
+                differences, but to describe those differences honestly.
               </p>
 
               <div className="mt-6 grid gap-3">
@@ -655,19 +616,19 @@ export default function ShapeSkewnessOutliersLesson() {
               </p>
 
               <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                By the end, you should be able to diagnose the shape of a dataset.
+                By the end, you should be able to compare groups responsibly.
               </h2>
 
               <div className="mt-8 grid gap-3">
                 {[
-                  "Explain why shape matters beyond centre and spread.",
-                  "Recognise symmetric, right-skewed and left-skewed distributions.",
-                  "Explain how skewness affects the mean and median.",
-                  "Identify long tails, heavy tails, clusters and gaps.",
-                  "Use IQR fences to flag possible outliers.",
-                  "Explain why outliers should be investigated before removal.",
-                  "Choose summaries that match distribution shape.",
-                  "Write careful interpretations of shape in context.",
+                  "Compare group centres using means or medians.",
+                  "Compare group spread using standard deviations or IQRs.",
+                  "Identify when groups have similar centres but different variability.",
+                  "Use boxplots and dot plots to compare distributions visually.",
+                  "Recognise skewness, clusters and outliers across groups.",
+                  "Discuss overlap between groups.",
+                  "Avoid unsupported causal conclusions.",
+                  "Write clear descriptive comparison paragraphs.",
                 ].map((item, index) => (
                   <div
                     key={item}
@@ -689,17 +650,18 @@ export default function ShapeSkewnessOutliersLesson() {
             <section className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr]">
               <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                  Shape decision board
+                  Comparison decision board
                 </p>
 
                 <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                  The shape tells us whether our summaries can be trusted.
+                  A fair comparison looks at centre, spread, shape and overlap.
                 </h2>
 
                 <p className="mt-4 text-base leading-8 text-neutral-700">
-                  A mean can look simple, a median can look stable and a
-                  standard deviation can look precise. But without shape, we may
-                  miss skewness, multiple clusters or unusual observations.
+                  Comparing groups descriptively is not about finding one
+                  dramatic difference. It is about building a balanced summary:
+                  what is typical, how variable the groups are, what the shapes
+                  look like, and whether observations overlap.
                 </p>
 
                 <div className="mt-6 grid gap-4">
@@ -735,53 +697,53 @@ export default function ShapeSkewnessOutliersLesson() {
                 </p>
 
                 <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                  Mr. R explains why graphs come before judgement.
+                  Mr. R teaches comparison without exaggeration.
                 </h2>
 
                 <div className="mt-6 grid gap-4">
                   <Dialogue
                     speaker="Mr. R"
-                    text="We have learned centre, spread, quartiles and boxplots. Today we ask: what is the overall shape of the data?"
+                    text="Today we bring Module 2 together. We are not just describing one dataset. We are comparing groups."
                   />
                   <Dialogue
                     speaker="Amelia"
-                    text="Is shape just whether the graph looks balanced?"
+                    text="So we compare the means?"
                   />
                   <Dialogue
                     speaker="Mr. R"
-                    text="Balance is one part. We also look for skewness, long tails, clusters, gaps and outliers."
+                    text="Sometimes. But first we ask whether the mean is appropriate. If the data are skewed, the median may be safer."
                   />
                   <Dialogue
                     speaker="Ben"
-                    text="If data are right-skewed, does the mean move to the right?"
+                    text="What if two groups have the same median?"
                   />
                   <Dialogue
                     speaker="Mr. R"
-                    text="Usually, yes. A few large values pull the mean upward, often above the median."
+                    text="Then compare spread. One group may be much more consistent while the other is widely variable."
                   />
                   <Dialogue
                     speaker="Chloe"
-                    text="So for skewed data, median and IQR are safer?"
+                    text="And shape matters too?"
                   />
                   <Dialogue
                     speaker="Mr. R"
-                    text="Exactly. Median and IQR focus on position and the middle 50%, so they resist extreme tails."
+                    text="Very much. A group may be skewed, contain outliers or have two clusters. A single centre can hide all of that."
                   />
                   <Dialogue
                     speaker="Daniel"
-                    text="What if there are two clusters?"
+                    text="Can we say one group caused the difference?"
                   />
                   <Dialogue
                     speaker="Mr. R"
-                    text="Then one centre may be misleading. Two clusters may mean two groups are mixed together, so we should investigate them separately."
+                    text="Not from descriptive statistics alone. We can say what we observe. Explaining why needs study design and causal reasoning."
                   />
                   <Dialogue
                     speaker="Amelia"
-                    text="And outliers should not be deleted straight away?"
+                    text="So a good comparison is careful, not dramatic."
                   />
                   <Dialogue
                     speaker="Mr. R"
-                    text="Correct. An outlier is a question, not an automatic mistake. It asks us to check measurement, data entry and context."
+                    text="Exactly. Descriptive comparison should be clear, honest and supported by the summaries."
                   />
                 </div>
 
@@ -790,10 +752,10 @@ export default function ShapeSkewnessOutliersLesson() {
                     Lecture takeaway
                   </h3>
                   <p className="mt-3 text-base leading-8 text-neutral-700">
-                    Shape controls interpretation. Symmetric data can often be
-                    described by mean and standard deviation. Skewed or
-                    outlier-affected data often need median and IQR. Clustered
-                    data may need separate group summaries.
+                    A strong descriptive comparison says which group has the
+                    higher typical value, which group is more variable, whether
+                    shapes differ, whether outliers are present, and how much
+                    caution is needed.
                   </p>
                 </section>
               </section>
@@ -801,46 +763,15 @@ export default function ShapeSkewnessOutliersLesson() {
 
             <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                Shape interpretation pathway
+                Comparison pathway
               </p>
 
               <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Diagnose shape in six questions.
+                Ask these questions before writing a comparison.
               </h2>
 
               <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                {[
-                  {
-                    question: "Is the graph roughly balanced?",
-                    reason:
-                      "If yes, the data may be approximately symmetric.",
-                  },
-                  {
-                    question: "Which tail is longer?",
-                    reason:
-                      "A longer right tail suggests right skew; a longer left tail suggests left skew.",
-                  },
-                  {
-                    question: "Are mean and median far apart?",
-                    reason:
-                      "A large gap may signal skewness or influential outliers.",
-                  },
-                  {
-                    question: "Are there two or more peaks?",
-                    reason:
-                      "Multiple peaks may indicate mixed subgroups.",
-                  },
-                  {
-                    question: "Are any values far away?",
-                    reason:
-                      "Use graphs and IQR fences to flag possible outliers.",
-                  },
-                  {
-                    question: "Which summary is honest?",
-                    reason:
-                      "Match mean/SD or median/IQR to the shape.",
-                  },
-                ].map((item) => (
+                {comparisonRows.map((item) => (
                   <article
                     key={item.question}
                     className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
@@ -851,8 +782,14 @@ export default function ShapeSkewnessOutliersLesson() {
                     <h3 className="mt-2 text-lg font-black tracking-[-0.03em]">
                       {item.question}
                     </h3>
+                    <p className="mt-4 text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+                      Look at
+                    </p>
+                    <p className="mt-2 text-sm font-black leading-7 text-neutral-800">
+                      {item.lookAt}
+                    </p>
                     <p className="mt-3 text-sm leading-7 text-neutral-700">
-                      {item.reason}
+                      {item.interpretation}
                     </p>
                   </article>
                 ))}
@@ -868,15 +805,15 @@ export default function ShapeSkewnessOutliersLesson() {
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-              Shape, skewness and outliers in depth.
+              Comparing groups descriptively in depth.
             </h2>
 
             <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700">
-              Shape is the visual and structural pattern of a dataset. It tells
-              us whether the data are balanced, stretched, clustered or affected
-              by unusual observations. Shape helps us decide which numerical
-              summaries are appropriate and how cautious our interpretation
-              should be.
+              Descriptive comparison combines several ideas: centre tells us
+              what is typical, spread tells us how variable each group is, shape
+              shows whether summaries are appropriate, and graphs show overlap,
+              clusters and outliers. Good comparison is not just mathematical;
+              it is interpretive.
             </p>
 
             <div className="mt-8 grid gap-5 md:grid-cols-2">
@@ -909,37 +846,36 @@ export default function ShapeSkewnessOutliersLesson() {
 
             <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
-                Important distinction
+                Important warning
               </p>
 
               <h3 className="mt-3 text-3xl font-black tracking-[-0.04em]">
-                Outlier does not mean error.
+                Descriptive comparison is not causal explanation.
               </h3>
 
               <p className="mt-4 text-sm leading-7 text-white/75">
-                A flagged outlier is an observation that deserves attention. It
-                may be a data entry error, a measurement problem, a rare genuine
-                case, or an important signal. Removing it without explanation is
-                poor statistical practice. The correct first response is to
-                investigate.
+                Descriptive statistics can show that groups differ in the
+                observed data. They cannot, by themselves, prove why the groups
+                differ. Causal language requires additional reasoning about
+                study design, confounding, timing and alternative explanations.
               </p>
 
               <div className="mt-6 grid gap-4 md:grid-cols-3">
                 {[
                   {
-                    title: "Check",
+                    title: "Safe",
                     body:
-                      "Was the value entered or measured correctly?",
+                      "Group B had a higher median score than Group A in this dataset.",
                   },
                   {
-                    title: "Context",
+                    title: "Risky",
                     body:
-                      "Could the value be genuine in this population?",
+                      "Being in Group B caused students to score higher.",
                   },
                   {
-                    title: "Report",
+                    title: "Better",
                     body:
-                      "Explain how conclusions change with and without the value if needed.",
+                      "The observed difference may reflect group characteristics, teaching, selection or other factors.",
                   },
                 ].map((item) => (
                   <article
@@ -954,82 +890,40 @@ export default function ShapeSkewnessOutliersLesson() {
                 ))}
               </div>
             </section>
-
-            <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
-                Comparison table
-              </p>
-
-              <h3 className="mt-3 text-3xl font-black tracking-[-0.04em]">
-                How shape changes the best summary.
-              </h3>
-
-              <div className="mt-6 overflow-x-auto">
-                <table className="w-full min-w-[760px] border-separate border-spacing-y-3 text-left">
-                  <thead>
-                    <tr className="text-xs uppercase tracking-[0.18em] text-neutral-500">
-                      <th className="px-4">Shape</th>
-                      <th className="px-4">Mean vs median</th>
-                      <th className="px-4">Useful summary</th>
-                      <th className="px-4">Warning</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {comparisonRows.map((row) => (
-                      <tr key={row.shape} className="bg-white">
-                        <td className="rounded-l-2xl px-4 py-4 text-sm font-black">
-                          {row.shape}
-                        </td>
-                        <td className="px-4 py-4 text-sm text-neutral-700">
-                          {row.meanMedian}
-                        </td>
-                        <td className="px-4 py-4 text-sm text-neutral-700">
-                          {row.summary}
-                        </td>
-                        <td className="rounded-r-2xl px-4 py-4 text-sm leading-7 text-neutral-700">
-                          {row.warning}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </section>
           </section>
         )}
 
-        {activeTab === "Shape Lab" && (
+        {activeTab === "Comparison Lab" && (
           <section className="mt-8 grid gap-6">
             <section className="overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
               <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="p-6 md:p-8">
                   <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                    Interactive shape lab
+                    Interactive comparison lab
                   </p>
 
                   <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                    Change the shape and watch the summaries move.
+                    Adjust two groups and compare them descriptively.
                   </h2>
 
                   <p className="mt-4 text-base leading-8 text-neutral-700">
-                    Choose a shape and adjust the sliders. Notice how skewness,
-                    clusters and outliers affect the mean, median, standard
-                    deviation and IQR differently.
+                    Group A stays balanced. Group B can shift, spread out,
+                    become skewed or contain an outlier. Watch how the
+                    comparison changes when centre, spread and shape change.
                   </p>
 
                   <div className="mt-6">
                     <label className="block">
                       <span className="text-sm font-black text-neutral-700">
-                        Distribution shape
+                        Group B shape
                       </span>
                       <select
                         value={shapeType}
                         onChange={(event) => setShapeType(event.target.value)}
                         className="mt-3 w-full rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-800"
                       >
-                        <option value="symmetric">Symmetric</option>
+                        <option value="balanced">Balanced</option>
                         <option value="right-skewed">Right-skewed</option>
-                        <option value="left-skewed">Left-skewed</option>
                         <option value="bimodal">Bimodal</option>
                         <option value="outlier">Outlier-affected</option>
                       </select>
@@ -1038,33 +932,40 @@ export default function ShapeSkewnessOutliersLesson() {
 
                   <div className="mt-6 grid gap-5">
                     <Slider
-                      label="Tail / outlier strength"
-                      value={tailStrength}
-                      min={65}
-                      max={140}
-                      onChange={setTailStrength}
+                      label="Group B centre shift"
+                      value={difference}
+                      min={-10}
+                      max={25}
+                      onChange={setDifference}
                     />
                     <Slider
-                      label="General spread"
-                      value={spread}
+                      label="Group A spread"
+                      value={spreadA}
                       min={4}
-                      max={18}
-                      onChange={setSpread}
+                      max={22}
+                      onChange={setSpreadA}
                     />
                     <Slider
-                      label="Sample size"
+                      label="Group B spread"
+                      value={spreadB}
+                      min={4}
+                      max={30}
+                      onChange={setSpreadB}
+                    />
+                    <Slider
+                      label="Outlier strength"
+                      value={outlierStrength}
+                      min={75}
+                      max={150}
+                      onChange={setOutlierStrength}
+                    />
+                    <Slider
+                      label="Sample size per group"
                       value={sampleSize}
                       min={9}
                       max={25}
                       onChange={setSampleSize}
                     />
-                  </div>
-
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                    <Metric label="Mean" value={mean.toFixed(1)} />
-                    <Metric label="Median" value={median.toFixed(1)} />
-                    <Metric label="SD" value={sd.toFixed(1)} />
-                    <Metric label="IQR" value={iqr.toFixed(1)} />
                   </div>
                 </div>
 
@@ -1074,24 +975,29 @@ export default function ShapeSkewnessOutliersLesson() {
                   </p>
 
                   <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                    What does the shape suggest?
+                    What is the fair comparison?
                   </h2>
 
                   <p className="mt-6 text-lg leading-9 text-white/80">
-                    {shapeAdvice}
+                    {labAdvice}
                   </p>
 
                   <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                    <MetricDark label="Minimum" value={minimum.toFixed(1)} />
-                    <MetricDark label="Maximum" value={maximum.toFixed(1)} />
-                    <MetricDark label="Range" value={range.toFixed(1)} />
                     <MetricDark
-                      label="Flagged outliers"
-                      value={
-                        flaggedOutliers.length > 0
-                          ? flaggedOutliers.join(", ")
-                          : "None"
-                      }
+                      label="Mean difference B − A"
+                      value={(summaryB.mean - summaryA.mean).toFixed(1)}
+                    />
+                    <MetricDark
+                      label="Median difference B − A"
+                      value={(summaryB.median - summaryA.median).toFixed(1)}
+                    />
+                    <MetricDark
+                      label="IQR ratio B ÷ A"
+                      value={(summaryB.iqr / Math.max(1, summaryA.iqr)).toFixed(2)}
+                    />
+                    <MetricDark
+                      label="Std. difference"
+                      value={standardisedDifference.toFixed(2)}
                     />
                   </div>
                 </div>
@@ -1101,94 +1007,81 @@ export default function ShapeSkewnessOutliersLesson() {
             <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
               <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                  Shape visual
+                  Group dot plots
                 </p>
 
                 <h2 className="mt-3 text-3xl font-black tracking-[-0.045em]">
-                  Dots reveal what summaries can hide.
+                  Compare overlap, spread and unusual values.
                 </h2>
 
                 <p className="mt-4 text-sm leading-7 text-neutral-700">
-                  The dot strip shows the ordered data. The red marker is the
-                  mean and the grey marker is the median. When they separate,
-                  shape may be affecting interpretation.
+                  The two strips show the distributions for Group A and Group B.
+                  The red line is the median. Wide strips mean more spread.
+                  Separated strips mean less overlap.
                 </p>
 
-                <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-                  <div className="relative h-40 rounded-[1.5rem] bg-white p-4">
-                    <div className="absolute left-4 right-4 top-1/2 h-1 rounded-full bg-neutral-200" />
-
-                    <div
-                      className="absolute top-[42%] h-8 rounded-xl border-2 border-[#8b1116] bg-[#8b1116]/10"
-                      style={{
-                        left: `${scaleToPercent(q1)}%`,
-                        width: `${Math.max(
-                          4,
-                          scaleToPercent(q3) - scaleToPercent(q1),
-                        )}%`,
-                      }}
-                    />
-
-                    {values.map((value, index) => {
-                      const flagged = value < lowerFence || value > upperFence;
-
-                      return (
-                        <div
-                          key={`${value}-${index}`}
-                          className={`absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full ${
-                            flagged ? "bg-[#8b1116]" : "bg-neutral-950"
-                          }`}
-                          style={{
-                            left: `${scaleToPercent(value)}%`,
-                            animation: flagged
-                              ? "dotPulse 2.4s ease-in-out infinite"
-                              : undefined,
-                          }}
-                        />
-                      );
-                    })}
-
-                    <div
-                      className="absolute top-3 h-[110px] w-1 rounded-full bg-[#8b1116]"
-                      style={{ left: `${scaleToPercent(mean)}%` }}
-                    />
-                    <div
-                      className="absolute top-3 h-[110px] w-1 rounded-full bg-neutral-500"
-                      style={{ left: `${scaleToPercent(median)}%` }}
-                    />
-                  </div>
-
-                  <div className="mt-5 grid gap-3 text-sm leading-7 text-neutral-700 md:grid-cols-4">
-                    <div className="rounded-2xl bg-white p-4">
-                      <strong>Dots:</strong> observations.
-                    </div>
-                    <div className="rounded-2xl bg-white p-4">
-                      <strong>Red marker:</strong> mean.
-                    </div>
-                    <div className="rounded-2xl bg-white p-4">
-                      <strong>Grey marker:</strong> median.
-                    </div>
-                    <div className="rounded-2xl bg-white p-4">
-                      <strong>Red dots:</strong> possible outliers.
-                    </div>
-                  </div>
+                <div className="mt-6 grid gap-5 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+                  <GroupStrip
+                    label="Group A"
+                    values={groupA}
+                    median={summaryA.median}
+                    q1={summaryA.q1}
+                    q3={summaryA.q3}
+                    lowerFence={summaryA.lowerFence}
+                    upperFence={summaryA.upperFence}
+                  />
+                  <GroupStrip
+                    label="Group B"
+                    values={groupB}
+                    median={summaryB.median}
+                    q1={summaryB.q1}
+                    q3={summaryB.q3}
+                    lowerFence={summaryB.lowerFence}
+                    upperFence={summaryB.upperFence}
+                  />
                 </div>
               </section>
 
               <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                  Shape diagnosis
+                  Summary table
                 </p>
 
                 <h2 className="mt-3 text-3xl font-black tracking-[-0.045em]">
-                  Compare robust and mean-based summaries.
+                  Compare the same summaries across groups.
                 </h2>
 
-                <div className="mt-6 grid gap-4">
-                  <Bar label="Mean" value={mean} max={160} />
-                  <Bar label="Median" value={median} max={160} />
-                  <Bar label="Standard deviation" value={sd} max={60} />
-                  <Bar label="IQR" value={iqr} max={60} />
+                <div className="mt-6 overflow-x-auto">
+                  <table className="w-full min-w-[520px] border-separate border-spacing-y-3 text-left">
+                    <thead>
+                      <tr className="text-xs uppercase tracking-[0.18em] text-neutral-500">
+                        <th className="px-4">Summary</th>
+                        <th className="px-4">Group A</th>
+                        <th className="px-4">Group B</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        ["Mean", summaryA.mean, summaryB.mean],
+                        ["Median", summaryA.median, summaryB.median],
+                        ["SD", summaryA.sd, summaryB.sd],
+                        ["IQR", summaryA.iqr, summaryB.iqr],
+                        ["Range", summaryA.range, summaryB.range],
+                      ].map(([label, valueA, valueB]) => (
+                        <tr key={String(label)} className="bg-[#f7f4ee]">
+                          <td className="rounded-l-2xl px-4 py-4 text-sm font-black">
+                            {label}
+                          </td>
+                          <td className="px-4 py-4 text-sm text-neutral-700">
+                            {Number(valueA).toFixed(1)}
+                          </td>
+                          <td className="rounded-r-2xl px-4 py-4 text-sm text-neutral-700">
+                            {Number(valueB).toFixed(1)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
 
                 <section className="mt-6 rounded-[1.5rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5">
@@ -1196,15 +1089,15 @@ export default function ShapeSkewnessOutliersLesson() {
                     Write this conclusion
                   </p>
                   <p className="mt-3 text-sm leading-7 text-neutral-700">
-                    “The mean is <strong>{mean.toFixed(1)}</strong> and the
-                    median is <strong>{median.toFixed(1)}</strong>. The gap
-                    between them is{" "}
-                    <strong>{Math.abs(mean - median).toFixed(1)}</strong>,
-                    suggesting the distribution is{" "}
-                    {Math.abs(mean - median) > 8
-                      ? "likely affected by skewness or outliers"
-                      : "roughly balanced by this comparison"}
-                    .”
+                    “Group B has a median of{" "}
+                    <strong>{summaryB.median.toFixed(1)}</strong>, compared
+                    with <strong>{summaryA.median.toFixed(1)}</strong> in Group
+                    A. Group B is{" "}
+                    {summaryB.iqr > summaryA.iqr
+                      ? "more variable"
+                      : "less variable"}{" "}
+                    by IQR. This is a descriptive comparison, not evidence by
+                    itself of cause.”
                   </p>
                 </section>
               </section>
@@ -1220,7 +1113,7 @@ export default function ShapeSkewnessOutliersLesson() {
               </p>
 
               <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Ask Mr. R about shape.
+                Ask Mr. R about group comparison.
               </h2>
 
               <div className="mt-8 flex justify-center">
@@ -1289,9 +1182,8 @@ export default function ShapeSkewnessOutliersLesson() {
                   Mentor challenge
                 </p>
                 <p className="mt-3 text-sm leading-7 text-white/75">
-                  Find a dataset from everyday life, such as waiting times,
-                  prices or scores. Describe its centre, spread and shape in
-                  three separate sentences.
+                  Choose two groups from a real context. Compare centre, spread,
+                  shape and overlap in four separate sentences.
                 </p>
               </div>
             </section>
@@ -1305,7 +1197,7 @@ export default function ShapeSkewnessOutliersLesson() {
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-              Identify shape and choose honest summaries.
+              Compare groups with centre, spread and caution.
             </h2>
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -1350,40 +1242,40 @@ export default function ShapeSkewnessOutliersLesson() {
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-              Practise shape diagnosis.
+              Practise descriptive comparison writing.
             </h2>
 
             <div className="mt-8 grid gap-5">
               {[
                 {
                   task:
-                    "A dataset has many small values and a few very large values. Identify the likely skew and suggest suitable summaries.",
+                    "Two groups have the same median, but Group B has a much larger IQR. Write a careful comparison.",
                   hint:
-                    "Think about right skew, median and IQR.",
+                    "Say the typical values are similar, but Group B is more variable.",
                 },
                 {
                   task:
-                    "A class has two groups: students scoring around 35 and students scoring around 85. Explain why one mean may be misleading.",
+                    "Group A has a higher mean than Group B, but Group A is strongly right-skewed. What should you check?",
                   hint:
-                    "Think about bimodality and mixed subgroups.",
+                    "Compare medians and inspect outliers before interpreting the mean difference.",
                 },
                 {
                   task:
-                    "A boxplot shows one point far above the upper whisker. What should you do before removing it?",
+                    "A boxplot shows strong overlap between two groups. What does this mean for the comparison?",
                   hint:
-                    "Check for data entry error, measurement issue and real-world plausibility.",
+                    "A centre difference may exist, but many observations have similar values.",
                 },
                 {
                   task:
-                    "Explain why income data are often summarised using the median rather than the mean.",
+                    "Write a sentence that avoids causal language when comparing exam scores between two classes.",
                   hint:
-                    "A few very high incomes can pull the mean upward.",
+                    "Use phrases like 'in this dataset' and 'was observed', not 'caused'.",
                 },
                 {
                   task:
-                    "A distribution is roughly symmetric. Which pair of summaries may be reasonable?",
+                    "Group B has two clusters. Explain why one mean may be misleading.",
                   hint:
-                    "Mean and standard deviation often work well for balanced numerical data.",
+                    "A single centre may fall between clusters and represent neither subgroup well.",
                 },
               ].map((item, index) => (
                 <article
@@ -1412,16 +1304,16 @@ export default function ShapeSkewnessOutliersLesson() {
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-              Write a careful shape interpretation.
+              Write a full descriptive comparison.
             </h2>
 
             <div className="mt-8 grid gap-5">
               {[
-                "Explain why centre and spread are incomplete without shape.",
-                "Describe the difference between right skew and left skew.",
-                "Explain why the mean is sensitive to skewness.",
-                "Describe what a bimodal distribution might suggest.",
-                "Write a careful sentence explaining why an outlier should be investigated.",
+                "Explain why a fair group comparison should include centre and spread.",
+                "Describe a situation where two groups have similar centres but different variability.",
+                "Explain why overlap matters when comparing groups.",
+                "Explain why group differences should not automatically be interpreted causally.",
+                "Write a short paragraph comparing two groups using centre, spread, shape and caution.",
               ].map((item, index) => (
                 <article
                   key={item}
@@ -1442,9 +1334,10 @@ export default function ShapeSkewnessOutliersLesson() {
                 Model answer structure
               </p>
               <p className="mt-4 text-base leading-8 text-white/75">
-                “The distribution appears _____. This matters because _____.
-                The most appropriate summaries are _____ and _____ because
-                _____. Any unusual values should be checked because _____.”
+                “Group A had a _____ centre than Group B. Group _____ showed
+                greater spread, suggesting _____. The distributions appear
+                _____. Because this is descriptive evidence, we can say _____
+                but should not claim _____ without stronger study design.”
               </p>
             </section>
           </section>
@@ -1573,17 +1466,6 @@ function Slider({
   );
 }
 
-function Metric({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4">
-      <p className="text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
-        {label}
-      </p>
-      <p className="mt-2 text-2xl font-black tracking-[-0.04em]">{value}</p>
-    </div>
-  );
-}
-
 function MetricDark({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4">
@@ -1608,33 +1490,153 @@ function AnswerCard({ title, body }: { title: string; body: string }) {
   );
 }
 
-function Bar({
+function GroupStrip({
   label,
-  value,
-  max,
+  values,
+  median,
+  q1,
+  q3,
+  lowerFence,
+  upperFence,
 }: {
   label: string;
-  value: number;
-  max: number;
+  values: number[];
+  median: number;
+  q1: number;
+  q3: number;
+  lowerFence: number;
+  upperFence: number;
 }) {
-  const width = Math.max(5, Math.min(100, (value / max) * 100));
-
   return (
-    <div>
+    <div className="rounded-[1.5rem] bg-white p-5">
       <div className="flex items-center justify-between gap-4">
         <p className="text-sm font-black text-neutral-700">{label}</p>
-        <p className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
-          {value.toFixed(1)}
+        <p className="text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+          n = {values.length}
         </p>
       </div>
-      <div className="mt-2 h-4 overflow-hidden rounded-full bg-[#f7f4ee]">
+
+      <div className="relative mt-5 h-24 rounded-[1.25rem] bg-[#f7f4ee]">
+        <div className="absolute left-4 right-4 top-1/2 h-1 rounded-full bg-neutral-200" />
+
         <div
-          className="h-full rounded-full bg-[#8b1116]"
-          style={{ width: `${width}%` }}
+          className="absolute top-[38%] h-6 rounded-full border border-[#8b1116] bg-[#8b1116]/10"
+          style={{
+            left: `${scaleToPercent(q1)}%`,
+            width: `${Math.max(4, scaleToPercent(q3) - scaleToPercent(q1))}%`,
+          }}
         />
+
+        <div
+          className="absolute top-3 h-[72px] w-1 rounded-full bg-[#8b1116]"
+          style={{ left: `${scaleToPercent(median)}%` }}
+        />
+
+        {values.map((value, index) => {
+          const flagged = value < lowerFence || value > upperFence;
+
+          return (
+            <div
+              key={`${label}-${value}-${index}`}
+              className={`absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full ${
+                flagged ? "bg-[#8b1116]" : "bg-neutral-950"
+              }`}
+              style={{
+                left: `${scaleToPercent(value)}%`,
+                animation: flagged ? "dotPulse 2.4s ease-in-out infinite" : undefined,
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );
+}
+
+function makeGroup({
+  centre,
+  spread,
+  count,
+  shape,
+  outlier,
+}: {
+  centre: number;
+  spread: number;
+  count: number;
+  shape: string;
+  outlier: number;
+}) {
+  let values: number[] = [];
+
+  if (shape === "balanced") {
+    values = Array.from({ length: count }, (_, index) => {
+      const offset = index - Math.floor(count / 2);
+      return Math.round(centre + offset * (spread / 6));
+    });
+  }
+
+  if (shape === "right-skewed") {
+    values = Array.from({ length: count - 2 }, (_, index) =>
+      Math.round(centre - 20 + index * (spread / 7)),
+    );
+    values.push(Math.round(centre + spread + 18), Math.round(centre + spread + 30));
+  }
+
+  if (shape === "bimodal") {
+    const lower = Math.floor(count / 2);
+    const upper = count - lower;
+
+    values = [
+      ...Array.from({ length: lower }, (_, index) =>
+        Math.round(centre - 20 + index * 1.7),
+      ),
+      ...Array.from({ length: upper }, (_, index) =>
+        Math.round(centre + 16 + index * 1.7),
+      ),
+    ];
+  }
+
+  if (shape === "outlier") {
+    values = Array.from({ length: count - 1 }, (_, index) => {
+      const offset = index - Math.floor((count - 1) / 2);
+      return Math.round(centre + offset * (spread / 7));
+    });
+    values.push(outlier);
+  }
+
+  return values.sort((a, b) => a - b);
+}
+
+function summarise(values: number[]) {
+  const sorted = [...values].sort((a, b) => a - b);
+  const mean = sorted.reduce((total, value) => total + value, 0) / sorted.length;
+  const median = medianOf(sorted);
+  const lowerHalf = sorted.slice(0, Math.floor(sorted.length / 2));
+  const upperHalf = sorted.slice(Math.ceil(sorted.length / 2));
+  const q1 = medianOf(lowerHalf);
+  const q3 = medianOf(upperHalf);
+  const iqr = q3 - q1;
+  const range = sorted[sorted.length - 1] - sorted[0];
+
+  const variance =
+    sorted.reduce((total, value) => total + (value - mean) ** 2, 0) /
+    (sorted.length - 1);
+
+  const sd = Math.sqrt(variance);
+  const lowerFence = q1 - 1.5 * iqr;
+  const upperFence = q3 + 1.5 * iqr;
+
+  return {
+    mean,
+    median,
+    q1,
+    q3,
+    iqr,
+    range,
+    sd,
+    lowerFence,
+    upperFence,
+  };
 }
 
 function medianOf(values: number[]) {

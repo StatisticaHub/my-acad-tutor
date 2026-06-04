@@ -10,7 +10,7 @@ const tabs = [
   "Learning Route",
   "Lecture",
   "Detailed Notes",
-  "Centre Lab",
+  "Percentile Lab",
   "Animated Mentor",
   "Worked Examples",
   "Practice Studio",
@@ -21,330 +21,370 @@ const tabs = [
 const learningRoute = [
   {
     time: "0–10 min",
-    title: "What does a typical value mean?",
+    title: "Why positions matter",
     body:
-      "Begin by understanding that a measure of centre is not just a calculation. It is a summary of where the data tend to gather.",
+      "Understand that ordered data can be described by location in the list, not only by arithmetic calculations.",
   },
   {
-    time: "10–30 min",
-    title: "Mean, median and mode",
+    time: "10–25 min",
+    title: "Ranks, positions and ordered data",
     body:
-      "Learn the three main measures of centre, how they are calculated, and what each one is trying to represent.",
+      "Learn how sorting values helps us identify the minimum, maximum, median, quartiles and percentiles.",
   },
   {
-    time: "30–45 min",
-    title: "When the mean works well",
+    time: "25–45 min",
+    title: "Quartiles and the IQR",
     body:
-      "Study why the mean is powerful for balanced numerical data, but sensitive to extreme values.",
+      "Study Q1, Q2 and Q3 as position-based summaries, and connect them to the interquartile range.",
   },
   {
     time: "45–60 min",
-    title: "When the median is safer",
+    title: "Percentiles",
     body:
-      "Understand why the median is resistant to outliers and often better for skewed data such as income, waiting time or house prices.",
+      "Learn how percentiles divide ordered data into 100 parts and how to interpret percentile statements carefully.",
   },
   {
-    time: "60–80 min",
-    title: "Interactive centre lab",
+    time: "60–85 min",
+    title: "Five-number summaries and boxplots",
     body:
-      "Adjust skewness, outliers and repeated values to see how the mean, median and mode respond differently.",
+      "Bring minimum, Q1, median, Q3 and maximum together into a compact summary and visualise it with a boxplot.",
   },
   {
-    time: "80–100 min",
-    title: "Worked examples and quiz",
+    time: "85–105 min",
+    title: "Outlier fences and interpretation",
     body:
-      "Practise choosing the most appropriate measure of centre for real educational, medical and everyday datasets.",
+      "Use the 1.5 × IQR rule to flag unusually low or high values, then practise writing careful interpretations.",
   },
 ];
 
 const lectureConcepts = [
   {
-    title: "A measure of centre is a compression",
+    title: "Ordered position gives structure",
     body:
-      "A dataset may contain many values. A measure of centre compresses those values into one representative number. This is useful, but it also loses information.",
+      "Many descriptive statistics begin by placing values in order. Once data are sorted, we can discuss lower values, middle values, upper values and extremes.",
     example:
-      "The average exam score may summarise a class, but it does not show whether students were tightly grouped or split into high and low performers.",
+      "The values 12, 18, 21, 25 and 90 become easier to interpret when we notice that 90 is far above the rest.",
   },
   {
-    title: "The mean balances the data",
+    title: "The median is the second quartile",
     body:
-      "The mean is the arithmetic average. It uses every value and acts like a balancing point of the dataset.",
+      "The median divides ordered data into two halves. It is also called Q2, the second quartile.",
     example:
-      "For 4, 5, 6, 7 and 8, the mean is 6 because the values balance around 6.",
+      "If 50% of students scored below 64 and 50% scored above 64, then 64 is the median score.",
   },
   {
-    title: "The median finds the middle position",
+    title: "Quartiles divide data into quarters",
     body:
-      "The median is the middle value after the data are ordered. It depends on position rather than numerical size.",
+      "Q1 marks roughly the 25th percentile, Q2 marks the 50th percentile and Q3 marks the 75th percentile.",
     example:
-      "For 2, 3, 4, 5 and 100, the median is 4. The large value 100 does not pull the median upward.",
+      "If Q1 is 45 minutes for commute time, about one quarter of commutes are at or below 45 minutes.",
   },
   {
-    title: "The mode identifies the most common value",
+    title: "Percentiles describe relative standing",
     body:
-      "The mode is the value or category that occurs most often. It is especially useful for categorical data.",
+      "A percentile tells us the position of a value compared with the rest of the dataset. It does not necessarily tell us the exact score, only the relative location.",
     example:
-      "If most students choose 'online lectures' as their preferred format, that category is the mode.",
+      "A student at the 90th percentile scored higher than about 90% of students.",
   },
   {
-    title: "The best measure depends on the data shape",
+    title: "Five-number summaries support boxplots",
     body:
-      "There is no single best measure of centre for every dataset. The choice depends on whether the data are numerical or categorical, symmetric or skewed, clean or affected by outliers.",
+      "The five-number summary gives the minimum, Q1, median, Q3 and maximum. A boxplot turns this summary into a visual display of centre, spread and extremes.",
     example:
-      "For house prices, the median is often more informative than the mean because a few very expensive houses can pull the mean upward.",
+      "A boxplot of waiting times can quickly show the median wait, the middle 50% and possible unusually long waits.",
   },
 ];
 
-const detailedNotes = [
+const notes = [
   {
-    title: "The arithmetic mean",
-    formula: "Mean = (sum of all values) ÷ (number of values)",
+    title: "Ordered data",
+    formula: "Sort values from smallest to largest",
     body:
-      "The arithmetic mean is the most familiar average. If the dataset contains n observations x₁, x₂, ..., xₙ, the sample mean is written as x̄ = (x₁ + x₂ + ... + xₙ) / n. The mean uses every observation, so it changes whenever any value changes.",
+      "Quartiles and percentiles are based on order. Before finding them, the data must be sorted. Sorting reveals the position of each observation and makes it possible to identify lower, middle and upper parts of the dataset.",
     strength:
-      "It is mathematically powerful, uses all values, and is central to many later statistical ideas such as variance, standard deviation and regression.",
+      "Ordering helps us understand structure without assuming the data are symmetric.",
     limitation:
-      "It is sensitive to outliers and skewness. A single unusually large or small value can move the mean strongly.",
+      "Ordering alone does not explain why values differ or whether the data are representative.",
     bestFor:
-      "Approximately symmetric numerical data without severe outliers.",
+      "Any numerical or ordinal dataset where position is meaningful.",
   },
   {
-    title: "The median",
-    formula: "Median = middle ordered value",
+    title: "First quartile",
+    formula: "Q1 ≈ 25th percentile",
     body:
-      "The median is found by arranging the data in order. If there is an odd number of observations, the median is the middle value. If there is an even number, the median is the average of the two middle values. The median is based on position, not the full numerical size of every value.",
+      "The first quartile marks the lower quarter of the data. Roughly 25% of observations are at or below Q1, and roughly 75% are at or above it.",
     strength:
-      "It is resistant to extreme values and gives a stable centre for skewed distributions.",
+      "It describes the lower part of the distribution in a robust way.",
     limitation:
-      "It ignores some information about how far values are from the middle.",
+      "Different textbooks and software may use slightly different quartile calculation rules.",
     bestFor:
-      "Skewed data, ordinal data, income, house prices, waiting times and survival times.",
+      "Describing the lower part of ordered data.",
   },
   {
-    title: "The mode",
-    formula: "Mode = most frequent value",
+    title: "Median",
+    formula: "Q2 = 50th percentile",
     body:
-      "The mode is the most common value or category. A dataset can have no mode, one mode, or more than one mode. Unlike the mean and median, the mode can be used with categorical data.",
+      "The median is the middle of the ordered data. It divides the dataset into two halves and is resistant to extreme values.",
     strength:
-      "It is useful for identifying the most common category, response or repeated value.",
+      "It is robust and easy to interpret.",
     limitation:
-      "It can be unstable in small datasets and may not represent the centre well for continuous numerical data.",
+      "It does not use the exact distances of all observations from the centre.",
     bestFor:
-      "Categorical data, survey choices, preference data and repeated discrete values.",
+      "Skewed data, ordinal data and datasets with outliers.",
   },
   {
-    title: "Weighted mean",
-    formula: "Weighted mean = Σ(wᵢxᵢ) ÷ Σwᵢ",
+    title: "Third quartile",
+    formula: "Q3 ≈ 75th percentile",
     body:
-      "A weighted mean is used when some values count more than others. Each value is multiplied by a weight. The total weighted sum is then divided by the total weight.",
+      "The third quartile marks the upper quarter of the data. Roughly 75% of observations are at or below Q3, and roughly 25% are above it.",
     strength:
-      "It correctly handles situations where observations or groups have different importance, frequency or size.",
+      "It helps describe the upper part of the dataset.",
     limitation:
-      "It can be misleading if the weights are chosen carelessly or not explained.",
+      "Like Q1, it can vary slightly depending on the quartile rule used.",
     bestFor:
-      "Course grades with different assessment weights, grouped means and survey estimates with weighting.",
+      "Describing the upper portion of ordered data.",
   },
   {
-    title: "Trimmed mean",
-    formula: "Trimmed mean = mean after removing a fixed percentage from both tails",
+    title: "Interquartile range",
+    formula: "IQR = Q3 − Q1",
     body:
-      "A trimmed mean removes a small percentage of the smallest and largest values before calculating the mean. It is a compromise between the mean and median.",
+      "The IQR measures the width of the middle 50% of the data. It is a robust measure of spread because it ignores the most extreme quarter on each side.",
     strength:
-      "It reduces the effect of extreme observations while still using much of the dataset.",
+      "It is less affected by outliers than the range or standard deviation.",
     limitation:
-      "The trimming rule must be stated clearly. Different trimming percentages can give different results.",
+      "It does not describe the full span of the data.",
     bestFor:
-      "Data with mild outliers where the researcher still wants an average-like summary.",
+      "Skewed data, boxplots and robust descriptive summaries.",
+  },
+  {
+    title: "Five-number summary",
+    formula: "Minimum, Q1, Median, Q3, Maximum",
+    body:
+      "The five-number summary gives a compact picture of the distribution. It shows the lowest value, lower quartile, median, upper quartile and highest value.",
+    strength:
+      "It summarises centre, spread and extremes in one simple structure.",
+    limitation:
+      "It does not show every detail, such as multiple clusters or exact frequencies.",
+    bestFor:
+      "Boxplots and quick comparison between groups.",
+  },
+  {
+    title: "Outlier fences",
+    formula: "Lower fence = Q1 − 1.5 × IQR; Upper fence = Q3 + 1.5 × IQR",
+    body:
+      "The 1.5 × IQR rule is a common descriptive method for flagging possible outliers. Values below the lower fence or above the upper fence are considered unusually far from the middle 50%.",
+    strength:
+      "It provides a systematic way to flag unusual observations.",
+    limitation:
+      "It is a rule of thumb, not proof that a value is wrong or should be deleted.",
+    bestFor:
+      "Boxplots, outlier screening and descriptive data checks.",
   },
 ];
 
-const centreComparisons = [
+const comparisonRows = [
   {
-    situation: "Symmetric numerical data",
-    mean: "Usually appropriate",
-    median: "Also appropriate",
-    mode: "May be less useful",
-    advice:
-      "When the distribution is balanced, the mean and median are often close. Reporting the mean is usually reasonable.",
+    concept: "Minimum",
+    meaning: "Smallest observed value",
+    robust: "No",
+    use:
+      "Shows the lower extreme, but can be strongly affected by one unusual value.",
   },
   {
-    situation: "Right-skewed data",
-    mean: "Pulled upward",
-    median: "Often better",
-    mode: "May describe peak only",
-    advice:
-      "For waiting times, income or hospital stay length, the median often gives a more typical value.",
+    concept: "Q1",
+    meaning: "About 25% of values are at or below it",
+    robust: "Yes",
+    use:
+      "Describes the lower part of the typical data range.",
   },
   {
-    situation: "Data with a strong outlier",
-    mean: "Highly affected",
-    median: "More resistant",
-    mode: "May be unchanged",
-    advice:
-      "If one extreme value changes the mean a lot, compare the mean and median before deciding what to report.",
+    concept: "Median",
+    meaning: "Middle ordered value",
+    robust: "Yes",
+    use:
+      "Describes the centre of skewed or outlier-affected data.",
   },
   {
-    situation: "Categorical data",
-    mean: "Not meaningful",
-    median: "Usually not meaningful",
-    mode: "Most appropriate",
-    advice:
-      "For categories such as blood group, subject choice or transport method, the mode is the natural summary.",
+    concept: "Q3",
+    meaning: "About 75% of values are at or below it",
+    robust: "Yes",
+    use:
+      "Describes the upper part of the typical data range.",
   },
   {
-    situation: "Ordinal ratings",
-    mean: "Sometimes used carefully",
-    median: "Often sensible",
-    mode: "Also useful",
-    advice:
-      "For ratings such as 1 to 5 satisfaction, the median and mode may be easier to interpret than the mean.",
+    concept: "Maximum",
+    meaning: "Largest observed value",
+    robust: "No",
+    use:
+      "Shows the upper extreme, but can be strongly affected by one unusual value.",
+  },
+  {
+    concept: "IQR",
+    meaning: "Width of the middle 50%",
+    robust: "Yes",
+    use:
+      "Measures robust spread and helps identify possible outliers.",
   },
 ];
 
 const scenarios = [
   {
-    title: "Exam scores",
+    title: "Exam marks",
     question:
-      "A class has scores: 54, 57, 61, 62, 64, 66, 68. Which measure of centre is suitable?",
+      "A class has marks: 42, 48, 51, 55, 57, 61, 66, 70, 75. Give the five-number summary.",
     answer:
-      "The mean and median are both suitable because the values are fairly balanced and there are no extreme outliers.",
+      "The five-number summary is minimum 42, Q1 49.5, median 57, Q3 68, maximum 75.",
     working:
-      "Mean = 432 ÷ 7 = 61.7. Median = 62. These are close, suggesting the centre is stable.",
+      "The median is 57. The lower half is 42, 48, 51, 55, so Q1 = (48 + 51) / 2 = 49.5. The upper half is 61, 66, 70, 75, so Q3 = (66 + 70) / 2 = 68.",
     caution:
-      "A measure of centre does not show spread. Another class could have the same mean but much wider variation.",
+      "The five-number summary describes position and spread, but it does not show the exact shape of the whole distribution.",
+  },
+  {
+    title: "Waiting times",
+    question:
+      "Waiting times are 6, 7, 8, 9, 10, 12, 13, 14, 80. What does the boxplot suggest?",
+    answer:
+      "The boxplot would show a typical middle range from about 7.5 to 13.5, with 80 likely flagged as an unusually high value.",
+    working:
+      "Q1 = 7.5, median = 10, Q3 = 13.5, so IQR = 6. The upper fence is 13.5 + 1.5 × 6 = 22.5. Since 80 is above 22.5, it is flagged.",
+    caution:
+      "Flagged outliers should be investigated, not automatically removed.",
+  },
+  {
+    title: "Percentile rank",
+    question:
+      "A student is at the 85th percentile in a test. What does this mean?",
+    answer:
+      "It means the student scored higher than about 85% of students, or that about 85% scored at or below that student’s score.",
+    working:
+      "Percentiles describe relative position in an ordered distribution.",
+    caution:
+      "The 85th percentile does not mean the student scored 85%. Percentile rank and percentage score are different ideas.",
   },
   {
     title: "House prices",
     question:
-      "A street has house prices: £180k, £190k, £200k, £210k, £950k. What centre should be reported?",
+      "A town reports median house price £240k, Q1 £190k and Q3 £310k. Interpret this.",
     answer:
-      "The median is more suitable because the very expensive house pulls the mean upward.",
+      "The middle house price is £240k, and the middle 50% of house prices are between £190k and £310k.",
     working:
-      "Mean = £346k, while median = £200k. The mean is not typical of most houses on the street.",
+      "IQR = £310k − £190k = £120k, so typical house prices vary across a middle spread of £120k.",
     caution:
-      "For skewed financial data, always check whether the mean is being distorted by extreme values.",
-  },
-  {
-    title: "Hospital waiting times",
-    question:
-      "Waiting times are 8, 9, 10, 11, 12, 15 and 90 minutes. What is the safer centre?",
-    answer:
-      "The median is safer because one unusually long wait strongly affects the mean.",
-    working:
-      "Mean = 155 ÷ 7 = 22.1 minutes. Median = 11 minutes. The median better describes a typical patient experience.",
-    caution:
-      "The outlier may still be important operationally, but it should not be allowed to distort the typical waiting time.",
-  },
-  {
-    title: "Favourite learning format",
-    question:
-      "Students choose one preferred format: in-person, online, hybrid or recorded. Which centre applies?",
-    answer:
-      "The mode applies because the variable is categorical.",
-    working:
-      "If 'hybrid' is chosen most often, then hybrid is the modal category.",
-    caution:
-      "The mean cannot be calculated for unordered categories such as learning format.",
+      "The five-number summary is better than mean and standard deviation when house prices are skewed.",
   },
 ];
 
 const mentorTopics = [
   {
-    id: "mean",
-    label: "Mean",
+    id: "quartiles",
+    label: "Quartiles",
     answer:
-      "The mean is the balancing point of numerical data. It is powerful because it uses every value, but this also makes it sensitive to outliers.",
+      "Quartiles split ordered data into four parts. Q1 is the lower quartile, Q2 is the median, and Q3 is the upper quartile.",
   },
   {
-    id: "median",
-    label: "Median",
+    id: "percentiles",
+    label: "Percentiles",
     answer:
-      "The median is the middle ordered value. It is often the safest description of a typical value when the data are skewed or contain extreme observations.",
+      "Percentiles describe relative position. The 90th percentile means a value is at or above about 90% of the ordered data.",
   },
   {
-    id: "mode",
-    label: "Mode",
+    id: "iqr",
+    label: "IQR",
     answer:
-      "The mode is the most frequent value or category. It is especially useful when the data are categorical and a mean would not make sense.",
+      "The IQR is Q3 minus Q1. It measures the spread of the middle 50% and is resistant to extreme values.",
   },
   {
-    id: "outlier",
-    label: "Outliers",
+    id: "boxplot",
+    label: "Boxplots",
     answer:
-      "Outliers can pull the mean strongly, but they usually have much less effect on the median. This is why comparing the mean and median helps diagnose skewness or unusual values.",
+      "A boxplot visualises the five-number summary. The box shows Q1 to Q3, the line shows the median, and whiskers show the lower and upper spread.",
   },
   {
-    id: "choice",
-    label: "Choosing a centre",
+    id: "outliers",
+    label: "Outlier fences",
     answer:
-      "Choose the centre by asking: is the variable numerical or categorical, is the distribution symmetric or skewed, are there outliers, and what would be meaningful to the audience?",
+      "The 1.5 × IQR rule flags values far below Q1 or far above Q3. These are possible outliers, but they should be investigated before making decisions.",
   },
 ];
 
 const quizQuestions = [
   {
-    question: "Which measure of centre uses every numerical value?",
-    options: ["Mean", "Median", "Mode", "Range"],
+    question: "What is Q2?",
+    options: ["Minimum", "Median", "Maximum", "Range"],
+    answer: 1,
+    feedback:
+      "Q2 is the median, or the 50th percentile of the ordered data.",
+  },
+  {
+    question: "What does the interquartile range measure?",
+    options: [
+      "The spread of the middle 50% of the data",
+      "The distance from the mean to the maximum",
+      "The most common value",
+      "The number of observations",
+    ],
     answer: 0,
     feedback:
-      "The mean uses every value because it adds all observations and divides by the number of observations.",
+      "The IQR is Q3 − Q1 and measures the width of the middle half of the data.",
   },
   {
-    question: "Which measure is usually most resistant to extreme values?",
-    options: ["Mean", "Median", "Weighted mean", "Total"],
-    answer: 1,
-    feedback:
-      "The median is resistant because it depends on ordered position rather than the size of every value.",
-  },
-  {
-    question: "Which measure of centre is suitable for categorical data?",
-    options: ["Mean", "Mode", "Variance", "Standard deviation"],
-    answer: 1,
-    feedback:
-      "The mode is suitable for categorical data because it identifies the most common category.",
-  },
-  {
-    question:
-      "For right-skewed income data, why might the median be preferred to the mean?",
+    question: "Which values form the five-number summary?",
     options: [
-      "The median is always larger than the mean.",
-      "The median is easier to calculate by computer.",
-      "A few very high incomes can pull the mean upward.",
-      "The mean cannot be calculated for numbers.",
-    ],
-    answer: 2,
-    feedback:
-      "Right-skewed data can contain very large values that pull the mean upward, making the median more typical.",
-  },
-  {
-    question: "What is the median of 3, 5, 8, 10, 100?",
-    options: ["5", "8", "10", "25.2"],
-    answer: 1,
-    feedback:
-      "The ordered values are 3, 5, 8, 10, 100. The middle value is 8.",
-  },
-  {
-    question: "What does a weighted mean allow us to do?",
-    options: [
-      "Ignore all large values.",
-      "Give different values different importance.",
-      "Use categories without numbers.",
-      "Find only the most frequent value.",
+      "Mean, median, mode, range, variance",
+      "Minimum, Q1, median, Q3, maximum",
+      "Q1, Q2, Q3, mean, standard deviation",
+      "Minimum, maximum, mean, mode, standard deviation",
     ],
     answer: 1,
     feedback:
-      "A weighted mean gives different observations or components different importance.",
+      "The five-number summary consists of minimum, Q1, median, Q3 and maximum.",
+  },
+  {
+    question: "What does the 90th percentile mean?",
+    options: [
+      "The value must be 90.",
+      "About 90% of values are at or below that point.",
+      "The mean is 90.",
+      "There are exactly 90 observations.",
+    ],
+    answer: 1,
+    feedback:
+      "The 90th percentile is a position. About 90% of values are at or below it.",
+  },
+  {
+    question: "What is the common upper outlier fence?",
+    options: [
+      "Q3 + 1.5 × IQR",
+      "Q1 − 1.5 × IQR",
+      "Median + mean",
+      "Maximum − minimum",
+    ],
+    answer: 0,
+    feedback:
+      "The upper fence is Q3 + 1.5 × IQR.",
+  },
+  {
+    question: "Why is the IQR useful for skewed data?",
+    options: [
+      "It uses only the mean.",
+      "It is less affected by extreme values.",
+      "It always equals the range.",
+      "It removes the need to order data.",
+    ],
+    answer: 1,
+    feedback:
+      "The IQR focuses on the middle 50%, so it is less affected by extreme tails.",
   },
 ];
 
-export default function MeasuresOfCentreLesson() {
-  const lessonCode = "2.1";
+export default function QuartilesPercentilesLesson() {
+  const lessonCode = "2.3";
 
   if (!isStatisticsFoundationLessonOpen(lessonCode)) {
     return (
       <LockedLessonGate
         lessonCode={lessonCode}
-        lessonTitle="Measures of centre"
+        lessonTitle="Quartiles and percentiles"
         moduleTitle="Module 2: Descriptive Statistics"
       />
     );
@@ -352,11 +392,12 @@ export default function MeasuresOfCentreLesson() {
 
   const [activeTab, setActiveTab] = useState("Learning Route");
   const [datasetType, setDatasetType] = useState("balanced");
-  const [outlierSize, setOutlierSize] = useState(80);
-  const [repetition, setRepetition] = useState(3);
-  const [shift, setShift] = useState(0);
+  const [outlierStrength, setOutlierStrength] = useState(92);
+  const [spread, setSpread] = useState(8);
+  const [sampleSize, setSampleSize] = useState(13);
+  const [percentile, setPercentile] = useState(75);
   const [scenarioIndex, setScenarioIndex] = useState(0);
-  const [mentorTopic, setMentorTopic] = useState("mean");
+  const [mentorTopic, setMentorTopic] = useState("quartiles");
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>(
     {},
   );
@@ -365,105 +406,111 @@ export default function MeasuresOfCentreLesson() {
   const activeMentor =
     mentorTopics.find((topic) => topic.id === mentorTopic) ?? mentorTopics[0];
 
-  const labValues = useMemo(() => {
-    let values = [42, 46, 49, 51, 53, 56, 59, 62, 65];
+  const values = useMemo(() => {
+    let data: number[] = [];
+    const centre = 55;
 
     if (datasetType === "balanced") {
-      values = [42, 46, 49, 51, 53, 56, 59, 62, 65];
+      data = Array.from({ length: sampleSize }, (_, index) => {
+        const offset = index - Math.floor(sampleSize / 2);
+        return Math.round(centre + offset * (spread / 5));
+      });
     }
 
     if (datasetType === "right-skewed") {
-      values = [28, 31, 34, 35, 37, 39, 42, 48, outlierSize];
+      data = Array.from({ length: sampleSize - 1 }, (_, index) => {
+        return Math.round(34 + index * (spread / 4));
+      });
+      data.push(outlierStrength);
     }
 
     if (datasetType === "left-skewed") {
-      values = [100 - outlierSize, 52, 58, 61, 63, 66, 69, 72, 75];
+      data = [Math.max(1, 110 - outlierStrength)];
+      data.push(
+        ...Array.from({ length: sampleSize - 1 }, (_, index) =>
+          Math.round(52 + index * (spread / 4)),
+        ),
+      );
     }
 
-    if (datasetType === "repeated") {
-      values = [
-        44,
-        48,
-        50,
-        50,
-        50,
-        52,
-        54,
-        56,
-        58,
-        ...Array.from({ length: repetition }, () => 50),
+    if (datasetType === "two-clusters") {
+      const lower = Math.floor(sampleSize / 2);
+      const upper = sampleSize - lower;
+
+      data = [
+        ...Array.from({ length: lower }, (_, index) =>
+          Math.round(35 + index * 1.8),
+        ),
+        ...Array.from({ length: upper }, (_, index) =>
+          Math.round(70 + index * 1.8),
+        ),
       ];
     }
 
-    return values.map((value) => Math.max(5, Math.round(value + shift)));
-  }, [datasetType, outlierSize, repetition, shift]);
-
-  const sortedValues = useMemo(() => {
-    return [...labValues].sort((a, b) => a - b);
-  }, [labValues]);
-
-  const mean = useMemo(() => {
-    return labValues.reduce((total, value) => total + value, 0) / labValues.length;
-  }, [labValues]);
-
-  const median = useMemo(() => {
-    const middle = Math.floor(sortedValues.length / 2);
-
-    if (sortedValues.length % 2 === 1) {
-      return sortedValues[middle];
+    if (datasetType === "tight-middle") {
+      data = [
+        28,
+        ...Array.from({ length: sampleSize - 2 }, (_, index) =>
+          Math.round(55 + (index - Math.floor((sampleSize - 2) / 2)) * 0.9),
+        ),
+        84,
+      ];
     }
 
-    return (sortedValues[middle - 1] + sortedValues[middle]) / 2;
-  }, [sortedValues]);
+    return data.sort((a, b) => a - b);
+  }, [datasetType, outlierStrength, sampleSize, spread]);
 
-  const mode = useMemo(() => {
-    const frequency = new Map<number, number>();
+  const minimum = values[0];
+  const maximum = values[values.length - 1];
+  const median = medianOf(values);
+  const lowerHalf = values.slice(0, Math.floor(values.length / 2));
+  const upperHalf = values.slice(Math.ceil(values.length / 2));
+  const q1 = medianOf(lowerHalf);
+  const q3 = medianOf(upperHalf);
+  const iqr = q3 - q1;
+  const lowerFence = q1 - 1.5 * iqr;
+  const upperFence = q3 + 1.5 * iqr;
 
-    labValues.forEach((value) => {
-      frequency.set(value, (frequency.get(value) ?? 0) + 1);
-    });
+  const selectedPercentileValue = useMemo(() => {
+    if (values.length === 0) return 0;
 
-    let bestValue = labValues[0];
-    let bestCount = 1;
+    const position = (percentile / 100) * (values.length - 1);
+    const lowerIndex = Math.floor(position);
+    const upperIndex = Math.ceil(position);
 
-    frequency.forEach((count, value) => {
-      if (count > bestCount) {
-        bestValue = value;
-        bestCount = count;
-      }
-    });
+    if (lowerIndex === upperIndex) return values[lowerIndex];
 
-    return bestCount === 1 ? "No clear mode" : `${bestValue}`;
-  }, [labValues]);
+    const weight = position - lowerIndex;
+    return values[lowerIndex] * (1 - weight) + values[upperIndex] * weight;
+  }, [percentile, values]);
 
-  const trimmedMean = useMemo(() => {
-    if (sortedValues.length < 5) return mean;
-
-    const trimmed = sortedValues.slice(1, -1);
-    return trimmed.reduce((total, value) => total + value, 0) / trimmed.length;
-  }, [mean, sortedValues]);
+  const possibleOutliers = values.filter(
+    (value) => value < lowerFence || value > upperFence,
+  );
 
   const labAdvice = useMemo(() => {
-    const gap = Math.abs(mean - median);
+    if (possibleOutliers.length > 0) {
+      return "The 1.5 × IQR rule flags at least one possible outlier. This value should be investigated, not automatically removed.";
+    }
 
-    if (datasetType === "balanced" && gap < 3) {
-      return "The mean and median are close. This suggests the centre is stable and the data are fairly balanced.";
+    if (datasetType === "two-clusters") {
+      return "The five-number summary is useful, but the two-cluster pattern means a graph is especially important.";
+    }
+
+    if (datasetType === "balanced") {
+      return "The quartiles are fairly evenly spaced, suggesting a reasonably balanced distribution.";
     }
 
     if (datasetType === "right-skewed") {
-      return "The mean is being pulled upward by a large value. The median gives a safer description of a typical observation.";
+      return "The upper side stretches farther than the lower side, suggesting right skewness.";
     }
 
     if (datasetType === "left-skewed") {
-      return "The mean is being pulled downward by a small value. The median is more resistant to this extreme observation.";
+      return "The lower side stretches farther than the upper side, suggesting left skewness.";
     }
 
-    if (datasetType === "repeated") {
-      return "Repeated values make the mode meaningful. Here, the most common value may tell us what occurs most often.";
-    }
-
-    return "Compare the mean, median and mode before deciding which measure describes the dataset most honestly.";
-  }, [datasetType, mean, median]);
+    return "The middle values are tightly packed while the extremes are farther away. Compare the IQR with the full range.";
+  }, [datasetType, possibleOutliers.length]);
 
   const score = quizQuestions.reduce((total, question, index) => {
     return selectedAnswers[index] === question.answer ? total + 1 : total;
@@ -482,12 +529,12 @@ export default function MeasuresOfCentreLesson() {
           95% { transform: scaleY(0.12); }
         }
 
-        @keyframes centrePulse {
-          0%, 100% { transform: scale(1); opacity: 0.9; }
-          50% { transform: scale(1.12); opacity: 1; }
+        @keyframes dotPulse {
+          0%, 100% { transform: scale(1); opacity: 0.86; }
+          50% { transform: scale(1.2); opacity: 1; }
         }
 
-        @keyframes scanMove {
+        @keyframes signalMove {
           0% { transform: translateX(-100%); opacity: 0; }
           25% { opacity: 1; }
           100% { transform: translateX(100%); opacity: 0; }
@@ -506,28 +553,27 @@ export default function MeasuresOfCentreLesson() {
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-6 md:p-10">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                Statistics Foundation · Lesson 2.1
+                Statistics Foundation · Lesson 2.3
               </p>
 
               <h1 className="mt-5 max-w-5xl text-4xl font-black leading-[1.02] tracking-[-0.055em] md:text-7xl">
-                Measures of centre.
+                Quartiles, percentiles and five-number summaries.
               </h1>
 
               <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
-                Measures of centre describe where data tend to gather. In this
-                lesson, students learn how the mean, median and mode represent
-                different ideas of a typical value, why the mean is sensitive to
-                outliers, why the median is safer for skewed data, and how to
-                choose a centre that matches the variable and the shape of the
-                distribution.
+                Quartiles and percentiles describe where values sit inside an
+                ordered dataset. This lesson teaches students how to sort data,
+                interpret positional summaries, calculate quartiles, understand
+                percentile rank, build five-number summaries, read boxplots and
+                use IQR fences to flag possible outliers.
               </p>
 
               <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 {[
-                  "90–100 minutes",
+                  "100–105 minutes",
                   "No coding",
-                  "Interactive centre lab",
-                  "Mean vs median reasoning",
+                  "Boxplot lab",
+                  "Percentile reasoning",
                 ].map((item) => (
                   <div
                     key={item}
@@ -545,17 +591,17 @@ export default function MeasuresOfCentreLesson() {
               </p>
 
               <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                From raw values to a meaningful typical value.
+                From ordered values to boxplot thinking.
               </h2>
 
               <div className="mt-8 grid gap-3">
                 {[
-                  "List values",
-                  "Order values",
-                  "Calculate centre",
-                  "Check shape",
-                  "Check outliers",
-                  "Choose summary",
+                  "Sort values",
+                  "Find median",
+                  "Find quartiles",
+                  "Calculate IQR",
+                  "Build summary",
+                  "Flag outliers",
                 ].map((item, index) => (
                   <div
                     key={item}
@@ -595,18 +641,18 @@ export default function MeasuresOfCentreLesson() {
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
             <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                90–100 minute lesson plan
+                100–105 minute lesson plan
               </p>
 
               <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Learn how to describe a typical value carefully.
+                Learn how position summarises a distribution.
               </h2>
 
               <p className="mt-5 text-base leading-8 text-neutral-700">
-                Descriptive statistics begins with summarising data. A measure
-                of centre gives one number or category that represents where the
-                data are located. But the word “typical” has more than one
-                meaning. The mean, median and mode answer different questions.
+                Measures of centre and spread are stronger when we understand
+                position. Quartiles and percentiles let us describe how values
+                are arranged from low to high. They are especially useful for
+                skewed data, ordinal data, boxplots and robust summaries.
               </p>
 
               <div className="mt-6 grid gap-3">
@@ -635,18 +681,19 @@ export default function MeasuresOfCentreLesson() {
               </p>
 
               <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                By the end, centre should feel like interpretation, not just arithmetic.
+                By the end, you should be able to read a boxplot like a statistical story.
               </h2>
 
               <div className="mt-8 grid gap-3">
                 {[
-                  "Explain what a measure of centre is trying to summarise.",
-                  "Calculate and interpret the mean, median and mode.",
-                  "Explain why the mean is sensitive to outliers.",
-                  "Explain why the median is useful for skewed data.",
-                  "Identify when the mode is the correct summary.",
-                  "Choose the most appropriate centre for a real dataset.",
-                  "Write a careful sentence interpreting the chosen centre.",
+                  "Order a dataset from smallest to largest.",
+                  "Explain Q1, Q2 and Q3 in plain language.",
+                  "Calculate and interpret the IQR.",
+                  "Explain percentiles and percentile ranks.",
+                  "Construct a five-number summary.",
+                  "Read a boxplot using quartiles and whiskers.",
+                  "Use 1.5 × IQR fences to flag possible outliers.",
+                  "Interpret quartiles carefully in context.",
                 ].map((item, index) => (
                   <div
                     key={item}
@@ -668,17 +715,18 @@ export default function MeasuresOfCentreLesson() {
             <section className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr]">
               <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                  Centre decision board
+                  Position decision board
                 </p>
 
                 <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                  “Typical” can mean balance, middle or most common.
+                  Quartiles and percentiles describe location inside ordered data.
                 </h2>
 
                 <p className="mt-4 text-base leading-8 text-neutral-700">
-                  A common mistake is to say “average” without explaining which
-                  average is being used. In statistics, the mean, median and
-                  mode all describe centre, but they do it in different ways.
+                  Instead of asking only “what is the average?”, positional
+                  summaries ask “where does this value sit in the ordered
+                  dataset?” This gives a robust way to describe distributions,
+                  especially when data are skewed or contain unusual values.
                 </p>
 
                 <div className="mt-6 grid gap-4">
@@ -714,53 +762,53 @@ export default function MeasuresOfCentreLesson() {
                 </p>
 
                 <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                  Mr. R explains why one centre is not always enough.
+                  Mr. R turns an ordered list into a boxplot.
                 </h2>
 
                 <div className="mt-6 grid gap-4">
                   <Dialogue
                     speaker="Mr. R"
-                    text="Today we are starting descriptive statistics. Our first question is simple but powerful: where is the centre of the data?"
+                    text="Today we are going to think like statisticians who read data from left to right: smallest to largest."
                   />
                   <Dialogue
                     speaker="Amelia"
-                    text="Is that just the average?"
+                    text="So before calculating quartiles, we always sort the data?"
                   />
                   <Dialogue
                     speaker="Mr. R"
-                    text="It depends what you mean by average. Many people use average to mean the mean, but statistics gives us several measures of centre."
+                    text="Exactly. Quartiles and percentiles are positional summaries. They only make sense after the data are ordered."
                   />
                   <Dialogue
                     speaker="Ben"
-                    text="So the mean, median and mode are all averages?"
+                    text="Is the median a percentile?"
                   />
                   <Dialogue
                     speaker="Mr. R"
-                    text="They are all measures of centre, but they answer different questions. The mean asks for a balancing point. The median asks for the middle position. The mode asks what occurs most often."
+                    text="Yes. The median is the 50th percentile. It is also Q2, the second quartile."
                   />
                   <Dialogue
                     speaker="Chloe"
-                    text="Why do we need more than one?"
+                    text="Then Q1 is around the 25th percentile and Q3 is around the 75th percentile?"
                   />
                   <Dialogue
                     speaker="Mr. R"
-                    text="Because data can be messy. If a dataset has an extreme value, the mean may move a lot. The median may stay closer to what most observations look like."
+                    text="Correct. Q1 marks the lower quarter and Q3 marks the upper quarter. The distance between them is the IQR."
                   />
                   <Dialogue
                     speaker="Daniel"
-                    text="So if we summarise salaries, the median might be better?"
+                    text="Why is the IQR important?"
                   />
                   <Dialogue
                     speaker="Mr. R"
-                    text="Exactly. A few very high salaries can pull the mean upward. The median often gives a better idea of the typical person’s salary."
+                    text="Because it describes the middle 50% of the data. It is robust, so it is not easily distorted by extreme values."
                   />
                   <Dialogue
                     speaker="Amelia"
-                    text="And the mode is for categories?"
+                    text="And a boxplot is just a visual version of this?"
                   />
                   <Dialogue
                     speaker="Mr. R"
-                    text="Yes. If we ask students their favourite learning format, the mean is meaningless. The most common category is the useful centre."
+                    text="Yes. A boxplot turns the five-number summary into a picture of centre, spread and possible outliers."
                   />
                 </div>
 
@@ -769,10 +817,9 @@ export default function MeasuresOfCentreLesson() {
                     Lecture takeaway
                   </h3>
                   <p className="mt-3 text-base leading-8 text-neutral-700">
-                    The measure of centre should match the data. The mean is
-                    useful for balanced numerical data, the median is safer for
-                    skewed or outlier-affected data, and the mode is essential
-                    for categorical or repeated-value data.
+                    Quartiles and percentiles are about position. They help us
+                    describe not only the centre, but also how the lower,
+                    middle and upper parts of the data are arranged.
                   </p>
                 </section>
               </section>
@@ -780,62 +827,44 @@ export default function MeasuresOfCentreLesson() {
 
             <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                Choosing the centre
+                Boxplot interpretation pathway
               </p>
 
               <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Ask the right question before calculating.
+                Read a boxplot in six questions.
               </h2>
 
-              <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {[
                   {
-                    question: "Is the variable categorical?",
-                    method: "Use the mode",
+                    question: "Where is the median?",
                     reason:
-                      "The most common category is meaningful. The mean is not meaningful for unordered labels.",
+                      "The median line tells us the middle position of the data.",
                   },
                   {
-                    question: "Is the variable numerical and balanced?",
-                    method: "Use the mean",
+                    question: "How wide is the box?",
                     reason:
-                      "When values are symmetric and there are no major outliers, the mean is usually informative.",
+                      "The box width shows the IQR, or spread of the middle 50%.",
                   },
                   {
-                    question: "Is the distribution skewed?",
-                    method: "Use the median",
+                    question: "Are the whiskers balanced?",
                     reason:
-                      "The median is less affected by a long tail and often describes a typical observation better.",
+                      "Unequal whiskers can suggest skewness or uneven spread.",
                   },
                   {
-                    question: "Are there extreme outliers?",
-                    method: "Compare mean and median",
+                    question: "Are there flagged points?",
                     reason:
-                      "A large gap between mean and median suggests that the mean may be distorted.",
+                      "Values beyond the outlier fences may be unusual.",
                   },
                   {
-                    question: "Do values have different importance?",
-                    method: "Use a weighted mean",
+                    question: "Is the lower half compressed?",
                     reason:
-                      "Weighted means are needed when components, groups or observations count unequally.",
+                      "A short lower section means lower values are tightly grouped.",
                   },
                   {
-                    question: "Are repeated values important?",
-                    method: "Report the mode",
+                    question: "Is the upper half stretched?",
                     reason:
-                      "The mode shows what value occurs most often, which may be useful alongside the mean or median.",
-                  },
-                  {
-                    question: "Do you need a robust average?",
-                    method: "Consider a trimmed mean",
-                    reason:
-                      "A trimmed mean reduces the influence of extreme tails while still acting like an average.",
-                  },
-                  {
-                    question: "Will the audience understand it?",
-                    method: "Interpret in context",
-                    reason:
-                      "A centre is useful only when it is explained clearly using the variable’s real-world meaning.",
+                      "A long upper section may suggest right skewness.",
                   },
                 ].map((item) => (
                   <article
@@ -848,70 +877,12 @@ export default function MeasuresOfCentreLesson() {
                     <h3 className="mt-2 text-lg font-black tracking-[-0.03em]">
                       {item.question}
                     </h3>
-                    <p className="mt-4 text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
-                      Suggested centre
-                    </p>
-                    <p className="mt-2 text-sm font-black leading-7 text-neutral-800">
-                      {item.method}
-                    </p>
                     <p className="mt-3 text-sm leading-7 text-neutral-700">
                       {item.reason}
                     </p>
                   </article>
                 ))}
               </div>
-            </section>
-
-            <section className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-              <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
-                  Mean
-                </p>
-
-                <h2 className="mt-4 text-3xl font-black tracking-[-0.045em]">
-                  The balancing point.
-                </h2>
-
-                <p className="mt-5 text-sm leading-7 text-white/70">
-                  The mean uses every observation. This makes it powerful, but
-                  also vulnerable. If a value changes from 60 to 600, the mean
-                  changes even if every other observation stays the same.
-                </p>
-
-                <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5">
-                  <p className="text-sm font-black text-white">
-                    x̄ = Σxᵢ / n
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-white/70">
-                    Add all values, then divide by the number of values.
-                  </p>
-                </div>
-              </section>
-
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                  Median and mode
-                </p>
-
-                <h2 className="mt-4 text-3xl font-black tracking-[-0.045em]">
-                  The middle and the most common.
-                </h2>
-
-                <p className="mt-5 text-sm leading-7 text-neutral-700">
-                  The median protects against extreme values because it depends
-                  on position. The mode identifies the most common value or
-                  category, making it the natural centre for categorical data.
-                </p>
-
-                <div className="mt-6 grid gap-3">
-                  <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-bold text-neutral-700">
-                    Median: order values and find the middle.
-                  </div>
-                  <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-bold text-neutral-700">
-                    Mode: find the most frequent value or category.
-                  </div>
-                </div>
-              </section>
             </section>
           </section>
         )}
@@ -923,19 +894,19 @@ export default function MeasuresOfCentreLesson() {
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-              Measures of centre in depth.
+              Quartiles, percentiles and five-number summaries in depth.
             </h2>
 
             <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700">
-              A measure of centre summarises the location of a dataset. It
-              tries to answer the question: where do the values tend to sit?
-              This is useful because raw data can be long and difficult to
-              interpret. However, no single summary can describe everything.
-              Centre should always be interpreted alongside spread and shape.
+              Quartiles and percentiles are positional summaries. They do not
+              begin with arithmetic. They begin with order. Once the values are
+              sorted, we can describe the lower quarter, the middle, the upper
+              quarter and the extremes. This is especially useful for skewed
+              data because position is less sensitive to outliers than the mean.
             </p>
 
             <div className="mt-8 grid gap-5 md:grid-cols-2">
-              {detailedNotes.map((item) => (
+              {notes.map((item) => (
                 <article
                   key={item.title}
                   className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
@@ -964,34 +935,37 @@ export default function MeasuresOfCentreLesson() {
 
             <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
-                Interpretation rule
+                Important warning
               </p>
 
               <h3 className="mt-3 text-3xl font-black tracking-[-0.04em]">
-                Do not report a centre without saying what it means.
+                Quartile rules can differ slightly.
               </h3>
 
               <p className="mt-4 text-sm leading-7 text-white/75">
-                A good statistical sentence does three things: it names the
-                measure, gives the value, and interprets it in context.
+                Different textbooks and software packages sometimes calculate
+                quartiles using slightly different position rules. This usually
+                makes little difference for large datasets, but it can affect
+                small examples. The most important skill is not memorising one
+                rule only, but understanding what Q1, Q2 and Q3 mean.
               </p>
 
               <div className="mt-6 grid gap-4 md:grid-cols-3">
                 {[
                   {
-                    title: "Weak",
+                    title: "Q1",
                     body:
-                      "The average is 62.",
+                      "Lower quartile: around one quarter of values are at or below this point.",
                   },
                   {
-                    title: "Better",
+                    title: "Q2",
                     body:
-                      "The mean score is 62 marks.",
+                      "Median: around half of values are at or below this point.",
                   },
                   {
-                    title: "Strong",
+                    title: "Q3",
                     body:
-                      "The mean score is 62 marks, suggesting that the class performance balances around the low sixties.",
+                      "Upper quartile: around three quarters of values are at or below this point.",
                   },
                 ].map((item) => (
                   <article
@@ -1013,37 +987,33 @@ export default function MeasuresOfCentreLesson() {
               </p>
 
               <h3 className="mt-3 text-3xl font-black tracking-[-0.04em]">
-                Which centre should you choose?
+                What each positional summary tells us.
               </h3>
 
               <div className="mt-6 overflow-x-auto">
-                <table className="w-full min-w-[780px] border-separate border-spacing-y-3 text-left">
+                <table className="w-full min-w-[760px] border-separate border-spacing-y-3 text-left">
                   <thead>
                     <tr className="text-xs uppercase tracking-[0.18em] text-neutral-500">
-                      <th className="px-4">Situation</th>
-                      <th className="px-4">Mean</th>
-                      <th className="px-4">Median</th>
-                      <th className="px-4">Mode</th>
-                      <th className="px-4">Advice</th>
+                      <th className="px-4">Concept</th>
+                      <th className="px-4">Meaning</th>
+                      <th className="px-4">Robust?</th>
+                      <th className="px-4">Use</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {centreComparisons.map((row) => (
-                      <tr key={row.situation} className="bg-white">
+                    {comparisonRows.map((row) => (
+                      <tr key={row.concept} className="bg-white">
                         <td className="rounded-l-2xl px-4 py-4 text-sm font-black">
-                          {row.situation}
+                          {row.concept}
                         </td>
                         <td className="px-4 py-4 text-sm text-neutral-700">
-                          {row.mean}
+                          {row.meaning}
                         </td>
                         <td className="px-4 py-4 text-sm text-neutral-700">
-                          {row.median}
-                        </td>
-                        <td className="px-4 py-4 text-sm text-neutral-700">
-                          {row.mode}
+                          {row.robust}
                         </td>
                         <td className="rounded-r-2xl px-4 py-4 text-sm leading-7 text-neutral-700">
-                          {row.advice}
+                          {row.use}
                         </td>
                       </tr>
                     ))}
@@ -1054,24 +1024,24 @@ export default function MeasuresOfCentreLesson() {
           </section>
         )}
 
-        {activeTab === "Centre Lab" && (
+        {activeTab === "Percentile Lab" && (
           <section className="mt-8 grid gap-6">
             <section className="overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
               <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="p-6 md:p-8">
                   <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                    Interactive centre lab
+                    Interactive percentile and boxplot lab
                   </p>
 
                   <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                    Watch how centre changes when data shape changes.
+                    Move through the ordered data.
                   </h2>
 
                   <p className="mt-4 text-base leading-8 text-neutral-700">
-                    Select a dataset shape and adjust the sliders. The lab shows
-                    how the mean, median, mode and trimmed mean respond. The aim
-                    is to see why the choice of centre depends on the data, not
-                    habit.
+                    Adjust the dataset and choose a percentile. Watch how the
+                    five-number summary, IQR, fences and possible outliers
+                    change. This lab connects ordered positions to boxplot
+                    interpretation.
                   </p>
 
                   <div className="mt-6">
@@ -1084,43 +1054,51 @@ export default function MeasuresOfCentreLesson() {
                         onChange={(event) => setDatasetType(event.target.value)}
                         className="mt-3 w-full rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-800"
                       >
-                        <option value="balanced">Balanced numerical data</option>
-                        <option value="right-skewed">Right-skewed data</option>
-                        <option value="left-skewed">Left-skewed data</option>
-                        <option value="repeated">Repeated values</option>
+                        <option value="balanced">Balanced</option>
+                        <option value="right-skewed">Right-skewed</option>
+                        <option value="left-skewed">Left-skewed</option>
+                        <option value="two-clusters">Two clusters</option>
+                        <option value="tight-middle">Tight middle with extremes</option>
                       </select>
                     </label>
                   </div>
 
                   <div className="mt-6 grid gap-5">
                     <Slider
-                      label="Extreme value strength"
-                      value={outlierSize}
-                      min={65}
+                      label="Outlier strength"
+                      value={outlierStrength}
+                      min={70}
                       max={150}
-                      onChange={setOutlierSize}
+                      onChange={setOutlierStrength}
                     />
                     <Slider
-                      label="Repeated value count"
-                      value={repetition}
-                      min={1}
-                      max={10}
-                      onChange={setRepetition}
+                      label="General spread"
+                      value={spread}
+                      min={4}
+                      max={18}
+                      onChange={setSpread}
                     />
                     <Slider
-                      label="Overall shift"
-                      value={shift}
-                      min={-15}
-                      max={15}
-                      onChange={setShift}
+                      label="Sample size"
+                      value={sampleSize}
+                      min={9}
+                      max={23}
+                      onChange={setSampleSize}
+                    />
+                    <Slider
+                      label="Selected percentile"
+                      value={percentile}
+                      min={5}
+                      max={95}
+                      onChange={setPercentile}
                     />
                   </div>
 
                   <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                    <Metric label="Mean" value={mean.toFixed(1)} />
+                    <Metric label="Minimum" value={minimum.toFixed(1)} />
+                    <Metric label="Q1" value={q1.toFixed(1)} />
                     <Metric label="Median" value={median.toFixed(1)} />
-                    <Metric label="Mode" value={mode} />
-                    <Metric label="Trimmed mean" value={trimmedMean.toFixed(1)} />
+                    <Metric label="Q3" value={q3.toFixed(1)} />
                   </div>
                 </div>
 
@@ -1130,32 +1108,29 @@ export default function MeasuresOfCentreLesson() {
                   </p>
 
                   <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                    Which centre tells the fairest story?
+                    What does the ordered summary say?
                   </h2>
 
                   <p className="mt-6 text-lg leading-9 text-white/80">
                     {labAdvice}
                   </p>
 
-                  <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.07] p-5">
-                    <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
-                      Current data
-                    </p>
-                    <p className="mt-3 text-sm leading-7 text-white/75">
-                      {sortedValues.join(", ")}
-                    </p>
+                  <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                    <MetricDark label="Maximum" value={maximum.toFixed(1)} />
+                    <MetricDark label="IQR" value={iqr.toFixed(1)} />
+                    <MetricDark label="Lower fence" value={lowerFence.toFixed(1)} />
+                    <MetricDark label="Upper fence" value={upperFence.toFixed(1)} />
                   </div>
 
                   <div className="mt-6 rounded-[2rem] border border-white/10 bg-white/[0.07] p-5">
                     <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
-                      Mean-median gap
+                      Selected percentile
                     </p>
                     <p className="mt-3 text-4xl font-black tracking-[-0.05em]">
-                      {Math.abs(mean - median).toFixed(1)}
+                      P{percentile} ≈ {selectedPercentileValue.toFixed(1)}
                     </p>
                     <p className="mt-3 text-sm leading-7 text-white/70">
-                      A larger gap often suggests skewness or the influence of
-                      unusual values.
+                      About {percentile}% of values are at or below this point.
                     </p>
                   </div>
                 </div>
@@ -1165,56 +1140,93 @@ export default function MeasuresOfCentreLesson() {
             <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
               <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                  Visual data strip
+                  Boxplot visual
                 </p>
 
                 <h2 className="mt-3 text-3xl font-black tracking-[-0.045em]">
-                  The dots show the data, the lines show the centres.
+                  The box shows the middle 50%.
                 </h2>
 
                 <p className="mt-4 text-sm leading-7 text-neutral-700">
-                  Each dot represents one observation. The vertical markers
-                  show where the mean and median fall on the same scale.
+                  The box stretches from Q1 to Q3. The median line sits inside
+                  the box. Values beyond the fences are flagged as possible
+                  outliers.
                 </p>
 
                 <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-                  <div className="relative h-28 rounded-[1.5rem] bg-white p-4">
+                  <div className="relative h-40 rounded-[1.5rem] bg-white p-4">
                     <div className="absolute left-4 right-4 top-1/2 h-1 rounded-full bg-neutral-200" />
 
-                    {labValues.map((value, index) => {
-                      const left = Math.max(2, Math.min(96, (value / 160) * 100));
+                    <div
+                      className="absolute top-[42%] h-8 rounded-xl border-2 border-[#8b1116] bg-[#8b1116]/10"
+                      style={{
+                        left: `${scaleToPercent(q1)}%`,
+                        width: `${Math.max(
+                          4,
+                          scaleToPercent(q3) - scaleToPercent(q1),
+                        )}%`,
+                      }}
+                    />
+
+                    <div
+                      className="absolute top-[35%] h-16 w-1 rounded-full bg-neutral-950"
+                      style={{ left: `${scaleToPercent(median)}%` }}
+                    />
+
+                    <div
+                      className="absolute top-1/2 h-1 rounded-full bg-neutral-500"
+                      style={{
+                        left: `${scaleToPercent(minimum)}%`,
+                        width: `${Math.max(
+                          3,
+                          scaleToPercent(q1) - scaleToPercent(minimum),
+                        )}%`,
+                      }}
+                    />
+
+                    <div
+                      className="absolute top-1/2 h-1 rounded-full bg-neutral-500"
+                      style={{
+                        left: `${scaleToPercent(q3)}%`,
+                        width: `${Math.max(
+                          3,
+                          scaleToPercent(maximum) - scaleToPercent(q3),
+                        )}%`,
+                      }}
+                    />
+
+                    {values.map((value, index) => {
+                      const flagged = value < lowerFence || value > upperFence;
 
                       return (
                         <div
                           key={`${value}-${index}`}
-                          className="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-neutral-950"
+                          className={`absolute top-[74%] h-3 w-3 -translate-x-1/2 rounded-full ${
+                            flagged ? "bg-[#8b1116]" : "bg-neutral-950"
+                          }`}
                           style={{
-                            left: `${left}%`,
-                            animation:
-                              value === median
-                                ? "centrePulse 2.4s ease-in-out infinite"
-                                : undefined,
+                            left: `${scaleToPercent(value)}%`,
+                            animation: flagged
+                              ? "dotPulse 2.4s ease-in-out infinite"
+                              : undefined,
                           }}
                         />
                       );
                     })}
-
-                    <div
-                      className="absolute top-3 h-[88px] w-1 rounded-full bg-[#8b1116]"
-                      style={{ left: `${Math.max(2, Math.min(96, (mean / 160) * 100))}%` }}
-                    />
-                    <div
-                      className="absolute top-3 h-[88px] w-1 rounded-full bg-neutral-500"
-                      style={{ left: `${Math.max(2, Math.min(96, (median / 160) * 100))}%` }}
-                    />
                   </div>
 
-                  <div className="mt-5 grid gap-3 text-sm leading-7 text-neutral-700 md:grid-cols-2">
+                  <div className="mt-5 grid gap-3 text-sm leading-7 text-neutral-700 md:grid-cols-4">
                     <div className="rounded-2xl bg-white p-4">
-                      <strong>Red marker:</strong> mean.
+                      <strong>Box:</strong> Q1 to Q3.
                     </div>
                     <div className="rounded-2xl bg-white p-4">
-                      <strong>Grey marker:</strong> median.
+                      <strong>Dark line:</strong> median.
+                    </div>
+                    <div className="rounded-2xl bg-white p-4">
+                      <strong>Whiskers:</strong> lower and upper spread.
+                    </div>
+                    <div className="rounded-2xl bg-white p-4">
+                      <strong>Red dots:</strong> possible outliers.
                     </div>
                   </div>
                 </div>
@@ -1222,20 +1234,50 @@ export default function MeasuresOfCentreLesson() {
 
               <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
-                  Bar summary
+                  Ordered data strip
                 </p>
 
                 <h2 className="mt-3 text-3xl font-black tracking-[-0.045em]">
-                  Compare the centre values.
+                  Position becomes visible when values are sorted.
                 </h2>
 
-                <div className="mt-6 grid gap-4">
-                  <Bar label="Mean" value={mean} max={160} />
-                  <Bar label="Median" value={median} max={160} />
-                  <Bar
-                    label="Trimmed mean"
-                    value={trimmedMean}
-                    max={160}
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {values.map((value, index) => {
+                    const isQuartile =
+                      value === minimum ||
+                      value === q1 ||
+                      value === median ||
+                      value === q3 ||
+                      value === maximum;
+
+                    return (
+                      <div
+                        key={`${value}-${index}`}
+                        className={`rounded-full px-3 py-2 text-sm font-black ${
+                          isQuartile
+                            ? "bg-neutral-950 text-white"
+                            : "bg-[#f7f4ee] text-neutral-700"
+                        }`}
+                      >
+                        {value}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-6 grid gap-3">
+                  <SummaryLine label="Minimum" value={minimum.toFixed(1)} />
+                  <SummaryLine label="Q1" value={q1.toFixed(1)} />
+                  <SummaryLine label="Median" value={median.toFixed(1)} />
+                  <SummaryLine label="Q3" value={q3.toFixed(1)} />
+                  <SummaryLine label="Maximum" value={maximum.toFixed(1)} />
+                  <SummaryLine
+                    label="Possible outliers"
+                    value={
+                      possibleOutliers.length > 0
+                        ? possibleOutliers.join(", ")
+                        : "None flagged"
+                    }
                   />
                 </div>
 
@@ -1244,14 +1286,13 @@ export default function MeasuresOfCentreLesson() {
                     Write this conclusion
                   </p>
                   <p className="mt-3 text-sm leading-7 text-neutral-700">
-                    “The mean is <strong>{mean.toFixed(1)}</strong> and the
-                    median is <strong>{median.toFixed(1)}</strong>. Because
-                    these values are {Math.abs(mean - median) > 8 ? "quite different" : "fairly close"},
-                    the dataset appears{" "}
-                    {Math.abs(mean - median) > 8
-                      ? "affected by skewness or unusual values."
-                      : "reasonably balanced around its centre."}
-                    ”
+                    “The median is <strong>{median.toFixed(1)}</strong>, and
+                    the middle 50% of values lie between{" "}
+                    <strong>{q1.toFixed(1)}</strong> and{" "}
+                    <strong>{q3.toFixed(1)}</strong>. The IQR is{" "}
+                    <strong>{iqr.toFixed(1)}</strong>, suggesting the typical
+                    spread around the middle is{" "}
+                    {iqr > 25 ? "wide" : iqr < 8 ? "narrow" : "moderate"}.”
                   </p>
                 </section>
               </section>
@@ -1267,7 +1308,7 @@ export default function MeasuresOfCentreLesson() {
               </p>
 
               <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Ask Mr. R about centre.
+                Ask Mr. R about quartiles.
               </h2>
 
               <div className="mt-8 flex justify-center">
@@ -1315,7 +1356,7 @@ export default function MeasuresOfCentreLesson() {
               <div className="absolute left-0 top-0 h-1 w-full overflow-hidden bg-white/10">
                 <div
                   className="h-full w-1/2 bg-white/40"
-                  style={{ animation: "scanMove 2.8s linear infinite" }}
+                  style={{ animation: "signalMove 2.8s linear infinite" }}
                 />
               </div>
 
@@ -1336,9 +1377,8 @@ export default function MeasuresOfCentreLesson() {
                   Mentor challenge
                 </p>
                 <p className="mt-3 text-sm leading-7 text-white/75">
-                  Take a small dataset from your own life, such as study hours,
-                  sleep time or weekly spending. Calculate the mean and median.
-                  Then explain which one gives the more honest typical value.
+                  Choose a small dataset, order it, find the five-number summary
+                  and write two sentences describing the centre and middle 50%.
                 </p>
               </div>
             </section>
@@ -1352,7 +1392,7 @@ export default function MeasuresOfCentreLesson() {
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-              Choose and justify a measure of centre.
+              Calculate, interpret and critique positional summaries.
             </h2>
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -1397,40 +1437,40 @@ export default function MeasuresOfCentreLesson() {
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-              Practise choosing the correct centre.
+              Practise ordered-data reasoning.
             </h2>
 
             <div className="mt-8 grid gap-5">
               {[
                 {
                   task:
-                    "A company reports the mean salary, but most employees earn far below it because a few executives earn very high salaries. Explain why the median may be better.",
+                    "Order the values 18, 12, 25, 20, 14, 30, 22 and identify the median.",
                   hint:
-                    "Think about right skewness and the effect of extreme high values.",
+                    "Sort first. For an even number of values, average the two middle values.",
                 },
                 {
                   task:
-                    "A teacher records scores: 48, 51, 52, 53, 55, 56, 58. Calculate the mean and median. Are they close?",
+                    "Explain in plain language what Q1 = 40 means for exam scores.",
                   hint:
-                    "Balanced data usually give similar mean and median values.",
+                    "Think about the lower quarter of the ordered data.",
                 },
                 {
                   task:
-                    "A survey asks students to choose their favourite study method: flashcards, videos, notes or past papers. Which measure of centre should be used?",
+                    "A student is at the 92nd percentile. Explain why this does not mean they scored 92%.",
                   hint:
-                    "The data are categorical, so think about the most common category.",
+                    "Percentile rank is about position, not percentage score.",
                 },
                 {
                   task:
-                    "A clinic reports mean waiting time, but one patient waited unusually long because of an emergency. What extra summary should be reported?",
+                    "A boxplot has a very long upper whisker. What might this suggest?",
                   hint:
-                    "Compare the mean with the median to show whether the typical wait is distorted.",
+                    "Think about right skewness or unusually large values.",
                 },
                 {
                   task:
-                    "A final grade is based on coursework worth 40% and an exam worth 60%. Explain why a weighted mean is needed.",
+                    "Use the rule Q3 + 1.5 × IQR to explain how a high outlier can be flagged.",
                   hint:
-                    "The two components do not contribute equally.",
+                    "Calculate the upper fence and compare high values with it.",
                 },
               ].map((item, index) => (
                 <article
@@ -1459,16 +1499,16 @@ export default function MeasuresOfCentreLesson() {
             </p>
 
             <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-              Write a careful centre interpretation.
+              Write a careful positional interpretation.
             </h2>
 
             <div className="mt-8 grid gap-5">
               {[
-                "Explain why the word average can be unclear unless the measure is named.",
-                "Describe a dataset where the mean would be a good summary of centre.",
-                "Describe a dataset where the median would be better than the mean.",
-                "Explain why the mode is the correct centre for categorical data.",
-                "Write one sentence interpreting the median house price in a skewed housing market.",
+                "Explain why quartiles require ordered data.",
+                "Describe the difference between Q1, median and Q3.",
+                "Explain why the IQR is more robust than the range.",
+                "Write a sentence interpreting a 90th percentile value.",
+                "Describe what a boxplot can show that a mean cannot.",
               ].map((item, index) => (
                 <article
                   key={item}
@@ -1489,9 +1529,9 @@ export default function MeasuresOfCentreLesson() {
                 Model answer structure
               </p>
               <p className="mt-4 text-base leading-8 text-white/75">
-                “The most appropriate measure of centre is _____ because the
-                variable is _____ and the distribution is _____. The value means
-                that a typical _____ is approximately _____.”
+                “The median is _____. The middle 50% of values lie between
+                _____ and _____. The IQR is _____, which suggests _____. Any
+                values beyond the fences should be investigated because _____.”
               </p>
             </section>
           </section>
@@ -1631,6 +1671,19 @@ function Metric({ label, value }: { label: string; value: string }) {
   );
 }
 
+function MetricDark({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4">
+      <p className="text-xs font-black uppercase tracking-[0.16em] text-white/45">
+        {label}
+      </p>
+      <p className="mt-2 text-2xl font-black tracking-[-0.04em] text-white">
+        {value}
+      </p>
+    </div>
+  );
+}
+
 function AnswerCard({ title, body }: { title: string; body: string }) {
   return (
     <div className="rounded-[1.25rem] border border-neutral-200 bg-white p-5">
@@ -1642,31 +1695,28 @@ function AnswerCard({ title, body }: { title: string; body: string }) {
   );
 }
 
-function Bar({
-  label,
-  value,
-  max,
-}: {
-  label: string;
-  value: number;
-  max: number;
-}) {
-  const width = Math.max(5, Math.min(100, (value / max) * 100));
-
+function SummaryLine({ label, value }: { label: string; value: string }) {
   return (
-    <div>
-      <div className="flex items-center justify-between gap-4">
-        <p className="text-sm font-black text-neutral-700">{label}</p>
-        <p className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
-          {value.toFixed(1)}
-        </p>
-      </div>
-      <div className="mt-2 h-4 overflow-hidden rounded-full bg-[#f7f4ee]">
-        <div
-          className="h-full rounded-full bg-[#8b1116]"
-          style={{ width: `${width}%` }}
-        />
-      </div>
+    <div className="flex items-center justify-between gap-4 rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3">
+      <span className="text-sm font-black text-neutral-700">{label}</span>
+      <span className="text-sm font-bold text-neutral-700">{value}</span>
     </div>
   );
+}
+
+function medianOf(values: number[]) {
+  if (values.length === 0) return 0;
+
+  const sorted = [...values].sort((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+
+  if (sorted.length % 2 === 1) {
+    return sorted[middle];
+  }
+
+  return (sorted[middle - 1] + sorted[middle]) / 2;
+}
+
+function scaleToPercent(value: number) {
+  return Math.max(3, Math.min(97, (value / 160) * 100));
 }

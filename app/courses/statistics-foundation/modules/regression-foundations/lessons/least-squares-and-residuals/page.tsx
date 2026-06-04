@@ -4,14 +4,14 @@ import { isStatisticsFoundationLessonOpen } from "@/lib/statisticsFoundationAcce
 import UnlockedLessonShell from "@/components/course/UnlockedLessonShell";
 
 export default function LessonPreviewPage() {
-  const lessonCode = "4.6";
+  const lessonCode = "5.3";
 
   if (!isStatisticsFoundationLessonOpen(lessonCode)) {
     return (
       <LockedLessonGate
         lessonCode={lessonCode}
-        lessonTitle="Choosing the right inference method"
-        moduleTitle="Module 4: Statistical Inference Foundations"
+        lessonTitle="Least squares and residuals"
+        moduleTitle="Module 5: Regression Foundations"
       />
     );
   }
@@ -19,9 +19,9 @@ export default function LessonPreviewPage() {
   return (
     <UnlockedLessonShell
       courseTitle="Statistics Foundation"
-      moduleTitle="Statistical Inference Foundations"
-      lessonTitle="Choosing the Right Inference Method"
-      backHref="/courses/statistics-foundation/modules/statistical-inference-foundations/lessons/"
+      moduleTitle="Regression Foundations"
+      lessonTitle="Multiple Regression Confounding"
+      backHref="/courses/statistics-foundation/modules/regression-foundations/lessons/"
     />
   );
 }

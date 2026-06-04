@@ -4,9 +4,9 @@ export default function LessonPreviewPage() {
   return (
     <LockedLessonPreview
       courseTitle="Statistics Foundation"
-      moduleTitle="Probability Foundations"
-      lessonTitle="Probability Basics and Axioms"
-      backHref="/app/courses/statistics-foundation/modules/probability-foundations/lessons/"
+      moduleTitle="Statistical Inference Foundations"
+      lessonTitle="Choosing the Right Inference Method"
+      backHref="/app/courses/statistics-foundation/modules/statistical-inference-foundations/lessons/"
     />
   );
 }
