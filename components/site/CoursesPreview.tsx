@@ -38,32 +38,38 @@ const upcomingCourses = [
   {
     title: "Statistics Foundation",
     area: "Statistics",
-    body: "A zero-coding course for statistical thinking, probability, inference, regression, uncertainty and worked examples.",
+    status: "Opens July 2026",
+    body: "5 modules and 26 theoretical lessons covering statistical thinking, probability, inference and regression. Lesson 1.1 is open now; the full course opens July 2026.",
   },
   {
     title: "Biostatistics Foundation",
     area: "Biostatistics",
-    body: "Learn the core ideas behind health data, study design, clinical interpretation and biomedical evidence.",
+    status: "From September 2026",
+    body: "A guided route through health data, study design, clinical interpretation and biomedical evidence. Releases from September 2026.",
   },
   {
     title: "Epidemiology and Study Designs",
     area: "Epidemiology",
-    body: "Understand cohort studies, case-control studies, bias, confounding and how evidence is built from populations.",
+    status: "From September 2026",
+    body: "A structured pathway on cohort studies, case-control studies, bias, confounding and population evidence. Releases from September 2026.",
   },
   {
     title: "Regression Analysis",
     area: "Regression",
-    body: "Learn linear regression, logistic regression, interpretation, assumptions, model checking and applied examples.",
+    status: "From September 2026",
+    body: "A focused route through linear regression, logistic regression, assumptions, model checking and applied interpretation. Releases from September 2026.",
   },
   {
     title: "Survival Analysis",
     area: "Survival analysis",
-    body: "Explore time-to-event data, Kaplan-Meier curves, Cox models, hazards, censoring and clinical interpretation.",
+    status: "From September 2026",
+    body: "A clinical statistics route through time-to-event data, Kaplan-Meier curves, Cox models, hazards and censoring. Releases from September 2026.",
   },
   {
     title: "Machine Learning in Biostatistics",
     area: "Machine learning",
-    body: "Explore prediction modelling, validation, model performance, calibration and responsible clinical machine learning.",
+    status: "Opens July 2026",
+    body: "A medical machine-learning pathway for prediction modelling, validation, calibration, interpretation and responsible clinical use. Lesson 1.1 is open now; the full course opens July 2026.",
   },
 ];
 
@@ -168,7 +174,7 @@ export default function CoursesPreview() {
                   </p>
 
                   <span className="rounded-full border border-[#741018]/20 bg-[#FFFCF6] px-3 py-1 text-[0.7rem] font-black uppercase tracking-[0.14em] text-[#741018]">
-                    Coming soon
+                    {course.status}
                   </span>
                 </div>
 

@@ -152,6 +152,10 @@ export default function ResourcesPage() {
                     {guide.title}
                   </h3>
 
+                  <p className="mt-3 text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
+                    {guide.readingTime} · Updated {guide.updated}
+                  </p>
+
                   <p className="mt-4 text-sm leading-7 text-[#525252]">
                     {guide.summary}
                   </p>
@@ -184,6 +188,10 @@ export default function ResourcesPage() {
                 <h2 className="mt-3 text-xl font-semibold tracking-[-0.04em]">
                   {guide.title}
                 </h2>
+
+                <p className="mt-3 text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
+                  {guide.readingTime} · Updated {guide.updated}
+                </p>
 
                 <p className="mt-3 line-clamp-3 text-sm leading-7 text-[#525252]">
                   {guide.summary}

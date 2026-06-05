@@ -25,6 +25,8 @@ const navItems = [
   { label: "Learning Hub", href: "/learning-hub" },
   { label: "Courses", href: "/courses" },
   { label: "Resources", href: "/resources" },
+  { label: "About", href: "/about" },
+  { label: "FAQ", href: "/faq" },
   { label: "Interactive Demos", href: "/interactive-demos" },
   { label: "Contact", href: "/contact" },
 ];
@@ -55,7 +57,7 @@ export default function Header() {
             className="inline-flex items-center justify-center rounded-full bg-[#741018] px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-[#11100E] sm:px-5 sm:text-sm"
           >
             <span className="md:hidden">Book</span>
-            <span className="hidden md:inline">Book Customised Tutoring</span>
+            <span className="hidden md:inline">Request support</span>
           </a>
 
           <button
@@ -89,7 +91,7 @@ export default function Header() {
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-[#741018] px-4 py-3 text-center text-sm font-black text-white transition hover:bg-[#11100E]"
             >
-              Book Customised Tutoring →
+              Request support →
             </a>
           </nav>
         </div>

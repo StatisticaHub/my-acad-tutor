@@ -1,0 +1,424 @@
+import type { Metadata } from "next";
+import CourseWaitlist from "@/components/site/CourseWaitlist";
+
+export const metadata: Metadata = {
+  title: "Courses",
+  description:
+    "Structured courses in Statistics Foundation, Machine Learning in Biostatistics, biostatistics, epidemiology, regression analysis, survival analysis and bioinformatics.",
+  alternates: {
+    canonical: "https://www.myacademictutor.com/courses/",
+  },
+};
+
+const basePath = "";
+
+function withBasePath(href: string) {
+  if (href === "/") return "/";
+  if (
+    href.startsWith("#") ||
+    href.startsWith("http") ||
+    href.startsWith("mailto:")
+  ) {
+    return href;
+  }
+
+  const cleanHref = href.endsWith("/") ? href.slice(0, -1) : href;
+  const hasFileExtension = /\/[^/]+\.[^/]+$/.test(cleanHref);
+
+  return `${basePath}${cleanHref}${hasFileExtension ? "" : "/"}`;
+}
+
+const featuredCourses = [
+  {
+    number: "01",
+    title: "Statistics Foundation",
+    area: "Statistics",
+    status: "Opens July 2026",
+    level: "Beginner to intermediate",
+    format: "5 modules / 26 lessons / Zero-coding",
+    summary:
+      "A zero-coding foundation pathway with 5 modules and 26 theoretical lessons. Lesson 1.1 is open now; the full course opens in July 2026.",
+    points: [
+      "Theory first",
+      "No coding",
+      "Interactive visuals",
+      "Worked examples",
+    ],
+  },
+  {
+    number: "02",
+    title: "Machine Learning in Biostatistics",
+    area: "Medical machine learning",
+    status: "Opens July 2026",
+    level: "Intermediate",
+    format: "Lesson 1.1 open / Validation / Calibration",
+    summary:
+      "A clinical machine-learning pathway for prediction modelling, validation, calibration, interpretation and responsible use in medical data contexts. Lesson 1.1 is open now; the full course opens July 2026.",
+    points: [
+      "Clinical prediction",
+      "Validation",
+      "Calibration",
+      "Case studies",
+    ],
+  },
+];
+
+const upcomingCourses = [
+  {
+    number: "03",
+    title: "Biostatistics Foundation",
+    area: "Biostatistics",
+    level: "Beginner",
+    summary:
+      "Learn the core ideas behind health data, study design, clinical interpretation, biomedical evidence and uncertainty.",
+    points: ["Health data", "Study design", "Evidence", "Interpretation"],
+  },
+  {
+    number: "04",
+    title: "Epidemiology and Study Designs",
+    area: "Epidemiology",
+    level: "Beginner to intermediate",
+    summary:
+      "Understand cohort studies, case-control studies, cross-sectional studies, bias, confounding and population evidence.",
+    points: ["Cohort studies", "Case-control", "Bias", "Confounding"],
+  },
+  {
+    number: "05",
+    title: "Regression Analysis",
+    area: "Regression",
+    level: "Beginner to intermediate",
+    summary:
+      "Learn linear regression, logistic regression, interpretation, assumptions, model checking and applied examples.",
+    points: [
+      "Linear regression",
+      "Logistic regression",
+      "Assumptions",
+      "Interpretation",
+    ],
+  },
+  {
+    number: "06",
+    title: "Survival Analysis",
+    area: "Survival analysis",
+    level: "Intermediate",
+    summary:
+      "Explore time-to-event data, Kaplan-Meier curves, Cox models, hazards, censoring and clinical interpretation.",
+    points: ["Kaplan-Meier", "Cox models", "Censoring", "Hazards"],
+  },
+  {
+    number: "07",
+    title: "Bioinformatics for Beginners",
+    area: "Bioinformatics",
+    level: "Beginner",
+    summary:
+      "A gentle introduction to biological data, omics thinking, workflows and interpretation for new learners.",
+    points: ["Omics basics", "Workflows", "Data interpretation", "Biology"],
+  },
+];
+
+const principles = [
+  "Clear explanations",
+  "Structured progression",
+  "Interactive learning",
+  "Responsible interpretation",
+];
+
+const featuredTopics = [
+  "Probability and uncertainty",
+  "Distributions and inference",
+  "Regression foundations",
+  "Clinical prediction",
+  "Validation and calibration",
+  "Responsible interpretation",
+];
+
+export default function CoursesPage() {
+  return (
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-10 text-[#141210] md:px-8 md:py-16">
+      <section className="mx-auto max-w-7xl">
+        <a
+          href={withBasePath("/")}
+          className="text-sm font-black text-[#741018] hover:text-[#4d080e]"
+        >
+          ← Back to homepage
+        </a>
+
+        <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] px-6 py-5 shadow-sm md:px-8">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#741018]">
+                Courses
+              </p>
+
+              <h1 className="mt-3 max-w-4xl text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                Structured courses for statistics and health data learning.
+              </h1>
+
+              <p className="mt-4 max-w-4xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
+                Start with Statistics Foundation or Machine Learning in
+                Biostatistics. Both courses connect to the Learning Hub and
+                waitlist access.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
+              <a
+                href="#featured-courses"
+                className="inline-flex items-center justify-center rounded-full bg-[#11100E] px-5 py-3 text-sm font-black text-white transition hover:bg-[#741018]"
+              >
+                Featured courses →
+              </a>
+
+              <a
+                href={withBasePath("/learning-hub")}
+                className="inline-flex items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-5 py-3 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA]"
+              >
+                Learning Hub →
+              </a>
+
+              <a
+                href="#course-waitlist"
+                className="inline-flex items-center justify-center rounded-full border border-[#741018]/20 bg-[#fff4ef] px-5 py-3 text-sm font-black text-[#741018] transition hover:bg-[#741018] hover:text-white"
+              >
+                Join waitlist →
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="featured-courses"
+          className="mt-8 scroll-mt-28 rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8"
+        >
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018]">
+                Featured courses
+              </p>
+
+              <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                Two main learning routes are now featured.
+              </h2>
+
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
+                Statistics Foundation builds the core ideas. Machine Learning in
+                Biostatistics extends those ideas into prediction, validation and
+                clinical interpretation.
+              </p>
+            </div>
+
+            <a
+              href="#course-waitlist"
+              className="inline-flex w-fit rounded-full bg-[#11100E] px-5 py-3 text-sm font-black text-white transition hover:bg-[#741018]"
+            >
+              Join waitlist →
+            </a>
+          </div>
+
+          <div className="mt-6 grid gap-6 lg:grid-cols-2">
+            {featuredCourses.map((course) => (
+              <article
+                key={course.title}
+                className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6 transition hover:-translate-y-1 hover:bg-[#FFFCF6] hover:shadow-md md:p-8"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <span className="rounded-full bg-[#11100E] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-white">
+                    {course.number}
+                  </span>
+
+                  <span className="rounded-full border border-[#741018]/20 bg-[#FFFCF6] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#741018]">
+                    {course.status}
+                  </span>
+                </div>
+
+                <p className="mt-5 text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
+                  {course.area}
+                </p>
+
+                <h3 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-4xl">
+                  {course.title}
+                </h3>
+
+                <p className="mt-2 text-sm font-black text-[#7a7063]">
+                  {course.level}
+                </p>
+
+                <p className="mt-2 text-sm font-black text-[#741018]">
+                  {course.format}
+                </p>
+
+                <p className="mt-5 text-base leading-8 text-[#525252]">
+                  {course.summary}
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {course.points.map((point) => (
+                    <span
+                      key={point}
+                      className="rounded-full border border-[#E4DED2] bg-[#FFFCF6] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#5F5F5F]"
+                    >
+                      {point}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <a
+                    href="#course-waitlist"
+                    className="inline-flex items-center justify-center rounded-full bg-[#11100E] px-5 py-3 text-sm font-black text-white transition hover:bg-[#741018]"
+                  >
+                    Join waitlist →
+                  </a>
+
+                  <a
+                    href={withBasePath("/learning-hub")}
+                    className="inline-flex items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-5 py-3 text-sm font-black text-[#141210] transition hover:bg-[#11100E] hover:text-white"
+                  >
+                    Open Learning Hub →
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-8 rounded-[2.5rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
+          <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
+                Learning experience
+              </p>
+
+              <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                Learn foundations first, then apply them to real health data
+                problems.
+              </h2>
+
+              <p className="mt-5 text-sm leading-7 text-white/70 md:text-base md:leading-8">
+                The courses are designed to move from intuition to equations,
+                from examples to interpretation, and from statistical thinking
+                to applied biostatistical decision-making.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {featuredTopics.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4 text-sm font-bold text-white/80"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="upcoming-courses"
+          className="mt-8 scroll-mt-28 rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8"
+        >
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018]">
+                Upcoming courses
+              </p>
+
+              <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                More courses will be added after the main releases.
+              </h2>
+            </div>
+
+            <a
+              href="#course-waitlist"
+              className="inline-flex w-fit rounded-full bg-[#11100E] px-5 py-3 text-sm font-black text-white transition hover:bg-[#741018]"
+            >
+              Join waitlist →
+            </a>
+          </div>
+
+          <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {upcomingCourses.map((course) => (
+              <article
+                key={course.title}
+                className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5 transition hover:-translate-y-1 hover:bg-[#FFFCF6] hover:shadow-sm"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <span className="rounded-full bg-[#11100E] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-white">
+                    {course.number}
+                  </span>
+
+                  <span className="rounded-full border border-[#741018]/20 bg-[#FFFCF6] px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#741018]">
+                    Opens July 2026
+                  </span>
+                </div>
+
+                <p className="mt-5 text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
+                  {course.area}
+                </p>
+
+                <h3 className="mt-3 text-2xl font-black tracking-[-0.04em]">
+                  {course.title}
+                </h3>
+
+                <p className="mt-2 text-sm font-black text-[#7a7063]">
+                  {course.level}
+                </p>
+
+                <p className="mt-4 text-sm leading-7 text-[#525252]">
+                  {course.summary}
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {course.points.map((point) => (
+                    <span
+                      key={point}
+                      className="rounded-full border border-[#E4DED2] bg-[#FFFCF6] px-3 py-1.5 text-[0.7rem] font-black uppercase tracking-[0.12em] text-[#5F5F5F]"
+                    >
+                      {point}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href="#course-waitlist"
+                  className="mt-6 inline-flex items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-5 py-3 text-sm font-black text-[#141210] transition hover:bg-[#11100E] hover:text-white"
+                >
+                  Join waitlist →
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-8 rounded-[2.5rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-10">
+          <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-white/55">
+                Need guidance?
+              </p>
+
+              <h2 className="mt-4 max-w-3xl text-3xl font-black tracking-[-0.045em] md:text-5xl">
+                Request academic support through the enquiry form.
+              </h2>
+
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
+                Request help with concepts, methods, software, interpretation,
+                course planning or research project support.
+              </p>
+            </div>
+
+            <a
+              href={`${withBasePath("/contact")}#support-form`}
+              className="inline-flex rounded-full bg-[#FFFCF6] px-6 py-4 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA]"
+            >
+              Request academic support →
+            </a>
+          </div>
+        </section>
+      </section>
+
+      <CourseWaitlist />
+    </main>
+  );
+}

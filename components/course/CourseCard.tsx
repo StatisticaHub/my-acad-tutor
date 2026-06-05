@@ -8,7 +8,7 @@ type CourseCardProps = {
   subject: string;
   level: string;
   duration: string;
-  status?: "Free" | "Premium" | "Coming Soon";
+  status?: "Free" | "Customised" | "Opens July 2026" | "From September 2026";
 };
 
 export default function CourseCard({
@@ -18,10 +18,10 @@ export default function CourseCard({
   subject,
   level,
   duration,
-  status = "Coming Soon",
+  status = "Opens July 2026",
 }: CourseCardProps) {
   const statusVariant =
-    status === "Free" ? "green" : status === "Premium" ? "violet" : "light";
+    status === "Free" ? "green" : status === "Customised" ? "violet" : "light";
 
   return (
     <Link

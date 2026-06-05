@@ -25,7 +25,7 @@ export default function LockedLessonGate({
     <main className="min-h-screen bg-[#F7F3EA] px-5 py-10 text-[#141210] md:px-8 md:py-16">
       <section className="mx-auto max-w-5xl rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
         <p className="text-sm font-black uppercase tracking-[0.22em] text-[#7A0710]">
-          Lesson coming soon
+          Full lesson opens July 2026
         </p>
 
         <div className="mt-5 flex flex-wrap items-center gap-3">

@@ -23,17 +23,20 @@ const learningLinks = [
   { label: "Courses", href: "/courses" },
   { label: "Resources", href: "/resources" },
   { label: "Interactive Demos", href: "/interactive-demos" },
+  { label: "About", href: "/about" },
+  { label: "FAQ", href: "/faq" },
 ];
 
 const supportLinks = [
   { label: "Contact", href: "/contact" },
-  { label: "Book Customised Tutoring", href: "/contact#support-form" },
+  { label: "Request support", href: "/contact#support-form" },
   { label: "Academic Integrity", href: "/academic-integrity" },
   { label: "Certificate Policy", href: "/certificate-policy" },
 ];
 
 const policyLinks = [
-  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Cookie Notice", href: "/cookies" },
   { label: "Terms & Conditions", href: "/terms-and-conditions" },
 ];
 
@@ -87,7 +90,7 @@ export default function Footer() {
                 href={`${withBasePath("/contact")}#support-form`}
                 className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-semibold text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto"
               >
-                Book Customised Tutoring →
+                Request support →
               </a>
             </div>
           </div>
@@ -130,14 +133,14 @@ export default function Footer() {
               </a>
 
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/company/myacademictutor/"
                 className="transition hover:text-[#741018]"
               >
                 LinkedIn
               </a>
 
               <a
-                href="https://www.youtube.com"
+                href="https://www.youtube.com/@StatisticaHub"
                 className="transition hover:text-[#741018]"
               >
                 YouTube

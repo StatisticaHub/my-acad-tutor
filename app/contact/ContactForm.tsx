@@ -55,7 +55,7 @@ export default function ContactForm() {
       }
 
       setStatus("success");
-      setFeedback("Your message has been sent. We will reply as soon as possible.");
+      setFeedback("Your enquiry has been received. We usually reply within 24–48 hours after reviewing the support request.");
       setForm(initialForm);
     } catch {
       setStatus("error");
@@ -73,12 +73,21 @@ export default function ContactForm() {
       </p>
 
       <h2 className="mt-4 text-3xl font-semibold tracking-[-0.045em]">
-        Tell us what you need help understanding.
+        Tell us what support you are looking for.
       </h2>
 
       <p className="mt-4 text-sm leading-7 text-[#525252]">
-        Share your subject, level, topic and the kind of guidance you need. Keep the request focused and do not send passwords, exam material or confidential data.
+        Share your subject, level, topic and the kind of guidance you need. Your enquiry will be reviewed and directed to a suitable tutor, resource or learning pathway. Do not send passwords, exam material or confidential data.
       </p>
+
+      <div className="mt-5 rounded-[1.35rem] border border-[#E4DED2] bg-[#F7F3EA] p-4">
+        <p className="text-sm font-black text-[#141210]">
+          Response time
+        </p>
+        <p className="mt-1 text-sm leading-6 text-[#525252]">
+          Most enquiries receive a reply within 24–48 hours. Please include your subject, academic level and the type of support you need.
+        </p>
+      </div>
 
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         <label className="grid gap-2 text-sm font-semibold text-neutral-800">
@@ -127,7 +136,7 @@ export default function ContactForm() {
         disabled={status === "sending"}
         className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#11100E] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[#741018] disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "sending" ? "Sending..." : "Send request →"}
+        {status === "sending" ? "Sending..." : "Submit enquiry →"}
       </button>
 
       {feedback ? (
@@ -138,6 +147,8 @@ export default function ContactForm() {
 
       <p className="mt-5 text-xs leading-6 text-[#5F5F5F]">
         Academic integrity reminder: support is for explanation, planning and learning guidance only.
+        Please do not send passwords, confidential datasets, exam material or unnecessary sensitive information.
+        See our <a href="/privacy/" className="font-bold text-[#741018] underline">Privacy Policy</a>.
       </p>
     </form>
   );

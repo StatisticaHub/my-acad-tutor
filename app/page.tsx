@@ -2,8 +2,14 @@ import type { Metadata } from "next";
 import TopFeatureMarquee from "@/components/site/TopFeatureMarquee";
 import Hero from "@/components/site/Hero";
 import CoursesPreview from "@/components/site/CoursesPreview";
+import CourseAccessTimeline from "@/components/site/CourseAccessTimeline";
+import AcademicNetwork from "@/components/site/AcademicNetwork";
+import TrustProof from "@/components/site/TrustProof";
+import SupportMatching from "@/components/site/SupportMatching";
+import SupportOptions from "@/components/site/SupportOptions";
 import InteractiveDemosPreview from "@/components/site/InteractiveDemosPreview";
 import ContactCTA from "@/components/site/ContactCTA";
+import QuickFAQ from "@/components/site/QuickFAQ";
 import CourseWaitlist from "@/components/site/CourseWaitlist";
 export const metadata: Metadata = {
   title: "Online Statistics, Biostatistics and Health Data Science Tutoring",
@@ -66,6 +72,11 @@ export default function HomePage() {
       <TopFeatureMarquee />
       <Hero />
       <CoursesPreview />
+      <CourseAccessTimeline />
+      <AcademicNetwork />
+      <TrustProof />
+      <SupportMatching />
+      <SupportOptions />
       <CourseWaitlist />
       <InteractiveDemosPreview />
 
@@ -83,6 +94,7 @@ export default function HomePage() {
           <a href="/contact/">Contact My Academic Tutor</a>
         </nav>
       </section>
+      <QuickFAQ />
       <ContactCTA />
     </main>
   );

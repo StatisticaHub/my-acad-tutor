@@ -27,7 +27,7 @@ const routes = [
   },
   {
     title: "Ask",
-    body: "Request book customised tutoring when you need focused support.",
+    body: "Submit an enquiry when you need suitable academic support.",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function Hero() {
                   </a>
 
                   <a
-                    href={`${withBasePath("/contact")}#support-form`}
+                    href={withBasePath("/resources")}
                     className="inline-flex w-full items-center justify-center rounded-full bg-[#741018] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_24px_70px_rgba(20,18,16,0.07)] transition hover:bg-[#11100E] sm:w-auto"
                   >
                     Resources →
@@ -92,18 +92,18 @@ export default function Hero() {
                       </p>
 
                       <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-[-0.05em] text-[#141210] md:text-4xl">
-                        Book customised tutoring, now built into a learning platform.
+                        From structured support to a full quantitative learning platform.
                       </h2>
                     </div>
 
                     <span className="hidden rounded-full bg-[#F7F3EA] px-3 py-1 text-xs font-semibold text-[#741018] sm:inline-flex">
-                      Customised
+                      Academic support
                     </span>
                   </div>
 
                   <p className="mt-4 text-sm leading-7 text-[#525252]">
                     Start with structured learning, build intuition with visual
-                    demos, and request focused support when you need guidance.
+                    demos, and submit an enquiry when you need guided academic support.
                   </p>
 
                   <div className="mt-5 grid grid-cols-2 gap-3">
@@ -113,7 +113,7 @@ export default function Hero() {
                       </p>
 
                       <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#7a7063]">
-                        Tutoring since
+                        Supporting learners since
                       </p>
                     </div>
 
@@ -122,15 +122,15 @@ export default function Hero() {
                       className="group rounded-[1.25rem] border border-[#E4DED2] bg-[#11100E] p-4 text-white transition hover:bg-[#741018]"
                     >
                       <p className="text-3xl font-semibold tracking-[-0.06em]">
-                        Customised
+                        Academic support
                       </p>
 
                       <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-white/55">
-                        Tutoring support
+                        Enquiry review
                       </p>
 
                       <p className="mt-3 text-xs font-semibold text-white/80 transition group-hover:text-white">
-                        Open form →
+                        Request support →
                       </p>
                     </a>
                   </div>

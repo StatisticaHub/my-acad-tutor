@@ -37,7 +37,7 @@ export async function generateMetadata({
 
   if (!guide) {
     return {
-      title: "Resource guide | My Academic Tutor",
+      title: "Resource guide",
     };
   }
 
@@ -133,6 +133,10 @@ export default async function ResourceGuidePage({
           <h1 className="font-serif-academic mt-6 max-w-4xl text-3xl font-medium leading-[1.08] tracking-[-0.03em] sm:text-4xl md:text-6xl">
             {guide.title}
           </h1>
+
+          <p className="mt-4 text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
+            {guide.readingTime} · Updated {guide.updated}
+          </p>
 
           <p className="mt-6 max-w-4xl text-lg leading-9 text-[#525252]">
             {guide.summary}

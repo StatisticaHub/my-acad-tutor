@@ -8,6 +8,8 @@ export type ResourceGuide = {
   slug: string;
   area: string;
   level: string;
+  readingTime: string;
+  updated: string;
   title: string;
   summary: string;
   problem: ResourceBlock;
@@ -26,6 +28,8 @@ export const resourceGuides: ResourceGuide[] = [
     slug: "how-to-choose-the-correct-statistical-test",
     area: "Statistics",
     level: "Foundation",
+    readingTime: "6 min read",
+    updated: "5 June 2026",
     title: "How to choose the correct statistical test",
     summary:
       "A detailed guide for students deciding between t-tests, ANOVA, chi-square tests, correlation, regression, logistic regression and non-parametric methods.",
@@ -164,6 +168,8 @@ export const resourceGuides: ResourceGuide[] = [
     slug: "how-to-prepare-your-data-before-analysis",
     area: "Data analysis",
     level: "Foundation",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
     title: "How to prepare your data before analysis",
     summary:
       "A detailed guide for students learning how to clean, check, structure and document data before running statistical analysis.",
@@ -302,6 +308,8 @@ export const resourceGuides: ResourceGuide[] = [
     slug: "understanding-p-values-confidence-intervals-and-effect-sizes",
     area: "Statistics",
     level: "Foundation",
+    readingTime: "6 min read",
+    updated: "5 June 2026",
     title: "Understanding p-values, confidence intervals and effect sizes",
     summary:
       "A detailed guide explaining statistical significance, uncertainty, effect size, practical importance and how students should interpret results responsibly.",
@@ -438,6 +446,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "choosing-between-correlation-and-regression",
  area: "Regression",
  level: "Foundation",
+    readingTime: "6 min read",
+    updated: "5 June 2026",
  title: "Choosing between correlation and regression",
  summary:
  "A detailed guide helping students understand when to use correlation, when to use regression, and why the research question matters more than the software menu.",
@@ -561,6 +571,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "linear-regression-assumptions-and-diagnostics",
  area: "Regression",
  level: "Intermediate",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "Linear regression assumptions and diagnostics",
  summary:
  "A detailed guide to the assumptions behind linear regression, why they matter, how students should think about diagnostics and how to report limitations clearly.",
@@ -687,6 +699,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "logistic-regression-explained-for-health-and-social-science-students",
  area: "Biostatistics",
  level: "Intermediate",
+    readingTime: "6 min read",
+    updated: "5 June 2026",
  title: "Logistic regression explained for health and social science students",
  summary:
  "A detailed guide to logistic regression for binary outcomes, including odds, odds ratios, interpretation, adjustment, limitations and common reporting mistakes.",
@@ -817,6 +831,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "common-mistakes-in-dissertation-data-analysis",
  area: "Research methods",
  level: "Intermediate",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "Common mistakes in dissertation data analysis",
  summary:
  "An advanced guide to the most common statistical, methodological and reporting mistakes students make in dissertation data analysis, with practical ways to avoid them.",
@@ -946,6 +962,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "how-to-report-regression-results-in-a-dissertation",
  area: "Regression",
  level: "Intermediate",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "How to report regression results in a dissertation",
  summary:
  "An advanced guide to reporting linear, logistic and adjusted regression results clearly in dissertation chapters, including interpretation, tables, confidence intervals and limitations.",
@@ -1074,6 +1092,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "missing-data-deletion-imputation-and-reporting",
  area: "Data analysis",
  level: "Intermediate",
+    readingTime: "6 min read",
+    updated: "5 June 2026",
  title: "Missing data: deletion, imputation and reporting",
  summary:
  "An advanced guide to understanding missing data mechanisms, complete-case analysis, imputation, bias, sensitivity and transparent reporting.",
@@ -1202,6 +1222,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "sample-size-power-and-precision-explained",
  area: "Research methods",
  level: "Advanced",
+    readingTime: "6 min read",
+    updated: "5 June 2026",
  title: "Sample size, power and precision explained",
  summary:
  "An advanced guide explaining sample size, statistical power, precision, effect size, uncertainty and why planning should focus on estimation as well as hypothesis testing.",
@@ -1330,6 +1352,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "survival-analysis-kaplan-meier-curves-and-cox-regression",
  area: "Biostatistics",
  level: "Advanced",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "Survival analysis: Kaplan-Meier curves and Cox regression",
  summary:
  "An advanced guide to time-to-event data, censoring, Kaplan-Meier curves, log-rank tests, Cox regression, hazard ratios and careful interpretation in medical research.",
@@ -1460,6 +1484,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "confounding-mediation-and-effect-modification",
  area: "Biostatistics",
  level: "Advanced",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "Confounding, mediation and effect modification",
  summary:
  "An advanced guide explaining three important ideas in observational research: confounding, mediation and effect modification, with examples, interpretation and common mistakes.",
@@ -1589,6 +1615,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "introduction-to-causal-inference-and-dags",
  area: "Biostatistics",
  level: "Advanced",
+    readingTime: "6 min read",
+    updated: "5 June 2026",
  title: "Introduction to causal inference and DAGs",
  summary:
  "An advanced guide introducing causal questions, counterfactual thinking, directed acyclic graphs, confounding, colliders, mediators and why causal inference is more than regression adjustment.",
@@ -1718,6 +1746,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "roc-curves-sensitivity-specificity-and-auc",
  area: "Biostatistics",
  level: "Advanced",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "ROC curves, sensitivity, specificity and AUC",
  summary:
  "An advanced guide to diagnostic test evaluation and prediction model performance, covering sensitivity, specificity, thresholds, ROC curves, AUC and limitations.",
@@ -1847,6 +1877,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "multiple-testing-and-false-discovery-rate",
  area: "Statistics",
  level: "Advanced",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "Multiple testing and false discovery rate",
  summary:
  "An advanced guide explaining why repeated hypothesis testing increases false positives, how family-wise error and false discovery rate differ, and how to report multiple-testing corrections.",
@@ -1974,6 +2006,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "introduction-to-mixed-effects-models",
  area: "Regression",
  level: "Advanced",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "Introduction to mixed-effects models",
  summary:
  "An advanced guide introducing mixed-effects models for clustered, repeated-measures and hierarchical data, including random intercepts, random slopes, interpretation and common mistakes.",
@@ -2103,6 +2137,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "longitudinal-data-analysis",
  area: "Biostatistics",
  level: "Advanced",
+    readingTime: "6 min read",
+    updated: "5 June 2026",
  title: "Longitudinal data analysis",
  summary:
  "An advanced guide to repeated measurements over time, within-person correlation, change, trajectories, time effects, mixed models, missing follow-up and careful interpretation.",
@@ -2233,6 +2269,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "introduction-to-meta-analysis",
  area: "Research methods",
  level: "Advanced",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "Introduction to meta-analysis",
  summary:
  "An advanced guide to combining evidence across studies, including effect sizes, fixed-effect and random-effects models, heterogeneity, forest plots, publication bias and interpretation.",
@@ -2362,6 +2400,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "rna-seq-and-differential-expression-analysis",
  area: "Bioinformatics",
  level: "Advanced",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "RNA-seq and differential expression analysis",
  summary:
  "An advanced guide introducing RNA-seq differential expression analysis, count data, quality control, normalisation, experimental design, multiple testing and biological interpretation.",
@@ -2492,6 +2532,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "reproducible-analysis-with-r-markdown-or-quarto",
  area: "Software",
  level: "Advanced",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "Reproducible analysis with R Markdown or Quarto",
  summary:
  "An advanced guide to reproducible statistical analysis using literate programming, project structure, versioned scripts, dynamic reports, transparent decisions and reliable workflows.",
@@ -2622,6 +2664,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "non-parametric-tests-when-and-how-to-use-them",
  area: "Statistics",
  level: "Intermediate",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "Non-parametric tests: when and how to use them",
  summary:
  "A detailed guide explaining when non-parametric tests are useful, how they differ from parametric tests, and how to interpret rank-based methods carefully.",
@@ -2745,6 +2789,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "anova-ancova-and-comparing-more-than-two-groups",
  area: "Statistics",
  level: "Intermediate",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "ANOVA, ANCOVA and comparing more than two groups",
  summary:
  "A detailed guide explaining how to compare more than two groups using ANOVA, when ANCOVA is useful, how post-hoc tests work, and how to avoid multiple-testing mistakes.",
@@ -2870,6 +2916,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "chi-square-tests-fishers-exact-test-and-categorical-data",
  area: "Statistics",
  level: "Foundation",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "Chi-square tests, Fisher's exact test and categorical data",
  summary:
  "A detailed guide to analysing categorical data, including contingency tables, chi-square tests, Fisher's exact test, expected counts, proportions and interpretation.",
@@ -2994,6 +3042,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "risk-ratios-odds-ratios-and-rates-in-epidemiology",
  area: "Biostatistics",
  level: "Intermediate",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "Risk ratios, odds ratios and rates in epidemiology",
  summary:
  "A detailed guide explaining core epidemiological effect measures, including risk, odds, rates, risk ratios, odds ratios, rate ratios and interpretation.",
@@ -3121,6 +3171,8 @@ export const resourceGuides: ResourceGuide[] = [
  slug: "clinical-trials-randomisation-blinding-and-intention-to-treat",
  area: "Biostatistics",
  level: "Advanced",
+    readingTime: "5 min read",
+    updated: "5 June 2026",
  title: "Clinical trials: randomisation, blinding and intention-to-treat",
  summary:
  "A detailed guide to the core design and analysis principles of clinical trials, including randomisation, allocation concealment, blinding, intention-to-treat and bias prevention.",
@@ -3249,6 +3301,8 @@ export const resourceGuides: ResourceGuide[] = [
     slug: "r-python-spss-sas-stata-which-should-i-use",
     area: "Software",
     level: "Foundation",
+    readingTime: "7 min read",
+    updated: "5 June 2026",
     title: "R, Python, SPSS, SAS or Stata: which should I use?",
     summary:
       "A practical guide for students choosing statistical software for coursework, dissertations, health research, data science, biostatistics and reproducible analysis.",
