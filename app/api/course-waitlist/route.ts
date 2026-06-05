@@ -51,7 +51,7 @@ export async function POST(request: Request) {
 
     if (!process.env.RESEND_API_KEY) {
       return Response.json(
-        { error: "Resend API key is not configured." },
+        { error: "RESEND_API_KEY is missing in Vercel." },
         { status: 500 }
       );
     }
@@ -59,7 +59,7 @@ export async function POST(request: Request) {
     const { firstName, lastName } = splitName(name);
     const waitlistSegmentId = process.env.RESEND_WAITLIST_SEGMENT_ID;
 
-    const contactPayload = {
+    const contactResult = await resend.contacts.create({
       email,
       firstName,
       lastName,
@@ -75,29 +75,19 @@ export async function POST(request: Request) {
             segments: [{ id: waitlistSegmentId }],
           }
         : {}),
-    };
-
-    const contactResult = await resend.contacts.create(contactPayload);
+    });
 
     if (contactResult.error) {
-      console.error("Resend contact create error:", contactResult.error);
+      console.error("RESEND_CONTACT_CREATE_ERROR", contactResult.error);
 
-      const updateResult = await resend.contacts.update({
-        email,
-        firstName,
-        lastName,
-        unsubscribed: false,
-        properties: {
-          full_name: name,
-          course_interest: course,
-          waitlist_source: "course_waitlist_form",
-          message: message || "No message provided",
+      return Response.json(
+        {
+          error:
+            "Contact was not saved in Resend. Check that RESEND_API_KEY is Full access and RESEND_WAITLIST_SEGMENT_ID is correct.",
+          resendError: contactResult.error,
         },
-      });
-
-      if (updateResult.error) {
-        console.error("Resend contact update error:", updateResult.error);
-      }
+        { status: 500 }
+      );
     }
 
     const toEmail =
@@ -136,7 +126,7 @@ export async function POST(request: Request) {
     });
 
     if (adminEmail.error) {
-      console.error("Resend admin email error:", adminEmail.error);
+      console.error("RESEND_ADMIN_EMAIL_ERROR", adminEmail.error);
     }
 
     const studentEmail = await resend.emails.send({
@@ -155,18 +145,21 @@ export async function POST(request: Request) {
     });
 
     if (studentEmail.error) {
-      console.error("Resend student confirmation email error:", studentEmail.error);
+      console.error("RESEND_STUDENT_EMAIL_ERROR", studentEmail.error);
     }
 
     return Response.json({
       success: true,
       message: "You have joined the waitlist.",
+      contactId: contactResult.data?.id,
     });
   } catch (error) {
-    console.error("Course waitlist API fatal error:", error);
+    console.error("COURSE_WAITLIST_FATAL_ERROR", error);
 
     return Response.json(
-      { error: "Something went wrong. Please try again." },
+      {
+        error: "Something went wrong. Please try again.",
+      },
       { status: 500 }
     );
   }
