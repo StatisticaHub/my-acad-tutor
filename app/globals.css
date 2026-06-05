@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f4ee;
-  --foreground: #111111;
+  --background: #f3eee4;
+  --foreground: #141210;
 }
 
 * {
@@ -132,4 +132,35 @@ img {
   to {
     transform: translateX(-50%);
   }
+}
+
+
+
+/* Premium colour system */
+:root {
+  --mat-bg: #f3eee4;
+  --mat-bg-soft: #fbf8f1;
+  --mat-ink: #141210;
+  --mat-muted: #5d554c;
+  --mat-burgundy: #741018;
+  --mat-burgundy-strong: #86121d;
+  --mat-gold-soft: #c2a36b;
+  --mat-border: rgba(20, 18, 16, 0.11);
+}
+
+::selection {
+  background: var(--mat-burgundy);
+  color: #ffffff;
+}
+
+html {
+  background: var(--mat-bg);
+}
+
+body {
+  background:
+    radial-gradient(circle at 8% 0%, rgba(116, 16, 24, 0.07), transparent 30rem),
+    radial-gradient(circle at 90% 8%, rgba(194, 163, 107, 0.16), transparent 28rem),
+    linear-gradient(180deg, #f8f2e8 0%, #f3eee4 45%, #ebe3d5 100%);
+  color: var(--mat-ink);
 }

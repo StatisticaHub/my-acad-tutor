@@ -47,18 +47,18 @@ const upcomingDemos = [
 
 export default function InteractiveDemosPage() {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-4 py-8 text-neutral-950 sm:px-5 md:px-8 md:py-14">
+    <main className="min-h-screen bg-[#F7F3EA] px-4 py-8 text-[#141210] sm:px-5 md:px-8 md:py-14">
 
-      <section className="mx-auto mt-8 max-w-7xl rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#6f0d12]">
+      <section className="mx-auto mt-8 max-w-7xl rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#7A0710]">
           Interactive statistics demos
         </p>
 
-        <h2 className="mt-3 text-2xl font-black tracking-tight text-neutral-950 md:text-3xl">
+        <h2 className="mt-3 text-2xl font-black tracking-tight text-[#141210] md:text-3xl">
           Explore statistics visually through distributions, regression and uncertainty.
         </h2>
 
-        <p className="mt-4 max-w-4xl text-base leading-7 text-neutral-700">
+        <p className="mt-4 max-w-4xl text-base leading-7 text-[#525252]">
           These interactive statistics demos help students understand important
           concepts such as normal distributions, regression lines, confidence
           intervals, sampling variation and uncertainty. Each demo is designed to
@@ -66,25 +66,25 @@ export default function InteractiveDemosPage() {
         </p>
 
         <div className="mt-5 flex flex-wrap gap-3 text-sm font-bold">
-          <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/learning-hub/">
+          <a className="rounded-full border border-[#E4DED2] px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/learning-hub/">
             Explore the Learning Hub
           </a>
-          <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/resources/">
+          <a className="rounded-full border border-[#E4DED2] px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/resources/">
             Read Statistics Resources
           </a>
-          <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/contact/">
+          <a className="rounded-full border border-[#E4DED2] px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/contact/">
             Request Academic Support
           </a>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl">
-        <section className="overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:rounded-[2.5rem]">
+        <section className="overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm md:rounded-[2.5rem]">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-5 md:p-10">
               <a
                 href={withBasePath("/learning-hub")}
-                className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm"
+                className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm"
               >
                 ← Learning Hub
               </a>
@@ -93,7 +93,7 @@ export default function InteractiveDemosPage() {
                 Interactive statistical calculators and visual demos.
               </h1>
 
-              <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 Use live calculators and visual explanations to understand
                 formulas, uncertainty, models and interpretation.
               </p>
@@ -101,21 +101,21 @@ export default function InteractiveDemosPage() {
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href="#confidence-interval-mean"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#8b1116] sm:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#11100E] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#741018] sm:w-auto"
                 >
                   Open CI calculator →
                 </a>
 
                 <a
                   href={withBasePath("/courses")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-semibold text-neutral-950 transition hover:bg-[#f7f4ee] sm:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-semibold text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto"
                 >
                   View courses →
                 </a>
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-[#111111] p-5 text-white md:p-8 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-5 text-white md:p-8 lg:border-l lg:border-t-0">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55 md:text-sm">
                 Featured demo
               </p>
@@ -134,7 +134,7 @@ export default function InteractiveDemosPage() {
                   (item) => (
                     <div
                       key={item}
-                      className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4 text-sm font-semibold text-white/80"
+                      className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4 text-sm font-semibold text-white/80"
                     >
                       {item}
                     </div>
@@ -149,8 +149,8 @@ export default function InteractiveDemosPage() {
           <ConfidenceIntervalMeanExplorer />
         </section>
 
-        <section className="mt-8 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+        <section className="mt-8 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
             More demos coming
           </p>
 
@@ -162,17 +162,17 @@ export default function InteractiveDemosPage() {
             {upcomingDemos.map((demo) => (
               <article
                 key={demo.title}
-                className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8b1116]">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#741018]">
                   {demo.area}
                 </p>
 
-                <h3 className="mt-3 text-xl font-semibold tracking-[-0.035em] text-neutral-950">
+                <h3 className="mt-3 text-xl font-semibold tracking-[-0.035em] text-[#141210]">
                   {demo.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                <p className="mt-3 text-sm leading-7 text-[#525252]">
                   {demo.body}
                 </p>
               </article>

@@ -28,19 +28,19 @@ export default function NormalDistributionExplorer() {
   }, [mean, sd]);
 
   return (
-    <section className="rounded-[2rem] border border-[#ded9cf] bg-white p-6 shadow-sm">
-      <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+    <section className="rounded-[2rem] border border-[#ded9cf] bg-[#FFFCF6] p-6 shadow-sm">
+      <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
         Interactive demo
       </p>
       <h2 className="mt-3 text-3xl font-black tracking-[-0.035em]">
         Normal Distribution Explorer
       </h2>
-      <p className="mt-3 text-base leading-8 text-neutral-700">
+      <p className="mt-3 text-base leading-8 text-[#525252]">
         Move the mean and standard deviation. The mean shifts the centre. The
         standard deviation controls the spread.
       </p>
 
-      <div className="mt-6 rounded-[1.5rem] border border-[#ded9cf] bg-[#fbfaf7] p-4">
+      <div className="mt-6 rounded-[1.5rem] border border-[#ded9cf] bg-[#fbf8f1] p-4">
         <svg viewBox="0 0 700 300" className="h-72 w-full">
           <line x1="0" y1="260" x2="700" y2="260" stroke="currentColor" />
           <polyline
@@ -48,14 +48,14 @@ export default function NormalDistributionExplorer() {
             fill="none"
             stroke="currentColor"
             strokeWidth="4"
-            className="text-[#8b1116]"
+            className="text-[#741018]"
           />
         </svg>
       </div>
 
       <div className="mt-6 grid gap-5 md:grid-cols-2">
         <label className="block">
-          <span className="text-sm font-black uppercase tracking-[0.16em] text-neutral-600">
+          <span className="text-sm font-black uppercase tracking-[0.16em] text-[#5F5F5F]">
             Mean: {mean.toFixed(1)}
           </span>
           <input
@@ -70,7 +70,7 @@ export default function NormalDistributionExplorer() {
         </label>
 
         <label className="block">
-          <span className="text-sm font-black uppercase tracking-[0.16em] text-neutral-600">
+          <span className="text-sm font-black uppercase tracking-[0.16em] text-[#5F5F5F]">
             Standard deviation: {sd.toFixed(1)}
           </span>
           <input
@@ -85,7 +85,7 @@ export default function NormalDistributionExplorer() {
         </label>
       </div>
 
-      <p className="mt-5 rounded-2xl bg-[#f8f6f1] p-4 text-sm leading-7 text-neutral-700">
+      <p className="mt-5 rounded-2xl bg-[#f8f6f1] p-4 text-sm leading-7 text-[#525252]">
         Interpretation: increasing the standard deviation spreads probability
         over a wider range. Changing the mean moves the centre without changing
         the total area under the curve.

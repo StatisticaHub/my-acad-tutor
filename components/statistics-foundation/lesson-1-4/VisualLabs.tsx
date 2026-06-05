@@ -76,7 +76,7 @@ export function HistogramLab() {
   const maxBinCount = Math.max(...bins.map((bin) => bin.count), 1);
 
   return (
-    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
       <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
         Interactive lab 2
       </p>
@@ -85,7 +85,7 @@ export function HistogramLab() {
         Histogram bin width
       </h3>
 
-      <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-600">
+      <p className="mt-3 max-w-3xl text-sm leading-7 text-[#5F5F5F]">
         A histogram groups numerical values into intervals. Change the bin width
         and notice how the visual impression changes. This is why a graph is a
         summary, not a neutral copy of raw data.
@@ -113,14 +113,14 @@ export function HistogramLab() {
                   height: `${(bin.count / maxBinCount) * 230}px`,
                 }}
               />
-              <span className="mt-2 rotate-[-35deg] text-[10px] font-bold text-neutral-700">
+              <span className="mt-2 rotate-[-35deg] text-[10px] font-bold text-[#525252]">
                 {bin.start}-{bin.end}
               </span>
             </div>
           ))}
         </div>
 
-        <p className="mt-8 text-sm leading-7 text-neutral-600">
+        <p className="mt-8 text-sm leading-7 text-[#5F5F5F]">
           Very narrow bins may look noisy. Very wide bins may hide structure.
           A histogram is a display of grouped numerical data, and grouping
           choices affect interpretation.
@@ -142,7 +142,7 @@ export function MisleadingAxisLab() {
   const axisEnd = truncated ? 55 : 55;
 
   return (
-    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
       <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
         Interactive lab 3
       </p>
@@ -151,7 +151,7 @@ export function MisleadingAxisLab() {
         How axis scales can mislead
       </h3>
 
-      <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-600">
+      <p className="mt-3 max-w-3xl text-sm leading-7 text-[#5F5F5F]">
         Both displays use the same values: 51% and 54%. Toggle the axis scale to
         see how a small numerical difference can look dramatic.
       </p>
@@ -159,7 +159,7 @@ export function MisleadingAxisLab() {
       <div className="mt-6">
         <button
           onClick={() => setTruncated(!truncated)}
-          className="rounded-full bg-neutral-950 px-5 py-3 text-sm font-black text-white"
+          className="rounded-full bg-[#11100E] px-5 py-3 text-sm font-black text-white"
         >
           {truncated ? "Show honest zero baseline" : "Show truncated axis"}
         </button>
@@ -177,12 +177,12 @@ export function MisleadingAxisLab() {
 
             return (
               <div key={item.label}>
-                <div className="mb-1 flex justify-between text-sm font-bold text-neutral-700">
+                <div className="mb-1 flex justify-between text-sm font-bold text-[#525252]">
                   <span>{item.label}</span>
                   <span>{item.value}%</span>
                 </div>
 
-                <div className="h-10 rounded-full bg-white">
+                <div className="h-10 rounded-full bg-[#FFFCF6]">
                   <div
                     className="h-10 rounded-full bg-red-600"
                     style={{ width: `${Math.max(width, 2)}%` }}
@@ -213,7 +213,7 @@ export function GraphChoiceLab() {
   const card = graphChoiceCards[active];
 
   return (
-    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
       <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
         Interactive lab 4
       </p>
@@ -222,7 +222,7 @@ export function GraphChoiceLab() {
         Choose the right graph
       </h3>
 
-      <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-600">
+      <p className="mt-3 max-w-3xl text-sm leading-7 text-[#5F5F5F]">
         Select a situation. The panel shows the variable type and the graph that
         best matches the question.
       </p>
@@ -234,8 +234,8 @@ export function GraphChoiceLab() {
             onClick={() => setActive(index)}
             className={`rounded-2xl border px-4 py-3 text-left text-sm font-black transition ${
               active === index
-                ? "border-neutral-950 bg-neutral-950 text-white"
-                : "border-[#ded9cf] bg-white text-neutral-700 hover:bg-blue-50"
+                ? "border-stone-950 bg-[#11100E] text-white"
+                : "border-[#ded9cf] bg-[#FFFCF6] text-[#525252] hover:bg-blue-50"
             }`}
           >
             {item.question}

@@ -64,17 +64,17 @@ const responsibilities = [
 
 export default function TermsAndConditionsPage() {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-20">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-10 text-[#141210] md:px-8 md:py-20">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/")}
-          className="text-sm font-semibold text-[#8b1116] hover:text-[#5f0b0f]"
+          className="text-sm font-semibold text-[#741018] hover:text-[#4d080e]"
         >
           ← Back to homepage
         </a>
 
-        <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10 lg:p-12">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
+        <section className="mt-8 rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10 lg:p-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#741018]">
             Terms & Conditions
           </p>
 
@@ -84,15 +84,15 @@ export default function TermsAndConditionsPage() {
                 Terms for using My Academic Tutor.
               </h1>
 
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-6 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 By using My Academic Tutor, students agree that support is for
                 educational guidance, learning, interpretation and responsible
                 academic development.
               </p>
             </div>
 
-            <div className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#8b1116]">
+            <div className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#741018]">
                 Important note
               </p>
 
@@ -100,7 +100,7 @@ export default function TermsAndConditionsPage() {
                 Use support honestly.
               </h2>
 
-              <p className="mt-4 text-sm leading-7 text-neutral-700">
+              <p className="mt-4 text-sm leading-7 text-[#525252]">
                 My Academic Tutor supports learning. It does not replace a
                 student’s own academic work or institutional responsibilities.
               </p>
@@ -112,9 +112,9 @@ export default function TermsAndConditionsPage() {
           {termsSections.map((section, index) => (
             <article
               key={section.title}
-              className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+              className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
             >
-              <p className="text-3xl font-semibold tracking-[-0.05em] text-[#8b1116]">
+              <p className="text-3xl font-semibold tracking-[-0.05em] text-[#741018]">
                 {String(index + 1).padStart(2, "0")}
               </p>
 
@@ -122,7 +122,7 @@ export default function TermsAndConditionsPage() {
                 {section.title}
               </h2>
 
-              <p className="mt-4 text-sm leading-7 text-neutral-700">
+              <p className="mt-4 text-sm leading-7 text-[#525252]">
                 {section.text}
               </p>
             </article>
@@ -130,8 +130,8 @@ export default function TermsAndConditionsPage() {
         </section>
 
         <section className="mt-8 grid gap-6 lg:grid-cols-2">
-          <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
+          <article className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#741018]">
               Acceptable use
             </p>
 
@@ -143,7 +143,7 @@ export default function TermsAndConditionsPage() {
               {acceptableUse.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-semibold text-neutral-800"
+                  className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-semibold text-neutral-800"
                 >
                   {item}
                 </div>
@@ -151,7 +151,7 @@ export default function TermsAndConditionsPage() {
             </div>
           </article>
 
-          <article className="rounded-[2rem] border border-neutral-200 bg-[#111111] p-6 text-white shadow-sm md:p-8">
+          <article className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/70">
               Not allowed
             </p>
@@ -164,7 +164,7 @@ export default function TermsAndConditionsPage() {
               {notAllowed.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white/85"
+                  className="rounded-2xl border border-white/10 bg-[#FFFCF6]/5 px-4 py-3 text-sm font-semibold text-white/85"
                 >
                   {item}
                 </div>
@@ -173,8 +173,8 @@ export default function TermsAndConditionsPage() {
           </article>
         </section>
 
-        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
+        <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#741018]">
             User responsibilities
           </p>
 
@@ -186,7 +186,7 @@ export default function TermsAndConditionsPage() {
             {responsibilities.map((item) => (
               <div
                 key={item}
-                className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-semibold text-neutral-800"
+                className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-semibold text-neutral-800"
               >
                 {item}
               </div>
@@ -194,7 +194,7 @@ export default function TermsAndConditionsPage() {
           </div>
         </section>
 
-        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-[#8b1116] p-6 text-white shadow-sm md:p-8">
+        <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#741018] p-6 text-white shadow-sm md:p-8">
           <h2 className="text-3xl font-semibold tracking-[-0.045em] md:text-4xl">
             Questions about these terms?
           </h2>
@@ -206,7 +206,7 @@ export default function TermsAndConditionsPage() {
 
           <a
             href={withBasePath("/contact")}
-            className="mt-7 inline-flex rounded-full bg-white px-6 py-4 text-sm font-semibold text-[#111111]"
+            className="mt-7 inline-flex rounded-full bg-[#FFFCF6] px-6 py-4 text-sm font-semibold text-[#141210]"
           >
             Contact us →
           </a>

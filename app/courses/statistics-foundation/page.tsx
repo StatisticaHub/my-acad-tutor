@@ -292,19 +292,19 @@ const outcomes = [
 
 export default function StatisticsFoundationCoursePage() {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-4 py-8 text-[#111111] sm:px-5 md:px-8 md:py-16">
+    <main className="min-h-screen bg-[#F7F3EA] px-4 py-8 text-[#141210] sm:px-5 md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses")}
-          className="text-sm font-black text-[#8b1116] transition hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] transition hover:text-[#4d080e]"
         >
           ← Back to courses
         </a>
 
-        <section className="mt-6 overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:mt-8 md:rounded-[2.5rem]">
+        <section className="mt-6 overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm md:mt-8 md:rounded-[2.5rem]">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-5 sm:p-6 md:p-10 lg:p-12">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm md:tracking-[0.22em]">
                 Statistics Foundation
               </p>
 
@@ -312,7 +312,7 @@ export default function StatisticsFoundationCoursePage() {
                 Learn statistics from ideas to inference and regression.
               </h1>
 
-              <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700 md:mt-6 md:text-lg md:leading-9">
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252] md:mt-6 md:text-lg md:leading-9">
                 A zero-coding foundation course for students who want clear
                 statistical reasoning before software. Module pages are open for
                 preview. Lesson 1.1 is open now. All remaining lessons are
@@ -324,31 +324,31 @@ export default function StatisticsFoundationCoursePage() {
                   href={withBasePath(
                     "/courses/statistics-foundation/modules/introduction-to-statistical-thinking/lessons/what-is-statistics",
                   )}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#8b1116] sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#11100E] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#741018] sm:w-auto md:py-4"
                 >
                   Open Lesson 1.1 →
                 </a>
 
                 <a
                   href={withBasePath("#join-waitlist")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
                   Join waitlist
                 </a>
 
                 <a
                   href={withBasePath("#module-preview")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
                   Preview modules
                 </a>
               </div>
 
-              <div className="mt-8 rounded-[1.5rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+              <div className="mt-8 rounded-[1.5rem] border border-[#741018]/20 bg-[#fff4ef] p-5">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                   Current access policy
                 </p>
-                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                <p className="mt-3 text-sm leading-7 text-[#525252]">
                   Module overview pages remain open so students can see the
                   full structure. Only Lesson 1.1 is open for full study. Locked
                   lessons currently point students to the waitlist until the
@@ -357,7 +357,7 @@ export default function StatisticsFoundationCoursePage() {
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-5 text-white md:p-8 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-5 text-white md:p-8 lg:border-l lg:border-t-0">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50 md:text-sm">
                 Course snapshot
               </p>
@@ -370,7 +370,7 @@ export default function StatisticsFoundationCoursePage() {
                 {snapshot.map(([value, label]) => (
                   <div
                     key={label}
-                    className="rounded-[1.35rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="rounded-[1.35rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
                     <p className="text-3xl font-black tracking-[-0.06em]">
                       {value}
@@ -392,8 +392,8 @@ export default function StatisticsFoundationCoursePage() {
         </section>
 
         <section className="mt-6 grid gap-4 md:mt-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <article className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+          <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
               Learning design
             </p>
 
@@ -405,7 +405,7 @@ export default function StatisticsFoundationCoursePage() {
               {learningDesign.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-700"
+                  className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#525252]"
                 >
                   {item}
                 </div>
@@ -413,7 +413,7 @@ export default function StatisticsFoundationCoursePage() {
             </div>
           </article>
 
-          <article className="rounded-[1.75rem] border border-neutral-200 bg-[#111111] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
+          <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#11100E] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
             <p className="text-xs font-black uppercase tracking-[0.2em] text-white/55 md:text-sm">
               By the end
             </p>
@@ -426,7 +426,7 @@ export default function StatisticsFoundationCoursePage() {
               {outcomes.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-bold text-white/85"
+                  className="rounded-2xl border border-white/10 bg-[#FFFCF6]/[0.06] px-4 py-3 text-sm font-bold text-white/85"
                 >
                   {item}
                 </div>
@@ -437,11 +437,11 @@ export default function StatisticsFoundationCoursePage() {
 
         <section
           id="module-preview"
-          className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
+          className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
         >
           <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
                 Module pages
               </p>
 
@@ -450,7 +450,7 @@ export default function StatisticsFoundationCoursePage() {
               </h2>
             </div>
 
-            <p className="text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+            <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
               Students can explore the full course structure now. Each module
               page shows the learning pathway, formulas, lesson sequence and
               what will be covered when the lessons open fully.
@@ -462,14 +462,14 @@ export default function StatisticsFoundationCoursePage() {
               <a
                 key={module.title}
                 href={withBasePath(module.href)}
-                className="group rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5 transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:rounded-[2rem] md:p-6"
+                className="group rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5 transition hover:-translate-y-1 hover:bg-[#FFFCF6] hover:shadow-md md:rounded-[2rem] md:p-6"
               >
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <span className="rounded-full bg-[#111111] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-white">
+                  <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-white">
                     {module.number}
                   </span>
 
-                  <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-[#8b1116]">
+                  <span className="rounded-full border border-[#E4DED2] bg-[#FFFCF6] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-[#741018]">
                     {module.status}
                   </span>
                 </div>
@@ -478,11 +478,11 @@ export default function StatisticsFoundationCoursePage() {
                   {module.title}
                 </h3>
 
-                <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-[#8b1116]">
+                <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-[#741018]">
                   {module.lessons}
                 </p>
 
-                <p className="mt-4 text-sm leading-7 text-neutral-700">
+                <p className="mt-4 text-sm leading-7 text-[#525252]">
                   {module.summary}
                 </p>
 
@@ -490,14 +490,14 @@ export default function StatisticsFoundationCoursePage() {
                   {module.focus.map((item) => (
                     <span
                       key={item}
-                      className="rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-xs font-bold text-neutral-600"
+                      className="rounded-full border border-[#E4DED2] bg-[#FFFCF6] px-3 py-1.5 text-xs font-bold text-[#5F5F5F]"
                     >
                       {item}
                     </span>
                   ))}
                 </div>
 
-                <p className="mt-5 text-sm font-black text-[#8b1116] transition group-hover:translate-x-1">
+                <p className="mt-5 text-sm font-black text-[#741018] transition group-hover:translate-x-1">
                   Open module →
                 </p>
               </a>
@@ -505,10 +505,10 @@ export default function StatisticsFoundationCoursePage() {
           </div>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+        <section className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
           <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
                 Lesson access
               </p>
 
@@ -517,7 +517,7 @@ export default function StatisticsFoundationCoursePage() {
               </h2>
             </div>
 
-            <p className="text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+            <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
               Locked lessons currently send students to the waitlist. This lets
               visitors see the full curriculum while keeping the full lesson
               release controlled.
@@ -534,16 +534,16 @@ export default function StatisticsFoundationCoursePage() {
                   href={withBasePath(href ?? "/courses/statistics-foundation/waitlist")}
                   className={`group rounded-[1.5rem] border p-5 transition hover:-translate-y-1 hover:shadow-md ${
                     lesson.open
-                      ? "border-neutral-200 bg-[#f7f4ee] hover:bg-white"
-                      : "border-[#8b1116]/20 bg-[#fff7f7] hover:bg-white"
+                      ? "border-[#E4DED2] bg-[#F7F3EA] hover:bg-[#FFFCF6]"
+                      : "border-[#741018]/20 bg-[#fff4ef] hover:bg-[#FFFCF6]"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
                     <span
                       className={`rounded-full px-3 py-1 text-xs font-black uppercase tracking-[0.14em] ${
                         lesson.open
-                          ? "bg-neutral-950 text-white"
-                          : "bg-[#8b1116] text-white"
+                          ? "bg-[#11100E] text-white"
+                          : "bg-[#741018] text-white"
                       }`}
                     >
                       {lesson.number}
@@ -551,15 +551,15 @@ export default function StatisticsFoundationCoursePage() {
                     <span
                       className={`rounded-full border px-3 py-1 text-xs font-black uppercase tracking-[0.14em] ${
                         lesson.open
-                          ? "border-neutral-200 bg-white text-neutral-600"
-                          : "border-[#8b1116]/20 bg-white text-[#8b1116]"
+                          ? "border-[#E4DED2] bg-[#FFFCF6] text-[#5F5F5F]"
+                          : "border-[#741018]/20 bg-[#FFFCF6] text-[#741018]"
                       }`}
                     >
                       {lesson.open ? "Open" : "Locked"}
                     </span>
                   </div>
 
-                  <p className="mt-4 text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+                  <p className="mt-4 text-xs font-black uppercase tracking-[0.16em] text-[#7a7063]">
                     {lesson.module}
                   </p>
 
@@ -567,11 +567,11 @@ export default function StatisticsFoundationCoursePage() {
                     {lesson.title}
                   </h3>
 
-                  <p className="mt-3 text-sm font-bold leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm font-bold leading-7 text-[#525252]">
                     {lesson.status}
                   </p>
 
-                  <p className="mt-4 text-sm font-black text-[#8b1116] transition group-hover:translate-x-1">
+                  <p className="mt-4 text-sm font-black text-[#741018] transition group-hover:translate-x-1">
                     {lesson.open ? "Open lesson →" : "Join waitlist →"}
                   </p>
                 </a>
@@ -580,8 +580,8 @@ export default function StatisticsFoundationCoursePage() {
           </div>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+        <section className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
             Try the ideas visually
           </p>
 
@@ -589,7 +589,7 @@ export default function StatisticsFoundationCoursePage() {
             Visual intuition before formulas.
           </h2>
 
-          <p className="mt-4 max-w-4xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
             These demos remain open as previews. They help students see
             distribution shape and confidence interval behaviour before moving
             into formal notation.
@@ -603,7 +603,7 @@ export default function StatisticsFoundationCoursePage() {
 
         <section
           id="join-waitlist"
-          className="mt-6 overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-neutral-950 shadow-sm md:mt-8 md:rounded-[2.5rem]"
+          className="mt-6 overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#11100E] shadow-sm md:mt-8 md:rounded-[2.5rem]"
         >
           <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
             <div className="p-5 text-white md:p-10">
@@ -630,7 +630,7 @@ export default function StatisticsFoundationCoursePage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] px-4 py-3 text-sm font-bold text-white/80"
+                    className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] px-4 py-3 text-sm font-bold text-white/80"
                   >
                     {item}
                   </div>
@@ -638,8 +638,8 @@ export default function StatisticsFoundationCoursePage() {
               </div>
             </div>
 
-            <div className="border-t border-white/10 bg-white p-5 md:p-8 lg:border-l lg:border-t-0">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
+            <div className="border-t border-white/10 bg-[#FFFCF6] p-5 md:p-8 lg:border-l lg:border-t-0">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018]">
                 Waitlist form
               </p>
 
@@ -653,7 +653,7 @@ export default function StatisticsFoundationCoursePage() {
                 className="mt-6 grid gap-4"
               >
                 <label className="grid gap-2">
-                  <span className="text-sm font-black text-neutral-700">
+                  <span className="text-sm font-black text-[#525252]">
                     Name
                   </span>
                   <input
@@ -661,12 +661,12 @@ export default function StatisticsFoundationCoursePage() {
                     type="text"
                     required
                     placeholder="Your name"
-                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                   />
                 </label>
 
                 <label className="grid gap-2">
-                  <span className="text-sm font-black text-neutral-700">
+                  <span className="text-sm font-black text-[#525252]">
                     Email
                   </span>
                   <input
@@ -674,18 +674,18 @@ export default function StatisticsFoundationCoursePage() {
                     type="email"
                     required
                     placeholder="you@example.com"
-                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                   />
                 </label>
 
                 <label className="grid gap-2">
-                  <span className="text-sm font-black text-neutral-700">
+                  <span className="text-sm font-black text-[#525252]">
                     Interest
                   </span>
                   <select
                     name="interest"
                     defaultValue="Statistics Foundation waitlist"
-                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                   >
                     <option>Statistics Foundation waitlist</option>
                     <option>Early access</option>
@@ -695,43 +695,43 @@ export default function StatisticsFoundationCoursePage() {
                 </label>
 
                 <label className="grid gap-2">
-                  <span className="text-sm font-black text-neutral-700">
+                  <span className="text-sm font-black text-[#525252]">
                     Message
                   </span>
                   <textarea
                     name="message"
                     rows={4}
                     defaultValue="I want to join the Statistics Foundation course waitlist."
-                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                   />
                 </label>
 
                 <button
                   type="submit"
-                  className="rounded-full bg-[#8b1116] px-6 py-4 text-sm font-black text-white transition hover:bg-[#5f0b0f]"
+                  className="rounded-full bg-[#741018] px-6 py-4 text-sm font-black text-white transition hover:bg-[#4d080e]"
                 >
                   Join waitlist →
                 </button>
 
-                <p className="text-xs leading-6 text-neutral-500">
+                <p className="text-xs leading-6 text-[#7a7063]">
                 </p>
               </form>
             </div>
           </div>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+        <section className="mt-6 rounded-[1.75rem] border border-[#741018]/20 bg-[#fff4ef] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
                 Recommended start
               </p>
 
-              <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-[-0.045em] text-[#8b1116] md:text-5xl">
+              <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-[-0.045em] text-[#741018] md:text-5xl">
                 Begin with the open foundation lesson.
               </h2>
 
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
                 Lesson 1.1 introduces the purpose of statistics, statistical
                 questions, populations, samples, variables and why uncertainty
                 matters.
@@ -742,7 +742,7 @@ export default function StatisticsFoundationCoursePage() {
               href={withBasePath(
                 "/courses/statistics-foundation/modules/introduction-to-statistical-thinking/lessons/what-is-statistics",
               )}
-              className="inline-flex w-full justify-center rounded-full bg-[#8b1116] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#5f0b0f] sm:w-auto md:py-4"
+              className="inline-flex w-full justify-center rounded-full bg-[#741018] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#4d080e] sm:w-auto md:py-4"
             >
               Open Lesson 1.1 →
             </a>

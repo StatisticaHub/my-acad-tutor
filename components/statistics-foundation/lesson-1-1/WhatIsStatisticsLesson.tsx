@@ -176,7 +176,7 @@ function DialogueLine({
           right ? "bg-blue-50" : "bg-[#f8f6f1]"
         }`}
       >
-        <p className="mb-1 text-xs font-bold text-neutral-500">{speaker}</p>
+        <p className="mb-1 text-xs font-bold text-[#7a7063]">{speaker}</p>
         <div className="text-sm leading-7 text-neutral-800">{children}</div>
       </div>
     </div>
@@ -197,7 +197,7 @@ function StatTable({
   rows: { label: string; meaning: string; example: string }[];
 }) {
   return (
-    <div className="overflow-x-auto rounded-2xl border border-[#ded9cf] bg-white">
+    <div className="overflow-x-auto rounded-2xl border border-[#ded9cf] bg-[#FFFCF6]">
       <table className="w-full min-w-[720px] border-collapse text-left text-sm">
         <thead className="bg-[#f8f6f1]">
           <tr>
@@ -219,13 +219,13 @@ function StatTable({
               key={row.label}
               className="border-b border-[#ded9cf] last:border-0"
             >
-              <td className="px-4 py-3 font-bold text-neutral-950">
+              <td className="px-4 py-3 font-bold text-[#141210]">
                 {row.label}
               </td>
-              <td className="px-4 py-3 leading-6 text-neutral-600">
+              <td className="px-4 py-3 leading-6 text-[#5F5F5F]">
                 {row.meaning}
               </td>
-              <td className="px-4 py-3 leading-6 text-neutral-600">
+              <td className="px-4 py-3 leading-6 text-[#5F5F5F]">
                 {row.example}
               </td>
             </tr>
@@ -246,14 +246,14 @@ function SectionCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
       {eyebrow && (
         <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
           {eyebrow}
         </p>
       )}
       <h2 className="mt-2 text-3xl font-black tracking-tight">{title}</h2>
-      <div className="mt-5 space-y-4 text-sm leading-8 text-neutral-700">
+      <div className="mt-5 space-y-4 text-sm leading-8 text-[#525252]">
         {children}
       </div>
     </div>
@@ -268,7 +268,7 @@ function InteractiveSamplingDemo() {
   const difference = sampleMean - populationMean;
 
   return (
-    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
@@ -277,7 +277,7 @@ function InteractiveSamplingDemo() {
           <h3 className="mt-2 text-2xl font-black tracking-tight">
             Sample versus population
           </h3>
-          <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-600">
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-[#5F5F5F]">
             Move the slider to change how many observations are included in the
             sample. Notice that the sample mean can differ from the population
             mean. This difference is not automatically a mistake; it is a basic
@@ -306,19 +306,19 @@ function InteractiveSamplingDemo() {
 
       <div className="mt-6 grid gap-3 md:grid-cols-3">
         <div className="rounded-2xl border border-[#ded9cf] bg-[#f8f6f1] p-4">
-          <p className="text-xs font-bold text-neutral-500">Population mean</p>
+          <p className="text-xs font-bold text-[#7a7063]">Population mean</p>
           <p className="mt-1 text-3xl font-black">
             {populationMean.toFixed(1)}
           </p>
         </div>
 
         <div className="rounded-2xl border border-[#ded9cf] bg-[#f8f6f1] p-4">
-          <p className="text-xs font-bold text-neutral-500">Sample mean</p>
+          <p className="text-xs font-bold text-[#7a7063]">Sample mean</p>
           <p className="mt-1 text-3xl font-black">{sampleMean.toFixed(1)}</p>
         </div>
 
         <div className="rounded-2xl border border-[#ded9cf] bg-[#f8f6f1] p-4">
-          <p className="text-xs font-bold text-neutral-500">
+          <p className="text-xs font-bold text-[#7a7063]">
             Sample mean − population mean
           </p>
           <p className="mt-1 text-3xl font-black">{difference.toFixed(1)}</p>
@@ -340,7 +340,7 @@ function InteractiveSamplingDemo() {
                   }`}
                   style={{ height: `${value * 1.6}px` }}
                 />
-                <span className="text-xs font-bold text-neutral-500">
+                <span className="text-xs font-bold text-[#7a7063]">
                   {value}
                 </span>
               </div>
@@ -348,7 +348,7 @@ function InteractiveSamplingDemo() {
           })}
         </div>
 
-        <p className="mt-5 text-sm leading-7 text-neutral-600">
+        <p className="mt-5 text-sm leading-7 text-[#5F5F5F]">
           Blue bars are currently included in the sample. Grey bars belong to
           the population but are not yet sampled. The more limited the sample,
           the more careful we must be when generalising.
@@ -363,7 +363,7 @@ function InteractiveStudyClassifier() {
   const card = studyCards[active];
 
   return (
-    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
       <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
         Interactive lab 2
       </p>
@@ -371,7 +371,7 @@ function InteractiveStudyClassifier() {
         Break a study into statistical parts
       </h3>
 
-      <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-600">
+      <p className="mt-3 max-w-3xl text-sm leading-7 text-[#5F5F5F]">
         Choose a scenario and identify the population, sample, variable,
         parameter and statistic. This is one of the most important habits in
         early statistics.
@@ -384,8 +384,8 @@ function InteractiveStudyClassifier() {
             onClick={() => setActive(index)}
             className={`rounded-full px-4 py-2 text-sm font-black transition ${
               active === index
-                ? "bg-neutral-950 text-white"
-                : "border border-[#ded9cf] bg-white text-neutral-600 hover:text-neutral-950"
+                ? "bg-[#11100E] text-white"
+                : "border border-[#ded9cf] bg-[#FFFCF6] text-[#5F5F5F] hover:text-[#141210]"
             }`}
           >
             {study.title}
@@ -394,8 +394,8 @@ function InteractiveStudyClassifier() {
       </div>
 
       <div className="mt-6 rounded-2xl border border-[#ded9cf] bg-[#fbfaf6] p-5">
-        <p className="text-sm font-black text-neutral-950">Research question</p>
-        <p className="mt-2 text-sm leading-7 text-neutral-700">
+        <p className="text-sm font-black text-[#141210]">Research question</p>
+        <p className="mt-2 text-sm leading-7 text-[#525252]">
           {card.question}
         </p>
       </div>
@@ -456,7 +456,7 @@ function WorkedExample({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-2xl border border-[#ded9cf] bg-white shadow-sm">
+    <div className="rounded-2xl border border-[#ded9cf] bg-[#FFFCF6] shadow-sm">
       <button
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between gap-4 p-5 text-left"
@@ -466,7 +466,7 @@ function WorkedExample({
             Worked example
           </p>
           <h3 className="mt-1 text-lg font-black">{title}</h3>
-          <p className="mt-2 text-sm leading-6 text-neutral-600">{question}</p>
+          <p className="mt-2 text-sm leading-6 text-[#5F5F5F]">{question}</p>
         </div>
 
         <span className="rounded-full border border-[#ded9cf] px-3 py-1 text-sm font-bold">
@@ -475,7 +475,7 @@ function WorkedExample({
       </button>
 
       {open && (
-        <div className="space-y-3 border-t border-[#ded9cf] bg-[#fbfaf6] p-5 text-sm leading-7 text-neutral-700">
+        <div className="space-y-3 border-t border-[#ded9cf] bg-[#fbfaf6] p-5 text-sm leading-7 text-[#525252]">
           {children}
         </div>
       )}
@@ -494,7 +494,7 @@ function QuizEngine() {
   }, [selected]);
 
   return (
-    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
@@ -545,7 +545,7 @@ function QuizEngine() {
                         ? "border-red-600 bg-red-50 text-red-900"
                         : isSelected
                         ? "border-blue-600 bg-blue-50 text-blue-900"
-                        : "border-[#ded9cf] bg-white text-neutral-700 hover:bg-blue-50"
+                        : "border-[#ded9cf] bg-[#FFFCF6] text-[#525252] hover:bg-blue-50"
                     }`}
                   >
                     <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-current text-xs font-black">
@@ -558,7 +558,7 @@ function QuizEngine() {
             </div>
 
             {checked && (
-              <p className="mt-4 rounded-xl bg-white p-4 text-sm leading-7 text-neutral-700">
+              <p className="mt-4 rounded-xl bg-[#FFFCF6] p-4 text-sm leading-7 text-[#525252]">
                 {question.feedback}
               </p>
             )}
@@ -569,7 +569,7 @@ function QuizEngine() {
       <div className="mt-6 flex flex-wrap gap-3">
         <button
           onClick={() => setChecked(true)}
-          className="rounded-full bg-neutral-950 px-6 py-3 text-sm font-black text-white"
+          className="rounded-full bg-[#11100E] px-6 py-3 text-sm font-black text-white"
         >
           Check answers
         </button>
@@ -579,7 +579,7 @@ function QuizEngine() {
             setSelected({});
             setChecked(false);
           }}
-          className="rounded-full border border-[#ded9cf] bg-white px-6 py-3 text-sm font-black text-neutral-950"
+          className="rounded-full border border-[#ded9cf] bg-[#FFFCF6] px-6 py-3 text-sm font-black text-[#141210]"
         >
           Reset quiz
         </button>
@@ -592,7 +592,7 @@ export default function WhatIsStatisticsLessonPage() {
   const [activeTab, setActiveTab] = useState("Lecture");
 
   return (
-    <main className="min-h-screen bg-[#f2efe7] text-neutral-950">
+    <main className="min-h-screen bg-[#f2efe7] text-[#141210]">
       <div className="mx-auto max-w-7xl px-5 py-7 md:px-8 md:py-10">
         <header className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <a
@@ -604,7 +604,7 @@ export default function WhatIsStatisticsLessonPage() {
 
           <a
             href="/courses/statistics-foundation"
-            className="rounded-full border border-[#ded9cf] bg-white px-4 py-2 text-sm font-bold text-neutral-700 hover:text-neutral-950"
+            className="rounded-full border border-[#ded9cf] bg-[#FFFCF6] px-4 py-2 text-sm font-bold text-[#525252] hover:text-[#141210]"
           >
             Statistics Foundation
           </a>
@@ -630,27 +630,27 @@ export default function WhatIsStatisticsLessonPage() {
             What is statistics?
           </h1>
 
-          <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-600">
+          <p className="mt-5 max-w-4xl text-base leading-8 text-[#5F5F5F]">
             Statistics is the discipline of learning from data. In this lesson,
             you will understand why statistics exists, how it differs from raw
             calculation, and why uncertainty is central to statistical thinking.
           </p>
 
           <div className="mt-8 grid gap-3 md:grid-cols-4">
-            <div className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4">
-              <p className="text-xs font-bold text-neutral-500">Time</p>
+            <div className="rounded-2xl border border-[#ded9cf] bg-[#FFFCF6]/80 p-4">
+              <p className="text-xs font-bold text-[#7a7063]">Time</p>
               <p className="mt-1 text-lg font-black">40–50 min</p>
             </div>
-            <div className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4">
-              <p className="text-xs font-bold text-neutral-500">Level</p>
+            <div className="rounded-2xl border border-[#ded9cf] bg-[#FFFCF6]/80 p-4">
+              <p className="text-xs font-bold text-[#7a7063]">Level</p>
               <p className="mt-1 text-lg font-black">Beginner</p>
             </div>
-            <div className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4">
-              <p className="text-xs font-bold text-neutral-500">Focus</p>
+            <div className="rounded-2xl border border-[#ded9cf] bg-[#FFFCF6]/80 p-4">
+              <p className="text-xs font-bold text-[#7a7063]">Focus</p>
               <p className="mt-1 text-lg font-black">Concepts</p>
             </div>
-            <div className="rounded-2xl border border-[#ded9cf] bg-white/80 p-4">
-              <p className="text-xs font-bold text-neutral-500">Coding</p>
+            <div className="rounded-2xl border border-[#ded9cf] bg-[#FFFCF6]/80 p-4">
+              <p className="text-xs font-bold text-[#7a7063]">Coding</p>
               <p className="mt-1 text-lg font-black">None</p>
             </div>
           </div>
@@ -664,8 +664,8 @@ export default function WhatIsStatisticsLessonPage() {
                 onClick={() => setActiveTab(tab)}
                 className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-black transition ${
                   activeTab === tab
-                    ? "bg-neutral-950 text-white"
-                    : "border border-[#ded9cf] bg-white text-neutral-600 hover:text-neutral-950"
+                    ? "bg-[#11100E] text-white"
+                    : "border border-[#ded9cf] bg-[#FFFCF6] text-[#5F5F5F] hover:text-[#141210]"
                 }`}
               >
                 {tab}
@@ -681,7 +681,7 @@ export default function WhatIsStatisticsLessonPage() {
                 eyebrow="Conversational lecture"
                 title="The first statistics class begins"
               >
-                <div className="rounded-2xl bg-[#f8f6f1] px-4 py-3 text-sm font-bold text-neutral-600">
+                <div className="rounded-2xl bg-[#f8f6f1] px-4 py-3 text-sm font-bold text-[#5F5F5F]">
                   Scene: Mr. R walks into a university classroom. Emma, Oliver,
                   James and Sophia are opening a dataset for the first time.
                 </div>
@@ -764,7 +764,7 @@ export default function WhatIsStatisticsLessonPage() {
                 <div className="grid gap-4 md:grid-cols-3">
                   <div className="rounded-2xl border border-[#ded9cf] bg-[#fbfaf6] p-5">
                     <h3 className="text-lg font-black">Data</h3>
-                    <p className="mt-2 text-sm leading-7 text-neutral-600">
+                    <p className="mt-2 text-sm leading-7 text-[#5F5F5F]">
                       Observed information: measurements, categories, counts,
                       responses, records or experimental results.
                     </p>
@@ -772,7 +772,7 @@ export default function WhatIsStatisticsLessonPage() {
 
                   <div className="rounded-2xl border border-[#ded9cf] bg-[#fbfaf6] p-5">
                     <h3 className="text-lg font-black">Variation</h3>
-                    <p className="mt-2 text-sm leading-7 text-neutral-600">
+                    <p className="mt-2 text-sm leading-7 text-[#5F5F5F]">
                       Differences between individuals, samples, repeated
                       measurements, studies or real-world conditions.
                     </p>
@@ -780,7 +780,7 @@ export default function WhatIsStatisticsLessonPage() {
 
                   <div className="rounded-2xl border border-[#ded9cf] bg-[#fbfaf6] p-5">
                     <h3 className="text-lg font-black">Uncertainty</h3>
-                    <p className="mt-2 text-sm leading-7 text-neutral-600">
+                    <p className="mt-2 text-sm leading-7 text-[#5F5F5F]">
                       The remaining doubt when we use limited data to make a
                       wider conclusion.
                     </p>
@@ -910,7 +910,7 @@ export default function WhatIsStatisticsLessonPage() {
                         </div>
                         <div>
                           <h3 className="font-black">{item.title}</h3>
-                          <p className="mt-2 text-sm leading-7 text-neutral-600">
+                          <p className="mt-2 text-sm leading-7 text-[#5F5F5F]">
                             {item.text}
                           </p>
                         </div>
@@ -1179,7 +1179,7 @@ export default function WhatIsStatisticsLessonPage() {
           {activeTab === "Quiz" && <QuizEngine />}
         </section>
 
-        <section className="mt-8 flex flex-col gap-5 rounded-[1.7rem] bg-neutral-950 p-7 text-white shadow-xl md:flex-row md:items-center md:justify-between">
+        <section className="mt-8 flex flex-col gap-5 rounded-[1.7rem] bg-[#11100E] p-7 text-white shadow-xl md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-2xl font-black tracking-tight">
               Lesson complete
@@ -1192,7 +1192,7 @@ export default function WhatIsStatisticsLessonPage() {
 
           <a
             href="/courses/statistics-foundation/modules/introduction-to-statistical-thinking/lessons/populations-samples-variables"
-            className="rounded-full bg-white px-6 py-3 text-sm font-black text-neutral-950"
+            className="rounded-full bg-[#FFFCF6] px-6 py-3 text-sm font-black text-[#141210]"
           >
             Next lesson →
           </a>

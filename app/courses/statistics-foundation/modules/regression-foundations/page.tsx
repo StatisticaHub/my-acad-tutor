@@ -281,19 +281,19 @@ const warnings = [
 
 export default function RegressionFoundationsModulePage() {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-4 py-8 text-[#111111] sm:px-5 md:px-8 md:py-16">
+    <main className="min-h-screen bg-[#F7F3EA] px-4 py-8 text-[#141210] sm:px-5 md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses/statistics-foundation")}
-          className="text-sm font-black text-[#8b1116] transition hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] transition hover:text-[#4d080e]"
         >
           ← Back to Statistics Foundation
         </a>
 
-        <section className="mt-6 overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:mt-8 md:rounded-[2.5rem]">
+        <section className="mt-6 overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm md:mt-8 md:rounded-[2.5rem]">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-5 sm:p-6 md:p-10 lg:p-12">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm md:tracking-[0.22em]">
                 Module 5 · Statistics Foundation
               </p>
 
@@ -301,7 +301,7 @@ export default function RegressionFoundationsModulePage() {
                 Regression foundations.
               </h1>
 
-              <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700 md:mt-6 md:text-lg md:leading-9">
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252] md:mt-6 md:text-lg md:leading-9">
                 This module develops regression as a framework for describing,
                 modelling and interpreting relationships. Students move from
                 scatterplots and correlation to fitted lines, residuals,
@@ -312,14 +312,14 @@ export default function RegressionFoundationsModulePage() {
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href={withBasePath(lessons[0].href)}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#8b1116] sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#11100E] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#741018] sm:w-auto md:py-4"
                 >
                   Start Lesson 5.1 →
                 </a>
 
                 <a
                   href={withBasePath("#module-lessons")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
                   View all lessons
                 </a>
@@ -329,12 +329,12 @@ export default function RegressionFoundationsModulePage() {
                 {moduleStats.map(([value, label]) => (
                   <div
                     key={label}
-                    className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4"
+                    className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4"
                   >
                     <p className="text-2xl font-black tracking-[-0.05em]">
                       {value}
                     </p>
-                    <p className="mt-1 text-xs font-black uppercase tracking-[0.14em] text-neutral-500">
+                    <p className="mt-1 text-xs font-black uppercase tracking-[0.14em] text-[#7a7063]">
                       {label}
                     </p>
                   </div>
@@ -342,7 +342,7 @@ export default function RegressionFoundationsModulePage() {
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-5 text-white md:p-8 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-5 text-white md:p-8 lg:border-l lg:border-t-0">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50 md:text-sm">
                 Module visual map
               </p>
@@ -361,9 +361,9 @@ export default function RegressionFoundationsModulePage() {
                 {regressionWorkflow.map((item) => (
                   <div
                     key={item.step}
-                    className="flex items-start gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex items-start gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {item.step}
                     </span>
                     <div>
@@ -382,8 +382,8 @@ export default function RegressionFoundationsModulePage() {
         </section>
 
         <section className="mt-6 grid gap-4 md:mt-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <article className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+          <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
               What this module builds
             </p>
 
@@ -391,7 +391,7 @@ export default function RegressionFoundationsModulePage() {
               Regression thinking beyond mechanical line fitting.
             </h2>
 
-            <p className="mt-4 text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+            <p className="mt-4 text-sm leading-7 text-[#525252] md:text-base md:leading-8">
               The module treats regression as a conceptual framework. Students
               learn how models summarise relationships, how coefficients depend
               on the chosen variables, and why diagnostics and context matter.
@@ -401,12 +401,12 @@ export default function RegressionFoundationsModulePage() {
               {moduleFocus.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] p-4"
+                  className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] p-4"
                 >
-                  <h3 className="text-sm font-black text-neutral-950">
+                  <h3 className="text-sm font-black text-[#141210]">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-7 text-neutral-700">
+                  <p className="mt-2 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
                 </div>
@@ -414,7 +414,7 @@ export default function RegressionFoundationsModulePage() {
             </div>
           </article>
 
-          <article className="rounded-[1.75rem] border border-neutral-200 bg-[#111111] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
+          <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#11100E] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
             <p className="text-xs font-black uppercase tracking-[0.2em] text-white/55 md:text-sm">
               By the end
             </p>
@@ -427,9 +427,9 @@ export default function RegressionFoundationsModulePage() {
               {outcomes.map((item, index) => (
                 <div
                   key={item}
-                  className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3"
+                  className="flex gap-4 rounded-2xl border border-white/10 bg-[#FFFCF6]/[0.06] px-4 py-3"
                 >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-xs font-black text-neutral-950">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#FFFCF6] text-xs font-black text-[#141210]">
                     {index + 1}
                   </span>
                   <p className="text-sm font-semibold leading-7 text-white/85">
@@ -441,10 +441,10 @@ export default function RegressionFoundationsModulePage() {
           </article>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-8">
+        <section className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-8">
           <div className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
                 Interpretation workflow
               </p>
 
@@ -453,7 +453,7 @@ export default function RegressionFoundationsModulePage() {
               </h2>
             </div>
 
-            <p className="text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+            <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
               Regression coefficients are not self-explanatory. Their meaning
               depends on the outcome, predictor scale, included variables, model
               form, assumptions and research goal.
@@ -464,12 +464,12 @@ export default function RegressionFoundationsModulePage() {
             {interpretationQuestions.map((item) => (
               <article
                 key={item.title}
-                className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
               >
                 <h3 className="text-lg font-black tracking-[-0.035em]">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                <p className="mt-3 text-sm leading-7 text-[#525252]">
                   {item.body}
                 </p>
               </article>
@@ -477,7 +477,7 @@ export default function RegressionFoundationsModulePage() {
           </div>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-neutral-950 p-5 text-white shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-8">
+        <section className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#11100E] p-5 text-white shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-8">
           <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50 md:text-sm">
@@ -500,7 +500,7 @@ export default function RegressionFoundationsModulePage() {
             {formulaCards.map((item) => (
               <article
                 key={item.label}
-                className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5"
+                className="rounded-[1.5rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5"
               >
                 <p className="text-xs font-black uppercase tracking-[0.16em] text-white/45">
                   {item.label}
@@ -516,19 +516,19 @@ export default function RegressionFoundationsModulePage() {
           </div>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-8">
+        <section className="mt-6 rounded-[1.75rem] border border-[#741018]/20 bg-[#fff4ef] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-8">
           <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
                 Common regression traps
               </p>
 
-              <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] text-[#8b1116] md:text-5xl">
+              <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] text-[#741018] md:text-5xl">
                 This module teaches careful modelling judgement.
               </h2>
             </div>
 
-            <p className="text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+            <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
               Regression is powerful, but it is also easy to overinterpret.
               Students learn to avoid common mistakes before moving into more
               applied modelling.
@@ -539,12 +539,12 @@ export default function RegressionFoundationsModulePage() {
             {warnings.map((item) => (
               <article
                 key={item.title}
-                className="rounded-[1.5rem] border border-[#8b1116]/20 bg-white p-5"
+                className="rounded-[1.5rem] border border-[#741018]/20 bg-[#FFFCF6] p-5"
               >
-                <h3 className="text-lg font-black tracking-[-0.035em] text-[#8b1116]">
+                <h3 className="text-lg font-black tracking-[-0.035em] text-[#741018]">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                <p className="mt-3 text-sm leading-7 text-[#525252]">
                   {item.body}
                 </p>
               </article>
@@ -554,11 +554,11 @@ export default function RegressionFoundationsModulePage() {
 
         <section
           id="module-lessons"
-          className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
+          className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
         >
           <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
                 Module lessons
               </p>
 
@@ -567,7 +567,7 @@ export default function RegressionFoundationsModulePage() {
               </h2>
             </div>
 
-            <p className="text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+            <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
               The lessons move from association to simple regression, least
               squares, multiple regression, diagnostics and logistic regression.
               Each lesson contains lecture, detailed notes, interactive labs,
@@ -580,24 +580,24 @@ export default function RegressionFoundationsModulePage() {
               <a
                 key={lesson.number}
                 href={withBasePath(lesson.href)}
-                className="group overflow-hidden rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] transition hover:-translate-y-1 hover:bg-white hover:shadow-md md:rounded-[2rem]"
+                className="group overflow-hidden rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] transition hover:-translate-y-1 hover:bg-[#FFFCF6] hover:shadow-md md:rounded-[2rem]"
               >
                 <div className="grid gap-0 lg:grid-cols-[0.22fr_1fr_0.34fr]">
-                  <div className="flex items-center justify-between border-b border-neutral-200 bg-white p-5 lg:block lg:border-b-0 lg:border-r lg:p-6">
-                    <p className="text-4xl font-black tracking-[-0.06em] text-[#8b1116] md:text-5xl">
+                  <div className="flex items-center justify-between border-b border-[#E4DED2] bg-[#FFFCF6] p-5 lg:block lg:border-b-0 lg:border-r lg:p-6">
+                    <p className="text-4xl font-black tracking-[-0.06em] text-[#741018] md:text-5xl">
                       {lesson.number}
                     </p>
-                    <span className="rounded-full bg-[#f7f4ee] px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-neutral-600 lg:mt-4 lg:inline-block">
+                    <span className="rounded-full bg-[#F7F3EA] px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-[#5F5F5F] lg:mt-4 lg:inline-block">
                       {lesson.duration}
                     </span>
                   </div>
 
                   <div className="p-5 md:p-6">
                     <div className="flex flex-wrap gap-2">
-                      <span className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-white">
+                      <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-white">
                         {lesson.status}
                       </span>
-                      <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-[#8b1116]">
+                      <span className="rounded-full border border-[#E4DED2] bg-[#FFFCF6] px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-[#741018]">
                         {lesson.theme}
                       </span>
                     </div>
@@ -606,7 +606,7 @@ export default function RegressionFoundationsModulePage() {
                       {lesson.title}
                     </h3>
 
-                    <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+                    <p className="mt-3 max-w-3xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
                       {lesson.description}
                     </p>
 
@@ -614,7 +614,7 @@ export default function RegressionFoundationsModulePage() {
                       {lesson.skills.map((skill) => (
                         <span
                           key={skill}
-                          className="rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-xs font-bold text-neutral-600"
+                          className="rounded-full border border-[#E4DED2] bg-[#FFFCF6] px-3 py-1.5 text-xs font-bold text-[#5F5F5F]"
                         >
                           {skill}
                         </span>
@@ -622,11 +622,11 @@ export default function RegressionFoundationsModulePage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-neutral-200 bg-white p-5 lg:block lg:border-l lg:border-t-0 lg:p-6">
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+                  <div className="flex items-center justify-between border-t border-[#E4DED2] bg-[#FFFCF6] p-5 lg:block lg:border-l lg:border-t-0 lg:p-6">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#7a7063]">
                       Open lesson
                     </p>
-                    <p className="mt-0 text-sm font-black text-[#8b1116] transition group-hover:translate-x-1 lg:mt-4">
+                    <p className="mt-0 text-sm font-black text-[#741018] transition group-hover:translate-x-1 lg:mt-4">
                       Start →
                     </p>
                   </div>
@@ -637,8 +637,8 @@ export default function RegressionFoundationsModulePage() {
         </section>
 
         <section className="mt-6 grid gap-4 md:mt-8 lg:grid-cols-[1fr_1fr]">
-          <article className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
+          <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018]">
               How to study this module
             </p>
 
@@ -646,7 +646,7 @@ export default function RegressionFoundationsModulePage() {
               Do not memorise coefficients. Interpret the comparison.
             </h2>
 
-            <p className="mt-4 text-sm leading-7 text-neutral-700">
+            <p className="mt-4 text-sm leading-7 text-[#525252]">
               For every regression output, ask what outcome is being modelled,
               what one-unit change means, what variables are adjusted for, what
               residuals show and whether the model supports only association or
@@ -654,16 +654,16 @@ export default function RegressionFoundationsModulePage() {
             </p>
           </article>
 
-          <article className="rounded-[1.75rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
+          <article className="rounded-[1.75rem] border border-[#741018]/20 bg-[#fff4ef] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018]">
               Course completion
             </p>
 
-            <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] text-[#8b1116]">
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] text-[#741018]">
               Ready to move into applied modelling and real study questions.
             </h2>
 
-            <p className="mt-4 text-sm leading-7 text-neutral-700">
+            <p className="mt-4 text-sm leading-7 text-[#525252]">
               After this module, students should understand regression as a
               careful modelling framework. They can now approach applied
               statistical modelling with stronger foundations in association,
@@ -672,7 +672,7 @@ export default function RegressionFoundationsModulePage() {
 
             <a
               href={withBasePath("/courses/statistics-foundation")}
-              className="mt-6 inline-flex rounded-full bg-[#8b1116] px-5 py-3 text-sm font-black text-white transition hover:bg-[#5f0b0f]"
+              className="mt-6 inline-flex rounded-full bg-[#741018] px-5 py-3 text-sm font-black text-white transition hover:bg-[#4d080e]"
             >
               Back to course →
             </a>

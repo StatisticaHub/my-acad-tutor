@@ -424,7 +424,7 @@ function StatCard({
   detail: string;
 }) {
   return (
-    <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-4">
+    <div className="rounded-[1.5rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4">
       <p className="text-3xl font-black tracking-[-0.06em]">{value}</p>
       <p className="mt-1 text-xs font-black uppercase tracking-[0.14em] text-white/55">
         {label}
@@ -446,19 +446,19 @@ function DialogueLine({
   tone?: "dark" | "amber";
 }) {
   return (
-    <div className="flex gap-4 rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-4 md:p-5">
+    <div className="flex gap-4 rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 md:p-5">
       <div
         className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-sm font-black ${
           tone === "amber"
             ? "bg-[#fff4d7] text-[#7c3f00]"
-            : "bg-neutral-950 text-white"
+            : "bg-[#11100E] text-white"
         }`}
       >
         {initials}
       </div>
       <div>
-        <p className="text-sm font-black text-neutral-950">{name}</p>
-        <div className="mt-1 text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+        <p className="text-sm font-black text-[#141210]">{name}</p>
+        <div className="mt-1 text-sm leading-7 text-[#525252] md:text-base md:leading-8">
           {children}
         </div>
       </div>
@@ -477,14 +477,14 @@ function SectionTitle({
 }) {
   return (
     <div>
-      <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+      <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
         {eyebrow}
       </p>
       <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
         {title}
       </h2>
       {body ? (
-        <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+        <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
           {body}
         </p>
       ) : null}
@@ -525,7 +525,7 @@ function Slider({
         step={step}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="w-full accent-neutral-950"
+        className="w-full accent-stone-950"
       />
     </label>
   );
@@ -539,9 +539,9 @@ function MetricBox({
   value: number | string;
 }) {
   return (
-    <div className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] p-4">
+    <div className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] p-4">
       <p className="text-3xl font-black tracking-[-0.06em]">{value}</p>
-      <p className="mt-1 text-xs font-black uppercase tracking-[0.13em] text-neutral-500">
+      <p className="mt-1 text-xs font-black uppercase tracking-[0.13em] text-[#7a7063]">
         {label}
       </p>
     </div>
@@ -550,11 +550,11 @@ function MetricBox({
 
 function ConceptFormula() {
   return (
-    <div className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5 md:p-6">
-      <p className="text-sm font-black uppercase tracking-[0.18em] text-neutral-500">
+    <div className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5 md:p-6">
+      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#7a7063]">
         Prediction notation
       </p>
-      <div className="mt-4 rounded-[1.5rem] bg-neutral-950 p-5 font-mono text-sm leading-7 text-white md:text-base">
+      <div className="mt-4 rounded-[1.5rem] bg-[#11100E] p-5 font-mono text-sm leading-7 text-white md:text-base">
         Data: (X₁, Y₁), (X₂, Y₂), ..., (Xₙ, Yₙ)
         <br />
         Predictors: X = patient measurements
@@ -565,7 +565,7 @@ function ConceptFormula() {
         <br />
         Probability goal: estimate P(Y = 1 | X)
       </div>
-      <p className="mt-4 text-sm leading-7 text-neutral-700">
+      <p className="mt-4 text-sm leading-7 text-[#525252]">
         The model is trying to learn a rule from previous patients and then use
         that rule to estimate risk for a new patient. The notation is compact,
         but the clinical meaning must stay clear.
@@ -587,8 +587,8 @@ function VisualCard({
     <div
       className={`rounded-[1.5rem] border p-5 ${
         dark
-          ? "border-neutral-950 bg-neutral-950 text-white"
-          : "border-neutral-200 bg-white text-neutral-950"
+          ? "border-stone-950 bg-[#11100E] text-white"
+          : "border-[#E4DED2] bg-[#FFFCF6] text-[#141210]"
       }`}
     >
       <p className="text-lg font-black tracking-[-0.03em]">{title}</p>
@@ -598,8 +598,8 @@ function VisualCard({
             key={item}
             className={`rounded-full px-3 py-2 text-xs font-black uppercase tracking-[0.12em] ${
               dark
-                ? "bg-white/10 text-white/75"
-                : "bg-[#f7f4ee] text-neutral-600"
+                ? "bg-[#FFFCF6]/10 text-white/75"
+                : "bg-[#F7F3EA] text-[#5F5F5F]"
             }`}
           >
             {item}
@@ -620,8 +620,8 @@ function Arrow() {
 
 function PredictionVisual() {
   return (
-    <div className="mt-8 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5 md:p-7">
-      <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
+    <div className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5 md:p-7">
+      <p className="text-sm font-black uppercase tracking-[0.2em] text-[#741018]">
         Visual intuition
       </p>
 
@@ -641,7 +641,7 @@ function PredictionVisual() {
         <VisualCard title="Output" items={["Risk", "Class", "Uncertainty"]} />
       </div>
 
-      <p className="mt-6 text-sm leading-7 text-neutral-700">
+      <p className="mt-6 text-sm leading-7 text-[#525252]">
         The model does not magically understand medicine. It learns a
         mathematical pattern from examples. The biostatistical task is to check
         whether the pattern is valid, clinically timed, interpretable and useful.
@@ -663,8 +663,8 @@ function RiskExplorer() {
   const riskPercent = Math.round(risk * 100);
 
   return (
-    <div className="rounded-[2rem] border border-neutral-200 bg-white p-5 shadow-sm md:p-7">
-      <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
+    <div className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:p-7">
+      <p className="text-sm font-black uppercase tracking-[0.2em] text-[#741018]">
         Interactive risk idea
       </p>
 
@@ -672,7 +672,7 @@ function RiskExplorer() {
         See how a prediction rule changes estimated risk.
       </h3>
 
-      <p className="mt-3 text-sm leading-7 text-neutral-700">
+      <p className="mt-3 text-sm leading-7 text-[#525252]">
         This is a simplified teaching model. It is not a clinical tool. It shows
         the idea that a prediction model combines several patient measurements
         into a risk estimate.
@@ -709,7 +709,7 @@ function RiskExplorer() {
           />
         </div>
 
-        <div className="rounded-[1.75rem] bg-neutral-950 p-6 text-white">
+        <div className="rounded-[1.75rem] bg-[#11100E] p-6 text-white">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-white/45">
             Estimated risk
           </p>
@@ -717,9 +717,9 @@ function RiskExplorer() {
             {riskPercent}%
           </p>
 
-          <div className="mt-6 h-4 overflow-hidden rounded-full bg-white/10">
+          <div className="mt-6 h-4 overflow-hidden rounded-full bg-[#FFFCF6]/10">
             <div
-              className="h-full rounded-full bg-white"
+              className="h-full rounded-full bg-[#FFFCF6]"
               style={{ width: `${riskPercent}%` }}
             />
           </div>
@@ -768,8 +768,8 @@ function ThresholdExplorer() {
   ).length;
 
   return (
-    <div className="rounded-[2rem] border border-neutral-200 bg-white p-5 shadow-sm md:p-7">
-      <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
+    <div className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:p-7">
+      <p className="text-sm font-black uppercase tracking-[0.2em] text-[#741018]">
         Threshold lab
       </p>
 
@@ -777,7 +777,7 @@ function ThresholdExplorer() {
         Risk is not the same thing as classification.
       </h3>
 
-      <p className="mt-3 text-sm leading-7 text-neutral-700">
+      <p className="mt-3 text-sm leading-7 text-[#525252]">
         A model may output a risk of 0.37, 0.55 or 0.88. A threshold turns that
         risk into a decision such as “screen” or “do not screen”. Changing the
         threshold changes false positives and false negatives.
@@ -806,19 +806,19 @@ function ThresholdExplorer() {
         {classified.map((patient) => (
           <div
             key={patient.id}
-            className="grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-2xl border border-neutral-200 bg-[#f7f4ee] p-3 text-sm font-bold"
+            className="grid grid-cols-[auto_1fr_auto] items-center gap-3 rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] p-3 text-sm font-bold"
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-neutral-950 text-white">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#11100E] text-white">
               {patient.id}
             </span>
             <div>
-              <div className="h-3 overflow-hidden rounded-full bg-white">
+              <div className="h-3 overflow-hidden rounded-full bg-[#FFFCF6]">
                 <div
-                  className="h-full rounded-full bg-neutral-950"
+                  className="h-full rounded-full bg-[#11100E]"
                   style={{ width: `${patient.risk}%` }}
                 />
               </div>
-              <p className="mt-1 text-xs text-neutral-600">
+              <p className="mt-1 text-xs text-[#5F5F5F]">
                 Risk {patient.risk}% · observed{" "}
                 {patient.outcome === 1 ? "positive" : "negative"}
               </p>
@@ -827,7 +827,7 @@ function ThresholdExplorer() {
               className={`rounded-full px-3 py-1 text-xs uppercase tracking-[0.12em] ${
                 patient.predicted === 1
                   ? "bg-[#fff4d7] text-[#7c3f00]"
-                  : "bg-white text-neutral-600"
+                  : "bg-[#FFFCF6] text-[#5F5F5F]"
               }`}
             >
               {patient.predicted === 1 ? "Flag" : "No flag"}
@@ -880,11 +880,11 @@ function WebRCodeRunner({
   }
 
   return (
-    <div className="rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
-      <div className="border-b border-neutral-200 p-5 md:p-6">
+    <div className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
+      <div className="border-b border-[#E4DED2] p-5 md:p-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.2em] text-[#8b1116]">
+            <p className="text-sm font-black uppercase tracking-[0.2em] text-[#741018]">
               Browser R console
             </p>
             <h3 className="mt-2 text-2xl font-black tracking-[-0.04em]">
@@ -896,7 +896,7 @@ function WebRCodeRunner({
             <button
               onClick={runCode}
               disabled={isRunning}
-              className="rounded-full bg-neutral-950 px-5 py-3 text-sm font-black text-white transition hover:bg-[#8b1116] disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-full bg-[#11100E] px-5 py-3 text-sm font-black text-white transition hover:bg-[#741018] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isRunning ? "Running..." : "Run R code"}
             </button>
@@ -909,7 +909,7 @@ function WebRCodeRunner({
                 );
                 onResults(defaultRResults);
               }}
-              className="rounded-full border border-neutral-300 bg-white px-5 py-3 text-sm font-black text-neutral-950 transition hover:border-neutral-950"
+              className="rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-5 py-3 text-sm font-black text-[#141210] transition hover:border-stone-950"
             >
               Reset
             </button>
@@ -918,20 +918,20 @@ function WebRCodeRunner({
       </div>
 
       <div className="grid lg:grid-cols-2">
-        <div className="border-b border-neutral-200 lg:border-b-0 lg:border-r">
+        <div className="border-b border-[#E4DED2] lg:border-b-0 lg:border-r">
           <textarea
             value={code}
             onChange={(event) => setCode(event.target.value)}
             spellCheck={false}
-            className="min-h-[620px] w-full resize-y bg-[#111111] p-5 font-mono text-sm leading-6 text-white outline-none md:p-6"
+            className="min-h-[620px] w-full resize-y bg-[#11100E] p-5 font-mono text-sm leading-6 text-white outline-none md:p-6"
           />
         </div>
 
-        <div className="min-h-[620px] bg-[#f7f4ee] p-5 md:p-6">
-          <p className="text-sm font-black uppercase tracking-[0.16em] text-neutral-500">
+        <div className="min-h-[620px] bg-[#F7F3EA] p-5 md:p-6">
+          <p className="text-sm font-black uppercase tracking-[0.16em] text-[#7a7063]">
             Console output
           </p>
-          <pre className="mt-4 max-h-[560px] overflow-auto whitespace-pre-wrap rounded-[1.5rem] bg-white p-5 font-mono text-xs leading-6 text-neutral-800 ring-1 ring-neutral-200">
+          <pre className="mt-4 max-h-[560px] overflow-auto whitespace-pre-wrap rounded-[1.5rem] bg-[#FFFCF6] p-5 font-mono text-xs leading-6 text-neutral-800 ring-1 ring-neutral-200">
             {output}
           </pre>
         </div>
@@ -942,7 +942,7 @@ function WebRCodeRunner({
 
 function DetailedNotes() {
   return (
-    <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+    <section className="mt-8 rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
       <SectionTitle
         eyebrow="Detailed lecture notes"
         title="Machine learning as a biostatistical prediction system."
@@ -952,15 +952,15 @@ function DetailedNotes() {
       <div className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <ConceptFormula />
 
-        <div className="rounded-[2rem] border border-neutral-200 bg-white p-5 md:p-6">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-neutral-500">
+        <div className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 md:p-6">
+          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#7a7063]">
             Learning objectives
           </p>
           <div className="mt-4 grid gap-3">
             {learningObjectives.map((objective, index) => (
               <div
                 key={objective}
-                className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-bold leading-6 text-neutral-700"
+                className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-bold leading-6 text-[#525252]"
               >
                 {index + 1}. {objective}
               </div>
@@ -969,9 +969,9 @@ function DetailedNotes() {
         </div>
       </div>
 
-      <div className="mt-8 space-y-8 text-base leading-8 text-neutral-700">
-        <article className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-          <h3 className="text-2xl font-black tracking-[-0.035em] text-neutral-950">
+      <div className="mt-8 space-y-8 text-base leading-8 text-[#525252]">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
+          <h3 className="text-2xl font-black tracking-[-0.035em] text-[#141210]">
             1. Machine learning starts with a prediction task
           </h3>
 
@@ -990,7 +990,7 @@ function DetailedNotes() {
             estimate risk for patients not used to train the model.
           </p>
 
-          <div className="mt-5 rounded-[1.5rem] bg-neutral-950 p-5 text-white">
+          <div className="mt-5 rounded-[1.5rem] bg-[#11100E] p-5 text-white">
             <p className="font-mono text-sm leading-7">
               Question: Can routinely measured patient variables predict
               diabetes status?
@@ -1006,8 +1006,8 @@ function DetailedNotes() {
           </div>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm">
-          <h3 className="text-2xl font-black tracking-[-0.035em] text-neutral-950">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm">
+          <h3 className="text-2xl font-black tracking-[-0.035em] text-[#141210]">
             2. The data structure: rows, columns, outcome and predictors
           </h3>
 
@@ -1026,16 +1026,16 @@ function DetailedNotes() {
           </p>
 
           <div className="mt-5 grid gap-4 md:grid-cols-2">
-            <div className="rounded-[1.5rem] bg-[#f7f4ee] p-5">
-              <p className="font-black text-neutral-950">Good question</p>
+            <div className="rounded-[1.5rem] bg-[#F7F3EA] p-5">
+              <p className="font-black text-[#141210]">Good question</p>
               <p className="mt-2 text-sm leading-7">
                 Was glucose measured before the prediction was supposed to be
                 made?
               </p>
             </div>
 
-            <div className="rounded-[1.5rem] bg-[#f7f4ee] p-5">
-              <p className="font-black text-neutral-950">Dangerous question</p>
+            <div className="rounded-[1.5rem] bg-[#F7F3EA] p-5">
+              <p className="font-black text-[#141210]">Dangerous question</p>
               <p className="mt-2 text-sm leading-7">
                 Can I include any variable that improves accuracy, even if it was
                 recorded after diagnosis?
@@ -1044,8 +1044,8 @@ function DetailedNotes() {
           </div>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-          <h3 className="text-2xl font-black tracking-[-0.035em] text-neutral-950">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
+          <h3 className="text-2xl font-black tracking-[-0.035em] text-[#141210]">
             3. Prediction is different from explanation and causation
           </h3>
 
@@ -1074,8 +1074,8 @@ function DetailedNotes() {
           </div>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm">
-          <h3 className="text-2xl font-black tracking-[-0.035em] text-neutral-950">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm">
+          <h3 className="text-2xl font-black tracking-[-0.035em] text-[#141210]">
             4. Why train/test splitting matters
           </h3>
 
@@ -1096,8 +1096,8 @@ function DetailedNotes() {
           </p>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-          <h3 className="text-2xl font-black tracking-[-0.035em] text-neutral-950">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
+          <h3 className="text-2xl font-black tracking-[-0.035em] text-[#141210]">
             5. Logistic regression as a first prediction model
           </h3>
 
@@ -1108,7 +1108,7 @@ function DetailedNotes() {
             predictors.
           </p>
 
-          <div className="mt-5 rounded-[1.5rem] bg-neutral-950 p-5 text-white">
+          <div className="mt-5 rounded-[1.5rem] bg-[#11100E] p-5 text-white">
             <p className="font-mono text-sm leading-7">
               logit[P(Y = 1 | X)] = β₀ + β₁ glucose + β₂ mass + β₃ age
               <br />
@@ -1124,8 +1124,8 @@ function DetailedNotes() {
           </p>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm">
-          <h3 className="text-2xl font-black tracking-[-0.035em] text-neutral-950">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm">
+          <h3 className="text-2xl font-black tracking-[-0.035em] text-[#141210]">
             6. Risk scores become classifications only after a threshold
           </h3>
 
@@ -1145,8 +1145,8 @@ function DetailedNotes() {
           </p>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-          <h3 className="text-2xl font-black tracking-[-0.035em] text-neutral-950">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
+          <h3 className="text-2xl font-black tracking-[-0.035em] text-[#141210]">
             7. Accuracy, sensitivity and specificity answer different questions
           </h3>
 
@@ -1159,21 +1159,21 @@ function DetailedNotes() {
           </p>
 
           <div className="mt-5 grid gap-4 md:grid-cols-3">
-            <div className="rounded-[1.5rem] bg-white p-5">
+            <div className="rounded-[1.5rem] bg-[#FFFCF6] p-5">
               <p className="font-black">Accuracy</p>
               <p className="mt-2 text-sm leading-7">
                 Overall correctness across positive and negative cases.
               </p>
             </div>
 
-            <div className="rounded-[1.5rem] bg-white p-5">
+            <div className="rounded-[1.5rem] bg-[#FFFCF6] p-5">
               <p className="font-black">Sensitivity</p>
               <p className="mt-2 text-sm leading-7">
                 Ability to detect patients who truly have the outcome.
               </p>
             </div>
 
-            <div className="rounded-[1.5rem] bg-white p-5">
+            <div className="rounded-[1.5rem] bg-[#FFFCF6] p-5">
               <p className="font-black">Specificity</p>
               <p className="mt-2 text-sm leading-7">
                 Ability to correctly rule out patients who do not have the
@@ -1183,7 +1183,7 @@ function DetailedNotes() {
           </div>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white">
           <h3 className="text-2xl font-black tracking-[-0.035em]">
             8. What this lesson does not prove
           </h3>
@@ -1224,7 +1224,7 @@ function OutputDrivenReport({ results }: { results: RResults }) {
       : 0;
 
   return (
-    <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+    <section className="mt-8 rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
       <SectionTitle
         eyebrow="Output-driven report"
         title="Interpreting the R output as a biostatistical report."
@@ -1253,8 +1253,8 @@ function OutputDrivenReport({ results }: { results: RResults }) {
       </div>
 
       <div className="mt-8 grid gap-6">
-        <article className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6 md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
             1. Dataset structure
           </p>
 
@@ -1263,7 +1263,7 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             {results.columns} variables.
           </h3>
 
-          <p className="mt-4 text-base leading-8 text-neutral-700">
+          <p className="mt-4 text-base leading-8 text-[#525252]">
             The first output confirms that the dataset has{" "}
             <strong>{results.rows}</strong> rows and{" "}
             <strong>{results.columns}</strong> columns. In this lesson, each row
@@ -1273,8 +1273,8 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             diabetes.
           </p>
 
-          <p className="mt-4 rounded-[1.5rem] bg-white p-5 text-sm leading-7 text-neutral-700">
-            <span className="font-black text-neutral-950">
+          <p className="mt-4 rounded-[1.5rem] bg-[#FFFCF6] p-5 text-sm leading-7 text-[#525252]">
+            <span className="font-black text-[#141210]">
               Interpretation:
             </span>{" "}
             Before fitting a model, we must know what each row and variable
@@ -1284,8 +1284,8 @@ function OutputDrivenReport({ results }: { results: RResults }) {
           </p>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
             2. Outcome distribution
           </p>
 
@@ -1293,7 +1293,7 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             The outcome is almost balanced in this run.
           </h3>
 
-          <p className="mt-4 text-base leading-8 text-neutral-700">
+          <p className="mt-4 text-base leading-8 text-[#525252]">
             The R output shows <strong>{results.negativeCount}</strong>{" "}
             diabetes-negative observations (
             <strong>{results.negativePercent}%</strong>) and{" "}
@@ -1302,8 +1302,8 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             means the two outcome groups are close in size.
           </p>
 
-          <p className="mt-4 rounded-[1.5rem] bg-[#f7f4ee] p-5 text-sm leading-7 text-neutral-700">
-            <span className="font-black text-neutral-950">
+          <p className="mt-4 rounded-[1.5rem] bg-[#F7F3EA] p-5 text-sm leading-7 text-[#525252]">
+            <span className="font-black text-[#141210]">
               Interpretation:
             </span>{" "}
             A balanced outcome is helpful for teaching because the model has a
@@ -1313,8 +1313,8 @@ function OutputDrivenReport({ results }: { results: RResults }) {
           </p>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6 md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
             3. Predictor signal
           </p>
 
@@ -1322,7 +1322,7 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             Glucose, BMI/mass and age differ between outcome groups.
           </h3>
 
-          <p className="mt-4 text-base leading-8 text-neutral-700">
+          <p className="mt-4 text-base leading-8 text-[#525252]">
             The group summary shows that the mean glucose level is higher among
             diabetes-positive observations than diabetes-negative observations.
             In the output, the negative group has mean glucose around{" "}
@@ -1331,8 +1331,8 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             average in the positive group.
           </p>
 
-          <p className="mt-4 rounded-[1.5rem] bg-white p-5 text-sm leading-7 text-neutral-700">
-            <span className="font-black text-neutral-950">
+          <p className="mt-4 rounded-[1.5rem] bg-[#FFFCF6] p-5 text-sm leading-7 text-[#525252]">
+            <span className="font-black text-[#141210]">
               Interpretation:
             </span>{" "}
             These differences suggest that the predictors contain useful
@@ -1342,7 +1342,7 @@ function OutputDrivenReport({ results }: { results: RResults }) {
           </p>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white md:p-8">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-white/50">
             4. Training and test split
           </p>
@@ -1360,7 +1360,7 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             make predictions on observations it did not use during fitting.
           </p>
 
-          <p className="mt-4 rounded-[1.5rem] bg-white/[0.08] p-5 text-sm leading-7 text-white/70">
+          <p className="mt-4 rounded-[1.5rem] bg-[#FFFCF6]/[0.08] p-5 text-sm leading-7 text-white/70">
             <span className="font-black text-white">Interpretation:</span> This
             is the first validation step. Test-set performance is more honest
             than training-set performance because it asks whether the model
@@ -1370,8 +1370,8 @@ function OutputDrivenReport({ results }: { results: RResults }) {
           </p>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
             5. Logistic regression model
           </p>
 
@@ -1379,7 +1379,7 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             The model estimates diabetes risk using glucose, BMI/mass and age.
           </h3>
 
-          <p className="mt-4 text-base leading-8 text-neutral-700">
+          <p className="mt-4 text-base leading-8 text-[#525252]">
             The model fitted by the script is a logistic regression model with a
             binary outcome. The fitted equation has an intercept and coefficients
             for glucose, mass and age. The positive coefficients mean that, in
@@ -1387,14 +1387,14 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             associated with higher predicted probability of diabetes.
           </p>
 
-          <div className="mt-5 rounded-[1.5rem] bg-neutral-950 p-5 text-white">
+          <div className="mt-5 rounded-[1.5rem] bg-[#11100E] p-5 text-white">
             <p className="font-mono text-sm leading-7">
               logit[P(diabetes = 1)] = β₀ + β₁ glucose + β₂ mass + β₃ age
             </p>
           </div>
 
-          <p className="mt-4 rounded-[1.5rem] bg-[#f7f4ee] p-5 text-sm leading-7 text-neutral-700">
-            <span className="font-black text-neutral-950">
+          <p className="mt-4 rounded-[1.5rem] bg-[#F7F3EA] p-5 text-sm leading-7 text-[#525252]">
+            <span className="font-black text-[#141210]">
               Interpretation:
             </span>{" "}
             Logistic regression is used here as a transparent baseline model. It
@@ -1404,8 +1404,8 @@ function OutputDrivenReport({ results }: { results: RResults }) {
           </p>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6 md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
             6. Odds ratio interpretation
           </p>
 
@@ -1414,7 +1414,7 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             {results.massOR}, and age {results.ageOR}.
           </h3>
 
-          <p className="mt-4 text-base leading-8 text-neutral-700">
+          <p className="mt-4 text-base leading-8 text-[#525252]">
             The script exponentiates the logistic regression coefficients to
             produce approximate odds ratios. In this output, the odds ratio for
             glucose is <strong>{results.glucoseOR}</strong>, for BMI/mass is{" "}
@@ -1422,8 +1422,8 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             <strong>{results.ageOR}</strong>.
           </p>
 
-          <p className="mt-4 rounded-[1.5rem] bg-white p-5 text-sm leading-7 text-neutral-700">
-            <span className="font-black text-neutral-950">
+          <p className="mt-4 rounded-[1.5rem] bg-[#FFFCF6] p-5 text-sm leading-7 text-[#525252]">
+            <span className="font-black text-[#141210]">
               Interpretation:
             </span>{" "}
             Holding the other model variables fixed, a one-unit increase in
@@ -1436,8 +1436,8 @@ function OutputDrivenReport({ results }: { results: RResults }) {
           </p>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
             7. Confusion matrix
           </p>
 
@@ -1446,9 +1446,9 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             incorrect classifications.
           </h3>
 
-          <div className="mt-5 overflow-hidden rounded-[1.5rem] border border-neutral-200">
+          <div className="mt-5 overflow-hidden rounded-[1.5rem] border border-[#E4DED2]">
             <table className="w-full text-left text-sm">
-              <thead className="bg-neutral-950 text-white">
+              <thead className="bg-[#11100E] text-white">
                 <tr>
                   <th className="px-4 py-3">Observed</th>
                   <th className="px-4 py-3">Predicted 0</th>
@@ -1456,12 +1456,12 @@ function OutputDrivenReport({ results }: { results: RResults }) {
                   <th className="px-4 py-3">Meaning</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-200 bg-white">
+              <tbody className="divide-y divide-neutral-200 bg-[#FFFCF6]">
                 <tr>
                   <td className="px-4 py-3 font-bold">0</td>
                   <td className="px-4 py-3">{results.tn}</td>
                   <td className="px-4 py-3">{results.fp}</td>
-                  <td className="px-4 py-3 text-neutral-700">
+                  <td className="px-4 py-3 text-[#525252]">
                     True negatives and false positives
                   </td>
                 </tr>
@@ -1469,7 +1469,7 @@ function OutputDrivenReport({ results }: { results: RResults }) {
                   <td className="px-4 py-3 font-bold">1</td>
                   <td className="px-4 py-3">{results.fn}</td>
                   <td className="px-4 py-3">{results.tp}</td>
-                  <td className="px-4 py-3 text-neutral-700">
+                  <td className="px-4 py-3 text-[#525252]">
                     False negatives and true positives
                   </td>
                 </tr>
@@ -1477,8 +1477,8 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             </table>
           </div>
 
-          <p className="mt-5 rounded-[1.5rem] bg-[#f7f4ee] p-5 text-sm leading-7 text-neutral-700">
-            <span className="font-black text-neutral-950">
+          <p className="mt-5 rounded-[1.5rem] bg-[#F7F3EA] p-5 text-sm leading-7 text-[#525252]">
+            <span className="font-black text-[#141210]">
               Interpretation:
             </span>{" "}
             The model correctly classified {results.tn} diabetes-negative test
@@ -1490,8 +1490,8 @@ function OutputDrivenReport({ results }: { results: RResults }) {
           </p>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 md:p-8">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6 md:p-8">
+          <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
             8. Performance metrics
           </p>
 
@@ -1501,45 +1501,45 @@ function OutputDrivenReport({ results }: { results: RResults }) {
           </h3>
 
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <div className="rounded-[1.5rem] bg-white p-5">
+            <div className="rounded-[1.5rem] bg-[#FFFCF6] p-5">
               <p className="text-4xl font-black tracking-[-0.06em]">
                 {accuracyPercent}%
               </p>
-              <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-neutral-500">
+              <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-[#7a7063]">
                 Accuracy
               </p>
-              <p className="mt-3 text-sm leading-7 text-neutral-700">
+              <p className="mt-3 text-sm leading-7 text-[#525252]">
                 Overall proportion of test observations classified correctly.
               </p>
             </div>
 
-            <div className="rounded-[1.5rem] bg-white p-5">
+            <div className="rounded-[1.5rem] bg-[#FFFCF6] p-5">
               <p className="text-4xl font-black tracking-[-0.06em]">
                 {sensitivityPercent}%
               </p>
-              <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-neutral-500">
+              <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-[#7a7063]">
                 Sensitivity
               </p>
-              <p className="mt-3 text-sm leading-7 text-neutral-700">
+              <p className="mt-3 text-sm leading-7 text-[#525252]">
                 Proportion of true diabetes-positive cases detected by the model.
               </p>
             </div>
 
-            <div className="rounded-[1.5rem] bg-white p-5">
+            <div className="rounded-[1.5rem] bg-[#FFFCF6] p-5">
               <p className="text-4xl font-black tracking-[-0.06em]">
                 {specificityPercent}%
               </p>
-              <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-neutral-500">
+              <p className="mt-2 text-xs font-black uppercase tracking-[0.14em] text-[#7a7063]">
                 Specificity
               </p>
-              <p className="mt-3 text-sm leading-7 text-neutral-700">
+              <p className="mt-3 text-sm leading-7 text-[#525252]">
                 Proportion of true diabetes-negative cases correctly ruled out.
               </p>
             </div>
           </div>
 
-          <p className="mt-5 rounded-[1.5rem] bg-white p-5 text-sm leading-7 text-neutral-700">
-            <span className="font-black text-neutral-950">
+          <p className="mt-5 rounded-[1.5rem] bg-[#FFFCF6] p-5 text-sm leading-7 text-[#525252]">
+            <span className="font-black text-[#141210]">
               Interpretation:
             </span>{" "}
             The model performs moderately well in this test split. It detects
@@ -1550,7 +1550,7 @@ function OutputDrivenReport({ results }: { results: RResults }) {
           </p>
         </article>
 
-        <article className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white md:p-8">
+        <article className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-white/50">
             9. Responsible conclusion
           </p>
@@ -1566,7 +1566,7 @@ function OutputDrivenReport({ results }: { results: RResults }) {
             this output alone is not enough for clinical deployment.
           </p>
 
-          <p className="mt-4 rounded-[1.5rem] bg-white/[0.08] p-5 text-sm leading-7 text-white/70">
+          <p className="mt-4 rounded-[1.5rem] bg-[#FFFCF6]/[0.08] p-5 text-sm leading-7 text-white/70">
             Further work would require stronger validation, calibration
             assessment, missing-data review, threshold justification, external
             validation and clinical usefulness evaluation. The model should not
@@ -1576,7 +1576,7 @@ function OutputDrivenReport({ results }: { results: RResults }) {
         </article>
       </div>
 
-      <div className="mt-8 rounded-[2rem] bg-neutral-950 p-6 text-white md:p-8">
+      <div className="mt-8 rounded-[2rem] bg-[#11100E] p-6 text-white md:p-8">
         <p className="text-sm font-black uppercase tracking-[0.2em] text-white/50">
           Full report paragraph
         </p>
@@ -1620,9 +1620,9 @@ function Quiz() {
         return (
           <div
             key={item.question}
-            className="rounded-[2rem] border border-neutral-200 bg-white p-5 shadow-sm md:p-7"
+            className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:p-7"
           >
-            <p className="text-sm font-black uppercase tracking-[0.14em] text-[#8b1116]">
+            <p className="text-sm font-black uppercase tracking-[0.14em] text-[#741018]">
               Question {index + 1}
             </p>
 
@@ -1645,7 +1645,7 @@ function Quiz() {
                       ? optionIndex === item.answer
                         ? "border-emerald-300 bg-emerald-50 text-emerald-900"
                         : "border-red-300 bg-red-50 text-red-900"
-                      : "border-neutral-200 bg-[#f7f4ee] text-neutral-700 hover:bg-white"
+                      : "border-[#E4DED2] bg-[#F7F3EA] text-[#525252] hover:bg-[#FFFCF6]"
                   }`}
                 >
                   {option}
@@ -1654,8 +1654,8 @@ function Quiz() {
             </div>
 
             {hasAnswered ? (
-              <div className="mt-5 rounded-2xl border border-neutral-200 bg-[#f7f4ee] p-4 text-sm leading-7 text-neutral-700">
-                <span className="font-black text-neutral-950">
+              <div className="mt-5 rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm leading-7 text-[#525252]">
+                <span className="font-black text-[#141210]">
                   {selected === item.answer ? "Correct. " : "Not quite. "}
                 </span>
                 {item.explanation}
@@ -1673,19 +1673,19 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
   const [rResults, setRResults] = useState<RResults>(defaultRResults);
 
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-16">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-10 text-[#141210] md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath(courseLinks.module)}
-          className="text-sm font-black text-[#8b1116] transition hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] transition hover:text-[#4d080e]"
         >
           ← Back to Module 1
         </a>
 
-        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
+        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
           <div className="grid lg:grid-cols-[1.08fr_0.92fr]">
             <div className="p-6 md:p-10 lg:p-12">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Machine Learning in Biostatistics · Lesson 1.1
               </p>
 
@@ -1693,7 +1693,7 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
                 What is machine learning in biostatistics?
               </h1>
 
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-6 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 Learn machine learning as a biostatistical prediction workflow:
                 define the clinical question, identify the outcome, choose
                 predictors, separate training and test data, run a first R
@@ -1703,29 +1703,29 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href={withBasePath(courseLinks.script)}
-                  className="inline-flex items-center justify-center rounded-full bg-neutral-950 px-6 py-3.5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-[#8b1116]"
+                  className="inline-flex items-center justify-center rounded-full bg-[#11100E] px-6 py-3.5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-[#741018]"
                 >
                   Download R script →
                 </a>
 
                 <a
                   href={withBasePath(courseLinks.data)}
-                  className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-neutral-950 transition hover:-translate-y-0.5 hover:border-neutral-950"
+                  className="inline-flex items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:-translate-y-0.5 hover:border-stone-950"
                 >
                   Download dataset
                 </a>
 
                 <a
                   href="#r-lab"
-                  className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-[#f7f4ee] px-6 py-3.5 text-sm font-black text-neutral-950 transition hover:-translate-y-0.5 hover:bg-white"
+                  className="inline-flex items-center justify-center rounded-full border border-[#D8CDBB] bg-[#F7F3EA] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:-translate-y-0.5 hover:bg-[#FFFCF6]"
                 >
                   Open R lab
                 </a>
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
-              <div className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+              <div className="rounded-[2rem] border border-white/10 bg-[#FFFCF6]/[0.06] p-6">
                 <p className="text-sm font-black uppercase tracking-[0.2em] text-white/50">
                   Lesson snapshot
                 </p>
@@ -1754,7 +1754,7 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
                 </div>
               </div>
 
-              <div className="mt-5 rounded-[2rem] border border-white/10 bg-white/[0.06] p-6">
+              <div className="mt-5 rounded-[2rem] border border-white/10 bg-[#FFFCF6]/[0.06] p-6">
                 <p className="text-sm font-black uppercase tracking-[0.2em] text-white/50">
                   Central question
                 </p>
@@ -1772,7 +1772,7 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
           </div>
         </section>
 
-        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-4 shadow-sm">
+        <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-4 shadow-sm">
           <div className="flex gap-3 overflow-x-auto">
             {tabs.map((tab) => (
               <button
@@ -1780,8 +1780,8 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
                 onClick={() => setActiveTab(tab)}
                 className={`shrink-0 rounded-full border px-5 py-3 text-sm font-black transition ${
                   activeTab === tab
-                    ? "border-neutral-950 bg-neutral-950 text-white"
-                    : "border-neutral-200 bg-[#f7f4ee] text-neutral-700 hover:bg-white"
+                    ? "border-stone-950 bg-[#11100E] text-white"
+                    : "border-[#E4DED2] bg-[#F7F3EA] text-[#525252] hover:bg-[#FFFCF6]"
                 }`}
               >
                 {tab}
@@ -1791,15 +1791,15 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
         </section>
 
         {activeTab === "Lecture" && (
-          <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+          <section className="mt-8 rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
             <SectionTitle
               eyebrow="Conversational lecture"
               title="The first medical machine learning class begins."
               body="Mr. R introduces machine learning through a clinical prediction problem rather than through algorithm names."
             />
 
-            <p className="mt-8 rounded-[1.75rem] bg-[#f7f4ee] p-6 text-lg font-bold leading-8 text-neutral-700 md:text-xl md:leading-9">
-              <span className="font-black text-neutral-950">Scene:</span> Mr. R
+            <p className="mt-8 rounded-[1.75rem] bg-[#F7F3EA] p-6 text-lg font-bold leading-8 text-[#525252] md:text-xl md:leading-9">
+              <span className="font-black text-[#141210]">Scene:</span> Mr. R
               walks into a computer lab where Emma, Oliver, James and Sophia are
               looking at a small patient dataset. The columns include glucose,
               BMI, age and diabetes status.
@@ -1887,13 +1887,13 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
             <div className="mt-6 grid gap-4 md:grid-cols-2">
               <a
                 href={withBasePath(courseLinks.script)}
-                className="rounded-[2rem] border border-neutral-200 bg-white p-5 text-sm font-black text-[#8b1116] shadow-sm transition hover:-translate-y-1 hover:bg-[#f7f4ee]"
+                className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 text-sm font-black text-[#741018] shadow-sm transition hover:-translate-y-1 hover:bg-[#F7F3EA]"
               >
                 Download full R script →
               </a>
               <a
                 href={withBasePath(courseLinks.data)}
-                className="rounded-[2rem] border border-neutral-200 bg-white p-5 text-sm font-black text-[#8b1116] shadow-sm transition hover:-translate-y-1 hover:bg-[#f7f4ee]"
+                className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 text-sm font-black text-[#741018] shadow-sm transition hover:-translate-y-1 hover:bg-[#F7F3EA]"
               >
                 Download shared diabetes dataset →
               </a>
@@ -1902,7 +1902,7 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
         )}
 
         {activeTab === "Output Guide" && (
-          <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+          <section className="mt-8 rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
             <SectionTitle
               eyebrow="Script output interpretation"
               title="Do not just run the code. Read what the output means."
@@ -1913,9 +1913,9 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
               {outputGuide.map((item, index) => (
                 <article
                   key={item.title}
-                  className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5 md:p-6"
+                  className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5 md:p-6"
                 >
-                  <p className="text-sm font-black uppercase tracking-[0.14em] text-[#8b1116]">
+                  <p className="text-sm font-black uppercase tracking-[0.14em] text-[#741018]">
                     Output {index + 1}
                   </p>
                   <h3 className="mt-2 text-2xl font-black tracking-[-0.04em]">
@@ -1923,16 +1923,16 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
                   </h3>
 
                   <div className="mt-4 grid gap-4 md:grid-cols-2">
-                    <div className="rounded-[1.5rem] bg-white p-5">
-                      <p className="text-xs font-black uppercase tracking-[0.14em] text-neutral-500">
+                    <div className="rounded-[1.5rem] bg-[#FFFCF6] p-5">
+                      <p className="text-xs font-black uppercase tracking-[0.14em] text-[#7a7063]">
                         What the script prints
                       </p>
-                      <p className="mt-3 text-sm leading-7 text-neutral-700">
+                      <p className="mt-3 text-sm leading-7 text-[#525252]">
                         {item.output}
                       </p>
                     </div>
 
-                    <div className="rounded-[1.5rem] bg-neutral-950 p-5 text-white">
+                    <div className="rounded-[1.5rem] bg-[#11100E] p-5 text-white">
                       <p className="text-xs font-black uppercase tracking-[0.14em] text-white/50">
                         How to interpret it
                       </p>
@@ -1963,7 +1963,7 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
           </section>
         )}
 
-        <section className="mt-10 rounded-[2.5rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-10">
+        <section className="mt-10 rounded-[2.5rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-10">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
@@ -1980,7 +1980,7 @@ export default function WhatIsMachineLearningInBiostatisticsLessonPage() {
 
             <a
               href={withBasePath(courseLinks.next)}
-              className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3.5 text-sm font-black text-neutral-950 transition hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center rounded-full bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:-translate-y-0.5"
             >
               Continue →
             </a>

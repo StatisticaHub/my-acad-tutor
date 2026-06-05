@@ -23,29 +23,29 @@ export default function PathwayCard({
   return (
     <Link
       href={href}
-      className="group block rounded-3xl border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+      className="group block rounded-3xl border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
     >
       <Badge variant={variant}>{badge}</Badge>
 
-      <h3 className="mt-6 text-2xl font-bold tracking-tight text-[#111111] group-hover:text-[#8b1116]">
+      <h3 className="mt-6 text-2xl font-bold tracking-tight text-[#141210] group-hover:text-[#741018]">
         {title}
       </h3>
 
-      <p className="mt-4 text-sm leading-6 text-neutral-700">
+      <p className="mt-4 text-sm leading-6 text-[#525252]">
         {description}
       </p>
 
-      <div className="mt-6 grid gap-3 text-sm text-neutral-700">
-        <div className="rounded-2xl bg-[#f7f4ee] p-3">
-          <span className="font-semibold text-[#111111]">Level:</span> {level}
+      <div className="mt-6 grid gap-3 text-sm text-[#525252]">
+        <div className="rounded-2xl bg-[#F7F3EA] p-3">
+          <span className="font-semibold text-[#141210]">Level:</span> {level}
         </div>
 
-        <div className="rounded-2xl bg-[#f7f4ee] p-3">
-          <span className="font-semibold text-[#111111]">Courses:</span> {courses}
+        <div className="rounded-2xl bg-[#F7F3EA] p-3">
+          <span className="font-semibold text-[#141210]">Courses:</span> {courses}
         </div>
       </div>
 
-      <div className="mt-6 text-sm font-semibold text-[#8b1116]">
+      <div className="mt-6 text-sm font-semibold text-[#741018]">
         Explore pathway →
       </div>
     </Link>

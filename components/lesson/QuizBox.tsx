@@ -23,7 +23,7 @@ export default function QuizBox({
 
       <div className="mt-6 space-y-6">
         {questions.map((item, index) => (
-          <div key={item.question} className="rounded-2xl bg-white p-5 shadow-sm">
+          <div key={item.question} className="rounded-2xl bg-[#FFFCF6] p-5 shadow-sm">
             <p className="font-semibold text-slate-950">
               {index + 1}. {item.question}
             </p>

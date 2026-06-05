@@ -108,7 +108,7 @@ export function TablesGraphsQuiz() {
   }, [selected]);
 
   return (
-    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
@@ -119,7 +119,7 @@ export function TablesGraphsQuiz() {
             Check your understanding
           </h3>
 
-          <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-600">
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-[#5F5F5F]">
             Test whether you can choose appropriate tables and graphs, recognise
             misleading displays and connect visual choices to variable type.
           </p>
@@ -165,7 +165,7 @@ export function TablesGraphsQuiz() {
                         ? "border-red-600 bg-red-50 text-red-900"
                         : isSelected
                         ? "border-blue-600 bg-blue-50 text-blue-900"
-                        : "border-[#ded9cf] bg-white text-neutral-700 hover:bg-blue-50"
+                        : "border-[#ded9cf] bg-[#FFFCF6] text-[#525252] hover:bg-blue-50"
                     }`}
                   >
                     <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-current text-xs font-black">
@@ -178,7 +178,7 @@ export function TablesGraphsQuiz() {
             </div>
 
             {checked && (
-              <p className="mt-4 rounded-xl bg-white p-4 text-sm leading-7 text-neutral-700">
+              <p className="mt-4 rounded-xl bg-[#FFFCF6] p-4 text-sm leading-7 text-[#525252]">
                 {question.feedback}
               </p>
             )}
@@ -189,7 +189,7 @@ export function TablesGraphsQuiz() {
       <div className="mt-6 flex flex-wrap gap-3">
         <button
           onClick={() => setChecked(true)}
-          className="rounded-full bg-neutral-950 px-6 py-3 text-sm font-black text-white"
+          className="rounded-full bg-[#11100E] px-6 py-3 text-sm font-black text-white"
         >
           Check answers
         </button>
@@ -199,7 +199,7 @@ export function TablesGraphsQuiz() {
             setSelected({});
             setChecked(false);
           }}
-          className="rounded-full border border-[#ded9cf] bg-white px-6 py-3 text-sm font-black text-neutral-950"
+          className="rounded-full border border-[#ded9cf] bg-[#FFFCF6] px-6 py-3 text-sm font-black text-[#141210]"
         >
           Reset quiz
         </button>

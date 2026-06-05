@@ -20,12 +20,12 @@ function withBasePath(href: string) {
 
 export default function InteractiveDemosPreview() {
   return (
-    <section className="bg-[#f7f4ee] px-4 py-5 text-[#111111] sm:px-5 md:px-8 md:py-8">
+    <section className="bg-[#F7F3EA] px-4 py-5 text-[#141210] sm:px-5 md:px-8 md:py-8">
       <div className="mx-auto max-w-7xl">
-        <section className="mb-5 overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:rounded-[2.5rem]">
+        <section className="mb-5 overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm md:rounded-[2.5rem]">
           <div className="grid lg:grid-cols-[1fr_0.9fr]">
             <div className="p-5 md:p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
                 Interactive calculator
               </p>
 
@@ -33,7 +33,7 @@ export default function InteractiveDemosPreview() {
                 Calculate confidence intervals for a mean.
               </h2>
 
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
                 Enter raw data or summary statistics, choose a Z or T interval,
                 and see the confidence interval, graph, 3D view and
                 interpretation update instantly.
@@ -42,21 +42,21 @@ export default function InteractiveDemosPreview() {
               <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href={withBasePath("/interactive-demos#confidence-interval-mean")}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#8b1116] sm:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#11100E] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#741018] sm:w-auto"
                 >
                   Open full calculator →
                 </a>
 
                 <a
                   href={withBasePath("/courses/statistics-foundation")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-semibold text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto"
                 >
                   Learn inference →
                 </a>
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-[#111111] p-5 text-white md:p-8 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-5 text-white md:p-8 lg:border-l lg:border-t-0">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55 md:text-sm">
                 What it calculates
               </p>
@@ -72,7 +72,7 @@ export default function InteractiveDemosPreview() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4 text-sm font-semibold text-white/80"
+                    className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4 text-sm font-semibold text-white/80"
                   >
                     {item}
                   </div>

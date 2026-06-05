@@ -10,9 +10,9 @@ export default function LessonSection({
   children,
 }: LessonSectionProps) {
   return (
-    <section className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+    <section className="rounded-[2rem] border border-slate-200 bg-[#FFFCF6] p-6 shadow-sm md:p-8">
       {eyebrow && (
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#6f0d12]">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#7A0710]">
           {eyebrow}
         </p>
       )}

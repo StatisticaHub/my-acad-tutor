@@ -169,10 +169,10 @@ export default function ConfidenceIntervalMeanExplorer() {
   ]);
 
   return (
-    <section className="overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:rounded-[2.5rem]">
+    <section className="overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm md:rounded-[2.5rem]">
       <div className="grid lg:grid-cols-[0.92fr_1.08fr]">
         <div className="p-5 md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
             Confidence interval calculator
           </p>
 
@@ -180,7 +180,7 @@ export default function ConfidenceIntervalMeanExplorer() {
             Calculate a confidence interval for a mean.
           </h2>
 
-          <p className="mt-4 text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+          <p className="mt-4 text-sm leading-7 text-[#525252] md:text-base md:leading-8">
             Enter raw data or summary statistics, choose a z or t interval, and
             see the interval, graph, 3D view and interpretation update instantly.
           </p>
@@ -207,15 +207,15 @@ export default function ConfidenceIntervalMeanExplorer() {
               </ToggleButton>
             </ControlGroup>
 
-            <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4">
-              <label className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
+            <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4">
+              <label className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7a7063]">
                 Confidence level
               </label>
 
               <select
                 value={confidence}
                 onChange={(event) => setConfidence(Number(event.target.value))}
-                className="mt-3 w-full rounded-xl border border-neutral-300 bg-white px-3 py-3 text-sm font-semibold text-neutral-800"
+                className="mt-3 w-full rounded-xl border border-[#D8CDBB] bg-[#FFFCF6] px-3 py-3 text-sm font-semibold text-neutral-800"
               >
                 <option value={90}>90%</option>
                 <option value={95}>95%</option>
@@ -224,8 +224,8 @@ export default function ConfidenceIntervalMeanExplorer() {
             </div>
 
             {inputMode === "raw" ? (
-              <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4">
-                <label className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
+              <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4">
+                <label className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7a7063]">
                   Raw data
                 </label>
 
@@ -233,7 +233,7 @@ export default function ConfidenceIntervalMeanExplorer() {
                   value={rawInput}
                   onChange={(event) => setRawInput(event.target.value)}
                   rows={5}
-                  className="mt-3 w-full rounded-xl border border-neutral-300 bg-white px-3 py-3 text-sm leading-6 text-neutral-800"
+                  className="mt-3 w-full rounded-xl border border-[#D8CDBB] bg-[#FFFCF6] px-3 py-3 text-sm leading-6 text-neutral-800"
                   placeholder="Example: 12, 15, 14, 16, 18"
                 />
 
@@ -246,7 +246,7 @@ export default function ConfidenceIntervalMeanExplorer() {
                 ) : null}
               </div>
             ) : (
-              <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4">
+              <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4">
                 <div className="grid gap-3 sm:grid-cols-2">
                   <NumberInput label="Sample size, n" value={summaryN} onChange={setSummaryN} />
                   <NumberInput
@@ -269,9 +269,9 @@ export default function ConfidenceIntervalMeanExplorer() {
           </div>
         </div>
 
-        <aside className="border-t border-neutral-200 bg-[#fdfbf7] p-4 md:p-6 lg:border-l lg:border-t-0">
+        <aside className="border-t border-[#E4DED2] bg-[#fdfbf7] p-4 md:p-6 lg:border-l lg:border-t-0">
           {!result.ok ? (
-            <div className="rounded-[1.5rem] border border-neutral-200 bg-white p-5 text-sm leading-7 text-neutral-700">
+            <div className="rounded-[1.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 text-sm leading-7 text-[#525252]">
               {result.message}
             </div>
           ) : (
@@ -283,19 +283,19 @@ export default function ConfidenceIntervalMeanExplorer() {
                 <Metric label="Margin" value={fmt(result.margin)} />
               </div>
 
-              <div className="rounded-[1.5rem] border border-neutral-200 bg-white p-5 shadow-sm">
+              <div className="rounded-[1.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8b1116]">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#741018]">
                       Result
                     </p>
 
-                    <h3 className="mt-2 text-2xl font-semibold tracking-[-0.045em] text-neutral-950">
+                    <h3 className="mt-2 text-2xl font-semibold tracking-[-0.045em] text-[#141210]">
                       {fmt(result.lower)} to {fmt(result.upper)}
                     </h3>
                   </div>
 
-                  <span className="rounded-full bg-[#111111] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white">
+                  <span className="rounded-full bg-[#11100E] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white">
                     {confidence}% {intervalType.toUpperCase()}
                   </span>
                 </div>
@@ -303,7 +303,7 @@ export default function ConfidenceIntervalMeanExplorer() {
                 <IntervalGraph result={result} inputMode={inputMode} />
               </div>
 
-              <div className="rounded-[1.5rem] border border-neutral-200 bg-[#111111] p-5 text-white">
+              <div className="rounded-[1.5rem] border border-[#E4DED2] bg-[#11100E] p-5 text-white">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/50">
                   Basic interpretation
                 </p>
@@ -338,8 +338,8 @@ function ControlGroup({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4">
-      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7a7063]">
         {title}
       </p>
 
@@ -363,8 +363,8 @@ function ToggleButton({
       onClick={onClick}
       className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
         active
-          ? "bg-[#8b1116] text-white"
-          : "border border-neutral-300 bg-white text-neutral-700 hover:bg-[#f7f4ee]"
+          ? "bg-[#741018] text-white"
+          : "border border-[#D8CDBB] bg-[#FFFCF6] text-[#525252] hover:bg-[#F7F3EA]"
       }`}
     >
       {children}
@@ -383,14 +383,14 @@ function NumberInput({
 }) {
   return (
     <label className="mt-3 block">
-      <span className="text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">
+      <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7a7063]">
         {label}
       </span>
 
       <input
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 w-full rounded-xl border border-neutral-300 bg-white px-3 py-3 text-sm text-neutral-800"
+        className="mt-2 w-full rounded-xl border border-[#D8CDBB] bg-[#FFFCF6] px-3 py-3 text-sm text-neutral-800"
       />
     </label>
   );
@@ -398,12 +398,12 @@ function NumberInput({
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-white p-4">
-      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#FFFCF6] p-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#7a7063]">
         {label}
       </p>
 
-      <p className="mt-2 text-2xl font-semibold tracking-[-0.05em] text-[#8b1116]">
+      <p className="mt-2 text-2xl font-semibold tracking-[-0.05em] text-[#741018]">
         {value}
       </p>
     </div>
@@ -456,24 +456,24 @@ function IntervalGraphContent({
   });
 
   return (
-    <div className="mt-5 rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-4">
+    <div className="mt-5 rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#8b1116]">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#741018]">
             Visual interval
           </p>
 
-          <h4 className="mt-1 text-xl font-semibold tracking-[-0.04em] text-neutral-950">
+          <h4 className="mt-1 text-xl font-semibold tracking-[-0.04em] text-[#141210]">
             Mean estimate with uncertainty range
           </h4>
         </div>
 
-        <div className="rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-neutral-600">
+        <div className="rounded-full bg-[#FFFCF6] px-3 py-1.5 text-xs font-semibold text-[#5F5F5F]">
           Lower → Mean → Upper
         </div>
       </div>
 
-      <div className="relative mt-5 h-[300px] overflow-hidden rounded-[1.25rem] border border-neutral-200 bg-white p-5">
+      <div className="relative mt-5 h-[300px] overflow-hidden rounded-[1.25rem] border border-[#E4DED2] bg-[#FFFCF6] p-5">
         <div className="absolute left-5 right-5 top-16 h-[150px] rounded-[1.25rem] bg-[linear-gradient(90deg,rgba(17,17,17,0.03),rgba(139,17,22,0.08),rgba(17,17,17,0.03))]" />
 
         <div className="absolute left-9 right-9 top-[150px] h-1 rounded-full bg-neutral-200" />
@@ -498,7 +498,7 @@ function IntervalGraphContent({
               return (
                 <span
                   key={`${value}-${index}`}
-                  className="absolute h-2.5 w-2.5 rounded-full bg-[#8b1116]/35 shadow-sm transition-all duration-300"
+                  className="absolute h-2.5 w-2.5 rounded-full bg-[#741018]/35 shadow-sm transition-all duration-300"
                   style={{
                     left: `calc(36px + ${left}% * 0.88)`,
                     top: `${y}px`,
@@ -507,13 +507,13 @@ function IntervalGraphContent({
               );
             })
           : (
-            <div className="absolute left-8 right-8 top-20 rounded-[1rem] border border-dashed border-neutral-300 bg-[#f7f4ee] p-4 text-center text-sm leading-6 text-neutral-600">
+            <div className="absolute left-8 right-8 top-20 rounded-[1rem] border border-dashed border-[#D8CDBB] bg-[#F7F3EA] p-4 text-center text-sm leading-6 text-[#5F5F5F]">
               Summary input mode: the interval is calculated from n, mean and SD.
             </div>
           )}
 
         <div
-          className="absolute top-[141px] h-5 -translate-y-1/2 rounded-full bg-[#8b1116]/20 transition-all duration-500"
+          className="absolute top-[141px] h-5 -translate-y-1/2 rounded-full bg-[#741018]/20 transition-all duration-500"
           style={{
             left: `calc(36px + ${lowerX}% * 0.88)`,
             width: `calc(${Math.max(5, upperX - lowerX)}% * 0.88)`,
@@ -521,36 +521,36 @@ function IntervalGraphContent({
         />
 
         <div
-          className="absolute top-[116px] h-[54px] w-px bg-[#8b1116] transition-all duration-500"
+          className="absolute top-[116px] h-[54px] w-px bg-[#741018] transition-all duration-500"
           style={{ left: `calc(36px + ${lowerX}% * 0.88)` }}
         />
 
         <div
-          className="absolute top-[116px] h-[54px] w-px bg-[#8b1116] transition-all duration-500"
+          className="absolute top-[116px] h-[54px] w-px bg-[#741018] transition-all duration-500"
           style={{ left: `calc(36px + ${upperX}% * 0.88)` }}
         />
 
         <div
-          className="absolute top-[141px] h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-white bg-[#111111] shadow-xl transition-all duration-500"
+          className="absolute top-[141px] h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-white bg-[#11100E] shadow-xl transition-all duration-500"
           style={{ left: `calc(36px + ${meanX}% * 0.88)` }}
         />
 
         <span
-          className="absolute top-[84px] -translate-x-1/2 rounded-full bg-[#111111] px-3 py-1 text-xs font-semibold text-white shadow-sm transition-all duration-500"
+          className="absolute top-[84px] -translate-x-1/2 rounded-full bg-[#11100E] px-3 py-1 text-xs font-semibold text-white shadow-sm transition-all duration-500"
           style={{ left: `calc(36px + ${meanX}% * 0.88)` }}
         >
           mean
         </span>
 
         <span
-          className="absolute top-[178px] -translate-x-1/2 rounded-full bg-[#8b1116] px-3 py-1 text-[11px] font-semibold text-white shadow-sm transition-all duration-500"
+          className="absolute top-[178px] -translate-x-1/2 rounded-full bg-[#741018] px-3 py-1 text-[11px] font-semibold text-white shadow-sm transition-all duration-500"
           style={{ left: `calc(36px + ${lowerX}% * 0.88)` }}
         >
           lower
         </span>
 
         <span
-          className="absolute top-[178px] -translate-x-1/2 rounded-full bg-[#8b1116] px-3 py-1 text-[11px] font-semibold text-white shadow-sm transition-all duration-500"
+          className="absolute top-[178px] -translate-x-1/2 rounded-full bg-[#741018] px-3 py-1 text-[11px] font-semibold text-white shadow-sm transition-all duration-500"
           style={{ left: `calc(36px + ${upperX}% * 0.88)` }}
         >
           upper
@@ -563,8 +563,8 @@ function IntervalGraphContent({
         </div>
       </div>
 
-      <div className="mt-3 rounded-[1.25rem] bg-white p-4">
-        <p className="text-sm leading-7 text-neutral-700">
+      <div className="mt-3 rounded-[1.25rem] bg-[#FFFCF6] p-4">
+        <p className="text-sm leading-7 text-[#525252]">
           The black point is the sample mean. The red interval shows the range
           of plausible values for the population mean at the selected confidence
           level.
@@ -577,12 +577,12 @@ function IntervalGraphContent({
 
 function MiniMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1rem] bg-white p-3 text-center">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-neutral-500">
+    <div className="rounded-[1rem] bg-[#FFFCF6] p-3 text-center">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a7063]">
         {label}
       </p>
 
-      <p className="mt-1 text-sm font-semibold text-neutral-950">{value}</p>
+      <p className="mt-1 text-sm font-semibold text-[#141210]">{value}</p>
     </div>
   );
 }

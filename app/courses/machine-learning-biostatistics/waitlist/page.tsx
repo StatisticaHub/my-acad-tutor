@@ -69,19 +69,19 @@ export default function MachineLearningBiostatisticsWaitlistPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-16">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-10 text-[#141210] md:px-8 md:py-16">
       <section className="mx-auto max-w-6xl">
         <a
           href={withBasePath("/courses/machine-learning-biostatistics")}
-          className="text-sm font-black text-[#8b1116] transition hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] transition hover:text-[#4d080e]"
         >
           ← Back to ML in Biostatistics course
         </a>
 
-        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
+        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
           <div className="grid lg:grid-cols-[1fr_0.95fr]">
             <div className="p-6 md:p-10 lg:p-12">
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#741018]">
                 Machine Learning in Biostatistics · Waitlist
               </p>
 
@@ -89,7 +89,7 @@ export default function MachineLearningBiostatisticsWaitlistPage() {
                 Join the waitlist for the full ML course.
               </h1>
 
-              <p className="mt-6 max-w-3xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-6 max-w-3xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 Register for release updates, early access information and
                 course announcements for Machine Learning in Biostatistics.
               </p>
@@ -103,7 +103,7 @@ export default function MachineLearningBiostatisticsWaitlistPage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-black text-neutral-700"
+                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-black text-[#525252]"
                   >
                     {item}
                   </div>
@@ -115,26 +115,26 @@ export default function MachineLearningBiostatisticsWaitlistPage() {
                   href={withBasePath(
                     "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics"
                   )}
-                  className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-neutral-950 transition hover:-translate-y-0.5 hover:border-neutral-950"
+                  className="inline-flex items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:-translate-y-0.5 hover:border-stone-950"
                 >
                   Preview Lesson 1.1 →
                 </a>
 
                 <a
                   href={withBasePath("/learning-hub")}
-                  className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-neutral-950 transition hover:-translate-y-0.5 hover:border-neutral-950"
+                  className="inline-flex items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:-translate-y-0.5 hover:border-stone-950"
                 >
                   Open Learning Hub →
                 </a>
               </div>
             </div>
 
-            <div className="border-t border-neutral-200 bg-[#f7f4ee] p-6 md:p-8 lg:border-l lg:border-t-0">
+            <div className="border-t border-[#E4DED2] bg-[#F7F3EA] p-6 md:p-8 lg:border-l lg:border-t-0">
               <form
                 onSubmit={handleSubmit}
-                className="rounded-[2rem] border border-neutral-200 bg-white p-5 shadow-sm md:p-6"
+                className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:p-6"
               >
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018]">
                   Waitlist form
                 </p>
 
@@ -149,7 +149,7 @@ export default function MachineLearningBiostatisticsWaitlistPage() {
                   <input
                     name="name"
                     required
-                    className="mt-2 w-full rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold outline-none transition focus:border-[#8b1116] focus:bg-white"
+                    className="mt-2 w-full rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                     placeholder="Your name"
                   />
                 </label>
@@ -162,7 +162,7 @@ export default function MachineLearningBiostatisticsWaitlistPage() {
                     name="email"
                     type="email"
                     required
-                    className="mt-2 w-full rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold outline-none transition focus:border-[#8b1116] focus:bg-white"
+                    className="mt-2 w-full rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                     placeholder="you@example.com"
                   />
                 </label>
@@ -174,7 +174,7 @@ export default function MachineLearningBiostatisticsWaitlistPage() {
                   <textarea
                     name="message"
                     rows={4}
-                    className="mt-2 w-full resize-none rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold outline-none transition focus:border-[#8b1116] focus:bg-white"
+                    className="mt-2 w-full resize-none rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                     placeholder="Optional: tell us what you want to learn in this course."
                   />
                 </label>
@@ -182,7 +182,7 @@ export default function MachineLearningBiostatisticsWaitlistPage() {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-neutral-950 px-6 py-4 text-sm font-black text-white transition hover:bg-[#8b1116] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-[#11100E] px-6 py-4 text-sm font-black text-white transition hover:bg-[#741018] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {status === "sending"
                     ? "Joining waitlist..."
@@ -202,7 +202,7 @@ export default function MachineLearningBiostatisticsWaitlistPage() {
                 ) : null}
               </form>
 
-              <div className="mt-5 rounded-[2rem] bg-neutral-950 p-5 text-white">
+              <div className="mt-5 rounded-[2rem] bg-[#11100E] p-5 text-white">
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
                   Planned release
                 </p>

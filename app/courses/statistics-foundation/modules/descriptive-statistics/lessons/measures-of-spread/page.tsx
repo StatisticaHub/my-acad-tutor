@@ -506,7 +506,7 @@ export default function MeasuresOfSpreadLesson() {
   }, 0);
 
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-8 text-neutral-950 md:px-8 md:py-14">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-8 text-[#141210] md:px-8 md:py-14">
       <style>{`
         @keyframes mentorFloat {
           0%, 100% { transform: translateY(0); }
@@ -533,15 +533,15 @@ export default function MeasuresOfSpreadLesson() {
       <section className="mx-auto max-w-7xl">
         <a
           href="/courses/statistics-foundation/modules/descriptive-statistics/"
-          className="text-sm font-black text-[#8b1116] hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] hover:text-[#4d080e]"
         >
           ← Back to module
         </a>
 
-        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
+        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-6 md:p-10">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Statistics Foundation · Lesson 2.2
               </p>
 
@@ -549,7 +549,7 @@ export default function MeasuresOfSpreadLesson() {
                 Measures of spread.
               </h1>
 
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-6 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 Measures of spread describe how variable, consistent or
                 dispersed the data are. This lesson teaches students how to
                 interpret range, interquartile range, variance and standard
@@ -567,7 +567,7 @@ export default function MeasuresOfSpreadLesson() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-black text-neutral-700"
+                    className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-black text-[#525252]"
                   >
                     {item}
                   </div>
@@ -575,7 +575,7 @@ export default function MeasuresOfSpreadLesson() {
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-10 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-10 lg:border-l lg:border-t-0">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Lesson pathway
               </p>
@@ -595,9 +595,9 @@ export default function MeasuresOfSpreadLesson() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex items-center gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex items-center gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {index + 1}
                     </span>
                     <span className="text-sm font-bold text-white/80">
@@ -610,7 +610,7 @@ export default function MeasuresOfSpreadLesson() {
           </div>
         </section>
 
-        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-neutral-200 bg-white/90 p-2 shadow-sm backdrop-blur">
+        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-[#E4DED2] bg-[#FFFCF6]/90 p-2 shadow-sm backdrop-blur">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -618,8 +618,8 @@ export default function MeasuresOfSpreadLesson() {
               onClick={() => setActiveTab(tab)}
               className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-black transition ${
                 activeTab === tab
-                  ? "bg-neutral-950 text-white"
-                  : "text-neutral-600 hover:bg-[#f7f4ee] hover:text-neutral-950"
+                  ? "bg-[#11100E] text-white"
+                  : "text-[#5F5F5F] hover:bg-[#F7F3EA] hover:text-[#141210]"
               }`}
             >
               {tab}
@@ -629,8 +629,8 @@ export default function MeasuresOfSpreadLesson() {
 
         {activeTab === "Learning Route" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 100–105 minute lesson plan
               </p>
 
@@ -638,7 +638,7 @@ export default function MeasuresOfSpreadLesson() {
                 Learn how to describe consistency, variation and uncertainty in a dataset.
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-neutral-700">
+              <p className="mt-5 text-base leading-8 text-[#525252]">
                 In Lesson 2.1, you learned how to describe the centre of a
                 dataset. This lesson adds the second essential question: how
                 spread out are the values? A centre without spread is incomplete
@@ -649,15 +649,15 @@ export default function MeasuresOfSpreadLesson() {
                 {learningRoute.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                       {item.time}
                     </p>
                     <h3 className="mt-2 text-xl font-black tracking-[-0.035em]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-7 text-neutral-700">
+                    <p className="mt-2 text-sm leading-7 text-[#525252]">
                       {item.body}
                     </p>
                   </div>
@@ -665,7 +665,7 @@ export default function MeasuresOfSpreadLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Mastery checklist
               </p>
@@ -687,9 +687,9 @@ export default function MeasuresOfSpreadLesson() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {index + 1}
                     </span>
                     <p className="text-sm leading-7 text-white/75">{item}</p>
@@ -703,8 +703,8 @@ export default function MeasuresOfSpreadLesson() {
         {activeTab === "Lecture" && (
           <section className="mt-8 grid gap-6">
             <section className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr]">
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Spread decision board
                 </p>
 
@@ -712,7 +712,7 @@ export default function MeasuresOfSpreadLesson() {
                   Spread tells us whether the centre is reliable, stable or hiding variation.
                 </h2>
 
-                <p className="mt-4 text-base leading-8 text-neutral-700">
+                <p className="mt-4 text-base leading-8 text-[#525252]">
                   A centre can be identical for two datasets, even when the
                   datasets look completely different. Spread tells us whether
                   values are close together, widely dispersed, skewed, clustered
@@ -723,20 +723,20 @@ export default function MeasuresOfSpreadLesson() {
                   {lectureConcepts.map((item, index) => (
                     <article
                       key={item.title}
-                      className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                      className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                     >
                       <div className="flex items-start gap-4">
-                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-sm font-black text-white">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#11100E] text-sm font-black text-white">
                           {index + 1}
                         </span>
                         <div>
                           <h3 className="text-xl font-black tracking-[-0.035em]">
                             {item.title}
                           </h3>
-                          <p className="mt-2 text-sm leading-7 text-neutral-700">
+                          <p className="mt-2 text-sm leading-7 text-[#525252]">
                             {item.body}
                           </p>
-                          <p className="mt-3 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">
+                          <p className="mt-3 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">
                             Example: {item.example}
                           </p>
                         </div>
@@ -746,8 +746,8 @@ export default function MeasuresOfSpreadLesson() {
                 </div>
               </section>
 
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Guided lecture
                 </p>
 
@@ -802,11 +802,11 @@ export default function MeasuresOfSpreadLesson() {
                   />
                 </div>
 
-                <section className="mt-8 rounded-[2rem] border border-[#8b1116]/20 bg-[#fff7f7] p-6">
-                  <h3 className="text-2xl font-black tracking-[-0.04em] text-[#8b1116]">
+                <section className="mt-8 rounded-[2rem] border border-[#741018]/20 bg-[#fff4ef] p-6">
+                  <h3 className="text-2xl font-black tracking-[-0.04em] text-[#741018]">
                     Lecture takeaway
                   </h3>
-                  <p className="mt-3 text-base leading-8 text-neutral-700">
+                  <p className="mt-3 text-base leading-8 text-[#525252]">
                     Centre and spread should be interpreted together. The mean
                     often pairs with standard deviation, while the median often
                     pairs with IQR. Range is useful for the full span, but it is
@@ -816,8 +816,8 @@ export default function MeasuresOfSpreadLesson() {
               </section>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Choosing the spread
               </p>
 
@@ -878,21 +878,21 @@ export default function MeasuresOfSpreadLesson() {
                 ].map((item) => (
                   <article
                     key={item.question}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                       Ask
                     </p>
                     <h3 className="mt-2 text-lg font-black tracking-[-0.03em]">
                       {item.question}
                     </h3>
-                    <p className="mt-4 text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+                    <p className="mt-4 text-xs font-black uppercase tracking-[0.18em] text-[#7a7063]">
                       Suggested spread
                     </p>
                     <p className="mt-2 text-sm font-black leading-7 text-neutral-800">
                       {item.method}
                     </p>
-                    <p className="mt-3 text-sm leading-7 text-neutral-700">
+                    <p className="mt-3 text-sm leading-7 text-[#525252]">
                       {item.reason}
                     </p>
                   </article>
@@ -901,7 +901,7 @@ export default function MeasuresOfSpreadLesson() {
             </section>
 
             <section className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-              <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                   Robust spread
                 </p>
@@ -916,7 +916,7 @@ export default function MeasuresOfSpreadLesson() {
                   partner because it also resists extreme values.
                 </p>
 
-                <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5">
+                <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5">
                   <p className="text-sm font-black text-white">
                     IQR = Q3 − Q1
                   </p>
@@ -926,8 +926,8 @@ export default function MeasuresOfSpreadLesson() {
                 </div>
               </section>
 
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Mean-based spread
                 </p>
 
@@ -935,17 +935,17 @@ export default function MeasuresOfSpreadLesson() {
                   Mean and standard deviation belong together.
                 </h2>
 
-                <p className="mt-5 text-sm leading-7 text-neutral-700">
+                <p className="mt-5 text-sm leading-7 text-[#525252]">
                   Standard deviation measures variation around the mean. It is
                   especially useful when values are numerical and roughly
                   symmetric, because the mean is then a meaningful centre.
                 </p>
 
                 <div className="mt-6 grid gap-3">
-                  <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-bold text-neutral-700">
+                  <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-bold text-[#525252]">
                     Variance: average squared distance from the mean.
                   </div>
-                  <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-bold text-neutral-700">
+                  <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-bold text-[#525252]">
                     Standard deviation: square root of variance.
                   </div>
                 </div>
@@ -955,8 +955,8 @@ export default function MeasuresOfSpreadLesson() {
         )}
 
         {activeTab === "Detailed Notes" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Detailed notes
             </p>
 
@@ -964,7 +964,7 @@ export default function MeasuresOfSpreadLesson() {
               Measures of spread in depth.
             </h2>
 
-            <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700">
+            <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252]">
               Spread describes how far values are from one another or from a
               central value. Without spread, a measure of centre can be
               misleading. A dataset with low spread is consistent. A dataset
@@ -976,31 +976,31 @@ export default function MeasuresOfSpreadLesson() {
               {spreadNotes.map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     {item.formula}
                   </p>
                   <h3 className="mt-3 text-2xl font-black tracking-[-0.04em]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
-                  <p className="mt-4 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">
+                  <p className="mt-4 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">
                     Strength: {item.strength}
                   </p>
-                  <p className="mt-3 rounded-2xl border border-[#8b1116]/20 bg-[#fff7f7] px-4 py-3 text-sm font-bold leading-7 text-[#8b1116]">
+                  <p className="mt-3 rounded-2xl border border-[#741018]/20 bg-[#fff4ef] px-4 py-3 text-sm font-bold leading-7 text-[#741018]">
                     Limitation: {item.limitation}
                   </p>
-                  <p className="mt-3 rounded-2xl bg-neutral-950 px-4 py-3 text-sm font-bold leading-7 text-white">
+                  <p className="mt-3 rounded-2xl bg-[#11100E] px-4 py-3 text-sm font-bold leading-7 text-white">
                     Best for: {item.bestFor}
                   </p>
                 </article>
               ))}
             </div>
 
-            <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white">
+            <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
                 Why variance divides by n − 1
               </p>
@@ -1037,7 +1037,7 @@ export default function MeasuresOfSpreadLesson() {
                 ].map((item) => (
                   <article
                     key={item.title}
-                    className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5"
+                    className="rounded-[1.5rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5"
                   >
                     <h4 className="text-xl font-black">{item.title}</h4>
                     <p className="mt-3 text-sm leading-7 text-white/70">
@@ -1048,8 +1048,8 @@ export default function MeasuresOfSpreadLesson() {
               </div>
             </section>
 
-            <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
+            <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018]">
                 Comparison table
               </p>
 
@@ -1060,7 +1060,7 @@ export default function MeasuresOfSpreadLesson() {
               <div className="mt-6 overflow-x-auto">
                 <table className="w-full min-w-[780px] border-separate border-spacing-y-3 text-left">
                   <thead>
-                    <tr className="text-xs uppercase tracking-[0.18em] text-neutral-500">
+                    <tr className="text-xs uppercase tracking-[0.18em] text-[#7a7063]">
                       <th className="px-4">Situation</th>
                       <th className="px-4">Range</th>
                       <th className="px-4">IQR</th>
@@ -1070,20 +1070,20 @@ export default function MeasuresOfSpreadLesson() {
                   </thead>
                   <tbody>
                     {comparisonRows.map((row) => (
-                      <tr key={row.situation} className="bg-white">
+                      <tr key={row.situation} className="bg-[#FFFCF6]">
                         <td className="rounded-l-2xl px-4 py-4 text-sm font-black">
                           {row.situation}
                         </td>
-                        <td className="px-4 py-4 text-sm text-neutral-700">
+                        <td className="px-4 py-4 text-sm text-[#525252]">
                           {row.range}
                         </td>
-                        <td className="px-4 py-4 text-sm text-neutral-700">
+                        <td className="px-4 py-4 text-sm text-[#525252]">
                           {row.iqr}
                         </td>
-                        <td className="px-4 py-4 text-sm text-neutral-700">
+                        <td className="px-4 py-4 text-sm text-[#525252]">
                           {row.sd}
                         </td>
-                        <td className="rounded-r-2xl px-4 py-4 text-sm leading-7 text-neutral-700">
+                        <td className="rounded-r-2xl px-4 py-4 text-sm leading-7 text-[#525252]">
                           {row.advice}
                         </td>
                       </tr>
@@ -1097,10 +1097,10 @@ export default function MeasuresOfSpreadLesson() {
 
         {activeTab === "Spread Lab" && (
           <section className="mt-8 grid gap-6">
-            <section className="overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+            <section className="overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
               <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="p-6 md:p-8">
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                     Interactive spread lab
                   </p>
 
@@ -1108,7 +1108,7 @@ export default function MeasuresOfSpreadLesson() {
                     Change the data and watch the spread respond.
                   </h2>
 
-                  <p className="mt-4 text-base leading-8 text-neutral-700">
+                  <p className="mt-4 text-base leading-8 text-[#525252]">
                     Adjust the dataset shape, outlier strength, clustering and
                     sample size. Notice that some spread measures react strongly
                     to extreme values while others remain more stable.
@@ -1116,13 +1116,13 @@ export default function MeasuresOfSpreadLesson() {
 
                   <div className="mt-6">
                     <label className="block">
-                      <span className="text-sm font-black text-neutral-700">
+                      <span className="text-sm font-black text-[#525252]">
                         Dataset shape
                       </span>
                       <select
                         value={datasetType}
                         onChange={(event) => setDatasetType(event.target.value)}
-                        className="mt-3 w-full rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-800"
+                        className="mt-3 w-full rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-neutral-800"
                       >
                         <option value="balanced">Balanced spread</option>
                         <option value="tight">Tightly clustered</option>
@@ -1172,7 +1172,7 @@ export default function MeasuresOfSpreadLesson() {
                   </div>
                 </div>
 
-                <div className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+                <div className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
                   <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                     Interpretation panel
                   </p>
@@ -1185,7 +1185,7 @@ export default function MeasuresOfSpreadLesson() {
                     {labAdvice}
                   </p>
 
-                  <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.07] p-5">
+                  <div className="mt-8 rounded-[2rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5">
                     <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
                       Current data
                     </p>
@@ -1205,8 +1205,8 @@ export default function MeasuresOfSpreadLesson() {
             </section>
 
             <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Dot plot with spread markers
                 </p>
 
@@ -1214,17 +1214,17 @@ export default function MeasuresOfSpreadLesson() {
                   The dots show values. The shaded band shows the IQR.
                 </h2>
 
-                <p className="mt-4 text-sm leading-7 text-neutral-700">
+                <p className="mt-4 text-sm leading-7 text-[#525252]">
                   The IQR band stretches from Q1 to Q3. The red marker shows the
                   mean. The grey marker shows the median.
                 </p>
 
-                <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-                  <div className="relative h-32 rounded-[1.5rem] bg-white p-4">
+                <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
+                  <div className="relative h-32 rounded-[1.5rem] bg-[#FFFCF6] p-4">
                     <div className="absolute left-4 right-4 top-1/2 h-1 rounded-full bg-neutral-200" />
 
                     <div
-                      className="absolute top-[42%] h-8 rounded-full bg-[#8b1116]/15"
+                      className="absolute top-[42%] h-8 rounded-full bg-[#741018]/15"
                       style={{
                         left: `${scaleToPercent(q1)}%`,
                         width: `${Math.max(4, scaleToPercent(q3) - scaleToPercent(q1))}%`,
@@ -1234,7 +1234,7 @@ export default function MeasuresOfSpreadLesson() {
                     {labValues.map((value, index) => (
                       <div
                         key={`${value}-${index}`}
-                        className="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-neutral-950"
+                        className="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#11100E]"
                         style={{
                           left: `${scaleToPercent(value)}%`,
                           animation:
@@ -1247,7 +1247,7 @@ export default function MeasuresOfSpreadLesson() {
                     ))}
 
                     <div
-                      className="absolute top-3 h-[104px] w-1 rounded-full bg-[#8b1116]"
+                      className="absolute top-3 h-[104px] w-1 rounded-full bg-[#741018]"
                       style={{ left: `${scaleToPercent(mean)}%` }}
                     />
                     <div
@@ -1256,25 +1256,25 @@ export default function MeasuresOfSpreadLesson() {
                     />
                   </div>
 
-                  <div className="mt-5 grid gap-3 text-sm leading-7 text-neutral-700 md:grid-cols-4">
-                    <div className="rounded-2xl bg-white p-4">
+                  <div className="mt-5 grid gap-3 text-sm leading-7 text-[#525252] md:grid-cols-4">
+                    <div className="rounded-2xl bg-[#FFFCF6] p-4">
                       <strong>Dots:</strong> observations.
                     </div>
-                    <div className="rounded-2xl bg-white p-4">
+                    <div className="rounded-2xl bg-[#FFFCF6] p-4">
                       <strong>Red band:</strong> IQR.
                     </div>
-                    <div className="rounded-2xl bg-white p-4">
+                    <div className="rounded-2xl bg-[#FFFCF6] p-4">
                       <strong>Red line:</strong> mean.
                     </div>
-                    <div className="rounded-2xl bg-white p-4">
+                    <div className="rounded-2xl bg-[#FFFCF6] p-4">
                       <strong>Grey line:</strong> median.
                     </div>
                   </div>
                 </div>
               </section>
 
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Spread comparison bars
                 </p>
 
@@ -1289,11 +1289,11 @@ export default function MeasuresOfSpreadLesson() {
                   <Bar label="Coefficient of variation %" value={cv} max={80} />
                 </div>
 
-                <section className="mt-6 rounded-[1.5rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5">
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                <section className="mt-6 rounded-[1.5rem] border border-[#741018]/20 bg-[#fff4ef] p-5">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     Write this conclusion
                   </p>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     “The range is <strong>{range.toFixed(1)}</strong>, the IQR
                     is <strong>{iqr.toFixed(1)}</strong>, and the standard
                     deviation is <strong>{sampleSd.toFixed(1)}</strong>. This
@@ -1313,8 +1313,8 @@ export default function MeasuresOfSpreadLesson() {
 
         {activeTab === "Animated Mentor" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Animated mentor
               </p>
 
@@ -1324,22 +1324,22 @@ export default function MeasuresOfSpreadLesson() {
 
               <div className="mt-8 flex justify-center">
                 <div
-                  className="relative flex h-52 w-52 items-center justify-center rounded-full border border-neutral-200 bg-[#f7f4ee]"
+                  className="relative flex h-52 w-52 items-center justify-center rounded-full border border-[#E4DED2] bg-[#F7F3EA]"
                   style={{ animation: "mentorFloat 3s ease-in-out infinite" }}
                 >
-                  <div className="absolute top-9 h-20 w-20 rounded-full bg-neutral-950" />
+                  <div className="absolute top-9 h-20 w-20 rounded-full bg-[#11100E]" />
                   <div className="absolute top-16 flex gap-5">
                     <span
-                      className="h-3 w-3 rounded-full bg-white"
+                      className="h-3 w-3 rounded-full bg-[#FFFCF6]"
                       style={{ animation: "mentorBlink 4s infinite" }}
                     />
                     <span
-                      className="h-3 w-3 rounded-full bg-white"
+                      className="h-3 w-3 rounded-full bg-[#FFFCF6]"
                       style={{ animation: "mentorBlink 4s infinite" }}
                     />
                   </div>
-                  <div className="absolute top-28 h-20 w-32 rounded-t-[3rem] bg-[#8b1116]" />
-                  <div className="absolute bottom-8 rounded-full bg-white px-4 py-2 text-sm font-black text-neutral-950">
+                  <div className="absolute top-28 h-20 w-32 rounded-t-[3rem] bg-[#741018]" />
+                  <div className="absolute bottom-8 rounded-full bg-[#FFFCF6] px-4 py-2 text-sm font-black text-[#141210]">
                     Mr. R
                   </div>
                 </div>
@@ -1353,8 +1353,8 @@ export default function MeasuresOfSpreadLesson() {
                     onClick={() => setMentorTopic(topic.id)}
                     className={`rounded-2xl border px-4 py-3 text-left text-sm font-black transition ${
                       mentorTopic === topic.id
-                        ? "border-[#8b1116] bg-[#8b1116] text-white"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-700 hover:bg-white"
+                        ? "border-[#741018] bg-[#741018] text-white"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-[#525252] hover:bg-[#FFFCF6]"
                     }`}
                   >
                     {topic.label}
@@ -1363,10 +1363,10 @@ export default function MeasuresOfSpreadLesson() {
               </div>
             </section>
 
-            <section className="relative overflow-hidden rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
-              <div className="absolute left-0 top-0 h-1 w-full overflow-hidden bg-white/10">
+            <section className="relative overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
+              <div className="absolute left-0 top-0 h-1 w-full overflow-hidden bg-[#FFFCF6]/10">
                 <div
-                  className="h-full w-1/2 bg-white/40"
+                  className="h-full w-1/2 bg-[#FFFCF6]/40"
                   style={{ animation: "signalMove 2.8s linear infinite" }}
                 />
               </div>
@@ -1383,7 +1383,7 @@ export default function MeasuresOfSpreadLesson() {
                 {activeMentor.answer}
               </p>
 
-              <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.07] p-5">
+              <div className="mt-8 rounded-[2rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5">
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
                   Mentor challenge
                 </p>
@@ -1397,8 +1397,8 @@ export default function MeasuresOfSpreadLesson() {
         )}
 
         {activeTab === "Worked Examples" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Worked examples
             </p>
 
@@ -1414,8 +1414,8 @@ export default function MeasuresOfSpreadLesson() {
                   onClick={() => setScenarioIndex(index)}
                   className={`rounded-full px-4 py-2 text-sm font-black transition ${
                     scenarioIndex === index
-                      ? "bg-neutral-950 text-white"
-                      : "border border-neutral-200 bg-[#f7f4ee] text-neutral-700"
+                      ? "bg-[#11100E] text-white"
+                      : "border border-[#E4DED2] bg-[#F7F3EA] text-[#525252]"
                   }`}
                 >
                   {scenario.title}
@@ -1423,12 +1423,12 @@ export default function MeasuresOfSpreadLesson() {
               ))}
             </div>
 
-            <article className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
+            <article className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
               <h3 className="text-3xl font-black tracking-[-0.045em]">
                 {activeScenario.title}
               </h3>
 
-              <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-700">
+              <p className="mt-4 max-w-4xl text-base leading-8 text-[#525252]">
                 {activeScenario.question}
               </p>
 
@@ -1442,8 +1442,8 @@ export default function MeasuresOfSpreadLesson() {
         )}
 
         {activeTab === "Practice Studio" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Practice studio
             </p>
 
@@ -1486,15 +1486,15 @@ export default function MeasuresOfSpreadLesson() {
               ].map((item, index) => (
                 <article
                   key={item.task}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     Practice task {index + 1}
                   </p>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.task}
                   </p>
-                  <p className="mt-4 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">
+                  <p className="mt-4 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">
                     Hint: {item.hint}
                   </p>
                 </article>
@@ -1504,8 +1504,8 @@ export default function MeasuresOfSpreadLesson() {
         )}
 
         {activeTab === "Reflection" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Reflection task
             </p>
 
@@ -1523,19 +1523,19 @@ export default function MeasuresOfSpreadLesson() {
               ].map((item, index) => (
                 <article
                   key={item}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     Prompt {index + 1}
                   </p>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item}
                   </p>
                 </article>
               ))}
             </div>
 
-            <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white">
+            <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
                 Model answer structure
               </p>
@@ -1549,10 +1549,10 @@ export default function MeasuresOfSpreadLesson() {
         )}
 
         {activeTab === "Quiz" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Quiz
                 </p>
                 <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
@@ -1560,7 +1560,7 @@ export default function MeasuresOfSpreadLesson() {
                 </h2>
               </div>
 
-              <div className="rounded-full bg-neutral-950 px-5 py-3 text-sm font-black text-white">
+              <div className="rounded-full bg-[#11100E] px-5 py-3 text-sm font-black text-white">
                 Score: {score}/{quizQuestions.length}
               </div>
             </div>
@@ -1569,7 +1569,7 @@ export default function MeasuresOfSpreadLesson() {
               {quizQuestions.map((question, questionIndex) => (
                 <article
                   key={question.question}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
                   <h3 className="text-lg font-black tracking-[-0.03em]">
                     {questionIndex + 1}. {question.question}
@@ -1596,7 +1596,7 @@ export default function MeasuresOfSpreadLesson() {
                               ? "border-green-300 bg-green-50 text-green-900"
                               : isSelected && !isCorrect
                                 ? "border-red-300 bg-red-50 text-red-900"
-                                : "border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50"
+                                : "border-[#E4DED2] bg-[#FFFCF6] text-[#525252] hover:bg-neutral-50"
                           }`}
                         >
                           {option}
@@ -1606,7 +1606,7 @@ export default function MeasuresOfSpreadLesson() {
                   </div>
 
                   {selectedAnswers[questionIndex] !== undefined ? (
-                    <p className="mt-4 rounded-2xl bg-white px-4 py-3 text-sm leading-7 text-neutral-700">
+                    <p className="mt-4 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm leading-7 text-[#525252]">
                       {question.feedback}
                     </p>
                   ) : null}
@@ -1627,12 +1627,12 @@ function Dialogue({ speaker, text }: { speaker: string; text: string }) {
     <div
       className={`rounded-[1.5rem] border p-5 ${
         isTeacher
-          ? "border-[#8b1116]/20 bg-[#fff7f7]"
-          : "border-neutral-200 bg-[#f7f4ee]"
+          ? "border-[#741018]/20 bg-[#fff4ef]"
+          : "border-[#E4DED2] bg-[#F7F3EA]"
       }`}
     >
-      <p className="text-sm font-black text-[#8b1116]">{speaker}</p>
-      <p className="mt-2 text-base leading-8 text-neutral-700">{text}</p>
+      <p className="text-sm font-black text-[#741018]">{speaker}</p>
+      <p className="mt-2 text-base leading-8 text-[#525252]">{text}</p>
     </div>
   );
 }
@@ -1653,8 +1653,8 @@ function Slider({
   return (
     <label className="block">
       <div className="flex items-center justify-between gap-4">
-        <span className="text-sm font-black text-neutral-700">{label}</span>
-        <span className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
+        <span className="text-sm font-black text-[#525252]">{label}</span>
+        <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black text-white">
           {value}
         </span>
       </div>
@@ -1665,7 +1665,7 @@ function Slider({
         max={max}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="mt-3 w-full accent-[#8b1116]"
+        className="mt-3 w-full accent-[#741018]"
       />
     </label>
   );
@@ -1673,8 +1673,8 @@ function Slider({
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4">
-      <p className="text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4">
+      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#7a7063]">
         {label}
       </p>
       <p className="mt-2 text-2xl font-black tracking-[-0.04em]">{value}</p>
@@ -1684,7 +1684,7 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 function MetricDark({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4">
+    <div className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4">
       <p className="text-xs font-black uppercase tracking-[0.16em] text-white/45">
         {label}
       </p>
@@ -1697,11 +1697,11 @@ function MetricDark({ label, value }: { label: string; value: string }) {
 
 function AnswerCard({ title, body }: { title: string; body: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-white p-5">
-      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#FFFCF6] p-5">
+      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
         {title}
       </p>
-      <p className="mt-3 text-sm leading-7 text-neutral-700">{body}</p>
+      <p className="mt-3 text-sm leading-7 text-[#525252]">{body}</p>
     </div>
   );
 }
@@ -1720,14 +1720,14 @@ function Bar({
   return (
     <div>
       <div className="flex items-center justify-between gap-4">
-        <p className="text-sm font-black text-neutral-700">{label}</p>
-        <p className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
+        <p className="text-sm font-black text-[#525252]">{label}</p>
+        <p className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black text-white">
           {value.toFixed(1)}
         </p>
       </div>
-      <div className="mt-2 h-4 overflow-hidden rounded-full bg-[#f7f4ee]">
+      <div className="mt-2 h-4 overflow-hidden rounded-full bg-[#F7F3EA]">
         <div
-          className="h-full rounded-full bg-[#8b1116]"
+          className="h-full rounded-full bg-[#741018]"
           style={{ width: `${width}%` }}
         />
       </div>

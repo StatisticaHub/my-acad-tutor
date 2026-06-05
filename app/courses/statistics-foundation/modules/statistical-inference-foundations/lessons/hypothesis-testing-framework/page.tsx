@@ -473,19 +473,19 @@ export default function HypothesisTestingFrameworkLesson() {
   }, 0);
 
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-8 text-neutral-950 md:px-8 md:py-14">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-8 text-[#141210] md:px-8 md:py-14">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses/statistics-foundation/modules/statistical-inference-foundations")}
-          className="text-sm font-black text-[#8b1116] hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] hover:text-[#4d080e]"
         >
           ← Back to module
         </a>
 
-        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
+        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-6 md:p-10">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Statistics Foundation · Lesson 4.3
               </p>
 
@@ -493,7 +493,7 @@ export default function HypothesisTestingFrameworkLesson() {
                 Hypothesis testing framework.
               </h1>
 
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-6 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 Hypothesis testing is a structured way to judge whether observed
                 data are surprising under a baseline assumption. This lesson
                 develops null and alternative hypotheses, test statistics, null
@@ -506,7 +506,7 @@ export default function HypothesisTestingFrameworkLesson() {
                   (item) => (
                     <div
                       key={item}
-                      className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-black text-neutral-700"
+                      className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-black text-[#525252]"
                     >
                       {item}
                     </div>
@@ -515,7 +515,7 @@ export default function HypothesisTestingFrameworkLesson() {
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-10 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-10 lg:border-l lg:border-t-0">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Testing workflow
               </p>
@@ -535,7 +535,7 @@ export default function HypothesisTestingFrameworkLesson() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4 text-sm font-black text-white/80"
+                    className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4 text-sm font-black text-white/80"
                   >
                     {item}
                   </div>
@@ -545,7 +545,7 @@ export default function HypothesisTestingFrameworkLesson() {
           </div>
         </section>
 
-        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-neutral-200 bg-white/90 p-2 shadow-sm backdrop-blur">
+        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-[#E4DED2] bg-[#FFFCF6]/90 p-2 shadow-sm backdrop-blur">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -553,8 +553,8 @@ export default function HypothesisTestingFrameworkLesson() {
               onClick={() => setActiveTab(tab)}
               className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-black transition ${
                 activeTab === tab
-                  ? "bg-neutral-950 text-white"
-                  : "text-neutral-600 hover:bg-[#f7f4ee] hover:text-neutral-950"
+                  ? "bg-[#11100E] text-white"
+                  : "text-[#5F5F5F] hover:bg-[#F7F3EA] hover:text-[#141210]"
               }`}
             >
               {tab}
@@ -564,8 +564,8 @@ export default function HypothesisTestingFrameworkLesson() {
 
         {activeTab === "Learning Route" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Lesson route
               </p>
 
@@ -573,7 +573,7 @@ export default function HypothesisTestingFrameworkLesson() {
                 Build the testing framework step by step.
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-neutral-700">
+              <p className="mt-5 text-base leading-8 text-[#525252]">
                 Confidence intervals asked which parameter values are plausible.
                 Hypothesis testing starts with a specific parameter value and
                 asks whether the observed data are unusually far from it.
@@ -583,15 +583,15 @@ export default function HypothesisTestingFrameworkLesson() {
                 {learningRoute.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                       {item.time}
                     </p>
                     <h3 className="mt-2 text-xl font-black tracking-[-0.035em]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-7 text-neutral-700">
+                    <p className="mt-2 text-sm leading-7 text-[#525252]">
                       {item.body}
                     </p>
                   </div>
@@ -599,7 +599,7 @@ export default function HypothesisTestingFrameworkLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Mastery checklist
               </p>
@@ -621,9 +621,9 @@ export default function HypothesisTestingFrameworkLesson() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {index + 1}
                     </span>
                     <p className="text-sm leading-7 text-white/75">{item}</p>
@@ -636,8 +636,8 @@ export default function HypothesisTestingFrameworkLesson() {
 
         {activeTab === "Lecture" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Concept lecture
               </p>
 
@@ -645,7 +645,7 @@ export default function HypothesisTestingFrameworkLesson() {
                 Hypothesis testing asks whether the data are unusual under H₀.
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-neutral-700">
+              <p className="mt-5 text-base leading-8 text-[#525252]">
                 The logic is deliberately cautious. We do not begin by assuming
                 the research claim is true. We begin with a baseline model, then
                 ask whether the data are extreme enough to challenge that model.
@@ -655,20 +655,20 @@ export default function HypothesisTestingFrameworkLesson() {
                 {lectureCards.map((item, index) => (
                   <article
                     key={item.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
                     <div className="flex items-start gap-4">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-sm font-black text-white">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#11100E] text-sm font-black text-white">
                         {index + 1}
                       </span>
                       <div>
                         <h3 className="text-xl font-black tracking-[-0.035em]">
                           {item.title}
                         </h3>
-                        <p className="mt-2 text-sm leading-7 text-neutral-700">
+                        <p className="mt-2 text-sm leading-7 text-[#525252]">
                           {item.body}
                         </p>
-                        <p className="mt-3 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">
+                        <p className="mt-3 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">
                           Example: {item.example}
                         </p>
                       </div>
@@ -678,8 +678,8 @@ export default function HypothesisTestingFrameworkLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Classroom dialogue
               </p>
 
@@ -699,11 +699,11 @@ export default function HypothesisTestingFrameworkLesson() {
                 <Dialogue speaker="Mr. R" text="No. It only means the data were not strong enough to reject H₀ using the chosen rule." />
               </div>
 
-              <div className="mt-8 rounded-[2rem] border border-[#8b1116]/20 bg-[#fff7f7] p-6">
-                <h3 className="text-2xl font-black tracking-[-0.04em] text-[#8b1116]">
+              <div className="mt-8 rounded-[2rem] border border-[#741018]/20 bg-[#fff4ef] p-6">
+                <h3 className="text-2xl font-black tracking-[-0.04em] text-[#741018]">
                   Lecture takeaway
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                <p className="mt-3 text-sm leading-7 text-[#525252]">
                   A hypothesis test is a structured argument about evidence. It
                   does not prove hypotheses; it evaluates how surprising the
                   data are under a specified null model.
@@ -715,8 +715,8 @@ export default function HypothesisTestingFrameworkLesson() {
 
         {activeTab === "Detailed Notes" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Detailed theoretical notes
               </p>
 
@@ -724,7 +724,7 @@ export default function HypothesisTestingFrameworkLesson() {
                 Hypothesis tests compare observed evidence with a null distribution.
               </h2>
 
-              <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700">
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252]">
                 These notes derive the testing framework from sampling
                 distributions and standard errors, then connect hypotheses,
                 test statistics, p-values and decision rules.
@@ -735,9 +735,9 @@ export default function HypothesisTestingFrameworkLesson() {
               {detailedNotes.map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                  className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     {item.formula}
                   </p>
 
@@ -745,7 +745,7 @@ export default function HypothesisTestingFrameworkLesson() {
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
 
@@ -761,10 +761,10 @@ export default function HypothesisTestingFrameworkLesson() {
         )}
 
         {activeTab === "Test Builder" && (
-          <section className="mt-8 overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+          <section className="mt-8 overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
             <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
               <div className="p-6 md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Interactive test builder
                 </p>
 
@@ -772,7 +772,7 @@ export default function HypothesisTestingFrameworkLesson() {
                   Build a hypothesis test from estimate, null value and standard error.
                 </h2>
 
-                <p className="mt-4 text-base leading-8 text-neutral-700">
+                <p className="mt-4 text-base leading-8 text-[#525252]">
                   Adjust the observed estimate, null value, standard error,
                   significance level and test direction. Watch the test
                   statistic, p-value and decision update.
@@ -787,7 +787,7 @@ export default function HypothesisTestingFrameworkLesson() {
                 </div>
               </div>
 
-              <div className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+              <div className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                   Test output
                 </p>
@@ -796,7 +796,7 @@ export default function HypothesisTestingFrameworkLesson() {
                   {reject ? "Reject H₀." : "Fail to reject H₀."}
                 </h2>
 
-                <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.07] p-5">
+                <div className="mt-8 rounded-[2rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5">
                   <NullCurve z={z} testType={testType} alpha={alpha} />
                 </div>
 
@@ -807,7 +807,7 @@ export default function HypothesisTestingFrameworkLesson() {
                   <DarkMetric label="Decision rule" value={reject ? "p ≤ α" : "p > α"} />
                 </div>
 
-                <p className="mt-6 rounded-[1.5rem] bg-white p-5 text-sm font-bold leading-7 text-neutral-950">
+                <p className="mt-6 rounded-[1.5rem] bg-[#FFFCF6] p-5 text-sm font-bold leading-7 text-[#141210]">
                   z = ({estimate} − {nullValue}) / {standardError} ={" "}
                   {z.toFixed(2)}. The result is interpreted under the null
                   distribution.
@@ -819,8 +819,8 @@ export default function HypothesisTestingFrameworkLesson() {
 
         {activeTab === "Null Distribution Lab" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Null distribution lab
               </p>
 
@@ -828,18 +828,18 @@ export default function HypothesisTestingFrameworkLesson() {
                 The null distribution shows ordinary and unusual results.
               </h2>
 
-              <p className="mt-4 text-sm leading-7 text-neutral-700">
+              <p className="mt-4 text-sm leading-7 text-[#525252]">
                 Under H₀, most z statistics fall near 0. Values far into the
                 tails are less likely under H₀ and therefore provide stronger
                 evidence against it.
               </p>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                 <LargeNullCurve z={z} testType={testType} />
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Tail-area interpretation
               </p>
@@ -873,7 +873,7 @@ export default function HypothesisTestingFrameworkLesson() {
                 ].map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5"
+                    className="rounded-[1.5rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5"
                   >
                     <h3 className="text-xl font-black tracking-[-0.035em]">
                       {item.title}
@@ -890,8 +890,8 @@ export default function HypothesisTestingFrameworkLesson() {
 
         {activeTab === "Decision Regions" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Rejection region explorer
               </p>
 
@@ -899,7 +899,7 @@ export default function HypothesisTestingFrameworkLesson() {
                 A significance level creates critical regions.
               </h2>
 
-              <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-700">
+              <p className="mt-4 max-w-4xl text-base leading-8 text-[#525252]">
                 The rejection region is chosen before seeing the data. If the
                 observed test statistic falls inside this region, the test
                 rejects H₀ at the chosen significance level.
@@ -911,7 +911,7 @@ export default function HypothesisTestingFrameworkLesson() {
                 <Metric label="Critical value" value={critical} />
               </div>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                 <CriticalRegionPlot testType={testType} alpha={alpha} z={z} />
               </div>
             </section>
@@ -936,12 +936,12 @@ export default function HypothesisTestingFrameworkLesson() {
               ].map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                  className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                 >
                   <h3 className="text-2xl font-black tracking-[-0.04em]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
                 </article>
@@ -952,8 +952,8 @@ export default function HypothesisTestingFrameworkLesson() {
 
         {activeTab === "Worked Examples" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Worked examples
               </p>
 
@@ -969,8 +969,8 @@ export default function HypothesisTestingFrameworkLesson() {
                     onClick={() => setSelectedExample(index)}
                     className={`rounded-[1.25rem] border p-4 text-left transition ${
                       selectedExample === index
-                        ? "border-neutral-950 bg-neutral-950 text-white"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-800 hover:bg-white"
+                        ? "border-stone-950 bg-[#11100E] text-white"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-neutral-800 hover:bg-[#FFFCF6]"
                     }`}
                   >
                     <p className="text-sm font-black">{example.title}</p>
@@ -979,8 +979,8 @@ export default function HypothesisTestingFrameworkLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 {activeExample.title}
               </p>
 
@@ -999,8 +999,8 @@ export default function HypothesisTestingFrameworkLesson() {
 
         {activeTab === "Practice Studio" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Practice studio
               </p>
 
@@ -1016,8 +1016,8 @@ export default function HypothesisTestingFrameworkLesson() {
                     onClick={() => setSelectedPractice(index)}
                     className={`rounded-[1.25rem] border p-4 text-left transition ${
                       selectedPractice === index
-                        ? "border-neutral-950 bg-neutral-950 text-white"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-800 hover:bg-white"
+                        ? "border-stone-950 bg-[#11100E] text-white"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-neutral-800 hover:bg-[#FFFCF6]"
                     }`}
                   >
                     <p className="text-sm font-black">Question {index + 1}</p>
@@ -1026,8 +1026,8 @@ export default function HypothesisTestingFrameworkLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Question {selectedPractice + 1}
               </p>
 
@@ -1035,11 +1035,11 @@ export default function HypothesisTestingFrameworkLesson() {
                 {activePractice.prompt}
               </h2>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#7a7063]">
                   Suggested answer
                 </p>
-                <p className="mt-3 text-base leading-8 text-neutral-700">
+                <p className="mt-3 text-base leading-8 text-[#525252]">
                   {activePractice.answer}
                 </p>
               </div>
@@ -1048,8 +1048,8 @@ export default function HypothesisTestingFrameworkLesson() {
         )}
 
         {activeTab === "Reflection" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Reflection
             </p>
 
@@ -1082,12 +1082,12 @@ export default function HypothesisTestingFrameworkLesson() {
               ].map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
                   <h3 className="text-xl font-black tracking-[-0.035em]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
                 </article>
@@ -1098,7 +1098,7 @@ export default function HypothesisTestingFrameworkLesson() {
 
         {activeTab === "Quiz" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Lesson quiz
               </p>
@@ -1120,7 +1120,7 @@ export default function HypothesisTestingFrameworkLesson() {
                 return (
                   <article
                     key={question.question}
-                    className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                    className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                   >
                     <h3 className="text-xl font-black tracking-[-0.035em]">
                       {index + 1}. {question.question}
@@ -1141,8 +1141,8 @@ export default function HypothesisTestingFrameworkLesson() {
                             selected === optionIndex
                               ? optionIndex === question.answer
                                 ? "border-green-700 bg-green-50 text-green-900"
-                                : "border-[#8b1116] bg-[#fff7f7] text-[#8b1116]"
-                              : "border-neutral-200 bg-[#f7f4ee] text-neutral-700 hover:bg-white"
+                                : "border-[#741018] bg-[#fff4ef] text-[#741018]"
+                              : "border-[#E4DED2] bg-[#F7F3EA] text-[#525252] hover:bg-[#FFFCF6]"
                           }`}
                         >
                           {option}
@@ -1151,7 +1151,7 @@ export default function HypothesisTestingFrameworkLesson() {
                     </div>
 
                     {selected !== undefined && (
-                      <p className="mt-4 rounded-2xl bg-neutral-950 px-4 py-3 text-sm font-bold leading-7 text-white">
+                      <p className="mt-4 rounded-2xl bg-[#11100E] px-4 py-3 text-sm font-bold leading-7 text-white">
                         {question.feedback}
                       </p>
                     )}
@@ -1168,11 +1168,11 @@ export default function HypothesisTestingFrameworkLesson() {
 
 function Dialogue({ speaker, text }: { speaker: string; text: string }) {
   return (
-    <div className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+    <div className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
+      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
         {speaker}
       </p>
-      <p className="mt-2 text-sm leading-7 text-neutral-700">{text}</p>
+      <p className="mt-2 text-sm leading-7 text-[#525252]">{text}</p>
     </div>
   );
 }
@@ -1195,8 +1195,8 @@ function Slider({
   return (
     <label className="block">
       <div className="flex items-center justify-between gap-4">
-        <span className="text-sm font-black text-neutral-700">{label}</span>
-        <span className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
+        <span className="text-sm font-black text-[#525252]">{label}</span>
+        <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black text-white">
           {value}
           {suffix}
         </span>
@@ -1207,7 +1207,7 @@ function Slider({
         max={max}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="mt-3 w-full accent-[#8b1116]"
+        className="mt-3 w-full accent-[#741018]"
       />
     </label>
   );
@@ -1228,7 +1228,7 @@ function TestTypeSelector({
 
   return (
     <div>
-      <p className="text-sm font-black text-neutral-700">Alternative hypothesis</p>
+      <p className="text-sm font-black text-[#525252]">Alternative hypothesis</p>
       <div className="mt-3 grid gap-2 sm:grid-cols-3">
         {options.map(([key, label]) => (
           <button
@@ -1237,8 +1237,8 @@ function TestTypeSelector({
             onClick={() => onChange(key)}
             className={`rounded-full px-4 py-3 text-sm font-black transition ${
               value === key
-                ? "bg-neutral-950 text-white"
-                : "border border-neutral-200 bg-white text-neutral-700 hover:bg-[#f7f4ee]"
+                ? "bg-[#11100E] text-white"
+                : "border border-[#E4DED2] bg-[#FFFCF6] text-[#525252] hover:bg-[#F7F3EA]"
             }`}
           >
             {label}
@@ -1251,8 +1251,8 @@ function TestTypeSelector({
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-white p-4">
-      <p className="text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#FFFCF6] p-4">
+      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#7a7063]">
         {label}
       </p>
       <p className="mt-2 text-2xl font-black tracking-[-0.04em]">{value}</p>
@@ -1262,7 +1262,7 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 function DarkMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4">
+    <div className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4">
       <p className="text-xs font-black uppercase tracking-[0.16em] text-white/45">
         {label}
       </p>
@@ -1288,15 +1288,15 @@ function InfoBlock({
     <div
       className={`rounded-[1.5rem] p-5 ${
         dark
-          ? "bg-neutral-950 text-white"
+          ? "bg-[#11100E] text-white"
           : warning
-            ? "border border-[#8b1116]/20 bg-[#fff7f7] text-[#8b1116]"
-            : "border border-neutral-200 bg-[#f7f4ee] text-neutral-700"
+            ? "border border-[#741018]/20 bg-[#fff4ef] text-[#741018]"
+            : "border border-[#E4DED2] bg-[#F7F3EA] text-[#525252]"
       }`}
     >
       <p
         className={`text-xs font-black uppercase tracking-[0.18em] ${
-          dark ? "text-white/45" : warning ? "text-[#8b1116]" : "text-neutral-500"
+          dark ? "text-white/45" : warning ? "text-[#741018]" : "text-[#7a7063]"
         }`}
       >
         {title}
@@ -1344,7 +1344,7 @@ function LargeNullCurve({
       <path
         d={normalPath(60, 270, 640, 180)}
         fill="none"
-        stroke="#111111"
+        stroke="#141210"
         strokeWidth="5"
       />
       <line x1="60" x2="700" y1="270" y2="270" stroke="#d4d4d4" strokeWidth="3" />
@@ -1353,7 +1353,7 @@ function LargeNullCurve({
         x2={zToXLarge(z)}
         y1="70"
         y2="270"
-        stroke="#8b1116"
+        stroke="#741018"
         strokeWidth="5"
       />
       <text x="70" y="310" fontSize="18" fontWeight="900" fill="#525252">
@@ -1362,10 +1362,10 @@ function LargeNullCurve({
       <text x="465" y="310" fontSize="18" fontWeight="900" fill="#525252">
         tails = unusual under H₀
       </text>
-      <text x={Math.max(70, Math.min(640, zToXLarge(z) - 45))} y="55" fontSize="18" fontWeight="900" fill="#8b1116">
+      <text x={Math.max(70, Math.min(640, zToXLarge(z) - 45))} y="55" fontSize="18" fontWeight="900" fill="#741018">
         z = {z.toFixed(2)}
       </text>
-      <text x="70" y="35" fontSize="17" fontWeight="900" fill="#111111">
+      <text x="70" y="35" fontSize="17" fontWeight="900" fill="#141210">
         Test type: {formatTestType(testType)}
       </text>
     </svg>
@@ -1386,24 +1386,24 @@ function CriticalRegionPlot({
       <path
         d={normalPath(60, 270, 640, 180)}
         fill="none"
-        stroke="#111111"
+        stroke="#141210"
         strokeWidth="5"
       />
       <line x1="60" x2="700" y1="270" y2="270" stroke="#d4d4d4" strokeWidth="3" />
 
       {testType === "two-sided" && (
         <>
-          <rect x="60" y="70" width="150" height="200" fill="#8b1116" opacity="0.12" />
-          <rect x="550" y="70" width="150" height="200" fill="#8b1116" opacity="0.12" />
+          <rect x="60" y="70" width="150" height="200" fill="#741018" opacity="0.12" />
+          <rect x="550" y="70" width="150" height="200" fill="#741018" opacity="0.12" />
         </>
       )}
 
       {testType === "greater" && (
-        <rect x="550" y="70" width="150" height="200" fill="#8b1116" opacity="0.12" />
+        <rect x="550" y="70" width="150" height="200" fill="#741018" opacity="0.12" />
       )}
 
       {testType === "less" && (
-        <rect x="60" y="70" width="150" height="200" fill="#8b1116" opacity="0.12" />
+        <rect x="60" y="70" width="150" height="200" fill="#741018" opacity="0.12" />
       )}
 
       <line
@@ -1411,7 +1411,7 @@ function CriticalRegionPlot({
         x2={zToXLarge(z)}
         y1="70"
         y2="270"
-        stroke="#8b1116"
+        stroke="#741018"
         strokeWidth="5"
       />
 
@@ -1450,15 +1450,15 @@ function TailShade({
     <>
       {testType === "two-sided" && (
         <>
-          <rect x="40" y="60" width="95" height="150" fill="#8b1116" opacity="0.45" />
-          <rect x="385" y="60" width="95" height="150" fill="#8b1116" opacity="0.45" />
+          <rect x="40" y="60" width="95" height="150" fill="#741018" opacity="0.45" />
+          <rect x="385" y="60" width="95" height="150" fill="#741018" opacity="0.45" />
         </>
       )}
       {testType === "greater" && (
-        <rect x="385" y="60" width="95" height="150" fill="#8b1116" opacity="0.45" />
+        <rect x="385" y="60" width="95" height="150" fill="#741018" opacity="0.45" />
       )}
       {testType === "less" && (
-        <rect x="40" y="60" width="95" height="150" fill="#8b1116" opacity="0.45" />
+        <rect x="40" y="60" width="95" height="150" fill="#741018" opacity="0.45" />
       )}
     </>
   );
@@ -1472,7 +1472,7 @@ function ObservedLine({ z }: { z: number }) {
       x2={x}
       y1="45"
       y2="210"
-      stroke="#8b1116"
+      stroke="#741018"
       strokeWidth="5"
     />
   );

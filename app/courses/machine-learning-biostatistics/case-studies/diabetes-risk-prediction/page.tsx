@@ -274,21 +274,21 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
   const thresholdInfo = thresholdResults[threshold];
 
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-4 py-8 text-[#111111] sm:px-5 md:px-8 md:py-16">
+    <main className="min-h-screen bg-[#F7F3EA] px-4 py-8 text-[#141210] sm:px-5 md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath(
             "/courses/machine-learning-biostatistics/case-studies"
           )}
-          className="text-sm font-semibold text-[#8b1116] transition hover:text-[#5f0b0f]"
+          className="text-sm font-semibold text-[#741018] transition hover:text-[#4d080e]"
         >
           ← Back to case studies
         </a>
 
-        <section className="mt-6 overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:mt-8 md:rounded-[2.5rem]">
+        <section className="mt-6 overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm md:mt-8 md:rounded-[2.5rem]">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-5 sm:p-6 md:p-10 lg:p-12">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm md:tracking-[0.22em]">
                 Case Study 1 · Logistic regression
               </p>
 
@@ -296,7 +296,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                 Diabetes risk prediction workflow.
               </h1>
 
-              <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700 md:mt-6 md:text-lg md:leading-9">
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252] md:mt-6 md:text-lg md:leading-9">
                 A complete applied case study showing how to define a clinical
                 prediction question, check predictors, fit a logistic regression
                 model, evaluate performance and report limitations responsibly.
@@ -305,23 +305,23 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href="#results"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#8b1116] sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#11100E] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#741018] sm:w-auto md:py-4"
                 >
                   View results →
                 </a>
 
                 <a
                   href="#threshold-lab"
-                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-semibold text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
                   Threshold lab
                 </a>
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-[#fdfbf7] p-5 md:p-8 lg:border-l lg:border-t-0">
-              <div className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2rem] md:p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8b1116] md:text-sm">
+            <aside className="border-t border-[#E4DED2] bg-[#fdfbf7] p-5 md:p-8 lg:border-l lg:border-t-0">
+              <div className="rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:rounded-[2rem] md:p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#741018] md:text-sm">
                   Case snapshot
                 </p>
 
@@ -334,12 +334,12 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                   ].map(([label, value]) => (
                     <div
                       key={label}
-                      className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4"
+                      className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4"
                     >
                       <p className="text-2xl font-semibold tracking-[-0.05em]">
                         {value}
                       </p>
-                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#7a7063]">
                         {label}
                       </p>
                     </div>
@@ -350,7 +350,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                   <a
                     href={withBasePath(rScriptHref)}
                     download
-                    className="rounded-full bg-[#111111] px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#8b1116]"
+                    className="rounded-full bg-[#11100E] px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#741018]"
                   >
                     Download R script →
                   </a>
@@ -358,7 +358,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                   <a
                     href={withBasePath(csvHref)}
                     download
-                    className="rounded-full border border-neutral-300 bg-white px-5 py-3 text-center text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee]"
+                    className="rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-5 py-3 text-center text-sm font-semibold text-[#141210] transition hover:bg-[#F7F3EA]"
                   >
                     Download CSV →
                   </a>
@@ -370,9 +370,9 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
 
         <section
           id="results"
-          className="mt-6 scroll-mt-24 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
+          className="mt-6 scroll-mt-24 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
             Results first
           </p>
 
@@ -380,7 +380,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
             Model performance summary.
           </h2>
 
-          <p className="mt-4 max-w-4xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
             At threshold 0.50, the model is more specific than sensitive. It
             identifies most diabetes-negative patients, but misses some
             diabetes-positive patients. For screening, this may be too
@@ -391,21 +391,21 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
             {metricCards.map((metric) => (
               <article
                 key={metric.label}
-                className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#7a7063]">
                   {metric.label}
                 </p>
 
-                <p className="mt-2 text-3xl font-semibold tracking-[-0.06em] text-[#8b1116]">
+                <p className="mt-2 text-3xl font-semibold tracking-[-0.06em] text-[#741018]">
                   {metric.value}
                 </p>
 
-                <p className="mt-2 text-xs font-semibold leading-5 text-neutral-700">
+                <p className="mt-2 text-xs font-semibold leading-5 text-[#525252]">
                   {metric.note}
                 </p>
 
-                <p className="mt-3 text-sm leading-6 text-neutral-700">
+                <p className="mt-3 text-sm leading-6 text-[#525252]">
                   {metric.interpretation}
                 </p>
               </article>
@@ -414,8 +414,8 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
         </section>
 
         <section className="mt-6 grid gap-4 md:mt-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <article className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+          <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
               Prediction question
             </p>
 
@@ -423,14 +423,14 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
               Can routine clinical variables predict diabetes status?
             </h2>
 
-            <p className="mt-4 text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+            <p className="mt-4 text-sm leading-7 text-[#525252] md:text-base md:leading-8">
               This is a binary prediction task. The model estimates predicted
               probability of diabetes using available clinical predictors. The
               goal is prediction, not causal explanation.
             </p>
           </article>
 
-          <article className="rounded-[1.75rem] border border-neutral-200 bg-[#111111] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
+          <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#11100E] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55 md:text-sm">
               Main conclusion
             </p>
@@ -447,8 +447,8 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
           </article>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+        <section className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
             Dataset and predictors
           </p>
 
@@ -456,15 +456,15 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
             Shared diabetes prediction dataset.
           </h2>
 
-          <p className="mt-4 max-w-4xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
             The same diabetes prediction dataset appears across the early
             course modules so learners can focus on how the modelling workflow
             develops.
           </p>
 
-          <div className="mt-6 overflow-x-auto rounded-[1.5rem] border border-neutral-200">
+          <div className="mt-6 overflow-x-auto rounded-[1.5rem] border border-[#E4DED2]">
             <table className="w-full min-w-[760px] border-collapse text-left text-sm">
-              <thead className="bg-[#111111] text-white">
+              <thead className="bg-[#11100E] text-white">
                 <tr>
                   <th className="p-4">Variable</th>
                   <th className="p-4">Meaning</th>
@@ -473,34 +473,34 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
               </thead>
               <tbody>
                 {predictors.map(([name, meaning, caution]) => (
-                  <tr key={name} className="border-t border-neutral-200">
-                    <td className="p-4 font-mono font-semibold text-neutral-950">
+                  <tr key={name} className="border-t border-[#E4DED2]">
+                    <td className="p-4 font-mono font-semibold text-[#141210]">
                       {name}
                     </td>
-                    <td className="p-4 text-neutral-700">{meaning}</td>
-                    <td className="p-4 text-neutral-700">{caution}</td>
+                    <td className="p-4 text-[#525252]">{meaning}</td>
+                    <td className="p-4 text-[#525252]">{caution}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
 
-          <figure className="mt-6 rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-4 md:p-5">
+          <figure className="mt-6 rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 md:p-5">
             <img
               src={withBasePath(figures.outcome)}
               alt="Diabetes outcome distribution"
-              className="w-full rounded-[1.25rem] border border-neutral-200 bg-white"
+              className="w-full rounded-[1.25rem] border border-[#E4DED2] bg-[#FFFCF6]"
             />
 
-            <figcaption className="mt-4 text-sm leading-6 text-neutral-700">
+            <figcaption className="mt-4 text-sm leading-6 text-[#525252]">
               The dataset contains more diabetes-negative than diabetes-positive
               patients. This means accuracy alone is not enough.
             </figcaption>
           </figure>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+        <section className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
             Workflow
           </p>
 
@@ -512,9 +512,9 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
             {workflowSteps.map((step, index) => (
               <div
                 key={step}
-                className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
               >
-                <p className="text-2xl font-semibold tracking-[-0.05em] text-[#8b1116]">
+                <p className="text-2xl font-semibold tracking-[-0.05em] text-[#741018]">
                   {String(index + 1).padStart(2, "0")}
                 </p>
 
@@ -544,8 +544,8 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
           />
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+        <section className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
             Confusion matrix
           </p>
 
@@ -553,9 +553,9 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
             Classification at threshold 0.50.
           </h2>
 
-          <div className="mt-6 overflow-x-auto rounded-[1.5rem] border border-neutral-200">
+          <div className="mt-6 overflow-x-auto rounded-[1.5rem] border border-[#E4DED2]">
             <table className="w-full min-w-[620px] border-collapse text-center text-sm">
-              <thead className="bg-[#111111] text-white">
+              <thead className="bg-[#11100E] text-white">
                 <tr>
                   <th className="p-4"></th>
                   <th className="p-4">Predicted negative</th>
@@ -564,8 +564,8 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-neutral-200">
-                  <th className="bg-[#f7f4ee] p-4 text-left font-semibold">
+                <tr className="border-t border-[#E4DED2]">
+                  <th className="bg-[#F7F3EA] p-4 text-left font-semibold">
                     Observed negative
                   </th>
                   <td className="p-4 text-2xl font-semibold text-emerald-700">
@@ -574,13 +574,13 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                   <td className="p-4 text-2xl font-semibold text-rose-700">
                     14
                   </td>
-                  <td className="p-4 text-left text-neutral-700">
+                  <td className="p-4 text-left text-[#525252]">
                     87 true negatives and 14 false positives.
                   </td>
                 </tr>
 
-                <tr className="border-t border-neutral-200">
-                  <th className="bg-[#f7f4ee] p-4 text-left font-semibold">
+                <tr className="border-t border-[#E4DED2]">
+                  <th className="bg-[#F7F3EA] p-4 text-left font-semibold">
                     Observed positive
                   </th>
                   <td className="p-4 text-2xl font-semibold text-rose-700">
@@ -589,7 +589,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                   <td className="p-4 text-2xl font-semibold text-emerald-700">
                     33
                   </td>
-                  <td className="p-4 text-left text-neutral-700">
+                  <td className="p-4 text-left text-[#525252]">
                     33 true positives and 20 false negatives.
                   </td>
                 </tr>
@@ -600,9 +600,9 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
 
         <section
           id="threshold-lab"
-          className="mt-6 scroll-mt-24 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
+          className="mt-6 scroll-mt-24 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
             Interactive threshold lab
           </p>
 
@@ -610,13 +610,13 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
             Changing the threshold changes clinical behaviour.
           </h2>
 
-          <p className="mt-4 max-w-4xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
             Lower thresholds usually increase sensitivity but create more false
             positives. Higher thresholds usually increase specificity but miss
             more positives.
           </p>
 
-          <div className="mt-6 rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-4 md:p-5">
+          <div className="mt-6 rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 md:p-5">
             <div className="flex flex-wrap gap-2">
               {Object.keys(thresholdResults).map((key) => (
                 <button
@@ -625,8 +625,8 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                   onClick={() => setThreshold(key)}
                   className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
                     threshold === key
-                      ? "bg-[#111111] text-white"
-                      : "border border-neutral-200 bg-white text-neutral-700 hover:text-[#8b1116]"
+                      ? "bg-[#11100E] text-white"
+                      : "border border-[#E4DED2] bg-[#FFFCF6] text-[#525252] hover:text-[#741018]"
                   }`}
                 >
                   {key}
@@ -647,13 +647,13 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
               ].map(([label, value]) => (
                 <div
                   key={label}
-                  className="rounded-[1.25rem] border border-neutral-200 bg-white p-4"
+                  className="rounded-[1.25rem] border border-[#E4DED2] bg-[#FFFCF6] p-4"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-500">
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#7a7063]">
                     {label}
                   </p>
 
-                  <p className="mt-2 text-2xl font-semibold tracking-[-0.05em] text-neutral-950">
+                  <p className="mt-2 text-2xl font-semibold tracking-[-0.05em] text-[#141210]">
                     {value}
                   </p>
                 </div>
@@ -661,22 +661,22 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
             </div>
 
             <div className="mt-5 grid gap-3 lg:grid-cols-2">
-              <div className="rounded-[1.5rem] border border-neutral-200 bg-white p-5">
+              <div className="rounded-[1.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-5">
                 <h3 className="text-xl font-semibold tracking-[-0.04em]">
                   Threshold interpretation
                 </h3>
 
-                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                <p className="mt-3 text-sm leading-7 text-[#525252]">
                   {thresholdInfo.interpretation}
                 </p>
               </div>
 
-              <div className="rounded-[1.5rem] border border-neutral-200 bg-white p-5">
+              <div className="rounded-[1.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-5">
                 <h3 className="text-xl font-semibold tracking-[-0.04em]">
                   Clinical behaviour
                 </h3>
 
-                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                <p className="mt-3 text-sm leading-7 text-[#525252]">
                   {thresholdInfo.clinicalBehaviour}
                 </p>
               </div>
@@ -685,8 +685,8 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
         </section>
 
         <section className="mt-6 grid gap-4 md:mt-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <article className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+          <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
               Interpretation checklist
             </p>
 
@@ -698,13 +698,13 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
               {checklist.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] p-4"
+                  className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] p-4"
                 >
-                  <p className="text-sm font-semibold text-neutral-950">
+                  <p className="text-sm font-semibold text-[#141210]">
                     {item.title}
                   </p>
 
-                  <p className="mt-2 text-sm leading-7 text-neutral-700">
+                  <p className="mt-2 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
                 </div>
@@ -712,7 +712,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
             </div>
           </article>
 
-          <article className="rounded-[1.75rem] border border-neutral-200 bg-[#111111] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
+          <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#11100E] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55 md:text-sm">
               Limitations
             </p>
@@ -725,7 +725,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
               {limitations.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-semibold text-white/85"
+                  className="rounded-2xl border border-white/10 bg-[#FFFCF6]/[0.06] px-4 py-3 text-sm font-semibold text-white/85"
                 >
                   {item}
                 </div>
@@ -734,8 +734,8 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
           </article>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+        <section className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
             Report-style conclusion
           </p>
 
@@ -743,7 +743,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
             How to write this case study in a report.
           </h2>
 
-          <div className="mt-6 rounded-[1.5rem] bg-[#111111] p-5 text-white md:p-6">
+          <div className="mt-6 rounded-[1.5rem] bg-[#11100E] p-5 text-white md:p-6">
             <p className="text-sm leading-7 text-white/75 md:text-base md:leading-8">
               A logistic regression model was fitted to predict diabetes status
               using routinely measured clinical characteristics. The model
@@ -759,7 +759,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
           </div>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-[#8b1116] p-5 text-white shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+        <section className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#741018] p-5 text-white shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70 md:text-sm">
@@ -781,7 +781,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
               <a
                 href={withBasePath(rScriptHref)}
                 download
-                className="inline-flex w-full justify-center rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                className="inline-flex w-full justify-center rounded-full bg-[#FFFCF6] px-6 py-3.5 text-sm font-semibold text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
               >
                 Download R script →
               </a>
@@ -790,7 +790,7 @@ export default function DiabetesRiskPredictionCaseStudyPage() {
                 href={withBasePath(
                   "/courses/machine-learning-biostatistics/modules/foundations"
                 )}
-                className="inline-flex w-full justify-center rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10 sm:w-auto md:py-4"
+                className="inline-flex w-full justify-center rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#FFFCF6]/10 sm:w-auto md:py-4"
               >
                 Back to Module 1 →
               </a>
@@ -816,8 +816,8 @@ function FigureCard({
   alt: string;
 }) {
   return (
-    <figure className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+    <figure className="rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
         {eyebrow}
       </p>
 
@@ -825,14 +825,14 @@ function FigureCard({
         {title}
       </h2>
 
-      <p className="mt-4 text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+      <p className="mt-4 text-sm leading-7 text-[#525252] md:text-base md:leading-8">
         {body}
       </p>
 
       <img
         src={withBasePath(src)}
         alt={alt}
-        className="mt-6 w-full rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee]"
+        className="mt-6 w-full rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA]"
       />
     </figure>
   );

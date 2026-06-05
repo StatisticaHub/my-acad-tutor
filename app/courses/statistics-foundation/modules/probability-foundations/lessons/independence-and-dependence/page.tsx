@@ -485,19 +485,19 @@ export default function IndependenceDependenceLesson() {
   }, 0);
 
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-8 text-neutral-950 md:px-8 md:py-14">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-8 text-[#141210] md:px-8 md:py-14">
       <section className="mx-auto max-w-7xl">
         <a
           href="/courses/statistics-foundation/modules/probability-and-uncertainty/"
-          className="text-sm font-black text-[#8b1116] hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] hover:text-[#4d080e]"
         >
           ← Back to module
         </a>
 
-        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
+        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-6 md:p-10">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Statistics Foundation · Lesson 3.4
               </p>
 
@@ -505,7 +505,7 @@ export default function IndependenceDependenceLesson() {
                 Independence and dependence.
               </h1>
 
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-6 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 Independence and dependence describe whether one event changes
                 the probability of another. This lesson develops the idea using
                 conditional probability, joint probability, two-way tables, tree
@@ -521,7 +521,7 @@ export default function IndependenceDependenceLesson() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-black text-neutral-700"
+                    className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-black text-[#525252]"
                   >
                     {item}
                   </div>
@@ -529,7 +529,7 @@ export default function IndependenceDependenceLesson() {
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-10 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-10 lg:border-l lg:border-t-0">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Central idea
               </p>
@@ -549,7 +549,7 @@ export default function IndependenceDependenceLesson() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4 text-sm font-black text-white/80"
+                    className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4 text-sm font-black text-white/80"
                   >
                     {item}
                   </div>
@@ -559,7 +559,7 @@ export default function IndependenceDependenceLesson() {
           </div>
         </section>
 
-        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-neutral-200 bg-white/90 p-2 shadow-sm backdrop-blur">
+        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-[#E4DED2] bg-[#FFFCF6]/90 p-2 shadow-sm backdrop-blur">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -567,8 +567,8 @@ export default function IndependenceDependenceLesson() {
               onClick={() => setActiveTab(tab)}
               className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-black transition ${
                 activeTab === tab
-                  ? "bg-neutral-950 text-white"
-                  : "text-neutral-600 hover:bg-[#f7f4ee] hover:text-neutral-950"
+                  ? "bg-[#11100E] text-white"
+                  : "text-[#5F5F5F] hover:bg-[#F7F3EA] hover:text-[#141210]"
               }`}
             >
               {tab}
@@ -578,8 +578,8 @@ export default function IndependenceDependenceLesson() {
 
         {activeTab === "Learning Route" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Lesson route
               </p>
 
@@ -587,7 +587,7 @@ export default function IndependenceDependenceLesson() {
                 Move from conditional probability to independence checks.
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-neutral-700">
+              <p className="mt-5 text-base leading-8 text-[#525252]">
                 Students now use conditional probability as a diagnostic tool:
                 does knowing one event change another probability, or does the
                 probability remain unchanged?
@@ -597,15 +597,15 @@ export default function IndependenceDependenceLesson() {
                 {learningRoute.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                       {item.time}
                     </p>
                     <h3 className="mt-2 text-xl font-black tracking-[-0.035em]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-7 text-neutral-700">
+                    <p className="mt-2 text-sm leading-7 text-[#525252]">
                       {item.body}
                     </p>
                   </div>
@@ -613,7 +613,7 @@ export default function IndependenceDependenceLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Mastery checklist
               </p>
@@ -635,9 +635,9 @@ export default function IndependenceDependenceLesson() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {index + 1}
                     </span>
                     <p className="text-sm leading-7 text-white/75">{item}</p>
@@ -650,8 +650,8 @@ export default function IndependenceDependenceLesson() {
 
         {activeTab === "Lecture" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Concept lecture
               </p>
 
@@ -659,7 +659,7 @@ export default function IndependenceDependenceLesson() {
                 Independence is about information, not physical separation.
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-neutral-700">
+              <p className="mt-5 text-base leading-8 text-[#525252]">
                 The key question is simple: after learning that B happened, did
                 the probability of A change? If yes, the events are dependent.
                 If no, the events are independent.
@@ -669,20 +669,20 @@ export default function IndependenceDependenceLesson() {
                 {lectureCards.map((item, index) => (
                   <article
                     key={item.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
                     <div className="flex items-start gap-4">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-sm font-black text-white">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#11100E] text-sm font-black text-white">
                         {index + 1}
                       </span>
                       <div>
                         <h3 className="text-xl font-black tracking-[-0.035em]">
                           {item.title}
                         </h3>
-                        <p className="mt-2 text-sm leading-7 text-neutral-700">
+                        <p className="mt-2 text-sm leading-7 text-[#525252]">
                           {item.body}
                         </p>
-                        <p className="mt-3 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">
+                        <p className="mt-3 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">
                           Example: {item.example}
                         </p>
                       </div>
@@ -692,8 +692,8 @@ export default function IndependenceDependenceLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Classroom dialogue
               </p>
 
@@ -740,11 +740,11 @@ export default function IndependenceDependenceLesson() {
                 />
               </div>
 
-              <div className="mt-8 rounded-[2rem] border border-[#8b1116]/20 bg-[#fff7f7] p-6">
-                <h3 className="text-2xl font-black tracking-[-0.04em] text-[#8b1116]">
+              <div className="mt-8 rounded-[2rem] border border-[#741018]/20 bg-[#fff4ef] p-6">
+                <h3 className="text-2xl font-black tracking-[-0.04em] text-[#741018]">
                   Lecture takeaway
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                <p className="mt-3 text-sm leading-7 text-[#525252]">
                   Independence is not about events looking unrelated. It is a
                   precise probability statement: information about one event
                   does not change the probability of the other.
@@ -756,8 +756,8 @@ export default function IndependenceDependenceLesson() {
 
         {activeTab === "Detailed Notes" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Detailed theoretical notes
               </p>
 
@@ -765,7 +765,7 @@ export default function IndependenceDependenceLesson() {
                 Independence is a statement about unchanged conditional probability.
               </h2>
 
-              <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700">
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252]">
                 These notes derive independence from conditional probability,
                 connect it to joint probability, and explain why disjointness,
                 repeated trials and causation require careful interpretation.
@@ -776,38 +776,38 @@ export default function IndependenceDependenceLesson() {
               {detailedNotes.map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                  className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     {item.formula}
                   </p>
                   <h3 className="mt-3 text-2xl font-black tracking-[-0.04em]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
 
                   <div className="mt-4 grid gap-4 md:grid-cols-3">
-                    <div className="rounded-2xl bg-[#f7f4ee] p-4">
-                      <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+                    <div className="rounded-2xl bg-[#F7F3EA] p-4">
+                      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#7a7063]">
                         Derivation
                       </p>
-                      <p className="mt-2 text-sm leading-7 text-neutral-700">
+                      <p className="mt-2 text-sm leading-7 text-[#525252]">
                         {item.derivation}
                       </p>
                     </div>
 
-                    <div className="rounded-2xl border border-[#8b1116]/20 bg-[#fff7f7] p-4">
-                      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                    <div className="rounded-2xl border border-[#741018]/20 bg-[#fff4ef] p-4">
+                      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                         Example
                       </p>
-                      <p className="mt-2 text-sm leading-7 text-neutral-700">
+                      <p className="mt-2 text-sm leading-7 text-[#525252]">
                         {item.example}
                       </p>
                     </div>
 
-                    <div className="rounded-2xl bg-neutral-950 p-4 text-white">
+                    <div className="rounded-2xl bg-[#11100E] p-4 text-white">
                       <p className="text-xs font-black uppercase tracking-[0.18em] text-white/45">
                         Warning
                       </p>
@@ -824,10 +824,10 @@ export default function IndependenceDependenceLesson() {
 
         {activeTab === "Independence Lab" && (
           <section className="mt-8 grid gap-6">
-            <section className="overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+            <section className="overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
               <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
                 <div className="p-6 md:p-8">
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                     Interactive independence lab
                   </p>
 
@@ -835,7 +835,7 @@ export default function IndependenceDependenceLesson() {
                     Compare observed overlap with independent overlap.
                   </h2>
 
-                  <p className="mt-4 text-base leading-8 text-neutral-700">
+                  <p className="mt-4 text-base leading-8 text-[#525252]">
                     If A and B are independent, the expected joint probability is
                     P(A)P(B). Move the sliders and compare this product with the
                     observed P(A ∩ B).
@@ -861,7 +861,7 @@ export default function IndependenceDependenceLesson() {
                   </div>
                 </div>
 
-                <div className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+                <div className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
                   <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                     Independence check
                   </p>
@@ -885,14 +885,14 @@ export default function IndependenceDependenceLesson() {
                     />
                   </div>
 
-                  <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.07] p-5">
+                  <div className="mt-8 rounded-[2rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5">
                     <OverlapBars
                       expected={expectedJoint}
                       observed={Math.min(observedJoint, pA, pB) / 100}
                     />
                   </div>
 
-                  <p className="mt-6 rounded-[1.5rem] bg-white p-5 text-sm font-bold leading-7 text-neutral-950">
+                  <p className="mt-6 rounded-[1.5rem] bg-[#FFFCF6] p-5 text-sm font-bold leading-7 text-[#141210]">
                     {labConclusion}
                   </p>
                 </div>
@@ -903,10 +903,10 @@ export default function IndependenceDependenceLesson() {
 
         {activeTab === "Table Explorer" && (
           <section className="mt-8 grid gap-6">
-            <section className="overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+            <section className="overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
               <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
                 <div className="p-6 md:p-8">
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                     Two-way table independence explorer
                   </p>
 
@@ -914,7 +914,7 @@ export default function IndependenceDependenceLesson() {
                     Compare overall probability with conditional probability.
                   </h2>
 
-                  <p className="mt-4 text-base leading-8 text-neutral-700">
+                  <p className="mt-4 text-base leading-8 text-[#525252]">
                     Adjust the table counts and compare P(A), P(A | B) and
                     P(A | Bᶜ). If B does not change the probability of A, these
                     values should be similar.
@@ -928,15 +928,15 @@ export default function IndependenceDependenceLesson() {
                   </div>
                 </div>
 
-                <div className="border-t border-neutral-200 bg-[#f7f4ee] p-6 md:p-8 lg:border-l lg:border-t-0">
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                <div className="border-t border-[#E4DED2] bg-[#F7F3EA] p-6 md:p-8 lg:border-l lg:border-t-0">
+                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                     Table output
                   </p>
 
-                  <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-neutral-200 bg-white">
+                  <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-[#E4DED2] bg-[#FFFCF6]">
                     <table className="w-full border-collapse text-sm">
                       <thead>
-                        <tr className="bg-neutral-950 text-white">
+                        <tr className="bg-[#11100E] text-white">
                           <th className="p-4 text-left">Event</th>
                           <th className="p-4 text-left">B</th>
                           <th className="p-4 text-left">Bᶜ</th>
@@ -944,19 +944,19 @@ export default function IndependenceDependenceLesson() {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr className="border-t border-neutral-200">
+                        <tr className="border-t border-[#E4DED2]">
                           <td className="p-4 font-black">A</td>
                           <td className="p-4">{aAndB}</td>
                           <td className="p-4">{aAndNotB}</td>
                           <td className="p-4 font-black">{tableTotals.aTotal}</td>
                         </tr>
-                        <tr className="border-t border-neutral-200">
+                        <tr className="border-t border-[#E4DED2]">
                           <td className="p-4 font-black">Aᶜ</td>
                           <td className="p-4">{notAAndB}</td>
                           <td className="p-4">{notAAndNotB}</td>
                           <td className="p-4 font-black">{tableTotals.notATotal}</td>
                         </tr>
-                        <tr className="border-t border-neutral-200 bg-[#f7f4ee]">
+                        <tr className="border-t border-[#E4DED2] bg-[#F7F3EA]">
                           <td className="p-4 font-black">Total</td>
                           <td className="p-4 font-black">{tableTotals.bTotal}</td>
                           <td className="p-4 font-black">{tableTotals.notBTotal}</td>
@@ -973,7 +973,7 @@ export default function IndependenceDependenceLesson() {
                     <Metric label="P(B | A)" value={tableTotals.pBGivenA.toFixed(2)} />
                   </div>
 
-                  <div className="mt-6 rounded-[1.5rem] bg-neutral-950 p-5 text-white">
+                  <div className="mt-6 rounded-[1.5rem] bg-[#11100E] p-5 text-white">
                     <p className="text-sm leading-7 text-white/75">
                       If P(A | B) is close to P(A), B does not appear to change
                       the probability of A. If it differs clearly, the events
@@ -988,10 +988,10 @@ export default function IndependenceDependenceLesson() {
 
         {activeTab === "Tree Diagram" && (
           <section className="mt-8 grid gap-6">
-            <section className="overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+            <section className="overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
               <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="p-6 md:p-8">
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                     Replacement and dependence
                   </p>
 
@@ -999,7 +999,7 @@ export default function IndependenceDependenceLesson() {
                     See how replacement changes independence.
                   </h2>
 
-                  <p className="mt-4 text-base leading-8 text-neutral-700">
+                  <p className="mt-4 text-base leading-8 text-[#525252]">
                     Drawing with replacement keeps the composition the same.
                     Drawing without replacement changes the sample space for the
                     second draw.
@@ -1015,19 +1015,19 @@ export default function IndependenceDependenceLesson() {
                     <button
                       type="button"
                       onClick={() => setDrawsWithReplacement((current) => !current)}
-                      className="rounded-[1.5rem] bg-neutral-950 px-5 py-4 text-sm font-black text-white"
+                      className="rounded-[1.5rem] bg-[#11100E] px-5 py-4 text-sm font-black text-white"
                     >
                       Mode: {drawsWithReplacement ? "With replacement" : "Without replacement"}
                     </button>
                   </div>
                 </div>
 
-                <div className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+                <div className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
                   <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                     Tree output
                   </p>
 
-                  <div className="mt-6 rounded-[2rem] border border-white/10 bg-white/[0.07] p-5">
+                  <div className="mt-6 rounded-[2rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5">
                     <ReplacementTree tree={cardTree} />
                   </div>
 
@@ -1038,7 +1038,7 @@ export default function IndependenceDependenceLesson() {
                     <DarkMetric label="P(both red)" value={cardTree.pBothRed.toFixed(3)} />
                   </div>
 
-                  <p className="mt-6 rounded-[1.5rem] bg-white p-5 text-sm font-bold leading-7 text-neutral-950">
+                  <p className="mt-6 rounded-[1.5rem] bg-[#FFFCF6] p-5 text-sm font-bold leading-7 text-[#141210]">
                     {drawsWithReplacement
                       ? "With replacement, the second-draw probability remains the same, so independence is plausible."
                       : "Without replacement, the second-draw probability changes after the first draw, so the events are dependent."}
@@ -1051,8 +1051,8 @@ export default function IndependenceDependenceLesson() {
 
         {activeTab === "Worked Examples" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Worked examples
               </p>
 
@@ -1068,8 +1068,8 @@ export default function IndependenceDependenceLesson() {
                     onClick={() => setSelectedExample(index)}
                     className={`rounded-[1.25rem] border p-4 text-left transition ${
                       selectedExample === index
-                        ? "border-neutral-950 bg-neutral-950 text-white"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-800 hover:bg-white"
+                        ? "border-stone-950 bg-[#11100E] text-white"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-neutral-800 hover:bg-[#FFFCF6]"
                     }`}
                   >
                     <p className="text-sm font-black">{example.title}</p>
@@ -1078,8 +1078,8 @@ export default function IndependenceDependenceLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 {activeExample.title}
               </p>
 
@@ -1098,8 +1098,8 @@ export default function IndependenceDependenceLesson() {
 
         {activeTab === "Practice Studio" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Practice studio
               </p>
 
@@ -1115,8 +1115,8 @@ export default function IndependenceDependenceLesson() {
                     onClick={() => setSelectedPractice(index)}
                     className={`rounded-[1.25rem] border p-4 text-left transition ${
                       selectedPractice === index
-                        ? "border-neutral-950 bg-neutral-950 text-white"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-800 hover:bg-white"
+                        ? "border-stone-950 bg-[#11100E] text-white"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-neutral-800 hover:bg-[#FFFCF6]"
                     }`}
                   >
                     <p className="text-sm font-black">Question {index + 1}</p>
@@ -1125,8 +1125,8 @@ export default function IndependenceDependenceLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Question {selectedPractice + 1}
               </p>
 
@@ -1134,11 +1134,11 @@ export default function IndependenceDependenceLesson() {
                 {activePractice.prompt}
               </h2>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#7a7063]">
                   Suggested answer
                 </p>
-                <p className="mt-3 text-base leading-8 text-neutral-700">
+                <p className="mt-3 text-base leading-8 text-[#525252]">
                   {activePractice.answer}
                 </p>
               </div>
@@ -1147,8 +1147,8 @@ export default function IndependenceDependenceLesson() {
         )}
 
         {activeTab === "Reflection" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Reflection
             </p>
 
@@ -1181,12 +1181,12 @@ export default function IndependenceDependenceLesson() {
               ].map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
                   <h3 className="text-xl font-black tracking-[-0.035em]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
                 </article>
@@ -1197,7 +1197,7 @@ export default function IndependenceDependenceLesson() {
 
         {activeTab === "Quiz" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Lesson quiz
               </p>
@@ -1219,7 +1219,7 @@ export default function IndependenceDependenceLesson() {
                 return (
                   <article
                     key={question.question}
-                    className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                    className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                   >
                     <h3 className="text-xl font-black tracking-[-0.035em]">
                       {index + 1}. {question.question}
@@ -1240,8 +1240,8 @@ export default function IndependenceDependenceLesson() {
                             selected === optionIndex
                               ? optionIndex === question.answer
                                 ? "border-green-700 bg-green-50 text-green-900"
-                                : "border-[#8b1116] bg-[#fff7f7] text-[#8b1116]"
-                              : "border-neutral-200 bg-[#f7f4ee] text-neutral-700 hover:bg-white"
+                                : "border-[#741018] bg-[#fff4ef] text-[#741018]"
+                              : "border-[#E4DED2] bg-[#F7F3EA] text-[#525252] hover:bg-[#FFFCF6]"
                           }`}
                         >
                           {option}
@@ -1250,7 +1250,7 @@ export default function IndependenceDependenceLesson() {
                     </div>
 
                     {selected !== undefined && (
-                      <p className="mt-4 rounded-2xl bg-neutral-950 px-4 py-3 text-sm font-bold leading-7 text-white">
+                      <p className="mt-4 rounded-2xl bg-[#11100E] px-4 py-3 text-sm font-bold leading-7 text-white">
                         {question.feedback}
                       </p>
                     )}
@@ -1267,11 +1267,11 @@ export default function IndependenceDependenceLesson() {
 
 function Dialogue({ speaker, text }: { speaker: string; text: string }) {
   return (
-    <div className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+    <div className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
+      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
         {speaker}
       </p>
-      <p className="mt-2 text-sm leading-7 text-neutral-700">{text}</p>
+      <p className="mt-2 text-sm leading-7 text-[#525252]">{text}</p>
     </div>
   );
 }
@@ -1294,8 +1294,8 @@ function Slider({
   return (
     <label className="block">
       <div className="flex items-center justify-between gap-4">
-        <span className="text-sm font-black text-neutral-700">{label}</span>
-        <span className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
+        <span className="text-sm font-black text-[#525252]">{label}</span>
+        <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black text-white">
           {value}
           {suffix}
         </span>
@@ -1306,7 +1306,7 @@ function Slider({
         max={max}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="mt-3 w-full accent-[#8b1116]"
+        className="mt-3 w-full accent-[#741018]"
       />
     </label>
   );
@@ -1314,8 +1314,8 @@ function Slider({
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-white p-4">
-      <p className="text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#FFFCF6] p-4">
+      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#7a7063]">
         {label}
       </p>
       <p className="mt-2 text-2xl font-black tracking-[-0.04em]">{value}</p>
@@ -1325,7 +1325,7 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 function DarkMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4">
+    <div className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4">
       <p className="text-xs font-black uppercase tracking-[0.16em] text-white/45">
         {label}
       </p>
@@ -1338,7 +1338,7 @@ function DarkMetric({ label, value }: { label: string; value: string }) {
 
 function DarkFormula({ title, formula }: { title: string; formula: string }) {
   return (
-    <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5">
+    <div className="rounded-[1.5rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5">
       <p className="text-xs font-black uppercase tracking-[0.18em] text-white/45">
         {title}
       </p>
@@ -1364,15 +1364,15 @@ function InfoBlock({
     <div
       className={`rounded-[1.5rem] p-5 ${
         dark
-          ? "bg-neutral-950 text-white"
+          ? "bg-[#11100E] text-white"
           : warning
-            ? "border border-[#8b1116]/20 bg-[#fff7f7] text-[#8b1116]"
-            : "border border-neutral-200 bg-[#f7f4ee] text-neutral-700"
+            ? "border border-[#741018]/20 bg-[#fff4ef] text-[#741018]"
+            : "border border-[#E4DED2] bg-[#F7F3EA] text-[#525252]"
       }`}
     >
       <p
         className={`text-xs font-black uppercase tracking-[0.18em] ${
-          dark ? "text-white/45" : warning ? "text-[#8b1116]" : "text-neutral-500"
+          dark ? "text-white/45" : warning ? "text-[#741018]" : "text-[#7a7063]"
         }`}
       >
         {title}
@@ -1398,9 +1398,9 @@ function OverlapBars({
           <span>Expected if independent</span>
           <span>{expected.toFixed(2)}</span>
         </div>
-        <div className="h-5 overflow-hidden rounded-full bg-white/15">
+        <div className="h-5 overflow-hidden rounded-full bg-[#FFFCF6]/15">
           <div
-            className="h-full rounded-full bg-white"
+            className="h-full rounded-full bg-[#FFFCF6]"
             style={{ width: `${Math.min(100, expected * 100)}%` }}
           />
         </div>
@@ -1411,9 +1411,9 @@ function OverlapBars({
           <span>Observed overlap</span>
           <span>{observed.toFixed(2)}</span>
         </div>
-        <div className="h-5 overflow-hidden rounded-full bg-white/15">
+        <div className="h-5 overflow-hidden rounded-full bg-[#FFFCF6]/15">
           <div
-            className="h-full rounded-full bg-white"
+            className="h-full rounded-full bg-[#FFFCF6]"
             style={{ width: `${Math.min(100, observed * 100)}%` }}
           />
         </div>
@@ -1468,7 +1468,7 @@ function TreeNode({ x, y, label }: { x: number; y: number; label: string }) {
         textAnchor="middle"
         fontSize="15"
         fontWeight="900"
-        fill="#111111"
+        fill="#141210"
       >
         {label}
       </text>

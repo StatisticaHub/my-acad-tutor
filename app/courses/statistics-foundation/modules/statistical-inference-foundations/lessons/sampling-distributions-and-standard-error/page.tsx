@@ -440,19 +440,19 @@ export default function SamplingDistributionsStandardErrorLesson() {
   }, 0);
 
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-8 text-neutral-950 md:px-8 md:py-14">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-8 text-[#141210] md:px-8 md:py-14">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses/statistics-foundation/modules/statistical-inference-foundations")}
-          className="text-sm font-black text-[#8b1116] hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] hover:text-[#4d080e]"
         >
           ← Back to module
         </a>
 
-        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
+        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-6 md:p-10">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Statistics Foundation · Lesson 4.1
               </p>
 
@@ -460,7 +460,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 Sampling distributions and standard error.
               </h1>
 
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-6 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 Statistical inference begins with a simple but powerful idea:
                 samples vary. This lesson explains how sample statistics vary
                 from sample to sample, why the sampling distribution matters,
@@ -473,7 +473,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                   (item) => (
                     <div
                       key={item}
-                      className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-black text-neutral-700"
+                      className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-black text-[#525252]"
                     >
                       {item}
                     </div>
@@ -482,7 +482,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-10 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-10 lg:border-l lg:border-t-0">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Central idea
               </p>
@@ -502,7 +502,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4 text-sm font-black text-white/80"
+                    className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4 text-sm font-black text-white/80"
                   >
                     {item}
                   </div>
@@ -512,7 +512,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
           </div>
         </section>
 
-        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-neutral-200 bg-white/90 p-2 shadow-sm backdrop-blur">
+        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-[#E4DED2] bg-[#FFFCF6]/90 p-2 shadow-sm backdrop-blur">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -520,8 +520,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
               onClick={() => setActiveTab(tab)}
               className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-black transition ${
                 activeTab === tab
-                  ? "bg-neutral-950 text-white"
-                  : "text-neutral-600 hover:bg-[#f7f4ee] hover:text-neutral-950"
+                  ? "bg-[#11100E] text-white"
+                  : "text-[#5F5F5F] hover:bg-[#F7F3EA] hover:text-[#141210]"
               }`}
             >
               {tab}
@@ -531,8 +531,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
 
         {activeTab === "Learning Route" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Lesson route
               </p>
 
@@ -540,7 +540,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 Move from sample variation to inference.
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-neutral-700">
+              <p className="mt-5 text-base leading-8 text-[#525252]">
                 This lesson is the bridge between probability and statistical
                 inference. Probability describes how sample statistics behave;
                 inference uses that behaviour to judge uncertainty about
@@ -551,15 +551,15 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 {learningRoute.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                       {item.time}
                     </p>
                     <h3 className="mt-2 text-xl font-black tracking-[-0.035em]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-7 text-neutral-700">
+                    <p className="mt-2 text-sm leading-7 text-[#525252]">
                       {item.body}
                     </p>
                   </div>
@@ -567,7 +567,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Mastery checklist
               </p>
@@ -589,9 +589,9 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {index + 1}
                     </span>
                     <p className="text-sm leading-7 text-white/75">{item}</p>
@@ -604,8 +604,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
 
         {activeTab === "Lecture" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Concept lecture
               </p>
 
@@ -613,7 +613,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 Inference asks how far a sample statistic may be from the truth.
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-neutral-700">
+              <p className="mt-5 text-base leading-8 text-[#525252]">
                 We rarely observe the full population. Instead, we observe a
                 sample and calculate a statistic. But a different sample would
                 have produced a different statistic. Standard error measures
@@ -624,20 +624,20 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 {lectureCards.map((item, index) => (
                   <article
                     key={item.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
                     <div className="flex items-start gap-4">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-sm font-black text-white">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#11100E] text-sm font-black text-white">
                         {index + 1}
                       </span>
                       <div>
                         <h3 className="text-xl font-black tracking-[-0.035em]">
                           {item.title}
                         </h3>
-                        <p className="mt-2 text-sm leading-7 text-neutral-700">
+                        <p className="mt-2 text-sm leading-7 text-[#525252]">
                           {item.body}
                         </p>
-                        <p className="mt-3 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">
+                        <p className="mt-3 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">
                           Example: {item.example}
                         </p>
                       </div>
@@ -647,8 +647,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Classroom dialogue
               </p>
 
@@ -695,11 +695,11 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 />
               </div>
 
-              <div className="mt-8 rounded-[2rem] border border-[#8b1116]/20 bg-[#fff7f7] p-6">
-                <h3 className="text-2xl font-black tracking-[-0.04em] text-[#8b1116]">
+              <div className="mt-8 rounded-[2rem] border border-[#741018]/20 bg-[#fff4ef] p-6">
+                <h3 className="text-2xl font-black tracking-[-0.04em] text-[#741018]">
                   Lecture takeaway
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                <p className="mt-3 text-sm leading-7 text-[#525252]">
                   Standard error is the mathematical bridge from a single sample
                   estimate to uncertainty about the population parameter.
                 </p>
@@ -710,8 +710,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
 
         {activeTab === "Detailed Notes" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Detailed theoretical notes
               </p>
 
@@ -719,7 +719,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 A sample statistic has its own probability distribution.
               </h2>
 
-              <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700">
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252]">
                 These notes develop the theory carefully: why statistics are
                 random, why sample means centre on the population mean, and why
                 their variability shrinks at the square-root rate.
@@ -730,9 +730,9 @@ export default function SamplingDistributionsStandardErrorLesson() {
               {detailedNotes.map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                  className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     {item.formula}
                   </p>
 
@@ -740,7 +740,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
 
@@ -756,10 +756,10 @@ export default function SamplingDistributionsStandardErrorLesson() {
         )}
 
         {activeTab === "Sampling Lab" && (
-          <section className="mt-8 overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+          <section className="mt-8 overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
             <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
               <div className="p-6 md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Interactive sampling distribution lab
                 </p>
 
@@ -767,7 +767,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                   Repeated samples produce repeated sample means.
                 </h2>
 
-                <p className="mt-4 text-base leading-8 text-neutral-700">
+                <p className="mt-4 text-base leading-8 text-[#525252]">
                   Adjust the population mean, population spread, sample size and
                   number of repeated samples. The histogram shows the simulated
                   sampling distribution of the sample mean.
@@ -781,7 +781,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 </div>
               </div>
 
-              <div className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+              <div className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                   Sampling distribution output
                 </p>
@@ -790,7 +790,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                   Sample means cluster around μ.
                 </h2>
 
-                <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.07] p-5">
+                <div className="mt-8 rounded-[2rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5">
                   <Histogram data={samplingData} target={populationMean} />
                 </div>
 
@@ -801,7 +801,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                   <DarkMetric label="Empirical SE" value={empiricalSE.toFixed(2)} />
                 </div>
 
-                <p className="mt-6 rounded-[1.5rem] bg-white p-5 text-sm font-bold leading-7 text-neutral-950">
+                <p className="mt-6 rounded-[1.5rem] bg-[#FFFCF6] p-5 text-sm font-bold leading-7 text-[#141210]">
                   The sampling distribution is centred near μ, and its spread is
                   approximately σ/√n.
                 </p>
@@ -812,8 +812,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
 
         {activeTab === "Standard Error Lab" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Standard error lab
               </p>
 
@@ -821,7 +821,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 Larger samples shrink uncertainty, but not linearly.
               </h2>
 
-              <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-700">
+              <p className="mt-4 max-w-4xl text-base leading-8 text-[#525252]">
                 The formula SE(x̄) = σ/√n shows that standard error decreases at
                 the square-root rate. To halve the standard error, sample size
                 must be multiplied by 4.
@@ -833,7 +833,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 <Metric label="σ / √n" value={theoreticalSE.toFixed(2)} />
               </div>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                 <SECurve sigma={populationSd} currentN={sampleSize} />
               </div>
             </section>
@@ -842,15 +842,15 @@ export default function SamplingDistributionsStandardErrorLesson() {
               {[25, 100, 400].map((n) => (
                 <article
                   key={n}
-                  className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                  className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                 >
-                  <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
                     Sample size {n}
                   </p>
                   <h3 className="mt-3 text-3xl font-black tracking-[-0.05em]">
                     SE = {(populationSd / Math.sqrt(n)).toFixed(2)}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     With σ = {populationSd}, the standard error is{" "}
                     {populationSd}/√{n}. Compare this with the current selected
                     sample size.
@@ -863,8 +863,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
 
         {activeTab === "Visual Reasoning" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Visual reasoning
               </p>
 
@@ -872,18 +872,18 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 One population can produce many possible samples.
               </h2>
 
-              <p className="mt-4 text-sm leading-7 text-neutral-700">
+              <p className="mt-4 text-sm leading-7 text-[#525252]">
                 The population parameter is fixed, but each random sample gives
                 a different statistic. The sampling distribution is the bridge
                 between the population and the observed estimate.
               </p>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                 <SamplingDiagram />
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Interpretation map
               </p>
@@ -917,7 +917,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 ].map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5"
+                    className="rounded-[1.5rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5"
                   >
                     <h3 className="text-xl font-black tracking-[-0.035em]">
                       {item.title}
@@ -934,8 +934,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
 
         {activeTab === "Worked Examples" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Worked examples
               </p>
 
@@ -951,8 +951,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
                     onClick={() => setSelectedExample(index)}
                     className={`rounded-[1.25rem] border p-4 text-left transition ${
                       selectedExample === index
-                        ? "border-neutral-950 bg-neutral-950 text-white"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-800 hover:bg-white"
+                        ? "border-stone-950 bg-[#11100E] text-white"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-neutral-800 hover:bg-[#FFFCF6]"
                     }`}
                   >
                     <p className="text-sm font-black">{example.title}</p>
@@ -961,8 +961,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 {activeExample.title}
               </p>
 
@@ -981,8 +981,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
 
         {activeTab === "Practice Studio" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Practice studio
               </p>
 
@@ -998,8 +998,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
                     onClick={() => setSelectedPractice(index)}
                     className={`rounded-[1.25rem] border p-4 text-left transition ${
                       selectedPractice === index
-                        ? "border-neutral-950 bg-neutral-950 text-white"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-800 hover:bg-white"
+                        ? "border-stone-950 bg-[#11100E] text-white"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-neutral-800 hover:bg-[#FFFCF6]"
                     }`}
                   >
                     <p className="text-sm font-black">Question {index + 1}</p>
@@ -1008,8 +1008,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Question {selectedPractice + 1}
               </p>
 
@@ -1017,11 +1017,11 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 {activePractice.prompt}
               </h2>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#7a7063]">
                   Suggested answer
                 </p>
-                <p className="mt-3 text-base leading-8 text-neutral-700">
+                <p className="mt-3 text-base leading-8 text-[#525252]">
                   {activePractice.answer}
                 </p>
               </div>
@@ -1030,8 +1030,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
         )}
 
         {activeTab === "Reflection" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Reflection
             </p>
 
@@ -1064,12 +1064,12 @@ export default function SamplingDistributionsStandardErrorLesson() {
               ].map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
                   <h3 className="text-xl font-black tracking-[-0.035em]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
                 </article>
@@ -1080,7 +1080,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
 
         {activeTab === "Quiz" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Lesson quiz
               </p>
@@ -1102,7 +1102,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                 return (
                   <article
                     key={question.question}
-                    className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                    className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                   >
                     <h3 className="text-xl font-black tracking-[-0.035em]">
                       {index + 1}. {question.question}
@@ -1123,8 +1123,8 @@ export default function SamplingDistributionsStandardErrorLesson() {
                             selected === optionIndex
                               ? optionIndex === question.answer
                                 ? "border-green-700 bg-green-50 text-green-900"
-                                : "border-[#8b1116] bg-[#fff7f7] text-[#8b1116]"
-                              : "border-neutral-200 bg-[#f7f4ee] text-neutral-700 hover:bg-white"
+                                : "border-[#741018] bg-[#fff4ef] text-[#741018]"
+                              : "border-[#E4DED2] bg-[#F7F3EA] text-[#525252] hover:bg-[#FFFCF6]"
                           }`}
                         >
                           {option}
@@ -1133,7 +1133,7 @@ export default function SamplingDistributionsStandardErrorLesson() {
                     </div>
 
                     {selected !== undefined && (
-                      <p className="mt-4 rounded-2xl bg-neutral-950 px-4 py-3 text-sm font-bold leading-7 text-white">
+                      <p className="mt-4 rounded-2xl bg-[#11100E] px-4 py-3 text-sm font-bold leading-7 text-white">
                         {question.feedback}
                       </p>
                     )}
@@ -1150,11 +1150,11 @@ export default function SamplingDistributionsStandardErrorLesson() {
 
 function Dialogue({ speaker, text }: { speaker: string; text: string }) {
   return (
-    <div className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+    <div className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
+      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
         {speaker}
       </p>
-      <p className="mt-2 text-sm leading-7 text-neutral-700">{text}</p>
+      <p className="mt-2 text-sm leading-7 text-[#525252]">{text}</p>
     </div>
   );
 }
@@ -1177,8 +1177,8 @@ function Slider({
   return (
     <label className="block">
       <div className="flex items-center justify-between gap-4">
-        <span className="text-sm font-black text-neutral-700">{label}</span>
-        <span className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
+        <span className="text-sm font-black text-[#525252]">{label}</span>
+        <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black text-white">
           {value}
           {suffix}
         </span>
@@ -1189,7 +1189,7 @@ function Slider({
         max={max}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="mt-3 w-full accent-[#8b1116]"
+        className="mt-3 w-full accent-[#741018]"
       />
     </label>
   );
@@ -1197,8 +1197,8 @@ function Slider({
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-white p-4">
-      <p className="text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#FFFCF6] p-4">
+      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#7a7063]">
         {label}
       </p>
       <p className="mt-2 text-2xl font-black tracking-[-0.04em]">{value}</p>
@@ -1208,7 +1208,7 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 function DarkMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4">
+    <div className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4">
       <p className="text-xs font-black uppercase tracking-[0.16em] text-white/45">
         {label}
       </p>
@@ -1234,15 +1234,15 @@ function InfoBlock({
     <div
       className={`rounded-[1.5rem] p-5 ${
         dark
-          ? "bg-neutral-950 text-white"
+          ? "bg-[#11100E] text-white"
           : warning
-            ? "border border-[#8b1116]/20 bg-[#fff7f7] text-[#8b1116]"
-            : "border border-neutral-200 bg-[#f7f4ee] text-neutral-700"
+            ? "border border-[#741018]/20 bg-[#fff4ef] text-[#741018]"
+            : "border border-[#E4DED2] bg-[#F7F3EA] text-[#525252]"
       }`}
     >
       <p
         className={`text-xs font-black uppercase tracking-[0.18em] ${
-          dark ? "text-white/45" : warning ? "text-[#8b1116]" : "text-neutral-500"
+          dark ? "text-white/45" : warning ? "text-[#741018]" : "text-[#7a7063]"
         }`}
       >
         {title}
@@ -1302,7 +1302,7 @@ function Histogram({ data, target }: { data: number[]; target: number }) {
         x2={20 + Math.max(0, Math.min(100, targetX)) * 4.8}
         y1="25"
         y2="220"
-        stroke="#8b1116"
+        stroke="#741018"
         strokeWidth="4"
       />
 
@@ -1343,7 +1343,7 @@ function SECurve({ sigma, currentN }: { sigma: number; currentN: number }) {
       <polyline
         points={polyline}
         fill="none"
-        stroke="#111111"
+        stroke="#141210"
         strokeWidth="2.8"
         vectorEffect="non-scaling-stroke"
       />
@@ -1351,7 +1351,7 @@ function SECurve({ sigma, currentN }: { sigma: number; currentN: number }) {
         cx={Math.max(0, Math.min(100, currentX))}
         cy={Math.max(0, Math.min(100, currentY))}
         r="2.5"
-        fill="#8b1116"
+        fill="#741018"
       />
       <text x="3" y="8" fontSize="4" fontWeight="900" fill="#525252">
         Standard error
@@ -1367,7 +1367,7 @@ function SamplingDiagram() {
   return (
     <svg viewBox="0 0 760 420" className="h-auto w-full">
       <rect x="30" y="40" width="190" height="290" rx="30" fill="#ffffff" stroke="#d4d4d4" strokeWidth="2" />
-      <text x="70" y="80" fontSize="22" fontWeight="900" fill="#111111">
+      <text x="70" y="80" fontSize="22" fontWeight="900" fill="#141210">
         Population
       </text>
       <text x="72" y="110" fontSize="15" fontWeight="800" fill="#737373">
@@ -1383,15 +1383,15 @@ function SamplingDiagram() {
             cx={x}
             cy={y}
             r="7"
-            fill={index % 5 === 0 ? "#8b1116" : "#111111"}
+            fill={index % 5 === 0 ? "#741018" : "#141210"}
             opacity="0.75"
           />
         );
       })}
 
-      <line x1="235" y1="180" x2="350" y2="110" stroke="#111111" strokeWidth="3" />
-      <line x1="235" y1="205" x2="350" y2="210" stroke="#111111" strokeWidth="3" />
-      <line x1="235" y1="230" x2="350" y2="310" stroke="#111111" strokeWidth="3" />
+      <line x1="235" y1="180" x2="350" y2="110" stroke="#141210" strokeWidth="3" />
+      <line x1="235" y1="205" x2="350" y2="210" stroke="#141210" strokeWidth="3" />
+      <line x1="235" y1="230" x2="350" y2="310" stroke="#141210" strokeWidth="3" />
 
       {[
         ["Sample 1", "x̄₁"],
@@ -1414,7 +1414,7 @@ function SamplingDiagram() {
             y={102 + index * 100}
             fontSize="17"
             fontWeight="900"
-            fill="#111111"
+            fill="#141210"
           >
             {sample}
           </text>
@@ -1423,18 +1423,18 @@ function SamplingDiagram() {
             y={125 + index * 100}
             fontSize="16"
             fontWeight="900"
-            fill="#8b1116"
+            fill="#741018"
           >
             {meanLabel}
           </text>
         </g>
       ))}
 
-      <line x1="515" y1="105" x2="615" y2="210" stroke="#111111" strokeWidth="3" />
-      <line x1="515" y1="205" x2="615" y2="210" stroke="#111111" strokeWidth="3" />
-      <line x1="515" y1="305" x2="615" y2="210" stroke="#111111" strokeWidth="3" />
+      <line x1="515" y1="105" x2="615" y2="210" stroke="#141210" strokeWidth="3" />
+      <line x1="515" y1="205" x2="615" y2="210" stroke="#141210" strokeWidth="3" />
+      <line x1="515" y1="305" x2="615" y2="210" stroke="#141210" strokeWidth="3" />
 
-      <rect x="610" y="145" width="120" height="130" rx="28" fill="#111111" />
+      <rect x="610" y="145" width="120" height="130" rx="28" fill="#141210" />
       <text x="633" y="185" fontSize="17" fontWeight="900" fill="#ffffff">
         Sampling
       </text>

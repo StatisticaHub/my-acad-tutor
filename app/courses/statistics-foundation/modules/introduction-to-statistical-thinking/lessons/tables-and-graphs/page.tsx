@@ -475,7 +475,7 @@ export default function TablesAndGraphsLesson() {
   }, 0);
 
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-8 text-neutral-950 md:px-8 md:py-14">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-8 text-[#141210] md:px-8 md:py-14">
       <style>{`
         @keyframes mentorFloat {
           0%, 100% { transform: translateY(0); }
@@ -507,15 +507,15 @@ export default function TablesAndGraphsLesson() {
       <section className="mx-auto max-w-7xl">
         <a
           href="/courses/statistics-foundation/modules/introduction-to-statistical-thinking/"
-          className="text-sm font-black text-[#8b1116] hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] hover:text-[#4d080e]"
         >
           ← Back to module
         </a>
 
-        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
+        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-6 md:p-10">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Statistics Foundation · Lesson 1.4
               </p>
 
@@ -523,7 +523,7 @@ export default function TablesAndGraphsLesson() {
                 Tables and graphs.
               </h1>
 
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-6 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 Tables and graphs are the first tools for making data readable.
                 This lesson shows how to build frequency tables, choose suitable
                 graphs, read patterns carefully and avoid misleading displays.
@@ -538,7 +538,7 @@ export default function TablesAndGraphsLesson() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-black text-neutral-700"
+                    className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-black text-[#525252]"
                   >
                     {item}
                   </div>
@@ -546,7 +546,7 @@ export default function TablesAndGraphsLesson() {
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-10 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-10 lg:border-l lg:border-t-0">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Lesson pathway
               </p>
@@ -566,9 +566,9 @@ export default function TablesAndGraphsLesson() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex items-center gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex items-center gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {index + 1}
                     </span>
                     <span className="text-sm font-bold text-white/80">
@@ -581,7 +581,7 @@ export default function TablesAndGraphsLesson() {
           </div>
         </section>
 
-        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-neutral-200 bg-white/90 p-2 shadow-sm backdrop-blur">
+        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-[#E4DED2] bg-[#FFFCF6]/90 p-2 shadow-sm backdrop-blur">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -589,8 +589,8 @@ export default function TablesAndGraphsLesson() {
               onClick={() => setActiveTab(tab)}
               className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-black transition ${
                 activeTab === tab
-                  ? "bg-neutral-950 text-white"
-                  : "text-neutral-600 hover:bg-[#f7f4ee] hover:text-neutral-950"
+                  ? "bg-[#11100E] text-white"
+                  : "text-[#5F5F5F] hover:bg-[#F7F3EA] hover:text-[#141210]"
               }`}
             >
               {tab}
@@ -600,8 +600,8 @@ export default function TablesAndGraphsLesson() {
 
         {activeTab === "Learning Route" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 90 minute lesson plan
               </p>
 
@@ -609,7 +609,7 @@ export default function TablesAndGraphsLesson() {
                 Learn to communicate data clearly.
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-neutral-700">
+              <p className="mt-5 text-base leading-8 text-[#525252]">
                 A table gives exact values. A graph gives pattern. A strong
                 statistical explanation uses both. This lesson teaches students
                 to choose displays that match the variable type and support
@@ -620,15 +620,15 @@ export default function TablesAndGraphsLesson() {
                 {learningRoute.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                       {item.time}
                     </p>
                     <h3 className="mt-2 text-xl font-black tracking-[-0.035em]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-7 text-neutral-700">
+                    <p className="mt-2 text-sm leading-7 text-[#525252]">
                       {item.body}
                     </p>
                   </div>
@@ -636,7 +636,7 @@ export default function TablesAndGraphsLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Mastery checklist
               </p>
@@ -656,9 +656,9 @@ export default function TablesAndGraphsLesson() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {index + 1}
                     </span>
                     <p className="text-sm leading-7 text-white/75">{item}</p>
@@ -672,8 +672,8 @@ export default function TablesAndGraphsLesson() {
         {activeTab === "Lecture" && (
           <section className="mt-8 grid gap-6">
             <section className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Concept board
                 </p>
 
@@ -681,7 +681,7 @@ export default function TablesAndGraphsLesson() {
                   Tables and graphs are statistical arguments.
                 </h2>
 
-                <p className="mt-4 text-base leading-8 text-neutral-700">
+                <p className="mt-4 text-base leading-8 text-[#525252]">
                   A good display does not merely look attractive. It helps the
                   reader understand what was measured, how values are distributed,
                   and what conclusion is reasonable.
@@ -691,20 +691,20 @@ export default function TablesAndGraphsLesson() {
                   {lectureConcepts.map((concept, index) => (
                     <article
                       key={concept.title}
-                      className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                      className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                     >
                       <div className="flex items-start gap-4">
-                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-sm font-black text-white">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#11100E] text-sm font-black text-white">
                           {index + 1}
                         </span>
                         <div>
                           <h3 className="text-xl font-black tracking-[-0.035em]">
                             {concept.title}
                           </h3>
-                          <p className="mt-2 text-sm leading-7 text-neutral-700">
+                          <p className="mt-2 text-sm leading-7 text-[#525252]">
                             {concept.body}
                           </p>
-                          <p className="mt-3 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">
+                          <p className="mt-3 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">
                             Example: {concept.example}
                           </p>
                         </div>
@@ -714,8 +714,8 @@ export default function TablesAndGraphsLesson() {
                 </div>
               </section>
 
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Guided lecture
                 </p>
 
@@ -764,8 +764,8 @@ export default function TablesAndGraphsLesson() {
               </section>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Visual decision pipeline
               </p>
 
@@ -784,15 +784,15 @@ export default function TablesAndGraphsLesson() {
                 ].map(([step, title, body]) => (
                   <article
                     key={step}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
-                    <span className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
+                    <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black text-white">
                       Step {step}
                     </span>
                     <h3 className="mt-4 text-lg font-black tracking-[-0.03em]">
                       {title}
                     </h3>
-                    <p className="mt-3 text-sm leading-7 text-neutral-700">
+                    <p className="mt-3 text-sm leading-7 text-[#525252]">
                       {body}
                     </p>
                   </article>
@@ -803,8 +803,8 @@ export default function TablesAndGraphsLesson() {
         )}
 
         {activeTab === "Detailed Notes" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Detailed notes
             </p>
 
@@ -812,7 +812,7 @@ export default function TablesAndGraphsLesson() {
               Tables and graphs in depth.
             </h2>
 
-            <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700">
+            <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252]">
               Tables give precision. Graphs give visual structure. The strongest
               data summaries often use both: a table to show exact numbers and a
               graph to reveal the pattern.
@@ -822,21 +822,21 @@ export default function TablesAndGraphsLesson() {
               {detailedNotes.map((note) => (
                 <article
                   key={note.title}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     {note.short}
                   </p>
                   <h3 className="mt-3 text-2xl font-black tracking-[-0.04em]">
                     {note.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {note.detail}
                   </p>
-                  <p className="mt-4 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">
+                  <p className="mt-4 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">
                     Example: {note.example}
                   </p>
-                  <p className="mt-3 rounded-2xl bg-neutral-950 px-4 py-3 text-sm font-bold leading-7 text-white">
+                  <p className="mt-3 rounded-2xl bg-[#11100E] px-4 py-3 text-sm font-bold leading-7 text-white">
                     {note.formula}
                   </p>
                 </article>
@@ -847,10 +847,10 @@ export default function TablesAndGraphsLesson() {
 
         {activeTab === "Visual Studio" && (
           <section className="mt-8 grid gap-6">
-            <section className="overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+            <section className="overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
               <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="p-6 md:p-8">
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                     Visual studio
                   </p>
 
@@ -858,7 +858,7 @@ export default function TablesAndGraphsLesson() {
                     Change the data and watch the display change.
                   </h2>
 
-                  <p className="mt-4 text-base leading-8 text-neutral-700">
+                  <p className="mt-4 text-base leading-8 text-[#525252]">
                     Adjust the controls to see how category balance, skewness,
                     outliers and sample size affect tables and graphs.
                   </p>
@@ -871,7 +871,7 @@ export default function TablesAndGraphsLesson() {
                   </div>
                 </div>
 
-                <div className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+                <div className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
                   <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                     Studio advice
                   </p>
@@ -894,8 +894,8 @@ export default function TablesAndGraphsLesson() {
             </section>
 
             <section className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Frequency table and bar chart
                 </p>
 
@@ -903,16 +903,16 @@ export default function TablesAndGraphsLesson() {
                   Categorical data need counts and percentages.
                 </h2>
 
-                <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-neutral-200">
+                <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-[#E4DED2]">
                   <table className="w-full text-left text-sm">
-                    <thead className="bg-neutral-950 text-white">
+                    <thead className="bg-[#11100E] text-white">
                       <tr>
                         <th className="px-4 py-3">Category</th>
                         <th className="px-4 py-3">Count</th>
                         <th className="px-4 py-3">Percent</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-neutral-200 bg-white">
+                    <tbody className="divide-y divide-neutral-200 bg-[#FFFCF6]">
                       {categoricalBars.map((item) => (
                         <tr key={item.label}>
                           <td className="px-4 py-3 font-bold">{item.label}</td>
@@ -926,18 +926,18 @@ export default function TablesAndGraphsLesson() {
                   </table>
                 </div>
 
-                <div className="mt-6 space-y-4 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+                <div className="mt-6 space-y-4 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                   {categoricalBars.map((bar) => {
                     const percent = (bar.count / totalCount) * 100;
                     return (
                       <div key={bar.label}>
-                        <div className="mb-2 flex justify-between text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+                        <div className="mb-2 flex justify-between text-xs font-black uppercase tracking-[0.16em] text-[#7a7063]">
                           <span>{bar.label}</span>
                           <span>{percent.toFixed(1)}%</span>
                         </div>
-                        <div className="h-5 rounded-full bg-white">
+                        <div className="h-5 rounded-full bg-[#FFFCF6]">
                           <div
-                            className="h-5 rounded-full bg-neutral-950 transition-all"
+                            className="h-5 rounded-full bg-[#11100E] transition-all"
                             style={{
                               width: `${percent}%`,
                               animation: "barGrow 0.8s ease-out",
@@ -950,8 +950,8 @@ export default function TablesAndGraphsLesson() {
                 </div>
               </section>
 
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Numerical distribution
                 </p>
 
@@ -959,18 +959,18 @@ export default function TablesAndGraphsLesson() {
                   Histograms and dot plots show shape.
                 </h2>
 
-                <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-                  <div className="flex h-60 items-end gap-2 rounded-[1.5rem] bg-white p-4">
+                <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
+                  <div className="flex h-60 items-end gap-2 rounded-[1.5rem] bg-[#FFFCF6] p-4">
                     {histogramBins.map((bin) => (
                       <div key={bin.label} className="flex flex-1 flex-col items-center gap-2">
                         <div
-                          className="w-full rounded-t-xl bg-neutral-950 transition-all"
+                          className="w-full rounded-t-xl bg-[#11100E] transition-all"
                           style={{
                             height: `${(bin.value / maxHistogram) * 190}px`,
                             animation: "barGrow 0.8s ease-out",
                           }}
                         />
-                        <span className="text-[0.65rem] font-bold text-neutral-500">
+                        <span className="text-[0.65rem] font-bold text-[#7a7063]">
                           {bin.label}
                         </span>
                       </div>
@@ -978,13 +978,13 @@ export default function TablesAndGraphsLesson() {
                   </div>
                 </div>
 
-                <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-                  <div className="relative h-56 rounded-[1.5rem] bg-white p-4">
+                <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
+                  <div className="relative h-56 rounded-[1.5rem] bg-[#FFFCF6] p-4">
                     {dotValues.map((dot) => (
                       <div
                         key={dot.id}
                         className={`absolute h-3 w-3 rounded-full ${
-                          dot.outlier ? "bg-[#8b1116]" : "bg-neutral-950"
+                          dot.outlier ? "bg-[#741018]" : "bg-[#11100E]"
                         }`}
                         style={{
                           left: `${dot.value}%`,
@@ -1000,8 +1000,8 @@ export default function TablesAndGraphsLesson() {
               </section>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Boxplot concept
               </p>
 
@@ -1009,8 +1009,8 @@ export default function TablesAndGraphsLesson() {
                 A boxplot compresses a numerical distribution.
               </h2>
 
-              <div className="mt-8 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-                <div className="relative h-24 rounded-full bg-white">
+              <div className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
+                <div className="relative h-24 rounded-full bg-[#FFFCF6]">
                   <div
                     className="absolute top-1/2 h-1 -translate-y-1/2 bg-neutral-500"
                     style={{
@@ -1019,14 +1019,14 @@ export default function TablesAndGraphsLesson() {
                     }}
                   />
                   <div
-                    className="absolute top-1/2 h-14 -translate-y-1/2 rounded-xl border-2 border-neutral-950 bg-white"
+                    className="absolute top-1/2 h-14 -translate-y-1/2 rounded-xl border-2 border-stone-950 bg-[#FFFCF6]"
                     style={{
                       left: `${boxSummary.q1}%`,
                       width: `${boxSummary.q3 - boxSummary.q1}%`,
                     }}
                   />
                   <div
-                    className="absolute top-1/2 h-16 w-1 -translate-y-1/2 rounded-full bg-[#8b1116]"
+                    className="absolute top-1/2 h-16 w-1 -translate-y-1/2 rounded-full bg-[#741018]"
                     style={{ left: `${boxSummary.median}%` }}
                   />
                 </div>
@@ -1044,8 +1044,8 @@ export default function TablesAndGraphsLesson() {
         )}
 
         {activeTab === "Graph Chooser" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Graph chooser
             </p>
 
@@ -1057,15 +1057,15 @@ export default function TablesAndGraphsLesson() {
               {graphRules.map((item) => (
                 <article
                   key={item.variable}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     {item.variable}
                   </p>
                   <h3 className="mt-3 text-2xl font-black tracking-[-0.04em]">
                     {item.display}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.why}
                   </p>
                 </article>
@@ -1075,8 +1075,8 @@ export default function TablesAndGraphsLesson() {
         )}
 
         {activeTab === "Worked Examples" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Worked examples
             </p>
 
@@ -1092,8 +1092,8 @@ export default function TablesAndGraphsLesson() {
                   onClick={() => setScenarioIndex(index)}
                   className={`rounded-full px-4 py-2 text-sm font-black transition ${
                     scenarioIndex === index
-                      ? "bg-neutral-950 text-white"
-                      : "border border-neutral-200 bg-[#f7f4ee] text-neutral-700"
+                      ? "bg-[#11100E] text-white"
+                      : "border border-[#E4DED2] bg-[#F7F3EA] text-[#525252]"
                   }`}
                 >
                   {scenario.title}
@@ -1101,12 +1101,12 @@ export default function TablesAndGraphsLesson() {
               ))}
             </div>
 
-            <article className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
+            <article className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
               <h3 className="text-3xl font-black tracking-[-0.045em]">
                 {activeScenario.title}
               </h3>
 
-              <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-700">
+              <p className="mt-4 max-w-4xl text-base leading-8 text-[#525252]">
                 {activeScenario.question}
               </p>
 
@@ -1122,8 +1122,8 @@ export default function TablesAndGraphsLesson() {
         )}
 
         {activeTab === "Practice Studio" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Practice studio
             </p>
 
@@ -1135,22 +1135,22 @@ export default function TablesAndGraphsLesson() {
               {practiceTasks.map((exercise, index) => (
                 <article
                   key={exercise.title}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     Practice task {index + 1}
                   </p>
                   <h3 className="mt-3 text-xl font-black tracking-[-0.035em]">
                     {exercise.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {exercise.task}
                   </p>
                   <div className="mt-4 grid gap-2">
                     {exercise.prompts.map((prompt) => (
                       <div
                         key={prompt}
-                        className="rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700"
+                        className="rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]"
                       >
                         {prompt}
                       </div>
@@ -1163,8 +1163,8 @@ export default function TablesAndGraphsLesson() {
         )}
 
         {activeTab === "Reflection" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Reflection task
             </p>
 
@@ -1181,19 +1181,19 @@ export default function TablesAndGraphsLesson() {
               ].map((item, index) => (
                 <article
                   key={item}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     Prompt {index + 1}
                   </p>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item}
                   </p>
                 </article>
               ))}
             </div>
 
-            <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white">
+            <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
                 Model answer structure
               </p>
@@ -1206,10 +1206,10 @@ export default function TablesAndGraphsLesson() {
         )}
 
         {activeTab === "Quiz" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Quiz
                 </p>
                 <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
@@ -1217,7 +1217,7 @@ export default function TablesAndGraphsLesson() {
                 </h2>
               </div>
 
-              <div className="rounded-full bg-neutral-950 px-5 py-3 text-sm font-black text-white">
+              <div className="rounded-full bg-[#11100E] px-5 py-3 text-sm font-black text-white">
                 Score: {score}/{quizQuestions.length}
               </div>
             </div>
@@ -1226,7 +1226,7 @@ export default function TablesAndGraphsLesson() {
               {quizQuestions.map((question, questionIndex) => (
                 <article
                   key={question.question}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
                   <h3 className="text-lg font-black tracking-[-0.03em]">
                     {questionIndex + 1}. {question.question}
@@ -1253,7 +1253,7 @@ export default function TablesAndGraphsLesson() {
                               ? "border-green-300 bg-green-50 text-green-900"
                               : isSelected && !isCorrect
                                 ? "border-red-300 bg-red-50 text-red-900"
-                                : "border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50"
+                                : "border-[#E4DED2] bg-[#FFFCF6] text-[#525252] hover:bg-neutral-50"
                           }`}
                         >
                           {option}
@@ -1263,7 +1263,7 @@ export default function TablesAndGraphsLesson() {
                   </div>
 
                   {selectedAnswers[questionIndex] !== undefined ? (
-                    <p className="mt-4 rounded-2xl bg-white px-4 py-3 text-sm leading-7 text-neutral-700">
+                    <p className="mt-4 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm leading-7 text-[#525252]">
                       {question.feedback}
                     </p>
                   ) : null}
@@ -1284,12 +1284,12 @@ function Dialogue({ speaker, text }: { speaker: string; text: string }) {
     <div
       className={`rounded-[1.5rem] border p-5 ${
         isTeacher
-          ? "border-[#8b1116]/20 bg-[#fff7f7]"
-          : "border-neutral-200 bg-[#f7f4ee]"
+          ? "border-[#741018]/20 bg-[#fff4ef]"
+          : "border-[#E4DED2] bg-[#F7F3EA]"
       }`}
     >
-      <p className="text-sm font-black text-[#8b1116]">{speaker}</p>
-      <p className="mt-2 text-base leading-8 text-neutral-700">{text}</p>
+      <p className="text-sm font-black text-[#741018]">{speaker}</p>
+      <p className="mt-2 text-base leading-8 text-[#525252]">{text}</p>
     </div>
   );
 }
@@ -1310,8 +1310,8 @@ function Slider({
   return (
     <label className="block">
       <div className="flex items-center justify-between gap-4">
-        <span className="text-sm font-black text-neutral-700">{label}</span>
-        <span className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
+        <span className="text-sm font-black text-[#525252]">{label}</span>
+        <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black text-white">
           {value}
         </span>
       </div>
@@ -1322,7 +1322,7 @@ function Slider({
         max={max}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="mt-3 w-full accent-[#8b1116]"
+        className="mt-3 w-full accent-[#741018]"
       />
     </label>
   );
@@ -1330,8 +1330,8 @@ function Slider({
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4">
-      <p className="text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4">
+      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#7a7063]">
         {label}
       </p>
       <p className="mt-2 text-2xl font-black tracking-[-0.04em]">{value}</p>
@@ -1341,7 +1341,7 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 function MetricDark({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4">
+    <div className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4">
       <p className="text-xs font-black uppercase tracking-[0.16em] text-white/45">
         {label}
       </p>
@@ -1354,11 +1354,11 @@ function MetricDark({ label, value }: { label: string; value: string }) {
 
 function AnswerCard({ title, body }: { title: string; body: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-white p-5">
-      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#FFFCF6] p-5">
+      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
         {title}
       </p>
-      <p className="mt-3 text-sm leading-7 text-neutral-700">{body}</p>
+      <p className="mt-3 text-sm leading-7 text-[#525252]">{body}</p>
     </div>
   );
 }

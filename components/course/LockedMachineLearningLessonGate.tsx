@@ -28,19 +28,19 @@ export default function LockedMachineLearningLessonGate({
   moduleTitle,
 }: LockedMachineLearningLessonGateProps) {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-16">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-10 text-[#141210] md:px-8 md:py-16">
       <section className="mx-auto max-w-5xl">
         <a
           href={withBasePath("/courses/machine-learning-biostatistics")}
-          className="text-sm font-black text-[#8b1116] transition hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] transition hover:text-[#4d080e]"
         >
           ← Back to ML in Biostatistics course
         </a>
 
-        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
+        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
             <div className="p-6 md:p-10 lg:p-12">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Machine Learning in Biostatistics · Lesson {lessonCode}
               </p>
 
@@ -48,7 +48,7 @@ export default function LockedMachineLearningLessonGate({
                 {lessonTitle}
               </h1>
 
-              <p className="mt-6 max-w-3xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-6 max-w-3xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 This lesson is part of <strong>{moduleTitle}</strong>. It is
                 currently locked while the full advanced version is being
                 redesigned with R scripts, browser-based coding, visual outputs,
@@ -60,7 +60,7 @@ export default function LockedMachineLearningLessonGate({
                   href={withBasePath(
                     "/courses/machine-learning-biostatistics/waitlist"
                   )}
-                  className="inline-flex items-center justify-center rounded-full bg-neutral-950 px-6 py-3.5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-[#8b1116]"
+                  className="inline-flex items-center justify-center rounded-full bg-[#11100E] px-6 py-3.5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-[#741018]"
                 >
                   Join the waitlist →
                 </a>
@@ -69,14 +69,14 @@ export default function LockedMachineLearningLessonGate({
                   href={withBasePath(
                     "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics"
                   )}
-                  className="inline-flex items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-neutral-950 transition hover:-translate-y-0.5 hover:border-neutral-950"
+                  className="inline-flex items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:-translate-y-0.5 hover:border-stone-950"
                 >
                   Open Lesson 1.1
                 </a>
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Coming July 2026
               </p>
@@ -97,7 +97,7 @@ export default function LockedMachineLearningLessonGate({
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-white/10 bg-white/[0.07] p-4 text-sm font-bold leading-6 text-white/75"
+                    className="rounded-2xl border border-white/10 bg-[#FFFCF6]/[0.07] p-4 text-sm font-bold leading-6 text-white/75"
                   >
                     {item}
                   </div>

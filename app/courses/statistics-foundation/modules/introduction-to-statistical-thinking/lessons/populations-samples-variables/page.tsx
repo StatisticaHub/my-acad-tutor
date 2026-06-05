@@ -477,7 +477,7 @@ export default function PopulationsSamplesVariablesLesson() {
   }, 0);
 
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-8 text-neutral-950 md:px-8 md:py-14">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-8 text-[#141210] md:px-8 md:py-14">
       <style>{`
         @keyframes mentorFloat {
           0%, 100% { transform: translateY(0); }
@@ -504,15 +504,15 @@ export default function PopulationsSamplesVariablesLesson() {
       <section className="mx-auto max-w-7xl">
         <a
           href="/courses/statistics-foundation/modules/introduction-to-statistical-thinking/"
-          className="text-sm font-black text-[#8b1116] hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] hover:text-[#4d080e]"
         >
           ← Back to module
         </a>
 
-        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
+        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-6 md:p-10">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Statistics Foundation · Lesson 1.2
               </p>
 
@@ -520,7 +520,7 @@ export default function PopulationsSamplesVariablesLesson() {
                 Populations, samples and variables.
               </h1>
 
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-6 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 This lesson goes deeper than Lesson 1.1. You will learn how to
                 define a population precisely, judge whether a sample is useful,
                 classify variables correctly, and recognise sampling problems
@@ -536,7 +536,7 @@ export default function PopulationsSamplesVariablesLesson() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-black text-neutral-700"
+                    className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-black text-[#525252]"
                   >
                     {item}
                   </div>
@@ -544,7 +544,7 @@ export default function PopulationsSamplesVariablesLesson() {
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-10 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-10 lg:border-l lg:border-t-0">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Lesson pathway
               </p>
@@ -564,9 +564,9 @@ export default function PopulationsSamplesVariablesLesson() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex items-center gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex items-center gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {index + 1}
                     </span>
                     <span className="text-sm font-bold text-white/80">
@@ -579,7 +579,7 @@ export default function PopulationsSamplesVariablesLesson() {
           </div>
         </section>
 
-        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-neutral-200 bg-white/90 p-2 shadow-sm backdrop-blur">
+        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-[#E4DED2] bg-[#FFFCF6]/90 p-2 shadow-sm backdrop-blur">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -587,8 +587,8 @@ export default function PopulationsSamplesVariablesLesson() {
               onClick={() => setActiveTab(tab)}
               className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-black transition ${
                 activeTab === tab
-                  ? "bg-neutral-950 text-white"
-                  : "text-neutral-600 hover:bg-[#f7f4ee] hover:text-neutral-950"
+                  ? "bg-[#11100E] text-white"
+                  : "text-[#5F5F5F] hover:bg-[#F7F3EA] hover:text-[#141210]"
               }`}
             >
               {tab}
@@ -598,8 +598,8 @@ export default function PopulationsSamplesVariablesLesson() {
 
         {activeTab === "Learning Route" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 70–80 minute lesson plan
               </p>
 
@@ -607,7 +607,7 @@ export default function PopulationsSamplesVariablesLesson() {
                 Learn how data becomes a study.
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-neutral-700">
+              <p className="mt-5 text-base leading-8 text-[#525252]">
                 In Lesson 1.1, you learned that statistics turns data into
                 evidence. This lesson explains where that data comes from. The
                 quality of the population definition, sampling process and
@@ -619,15 +619,15 @@ export default function PopulationsSamplesVariablesLesson() {
                 {learningRoute.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                       {item.time}
                     </p>
                     <h3 className="mt-2 text-xl font-black tracking-[-0.035em]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-7 text-neutral-700">
+                    <p className="mt-2 text-sm leading-7 text-[#525252]">
                       {item.body}
                     </p>
                   </div>
@@ -635,7 +635,7 @@ export default function PopulationsSamplesVariablesLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Mastery checklist
               </p>
@@ -655,9 +655,9 @@ export default function PopulationsSamplesVariablesLesson() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {index + 1}
                     </span>
                     <p className="text-sm leading-7 text-white/75">{item}</p>
@@ -670,8 +670,8 @@ export default function PopulationsSamplesVariablesLesson() {
 
         {activeTab === "Lecture" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Concept board
               </p>
 
@@ -679,7 +679,7 @@ export default function PopulationsSamplesVariablesLesson() {
                 The study structure comes before the calculation.
               </h2>
 
-              <p className="mt-4 text-base leading-8 text-neutral-700">
+              <p className="mt-4 text-base leading-8 text-[#525252]">
                 Before calculating a mean or drawing a graph, we must know who
                 the study is about, who was observed, and what was measured.
               </p>
@@ -688,20 +688,20 @@ export default function PopulationsSamplesVariablesLesson() {
                 {lectureConcepts.map((concept, index) => (
                   <article
                     key={concept.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
                     <div className="flex items-start gap-4">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-sm font-black text-white">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#11100E] text-sm font-black text-white">
                         {index + 1}
                       </span>
                       <div>
                         <h3 className="text-xl font-black tracking-[-0.035em]">
                           {concept.title}
                         </h3>
-                        <p className="mt-2 text-sm leading-7 text-neutral-700">
+                        <p className="mt-2 text-sm leading-7 text-[#525252]">
                           {concept.body}
                         </p>
-                        <p className="mt-3 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">
+                        <p className="mt-3 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">
                           Example: {concept.example}
                         </p>
                       </div>
@@ -711,8 +711,8 @@ export default function PopulationsSamplesVariablesLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Guided lecture
               </p>
 
@@ -763,8 +763,8 @@ export default function PopulationsSamplesVariablesLesson() {
         )}
 
         {activeTab === "Detailed Notes" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Detailed notes
             </p>
 
@@ -772,7 +772,7 @@ export default function PopulationsSamplesVariablesLesson() {
               Populations, samples and variables in depth.
             </h2>
 
-            <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700">
+            <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252]">
               A dataset is not just a table of numbers. It is the result of a
               study design. Each row, column and missing value has a meaning.
               Good statistical work begins by understanding that structure.
@@ -782,28 +782,28 @@ export default function PopulationsSamplesVariablesLesson() {
               {detailedNotes.map((note) => (
                 <article
                   key={note.title}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     {note.short}
                   </p>
                   <h3 className="mt-3 text-2xl font-black tracking-[-0.04em]">
                     {note.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {note.detail}
                   </p>
-                  <p className="mt-4 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">
+                  <p className="mt-4 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">
                     Example: {note.example}
                   </p>
-                  <p className="mt-3 rounded-2xl bg-neutral-950 px-4 py-3 text-sm font-bold leading-7 text-white">
+                  <p className="mt-3 rounded-2xl bg-[#11100E] px-4 py-3 text-sm font-bold leading-7 text-white">
                     Caution: {note.warning}
                   </p>
                 </article>
               ))}
             </div>
 
-            <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white">
+            <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
                 Variable classification
               </p>
@@ -816,13 +816,13 @@ export default function PopulationsSamplesVariablesLesson() {
                 {variableTypes.map((item) => (
                   <article
                     key={item.title}
-                    className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5"
+                    className="rounded-[1.5rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5"
                   >
                     <h4 className="text-xl font-black">{item.title}</h4>
                     <p className="mt-3 text-sm leading-7 text-white/70">
                       {item.description}
                     </p>
-                    <p className="mt-4 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-900">
+                    <p className="mt-4 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-neutral-900">
                       {item.examples}
                     </p>
                   </article>
@@ -830,12 +830,12 @@ export default function PopulationsSamplesVariablesLesson() {
               </div>
             </section>
 
-            <section className="mt-8 rounded-[2rem] border border-[#8b1116]/20 bg-[#fff7f7] p-6">
-              <h3 className="text-2xl font-black tracking-[-0.04em] text-[#8b1116]">
+            <section className="mt-8 rounded-[2rem] border border-[#741018]/20 bg-[#fff4ef] p-6">
+              <h3 className="text-2xl font-black tracking-[-0.04em] text-[#741018]">
                 The main lesson
               </h3>
 
-              <p className="mt-4 text-base leading-8 text-neutral-700">
+              <p className="mt-4 text-base leading-8 text-[#525252]">
                 The quality of a statistical conclusion is limited by the
                 quality of the population definition, sampling frame, sample
                 selection, response process and variable measurement. Advanced
@@ -847,10 +847,10 @@ export default function PopulationsSamplesVariablesLesson() {
 
         {activeTab === "Visual Studio" && (
           <section className="mt-8 grid gap-6">
-            <section className="overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+            <section className="overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
               <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="p-6 md:p-8">
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                     Sampling studio
                   </p>
 
@@ -858,7 +858,7 @@ export default function PopulationsSamplesVariablesLesson() {
                     Build a sample and judge its quality.
                   </h2>
 
-                  <p className="mt-4 text-base leading-8 text-neutral-700">
+                  <p className="mt-4 text-base leading-8 text-[#525252]">
                     Move the controls to see how sample size, response rate,
                     coverage and measurement quality change the trustworthiness
                     of a sample.
@@ -903,7 +903,7 @@ export default function PopulationsSamplesVariablesLesson() {
                   </div>
                 </div>
 
-                <div className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+                <div className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
                   <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                     Interpretation
                   </p>
@@ -936,7 +936,7 @@ export default function PopulationsSamplesVariablesLesson() {
                     ].map((item) => (
                       <article
                         key={item.title}
-                        className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-4"
+                        className="rounded-[1.5rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                       >
                         <h3 className="font-black">{item.title}</h3>
                         <p className="mt-2 text-sm leading-7 text-white/70">
@@ -950,8 +950,8 @@ export default function PopulationsSamplesVariablesLesson() {
             </section>
 
             <section className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Population grid
                 </p>
 
@@ -959,16 +959,16 @@ export default function PopulationsSamplesVariablesLesson() {
                   Who is missing, selected or responding?
                 </h2>
 
-                <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+                <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                   <div className="grid grid-cols-10 gap-2">
                     {populationGrid.map((unit) => (
                       <div
                         key={unit.id}
                         className={`aspect-square rounded-full transition ${
                           unit.outOfFrame
-                            ? "bg-[#8b1116]/35"
+                            ? "bg-[#741018]/35"
                             : unit.responded
-                              ? "bg-neutral-950"
+                              ? "bg-[#11100E]"
                               : unit.selected
                                 ? "bg-neutral-500"
                                 : "bg-neutral-300"
@@ -982,25 +982,25 @@ export default function PopulationsSamplesVariablesLesson() {
                     ))}
                   </div>
 
-                  <div className="mt-5 grid gap-3 text-sm leading-7 text-neutral-700 md:grid-cols-4">
-                    <div className="rounded-2xl bg-white p-4">
+                  <div className="mt-5 grid gap-3 text-sm leading-7 text-[#525252] md:grid-cols-4">
+                    <div className="rounded-2xl bg-[#FFFCF6] p-4">
                       <strong>Grey:</strong> population not selected.
                     </div>
-                    <div className="rounded-2xl bg-white p-4">
+                    <div className="rounded-2xl bg-[#FFFCF6] p-4">
                       <strong>Medium:</strong> selected but no response.
                     </div>
-                    <div className="rounded-2xl bg-white p-4">
+                    <div className="rounded-2xl bg-[#FFFCF6] p-4">
                       <strong>Dark:</strong> selected and responded.
                     </div>
-                    <div className="rounded-2xl bg-white p-4">
+                    <div className="rounded-2xl bg-[#FFFCF6] p-4">
                       <strong>Red:</strong> out of frame.
                     </div>
                   </div>
                 </div>
               </section>
 
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Variable classifier
                 </p>
 
@@ -1018,13 +1018,13 @@ export default function PopulationsSamplesVariablesLesson() {
                   ].map(([variable, type, summary]) => (
                     <article
                       key={variable}
-                      className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4"
+                      className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4"
                     >
                       <h3 className="font-black">{variable}</h3>
-                      <p className="mt-2 text-sm leading-7 text-neutral-700">
+                      <p className="mt-2 text-sm leading-7 text-[#525252]">
                         <strong>Type:</strong> {type}
                       </p>
-                      <p className="text-sm leading-7 text-neutral-700">
+                      <p className="text-sm leading-7 text-[#525252]">
                         <strong>Useful summaries:</strong> {summary}
                       </p>
                     </article>
@@ -1037,8 +1037,8 @@ export default function PopulationsSamplesVariablesLesson() {
 
         {activeTab === "Animated Mentor" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Animated mentor
               </p>
 
@@ -1048,22 +1048,22 @@ export default function PopulationsSamplesVariablesLesson() {
 
               <div className="mt-8 flex justify-center">
                 <div
-                  className="relative flex h-52 w-52 items-center justify-center rounded-full border border-neutral-200 bg-[#f7f4ee]"
+                  className="relative flex h-52 w-52 items-center justify-center rounded-full border border-[#E4DED2] bg-[#F7F3EA]"
                   style={{ animation: "mentorFloat 3s ease-in-out infinite" }}
                 >
-                  <div className="absolute top-9 h-20 w-20 rounded-full bg-neutral-950" />
+                  <div className="absolute top-9 h-20 w-20 rounded-full bg-[#11100E]" />
                   <div className="absolute top-16 flex gap-5">
                     <span
-                      className="h-3 w-3 rounded-full bg-white"
+                      className="h-3 w-3 rounded-full bg-[#FFFCF6]"
                       style={{ animation: "mentorBlink 4s infinite" }}
                     />
                     <span
-                      className="h-3 w-3 rounded-full bg-white"
+                      className="h-3 w-3 rounded-full bg-[#FFFCF6]"
                       style={{ animation: "mentorBlink 4s infinite" }}
                     />
                   </div>
-                  <div className="absolute top-28 h-20 w-32 rounded-t-[3rem] bg-[#8b1116]" />
-                  <div className="absolute bottom-8 rounded-full bg-white px-4 py-2 text-sm font-black text-neutral-950">
+                  <div className="absolute top-28 h-20 w-32 rounded-t-[3rem] bg-[#741018]" />
+                  <div className="absolute bottom-8 rounded-full bg-[#FFFCF6] px-4 py-2 text-sm font-black text-[#141210]">
                     Mr. R
                   </div>
                 </div>
@@ -1077,8 +1077,8 @@ export default function PopulationsSamplesVariablesLesson() {
                     onClick={() => setMentorTopic(topic.id)}
                     className={`rounded-2xl border px-4 py-3 text-left text-sm font-black transition ${
                       mentorTopic === topic.id
-                        ? "border-[#8b1116] bg-[#8b1116] text-white"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-700 hover:bg-white"
+                        ? "border-[#741018] bg-[#741018] text-white"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-[#525252] hover:bg-[#FFFCF6]"
                     }`}
                   >
                     {topic.label}
@@ -1087,10 +1087,10 @@ export default function PopulationsSamplesVariablesLesson() {
               </div>
             </section>
 
-            <section className="relative overflow-hidden rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
-              <div className="absolute left-0 top-0 h-1 w-full overflow-hidden bg-white/10">
+            <section className="relative overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
+              <div className="absolute left-0 top-0 h-1 w-full overflow-hidden bg-[#FFFCF6]/10">
                 <div
-                  className="h-full w-1/2 bg-white/40"
+                  className="h-full w-1/2 bg-[#FFFCF6]/40"
                   style={{ animation: "signalMove 2.8s linear infinite" }}
                 />
               </div>
@@ -1107,7 +1107,7 @@ export default function PopulationsSamplesVariablesLesson() {
                 {activeMentor.answer}
               </p>
 
-              <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.07] p-5">
+              <div className="mt-8 rounded-[2rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5">
                 <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
                   Mentor challenge
                 </p>
@@ -1122,8 +1122,8 @@ export default function PopulationsSamplesVariablesLesson() {
         )}
 
         {activeTab === "Worked Examples" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Worked examples
             </p>
 
@@ -1139,8 +1139,8 @@ export default function PopulationsSamplesVariablesLesson() {
                   onClick={() => setScenarioIndex(index)}
                   className={`rounded-full px-4 py-2 text-sm font-black transition ${
                     scenarioIndex === index
-                      ? "bg-neutral-950 text-white"
-                      : "border border-neutral-200 bg-[#f7f4ee] text-neutral-700"
+                      ? "bg-[#11100E] text-white"
+                      : "border border-[#E4DED2] bg-[#F7F3EA] text-[#525252]"
                   }`}
                 >
                   {scenario.title}
@@ -1148,12 +1148,12 @@ export default function PopulationsSamplesVariablesLesson() {
               ))}
             </div>
 
-            <article className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
+            <article className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
               <h3 className="text-3xl font-black tracking-[-0.045em]">
                 {activeScenario.title}
               </h3>
 
-              <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-700">
+              <p className="mt-4 max-w-4xl text-base leading-8 text-[#525252]">
                 {activeScenario.question}
               </p>
 
@@ -1179,8 +1179,8 @@ export default function PopulationsSamplesVariablesLesson() {
         )}
 
         {activeTab === "Practice Studio" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Practice studio
             </p>
 
@@ -1192,15 +1192,15 @@ export default function PopulationsSamplesVariablesLesson() {
               {practiceTasks.map((exercise, index) => (
                 <article
                   key={exercise.title}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     Practice task {index + 1}
                   </p>
                   <h3 className="mt-3 text-xl font-black tracking-[-0.035em]">
                     {exercise.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {exercise.task}
                   </p>
 
@@ -1208,7 +1208,7 @@ export default function PopulationsSamplesVariablesLesson() {
                     {exercise.prompts.map((prompt) => (
                       <div
                         key={prompt}
-                        className="rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700"
+                        className="rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]"
                       >
                         {prompt}
                       </div>
@@ -1221,8 +1221,8 @@ export default function PopulationsSamplesVariablesLesson() {
         )}
 
         {activeTab === "Reflection" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Reflection task
             </p>
 
@@ -1255,19 +1255,19 @@ export default function PopulationsSamplesVariablesLesson() {
               ].map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     {item.title}
                   </p>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
                 </article>
               ))}
             </div>
 
-            <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white">
+            <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/45">
                 Model answer structure
               </p>
@@ -1281,10 +1281,10 @@ export default function PopulationsSamplesVariablesLesson() {
         )}
 
         {activeTab === "Quiz" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Quiz
                 </p>
                 <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
@@ -1292,7 +1292,7 @@ export default function PopulationsSamplesVariablesLesson() {
                 </h2>
               </div>
 
-              <div className="rounded-full bg-neutral-950 px-5 py-3 text-sm font-black text-white">
+              <div className="rounded-full bg-[#11100E] px-5 py-3 text-sm font-black text-white">
                 Score: {score}/{quizQuestions.length}
               </div>
             </div>
@@ -1301,7 +1301,7 @@ export default function PopulationsSamplesVariablesLesson() {
               {quizQuestions.map((question, questionIndex) => (
                 <article
                   key={question.question}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
                   <h3 className="text-lg font-black tracking-[-0.03em]">
                     {questionIndex + 1}. {question.question}
@@ -1328,7 +1328,7 @@ export default function PopulationsSamplesVariablesLesson() {
                               ? "border-green-300 bg-green-50 text-green-900"
                               : isSelected && !isCorrect
                                 ? "border-red-300 bg-red-50 text-red-900"
-                                : "border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50"
+                                : "border-[#E4DED2] bg-[#FFFCF6] text-[#525252] hover:bg-neutral-50"
                           }`}
                         >
                           {option}
@@ -1338,7 +1338,7 @@ export default function PopulationsSamplesVariablesLesson() {
                   </div>
 
                   {selectedAnswers[questionIndex] !== undefined ? (
-                    <p className="mt-4 rounded-2xl bg-white px-4 py-3 text-sm leading-7 text-neutral-700">
+                    <p className="mt-4 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm leading-7 text-[#525252]">
                       {question.feedback}
                     </p>
                   ) : null}
@@ -1359,12 +1359,12 @@ function Dialogue({ speaker, text }: { speaker: string; text: string }) {
     <div
       className={`rounded-[1.5rem] border p-5 ${
         isTeacher
-          ? "border-[#8b1116]/20 bg-[#fff7f7]"
-          : "border-neutral-200 bg-[#f7f4ee]"
+          ? "border-[#741018]/20 bg-[#fff4ef]"
+          : "border-[#E4DED2] bg-[#F7F3EA]"
       }`}
     >
-      <p className="text-sm font-black text-[#8b1116]">{speaker}</p>
-      <p className="mt-2 text-base leading-8 text-neutral-700">{text}</p>
+      <p className="text-sm font-black text-[#741018]">{speaker}</p>
+      <p className="mt-2 text-base leading-8 text-[#525252]">{text}</p>
     </div>
   );
 }
@@ -1385,8 +1385,8 @@ function Slider({
   return (
     <label className="block">
       <div className="flex items-center justify-between gap-4">
-        <span className="text-sm font-black text-neutral-700">{label}</span>
-        <span className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
+        <span className="text-sm font-black text-[#525252]">{label}</span>
+        <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black text-white">
           {value}
         </span>
       </div>
@@ -1397,7 +1397,7 @@ function Slider({
         max={max}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="mt-3 w-full accent-[#8b1116]"
+        className="mt-3 w-full accent-[#741018]"
       />
     </label>
   );
@@ -1405,8 +1405,8 @@ function Slider({
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4">
-      <p className="text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4">
+      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#7a7063]">
         {label}
       </p>
       <p className="mt-2 text-2xl font-black tracking-[-0.04em]">{value}</p>
@@ -1416,11 +1416,11 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 function AnswerCard({ title, body }: { title: string; body: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-white p-5">
-      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#FFFCF6] p-5">
+      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
         {title}
       </p>
-      <p className="mt-3 text-sm leading-7 text-neutral-700">{body}</p>
+      <p className="mt-3 text-sm leading-7 text-[#525252]">{body}</p>
     </div>
   );
 }

@@ -10,11 +10,11 @@ const navLinks = [
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-[#E4DED2] bg-[#FFFCF6]/90 backdrop-blur">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-4 md:px-8">
         <Link
           href="/"
-          className="shrink-0 text-base font-semibold tracking-[-0.03em] text-[#111111] md:text-lg"
+          className="shrink-0 text-base font-semibold tracking-[-0.03em] text-[#141210] md:text-lg"
         >
           My Academic Tutor
         </Link>
@@ -24,7 +24,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-semibold text-neutral-700 transition hover:text-[#8b1116]"
+              className="text-sm font-semibold text-[#525252] transition hover:text-[#741018]"
             >
               {link.label}
             </Link>
@@ -33,7 +33,7 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="shrink-0 rounded-full bg-[#111111] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#8b1116]"
+          className="shrink-0 rounded-full bg-[#11100E] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#741018]"
         >
           Request support
         </Link>

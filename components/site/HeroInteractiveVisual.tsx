@@ -59,13 +59,13 @@ export default function HeroInteractiveVisual() {
 
   return (
     <div
-      className="relative h-full min-h-[430px] overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-[radial-gradient(circle_at_15%_10%,rgba(139,17,22,0.16),transparent_32%),radial-gradient(circle_at_90%_8%,rgba(17,17,17,0.12),transparent_34%),linear-gradient(135deg,#ffffff,#f7f4ee_55%,#efe8dc)] p-4 shadow-sm md:rounded-[2rem] md:p-5"
+      className="relative h-full min-h-[430px] overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[radial-gradient(circle_at_15%_10%,rgba(139,17,22,0.16),transparent_32%),radial-gradient(circle_at_90%_8%,rgba(17,17,17,0.12),transparent_34%),linear-gradient(135deg,#ffffff,#f3eee4_55%,#efe8dc)] p-4 shadow-sm md:rounded-[2rem] md:p-5"
       style={{ perspective: "1300px" }}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setTilt({ x: 0, y: 0 })}
     >
-      <div className="pointer-events-none absolute -left-10 top-10 h-40 w-40 rounded-full bg-[#8b1116]/10 blur-3xl" />
-      <div className="pointer-events-none absolute -right-10 bottom-20 h-48 w-48 rounded-full bg-black/10 blur-3xl" />
+      <div className="pointer-events-none absolute -left-10 top-10 h-40 w-40 rounded-full bg-[#741018]/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-10 bottom-20 h-48 w-48 rounded-full bg-[#141210]/10 blur-3xl" />
 
       <div
         className="relative h-full transition-transform duration-200 ease-out"
@@ -75,51 +75,51 @@ export default function HeroInteractiveVisual() {
         }}
       >
         <div
-          className="relative h-full rounded-[1.5rem] border border-white/70 bg-white/85 p-4 shadow-[0_18px_55px_rgba(17,17,17,0.10)] backdrop-blur md:rounded-[1.75rem] md:p-4"
+          className="relative h-full rounded-[1.5rem] border border-white/70 bg-[#FFFCF6]/85 p-4 shadow-[0_18px_55px_rgba(17,17,17,0.10)] backdrop-blur md:rounded-[1.75rem] md:p-4"
           style={{ transform: "translateZ(30px)" }}
         >
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8b1116]">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#741018]">
                 Live 3D visual
               </p>
 
-              <h2 className="mt-2 text-xl font-semibold leading-tight tracking-[-0.045em] text-[#111111] md:text-2xl">
+              <h2 className="mt-2 text-xl font-semibold leading-tight tracking-[-0.045em] text-[#141210] md:text-2xl">
                 Prediction threshold surface
               </h2>
             </div>
 
-            <span className="rounded-full border border-neutral-200 bg-[#f7f4ee] px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-neutral-600">
+            <span className="rounded-full border border-[#E4DED2] bg-[#F7F3EA] px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#5F5F5F]">
               Interactive
             </span>
           </div>
 
-          <p className="mt-2 text-sm leading-6 text-neutral-700">
+          <p className="mt-2 text-sm leading-6 text-[#525252]">
             Move the threshold to see how a prediction model changes its
             decisions. Points above the surface are flagged as higher risk.
           </p>
 
           <div
-            className="relative mt-3 overflow-hidden rounded-[1.5rem] border border-neutral-200 bg-[#fcfaf6] p-4"
+            className="relative mt-3 overflow-hidden rounded-[1.5rem] border border-[#E4DED2] bg-[#fcfaf6] p-4"
             style={{ transform: "translateZ(18px)" }}
           >
             <div className="flex items-center justify-between gap-3">
               <div>
-                <p className="text-sm font-semibold text-neutral-950">
+                <p className="text-sm font-semibold text-[#141210]">
                   Patient risk field
                 </p>
-                <p className="mt-1 text-xs leading-5 text-neutral-500">
+                <p className="mt-1 text-xs leading-5 text-[#7a7063]">
                   x-axis: predictor pattern · height: predicted risk
                 </p>
               </div>
 
-              <p className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-[#8b1116] shadow-sm">
+              <p className="rounded-full bg-[#FFFCF6] px-3 py-1 text-xs font-semibold text-[#741018] shadow-sm">
                 threshold {threshold.toFixed(2)}
               </p>
             </div>
 
             <div
-              className="relative mt-4 h-[190px] overflow-hidden rounded-[1.25rem] border border-neutral-200 bg-white"
+              className="relative mt-4 h-[190px] overflow-hidden rounded-[1.25rem] border border-[#E4DED2] bg-[#FFFCF6]"
               style={{
                 transformStyle: "preserve-3d",
               }}
@@ -149,13 +149,13 @@ export default function HeroInteractiveVisual() {
               <div className="absolute bottom-10 left-8 top-8 w-px bg-neutral-200" />
 
               <div
-                className="absolute left-5 right-5 z-20 rounded-full border-t-2 border-dashed border-[#8b1116] transition-all duration-300"
+                className="absolute left-5 right-5 z-20 rounded-full border-t-2 border-dashed border-[#741018] transition-all duration-300"
                 style={{
                   top: `${thresholdPosition}%`,
                   transform: "translateZ(42px)",
                 }}
               >
-                <span className="absolute -top-3 left-3 rounded-full bg-[#8b1116] px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm">
+                <span className="absolute -top-3 left-3 rounded-full bg-[#741018] px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white shadow-sm">
                   decision plane
                 </span>
               </div>
@@ -168,7 +168,7 @@ export default function HeroInteractiveVisual() {
                 <path
                   d="M20 228 C 80 218, 120 190, 170 155 C 230 110, 280 78, 400 48"
                   fill="none"
-                  stroke="#8b1116"
+                  stroke="#741018"
                   strokeWidth="6"
                   strokeLinecap="round"
                   opacity="0.22"
@@ -176,7 +176,7 @@ export default function HeroInteractiveVisual() {
                 <path
                   d="M20 228 C 80 218, 120 190, 170 155 C 230 110, 280 78, 400 48"
                   fill="none"
-                  stroke="#8b1116"
+                  stroke="#741018"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   opacity="0.9"
@@ -199,7 +199,7 @@ export default function HeroInteractiveVisual() {
                       width: `${size}px`,
                       height: `${size}px`,
                       backgroundColor: flagged
-                        ? "#8b1116"
+                        ? "#741018"
                         : near
                           ? "#f59e0b"
                           : "#9ca3af",
@@ -214,11 +214,11 @@ export default function HeroInteractiveVisual() {
                 );
               })}
 
-              <div className="pointer-events-none absolute bottom-4 left-4 rounded-full bg-white/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-neutral-500 shadow-sm">
+              <div className="pointer-events-none absolute bottom-4 left-4 rounded-full bg-[#FFFCF6]/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a7063] shadow-sm">
                 lower predictor pattern
               </div>
 
-              <div className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-white/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-neutral-500 shadow-sm">
+              <div className="pointer-events-none absolute bottom-4 right-4 rounded-full bg-[#FFFCF6]/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a7063] shadow-sm">
                 higher predictor pattern
               </div>
             </div>
@@ -238,7 +238,7 @@ export default function HeroInteractiveVisual() {
               step="0.01"
               value={threshold}
               onChange={(event) => setThreshold(Number(event.target.value))}
-              className="mt-2 w-full accent-[#8b1116]"
+              className="mt-2 w-full accent-[#741018]"
             />
           </div>
 
@@ -249,7 +249,7 @@ export default function HeroInteractiveVisual() {
           </div>
 
           <div
-            className="mt-3 rounded-[1.35rem] border border-neutral-900 bg-[#111111] p-3.5 text-white"
+            className="mt-3 rounded-[1.35rem] border border-neutral-900 bg-[#11100E] p-3.5 text-white"
             style={{ transform: "translateZ(24px)" }}
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
@@ -263,7 +263,7 @@ export default function HeroInteractiveVisual() {
                 </h3>
               </div>
 
-              <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">
+              <span className="rounded-full bg-[#FFFCF6]/10 px-3 py-1 text-xs font-semibold text-white/80">
                 live update
               </span>
             </div>
@@ -291,14 +291,14 @@ function Metric({
 }) {
   const text =
     tone === "red"
-      ? "text-[#8b1116]"
+      ? "text-[#741018]"
       : tone === "amber"
         ? "text-amber-600"
         : "text-neutral-900";
 
   return (
-    <div className="rounded-[1.15rem] border border-neutral-200 bg-white p-3 shadow-sm">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-neutral-500">
+    <div className="rounded-[1.15rem] border border-[#E4DED2] bg-[#FFFCF6] p-3 shadow-sm">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#7a7063]">
         {label}
       </p>
 

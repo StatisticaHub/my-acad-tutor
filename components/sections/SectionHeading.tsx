@@ -21,12 +21,12 @@ export default function SectionHeading({
         </div>
       )}
 
-      <h2 className="text-3xl font-bold tracking-tight text-[#111111] md:text-5xl">
+      <h2 className="text-3xl font-bold tracking-tight text-[#141210] md:text-5xl">
         {title}
       </h2>
 
       {description && (
-        <p className="mt-5 text-lg leading-8 text-neutral-700">
+        <p className="mt-5 text-lg leading-8 text-[#525252]">
           {description}
         </p>
       )}

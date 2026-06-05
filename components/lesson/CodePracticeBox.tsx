@@ -21,12 +21,12 @@ export default function CodePracticeBox({
 
       <p className="mt-4 text-sm leading-6 text-slate-300">{description}</p>
 
-      <pre className="mt-6 overflow-x-auto rounded-2xl bg-black p-5 text-sm leading-7 text-slate-100">
+      <pre className="mt-6 overflow-x-auto rounded-2xl bg-[#141210] p-5 text-sm leading-7 text-slate-100">
         <code>{code}</code>
       </pre>
 
       {note && (
-        <p className="mt-4 rounded-2xl bg-white/5 p-4 text-sm leading-6 text-slate-300">
+        <p className="mt-4 rounded-2xl bg-[#FFFCF6]/5 p-4 text-sm leading-6 text-slate-300">
           {note}
         </p>
       )}

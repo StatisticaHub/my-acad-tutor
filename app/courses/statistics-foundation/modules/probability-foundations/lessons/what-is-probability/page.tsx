@@ -353,7 +353,7 @@ export default function WhatIsProbabilityLesson() {
   }, 0);
 
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-8 text-neutral-950 md:px-8 md:py-14">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-8 text-[#141210] md:px-8 md:py-14">
       <style>{`
         @keyframes floatSoft {
           0%, 100% { transform: translateY(0); }
@@ -375,15 +375,15 @@ export default function WhatIsProbabilityLesson() {
       <section className="mx-auto max-w-7xl">
         <a
           href="/courses/statistics-foundation/modules/probability-and-uncertainty/"
-          className="text-sm font-black text-[#8b1116] hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] hover:text-[#4d080e]"
         >
           ← Back to module
         </a>
 
-        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
+        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-6 md:p-10">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Statistics Foundation · Lesson 3.1
               </p>
 
@@ -391,7 +391,7 @@ export default function WhatIsProbabilityLesson() {
                 What is probability?
               </h1>
 
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-6 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 Probability is the mathematical language of uncertainty. This
                 lesson introduces probability through events, sample spaces,
                 complements, long-run behaviour and visual reasoning. Students
@@ -408,7 +408,7 @@ export default function WhatIsProbabilityLesson() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-black text-neutral-700"
+                    className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-black text-[#525252]"
                   >
                     {item}
                   </div>
@@ -416,7 +416,7 @@ export default function WhatIsProbabilityLesson() {
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-10 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-10 lg:border-l lg:border-t-0">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Lesson pathway
               </p>
@@ -436,9 +436,9 @@ export default function WhatIsProbabilityLesson() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex items-center gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex items-center gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {index + 1}
                     </span>
                     <span className="text-sm font-bold text-white/80">
@@ -451,7 +451,7 @@ export default function WhatIsProbabilityLesson() {
           </div>
         </section>
 
-        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-neutral-200 bg-white/90 p-2 shadow-sm backdrop-blur">
+        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-[#E4DED2] bg-[#FFFCF6]/90 p-2 shadow-sm backdrop-blur">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -459,8 +459,8 @@ export default function WhatIsProbabilityLesson() {
               onClick={() => setActiveTab(tab)}
               className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-black transition ${
                 activeTab === tab
-                  ? "bg-neutral-950 text-white"
-                  : "text-neutral-600 hover:bg-[#f7f4ee] hover:text-neutral-950"
+                  ? "bg-[#11100E] text-white"
+                  : "text-[#5F5F5F] hover:bg-[#F7F3EA] hover:text-[#141210]"
               }`}
             >
               {tab}
@@ -470,8 +470,8 @@ export default function WhatIsProbabilityLesson() {
 
         {activeTab === "Learning Route" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 105–110 minute lesson plan
               </p>
 
@@ -479,7 +479,7 @@ export default function WhatIsProbabilityLesson() {
                 Build probability from intuition, pictures and rules.
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-neutral-700">
+              <p className="mt-5 text-base leading-8 text-[#525252]">
                 The lesson begins with everyday uncertainty and gradually moves
                 toward formal probability language. Students meet sample spaces,
                 events, complements, classical probability and long-run
@@ -490,15 +490,15 @@ export default function WhatIsProbabilityLesson() {
                 {learningRoute.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                       {item.time}
                     </p>
                     <h3 className="mt-2 text-xl font-black tracking-[-0.035em]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-7 text-neutral-700">
+                    <p className="mt-2 text-sm leading-7 text-[#525252]">
                       {item.body}
                     </p>
                   </div>
@@ -506,7 +506,7 @@ export default function WhatIsProbabilityLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Mastery checklist
               </p>
@@ -528,9 +528,9 @@ export default function WhatIsProbabilityLesson() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {index + 1}
                     </span>
                     <p className="text-sm leading-7 text-white/75">{item}</p>
@@ -544,8 +544,8 @@ export default function WhatIsProbabilityLesson() {
         {activeTab === "Lecture" && (
           <section className="mt-8 grid gap-6">
             <section className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Core ideas
                 </p>
 
@@ -553,7 +553,7 @@ export default function WhatIsProbabilityLesson() {
                   Probability turns uncertainty into something we can reason with.
                 </h2>
 
-                <p className="mt-4 text-base leading-8 text-neutral-700">
+                <p className="mt-4 text-base leading-8 text-[#525252]">
                   Probability does not remove uncertainty. Instead, it gives us
                   a precise way to discuss uncertainty, compare events and make
                   careful statements before outcomes are known.
@@ -563,20 +563,20 @@ export default function WhatIsProbabilityLesson() {
                   {lectureConcepts.map((item, index) => (
                     <article
                       key={item.title}
-                      className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                      className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                     >
                       <div className="flex items-start gap-4">
-                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-sm font-black text-white">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#11100E] text-sm font-black text-white">
                           {index + 1}
                         </span>
                         <div>
                           <h3 className="text-xl font-black tracking-[-0.035em]">
                             {item.title}
                           </h3>
-                          <p className="mt-2 text-sm leading-7 text-neutral-700">
+                          <p className="mt-2 text-sm leading-7 text-[#525252]">
                             {item.body}
                           </p>
-                          <p className="mt-3 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">
+                          <p className="mt-3 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">
                             Example: {item.example}
                           </p>
                         </div>
@@ -586,8 +586,8 @@ export default function WhatIsProbabilityLesson() {
                 </div>
               </section>
 
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Guided lecture
                 </p>
 
@@ -642,11 +642,11 @@ export default function WhatIsProbabilityLesson() {
                   />
                 </div>
 
-                <section className="mt-8 rounded-[2rem] border border-[#8b1116]/20 bg-[#fff7f7] p-6">
-                  <h3 className="text-2xl font-black tracking-[-0.04em] text-[#8b1116]">
+                <section className="mt-8 rounded-[2rem] border border-[#741018]/20 bg-[#fff4ef] p-6">
+                  <h3 className="text-2xl font-black tracking-[-0.04em] text-[#741018]">
                     Key lecture message
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     Probability is not just about coins and dice. It is the
                     foundation for statistical inference, risk, diagnostic
                     testing, uncertainty intervals, Bayesian updating and
@@ -660,8 +660,8 @@ export default function WhatIsProbabilityLesson() {
 
         {activeTab === "Detailed Notes" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Detailed theoretical notes
               </p>
 
@@ -669,7 +669,7 @@ export default function WhatIsProbabilityLesson() {
                 Probability begins with events, sets and rules.
               </h2>
 
-              <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700">
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252]">
                 These notes deliberately move beyond definitions. They show why
                 the rules work, how the formulae are derived and how probability
                 connects counting, complements, long-run frequency and odds.
@@ -680,35 +680,35 @@ export default function WhatIsProbabilityLesson() {
               {notes.map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                  className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     {item.formula}
                   </p>
                   <h3 className="mt-3 text-2xl font-black tracking-[-0.04em]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
                   <div className="mt-4 grid gap-4 md:grid-cols-3">
-                    <div className="rounded-2xl bg-[#f7f4ee] p-4">
-                      <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+                    <div className="rounded-2xl bg-[#F7F3EA] p-4">
+                      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#7a7063]">
                         Derivation
                       </p>
-                      <p className="mt-2 text-sm leading-7 text-neutral-700">
+                      <p className="mt-2 text-sm leading-7 text-[#525252]">
                         {item.derivation}
                       </p>
                     </div>
-                    <div className="rounded-2xl border border-[#8b1116]/20 bg-[#fff7f7] p-4">
-                      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                    <div className="rounded-2xl border border-[#741018]/20 bg-[#fff4ef] p-4">
+                      <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                         Example
                       </p>
-                      <p className="mt-2 text-sm leading-7 text-neutral-700">
+                      <p className="mt-2 text-sm leading-7 text-[#525252]">
                         {item.example}
                       </p>
                     </div>
-                    <div className="rounded-2xl bg-neutral-950 p-4 text-white">
+                    <div className="rounded-2xl bg-[#11100E] p-4 text-white">
                       <p className="text-xs font-black uppercase tracking-[0.18em] text-white/45">
                         Visual idea
                       </p>
@@ -725,10 +725,10 @@ export default function WhatIsProbabilityLesson() {
 
         {activeTab === "Probability Lab" && (
           <section className="mt-8 grid gap-6">
-            <section className="overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+            <section className="overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
               <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="p-6 md:p-8">
-                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                  <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                     Interactive probability lab
                   </p>
 
@@ -736,7 +736,7 @@ export default function WhatIsProbabilityLesson() {
                     Adjust probability and watch uncertainty split.
                   </h2>
 
-                  <p className="mt-4 text-base leading-8 text-neutral-700">
+                  <p className="mt-4 text-base leading-8 text-[#525252]">
                     Move the probability slider to see how an event and its
                     complement divide the sample space. Then increase the number
                     of trials to see long-run frequency stabilise.
@@ -777,7 +777,7 @@ export default function WhatIsProbabilityLesson() {
                   </div>
                 </div>
 
-                <div className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+                <div className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
                   <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                     Probability scale
                   </p>
@@ -795,7 +795,7 @@ export default function WhatIsProbabilityLesson() {
                     <SplitBar label="Complement Aᶜ" value={complement} />
                   </div>
 
-                  <p className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5 text-sm leading-7 text-white/75">
+                  <p className="mt-6 rounded-[1.5rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5 text-sm leading-7 text-white/75">
                     Since A and Aᶜ cover the whole sample space and cannot
                     happen together, their probabilities must add to 1:
                     P(A) + P(Aᶜ) = 1.
@@ -804,8 +804,8 @@ export default function WhatIsProbabilityLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Long-run frequency
               </p>
 
@@ -813,14 +813,14 @@ export default function WhatIsProbabilityLesson() {
                 Early results fluctuate. Repeated trials become more stable.
               </h2>
 
-              <p className="mt-4 max-w-4xl text-sm leading-7 text-neutral-700">
+              <p className="mt-4 max-w-4xl text-sm leading-7 text-[#525252]">
                 The graph below shows the running relative frequency of event A.
                 The dashed target is the theoretical probability. At small trial
                 numbers, the line can jump around. With more trials, the running
                 frequency usually becomes more stable.
               </p>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                 <FrequencyGraph data={trialData} target={p} />
               </div>
 
@@ -845,8 +845,8 @@ export default function WhatIsProbabilityLesson() {
         {activeTab === "Visual Reasoning" && (
           <section className="mt-8 grid gap-6">
             <section className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Venn diagram
                 </p>
 
@@ -854,17 +854,17 @@ export default function WhatIsProbabilityLesson() {
                   Probability is easier when events are seen as regions.
                 </h2>
 
-                <p className="mt-4 text-sm leading-7 text-neutral-700">
+                <p className="mt-4 text-sm leading-7 text-[#525252]">
                   The rectangle represents the sample space S. The circle
                   represents event A. Everything outside the circle is the
                   complement Aᶜ.
                 </p>
 
-                <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+                <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                   <VennSingle probability={p} />
                 </div>
 
-                <div className="mt-6 rounded-[1.5rem] bg-neutral-950 p-5 text-white">
+                <div className="mt-6 rounded-[1.5rem] bg-[#11100E] p-5 text-white">
                   <p className="text-sm leading-7 text-white/75">
                     Visual rule: the whole rectangle has probability 1. The
                     circle takes probability P(A), and the outside region takes
@@ -873,8 +873,8 @@ export default function WhatIsProbabilityLesson() {
                 </div>
               </section>
 
-              <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Counting probability
                 </p>
 
@@ -882,7 +882,7 @@ export default function WhatIsProbabilityLesson() {
                   Build classical probability by counting outcomes.
                 </h2>
 
-                <p className="mt-4 text-sm leading-7 text-neutral-700">
+                <p className="mt-4 text-sm leading-7 text-[#525252]">
                   Use the controls to choose how many outcomes are in the sample
                   space and how many belong to event A.
                 </p>
@@ -907,7 +907,7 @@ export default function WhatIsProbabilityLesson() {
                   />
                 </div>
 
-                <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+                <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                   <OutcomeGrid total={sampleSize} favourable={eventSize} />
                 </div>
 
@@ -926,7 +926,7 @@ export default function WhatIsProbabilityLesson() {
                   />
                 </div>
 
-                <p className="mt-6 rounded-[1.5rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5 text-sm font-bold leading-7 text-[#8b1116]">
+                <p className="mt-6 rounded-[1.5rem] border border-[#741018]/20 bg-[#fff4ef] p-5 text-sm font-bold leading-7 text-[#741018]">
                   Formula: P(A) = |A| / |S| = {eventSize}/{sampleSize} ={" "}
                   {classicalProbability.toFixed(2)}
                 </p>
@@ -937,8 +937,8 @@ export default function WhatIsProbabilityLesson() {
 
         {activeTab === "Worked Examples" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Worked examples
               </p>
 
@@ -954,8 +954,8 @@ export default function WhatIsProbabilityLesson() {
                     onClick={() => setSelectedExample(index)}
                     className={`rounded-[1.25rem] border p-4 text-left transition ${
                       selectedExample === index
-                        ? "border-neutral-950 bg-neutral-950 text-white"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-800 hover:bg-white"
+                        ? "border-stone-950 bg-[#11100E] text-white"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-neutral-800 hover:bg-[#FFFCF6]"
                     }`}
                   >
                     <p className="text-sm font-black">{example.title}</p>
@@ -964,8 +964,8 @@ export default function WhatIsProbabilityLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 {activeExample.title}
               </p>
 
@@ -984,8 +984,8 @@ export default function WhatIsProbabilityLesson() {
 
         {activeTab === "Practice Studio" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Practice studio
               </p>
 
@@ -1001,8 +1001,8 @@ export default function WhatIsProbabilityLesson() {
                     onClick={() => setSelectedPractice(index)}
                     className={`rounded-[1.25rem] border p-4 text-left transition ${
                       selectedPractice === index
-                        ? "border-neutral-950 bg-neutral-950 text-white"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-800 hover:bg-white"
+                        ? "border-stone-950 bg-[#11100E] text-white"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-neutral-800 hover:bg-[#FFFCF6]"
                     }`}
                   >
                     <p className="text-sm font-black">Question {index + 1}</p>
@@ -1011,8 +1011,8 @@ export default function WhatIsProbabilityLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Question {selectedPractice + 1}
               </p>
 
@@ -1020,11 +1020,11 @@ export default function WhatIsProbabilityLesson() {
                 {activePractice.prompt}
               </h2>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#7a7063]">
                   Suggested answer
                 </p>
-                <p className="mt-3 text-base leading-8 text-neutral-700">
+                <p className="mt-3 text-base leading-8 text-[#525252]">
                   {activePractice.answer}
                 </p>
               </div>
@@ -1033,8 +1033,8 @@ export default function WhatIsProbabilityLesson() {
         )}
 
         {activeTab === "Reflection" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Reflection
             </p>
 
@@ -1067,12 +1067,12 @@ export default function WhatIsProbabilityLesson() {
               ].map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
                   <h3 className="text-xl font-black tracking-[-0.035em]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
                 </article>
@@ -1083,7 +1083,7 @@ export default function WhatIsProbabilityLesson() {
 
         {activeTab === "Quiz" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Lesson quiz
               </p>
@@ -1105,7 +1105,7 @@ export default function WhatIsProbabilityLesson() {
                 return (
                   <article
                     key={question.question}
-                    className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                    className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                   >
                     <h3 className="text-xl font-black tracking-[-0.035em]">
                       {index + 1}. {question.question}
@@ -1126,8 +1126,8 @@ export default function WhatIsProbabilityLesson() {
                             selected === optionIndex
                               ? optionIndex === question.answer
                                 ? "border-green-700 bg-green-50 text-green-900"
-                                : "border-[#8b1116] bg-[#fff7f7] text-[#8b1116]"
-                              : "border-neutral-200 bg-[#f7f4ee] text-neutral-700 hover:bg-white"
+                                : "border-[#741018] bg-[#fff4ef] text-[#741018]"
+                              : "border-[#E4DED2] bg-[#F7F3EA] text-[#525252] hover:bg-[#FFFCF6]"
                           }`}
                         >
                           {option}
@@ -1136,7 +1136,7 @@ export default function WhatIsProbabilityLesson() {
                     </div>
 
                     {selected !== undefined && (
-                      <p className="mt-4 rounded-2xl bg-neutral-950 px-4 py-3 text-sm font-bold leading-7 text-white">
+                      <p className="mt-4 rounded-2xl bg-[#11100E] px-4 py-3 text-sm font-bold leading-7 text-white">
                         {question.feedback}
                       </p>
                     )}
@@ -1153,11 +1153,11 @@ export default function WhatIsProbabilityLesson() {
 
 function Dialogue({ speaker, text }: { speaker: string; text: string }) {
   return (
-    <div className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+    <div className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
+      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
         {speaker}
       </p>
-      <p className="mt-2 text-sm leading-7 text-neutral-700">{text}</p>
+      <p className="mt-2 text-sm leading-7 text-[#525252]">{text}</p>
     </div>
   );
 }
@@ -1180,8 +1180,8 @@ function Slider({
   return (
     <label className="block">
       <div className="flex items-center justify-between gap-4">
-        <span className="text-sm font-black text-neutral-700">{label}</span>
-        <span className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
+        <span className="text-sm font-black text-[#525252]">{label}</span>
+        <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black text-white">
           {value}
           {suffix}
         </span>
@@ -1192,7 +1192,7 @@ function Slider({
         max={max}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="mt-3 w-full accent-[#8b1116]"
+        className="mt-3 w-full accent-[#741018]"
       />
     </label>
   );
@@ -1200,8 +1200,8 @@ function Slider({
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4">
-      <p className="text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4">
+      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#7a7063]">
         {label}
       </p>
       <p className="mt-2 text-2xl font-black tracking-[-0.04em]">{value}</p>
@@ -1224,15 +1224,15 @@ function InfoBlock({
     <div
       className={`rounded-[1.5rem] p-5 ${
         dark
-          ? "bg-neutral-950 text-white"
+          ? "bg-[#11100E] text-white"
           : warning
-            ? "border border-[#8b1116]/20 bg-[#fff7f7] text-[#8b1116]"
-            : "border border-neutral-200 bg-[#f7f4ee] text-neutral-700"
+            ? "border border-[#741018]/20 bg-[#fff4ef] text-[#741018]"
+            : "border border-[#E4DED2] bg-[#F7F3EA] text-[#525252]"
       }`}
     >
       <p
         className={`text-xs font-black uppercase tracking-[0.18em] ${
-          dark ? "text-white/45" : warning ? "text-[#8b1116]" : "text-neutral-500"
+          dark ? "text-white/45" : warning ? "text-[#741018]" : "text-[#7a7063]"
         }`}
       >
         {title}
@@ -1247,13 +1247,13 @@ function InfoBlock({
 function ProbabilityScale({ value }: { value: number }) {
   return (
     <div>
-      <div className="relative h-5 overflow-hidden rounded-full bg-white/15">
+      <div className="relative h-5 overflow-hidden rounded-full bg-[#FFFCF6]/15">
         <div
-          className="h-full rounded-full bg-white"
+          className="h-full rounded-full bg-[#FFFCF6]"
           style={{ width: `${value * 100}%` }}
         />
         <div
-          className="absolute top-1/2 h-8 w-1 -translate-y-1/2 rounded-full bg-[#f7f4ee]"
+          className="absolute top-1/2 h-8 w-1 -translate-y-1/2 rounded-full bg-[#F7F3EA]"
           style={{ left: `calc(${value * 100}% - 2px)` }}
         />
       </div>
@@ -1273,9 +1273,9 @@ function SplitBar({ label, value }: { label: string; value: number }) {
         <span>{label}</span>
         <span>{Math.round(value * 100)}%</span>
       </div>
-      <div className="h-4 overflow-hidden rounded-full bg-white/15">
+      <div className="h-4 overflow-hidden rounded-full bg-[#FFFCF6]/15">
         <div
-          className="h-full rounded-full bg-white"
+          className="h-full rounded-full bg-[#FFFCF6]"
           style={{ width: `${value * 100}%` }}
         />
       </div>
@@ -1302,15 +1302,15 @@ function VennSingle({ probability }: { probability: number }) {
         cx="210"
         cy="130"
         r={radius}
-        fill="#8b1116"
+        fill="#741018"
         opacity="0.22"
-        stroke="#8b1116"
+        stroke="#741018"
         strokeWidth="4"
       />
-      <text x="42" y="52" fontSize="18" fontWeight="800" fill="#111111">
+      <text x="42" y="52" fontSize="18" fontWeight="800" fill="#141210">
         Sample space S
       </text>
-      <text x="193" y="135" fontSize="22" fontWeight="900" fill="#8b1116">
+      <text x="193" y="135" fontSize="22" fontWeight="900" fill="#741018">
         A
       </text>
       <text x="48" y="222" fontSize="15" fontWeight="800" fill="#525252">
@@ -1340,8 +1340,8 @@ function OutcomeGrid({
             key={index}
             className={`flex aspect-square items-center justify-center rounded-2xl text-sm font-black ${
               isFavourable
-                ? "bg-[#8b1116] text-white"
-                : "border border-neutral-300 bg-white text-neutral-500"
+                ? "bg-[#741018] text-white"
+                : "border border-[#D8CDBB] bg-[#FFFCF6] text-[#7a7063]"
             }`}
           >
             {index + 1}
@@ -1374,14 +1374,14 @@ function FrequencyGraph({
         x2="100"
         y1={100 - target * 100}
         y2={100 - target * 100}
-        stroke="#8b1116"
+        stroke="#741018"
         strokeWidth="1.8"
         strokeDasharray="4 4"
       />
       <polyline
         points={points}
         fill="none"
-        stroke="#111111"
+        stroke="#141210"
         strokeWidth="2.4"
         vectorEffect="non-scaling-stroke"
       />
@@ -1390,7 +1390,7 @@ function FrequencyGraph({
       <text x="2" y="8" fontSize="4" fontWeight="800" fill="#525252">
         Relative frequency
       </text>
-      <text x="70" y={Math.max(7, 100 - target * 100 - 3)} fontSize="4" fontWeight="800" fill="#8b1116">
+      <text x="70" y={Math.max(7, 100 - target * 100 - 3)} fontSize="4" fontWeight="800" fill="#741018">
         theoretical P(A)
       </text>
     </svg>

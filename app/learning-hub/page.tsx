@@ -75,18 +75,18 @@ const studyFocus = [
 
 export default function LearningHubPage() {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-10 text-[#111111] md:px-8 md:py-16">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-10 text-[#141210] md:px-8 md:py-16">
 
-      <section className="mx-auto mt-8 max-w-7xl rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#6f0d12]">
+      <section className="mx-auto mt-8 max-w-7xl rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#7A0710]">
           Structured learning
         </p>
 
-        <h2 className="mt-3 text-2xl font-black tracking-tight text-neutral-950 md:text-3xl">
+        <h2 className="mt-3 text-2xl font-black tracking-tight text-[#141210] md:text-3xl">
           Build a clear route through statistics, biostatistics and health data science.
         </h2>
 
-        <p className="mt-4 max-w-4xl text-base leading-7 text-neutral-700">
+        <p className="mt-4 max-w-4xl text-base leading-7 text-[#525252]">
           The Learning Hub brings together beginner-friendly statistics courses,
           biostatistics learning routes, interactive demos and detailed resources.
           It is designed for students who want to understand quantitative methods
@@ -94,13 +94,13 @@ export default function LearningHubPage() {
         </p>
 
         <div className="mt-5 flex flex-wrap gap-3 text-sm font-bold">
-          <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/resources/">
+          <a className="rounded-full border border-[#E4DED2] px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/resources/">
             Read Statistics Resources
           </a>
-          <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/interactive-demos/">
+          <a className="rounded-full border border-[#E4DED2] px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/interactive-demos/">
             Try Interactive Demos
           </a>
-          <a className="rounded-full border border-neutral-200 px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/contact/">
+          <a className="rounded-full border border-[#E4DED2] px-4 py-2 text-neutral-800 hover:bg-neutral-50" href="/contact/">
             Book Customised Tutoring
           </a>
         </div>
@@ -109,15 +109,15 @@ export default function LearningHubPage() {
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/")}
-          className="text-sm font-semibold text-[#8b1116] hover:text-[#5f0b0f]"
+          className="text-sm font-semibold text-[#741018] hover:text-[#4d080e]"
         >
           ← Back to homepage
         </a>
 
-        <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white px-6 py-5 shadow-sm md:px-8">
+        <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] px-6 py-5 shadow-sm md:px-8">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#741018]">
                 Learning Hub
               </p>
 
@@ -140,7 +140,7 @@ export default function LearningHubPage() {
               ].map((subject) => (
                 <span
                   key={subject}
-                  className="rounded-full border border-neutral-200 bg-[#f7f4ee] px-4 py-2 text-sm font-black text-neutral-700"
+                  className="rounded-full border border-[#E4DED2] bg-[#F7F3EA] px-4 py-2 text-sm font-black text-[#525252]"
                 >
                   {subject}
                 </span>
@@ -154,27 +154,27 @@ export default function LearningHubPage() {
             <a
               key={route.title}
               href={withBasePath(route.href)}
-              className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
               <h2 className="text-2xl font-semibold tracking-[-0.04em]">
                 {route.title}
               </h2>
 
-              <p className="mt-4 text-sm leading-7 text-neutral-700">
+              <p className="mt-4 text-sm leading-7 text-[#525252]">
                 {route.description}
               </p>
 
-              <p className="mt-6 text-sm font-semibold text-[#8b1116]">
+              <p className="mt-6 text-sm font-semibold text-[#741018]">
                 {route.label} →
               </p>
             </a>
           ))}
         </section>
 
-        <section className="mt-8 rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+        <section className="mt-8 rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#741018]">
                 Course pathways
               </p>
 
@@ -183,7 +183,7 @@ export default function LearningHubPage() {
               </h2>
             </div>
 
-            <p className="text-base leading-8 text-neutral-700">
+            <p className="text-base leading-8 text-[#525252]">
               Start with foundations, then move into applied health data
               modelling when you are ready.
             </p>
@@ -194,17 +194,17 @@ export default function LearningHubPage() {
               <a
                 key={course.title}
                 href={withBasePath(course.href)}
-                className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6 transition hover:-translate-y-1 hover:bg-white hover:shadow-md"
+                className="rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6 transition hover:-translate-y-1 hover:bg-[#FFFCF6] hover:shadow-md"
               >
                 <h3 className="text-2xl font-semibold tracking-[-0.04em]">
                   {course.title}
                 </h3>
 
-                <p className="mt-4 text-sm leading-7 text-neutral-700">
+                <p className="mt-4 text-sm leading-7 text-[#525252]">
                   {course.description}
                 </p>
 
-                <p className="mt-6 text-sm font-semibold text-[#8b1116]">
+                <p className="mt-6 text-sm font-semibold text-[#741018]">
                   Join waitlist →
                 </p>
               </a>

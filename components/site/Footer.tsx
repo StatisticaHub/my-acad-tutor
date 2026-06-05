@@ -48,17 +48,17 @@ const subjectPills = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#f7f4ee] px-4 pb-6 pt-5 text-[#111111] sm:px-5 md:px-8 md:pb-8 md:pt-8">
-      <section className="mx-auto max-w-7xl overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:rounded-[2.5rem]">
+    <footer className="bg-[#F7F3EA] px-4 pb-6 pt-5 text-[#141210] sm:px-5 md:px-8 md:pb-8 md:pt-8">
+      <section className="mx-auto max-w-7xl overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm md:rounded-[2.5rem]">
         <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="border-b border-neutral-200 p-5 md:p-8 lg:border-b-0 lg:border-r">
+          <div className="border-b border-[#E4DED2] p-5 md:p-8 lg:border-b-0 lg:border-r">
             <Logo />
 
             <h2 className="mt-6 max-w-2xl text-3xl font-semibold leading-tight tracking-[-0.045em] md:text-5xl">
               Clearer quantitative learning, from foundations to applied support.
             </h2>
 
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
               My Academic Tutor supports students through structured courses,
               visual demos, in-depth resources and responsible academic
               guidance across quantitative subjects.
@@ -68,7 +68,7 @@ export default function Footer() {
               {subjectPills.map((subject) => (
                 <span
                   key={subject}
-                  className="rounded-full border border-neutral-200 bg-[#f7f4ee] px-3 py-1.5 text-xs font-semibold text-neutral-700"
+                  className="rounded-full border border-[#E4DED2] bg-[#F7F3EA] px-3 py-1.5 text-xs font-semibold text-[#525252]"
                 >
                   {subject}
                 </span>
@@ -78,14 +78,14 @@ export default function Footer() {
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href={withBasePath("/learning-hub")}
-                className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#8b1116] sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full bg-[#11100E] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#741018] sm:w-auto"
               >
                 Open Learning Hub
               </a>
 
               <a
                 href={`${withBasePath("/contact")}#support-form`}
-                className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto"
+                className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-semibold text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto"
               >
                 Book Customised Tutoring →
               </a>
@@ -96,14 +96,14 @@ export default function Footer() {
             <FooterColumn
               title="Learning"
               links={learningLinks}
-              className="border-b border-neutral-200 p-5 md:border-r md:p-8"
+              className="border-b border-[#E4DED2] p-5 md:border-r md:p-8"
             />
 
             <div className="grid gap-0">
               <FooterColumn
                 title="Support"
                 links={supportLinks}
-                className="border-b border-neutral-200 p-5 md:p-8"
+                className="border-b border-[#E4DED2] p-5 md:p-8"
               />
 
               <FooterColumn
@@ -115,30 +115,30 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-neutral-200 bg-[#fdfbf7] p-5 md:p-6">
+        <div className="border-t border-[#E4DED2] bg-[#fdfbf7] p-5 md:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <p className="text-sm font-semibold text-neutral-600">
+            <p className="text-sm font-semibold text-[#5F5F5F]">
               © 2026 My Academic Tutor. All rights reserved.
             </p>
 
-            <div className="flex flex-wrap gap-3 text-sm font-semibold text-neutral-600">
+            <div className="flex flex-wrap gap-3 text-sm font-semibold text-[#5F5F5F]">
               <a
                 href="mailto:contact@myacademictutor.com"
-                className="transition hover:text-[#8b1116]"
+                className="transition hover:text-[#741018]"
               >
                 contact@myacademictutor.com
               </a>
 
               <a
                 href="https://www.linkedin.com"
-                className="transition hover:text-[#8b1116]"
+                className="transition hover:text-[#741018]"
               >
                 LinkedIn
               </a>
 
               <a
                 href="https://www.youtube.com"
-                className="transition hover:text-[#8b1116]"
+                className="transition hover:text-[#741018]"
               >
                 YouTube
               </a>
@@ -161,7 +161,7 @@ function FooterColumn({
 }) {
   return (
     <nav className={className}>
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#741018] md:text-sm">
         {title}
       </p>
 
@@ -170,7 +170,7 @@ function FooterColumn({
           <a
             key={link.href}
             href={withBasePath(link.href)}
-            className="rounded-full px-0 py-1.5 text-sm font-semibold text-neutral-700 transition hover:text-[#8b1116]"
+            className="rounded-full px-0 py-1.5 text-sm font-semibold text-[#525252] transition hover:text-[#741018]"
           >
             {link.label}
           </a>

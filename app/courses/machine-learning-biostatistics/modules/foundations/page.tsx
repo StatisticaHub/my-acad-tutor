@@ -172,19 +172,19 @@ const learningDesign = [
 
 export default function MachineLearningBiostatisticsFoundationsModulePage() {
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-4 py-8 text-[#111111] sm:px-5 md:px-8 md:py-16">
+    <main className="min-h-screen bg-[#F7F3EA] px-4 py-8 text-[#141210] sm:px-5 md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses/machine-learning-biostatistics")}
-          className="text-sm font-black text-[#8b1116] transition hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] transition hover:text-[#4d080e]"
         >
           ← Back to Machine Learning in Biostatistics
         </a>
 
-        <section className="mt-6 overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:mt-8 md:rounded-[2.5rem]">
+        <section className="mt-6 overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm md:mt-8 md:rounded-[2.5rem]">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-5 sm:p-6 md:p-10 lg:p-12">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm md:tracking-[0.22em]">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm md:tracking-[0.22em]">
                 Module 1 · Machine Learning in Biostatistics
               </p>
 
@@ -192,7 +192,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                 Foundations of machine learning in biostatistics.
               </h1>
 
-              <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700 md:mt-6 md:text-lg md:leading-9">
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252] md:mt-6 md:text-lg md:leading-9">
                 This module builds the judgement needed before algorithms. You
                 will learn how clinical prediction questions become machine
                 learning workflows, why validation matters, how R output should
@@ -205,21 +205,21 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                   href={withBasePath(
                     "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics",
                   )}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#111111] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#8b1116] sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#11100E] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#741018] sm:w-auto md:py-4"
                 >
                   Start Lesson 1.1 →
                 </a>
 
                 <a
                   href={withBasePath("#module-lessons")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
                   View all lessons
                 </a>
 
                 <a
                   href={withBasePath("#join-waitlist")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-neutral-300 bg-white px-6 py-3.5 text-sm font-black text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
                   Join waitlist
                 </a>
@@ -229,12 +229,12 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                 {moduleStats.map(([value, label]) => (
                   <div
                     key={label}
-                    className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4"
+                    className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4"
                   >
                     <p className="text-2xl font-black tracking-[-0.05em]">
                       {value}
                     </p>
-                    <p className="mt-1 text-xs font-black uppercase tracking-[0.14em] text-neutral-500">
+                    <p className="mt-1 text-xs font-black uppercase tracking-[0.14em] text-[#7a7063]">
                       {label}
                     </p>
                   </div>
@@ -242,7 +242,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-5 text-white md:p-8 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-5 text-white md:p-8 lg:border-l lg:border-t-0">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50 md:text-sm">
                 Module aim
               </p>
@@ -267,7 +267,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] px-4 py-3 text-sm font-bold text-white/80"
+                    className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] px-4 py-3 text-sm font-bold text-white/80"
                   >
                     {item}
                   </div>
@@ -278,8 +278,8 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
         </section>
 
         <section className="mt-6 grid gap-4 md:mt-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <article className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+          <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
               What this module builds
             </p>
 
@@ -291,12 +291,12 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
               {moduleFocus.map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] p-4"
+                  className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] p-4"
                 >
-                  <h3 className="text-sm font-black text-neutral-950">
+                  <h3 className="text-sm font-black text-[#141210]">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-7 text-neutral-700">
+                  <p className="mt-2 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
                 </div>
@@ -304,7 +304,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
             </div>
           </article>
 
-          <article className="rounded-[1.75rem] border border-neutral-200 bg-[#111111] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
+          <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#11100E] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
             <p className="text-xs font-black uppercase tracking-[0.2em] text-white/55 md:text-sm">
               By the end
             </p>
@@ -317,7 +317,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
               {outcomes.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-bold text-white/85"
+                  className="rounded-2xl border border-white/10 bg-[#FFFCF6]/[0.06] px-4 py-3 text-sm font-bold text-white/85"
                 >
                   {item}
                 </div>
@@ -326,10 +326,10 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
           </article>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+        <section className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
           <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
                 Module pathway
               </p>
 
@@ -338,7 +338,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
               </h2>
             </div>
 
-            <p className="text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+            <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
               The first module teaches the thinking structure that every later
               model will follow: define the question, choose valid predictors,
               fit a model, validate it, interpret the output and report
@@ -350,9 +350,9 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
             {pathway.map((item) => (
               <article
                 key={item.step}
-                className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
               >
-                <span className="rounded-full bg-[#111111] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-white">
+                <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-white">
                   Step {item.step}
                 </span>
 
@@ -360,7 +360,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                <p className="mt-3 text-sm leading-7 text-[#525252]">
                   {item.body}
                 </p>
               </article>
@@ -369,8 +369,8 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
         </section>
 
         <section className="mt-6 grid gap-4 md:mt-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <article className="rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+          <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
               Lesson design
             </p>
 
@@ -382,7 +382,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
               {learningDesign.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-700"
+                  className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#525252]"
                 >
                   {item}
                 </div>
@@ -390,16 +390,16 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
             </div>
           </article>
 
-          <article className="rounded-[1.75rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+          <article className="rounded-[1.75rem] border border-[#741018]/20 bg-[#fff4ef] p-5 shadow-sm md:rounded-[2.5rem] md:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
               Current release state
             </p>
 
-            <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] text-[#8b1116] md:text-5xl">
+            <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] text-[#741018] md:text-5xl">
               One full lesson is open as the preview.
             </h2>
 
-            <p className="mt-4 text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+            <p className="mt-4 text-sm leading-7 text-[#525252] md:text-base md:leading-8">
               Lesson 1.1 demonstrates the final course format: lecture, detailed
               notes, interactive lab, browser R console, script output guide,
               report section and quiz. The remaining lessons are locked while
@@ -410,7 +410,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
               href={withBasePath(
                 "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics",
               )}
-              className="mt-6 inline-flex w-full justify-center rounded-full bg-[#8b1116] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#5f0b0f] sm:w-auto"
+              className="mt-6 inline-flex w-full justify-center rounded-full bg-[#741018] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#4d080e] sm:w-auto"
             >
               Open Lesson 1.1 →
             </a>
@@ -419,11 +419,11 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
 
         <section
           id="module-lessons"
-          className="mt-6 rounded-[1.75rem] border border-neutral-200 bg-white p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
+          className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
         >
           <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
                 Module lessons
               </p>
 
@@ -432,7 +432,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
               </h2>
             </div>
 
-            <p className="text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+            <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
               Lesson 1.1 is open now. Lessons 1.2–1.5 currently route to the
               waitlist until the full July 2026 release.
             </p>
@@ -445,20 +445,20 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                 href={withBasePath(lesson.open ? lesson.href : "#join-waitlist")}
                 className={`group rounded-[1.5rem] border p-5 transition hover:-translate-y-1 hover:shadow-md md:rounded-[2rem] md:p-6 ${
                   lesson.open
-                    ? "border-neutral-200 bg-[#f7f4ee] hover:bg-white"
-                    : "border-[#8b1116]/20 bg-[#fff7f7] hover:bg-white"
+                    ? "border-[#E4DED2] bg-[#F7F3EA] hover:bg-[#FFFCF6]"
+                    : "border-[#741018]/20 bg-[#fff4ef] hover:bg-[#FFFCF6]"
                 }`}
               >
                 <div className="grid gap-5 lg:grid-cols-[0.18fr_1fr_0.22fr] lg:items-start">
                   <div>
                     <p
                       className={`text-5xl font-black tracking-[-0.06em] ${
-                        lesson.open ? "text-[#111111]" : "text-[#8b1116]"
+                        lesson.open ? "text-[#141210]" : "text-[#741018]"
                       }`}
                     >
                       {lesson.number}
                     </p>
-                    <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+                    <p className="mt-2 text-xs font-black uppercase tracking-[0.18em] text-[#7a7063]">
                       Lesson
                     </p>
                   </div>
@@ -468,18 +468,18 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                       <span
                         className={`rounded-full px-3 py-1 text-xs font-black uppercase tracking-[0.14em] ${
                           lesson.open
-                            ? "bg-neutral-950 text-white"
-                            : "bg-[#8b1116] text-white"
+                            ? "bg-[#11100E] text-white"
+                            : "bg-[#741018] text-white"
                         }`}
                       >
                         {lesson.open ? "Open" : "Locked"}
                       </span>
 
-                      <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-neutral-600">
+                      <span className="rounded-full border border-[#E4DED2] bg-[#FFFCF6] px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-[#5F5F5F]">
                         {lesson.duration}
                       </span>
 
-                      <span className="rounded-full border border-neutral-200 bg-white px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-[#8b1116]">
+                      <span className="rounded-full border border-[#E4DED2] bg-[#FFFCF6] px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-[#741018]">
                         {lesson.theme}
                       </span>
                     </div>
@@ -488,7 +488,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                       {lesson.title}
                     </h3>
 
-                    <p className="mt-3 max-w-4xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+                    <p className="mt-3 max-w-4xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
                       {lesson.description}
                     </p>
 
@@ -496,7 +496,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                       {lesson.skills.map((skill) => (
                         <span
                           key={skill}
-                          className="rounded-full border border-neutral-200 bg-white px-3 py-1.5 text-xs font-bold text-neutral-600"
+                          className="rounded-full border border-[#E4DED2] bg-[#FFFCF6] px-3 py-1.5 text-xs font-bold text-[#5F5F5F]"
                         >
                           {skill}
                         </span>
@@ -505,11 +505,11 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                   </div>
 
                   <div className="lg:text-right">
-                    <span className="inline-flex rounded-full border border-neutral-200 bg-white px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-neutral-600">
+                    <span className="inline-flex rounded-full border border-[#E4DED2] bg-[#FFFCF6] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#5F5F5F]">
                       {lesson.status}
                     </span>
 
-                    <p className="mt-5 text-sm font-black text-[#8b1116] transition group-hover:translate-x-1">
+                    <p className="mt-5 text-sm font-black text-[#741018] transition group-hover:translate-x-1">
                       {lesson.open ? "Open lesson →" : "Join waitlist →"}
                     </p>
                   </div>
@@ -521,7 +521,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
 
         <section
           id="join-waitlist"
-          className="mt-6 overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-neutral-950 shadow-sm md:mt-8 md:rounded-[2.5rem]"
+          className="mt-6 overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#11100E] shadow-sm md:mt-8 md:rounded-[2.5rem]"
         >
           <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
             <div className="p-5 text-white md:p-10">
@@ -548,7 +548,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] px-4 py-3 text-sm font-bold text-white/80"
+                    className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] px-4 py-3 text-sm font-bold text-white/80"
                   >
                     {item}
                   </div>
@@ -556,8 +556,8 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
               </div>
             </div>
 
-            <div className="border-t border-white/10 bg-white p-5 md:p-8 lg:border-l lg:border-t-0">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116]">
+            <div className="border-t border-white/10 bg-[#FFFCF6] p-5 md:p-8 lg:border-l lg:border-t-0">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018]">
                 Waitlist form
               </p>
 
@@ -571,7 +571,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                 className="mt-6 grid gap-4"
               >
                 <label className="grid gap-2">
-                  <span className="text-sm font-black text-neutral-700">
+                  <span className="text-sm font-black text-[#525252]">
                     Name
                   </span>
                   <input
@@ -579,12 +579,12 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                     type="text"
                     required
                     placeholder="Your name"
-                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                   />
                 </label>
 
                 <label className="grid gap-2">
-                  <span className="text-sm font-black text-neutral-700">
+                  <span className="text-sm font-black text-[#525252]">
                     Email
                   </span>
                   <input
@@ -592,18 +592,18 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                     type="email"
                     required
                     placeholder="you@example.com"
-                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                   />
                 </label>
 
                 <label className="grid gap-2">
-                  <span className="text-sm font-black text-neutral-700">
+                  <span className="text-sm font-black text-[#525252]">
                     Interest
                   </span>
                   <select
                     name="interest"
                     defaultValue="ML Biostatistics Module 1 waitlist"
-                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                   >
                     <option>ML Biostatistics Module 1 waitlist</option>
                     <option>Machine Learning in Biostatistics waitlist</option>
@@ -614,43 +614,43 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
                 </label>
 
                 <label className="grid gap-2">
-                  <span className="text-sm font-black text-neutral-700">
+                  <span className="text-sm font-black text-[#525252]">
                     Message
                   </span>
                   <textarea
                     name="message"
                     rows={4}
                     defaultValue="I want to join the Machine Learning in Biostatistics Module 1 waitlist."
-                    className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm font-bold text-neutral-950 outline-none transition focus:border-[#8b1116] focus:bg-white"
+                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                   />
                 </label>
 
                 <button
                   type="submit"
-                  className="rounded-full bg-[#8b1116] px-6 py-4 text-sm font-black text-white transition hover:bg-[#5f0b0f]"
+                  className="rounded-full bg-[#741018] px-6 py-4 text-sm font-black text-white transition hover:bg-[#4d080e]"
                 >
                   Join waitlist →
                 </button>
 
-                <p className="text-xs leading-6 text-neutral-500">
+                <p className="text-xs leading-6 text-[#7a7063]">
                 </p>
               </form>
             </div>
           </div>
         </section>
 
-        <section className="mt-6 rounded-[1.75rem] border border-[#8b1116]/20 bg-[#fff7f7] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+        <section className="mt-6 rounded-[1.75rem] border border-[#741018]/20 bg-[#fff4ef] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#8b1116] md:text-sm">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
                 Recommended start
               </p>
 
-              <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-[-0.045em] text-[#8b1116] md:text-5xl">
+              <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-[-0.045em] text-[#741018] md:text-5xl">
                 Begin with the open ML foundation lesson.
               </h2>
 
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+              <p className="mt-4 max-w-3xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
                 Lesson 1.1 introduces the full learning style for this course:
                 clinical question, R script, browser output, interpretation,
                 report writing, quiz and responsible modelling caution.
@@ -661,7 +661,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
               href={withBasePath(
                 "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics",
               )}
-              className="inline-flex w-full justify-center rounded-full bg-[#8b1116] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#5f0b0f] sm:w-auto md:py-4"
+              className="inline-flex w-full justify-center rounded-full bg-[#741018] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#4d080e] sm:w-auto md:py-4"
             >
               Open Lesson 1.1 →
             </a>

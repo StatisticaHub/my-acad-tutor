@@ -452,19 +452,19 @@ export default function ConfidenceIntervalsLesson() {
   }, 0);
 
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-8 text-neutral-950 md:px-8 md:py-14">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-8 text-[#141210] md:px-8 md:py-14">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses/statistics-foundation/modules/statistical-inference-foundations")}
-          className="text-sm font-black text-[#8b1116] hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] hover:text-[#4d080e]"
         >
           ← Back to module
         </a>
 
-        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
+        <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-6 md:p-10">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Statistics Foundation · Lesson 4.2
               </p>
 
@@ -472,7 +472,7 @@ export default function ConfidenceIntervalsLesson() {
                 Confidence intervals.
               </h1>
 
-              <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">
+              <p className="mt-6 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
                 Confidence intervals turn a sample estimate into a range of
                 plausible population values. This lesson explains interval
                 estimation, margin of error, confidence level, long-run coverage,
@@ -484,7 +484,7 @@ export default function ConfidenceIntervalsLesson() {
                   (item) => (
                     <div
                       key={item}
-                      className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-black text-neutral-700"
+                      className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-black text-[#525252]"
                     >
                       {item}
                     </div>
@@ -493,7 +493,7 @@ export default function ConfidenceIntervalsLesson() {
               </div>
             </div>
 
-            <aside className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-10 lg:border-l lg:border-t-0">
+            <aside className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-10 lg:border-l lg:border-t-0">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Central idea
               </p>
@@ -513,7 +513,7 @@ export default function ConfidenceIntervalsLesson() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4 text-sm font-black text-white/80"
+                    className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4 text-sm font-black text-white/80"
                   >
                     {item}
                   </div>
@@ -523,7 +523,7 @@ export default function ConfidenceIntervalsLesson() {
           </div>
         </section>
 
-        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-neutral-200 bg-white/90 p-2 shadow-sm backdrop-blur">
+        <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-[#E4DED2] bg-[#FFFCF6]/90 p-2 shadow-sm backdrop-blur">
           {tabs.map((tab) => (
             <button
               key={tab}
@@ -531,8 +531,8 @@ export default function ConfidenceIntervalsLesson() {
               onClick={() => setActiveTab(tab)}
               className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-black transition ${
                 activeTab === tab
-                  ? "bg-neutral-950 text-white"
-                  : "text-neutral-600 hover:bg-[#f7f4ee] hover:text-neutral-950"
+                  ? "bg-[#11100E] text-white"
+                  : "text-[#5F5F5F] hover:bg-[#F7F3EA] hover:text-[#141210]"
               }`}
             >
               {tab}
@@ -542,8 +542,8 @@ export default function ConfidenceIntervalsLesson() {
 
         {activeTab === "Learning Route" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Lesson route
               </p>
 
@@ -551,7 +551,7 @@ export default function ConfidenceIntervalsLesson() {
                 Build intervals from sampling uncertainty.
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-neutral-700">
+              <p className="mt-5 text-base leading-8 text-[#525252]">
                 Lesson 4.1 introduced standard error. Lesson 4.2 shows how
                 standard error becomes an interval around an estimate, and why
                 confidence must be interpreted through repeated sampling.
@@ -561,15 +561,15 @@ export default function ConfidenceIntervalsLesson() {
                 {learningRoute.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                       {item.time}
                     </p>
                     <h3 className="mt-2 text-xl font-black tracking-[-0.035em]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-7 text-neutral-700">
+                    <p className="mt-2 text-sm leading-7 text-[#525252]">
                       {item.body}
                     </p>
                   </div>
@@ -577,7 +577,7 @@ export default function ConfidenceIntervalsLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Mastery checklist
               </p>
@@ -599,9 +599,9 @@ export default function ConfidenceIntervalsLesson() {
                 ].map((item, index) => (
                   <div
                     key={item}
-                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4"
+                    className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4"
                   >
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">
                       {index + 1}
                     </span>
                     <p className="text-sm leading-7 text-white/75">{item}</p>
@@ -614,8 +614,8 @@ export default function ConfidenceIntervalsLesson() {
 
         {activeTab === "Lecture" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Concept lecture
               </p>
 
@@ -623,7 +623,7 @@ export default function ConfidenceIntervalsLesson() {
                 A confidence interval says how uncertain the estimate is.
               </h2>
 
-              <p className="mt-5 text-base leading-8 text-neutral-700">
+              <p className="mt-5 text-base leading-8 text-[#525252]">
                 The estimate is the centre. The standard error gives the
                 uncertainty scale. The confidence level decides how cautious the
                 interval should be. Together, they create a principled range of
@@ -634,20 +634,20 @@ export default function ConfidenceIntervalsLesson() {
                 {lectureCards.map((item, index) => (
                   <article
                     key={item.title}
-                    className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                    className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                   >
                     <div className="flex items-start gap-4">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-sm font-black text-white">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#11100E] text-sm font-black text-white">
                         {index + 1}
                       </span>
                       <div>
                         <h3 className="text-xl font-black tracking-[-0.035em]">
                           {item.title}
                         </h3>
-                        <p className="mt-2 text-sm leading-7 text-neutral-700">
+                        <p className="mt-2 text-sm leading-7 text-[#525252]">
                           {item.body}
                         </p>
-                        <p className="mt-3 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">
+                        <p className="mt-3 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">
                           Example: {item.example}
                         </p>
                       </div>
@@ -657,8 +657,8 @@ export default function ConfidenceIntervalsLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Classroom dialogue
               </p>
 
@@ -678,11 +678,11 @@ export default function ConfidenceIntervalsLesson() {
                 <Dialogue speaker="Mr. R" text="Exactly. One interval either covers the true mean or it does not. The confidence level describes the long-run success rate of the method." />
               </div>
 
-              <div className="mt-8 rounded-[2rem] border border-[#8b1116]/20 bg-[#fff7f7] p-6">
-                <h3 className="text-2xl font-black tracking-[-0.04em] text-[#8b1116]">
+              <div className="mt-8 rounded-[2rem] border border-[#741018]/20 bg-[#fff4ef] p-6">
+                <h3 className="text-2xl font-black tracking-[-0.04em] text-[#741018]">
                   Lecture takeaway
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-neutral-700">
+                <p className="mt-3 text-sm leading-7 text-[#525252]">
                   Confidence intervals are built from repeated-sampling logic.
                   They show uncertainty around an estimate and prepare students
                   for hypothesis testing.
@@ -694,8 +694,8 @@ export default function ConfidenceIntervalsLesson() {
 
         {activeTab === "Detailed Notes" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Detailed theoretical notes
               </p>
 
@@ -703,7 +703,7 @@ export default function ConfidenceIntervalsLesson() {
                 Confidence intervals are repeated-sampling uncertainty statements.
               </h2>
 
-              <p className="mt-5 max-w-4xl text-base leading-8 text-neutral-700">
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252]">
                 These notes derive the interval structure, margin of error,
                 width, confidence level and long-run coverage interpretation in
                 depth.
@@ -714,9 +714,9 @@ export default function ConfidenceIntervalsLesson() {
               {detailedNotes.map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                  className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                 >
-                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
                     {item.formula}
                   </p>
 
@@ -724,7 +724,7 @@ export default function ConfidenceIntervalsLesson() {
                     {item.title}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
 
@@ -740,10 +740,10 @@ export default function ConfidenceIntervalsLesson() {
         )}
 
         {activeTab === "CI Lab" && (
-          <section className="mt-8 overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+          <section className="mt-8 overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
             <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
               <div className="p-6 md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Interactive confidence interval lab
                 </p>
 
@@ -751,7 +751,7 @@ export default function ConfidenceIntervalsLesson() {
                   Build an interval from estimate, variability and sample size.
                 </h2>
 
-                <p className="mt-4 text-base leading-8 text-neutral-700">
+                <p className="mt-4 text-base leading-8 text-[#525252]">
                   Adjust the estimate, standard deviation, sample size and
                   confidence level. Watch the standard error, margin of error
                   and interval width change in real time.
@@ -765,7 +765,7 @@ export default function ConfidenceIntervalsLesson() {
                 </div>
               </div>
 
-              <div className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+              <div className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                   Interval output
                 </p>
@@ -774,7 +774,7 @@ export default function ConfidenceIntervalsLesson() {
                   {lower.toFixed(2)} to {upper.toFixed(2)}
                 </h2>
 
-                <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.07] p-5">
+                <div className="mt-8 rounded-[2rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5">
                   <IntervalVisual lower={lower} estimate={estimate} upper={upper} />
                 </div>
 
@@ -785,7 +785,7 @@ export default function ConfidenceIntervalsLesson() {
                   <DarkMetric label="Interval width" value={width.toFixed(2)} />
                 </div>
 
-                <p className="mt-6 rounded-[1.5rem] bg-white p-5 text-sm font-bold leading-7 text-neutral-950">
+                <p className="mt-6 rounded-[1.5rem] bg-[#FFFCF6] p-5 text-sm font-bold leading-7 text-[#141210]">
                   Interval = {estimate.toFixed(1)} ± {zStar.toFixed(3)} ×{" "}
                   {se.toFixed(2)} = {lower.toFixed(2)} to {upper.toFixed(2)}.
                 </p>
@@ -795,10 +795,10 @@ export default function ConfidenceIntervalsLesson() {
         )}
 
         {activeTab === "Coverage Simulator" && (
-          <section className="mt-8 overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+          <section className="mt-8 overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
             <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
               <div className="p-6 md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Coverage simulator
                 </p>
 
@@ -806,7 +806,7 @@ export default function ConfidenceIntervalsLesson() {
                   Repeated intervals sometimes miss the true mean.
                 </h2>
 
-                <p className="mt-4 text-base leading-8 text-neutral-700">
+                <p className="mt-4 text-base leading-8 text-[#525252]">
                   Each horizontal line is a confidence interval from a simulated
                   repeated sample. The vertical line is the true mean. Intervals
                   that miss the true mean show why confidence is about long-run
@@ -822,7 +822,7 @@ export default function ConfidenceIntervalsLesson() {
                 </div>
               </div>
 
-              <div className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+              <div className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                   Simulated long-run coverage
                 </p>
@@ -831,7 +831,7 @@ export default function ConfidenceIntervalsLesson() {
                   {coveredCount}/{coverageData.length} cover μ.
                 </h2>
 
-                <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.07] p-5">
+                <div className="mt-8 rounded-[2rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5">
                   <CoveragePlot intervals={coverageData} trueMean={trueMean} />
                 </div>
 
@@ -842,7 +842,7 @@ export default function ConfidenceIntervalsLesson() {
                   <DarkMetric label="Missed" value={(coverageData.length - coveredCount).toString()} />
                 </div>
 
-                <p className="mt-6 rounded-[1.5rem] bg-white p-5 text-sm font-bold leading-7 text-neutral-950">
+                <p className="mt-6 rounded-[1.5rem] bg-[#FFFCF6] p-5 text-sm font-bold leading-7 text-[#141210]">
                   In repeated sampling, the method is designed to cover μ about{" "}
                   {confidenceLevel}% of the time. Individual intervals still may miss.
                 </p>
@@ -853,8 +853,8 @@ export default function ConfidenceIntervalsLesson() {
 
         {activeTab === "Margin of Error" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Margin of error explorer
               </p>
 
@@ -862,7 +862,7 @@ export default function ConfidenceIntervalsLesson() {
                 Precision depends on variability, sample size and confidence.
               </h2>
 
-              <p className="mt-4 max-w-4xl text-base leading-8 text-neutral-700">
+              <p className="mt-4 max-w-4xl text-base leading-8 text-[#525252]">
                 Margin of error increases when variability increases, decreases
                 when sample size increases and increases when the confidence
                 level becomes more cautious.
@@ -875,7 +875,7 @@ export default function ConfidenceIntervalsLesson() {
                 <Metric label="Margin of error" value={margin.toFixed(2)} />
               </div>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                 <MarginCurve sigma={standardDeviation} zStar={zStar} currentN={sampleSize} />
               </div>
             </section>
@@ -887,15 +887,15 @@ export default function ConfidenceIntervalsLesson() {
                 return (
                   <article
                     key={level}
-                    className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                    className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                   >
-                    <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+                    <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
                       {level}% confidence
                     </p>
                     <h3 className="mt-3 text-3xl font-black tracking-[-0.05em]">
                       ME = {m.toFixed(2)}
                     </h3>
-                    <p className="mt-3 text-sm leading-7 text-neutral-700">
+                    <p className="mt-3 text-sm leading-7 text-[#525252]">
                       With the same estimate and SE, higher confidence increases
                       the critical value and widens the interval.
                     </p>
@@ -908,8 +908,8 @@ export default function ConfidenceIntervalsLesson() {
 
         {activeTab === "Visual Reasoning" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Visual reasoning
               </p>
 
@@ -917,18 +917,18 @@ export default function ConfidenceIntervalsLesson() {
                 Confidence intervals are centred on estimates, not always on truth.
               </h2>
 
-              <p className="mt-4 text-sm leading-7 text-neutral-700">
+              <p className="mt-4 text-sm leading-7 text-[#525252]">
                 Each sample gives a different estimate and therefore a different
                 interval. Some intervals cover the parameter; some miss. The
                 confidence level describes the long-run behaviour of this method.
               </p>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                 <CIConceptDiagram />
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Interpretation map
               </p>
@@ -962,7 +962,7 @@ export default function ConfidenceIntervalsLesson() {
                 ].map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5"
+                    className="rounded-[1.5rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5"
                   >
                     <h3 className="text-xl font-black tracking-[-0.035em]">
                       {item.title}
@@ -979,8 +979,8 @@ export default function ConfidenceIntervalsLesson() {
 
         {activeTab === "Worked Examples" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Worked examples
               </p>
 
@@ -996,8 +996,8 @@ export default function ConfidenceIntervalsLesson() {
                     onClick={() => setSelectedExample(index)}
                     className={`rounded-[1.25rem] border p-4 text-left transition ${
                       selectedExample === index
-                        ? "border-neutral-950 bg-neutral-950 text-white"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-800 hover:bg-white"
+                        ? "border-stone-950 bg-[#11100E] text-white"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-neutral-800 hover:bg-[#FFFCF6]"
                     }`}
                   >
                     <p className="text-sm font-black">{example.title}</p>
@@ -1006,8 +1006,8 @@ export default function ConfidenceIntervalsLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 {activeExample.title}
               </p>
 
@@ -1026,8 +1026,8 @@ export default function ConfidenceIntervalsLesson() {
 
         {activeTab === "Practice Studio" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Practice studio
               </p>
 
@@ -1043,8 +1043,8 @@ export default function ConfidenceIntervalsLesson() {
                     onClick={() => setSelectedPractice(index)}
                     className={`rounded-[1.25rem] border p-4 text-left transition ${
                       selectedPractice === index
-                        ? "border-neutral-950 bg-neutral-950 text-white"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-800 hover:bg-white"
+                        ? "border-stone-950 bg-[#11100E] text-white"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-neutral-800 hover:bg-[#FFFCF6]"
                     }`}
                   >
                     <p className="text-sm font-black">Question {index + 1}</p>
@@ -1053,8 +1053,8 @@ export default function ConfidenceIntervalsLesson() {
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Question {selectedPractice + 1}
               </p>
 
@@ -1062,11 +1062,11 @@ export default function ConfidenceIntervalsLesson() {
                 {activePractice.prompt}
               </h2>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#7a7063]">
                   Suggested answer
                 </p>
-                <p className="mt-3 text-base leading-8 text-neutral-700">
+                <p className="mt-3 text-base leading-8 text-[#525252]">
                   {activePractice.answer}
                 </p>
               </div>
@@ -1075,8 +1075,8 @@ export default function ConfidenceIntervalsLesson() {
         )}
 
         {activeTab === "Reflection" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Reflection
             </p>
 
@@ -1109,12 +1109,12 @@ export default function ConfidenceIntervalsLesson() {
               ].map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5"
+                  className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5"
                 >
                   <h3 className="text-xl font-black tracking-[-0.035em]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">
                     {item.body}
                   </p>
                 </article>
@@ -1125,7 +1125,7 @@ export default function ConfidenceIntervalsLesson() {
 
         {activeTab === "Quiz" && (
           <section className="mt-8 grid gap-6">
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Lesson quiz
               </p>
@@ -1147,7 +1147,7 @@ export default function ConfidenceIntervalsLesson() {
                 return (
                   <article
                     key={question.question}
-                    className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm"
+                    className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm"
                   >
                     <h3 className="text-xl font-black tracking-[-0.035em]">
                       {index + 1}. {question.question}
@@ -1168,8 +1168,8 @@ export default function ConfidenceIntervalsLesson() {
                             selected === optionIndex
                               ? optionIndex === question.answer
                                 ? "border-green-700 bg-green-50 text-green-900"
-                                : "border-[#8b1116] bg-[#fff7f7] text-[#8b1116]"
-                              : "border-neutral-200 bg-[#f7f4ee] text-neutral-700 hover:bg-white"
+                                : "border-[#741018] bg-[#fff4ef] text-[#741018]"
+                              : "border-[#E4DED2] bg-[#F7F3EA] text-[#525252] hover:bg-[#FFFCF6]"
                           }`}
                         >
                           {option}
@@ -1178,7 +1178,7 @@ export default function ConfidenceIntervalsLesson() {
                     </div>
 
                     {selected !== undefined && (
-                      <p className="mt-4 rounded-2xl bg-neutral-950 px-4 py-3 text-sm font-bold leading-7 text-white">
+                      <p className="mt-4 rounded-2xl bg-[#11100E] px-4 py-3 text-sm font-bold leading-7 text-white">
                         {question.feedback}
                       </p>
                     )}
@@ -1195,11 +1195,11 @@ export default function ConfidenceIntervalsLesson() {
 
 function Dialogue({ speaker, text }: { speaker: string; text: string }) {
   return (
-    <div className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">
+    <div className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
+      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">
         {speaker}
       </p>
-      <p className="mt-2 text-sm leading-7 text-neutral-700">{text}</p>
+      <p className="mt-2 text-sm leading-7 text-[#525252]">{text}</p>
     </div>
   );
 }
@@ -1222,8 +1222,8 @@ function Slider({
   return (
     <label className="block">
       <div className="flex items-center justify-between gap-4">
-        <span className="text-sm font-black text-neutral-700">{label}</span>
-        <span className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
+        <span className="text-sm font-black text-[#525252]">{label}</span>
+        <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black text-white">
           {value}
           {suffix}
         </span>
@@ -1234,7 +1234,7 @@ function Slider({
         max={max}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="mt-3 w-full accent-[#8b1116]"
+        className="mt-3 w-full accent-[#741018]"
       />
     </label>
   );
@@ -1249,7 +1249,7 @@ function SelectConfidence({
 }) {
   return (
     <div>
-      <p className="text-sm font-black text-neutral-700">Confidence level</p>
+      <p className="text-sm font-black text-[#525252]">Confidence level</p>
       <div className="mt-3 grid grid-cols-3 gap-2">
         {[90, 95, 99].map((level) => (
           <button
@@ -1258,8 +1258,8 @@ function SelectConfidence({
             onClick={() => onChange(level)}
             className={`rounded-full px-4 py-3 text-sm font-black transition ${
               value === level
-                ? "bg-neutral-950 text-white"
-                : "border border-neutral-200 bg-white text-neutral-700 hover:bg-[#f7f4ee]"
+                ? "bg-[#11100E] text-white"
+                : "border border-[#E4DED2] bg-[#FFFCF6] text-[#525252] hover:bg-[#F7F3EA]"
             }`}
           >
             {level}%
@@ -1272,8 +1272,8 @@ function SelectConfidence({
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-neutral-200 bg-white p-4">
-      <p className="text-xs font-black uppercase tracking-[0.16em] text-neutral-500">
+    <div className="rounded-[1.25rem] border border-[#E4DED2] bg-[#FFFCF6] p-4">
+      <p className="text-xs font-black uppercase tracking-[0.16em] text-[#7a7063]">
         {label}
       </p>
       <p className="mt-2 text-2xl font-black tracking-[-0.04em]">{value}</p>
@@ -1283,7 +1283,7 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 function DarkMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4">
+    <div className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4">
       <p className="text-xs font-black uppercase tracking-[0.16em] text-white/45">
         {label}
       </p>
@@ -1309,15 +1309,15 @@ function InfoBlock({
     <div
       className={`rounded-[1.5rem] p-5 ${
         dark
-          ? "bg-neutral-950 text-white"
+          ? "bg-[#11100E] text-white"
           : warning
-            ? "border border-[#8b1116]/20 bg-[#fff7f7] text-[#8b1116]"
-            : "border border-neutral-200 bg-[#f7f4ee] text-neutral-700"
+            ? "border border-[#741018]/20 bg-[#fff4ef] text-[#741018]"
+            : "border border-[#E4DED2] bg-[#F7F3EA] text-[#525252]"
       }`}
     >
       <p
         className={`text-xs font-black uppercase tracking-[0.18em] ${
-          dark ? "text-white/45" : warning ? "text-[#8b1116]" : "text-neutral-500"
+          dark ? "text-white/45" : warning ? "text-[#741018]" : "text-[#7a7063]"
         }`}
       >
         {title}
@@ -1354,7 +1354,7 @@ function IntervalVisual({
         strokeWidth="12"
         strokeLinecap="round"
       />
-      <circle cx={40 + scale(estimate) * 4.4} cy="90" r="13" fill="#8b1116" />
+      <circle cx={40 + scale(estimate) * 4.4} cy="90" r="13" fill="#741018" />
       <text x="40" y="140" fontSize="14" fontWeight="900" fill="#ffffff">
         lower {lower.toFixed(1)}
       </text>
@@ -1403,7 +1403,7 @@ function CoveragePlot({
               x2={xScale(item.upper)}
               y1={y}
               y2={y}
-              stroke={item.covers ? "#ffffff" : "#8b1116"}
+              stroke={item.covers ? "#ffffff" : "#741018"}
               strokeWidth="3"
               opacity={item.covers ? "0.75" : "1"}
             />
@@ -1411,7 +1411,7 @@ function CoveragePlot({
               cx={xScale(item.estimate)}
               cy={y}
               r="2.5"
-              fill={item.covers ? "#ffffff" : "#8b1116"}
+              fill={item.covers ? "#ffffff" : "#741018"}
             />
           </g>
         );
@@ -1459,7 +1459,7 @@ function MarginCurve({
       <polyline
         points={polyline}
         fill="none"
-        stroke="#111111"
+        stroke="#141210"
         strokeWidth="2.8"
         vectorEffect="non-scaling-stroke"
       />
@@ -1467,7 +1467,7 @@ function MarginCurve({
         cx={Math.max(0, Math.min(100, currentX))}
         cy={Math.max(0, Math.min(100, currentY))}
         r="2.5"
-        fill="#8b1116"
+        fill="#741018"
       />
       <text x="3" y="8" fontSize="4" fontWeight="900" fill="#525252">
         Margin of error
@@ -1485,8 +1485,8 @@ function CIConceptDiagram() {
       <rect x="35" y="55" width="690" height="300" rx="36" fill="#ffffff" stroke="#d4d4d4" strokeWidth="2" />
 
       <line x1="100" x2="660" y1="210" y2="210" stroke="#d4d4d4" strokeWidth="5" />
-      <line x1="380" x2="380" y1="95" y2="325" stroke="#8b1116" strokeWidth="5" />
-      <text x="350" y="85" fontSize="18" fontWeight="900" fill="#8b1116">
+      <line x1="380" x2="380" y1="95" y2="325" stroke="#741018" strokeWidth="5" />
+      <text x="350" y="85" fontSize="18" fontWeight="900" fill="#741018">
         μ
       </text>
 
@@ -1503,7 +1503,7 @@ function CIConceptDiagram() {
             x2={item.end}
             y1={item.y}
             y2={item.y}
-            stroke={item.covers ? "#111111" : "#8b1116"}
+            stroke={item.covers ? "#141210" : "#741018"}
             strokeWidth="7"
             strokeLinecap="round"
           />
@@ -1511,7 +1511,7 @@ function CIConceptDiagram() {
             cx={item.centre}
             cy={item.y}
             r="8"
-            fill={item.covers ? "#111111" : "#8b1116"}
+            fill={item.covers ? "#141210" : "#741018"}
           />
         </g>
       ))}

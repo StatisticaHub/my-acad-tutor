@@ -434,11 +434,11 @@ export default function MultipleRegressionConfoundingLesson() {
   const score = quizQuestions.reduce((total, q, i) => selectedAnswers[i] === q.answer ? total + 1 : total, 0);
 
   return (
-    <main className="min-h-screen bg-[#f7f4ee] px-5 py-8 text-neutral-950 md:px-8 md:py-14">
+    <main className="min-h-screen bg-[#F7F3EA] px-5 py-8 text-[#141210] md:px-8 md:py-14">
       <section className="mx-auto max-w-7xl">
         <a
           href={withBasePath("/courses/statistics-foundation/modules/regression-foundations")}
-          className="text-sm font-black text-[#8b1116] hover:text-[#5f0b0f]"
+          className="text-sm font-black text-[#741018] hover:text-[#4d080e]"
         >
           ← Back to module
         </a>
@@ -485,16 +485,16 @@ export default function MultipleRegressionConfoundingLesson() {
         )}
 
         {activeTab === "Adjustment Lab" && (
-          <section className="mt-8 overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-sm">
+          <section className="mt-8 overflow-hidden rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
             <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
               <div className="p-6 md:p-8">
-                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+                <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                   Interactive adjustment lab
                 </p>
                 <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
                   Watch crude and adjusted slopes separate.
                 </h2>
-                <p className="mt-4 text-base leading-8 text-neutral-700">
+                <p className="mt-4 text-base leading-8 text-[#525252]">
                   The crude slope estimates the relationship between X and Y
                   without accounting for C. The adjusted slope compares X at
                   similar values of C.
@@ -508,7 +508,7 @@ export default function MultipleRegressionConfoundingLesson() {
                 </div>
               </div>
 
-              <div className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-8 lg:border-l lg:border-t-0">
+              <div className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-8 lg:border-l lg:border-t-0">
                 <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                   Crude versus adjusted
                 </p>
@@ -516,7 +516,7 @@ export default function MultipleRegressionConfoundingLesson() {
                   Crude: {crude.toFixed(2)}
                 </h2>
 
-                <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.07] p-5">
+                <div className="mt-8 rounded-[2rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-5">
                   <ConfoundingPlot data={data} />
                 </div>
 
@@ -533,24 +533,24 @@ export default function MultipleRegressionConfoundingLesson() {
 
         {activeTab === "Confounding Map" && (
           <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
                 Confounding map
               </p>
               <h2 className="mt-4 text-3xl font-black tracking-[-0.045em]">
                 A confounder is connected to both exposure and outcome.
               </h2>
-              <p className="mt-4 text-sm leading-7 text-neutral-700">
+              <p className="mt-4 text-sm leading-7 text-[#525252]">
                 The goal of adjustment is to compare exposed and unexposed
                 observations that are similar with respect to the confounder.
               </p>
 
-              <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+              <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                 <DAGVisual />
               </div>
             </section>
 
-            <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+            <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
               <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">
                 Adjustment decisions
               </p>
@@ -569,8 +569,8 @@ export default function MultipleRegressionConfoundingLesson() {
         )}
 
         {activeTab === "Coefficient Studio" && (
-          <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">
+          <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+            <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">
               Coefficient interpretation studio
             </p>
             <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
@@ -600,9 +600,9 @@ export default function MultipleRegressionConfoundingLesson() {
                     "Variables are chosen to estimate a target causal relationship.",
                 },
               ].map((item) => (
-                <article key={item.title} className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+                <article key={item.title} className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
                   <h3 className="text-xl font-black tracking-[-0.035em]">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-neutral-700">{item.body}</p>
+                  <p className="mt-3 text-sm leading-7 text-[#525252]">{item.body}</p>
                 </article>
               ))}
             </div>
@@ -651,27 +651,27 @@ function Hero({
   facts: string[];
 }) {
   return (
-    <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-neutral-200 bg-white shadow-sm">
+    <section className="mt-8 overflow-hidden rounded-[2.5rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm">
       <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
         <div className="p-6 md:p-10">
-          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">{eyebrow}</p>
+          <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">{eyebrow}</p>
           <h1 className="mt-5 max-w-5xl text-4xl font-black leading-[1.02] tracking-[-0.055em] md:text-7xl">{title}</h1>
-          <p className="mt-6 max-w-4xl text-base leading-8 text-neutral-700 md:text-lg md:leading-9">{body}</p>
+          <p className="mt-6 max-w-4xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">{body}</p>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {["170 minutes", "No coding", "Adjustment", "Confounding"].map((item) => (
-              <div key={item} className="rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4 text-sm font-black text-neutral-700">
+              <div key={item} className="rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 text-sm font-black text-[#525252]">
                 {item}
               </div>
             ))}
           </div>
         </div>
 
-        <aside className="border-t border-neutral-200 bg-neutral-950 p-6 text-white md:p-10 lg:border-l lg:border-t-0">
+        <aside className="border-t border-[#E4DED2] bg-[#11100E] p-6 text-white md:p-10 lg:border-l lg:border-t-0">
           <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">Central idea</p>
           <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">{sideTitle}</h2>
           <div className="mt-8 grid gap-3">
             {facts.map((item) => (
-              <div key={item} className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4 text-sm font-black text-white/80">
+              <div key={item} className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4 text-sm font-black text-white/80">
                 {item}
               </div>
             ))}
@@ -692,7 +692,7 @@ function Tabs({
   setActiveTab: (tab: string) => void;
 }) {
   return (
-    <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-neutral-200 bg-white/90 p-2 shadow-sm backdrop-blur">
+    <nav className="sticky top-[74px] z-30 mt-8 flex gap-2 overflow-x-auto rounded-full border border-[#E4DED2] bg-[#FFFCF6]/90 p-2 shadow-sm backdrop-blur">
       {tabs.map((tab) => (
         <button
           key={tab}
@@ -700,8 +700,8 @@ function Tabs({
           onClick={() => setActiveTab(tab)}
           className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-black transition ${
             activeTab === tab
-              ? "bg-neutral-950 text-white"
-              : "text-neutral-600 hover:bg-[#f7f4ee] hover:text-neutral-950"
+              ? "bg-[#11100E] text-white"
+              : "text-[#5F5F5F] hover:bg-[#F7F3EA] hover:text-[#141210]"
           }`}
         >
           {tab}
@@ -720,31 +720,31 @@ function LearningRoute({
 }) {
   return (
     <section className="mt-8 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-      <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Lesson route</p>
+      <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">Lesson route</p>
         <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
           Move from one predictor to adjusted comparisons.
         </h2>
         <div className="mt-6 grid gap-3">
           {items.map((item) => (
-            <div key={item.title} className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">{item.time}</p>
+            <div key={item.title} className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">{item.time}</p>
               <h3 className="mt-2 text-xl font-black tracking-[-0.035em]">{item.title}</h3>
-              <p className="mt-2 text-sm leading-7 text-neutral-700">{item.body}</p>
+              <p className="mt-2 text-sm leading-7 text-[#525252]">{item.body}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+      <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
         <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">Mastery checklist</p>
         <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
           Students should know what adjustment means.
         </h2>
         <div className="mt-8 grid gap-3">
           {checklist.map((item, index) => (
-            <div key={item} className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-sm font-black text-neutral-950">{index + 1}</span>
+            <div key={item} className="flex gap-4 rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#FFFCF6] text-sm font-black text-[#141210]">{index + 1}</span>
               <p className="text-sm leading-7 text-white/75">{item}</p>
             </div>
           ))}
@@ -757,20 +757,20 @@ function LearningRoute({
 function Lecture({ cards }: { cards: { title: string; body: string; example: string }[] }) {
   return (
     <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-      <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Concept lecture</p>
+      <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">Concept lecture</p>
         <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
           Multiple regression changes the comparison, not just the equation.
         </h2>
         <div className="mt-6 grid gap-4">
           {cards.map((item, index) => (
-            <article key={item.title} className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+            <article key={item.title} className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
               <div className="flex items-start gap-4">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-sm font-black text-white">{index + 1}</span>
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#11100E] text-sm font-black text-white">{index + 1}</span>
                 <div>
                   <h3 className="text-xl font-black tracking-[-0.035em]">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-neutral-700">{item.body}</p>
-                  <p className="mt-3 rounded-2xl bg-white px-4 py-3 text-sm font-bold leading-7 text-neutral-700">Example: {item.example}</p>
+                  <p className="mt-2 text-sm leading-7 text-[#525252]">{item.body}</p>
+                  <p className="mt-3 rounded-2xl bg-[#FFFCF6] px-4 py-3 text-sm font-bold leading-7 text-[#525252]">Example: {item.example}</p>
                 </div>
               </div>
             </article>
@@ -778,8 +778,8 @@ function Lecture({ cards }: { cards: { title: string; body: string; example: str
         </div>
       </section>
 
-      <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Classroom dialogue</p>
+      <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">Classroom dialogue</p>
         <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">Mr. R explains confounding.</h2>
         <div className="mt-6 grid gap-4">
           <Dialogue speaker="Mr. R" text="Simple regression compares people who may differ in many other ways." />
@@ -804,8 +804,8 @@ function Notes({
 }) {
   return (
     <section className="mt-8 grid gap-6">
-      <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Detailed theoretical notes</p>
+      <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">Detailed theoretical notes</p>
         <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
           Adjustment is meaningful only when the modelling goal is clear.
         </h2>
@@ -813,10 +813,10 @@ function Notes({
 
       <div className="grid gap-5">
         {notes.map((item) => (
-          <article key={item.title} className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm">
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#8b1116]">{item.formula}</p>
+          <article key={item.title} className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm">
+            <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">{item.formula}</p>
             <h3 className="mt-3 text-2xl font-black tracking-[-0.04em]">{item.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-neutral-700">{item.body}</p>
+            <p className="mt-3 text-sm leading-7 text-[#525252]">{item.body}</p>
             <div className="mt-4 grid gap-4 md:grid-cols-3">
               <InfoBlock title="Derivation" body={item.derivation} />
               <InfoBlock title="Example" body={item.example} warning />
@@ -842,8 +842,8 @@ function Examples({
 }) {
   return (
     <section className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-      <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Worked examples</p>
+      <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">Worked examples</p>
         <div className="mt-6 grid gap-3">
           {examples.map((example, index) => (
             <button
@@ -852,8 +852,8 @@ function Examples({
               onClick={() => setSelected(index)}
               className={`rounded-[1.25rem] border p-4 text-left transition ${
                 selected === index
-                  ? "border-neutral-950 bg-neutral-950 text-white"
-                  : "border-neutral-200 bg-[#f7f4ee] text-neutral-800 hover:bg-white"
+                  ? "border-stone-950 bg-[#11100E] text-white"
+                  : "border-[#E4DED2] bg-[#F7F3EA] text-neutral-800 hover:bg-[#FFFCF6]"
               }`}
             >
               <p className="text-sm font-black">{example.title}</p>
@@ -862,8 +862,8 @@ function Examples({
         </div>
       </section>
 
-      <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">{active.title}</p>
+      <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">{active.title}</p>
         <h2 className="mt-4 text-3xl font-black tracking-[-0.045em]">{active.question}</h2>
         <div className="mt-6 grid gap-4">
           <InfoBlock title="Working" body={active.working} />
@@ -888,8 +888,8 @@ function Practice({
 }) {
   return (
     <section className="mt-8 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-      <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Practice studio</p>
+      <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">Practice studio</p>
         <div className="mt-6 grid gap-3">
           {questions.map((item, index) => (
             <button
@@ -898,8 +898,8 @@ function Practice({
               onClick={() => setSelected(index)}
               className={`rounded-[1.25rem] border p-4 text-left transition ${
                 selected === index
-                  ? "border-neutral-950 bg-neutral-950 text-white"
-                  : "border-neutral-200 bg-[#f7f4ee] text-neutral-800 hover:bg-white"
+                  ? "border-stone-950 bg-[#11100E] text-white"
+                  : "border-[#E4DED2] bg-[#F7F3EA] text-neutral-800 hover:bg-[#FFFCF6]"
               }`}
             >
               <p className="text-sm font-black">Question {index + 1}</p>
@@ -908,12 +908,12 @@ function Practice({
         </div>
       </section>
 
-      <section className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Question {selected + 1}</p>
+      <section className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">Question {selected + 1}</p>
         <h2 className="mt-4 text-3xl font-black tracking-[-0.045em]">{active.prompt}</h2>
-        <div className="mt-6 rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-6">
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-neutral-500">Suggested answer</p>
-          <p className="mt-3 text-base leading-8 text-neutral-700">{active.answer}</p>
+        <div className="mt-6 rounded-[2rem] border border-[#E4DED2] bg-[#F7F3EA] p-6">
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-[#7a7063]">Suggested answer</p>
+          <p className="mt-3 text-base leading-8 text-[#525252]">{active.answer}</p>
         </div>
       </section>
     </section>
@@ -922,14 +922,14 @@ function Practice({
 
 function Reflection({ title, cards }: { title: string; cards: [string, string][] }) {
   return (
-    <section className="mt-8 rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-8">
-      <p className="text-sm font-black uppercase tracking-[0.22em] text-[#8b1116]">Reflection</p>
+    <section className="mt-8 rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
+      <p className="text-sm font-black uppercase tracking-[0.22em] text-[#741018]">Reflection</p>
       <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">{title}</h2>
       <div className="mt-8 grid gap-4 md:grid-cols-2">
         {cards.map(([cardTitle, body]) => (
-          <article key={cardTitle} className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
+          <article key={cardTitle} className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
             <h3 className="text-xl font-black tracking-[-0.035em]">{cardTitle}</h3>
-            <p className="mt-3 text-sm leading-7 text-neutral-700">{body}</p>
+            <p className="mt-3 text-sm leading-7 text-[#525252]">{body}</p>
           </article>
         ))}
       </div>
@@ -950,7 +950,7 @@ function Quiz({
 }) {
   return (
     <section className="mt-8 grid gap-6">
-      <section className="rounded-[2rem] border border-neutral-200 bg-neutral-950 p-6 text-white shadow-sm md:p-8">
+      <section className="rounded-[2rem] border border-[#E4DED2] bg-[#11100E] p-6 text-white shadow-sm md:p-8">
         <p className="text-sm font-black uppercase tracking-[0.22em] text-white/50">Lesson quiz</p>
         <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
           Score: {score}/{questions.length}
@@ -962,7 +962,7 @@ function Quiz({
           const selected = selectedAnswers[index];
 
           return (
-            <article key={question.question} className="rounded-[2rem] border border-neutral-200 bg-white p-6 shadow-sm">
+            <article key={question.question} className="rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm">
               <h3 className="text-xl font-black tracking-[-0.035em]">{index + 1}. {question.question}</h3>
               <div className="mt-5 grid gap-3">
                 {question.options.map((option, optionIndex) => (
@@ -979,8 +979,8 @@ function Quiz({
                       selected === optionIndex
                         ? optionIndex === question.answer
                           ? "border-green-700 bg-green-50 text-green-900"
-                          : "border-[#8b1116] bg-[#fff7f7] text-[#8b1116]"
-                        : "border-neutral-200 bg-[#f7f4ee] text-neutral-700 hover:bg-white"
+                          : "border-[#741018] bg-[#fff4ef] text-[#741018]"
+                        : "border-[#E4DED2] bg-[#F7F3EA] text-[#525252] hover:bg-[#FFFCF6]"
                     }`}
                   >
                     {option}
@@ -989,7 +989,7 @@ function Quiz({
               </div>
 
               {selected !== undefined && (
-                <p className="mt-4 rounded-2xl bg-neutral-950 px-4 py-3 text-sm font-bold leading-7 text-white">
+                <p className="mt-4 rounded-2xl bg-[#11100E] px-4 py-3 text-sm font-bold leading-7 text-white">
                   {question.feedback}
                 </p>
               )}
@@ -1003,9 +1003,9 @@ function Quiz({
 
 function Dialogue({ speaker, text }: { speaker: string; text: string }) {
   return (
-    <div className="rounded-[1.5rem] border border-neutral-200 bg-[#f7f4ee] p-5">
-      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#8b1116]">{speaker}</p>
-      <p className="mt-2 text-sm leading-7 text-neutral-700">{text}</p>
+    <div className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5">
+      <p className="text-sm font-black uppercase tracking-[0.18em] text-[#741018]">{speaker}</p>
+      <p className="mt-2 text-sm leading-7 text-[#525252]">{text}</p>
     </div>
   );
 }
@@ -1028,8 +1028,8 @@ function Slider({
   return (
     <label className="block">
       <div className="flex items-center justify-between gap-4">
-        <span className="text-sm font-black text-neutral-700">{label}</span>
-        <span className="rounded-full bg-neutral-950 px-3 py-1 text-xs font-black text-white">
+        <span className="text-sm font-black text-[#525252]">{label}</span>
+        <span className="rounded-full bg-[#11100E] px-3 py-1 text-xs font-black text-white">
           {value}
           {suffix}
         </span>
@@ -1040,7 +1040,7 @@ function Slider({
         max={max}
         value={value}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="mt-3 w-full accent-[#8b1116]"
+        className="mt-3 w-full accent-[#741018]"
       />
     </label>
   );
@@ -1061,13 +1061,13 @@ function InfoBlock({
     <div
       className={`rounded-[1.5rem] p-5 ${
         dark
-          ? "bg-neutral-950 text-white"
+          ? "bg-[#11100E] text-white"
           : warning
-            ? "border border-[#8b1116]/20 bg-[#fff7f7] text-[#8b1116]"
-            : "border border-neutral-200 bg-[#f7f4ee] text-neutral-700"
+            ? "border border-[#741018]/20 bg-[#fff4ef] text-[#741018]"
+            : "border border-[#E4DED2] bg-[#F7F3EA] text-[#525252]"
       }`}
     >
-      <p className={`text-xs font-black uppercase tracking-[0.18em] ${dark ? "text-white/45" : warning ? "text-[#8b1116]" : "text-neutral-500"}`}>
+      <p className={`text-xs font-black uppercase tracking-[0.18em] ${dark ? "text-white/45" : warning ? "text-[#741018]" : "text-[#7a7063]"}`}>
         {title}
       </p>
       <p className={`mt-3 text-sm font-bold leading-7 ${dark ? "text-white/75" : ""}`}>{body}</p>
@@ -1077,7 +1077,7 @@ function InfoBlock({
 
 function DarkMetric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.07] p-4">
+    <div className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] p-4">
       <p className="text-xs font-black uppercase tracking-[0.16em] text-white/45">{label}</p>
       <p className="mt-2 text-2xl font-black tracking-[-0.04em] text-white">{value}</p>
     </div>
@@ -1105,7 +1105,7 @@ function ConfoundingPlot({
           cx={sx(point.x)}
           cy={sy(point.y)}
           r="4"
-          fill={point.c > 0 ? "#ffffff" : "#8b1116"}
+          fill={point.c > 0 ? "#ffffff" : "#741018"}
           opacity="0.85"
         />
       ))}
@@ -1138,7 +1138,7 @@ function DAGVisual() {
 function Node({ x, y, label, subtitle }: { x: number; y: number; label: string; subtitle: string }) {
   return (
     <g>
-      <circle cx={x} cy={y} r="48" fill="#111111" />
+      <circle cx={x} cy={y} r="48" fill="#141210" />
       <text x={x - 11} y={y + 5} fontSize="28" fontWeight="900" fill="#ffffff">{label}</text>
       <text x={x - 42} y={y + 75} fontSize="15" fontWeight="900" fill="#525252">{subtitle}</text>
     </g>
@@ -1147,7 +1147,7 @@ function Node({ x, y, label, subtitle }: { x: number; y: number; label: string; 
 
 function Arrow({ x1, y1, x2, y2 }: { x1: number; y1: number; x2: number; y2: number }) {
   return (
-    <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#8b1116" strokeWidth="5" strokeLinecap="round" />
+    <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="#741018" strokeWidth="5" strokeLinecap="round" />
   );
 }
 

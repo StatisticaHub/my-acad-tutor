@@ -47,11 +47,11 @@ const supportSteps = [
 
 export default function ContactCTA() {
   return (
-    <section className="bg-[#f7f4ee] px-4 py-5 text-[#111111] sm:px-5 md:px-8 md:py-8">
+    <section className="bg-[#F7F3EA] px-4 py-5 text-[#141210] sm:px-5 md:px-8 md:py-8">
       <div className="mx-auto max-w-7xl">
-        <section className="overflow-hidden rounded-[1.75rem] border border-neutral-200 bg-white shadow-sm md:rounded-[2.5rem]">
+        <section className="overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm md:rounded-[2.5rem]">
           <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="bg-[#111111] p-5 text-white md:p-8">
+            <div className="bg-[#11100E] p-5 text-white md:p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/55 md:text-sm md:tracking-[0.22em]">
                 Academic support
               </p>
@@ -69,20 +69,20 @@ export default function ContactCTA() {
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href={withBasePath("/contact")}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#111111] transition hover:bg-[#f7f4ee] sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full bg-[#FFFCF6] px-6 py-3.5 text-sm font-semibold text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
                   Request support →
                 </a>
 
                 <a
                   href="mailto:contact@myacademictutor.com"
-                  className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-white/10 sm:w-auto md:py-4"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#FFFCF6]/10 sm:w-auto md:py-4"
                 >
                   Email directly
                 </a>
               </div>
 
-              <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/[0.06] p-4">
+              <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-[#FFFCF6]/[0.06] p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-white/45">
                   Academic integrity
                 </p>
@@ -95,8 +95,8 @@ export default function ContactCTA() {
             </div>
 
             <aside className="bg-[#fdfbf7] p-5 md:p-8">
-              <div className="rounded-[1.5rem] border border-neutral-200 bg-white p-5 md:rounded-[2rem] md:p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8b1116] md:text-sm">
+              <div className="rounded-[1.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 md:rounded-[2rem] md:p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#741018] md:text-sm">
                   How support works
                 </p>
 
@@ -104,18 +104,18 @@ export default function ContactCTA() {
                   {supportSteps.map((step, index) => (
                     <article
                       key={step.title}
-                      className="grid grid-cols-[auto_1fr] gap-3 rounded-[1.25rem] border border-neutral-200 bg-[#f7f4ee] p-4"
+                      className="grid grid-cols-[auto_1fr] gap-3 rounded-[1.25rem] border border-[#E4DED2] bg-[#F7F3EA] p-4"
                     >
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#111111] text-xs font-semibold text-white">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#11100E] text-xs font-semibold text-white">
                         {String(index + 1).padStart(2, "0")}
                       </div>
 
                       <div>
-                        <h3 className="text-sm font-semibold text-neutral-950">
+                        <h3 className="text-sm font-semibold text-[#141210]">
                           {step.title}
                         </h3>
 
-                        <p className="mt-1.5 text-sm leading-6 text-neutral-700">
+                        <p className="mt-1.5 text-sm leading-6 text-[#525252]">
                           {step.body}
                         </p>
                       </div>
@@ -124,8 +124,8 @@ export default function ContactCTA() {
                 </div>
               </div>
 
-              <div className="mt-4 rounded-[1.5rem] border border-neutral-200 bg-white p-5 md:rounded-[2rem] md:p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8b1116] md:text-sm">
+              <div className="mt-4 rounded-[1.5rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 md:rounded-[2rem] md:p-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#741018] md:text-sm">
                   Subjects covered
                 </p>
 
@@ -133,7 +133,7 @@ export default function ContactCTA() {
                   {supportAreas.map((area) => (
                     <span
                       key={area}
-                      className="rounded-full border border-neutral-200 bg-[#f7f4ee] px-3 py-1.5 text-xs font-semibold text-neutral-700"
+                      className="rounded-full border border-[#E4DED2] bg-[#F7F3EA] px-3 py-1.5 text-xs font-semibold text-[#525252]"
                     >
                       {area}
                     </span>

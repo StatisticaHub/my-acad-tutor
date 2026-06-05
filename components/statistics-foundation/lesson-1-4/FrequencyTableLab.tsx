@@ -25,7 +25,7 @@ export function FrequencyTableLab() {
   }
 
   return (
-    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-[1.7rem] border border-[#ded9cf] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
       <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-700">
         Interactive lab 1
       </p>
@@ -34,7 +34,7 @@ export function FrequencyTableLab() {
         Build a frequency table and bar chart
       </h3>
 
-      <p className="mt-3 max-w-3xl text-sm leading-7 text-neutral-600">
+      <p className="mt-3 max-w-3xl text-sm leading-7 text-[#5F5F5F]">
         Change the category counts. The frequency table, relative frequencies,
         percentages and bar chart update automatically. This shows how raw
         counts become statistical summaries.
@@ -63,7 +63,7 @@ export function FrequencyTableLab() {
       </div>
 
       <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_1fr]">
-        <div className="overflow-x-auto rounded-2xl border border-[#ded9cf] bg-white">
+        <div className="overflow-x-auto rounded-2xl border border-[#ded9cf] bg-[#FFFCF6]">
           <table className="w-full min-w-[520px] border-collapse text-left text-sm">
             <thead className="bg-[#f8f6f1]">
               <tr>
@@ -111,11 +111,11 @@ export function FrequencyTableLab() {
           <div className="mt-5 space-y-4">
             {rows.map((row) => (
               <div key={row.group}>
-                <div className="mb-1 flex items-center justify-between text-xs font-bold text-neutral-600">
+                <div className="mb-1 flex items-center justify-between text-xs font-bold text-[#5F5F5F]">
                   <span>{row.group}</span>
                   <span>{row.count}</span>
                 </div>
-                <div className="h-8 rounded-full bg-white">
+                <div className="h-8 rounded-full bg-[#FFFCF6]">
                   <div
                     className="h-8 rounded-full bg-blue-600"
                     style={{
@@ -127,7 +127,7 @@ export function FrequencyTableLab() {
             ))}
           </div>
 
-          <p className="mt-5 text-sm leading-7 text-neutral-600">
+          <p className="mt-5 text-sm leading-7 text-[#5F5F5F]">
             The table gives exact values. The graph makes comparison easier. In
             statistical communication, tables and graphs often work best
             together.

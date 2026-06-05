@@ -4,11 +4,11 @@ type BadgeProps = {
 };
 
 const styles = {
-  blue: "bg-[#fff8f5] text-[#8b1116] ring-[#ead8d8]",
+  blue: "bg-[#fff8f5] text-[#741018] ring-[#ead8d8]",
   green: "bg-emerald-50 text-emerald-700 ring-emerald-200",
   violet: "bg-violet-50 text-violet-700 ring-violet-200",
-  dark: "bg-[#111111] text-white ring-[#111111]",
-  light: "bg-white text-neutral-700 ring-neutral-200",
+  dark: "bg-[#11100E] text-white ring-[#141210]",
+  light: "bg-[#FFFCF6] text-[#525252] ring-neutral-200",
 };
 
 export default function Badge({ children, variant = "blue" }: BadgeProps) {

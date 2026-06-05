@@ -63,122 +63,165 @@ export default function CourseWaitlist() {
   return (
     <section
       id="course-waitlist"
-      className="bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-16"
+      className="bg-[#f3eee4] px-5 py-12 text-stone-950 md:px-8 md:py-20"
     >
-      <div className="mx-auto max-w-7xl rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#8b1116]">
-              Course waitlist
-            </p>
+      <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-[#ded6c8] bg-white shadow-[0_24px_80px_rgba(17,17,17,0.08)]">
+        <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="relative bg-[#141210] p-6 text-white md:p-10 lg:p-12">
+            <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-[#741018]/30 blur-3xl" />
+            <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
 
-            <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-              Join the waitlist for course release updates.
-            </h2>
+            <div className="relative">
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-white/50">
+                Course waitlist
+              </p>
 
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
-              Register interest in Statistics Foundation, Machine Learning in
-              Biostatistics or another upcoming course. You will receive release
-              updates and early access information.
-            </p>
+              <h2 className="mt-5 max-w-2xl text-4xl font-black leading-[1.02] tracking-[-0.055em] md:text-6xl">
+                Get early access to upcoming course releases.
+              </h2>
 
-            <div className="mt-6 flex flex-wrap gap-2">
-              {[
-                "Stats Foundation",
-                "ML in Biostatistics",
-                "July 2026 release",
-              ].map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-neutral-200 bg-[#f7f4ee] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-neutral-600"
-                >
-                  {item}
-                </span>
-              ))}
+              <p className="mt-6 max-w-2xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
+                Join the waitlist for Statistics Foundation, Machine Learning in
+                Biostatistics and future applied quantitative courses.
+              </p>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {[
+                  "Release updates",
+                  "Early access alerts",
+                  "Course announcements",
+                  "Learning Hub guidance",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/10 bg-white/[0.07] p-4 text-sm font-bold text-white/75"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.06] p-5">
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-white/40">
+                  Featured releases
+                </p>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {[
+                    "Statistics Foundation",
+                    "ML in Biostatistics",
+                    "July 2026",
+                  ].map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-white/75"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5 md:p-6"
-          >
-            <div className="grid gap-4 md:grid-cols-2">
-              <label className="block">
-                <span className="text-sm font-black text-neutral-800">
-                  Name
-                </span>
-                <input
-                  name="name"
-                  required
-                  className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-bold outline-none transition focus:border-[#8b1116]"
-                  placeholder="Your name"
-                />
-              </label>
-
-              <label className="block">
-                <span className="text-sm font-black text-neutral-800">
-                  Email
-                </span>
-                <input
-                  name="email"
-                  type="email"
-                  required
-                  className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-bold outline-none transition focus:border-[#8b1116]"
-                  placeholder="you@example.com"
-                />
-              </label>
-            </div>
-
-            <label className="mt-4 block">
-              <span className="text-sm font-black text-neutral-800">
-                Course interest
-              </span>
-              <select
-                name="course"
-                required
-                defaultValue="Statistics Foundation"
-                className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-bold outline-none transition focus:border-[#8b1116]"
-              >
-                {courses.map((course) => (
-                  <option key={course} value={course}>
-                    {course}
-                  </option>
-                ))}
-              </select>
-            </label>
-
-            <label className="mt-4 block">
-              <span className="text-sm font-black text-neutral-800">
-                Message
-              </span>
-              <textarea
-                name="message"
-                rows={4}
-                className="mt-2 w-full resize-none rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-bold outline-none transition focus:border-[#8b1116]"
-                placeholder="Optional: tell us what you want to learn."
-              />
-            </label>
-
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-neutral-950 px-6 py-4 text-sm font-black text-white transition hover:bg-[#8b1116] disabled:cursor-not-allowed disabled:opacity-60"
+          <div className="bg-[#fbf8f1] p-6 md:p-10 lg:p-12">
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-[2rem] border border-[#ded6c8] bg-white p-5 shadow-sm md:p-7"
             >
-              {status === "sending" ? "Joining waitlist..." : "Join waitlist →"}
-            </button>
+              <div className="flex flex-col gap-2 border-b border-[#ded6c8] pb-5">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018]">
+                  Join the list
+                </p>
 
-            {message ? (
-              <p
-                className={`mt-4 rounded-2xl px-4 py-3 text-sm font-bold ${
-                  status === "success"
-                    ? "bg-green-50 text-green-800"
-                    : "bg-red-50 text-red-800"
-                }`}
+                <h3 className="text-2xl font-black tracking-[-0.04em] md:text-3xl">
+                  Tell us which course you want to follow.
+                </h3>
+              </div>
+
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
+                <label className="block">
+                  <span className="text-sm font-black text-neutral-800">
+                    Name
+                  </span>
+                  <input
+                    name="name"
+                    required
+                    className="mt-2 w-full rounded-2xl border border-[#ded6c8] bg-[#f3eee4] px-4 py-3.5 text-sm font-bold outline-none transition focus:border-[#741018] focus:bg-white"
+                    placeholder="Your name"
+                  />
+                </label>
+
+                <label className="block">
+                  <span className="text-sm font-black text-neutral-800">
+                    Email
+                  </span>
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    className="mt-2 w-full rounded-2xl border border-[#ded6c8] bg-[#f3eee4] px-4 py-3.5 text-sm font-bold outline-none transition focus:border-[#741018] focus:bg-white"
+                    placeholder="you@example.com"
+                  />
+                </label>
+              </div>
+
+              <label className="mt-4 block">
+                <span className="text-sm font-black text-neutral-800">
+                  Course interest
+                </span>
+                <select
+                  name="course"
+                  required
+                  defaultValue="Statistics Foundation"
+                  className="mt-2 w-full rounded-2xl border border-[#ded6c8] bg-[#f3eee4] px-4 py-3.5 text-sm font-bold outline-none transition focus:border-[#741018] focus:bg-white"
+                >
+                  {courses.map((course) => (
+                    <option key={course} value={course}>
+                      {course}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="mt-4 block">
+                <span className="text-sm font-black text-neutral-800">
+                  Message
+                </span>
+                <textarea
+                  name="message"
+                  rows={4}
+                  className="mt-2 w-full resize-none rounded-2xl border border-[#ded6c8] bg-[#f3eee4] px-4 py-3.5 text-sm font-bold outline-none transition focus:border-[#741018] focus:bg-white"
+                  placeholder="Optional: tell us what you want to learn."
+                />
+              </label>
+
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#86121d] px-6 py-4 text-sm font-black text-white shadow-[0_16px_35px_rgba(153,15,26,0.25)] transition hover:-translate-y-0.5 hover:bg-[#141210] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {message}
+                {status === "sending" ? "Joining waitlist..." : "Join waitlist →"}
+              </button>
+
+              {message ? (
+                <p
+                  className={`mt-4 rounded-2xl px-4 py-3 text-sm font-bold ${
+                    status === "success"
+                      ? "border border-green-200 bg-green-50 text-green-800"
+                      : "border border-red-200 bg-red-50 text-red-800"
+                  }`}
+                >
+                  {message}
+                </p>
+              ) : null}
+
+              <p className="mt-5 text-xs font-bold leading-6 text-[#7a7063]">
+                We will only use your details for course release updates and
+                learning announcements.
               </p>
-            ) : null}
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </section>
