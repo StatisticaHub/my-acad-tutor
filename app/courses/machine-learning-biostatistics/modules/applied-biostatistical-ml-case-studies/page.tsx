@@ -616,9 +616,6 @@ export default function AppliedBiostatisticalMLCaseStudiesModulePage() {
                 </button>
 
                 <p className="text-xs leading-6 text-neutral-500">
-                  This currently routes to the contact page. Later, connect this
-                  form to Resend, Formspree, Google Forms or your preferred
-                  mailing list system.
                 </p>
               </form>
             </div>

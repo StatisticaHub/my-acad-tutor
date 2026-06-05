@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const courses = [
   "Statistics Foundation",
@@ -12,73 +12,17 @@ const courses = [
   "Bioinformatics for Beginners",
 ];
 
-const levels = [
-  "Beginner",
-  "Undergraduate",
-  "Master's",
-  "Research project",
-  "Professional / career upskilling",
-];
-
-const countryCodes = [
-  { code: "+44", label: "UK +44" },
-  { code: "+91", label: "India +91" },
-  { code: "+1", label: "US/Canada +1" },
-  { code: "+61", label: "Australia +61" },
-  { code: "+353", label: "Ireland +353" },
-  { code: "+49", label: "Germany +49" },
-  { code: "+33", label: "France +33" },
-  { code: "+31", label: "Netherlands +31" },
-  { code: "+46", label: "Sweden +46" },
-  { code: "+47", label: "Norway +47" },
-  { code: "+971", label: "UAE +971" },
-  { code: "+65", label: "Singapore +65" },
-  { code: "+977", label: "Nepal +977" },
-  { code: "+880", label: "Bangladesh +880" },
-  { code: "+92", label: "Pakistan +92" },
-  { code: "+94", label: "Sri Lanka +94" },
-];
-
 export default function CourseWaitlist() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
-    "idle",
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
+    "idle"
   );
-  const [feedback, setFeedback] = useState("");
-
-  useEffect(() => {
-    function openFromHash() {
-      if (window.location.hash === "#course-waitlist") {
-        setIsOpen(true);
-      }
-    }
-
-    openFromHash();
-    window.addEventListener("hashchange", openFromHash);
-
-    return () => window.removeEventListener("hashchange", openFromHash);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
-
-  function closeModal() {
-    setIsOpen(false);
-    setFeedback("");
-    setStatus("idle");
-
-    if (window.location.hash === "#course-waitlist") {
-      history.replaceState(null, "", window.location.pathname + window.location.search);
-    }
-  }
+  const [message, setMessage] = useState("");
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    setStatus("sending");
+    setMessage("");
 
     const form = event.currentTarget;
     const formData = new FormData(form);
@@ -86,18 +30,12 @@ export default function CourseWaitlist() {
     const payload = {
       name: String(formData.get("name") || ""),
       email: String(formData.get("email") || ""),
-      countryCode: String(formData.get("countryCode") || ""),
-      phone: String(formData.get("phone") || ""),
       course: String(formData.get("course") || ""),
-      level: String(formData.get("level") || ""),
       message: String(formData.get("message") || ""),
     };
 
-    setStatus("loading");
-    setFeedback("");
-
     try {
-      const response = await fetch("/api/waitlist", {
+      const response = await fetch("/api/course-waitlist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -105,200 +43,144 @@ export default function CourseWaitlist() {
         body: JSON.stringify(payload),
       });
 
-      const data = await response.json();
+      const result = await response.json();
 
       if (!response.ok) {
         setStatus("error");
-        setFeedback(data.error || "Something went wrong.");
+        setMessage(result.error || "Something went wrong. Please try again.");
         return;
       }
 
       setStatus("success");
-      setFeedback(
-        "You have joined the waitlist. We will contact you when the course opens.",
-      );
+      setMessage("Thank you. You have joined the course waitlist.");
       form.reset();
     } catch {
       setStatus("error");
-      setFeedback("Something went wrong. Please try again.");
+      setMessage("Could not submit the form. Please try again.");
     }
   }
 
-  if (!isOpen) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-neutral-950/70 px-4 py-6 backdrop-blur-sm"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Course waitlist form"
+    <section
+      id="course-waitlist"
+      className="bg-[#f7f4ee] px-5 py-10 text-neutral-950 md:px-8 md:py-16"
     >
-      <button
-        type="button"
-        aria-label="Close waitlist"
-        onClick={closeModal}
-        className="absolute inset-0 cursor-default"
-      />
-
-      <section
-        id="course-waitlist"
-        className="relative max-h-[92vh] w-full max-w-4xl overflow-y-auto rounded-[2rem] border border-neutral-200 bg-white p-5 shadow-2xl md:rounded-[2.5rem] md:p-8"
-      >
-        <div className="flex items-start justify-between gap-4">
+      <div className="mx-auto max-w-7xl rounded-[2.5rem] border border-neutral-200 bg-white p-6 shadow-sm md:p-10">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#8b1116] md:text-sm">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-[#8b1116]">
               Course waitlist
             </p>
 
-            <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              Join the waitlist for upcoming courses.
+            <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
+              Join the waitlist for course release updates.
             </h2>
 
-            <p className="mt-4 max-w-3xl text-sm leading-7 text-neutral-700 md:text-base">
-              Tell us which course you are interested in. We will contact you
-              when enrolment opens.
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-neutral-700 md:text-base md:leading-8">
+              Register interest in Statistics Foundation, Machine Learning in
+              Biostatistics or another upcoming course. You will receive release
+              updates and early access information.
             </p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {[
+                "Stats Foundation",
+                "ML in Biostatistics",
+                "July 2026 release",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-neutral-200 bg-[#f7f4ee] px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-neutral-600"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <button
-            type="button"
-            onClick={closeModal}
-            className="shrink-0 rounded-full border border-neutral-300 bg-white px-4 py-2 text-sm font-black text-neutral-700 transition hover:bg-neutral-950 hover:text-white"
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-[2rem] border border-neutral-200 bg-[#f7f4ee] p-5 md:p-6"
           >
-            Close
-          </button>
-        </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              <label className="block">
+                <span className="text-sm font-black text-neutral-800">
+                  Name
+                </span>
+                <input
+                  name="name"
+                  required
+                  className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-bold outline-none transition focus:border-[#8b1116]"
+                  placeholder="Your name"
+                />
+              </label>
 
-        <form onSubmit={handleSubmit} className="mt-7 grid gap-4">
-          <div className="grid gap-4 md:grid-cols-2">
-            <label className="grid gap-2">
-              <span className="text-sm font-bold text-neutral-700">Name</span>
-              <input
-                required
-                name="name"
-                type="text"
-                placeholder="Your name"
-                className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm outline-none transition focus:border-[#8b1116] focus:bg-white"
-              />
-            </label>
+              <label className="block">
+                <span className="text-sm font-black text-neutral-800">
+                  Email
+                </span>
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-bold outline-none transition focus:border-[#8b1116]"
+                  placeholder="you@example.com"
+                />
+              </label>
+            </div>
 
-            <label className="grid gap-2">
-              <span className="text-sm font-bold text-neutral-700">Email</span>
-              <input
-                required
-                name="email"
-                type="email"
-                placeholder="you@example.com"
-                className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm outline-none transition focus:border-[#8b1116] focus:bg-white"
-              />
-            </label>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-[0.42fr_0.58fr]">
-            <label className="grid gap-2">
-              <span className="text-sm font-bold text-neutral-700">
-                Country code
+            <label className="mt-4 block">
+              <span className="text-sm font-black text-neutral-800">
+                Course interest
               </span>
               <select
-                name="countryCode"
-                defaultValue="+44"
-                className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm outline-none transition focus:border-[#8b1116] focus:bg-white"
+                name="course"
+                required
+                defaultValue="Statistics Foundation"
+                className="mt-2 w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-bold outline-none transition focus:border-[#8b1116]"
               >
-                {countryCodes.map((item) => (
-                  <option key={item.label} value={item.code}>
-                    {item.label}
+                {courses.map((course) => (
+                  <option key={course} value={course}>
+                    {course}
                   </option>
                 ))}
               </select>
             </label>
 
-            <label className="grid gap-2">
-              <span className="text-sm font-bold text-neutral-700">
-                Phone number
+            <label className="mt-4 block">
+              <span className="text-sm font-black text-neutral-800">
+                Message
               </span>
-              <input
-                name="phone"
-                type="tel"
-                inputMode="tel"
-                placeholder="7123 456789"
-                className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm outline-none transition focus:border-[#8b1116] focus:bg-white"
+              <textarea
+                name="message"
+                rows={4}
+                className="mt-2 w-full resize-none rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-sm font-bold outline-none transition focus:border-[#8b1116]"
+                placeholder="Optional: tell us what you want to learn."
               />
             </label>
-          </div>
 
-          <label className="grid gap-2">
-            <span className="text-sm font-bold text-neutral-700">
-              Course interest
-            </span>
-            <select
-              required
-              name="course"
-              className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm outline-none transition focus:border-[#8b1116] focus:bg-white"
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-neutral-950 px-6 py-4 text-sm font-black text-white transition hover:bg-[#8b1116] disabled:cursor-not-allowed disabled:opacity-60"
             >
-              <option value="">Choose a course</option>
-              {courses.map((course) => (
-                <option key={course} value={course}>
-                  {course}
-                </option>
-              ))}
-            </select>
-          </label>
+              {status === "sending" ? "Joining waitlist..." : "Join waitlist →"}
+            </button>
 
-          <label className="grid gap-2">
-            <span className="text-sm font-bold text-neutral-700">
-              Current level
-            </span>
-            <select
-              name="level"
-              className="rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm outline-none transition focus:border-[#8b1116] focus:bg-white"
-            >
-              <option value="">Choose your level</option>
-              {levels.map((level) => (
-                <option key={level} value={level}>
-                  {level}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label className="grid gap-2">
-            <span className="text-sm font-bold text-neutral-700">
-              What would you like this course to cover?
-            </span>
-            <textarea
-              name="message"
-              rows={4}
-              placeholder="Example: I want a beginner-friendly course on confidence intervals, regression and research methods."
-              className="resize-none rounded-2xl border border-neutral-200 bg-[#f7f4ee] px-4 py-3 text-sm leading-6 outline-none transition focus:border-[#8b1116] focus:bg-white"
-            />
-          </label>
-
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="inline-flex items-center justify-center rounded-full bg-neutral-950 px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#8b1116] disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {status === "loading" ? "Joining waitlist..." : "Join waitlist →"}
-          </button>
-
-          {feedback && (
-            <p
-              className={`rounded-2xl px-4 py-3 text-sm font-bold ${
-                status === "success"
-                  ? "bg-green-50 text-green-800"
-                  : "bg-red-50 text-red-800"
-              }`}
-            >
-              {feedback}
-            </p>
-          )}
-
-          <p className="text-xs leading-6 text-neutral-500">
-            We will only use your details to contact you about relevant course
-            updates from My Academic Tutor.
-          </p>
-        </form>
-      </section>
-    </div>
+            {message ? (
+              <p
+                className={`mt-4 rounded-2xl px-4 py-3 text-sm font-bold ${
+                  status === "success"
+                    ? "bg-green-50 text-green-800"
+                    : "bg-red-50 text-red-800"
+                }`}
+              >
+                {message}
+              </p>
+            ) : null}
+          </form>
+        </div>
+      </div>
+    </section>
   );
 }
