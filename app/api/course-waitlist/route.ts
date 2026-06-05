@@ -17,6 +17,15 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function splitName(fullName: string) {
+  const parts = fullName.trim().split(/\s+/);
+
+  return {
+    firstName: parts[0] || "",
+    lastName: parts.slice(1).join(" "),
+  };
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -47,6 +56,50 @@ export async function POST(request: Request) {
       );
     }
 
+    const { firstName, lastName } = splitName(name);
+    const waitlistSegmentId = process.env.RESEND_WAITLIST_SEGMENT_ID;
+
+    const contactPayload = {
+      email,
+      firstName,
+      lastName,
+      unsubscribed: false,
+      properties: {
+        full_name: name,
+        course_interest: course,
+        waitlist_source: "course_waitlist_form",
+        message: message || "No message provided",
+      },
+      ...(waitlistSegmentId
+        ? {
+            segments: [{ id: waitlistSegmentId }],
+          }
+        : {}),
+    };
+
+    const contactResult = await resend.contacts.create(contactPayload);
+
+    if (contactResult.error) {
+      console.error("Resend contact create error:", contactResult.error);
+
+      const updateResult = await resend.contacts.update({
+        email,
+        firstName,
+        lastName,
+        unsubscribed: false,
+        properties: {
+          full_name: name,
+          course_interest: course,
+          waitlist_source: "course_waitlist_form",
+          message: message || "No message provided",
+        },
+      });
+
+      if (updateResult.error) {
+        console.error("Resend contact update error:", updateResult.error);
+      }
+    }
+
     const toEmail =
       process.env.WAITLIST_TO_EMAIL ||
       process.env.CONTACT_TO_EMAIL ||
@@ -62,7 +115,7 @@ export async function POST(request: Request) {
     const safeCourse = escapeHtml(course);
     const safeMessage = escapeHtml(message);
 
-    const { error } = await resend.emails.send({
+    const adminEmail = await resend.emails.send({
       from: fromEmail,
       to: [toEmail],
       replyTo: email,
@@ -82,18 +135,36 @@ export async function POST(request: Request) {
       `,
     });
 
-    if (error) {
-      return Response.json(
-        { error: "The waitlist email could not be sent." },
-        { status: 500 }
-      );
+    if (adminEmail.error) {
+      console.error("Resend admin email error:", adminEmail.error);
+    }
+
+    const studentEmail = await resend.emails.send({
+      from: fromEmail,
+      to: [email],
+      subject: `You are on the ${course} waitlist`,
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.7; color: #111;">
+          <h2>You're on the waitlist.</h2>
+          <p>Hi ${safeName},</p>
+          <p>Thank you for joining the waitlist for <strong>${safeCourse}</strong>.</p>
+          <p>We will email you with course release updates, early access information and important learning announcements.</p>
+          <p>Best wishes,<br /><strong>My Academic Tutor</strong></p>
+        </div>
+      `,
+    });
+
+    if (studentEmail.error) {
+      console.error("Resend student confirmation email error:", studentEmail.error);
     }
 
     return Response.json({
       success: true,
       message: "You have joined the waitlist.",
     });
-  } catch {
+  } catch (error) {
+    console.error("Course waitlist API fatal error:", error);
+
     return Response.json(
       { error: "Something went wrong. Please try again." },
       { status: 500 }
