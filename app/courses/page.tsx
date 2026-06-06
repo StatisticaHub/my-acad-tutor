@@ -28,7 +28,7 @@ const featuredCourses = [
     level: "Beginner to intermediate",
     status: "Full course open now",
     release: "All modules and lessons available",
-    href: "/courses/statistics-foundation/modules/introduction-to-statistical-thinking/lessons/what-is-statistics",
+    href: "/courses/statistics-foundation",
     hubHref: "/learning-hub/statistics",
     summary:
       "A zero-coding foundation course covering statistical thinking, descriptive statistics, probability, inference and regression foundations.",
@@ -287,7 +287,7 @@ export default function CoursesPage() {
                       href={withBasePath(course.href)}
                       className="rounded-full bg-[#141210] px-5 py-3 text-sm font-black text-white transition hover:bg-[#741018]"
                     >
-                      Open Lesson 1.1
+                      Open full course
                     </a>
                     <a
                       href={withBasePath(course.hubHref)}
