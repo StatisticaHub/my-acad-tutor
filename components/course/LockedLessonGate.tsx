@@ -10,22 +10,22 @@ function withBasePath(href: string) {
   return `${basePath}${cleanHref}/`;
 }
 
-type LockedLessonGateProps = {
+type OpenLessonGateProps = {
   lessonCode: string;
   lessonTitle: string;
   moduleTitle: string;
 };
 
-export default function LockedLessonGate({
+export default function OpenLessonGate({
   lessonCode,
   lessonTitle,
   moduleTitle,
-}: LockedLessonGateProps) {
+}: OpenLessonGateProps) {
   return (
     <main className="min-h-screen bg-[#F7F3EA] px-5 py-10 text-[#141210] md:px-8 md:py-16">
       <section className="mx-auto max-w-5xl rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-10">
         <p className="text-sm font-black uppercase tracking-[0.22em] text-[#7A0710]">
-          Full lesson opens July 2026
+          Full lesson opens now
         </p>
 
         <div className="mt-5 flex flex-wrap items-center gap-3">
@@ -34,7 +34,7 @@ export default function LockedLessonGate({
           </span>
 
           <span className="rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-sm font-bold text-amber-800">
-            Locked until July 2026
+            Open now
           </span>
         </div>
 
@@ -48,17 +48,17 @@ export default function LockedLessonGate({
 
         <p className="mt-6 max-w-3xl text-base leading-7 text-[#525252] md:text-lg md:leading-8">
           This lesson is part of the new Statistics Foundation course design.
-          Module pages are open for preview, and Lesson 1.1 is available now.
-          The remaining lessons will open from July 2026.
+          Module pages are open for preview, and Full course open now.
+          The remaining lessons will open from now.
         </p>
 
         <div className="mt-8 rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5 md:p-6">
           <h2 className="text-xl font-black tracking-tight">
-            Join the waitlist
+            Start learning
           </h2>
 
           <p className="mt-3 max-w-2xl text-sm leading-6 text-[#525252]">
-            Join the waitlist to be notified when the remaining lessons,
+            Start learning to be notified when the remaining lessons,
             worked examples, quizzes and interactive learning sections become
             available.
           </p>
@@ -68,7 +68,7 @@ export default function LockedLessonGate({
               href={withBasePath("/courses/statistics-foundation/waitlist")}
               className="inline-flex items-center justify-center rounded-full bg-[#11100E] px-6 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-[#7A0710]"
             >
-              Join waitlist
+              Start learning
             </a>
 
             <a

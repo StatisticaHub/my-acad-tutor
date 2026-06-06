@@ -235,7 +235,7 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
                 </p>
                 <p className="mt-3 text-sm leading-7 text-[#525252]">
                   The diabetes risk prediction case study is available now. The
-                  remaining case studies are locked until July 2026 while they
+                  remaining case studies are opening in July 2026 while they
                   are being redesigned with R scripts, output interpretation,
                   validation summaries and report-style explanations.
                 </p>
@@ -488,7 +488,7 @@ export default function MachineLearningBiostatisticsCaseStudiesPage() {
               <div className="mt-6 grid gap-3">
                 {[
                   "The diabetes risk case study stays open.",
-                  "Four case studies remain locked until July 2026.",
+                  "Four case studies remain opening in July 2026.",
                   "Case studies will follow the same output-to-report structure.",
                   "Waitlist visitors can request early access or release updates.",
                 ].map((item) => (

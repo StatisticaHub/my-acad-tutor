@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
+import JsonLd from "@/components/seo/JsonLd";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -115,6 +116,8 @@ export default function RootLayout({
   return (
     <html lang="en-GB">
       <body className={`${inter.variable} ${sourceSerif.variable} font-sans`}>
+        <JsonLd data={organizationSchema} />
+        <JsonLd data={websiteSchema} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import NormalDistributionExplorer from "@/components/interactive/NormalDistributionExplorer";
+import ConfidenceIntervalSimulator from "@/components/interactive/ConfidenceIntervalSimulator";
 
 export const metadata: Metadata = {
-  title: "Machine Learning in Biostatistics Modules",
+  title: "Statistics Foundation",
   description:
-    "Explore the Machine Learning in Biostatistics course modules covering prediction, supervised learning, validation, regularisation, ensembles and applied health-data case studies.",
+    "A zero-coding statistics foundation course covering statistical thinking, descriptive statistics, probability, inference and regression.",
 };
 
 const basePath = "";
@@ -27,224 +29,339 @@ function withBasePath(href: string) {
 const modules = [
   {
     number: "01",
-    title: "Foundations of Machine Learning in Biostatistics",
-    href: "/courses/machine-learning-biostatistics/modules/foundations",
+    title: "Statistical Thinking",
+    href: "/courses/statistics-foundation/modules/introduction-to-statistical-thinking",
     status: "Module open",
     summary:
-      "Prediction, explanation, causation, learning types, training/testing, overfitting, leakage, thresholds and responsible biostatistical reporting.",
+      "Populations, samples, variables, data types, tables, graphs and the purpose of statistical reasoning.",
     lessons: "5 lessons",
-    focus: [
-      "Prediction mindset",
-      "Causal caution",
-      "Training/testing",
-      "ML workflow",
-    ],
-    firstLesson: {
-      number: "1.1",
-      title: "What is machine learning in biostatistics?",
-      href: "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics",
-      open: true,
-    },
-    lessonList: [
-      ["1.1", "What is machine learning in biostatistics?", true],
-      ["1.2", "Prediction, explanation and causal thinking", false],
-      ["1.3", "Types of learning in medical data", false],
-      ["1.4", "Training, testing, overfitting and generalisation", false],
-      ["1.5", "Biostatistical workflow for machine learning projects", false],
-    ],
+    focus: ["Statistical questions", "Data types", "Sampling", "Tables and graphs"],
   },
   {
     number: "02",
-    title: "Supervised Learning for Clinical Health Data",
-    href: "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data",
+    title: "Descriptive Statistics",
+    href: "/courses/statistics-foundation/modules/descriptive-statistics",
     status: "Module open",
     summary:
-      "Regression prediction, logistic classification, K-nearest neighbours, decision trees and model pipelines for clinical datasets.",
+      "Centre, spread, quartiles, percentiles, skewness, outliers and comparing groups descriptively.",
     lessons: "5 lessons",
-    focus: ["Regression", "Classification", "KNN", "Decision trees"],
-    firstLesson: {
-      number: "2.1",
-      title: "Regression as a prediction model",
-      href: "/courses/machine-learning-biostatistics/modules/supervised-learning-clinical-health-data/lessons/regression-as-a-prediction-model",
-      open: false,
-    },
-    lessonList: [
-      ["2.1", "Regression as a prediction model", false],
-      ["2.2", "Logistic regression as a classifier", false],
-      ["2.3", "K-nearest neighbours and distance-based learning", false],
-      ["2.4", "Decision trees and rule-based prediction", false],
-      ["2.5", "Model pipelines for clinical datasets", false],
-    ],
+    focus: ["Mean and median", "Spread", "Quartiles", "Group comparison"],
   },
   {
     number: "03",
-    title: "Model Evaluation, Validation and Performance",
-    href: "/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance",
+    title: "Probability Foundations",
+    href: "/courses/statistics-foundation/modules/probability-foundations",
     status: "Module open",
     summary:
-      "Train/test splitting, resampling, sensitivity, specificity, ROC, AUC, calibration, decision curves, leakage and reproducibility.",
+      "Probability rules, sample spaces, conditional probability, independence, dependence and Bayes’ theorem.",
     lessons: "5 lessons",
-    focus: ["Validation", "ROC/AUC", "Calibration", "Leakage"],
-    firstLesson: {
-      number: "3.1",
-      title: "Train/test split and resampling",
-      href: "/courses/machine-learning-biostatistics/modules/model-evaluation-validation-performance/lessons/train-test-split-and-resampling",
-      open: false,
-    },
-    lessonList: [
-      ["3.1", "Train/test split and resampling", false],
-      ["3.2", "Classification metrics, sensitivity, specificity, ROC and AUC", false],
-      ["3.3", "Calibration, clinical usefulness and decision curves", false],
-      ["3.4", "Cross-validation and bootstrap validation", false],
-      ["3.5", "Bias, leakage and reproducibility in health ML", false],
-    ],
+    focus: ["Probability rules", "Conditional probability", "Independence", "Bayes"],
   },
   {
     number: "04",
-    title: "Regularisation, Ensembles and Modern Prediction Models",
-    href: "/courses/machine-learning-biostatistics/modules/regularisation-ensembles-modern-prediction-models",
+    title: "Statistical Inference",
+    href: "/courses/statistics-foundation/modules/statistical-inference-foundations",
     status: "Module open",
     summary:
-      "Ridge, lasso, elastic net, random forests, gradient boosting, support vector machines and responsible model comparison.",
-    lessons: "5 lessons",
-    focus: ["Regularisation", "Forests", "Boosting", "Comparison"],
-    firstLesson: {
-      number: "4.1",
-      title: "Ridge, lasso and elastic net",
-      href: "/courses/machine-learning-biostatistics/modules/regularisation-ensembles-modern-prediction-models/lessons/ridge-lasso-and-elastic-net",
-      open: false,
-    },
-    lessonList: [
-      ["4.1", "Ridge, lasso and elastic net", false],
-      ["4.2", "Random forests", false],
-      ["4.3", "Gradient boosting", false],
-      ["4.4", "Support vector machines and flexible boundaries", false],
-      ["4.5", "Comparing models responsibly", false],
-    ],
+      "Sampling distributions, standard error, confidence intervals, hypothesis testing, p-values, power and study design.",
+    lessons: "6 lessons",
+    focus: ["Standard error", "Confidence intervals", "Hypothesis tests", "Power"],
   },
   {
     number: "05",
-    title: "Applied Biostatistical ML Case Studies",
-    href: "/courses/machine-learning-biostatistics/modules/applied-biostatistical-ml-case-studies",
+    title: "Regression Foundations",
+    href: "/courses/statistics-foundation/modules/regression-foundations",
     status: "Module open",
     summary:
-      "Clinical risk prediction, survival prediction, high-dimensional omics, missing data, imbalance, fairness and a final applied R project.",
+      "Correlation, simple regression, least squares, residuals, multiple regression, confounding and logistic regression.",
     lessons: "5 lessons",
-    focus: ["Risk prediction", "Survival ML", "Omics", "Fairness"],
-    firstLesson: {
-      number: "5.1",
-      title: "Clinical risk prediction case study",
-      href: "/courses/machine-learning-biostatistics/modules/applied-biostatistical-ml-case-studies/lessons/clinical-risk-prediction-case-study",
-      open: false,
-    },
-    lessonList: [
-      ["5.1", "Clinical risk prediction case study", false],
-      ["5.2", "Survival prediction and censored outcomes", false],
-      ["5.3", "High-dimensional omics and feature selection", false],
-      ["5.4", "Missing data, imbalance and fairness", false],
-      ["5.5", "Final applied ML project in R", false],
-    ],
+    focus: ["Correlation", "Linear regression", "Confounding", "Logistic regression"],
+  },
+];
+
+const lessons = [
+  {
+    module: "Module 1",
+    number: "1.1",
+    title: "What is statistics?",
+    status: "Full course open now",
+    open: true,
+    href: "/courses/statistics-foundation/modules/introduction-to-statistical-thinking/lessons/what-is-statistics",
+  },
+  {
+    module: "Module 1",
+    number: "1.2",
+    title: "Types of data",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 1",
+    number: "1.3",
+    title: "Populations, samples and variables",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 1",
+    number: "1.4",
+    title: "Tables and graphs",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 1",
+    number: "1.5",
+    title: "Sampling methods",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 2",
+    number: "2.1",
+    title: "Organising data",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 2",
+    number: "2.2",
+    title: "Measures of centre",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 2",
+    number: "2.3",
+    title: "Measures of spread",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 2",
+    number: "2.4",
+    title: "Quartiles and percentiles",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 2",
+    number: "2.5",
+    title: "Comparing groups descriptively",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 3",
+    number: "3.1",
+    title: "What is probability?",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 3",
+    number: "3.2",
+    title: "Events, sample spaces and probability rules",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 3",
+    number: "3.3",
+    title: "Conditional probability",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 3",
+    number: "3.4",
+    title: "Independence and dependence",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 3",
+    number: "3.5",
+    title: "Bayes’ theorem and diagnostic reasoning",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 4",
+    number: "4.1",
+    title: "Sampling distributions and standard error",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 4",
+    number: "4.2",
+    title: "Confidence intervals",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 4",
+    number: "4.3",
+    title: "Hypothesis testing framework",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 4",
+    number: "4.4",
+    title: "P-values, errors and power",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 4",
+    number: "4.5",
+    title: "Sample size and study design",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 4",
+    number: "4.6",
+    title: "Choosing the right inference method",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 5",
+    number: "5.1",
+    title: "Correlation and simple relationships",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 5",
+    number: "5.2",
+    title: "Simple linear regression",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 5",
+    number: "5.3",
+    title: "Least squares and residuals",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 5",
+    number: "5.4",
+    title: "Multiple regression and confounding",
+    status: "Full course open now",
+    open: true,
+  },
+  {
+    module: "Module 5",
+    number: "5.5",
+    title: "Logistic regression foundations",
+    status: "Full course open now",
+    open: true,
   },
 ];
 
 const snapshot = [
   ["5", "Modules open"],
   ["1", "Lesson open now"],
-  ["24", "Lessons waitlisted"],
+  ["25", "Lessons course accessed"],
   ["July 2026", "Full release"],
 ];
 
 const learningDesign = [
-  "Module pages remain open for preview",
-  "Lesson 1.1 is open as the full course preview",
-  "All remaining lessons open in July 2026",
-  "Each full lesson will include browser R coding",
-  "Downloadable R scripts and datasets will support local practice",
-  "Reports will connect R output with statistical interpretation",
+  "Conversational lectures with Mr. R, Amelia, Ben, Chloe and Daniel",
+  "Detailed theoretical notes with equations and derivations",
+  "Interactive labs for visual intuition",
+  "Worked examples with careful interpretation",
+  "Practice studios and quizzes",
+  "No R, Python or coding required",
 ];
 
-const courseFlow = [
-  "Start with prediction thinking before algorithms",
-  "Move into supervised learning for clinical data",
-  "Evaluate models with validation and performance metrics",
-  "Study regularisation, ensembles and flexible models",
-  "Finish with applied biostatistical ML case studies",
+const outcomes = [
+  "Explain what statistics is used for",
+  "Summarise and compare data correctly",
+  "Understand probability and uncertainty",
+  "Interpret confidence intervals and p-values",
+  "Understand regression and model interpretation",
+  "Prepare for biostatistics, health data science and applied research methods",
 ];
 
-export default function MachineLearningBiostatisticsModulesPage() {
+export default function StatisticsFoundationCoursePage() {
   return (
     <main className="min-h-screen bg-[#F7F3EA] px-4 py-8 text-[#141210] sm:px-5 md:px-8 md:py-16">
       <section className="mx-auto max-w-7xl">
         <a
-          href={withBasePath("/courses/machine-learning-biostatistics")}
+          href={withBasePath("/courses")}
           className="text-sm font-black text-[#741018] transition hover:text-[#4d080e]"
         >
-          ← Back to ML course
+          ← Back to courses
         </a>
 
         <section className="mt-6 overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] shadow-sm md:mt-8 md:rounded-[2.5rem]">
           <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
             <div className="p-5 sm:p-6 md:p-10 lg:p-12">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm md:tracking-[0.22em]">
-                Machine Learning in Biostatistics · Modules
+                Statistics Foundation
               </p>
 
               <h1 className="mt-4 max-w-5xl text-4xl font-black leading-[1.03] tracking-[-0.055em] md:mt-5 md:text-7xl">
-                Explore the full clinical machine learning pathway.
+                Learn statistics from ideas to inference and regression.
               </h1>
 
               <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252] md:mt-6 md:text-lg md:leading-9">
-                The module pages are open so students can preview the full
-                course structure. Lesson 1.1 is available now as the full learning
-                preview. All other lessons are locked and connected to the
-                waitlist until the full release in July 2026.
+                A zero-coding foundation course for students who want clear
+                statistical reasoning before software. All modules and lessons are now available for full study.
               </p>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href={withBasePath(
-                    "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics",
+                    "/courses/statistics-foundation/modules/introduction-to-statistical-thinking/lessons/what-is-statistics",
                   )}
                   className="inline-flex w-full items-center justify-center rounded-full bg-[#11100E] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#741018] sm:w-auto md:py-4"
                 >
-                  Open Lesson 1.1 →
+                  Start Module 1
+                </a>
+
+                <a
+                  href={withBasePath("#join-course access")}
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
+                >
+                  Start Module 1
                 </a>
 
                 <a
                   href={withBasePath("#module-preview")}
                   className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
-                  Preview modules
-                </a>
-
-                <a
-                  href={withBasePath("#join-waitlist")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
-                >
-                  Join waitlist
+                  View all modules
                 </a>
               </div>
 
               <div className="mt-8 rounded-[1.5rem] border border-[#741018]/20 bg-[#fff4ef] p-5">
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
-                  Current access policy
+                  Course access
                 </p>
                 <p className="mt-3 text-sm leading-7 text-[#525252]">
-                  All module overview pages remain open. Lesson 1.1 is open for
-                  full study. Lessons 1.2–5.5 are locked while they are being
-                  redesigned with advanced R scripts, browser coding, output
-                  interpretation, reporting guidance and clinical examples.
+                  Module overview pages remain open so students can see the
+                  full structure. All modules and lessons are now available for full study. Locked
+                  lessons currently point students to the course access until the
+                  full course release in July 2026.
                 </p>
               </div>
             </div>
 
             <aside className="border-t border-[#E4DED2] bg-[#11100E] p-5 text-white md:p-8 lg:border-l lg:border-t-0">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50 md:text-sm">
-                Module snapshot
+                Course snapshot
               </p>
 
               <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                A structured route from prediction to applied case studies.
+                A structured route through statistical thinking.
               </h2>
 
               <div className="mt-7 grid grid-cols-2 gap-3">
@@ -264,9 +381,9 @@ export default function MachineLearningBiostatisticsModulesPage() {
               </div>
 
               <p className="mt-6 text-sm leading-7 text-white/70">
-                Best for students who already know basic statistics and want to
-                learn applied machine learning for health data, clinical
-                prediction and biostatistical modelling.
+                Best for beginners, undergraduate students, MSc students
+                revising foundations, and learners preparing for applied
+                biostatistics, epidemiology or health data science.
               </p>
             </aside>
           </div>
@@ -279,7 +396,7 @@ export default function MachineLearningBiostatisticsModulesPage() {
             </p>
 
             <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-              Built around R scripts, outputs and interpretation.
+              Built for understanding, not memorisation.
             </h2>
 
             <div className="mt-6 grid gap-3">
@@ -296,20 +413,20 @@ export default function MachineLearningBiostatisticsModulesPage() {
 
           <article className="rounded-[1.75rem] border border-[#E4DED2] bg-[#11100E] p-5 text-white shadow-sm md:rounded-[2.5rem] md:p-8">
             <p className="text-xs font-black uppercase tracking-[0.2em] text-white/55 md:text-sm">
-              Course flow
+              By the end
             </p>
 
             <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-              The sequence moves from foundations to applied clinical ML.
+              Students should be able to reason statistically.
             </h2>
 
-            <div className="mt-6 grid gap-3">
-              {courseFlow.map((item, index) => (
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {outcomes.map((item) => (
                 <div
                   key={item}
                   className="rounded-2xl border border-white/10 bg-[#FFFCF6]/[0.06] px-4 py-3 text-sm font-bold text-white/85"
                 >
-                  {String(index + 1).padStart(2, "0")} · {item}
+                  {item}
                 </div>
               ))}
             </div>
@@ -327,14 +444,14 @@ export default function MachineLearningBiostatisticsModulesPage() {
               </p>
 
               <h2 className="mt-3 text-3xl font-black leading-tight tracking-[-0.045em] md:text-5xl">
-                All module pages are open for preview.
+                All module pages are open for full study.
               </h2>
             </div>
 
             <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
-              Students can open every module overview page now. Each module page
-              explains the learning pathway, lesson sequence and applied focus.
-              Full lesson access remains controlled until July 2026.
+              Students can explore the full course structure now. Each module
+              page shows the learning pathway, formulas, lesson sequence and
+              what will be covered when the lessons open fully.
             </p>
           </div>
 
@@ -390,135 +507,121 @@ export default function MachineLearningBiostatisticsModulesPage() {
           <div className="grid gap-4 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
-                Lesson access by module
+                Lesson access
               </p>
 
               <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Lesson 1.1 is available now. All remaining lessons open in July 2026.
+                Full course open now. All modules and lessons are now available for full study.
               </h2>
             </div>
 
             <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
-              The cards below show the full lesson sequence. Open lessons go
-              directly to the lesson. Locked lessons route students to the
-              waitlist section.
-            </p>
+              All lesson pages are now available for full study.</p>
           </div>
 
-          <div className="mt-6 grid gap-5">
-            {modules.map((module) => (
-              <article
-                key={`${module.number}-lessons`}
-                className="rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-5 md:rounded-[2rem] md:p-6"
-              >
-                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                  <div>
-                    <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
-                      Module {module.number}
-                    </p>
+          <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {lessons.map((lesson) => {
+              const href = lesson.open ? lesson.href : "#join-course access";
 
-                    <h3 className="mt-2 text-2xl font-black tracking-[-0.04em]">
-                      {module.title}
-                    </h3>
-
-                    <p className="mt-3 max-w-4xl text-sm leading-7 text-[#525252]">
-                      {module.summary}
-                    </p>
+              return (
+                <a
+                  key={`${lesson.module}-${lesson.number}`}
+                  href={withBasePath(href ?? "/courses/statistics-foundation/modules")}
+                  className={`group rounded-[1.5rem] border p-5 transition hover:-translate-y-1 hover:shadow-md ${
+                    lesson.open
+                      ? "border-[#E4DED2] bg-[#F7F3EA] hover:bg-[#FFFCF6]"
+                      : "border-[#741018]/20 bg-[#fff4ef] hover:bg-[#FFFCF6]"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span
+                      className={`rounded-full px-3 py-1 text-xs font-black uppercase tracking-[0.14em] ${
+                        lesson.open
+                          ? "bg-[#11100E] text-white"
+                          : "bg-[#741018] text-white"
+                      }`}
+                    >
+                      {lesson.number}
+                    </span>
+                    <span
+                      className={`rounded-full border px-3 py-1 text-xs font-black uppercase tracking-[0.14em] ${
+                        lesson.open
+                          ? "border-[#E4DED2] bg-[#FFFCF6] text-[#5F5F5F]"
+                          : "border-[#741018]/20 bg-[#FFFCF6] text-[#741018]"
+                      }`}
+                    >
+                      {lesson.open ? "Open" : "Locked"}
+                    </span>
                   </div>
 
-                  <a
-                    href={withBasePath(module.href)}
-                    className="inline-flex items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-5 py-3 text-sm font-black text-[#141210] transition hover:-translate-y-0.5 hover:border-stone-950"
-                  >
-                    Module page →
-                  </a>
-                </div>
+                  <p className="mt-4 text-xs font-black uppercase tracking-[0.16em] text-[#7a7063]">
+                    {lesson.module}
+                  </p>
 
-                <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-                  {module.lessonList.map(([number, title, open]) => {
-                    const href = open
-                      ? module.firstLesson.href
-                      : "#join-waitlist";
+                  <h3 className="mt-2 text-xl font-black tracking-[-0.04em]">
+                    {lesson.title}
+                  </h3>
 
-                    return (
-                      <a
-                        key={`${module.number}-${number}`}
-                        href={withBasePath(href)}
-                        className={`group rounded-[1.35rem] border p-4 transition hover:-translate-y-1 hover:shadow-md ${
-                          open
-                            ? "border-[#E4DED2] bg-[#FFFCF6]"
-                            : "border-[#741018]/20 bg-[#fff4ef] hover:bg-[#FFFCF6]"
-                        }`}
-                      >
-                        <div className="flex items-center justify-between gap-3">
-                          <span
-                            className={`rounded-full px-3 py-1 text-xs font-black uppercase tracking-[0.14em] ${
-                              open
-                                ? "bg-[#11100E] text-white"
-                                : "bg-[#741018] text-white"
-                            }`}
-                          >
-                            {number}
-                          </span>
+                  <p className="mt-3 text-sm font-bold leading-7 text-[#525252]">
+                    {lesson.status}
+                  </p>
 
-                          <span
-                            className={`rounded-full border px-3 py-1 text-xs font-black uppercase tracking-[0.14em] ${
-                              open
-                                ? "border-[#E4DED2] bg-[#F7F3EA] text-[#5F5F5F]"
-                                : "border-[#741018]/20 bg-[#FFFCF6] text-[#741018]"
-                            }`}
-                          >
-                            {open ? "Open" : "Locked"}
-                          </span>
-                        </div>
+                  <p className="mt-4 text-sm font-black text-[#741018] transition group-hover:translate-x-1">
+                    {lesson.open ? "Open lesson →" : "Open lesson →"}
+                  </p>
+                </a>
+              );
+            })}
+          </div>
+        </section>
 
-                        <h4 className="mt-4 text-lg font-black tracking-[-0.035em]">
-                          {title}
-                        </h4>
+        <section className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018] md:text-sm">
+            Try the ideas visually
+          </p>
 
-                        <p className="mt-3 text-sm font-bold leading-7 text-[#525252]">
-                          {open ? "Open now" : "Locked until July 2026"}
-                        </p>
+          <h2 className="mt-3 max-w-4xl text-3xl font-black tracking-[-0.045em] md:text-5xl">
+            Visual intuition before formulas.
+          </h2>
 
-                        <p className="mt-4 text-sm font-black text-[#741018] transition group-hover:translate-x-1">
-                          {open ? "Open lesson →" : "Join waitlist →"}
-                        </p>
-                      </a>
-                    );
-                  })}
-                </div>
-              </article>
-            ))}
+          <p className="mt-4 max-w-4xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
+            These demos remain open as previews. They help students see
+            distribution shape and confidence interval behaviour before moving
+            into formal notation.
+          </p>
+
+          <div className="mt-6 grid gap-5 lg:grid-cols-2">
+            <NormalDistributionExplorer />
+            <ConfidenceIntervalSimulator />
           </div>
         </section>
 
         <section
-          id="join-waitlist"
+          id="join-course access"
           className="mt-6 overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#11100E] shadow-sm md:mt-8 md:rounded-[2.5rem]"
         >
           <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
             <div className="p-5 text-white md:p-10">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50 md:text-sm">
-                Join the waitlist
+                Start Module 1
               </p>
 
               <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Get access updates when the full ML course opens in July 2026.
+                Get access updates when the full course is open now.
               </h2>
 
               <p className="mt-4 max-w-3xl text-sm leading-7 text-white/75 md:text-base md:leading-8">
-                Locked lessons point here while the course is being redesigned.
-                The full release will include advanced R scripts, browser coding
-                labs, downloadable files, visual model outputs and report-style
-                interpretation.
+                Use this course access block for locked lessons. On GitHub Pages,
+                form submission needs your existing contact page, Formspree,
+                Formsubmit, Google Forms or another external form endpoint.
               </p>
 
               <div className="mt-6 grid gap-3">
                 {[
-                  "All module pages stay open.",
+                  "Module pages stay open.",
                   "Lesson 1.1 remains available.",
-                  "Lessons 1.2–5.5 remain opening in July 2026.",
-                  "Waitlist visitors can request early access or release updates.",
+                  "All modules and lessons are now available for full study.",
+                  "Open course visitors can request early access or release updates.",
                 ].map((item) => (
                   <div
                     key={item}
@@ -532,7 +635,7 @@ export default function MachineLearningBiostatisticsModulesPage() {
 
             <div className="border-t border-white/10 bg-[#FFFCF6] p-5 md:p-8 lg:border-l lg:border-t-0">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018]">
-                Waitlist form
+                Open course form
               </p>
 
               <h3 className="mt-3 text-3xl font-black tracking-[-0.045em]">
@@ -576,10 +679,10 @@ export default function MachineLearningBiostatisticsModulesPage() {
                   </span>
                   <select
                     name="interest"
-                    defaultValue="Machine Learning in Biostatistics waitlist"
+                    defaultValue="Statistics Foundation course access"
                     className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                   >
-                    <option>Machine Learning in Biostatistics waitlist</option>
+                    <option>Statistics Foundation course access</option>
                     <option>Early access</option>
                     <option>Private tutoring support</option>
                     <option>Full course release updates</option>
@@ -593,7 +696,7 @@ export default function MachineLearningBiostatisticsModulesPage() {
                   <textarea
                     name="message"
                     rows={4}
-                    defaultValue="I want to join the Machine Learning in Biostatistics course waitlist."
+                    defaultValue="I want to join the Statistics Foundation course course access."
                     className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                   />
                 </label>
@@ -602,7 +705,7 @@ export default function MachineLearningBiostatisticsModulesPage() {
                   type="submit"
                   className="rounded-full bg-[#741018] px-6 py-4 text-sm font-black text-white transition hover:bg-[#4d080e]"
                 >
-                  Join waitlist →
+                  Start Module 1
                 </button>
 
                 <p className="text-xs leading-6 text-[#7a7063]">
@@ -624,20 +727,19 @@ export default function MachineLearningBiostatisticsModulesPage() {
               </h2>
 
               <p className="mt-4 max-w-3xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
-                Lesson 1.1 introduces machine learning as a biostatistical
-                prediction workflow: clinical question, outcome, predictors,
-                training/testing, R output, interpretation and responsible
-                reporting.
+                Lesson 1.1 introduces the purpose of statistics, statistical
+                questions, populations, samples, variables and why uncertainty
+                matters.
               </p>
             </div>
 
             <a
               href={withBasePath(
-                "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics",
+                "/courses/statistics-foundation/modules/introduction-to-statistical-thinking/lessons/what-is-statistics",
               )}
               className="inline-flex w-full justify-center rounded-full bg-[#741018] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#4d080e] sm:w-auto md:py-4"
             >
-              Open Lesson 1.1 →
+              Start Module 1
             </a>
           </div>
         </section>

@@ -1,22 +1,22 @@
 const timeline = [
   {
     label: "Open now",
-    title: "Two sample lessons are available",
+    title: "Statistics Foundation is fully open",
     body:
-      "Statistics Foundation Lesson 1.1 and Machine Learning in Biostatistics Lesson 1.1 are open now so students can preview the teaching style and course structure.",
+      "Statistics Foundation is fully open now. Machine Learning in Biostatistics has Lesson 1.1 available as a preview.",
     items: [
       "Statistics Foundation · Lesson 1.1",
       "Machine Learning in Biostatistics · Lesson 1.1",
     ],
   },
   {
-    label: "July 2026",
-    title: "Main course pathways open",
+    label: "Open now",
+    title: "Next pathway updates",
     body:
-      "The remaining lessons in Statistics Foundation and Machine Learning in Biostatistics open in July 2026.",
+      "Statistics Foundation is fully open now. Machine Learning in Biostatistics will open gradually after the preview lesson.",
     items: [
-      "Statistics Foundation remaining lessons",
-      "Machine Learning in Biostatistics remaining lessons",
+      "Statistics Foundation full course",
+      "Machine Learning in Biostatistics preview pathway",
     ],
   },
   {
@@ -50,8 +50,8 @@ export default function CourseAccessTimeline() {
           </div>
 
           <p className="max-w-3xl text-base leading-8 text-[#525252]">
-            Start with the open sample lessons, then join the waitlist or return
-            for the main course release in July 2026.
+            Start with the open sample lessons, then start learning or return
+            for the main course release in Open now.
           </p>
         </div>
 
@@ -89,14 +89,14 @@ export default function CourseAccessTimeline() {
             href="/courses/statistics-foundation/modules/introduction-to-statistical-thinking/lessons/what-is-statistics/"
             className="rounded-full bg-[#141210] px-5 py-3 text-sm font-black text-white transition hover:bg-[#741018]"
           >
-            Open Statistics Lesson 1.1
+            Open Statistics Foundation
           </a>
 
           <a
             href="/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics/"
             className="rounded-full border border-[#D8CDBB] px-5 py-3 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA]"
           >
-            Open ML Lesson 1.1
+            Open ML preview
           </a>
 
           <a

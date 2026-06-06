@@ -260,7 +260,7 @@ export default function ModelEvaluationValidationPerformanceModulePage() {
               <div className="mt-7 grid gap-3">
                 {[
                   "All Module 3 lessons are currently locked.",
-                  "Lesson 1.1 remains open as the full course preview.",
+                  "Lesson 1.1 remains available as the full course preview.",
                   "Full Module 3 lessons will include R labs and output-driven reports.",
                   "The complete release is planned for July 2026.",
                 ].map((item) => (
@@ -525,8 +525,8 @@ export default function ModelEvaluationValidationPerformanceModulePage() {
               <div className="mt-6 grid gap-3">
                 {[
                   "Module 3 overview stays open.",
-                  "All Module 3 lessons remain locked until July 2026.",
-                  "Lesson 1.1 remains open as the course preview.",
+                  "All Module 3 lessons remain opening in July 2026.",
+                  "Lesson 1.1 remains available as the course preview.",
                   "Waitlist visitors can request early access or release updates.",
                 ].map((item) => (
                   <div

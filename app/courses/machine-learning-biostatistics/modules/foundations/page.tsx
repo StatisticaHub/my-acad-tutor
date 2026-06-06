@@ -260,8 +260,8 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
 
               <div className="mt-7 grid gap-3">
                 {[
-                  "Lesson 1.1 is open now.",
-                  "Lessons 1.2–1.5 are locked until July 2026.",
+                  "Lesson 1.1 is available now.",
+                  "Lessons 1.2–1.5 are opening in July 2026.",
                   "The full module will include R scripts and output-driven reporting.",
                   "Module pages remain open for preview.",
                 ].map((item) => (
@@ -433,7 +433,7 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
             </div>
 
             <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
-              Lesson 1.1 is open now. Lessons 1.2–1.5 currently route to the
+              Lesson 1.1 is available now. Lessons 1.2–1.5 currently route to the
               waitlist until the full July 2026 release.
             </p>
           </div>
@@ -541,8 +541,8 @@ export default function MachineLearningBiostatisticsFoundationsModulePage() {
 
               <div className="mt-6 grid gap-3">
                 {[
-                  "Lesson 1.1 stays open.",
-                  "Lessons 1.2–1.5 remain locked until July 2026.",
+                  "Lesson 1.1 remains available.",
+                  "Lessons 1.2–1.5 remain opening in July 2026.",
                   "The full module will follow the same structure as Lesson 1.1.",
                   "Waitlist visitors can request early access or release updates.",
                 ].map((item) => (

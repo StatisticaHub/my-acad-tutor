@@ -56,8 +56,7 @@ export default function Header() {
             href={`${withBasePath("/contact")}#support-form`}
             className="inline-flex items-center justify-center rounded-full bg-[#741018] px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-[#11100E] sm:px-5 sm:text-sm"
           >
-            <span className="md:hidden">Book</span>
-            <span className="hidden md:inline">Request support</span>
+            <span>Request Support</span>
           </a>
 
           <button
@@ -91,7 +90,7 @@ export default function Header() {
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-[#741018] px-4 py-3 text-center text-sm font-black text-white transition hover:bg-[#11100E]"
             >
-              Request support →
+              Request Support →
             </a>
           </nav>
         </div>

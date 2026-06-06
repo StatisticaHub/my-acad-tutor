@@ -119,14 +119,14 @@ const demoCards = [
 const coursePathways = [
   {
     title: "Statistics Foundation",
-    status: "Lesson 1.1 open now",
+    status: "Preview open now",
     body:
       "A zero-coding foundation pathway with 5 modules and 26 theoretical lessons.",
     href: "/courses/statistics-foundation",
   },
   {
     title: "Machine Learning in Biostatistics",
-    status: "Lesson 1.1 open now",
+    status: "Preview open now",
     body:
       "Start with Lesson 1.1: What is machine learning in biostatistics? The lesson introduces machine learning as a biostatistical prediction workflow: define the clinical question, identify the outcome, choose predictors, separate training and test data, interpret output and avoid causal overclaiming. All remaining lessons open in July 2026.",
     href: "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics",

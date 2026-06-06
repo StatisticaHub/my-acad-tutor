@@ -38,7 +38,7 @@ const faqs = [
       {
         question: "Are the courses open now?",
         answer:
-          "Lesson 1.1 is open now for Statistics Foundation and Machine Learning in Biostatistics. The remaining lessons open in July 2026. Other course routes will release gradually from September 2026.",
+          "Preview access is open now. Lesson 1.1 is available. The full course opens in July 2026. Other course routes will release gradually from September 2026.",
       },
     ],
   },

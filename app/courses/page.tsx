@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CourseWaitlistInline from "./CourseWaitlistInline";
+import JsonLd from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Courses",
@@ -25,8 +26,8 @@ const featuredCourses = [
     area: "Statistics",
     title: "Statistics Foundation",
     level: "Beginner to intermediate",
-    status: "Lesson 1.1 open now",
-    release: "Full course opens July 2026",
+    status: "Full course open now",
+    release: "All modules and lessons available",
     href: "/courses/statistics-foundation/modules/introduction-to-statistical-thinking/lessons/what-is-statistics",
     hubHref: "/learning-hub/statistics",
     summary:
@@ -38,8 +39,8 @@ const featuredCourses = [
     area: "Medical machine learning",
     title: "Machine Learning in Biostatistics",
     level: "Intermediate",
-    status: "Lesson 1.1 open now",
-    release: "Full course opens July 2026",
+    status: "Preview open now",
+    release: "Lesson 1.1 available now",
     href: "/courses/machine-learning-biostatistics/modules/foundations/lessons/what-is-machine-learning-in-biostatistics",
     hubHref: "/learning-hub/data-science",
     summary:
@@ -105,12 +106,12 @@ const roadmap = [
   {
     label: "Open now",
     title: "Start with two free sample lessons",
-    body: "Statistics Foundation Lesson 1.1 and Machine Learning in Biostatistics Lesson 1.1 are available now.",
+    body: "Statistics Foundation is fully open now. Machine Learning in Biostatistics currently has Lesson 1.1 available as a preview.",
   },
   {
     label: "July 2026",
     title: "Main course release",
-    body: "The remaining Statistics Foundation and Machine Learning in Biostatistics lessons open in July 2026.",
+    body: "Statistics Foundation is fully open now. Machine Learning in Biostatistics currently has Lesson 1.1 available as a preview.",
   },
   {
     label: "From September 2026",
@@ -119,8 +120,30 @@ const roadmap = [
   },
 ];
 
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.myacademictutor.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Courses",
+      item: "https://www.myacademictutor.com/courses/",
+    },
+  ],
+};
+
 export default function CoursesPage() {
   return (
+    <>
+      <JsonLd data={breadcrumbSchema} />
     <main className="min-h-screen bg-[#F7F3EA] text-[#141210]">
       <section className="px-5 py-10 md:px-8 md:py-16">
         <div className="mx-auto max-w-7xl">
@@ -350,5 +373,6 @@ export default function CoursesPage() {
         </div>
       </section>
     </main>
+    </>
   );
 }

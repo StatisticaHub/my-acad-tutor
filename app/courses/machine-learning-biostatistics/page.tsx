@@ -357,7 +357,7 @@ export default function MachineLearningBiostatisticsCoursePage() {
               <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252] md:mt-6 md:text-lg md:leading-9">
                 An applied course for students learning machine learning in
                 biostatistics, medical statistics and health data science.
-                Module pages are open for preview. Lesson 1.1 is open now. All
+                Module pages are open for preview. Lesson 1.1 is available now. All
                 remaining lessons are waitlist-only until July 2026.
               </p>
 
@@ -392,7 +392,7 @@ export default function MachineLearningBiostatisticsCoursePage() {
                 </p>
                 <p className="mt-3 text-sm leading-7 text-[#525252]">
                   Module overview pages remain open so students can see the full
-                  structure. Only Lesson 1.1 is open for full study. Locked ML
+                  structure. Only Lesson 1.1 is available for full study. Upcoming ML
                   lessons currently point students to the waitlist until the
                   full course release in July 2026.
                 </p>
@@ -597,7 +597,7 @@ export default function MachineLearningBiostatisticsCoursePage() {
               </p>
 
               <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Lesson 1.1 is open. All other lessons are locked until July 2026.
+                Lesson 1.1 is available now. All remaining lessons open in July 2026.
               </h2>
             </div>
 
@@ -745,8 +745,8 @@ export default function MachineLearningBiostatisticsCoursePage() {
               <div className="mt-6 grid gap-3">
                 {[
                   "Module pages stay open.",
-                  "Lesson 1.1 stays open.",
-                  "All other lessons are locked until July 2026.",
+                  "Lesson 1.1 remains available.",
+                  "All remaining lessons open in July 2026.",
                   "Waitlist visitors can request early access or release updates.",
                 ].map((item) => (
                   <div

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import ContactForm from "./ContactForm";
+import WhatHappensNext from "@/components/site/WhatHappensNext";
+import JsonLd from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Contact",
   description:
@@ -28,8 +30,30 @@ const notes = [
   "Interpretation support",
 ];
 
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.myacademictutor.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Contact",
+      item: "https://www.myacademictutor.com/contact/",
+    },
+  ],
+};
+
 export default function ContactPage() {
   return (
+    <>
+      <JsonLd data={breadcrumbSchema} />
     <main className="min-h-screen bg-[#F7F3EA] px-5 py-10 text-[#141210] md:px-8 md:py-16">
 
       <section className="mx-auto mt-8 max-w-7xl rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
@@ -101,6 +125,8 @@ export default function ContactPage() {
           <ContactForm />
         </section>
       </section>
+          <WhatHappensNext />
     </main>
+    </>
   );
 }

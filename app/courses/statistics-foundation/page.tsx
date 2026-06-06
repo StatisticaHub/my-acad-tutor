@@ -92,184 +92,184 @@ const lessons = [
     module: "Module 1",
     number: "1.2",
     title: "Types of data",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 1",
     number: "1.3",
     title: "Populations, samples and variables",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 1",
     number: "1.4",
     title: "Tables and graphs",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 1",
     number: "1.5",
     title: "Sampling methods",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 2",
     number: "2.1",
     title: "Organising data",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 2",
     number: "2.2",
     title: "Measures of centre",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 2",
     number: "2.3",
     title: "Measures of spread",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 2",
     number: "2.4",
     title: "Quartiles and percentiles",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 2",
     number: "2.5",
     title: "Comparing groups descriptively",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 3",
     number: "3.1",
     title: "What is probability?",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 3",
     number: "3.2",
     title: "Events, sample spaces and probability rules",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 3",
     number: "3.3",
     title: "Conditional probability",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 3",
     number: "3.4",
     title: "Independence and dependence",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 3",
     number: "3.5",
     title: "Bayes’ theorem and diagnostic reasoning",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 4",
     number: "4.1",
     title: "Sampling distributions and standard error",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 4",
     number: "4.2",
     title: "Confidence intervals",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 4",
     number: "4.3",
     title: "Hypothesis testing framework",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 4",
     number: "4.4",
     title: "P-values, errors and power",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 4",
     number: "4.5",
     title: "Sample size and study design",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 4",
     number: "4.6",
     title: "Choosing the right inference method",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 5",
     number: "5.1",
     title: "Correlation and simple relationships",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 5",
     number: "5.2",
     title: "Simple linear regression",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 5",
     number: "5.3",
     title: "Least squares and residuals",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 5",
     number: "5.4",
     title: "Multiple regression and confounding",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
   {
     module: "Module 5",
     number: "5.5",
     title: "Logistic regression foundations",
-    status: "Locked until July 2026",
-    open: false,
+    status: "Open now",
+    open: true,
   },
 ];
 
 const snapshot = [
   ["5", "Modules open"],
-  ["1", "Lesson open now"],
-  ["25", "Lessons waitlisted"],
-  ["July 2026", "Full release"],
+  ["1", "Lessons open now"],
+  ["26", "Lessons available"],
+  ["Open now", "Full access"],
 ];
 
 const learningDesign = [
@@ -314,45 +314,32 @@ export default function StatisticsFoundationCoursePage() {
 
               <p className="mt-5 max-w-4xl text-base leading-8 text-[#525252] md:mt-6 md:text-lg md:leading-9">
                 A zero-coding foundation course for students who want clear
-                statistical reasoning before software. Module pages are open for
-                preview. Lesson 1.1 is open now. All remaining lessons are
-                waitlist-only until July 2026.
+                statistical reasoning before software. All modules and lessons are now available for full study.
               </p>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+
                 <a
-                  href={withBasePath(
-                    "/courses/statistics-foundation/modules/introduction-to-statistical-thinking/lessons/what-is-statistics",
-                  )}
-                  className="inline-flex w-full items-center justify-center rounded-full bg-[#11100E] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#741018] sm:w-auto md:py-4"
+                  href={withBasePath("#join-course access")}
+                  className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
-                  Open Lesson 1.1 →
+                  Start Module 1
                 </a>
 
                 <a
-                  href={withBasePath("#join-waitlist")}
+                  href={withBasePath("#modules")}
                   className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
-                  Join waitlist
-                </a>
-
-                <a
-                  href={withBasePath("#module-preview")}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
-                >
-                  Preview modules
+                  View all modules
                 </a>
               </div>
 
               <div className="mt-8 rounded-[1.5rem] border border-[#741018]/20 bg-[#fff4ef] p-5">
                 <p className="text-xs font-black uppercase tracking-[0.18em] text-[#741018]">
-                  Current access policy
+                  Course access
                 </p>
                 <p className="mt-3 text-sm leading-7 text-[#525252]">
-                  Module overview pages remain open so students can see the
-                  full structure. Only Lesson 1.1 is open for full study. Locked
-                  lessons currently point students to the waitlist until the
-                  full course release in July 2026.
+                  The full Statistics Foundation course is open now. All modules and lessons are available for full study.
                 </p>
               </div>
             </div>
@@ -436,7 +423,7 @@ export default function StatisticsFoundationCoursePage() {
         </section>
 
         <section
-          id="module-preview"
+          id="modules"
           className="mt-6 rounded-[1.75rem] border border-[#E4DED2] bg-[#FFFCF6] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10"
         >
           <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
@@ -446,7 +433,7 @@ export default function StatisticsFoundationCoursePage() {
               </p>
 
               <h2 className="mt-3 text-3xl font-black leading-tight tracking-[-0.045em] md:text-5xl">
-                All module pages are open for preview.
+                All module pages and lesson pages are open for full study.
               </h2>
             </div>
 
@@ -513,25 +500,22 @@ export default function StatisticsFoundationCoursePage() {
               </p>
 
               <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Lesson 1.1 is open. All other lessons are locked until July 2026.
+                Open now. All modules and lessons are available for full study.
               </h2>
             </div>
 
             <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
-              Locked lessons currently send students to the waitlist. This lets
-              visitors see the full curriculum while keeping the full lesson
-              release controlled.
-            </p>
+              All lesson pages are now available for full study.</p>
           </div>
 
           <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {lessons.map((lesson) => {
-              const href = lesson.open ? lesson.href : "#join-waitlist";
+              const href = lesson.open ? lesson.href : "#join-course access";
 
               return (
                 <a
                   key={`${lesson.module}-${lesson.number}`}
-                  href={withBasePath(href ?? "/courses/statistics-foundation/waitlist")}
+                  href={withBasePath(href ?? "/courses/statistics-foundation/modules")}
                   className={`group rounded-[1.5rem] border p-5 transition hover:-translate-y-1 hover:shadow-md ${
                     lesson.open
                       ? "border-[#E4DED2] bg-[#F7F3EA] hover:bg-[#FFFCF6]"
@@ -555,7 +539,7 @@ export default function StatisticsFoundationCoursePage() {
                           : "border-[#741018]/20 bg-[#FFFCF6] text-[#741018]"
                       }`}
                     >
-                      {lesson.open ? "Open" : "Locked"}
+                      "Open"
                     </span>
                   </div>
 
@@ -572,7 +556,7 @@ export default function StatisticsFoundationCoursePage() {
                   </p>
 
                   <p className="mt-4 text-sm font-black text-[#741018] transition group-hover:translate-x-1">
-                    {lesson.open ? "Open lesson →" : "Join waitlist →"}
+                    "Open lesson →"
                   </p>
                 </a>
               );
@@ -590,7 +574,7 @@ export default function StatisticsFoundationCoursePage() {
           </h2>
 
           <p className="mt-4 max-w-4xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
-            These demos remain open as previews. They help students see
+            These demos support the full course. They help students see
             distribution shape and confidence interval behaviour before moving
             into formal notation.
           </p>
@@ -602,21 +586,21 @@ export default function StatisticsFoundationCoursePage() {
         </section>
 
         <section
-          id="join-waitlist"
+          id="join-course access"
           className="mt-6 overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#11100E] shadow-sm md:mt-8 md:rounded-[2.5rem]"
         >
           <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
             <div className="p-5 text-white md:p-10">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50 md:text-sm">
-                Join the waitlist
+                Start Module 1
               </p>
 
               <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                Get access updates when the full course opens in July 2026.
+                The full course is open now.
               </h2>
 
               <p className="mt-4 max-w-3xl text-sm leading-7 text-white/75 md:text-base md:leading-8">
-                Use this waitlist block for locked lessons. On GitHub Pages,
+                Use this course access block for course updates.
                 form submission needs your existing contact page, Formspree,
                 Formsubmit, Google Forms or another external form endpoint.
               </p>
@@ -624,9 +608,9 @@ export default function StatisticsFoundationCoursePage() {
               <div className="mt-6 grid gap-3">
                 {[
                   "Module pages stay open.",
-                  "Lesson 1.1 stays open.",
-                  "All other lessons are locked until July 2026.",
-                  "Waitlist visitors can request early access or release updates.",
+                  "Lesson 1.1 remains available.",
+                  "All modules and lessons are now available for full study.",
+                  "Open course visitors can request early access or course updates.",
                 ].map((item) => (
                   <div
                     key={item}
@@ -640,7 +624,7 @@ export default function StatisticsFoundationCoursePage() {
 
             <div className="border-t border-white/10 bg-[#FFFCF6] p-5 md:p-8 lg:border-l lg:border-t-0">
               <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018]">
-                Waitlist form
+                Open course form
               </p>
 
               <h3 className="mt-3 text-3xl font-black tracking-[-0.045em]">
@@ -684,13 +668,13 @@ export default function StatisticsFoundationCoursePage() {
                   </span>
                   <select
                     name="interest"
-                    defaultValue="Statistics Foundation waitlist"
+                    defaultValue="Statistics Foundation course access"
                     className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                   >
-                    <option>Statistics Foundation waitlist</option>
+                    <option>Statistics Foundation course access</option>
                     <option>Early access</option>
                     <option>Private tutoring support</option>
-                    <option>Full course release updates</option>
+                    <option>Full course course updates</option>
                   </select>
                 </label>
 
@@ -701,7 +685,7 @@ export default function StatisticsFoundationCoursePage() {
                   <textarea
                     name="message"
                     rows={4}
-                    defaultValue="I want to join the Statistics Foundation course waitlist."
+                    defaultValue="I want to join the Statistics Foundation course course access."
                     className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
                   />
                 </label>
@@ -710,7 +694,7 @@ export default function StatisticsFoundationCoursePage() {
                   type="submit"
                   className="rounded-full bg-[#741018] px-6 py-4 text-sm font-black text-white transition hover:bg-[#4d080e]"
                 >
-                  Join waitlist →
+                  Start Module 1
                 </button>
 
                 <p className="text-xs leading-6 text-[#7a7063]">
@@ -744,7 +728,7 @@ export default function StatisticsFoundationCoursePage() {
               )}
               className="inline-flex w-full justify-center rounded-full bg-[#741018] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#4d080e] sm:w-auto md:py-4"
             >
-              Open Lesson 1.1 →
+              Start Module 1
             </a>
           </div>
         </section>

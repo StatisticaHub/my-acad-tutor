@@ -77,18 +77,18 @@ export default function CourseWaitlist() {
               </p>
 
               <h2 className="mt-5 max-w-2xl text-4xl font-black leading-[1.02] tracking-[-0.055em] md:text-6xl">
-                Get early access to upcoming course releases.
+                Get updates for upcoming course releases.
               </h2>
 
               <p className="mt-6 max-w-2xl text-sm leading-7 text-white/70 md:text-base md:leading-8">
-                Join the waitlist for Statistics Foundation, Machine Learning in
+                Start learning for Statistics Foundation, Machine Learning in
                 Biostatistics and future applied quantitative courses.
               </p>
 
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 {[
                   "Release updates",
-                  "Early access alerts",
+                  "Course update alerts",
                   "Course announcements",
                   "Learning Hub guidance",
                 ].map((item) => (
@@ -110,7 +110,7 @@ export default function CourseWaitlist() {
                   {[
                     "Statistics Foundation",
                     "ML in Biostatistics",
-                    "July 2026",
+                    "Open now",
                   ].map((item) => (
                     <span
                       key={item}
@@ -201,7 +201,7 @@ export default function CourseWaitlist() {
                 disabled={status === "sending"}
                 className="mt-6 inline-flex w-full items-center justify-center rounded-full bg-[#86121d] px-6 py-4 text-sm font-black text-white shadow-[0_16px_35px_rgba(153,15,26,0.25)] transition hover:-translate-y-0.5 hover:bg-[#141210] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {status === "sending" ? "Joining waitlist..." : "Join waitlist →"}
+                {status === "sending" ? "Joining waitlist..." : "Start learning →"}
               </button>
 
               {message ? (

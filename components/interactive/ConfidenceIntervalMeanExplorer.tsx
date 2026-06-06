@@ -182,7 +182,7 @@ export default function ConfidenceIntervalMeanExplorer() {
 
           <p className="mt-4 text-sm leading-7 text-[#525252] md:text-base md:leading-8">
             Enter raw data or summary statistics, choose a z or t interval, and
-            see the interval, graph, 3D view and interpretation update instantly.
+            see the interval, graph and interpretation update instantly.
           </p>
 
           <div className="mt-6 grid gap-3">

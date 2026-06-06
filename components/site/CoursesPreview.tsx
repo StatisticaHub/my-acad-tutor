@@ -38,8 +38,8 @@ const upcomingCourses = [
   {
     title: "Statistics Foundation",
     area: "Statistics",
-    status: "Opens July 2026",
-    body: "5 modules and 26 theoretical lessons covering statistical thinking, probability, inference and regression. Lesson 1.1 is open now; the full course opens July 2026.",
+    status: "Full course open now",
+    body: "5 modules and 26 theoretical lessons covering statistical thinking, probability, inference and regression. All modules and lessons are available for full study.",
   },
   {
     title: "Biostatistics Foundation",
@@ -68,8 +68,8 @@ const upcomingCourses = [
   {
     title: "Machine Learning in Biostatistics",
     area: "Machine learning",
-    status: "Opens July 2026",
-    body: "A medical machine-learning pathway for prediction modelling, validation, calibration, interpretation and responsible clinical use. Lesson 1.1 is open now; the full course opens July 2026.",
+    status: "Preview open now",
+    body: "A medical machine-learning pathway for prediction modelling, validation, calibration, interpretation and responsible clinical use. Lesson 1.1 is available now as a preview. The full pathway opens later.",
   },
 ];
 
@@ -88,7 +88,7 @@ export default function CoursesPreview() {
             </h2>
 
             <p className="mt-5 max-w-3xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
-              Start with the available learning tools, then join the waitlist
+              Start with the available learning tools, then start learning
               for upcoming structured courses in statistics, biostatistics,
               epidemiology, regression, survival analysis and machine learning.
             </p>
@@ -150,15 +150,15 @@ export default function CoursesPreview() {
                 Upcoming courses
               </p>
               <h3 className="mt-2 text-2xl font-black tracking-[-0.04em] md:text-3xl">
-                Join the waitlist for the next course releases.
+                Start learning for the next course releases.
               </h3>
             </div>
 
             <a
-              href="#course-waitlist"
+              href="#course-course access"
               className="inline-flex w-fit items-center justify-center rounded-full bg-[#11100E] px-5 py-3 text-sm font-black text-white transition hover:bg-[#741018]"
             >
-              Join waitlist →
+              Start learning →
             </a>
           </div>
 
@@ -187,10 +187,10 @@ export default function CoursesPreview() {
                 </p>
 
                 <a
-                  href="#course-waitlist"
+                  href="#course-course access"
                   className="mt-5 inline-flex items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-5 py-3 text-sm font-black text-[#141210] transition hover:bg-[#11100E] hover:text-white"
                 >
-                  Join waitlist →
+                  Start learning →
                 </a>
               </article>
             ))}

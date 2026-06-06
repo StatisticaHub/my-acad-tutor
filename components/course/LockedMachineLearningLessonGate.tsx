@@ -62,7 +62,7 @@ export default function LockedMachineLearningLessonGate({
                   )}
                   className="inline-flex items-center justify-center rounded-full bg-[#11100E] px-6 py-3.5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-[#741018]"
                 >
-                  Join the waitlist →
+                  Start learning →
                 </a>
 
                 <a

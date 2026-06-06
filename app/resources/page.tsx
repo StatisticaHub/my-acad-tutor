@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { resourceGuides } from "@/lib/resources";
+import JsonLd from "@/components/seo/JsonLd";
 export const metadata: Metadata = {
   title: "Statistics and Biostatistics Resources",
   description:
@@ -40,8 +41,30 @@ const featuredGuides = featuredSlugs
 
 const areas = Array.from(new Set(resourceGuides.map((guide) => guide.area)));
 
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.myacademictutor.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Resources",
+      item: "https://www.myacademictutor.com/resources/",
+    },
+  ],
+};
+
 export default function ResourcesPage() {
   return (
+    <>
+      <JsonLd data={breadcrumbSchema} />
     <main className="min-h-screen bg-[#F7F3EA] px-5 py-10 text-[#141210] md:px-8 md:py-16">
 
       <section className="mx-auto mt-8 max-w-7xl rounded-[2rem] border border-[#E4DED2] bg-[#FFFCF6] p-6 shadow-sm md:p-8">
@@ -202,5 +225,6 @@ export default function ResourcesPage() {
         </section>
       </section>
     </main>
+    </>
   );
 }

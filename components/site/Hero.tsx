@@ -45,7 +45,7 @@ export default function Hero() {
           </div>
 
               <h1 className="mt-4 max-w-5xl text-4xl font-semibold leading-[1.02] tracking-[-0.055em] text-[#141210] sm:text-5xl md:text-6xl">
-                Dive into Quantitative Learning.
+                Deep Dive into Quantitative Learning.
               </h1>
 
               <div className="mt-5 rounded-[1.5rem] border border-[#E4DED2] bg-[#F7F3EA] p-4 shadow-[0_24px_70px_rgba(20,18,16,0.07)] md:p-5">

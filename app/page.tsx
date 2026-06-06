@@ -11,6 +11,7 @@ import InteractiveDemosPreview from "@/components/site/InteractiveDemosPreview";
 import ContactCTA from "@/components/site/ContactCTA";
 import QuickFAQ from "@/components/site/QuickFAQ";
 import CourseWaitlist from "@/components/site/CourseWaitlist";
+import WhoThisIsFor from "@/components/site/WhoThisIsFor";
 export const metadata: Metadata = {
   title: "Online Statistics, Biostatistics and Health Data Science Tutoring",
   description:
