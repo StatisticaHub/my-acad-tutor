@@ -109,7 +109,7 @@ const roadmap = [
     body: "Statistics Foundation is fully open now. Machine Learning in Biostatistics currently has Lesson 1.1 available as a preview.",
   },
   {
-    label: "July 2026",
+    label: "Open now",
     title: "Main course release",
     body: "Statistics Foundation is fully open now. Machine Learning in Biostatistics currently has Lesson 1.1 available as a preview.",
   },
@@ -166,8 +166,8 @@ export default function CoursesPage() {
                 </h1>
 
                 <p className="mt-6 max-w-3xl text-base leading-8 text-white/75 md:text-lg md:leading-9">
-                  Start with open sample lessons, follow subject pathways, and join
-                  the waitlist for July 2026 course releases.
+                  Start with the fully open Statistics Foundation course, then preview
+                  Machine Learning in Biostatistics through Lesson 1.1.
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">
@@ -184,10 +184,10 @@ export default function CoursesPage() {
                     Open Learning Hub
                   </a>
                   <a
-                    href="#waitlist"
+                    href="#course-updates"
                     className="rounded-full border border-white/20 px-5 py-3 text-sm font-black text-white transition hover:bg-white/10"
                   >
-                    Join waitlist
+                    Get course updates
                   </a>
                 </div>
               </div>
@@ -225,14 +225,12 @@ export default function CoursesPage() {
                   Featured courses
                 </p>
                 <h2 className="mt-4 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                  Two learning routes have open sample lessons.
+                  Statistics Foundation is fully open now, and Machine Learning in Biostatistics has Lesson 1.1 available as a preview.
                 </h2>
               </div>
 
               <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
-                These are the main course releases for July 2026. Each course starts
-                with one open lesson so learners can preview the teaching style before
-                joining the waitlist.
+                Statistics Foundation is fully open now. Machine Learning in Biostatistics currently has Lesson 1.1 available as a preview.
               </p>
             </div>
 
@@ -347,7 +345,7 @@ export default function CoursesPage() {
               </div>
             </div>
 
-            <aside id="waitlist" className="lg:sticky lg:top-24">
+            <aside id="course-updates" className="lg:sticky lg:top-24">
               <CourseWaitlistInline />
 
               <div className="mt-5 rounded-[1.75rem] border border-[#E4DED2] bg-[#141210] p-5 text-white shadow-sm">

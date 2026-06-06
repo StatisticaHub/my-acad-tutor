@@ -40,6 +40,7 @@ const upcomingCourses = [
     area: "Statistics",
     status: "Full course open now",
     body: "5 modules and 26 theoretical lessons covering statistical thinking, probability, inference and regression. All modules and lessons are available for full study.",
+    href: "/courses/statistics-foundation",
   },
   {
     title: "Biostatistics Foundation",
@@ -155,7 +156,7 @@ export default function CoursesPreview() {
             </div>
 
             <a
-              href="#course-course access"
+              href={withBasePath("/courses/statistics-foundation")}
               className="inline-flex w-fit items-center justify-center rounded-full bg-[#11100E] px-5 py-3 text-sm font-black text-white transition hover:bg-[#741018]"
             >
               Start learning →
@@ -187,7 +188,7 @@ export default function CoursesPreview() {
                 </p>
 
                 <a
-                  href="#course-course access"
+                  href={withBasePath(course.href ?? "/courses")}
                   className="mt-5 inline-flex items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-5 py-3 text-sm font-black text-[#141210] transition hover:bg-[#11100E] hover:text-white"
                 >
                   Start learning →

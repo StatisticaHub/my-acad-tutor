@@ -113,7 +113,7 @@ export default function CourseWaitlistInline() {
         disabled={status === "loading"}
         className="mt-5 w-full rounded-full bg-[#141210] px-5 py-3 text-sm font-black text-white transition hover:bg-[#741018] disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "loading" ? "Joining..." : "Join waitlist →"}
+        {status === "loading" ? "Joining..." : "Start learning →"}
       </button>
 
       {message ? (

@@ -361,7 +361,7 @@ export default function MachineLearningBiostatisticsCoursePage() {
                   href={withBasePath("#join-waitlist")}
                   className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
-                  Join waitlist
+                  Start learning
                 </a>
 
                 <a
@@ -644,7 +644,7 @@ export default function MachineLearningBiostatisticsCoursePage() {
                   </p>
 
                   <p className="mt-4 text-sm font-black text-[#741018] transition group-hover:translate-x-1">
-                    {lesson.open ? "Open lesson →" : "Join waitlist →"}
+                    {lesson.open ? "Open lesson →" : "Start learning →"}
                   </p>
                 </a>
               );
@@ -761,7 +761,7 @@ export default function MachineLearningBiostatisticsCoursePage() {
                   type="submit"
                   className="rounded-full bg-[#741018] px-6 py-4 text-sm font-black text-white transition hover:bg-[#4d080e]"
                 >
-                  Join waitlist →
+                  Start learning →
                 </button>
 
                 <p className="text-xs leading-6 text-[#7a7063]">

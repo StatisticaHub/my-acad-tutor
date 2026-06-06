@@ -221,7 +221,7 @@ export default function AppliedBiostatisticalMLCaseStudiesModulePage() {
                   href={withBasePath("#join-waitlist")}
                   className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
-                  Join waitlist
+                  Start learning
                 </a>
               </div>
 
@@ -408,7 +408,7 @@ export default function AppliedBiostatisticalMLCaseStudiesModulePage() {
               href={withBasePath("#join-waitlist")}
               className="mt-6 inline-flex w-full justify-center rounded-full bg-[#741018] px-6 py-3.5 text-sm font-black text-white transition hover:bg-[#4d080e] sm:w-auto"
             >
-              Join waitlist →
+              Start learning →
             </a>
           </article>
         </section>
@@ -493,7 +493,7 @@ export default function AppliedBiostatisticalMLCaseStudiesModulePage() {
                     </span>
 
                     <p className="mt-5 text-sm font-black text-[#741018] transition group-hover:translate-x-1">
-                      Join waitlist →
+                      Start learning →
                     </p>
                   </div>
                 </div>
@@ -612,7 +612,7 @@ export default function AppliedBiostatisticalMLCaseStudiesModulePage() {
                   type="submit"
                   className="rounded-full bg-[#741018] px-6 py-4 text-sm font-black text-white transition hover:bg-[#4d080e]"
                 >
-                  Join waitlist →
+                  Start learning →
                 </button>
 
                 <p className="text-xs leading-6 text-[#7a7063]">

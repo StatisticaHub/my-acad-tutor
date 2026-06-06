@@ -35,7 +35,7 @@ export default function InteractiveDemosPreview() {
 
               <p className="mt-4 max-w-3xl text-sm leading-7 text-[#525252] md:text-base md:leading-8">
                 Enter raw data or summary statistics, choose a Z or T interval,
-                and see the confidence interval, graph, 3D view and
+                and see the confidence interval, graph and
                 interpretation update instantly.
               </p>
 

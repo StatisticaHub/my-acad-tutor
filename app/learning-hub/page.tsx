@@ -119,7 +119,7 @@ const demoCards = [
 const coursePathways = [
   {
     title: "Statistics Foundation",
-    status: "Preview open now",
+    status: "Full course open now",
     body:
       "A zero-coding foundation pathway with 5 modules and 26 theoretical lessons.",
     href: "/courses/statistics-foundation",
