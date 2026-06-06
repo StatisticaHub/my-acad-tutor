@@ -320,7 +320,7 @@ export default function StatisticsFoundationCoursePage() {
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
 
                 <a
-                  href={withBasePath("#join-course access")}
+                  href={withBasePath("/courses/statistics-foundation/modules/introduction-to-statistical-thinking")}
                   className="inline-flex w-full items-center justify-center rounded-full border border-[#D8CDBB] bg-[#FFFCF6] px-6 py-3.5 text-sm font-black text-[#141210] transition hover:bg-[#F7F3EA] sm:w-auto md:py-4"
                 >
                   Start Module 1
@@ -439,8 +439,8 @@ export default function StatisticsFoundationCoursePage() {
 
             <p className="text-sm leading-7 text-[#525252] md:text-base md:leading-8">
               Students can explore the full course structure now. Each module
-              page shows the learning pathway, formulas, lesson sequence and
-              what will be covered when the lessons open fully.
+              page shows the complete lesson sequence, formulas and learning pathway for
+              the fully open course.
             </p>
           </div>
 
@@ -585,124 +585,6 @@ export default function StatisticsFoundationCoursePage() {
           </div>
         </section>
 
-        <section
-          id="join-course access"
-          className="mt-6 overflow-hidden rounded-[1.75rem] border border-[#E4DED2] bg-[#11100E] shadow-sm md:mt-8 md:rounded-[2.5rem]"
-        >
-          <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="p-5 text-white md:p-10">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-white/50 md:text-sm">
-                Start Module 1
-              </p>
-
-              <h2 className="mt-3 text-3xl font-black tracking-[-0.045em] md:text-5xl">
-                The full course is open now.
-              </h2>
-
-              <p className="mt-4 max-w-3xl text-sm leading-7 text-white/75 md:text-base md:leading-8">
-                Use this course access block for course updates.
-                form submission needs your existing contact page, Formspree,
-                Formsubmit, Google Forms or another external form endpoint.
-              </p>
-
-              <div className="mt-6 grid gap-3">
-                {[
-                  "Module pages stay open.",
-                  "Lesson 1.1 remains available.",
-                  "All modules and lessons are now available for full study.",
-                  "Open course visitors can request early access or course updates.",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-[1.25rem] border border-white/10 bg-[#FFFCF6]/[0.07] px-4 py-3 text-sm font-bold text-white/80"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="border-t border-white/10 bg-[#FFFCF6] p-5 md:p-8 lg:border-l lg:border-t-0">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#741018]">
-                Open course form
-              </p>
-
-              <h3 className="mt-3 text-3xl font-black tracking-[-0.045em]">
-                Request access.
-              </h3>
-
-              <form
-                action={withBasePath("/contact")}
-                method="get"
-                className="mt-6 grid gap-4"
-              >
-                <label className="grid gap-2">
-                  <span className="text-sm font-black text-[#525252]">
-                    Name
-                  </span>
-                  <input
-                    name="name"
-                    type="text"
-                    required
-                    placeholder="Your name"
-                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
-                  />
-                </label>
-
-                <label className="grid gap-2">
-                  <span className="text-sm font-black text-[#525252]">
-                    Email
-                  </span>
-                  <input
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="you@example.com"
-                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
-                  />
-                </label>
-
-                <label className="grid gap-2">
-                  <span className="text-sm font-black text-[#525252]">
-                    Interest
-                  </span>
-                  <select
-                    name="interest"
-                    defaultValue="Statistics Foundation course access"
-                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
-                  >
-                    <option>Statistics Foundation course access</option>
-                    <option>Early access</option>
-                    <option>Private tutoring support</option>
-                    <option>Full course course updates</option>
-                  </select>
-                </label>
-
-                <label className="grid gap-2">
-                  <span className="text-sm font-black text-[#525252]">
-                    Message
-                  </span>
-                  <textarea
-                    name="message"
-                    rows={4}
-                    defaultValue="I want to join the Statistics Foundation course course access."
-                    className="rounded-2xl border border-[#E4DED2] bg-[#F7F3EA] px-4 py-3 text-sm font-bold text-[#141210] outline-none transition focus:border-[#741018] focus:bg-[#FFFCF6]"
-                  />
-                </label>
-
-                <button
-                  type="submit"
-                  className="rounded-full bg-[#741018] px-6 py-4 text-sm font-black text-white transition hover:bg-[#4d080e]"
-                >
-                  Start Module 1
-                </button>
-
-                <p className="text-xs leading-6 text-[#7a7063]">
-                </p>
-              </form>
-            </div>
-          </div>
-        </section>
 
         <section className="mt-6 rounded-[1.75rem] border border-[#741018]/20 bg-[#fff4ef] p-5 shadow-sm md:mt-8 md:rounded-[2.5rem] md:p-10">
           <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
