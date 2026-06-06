@@ -267,7 +267,7 @@ const lessons = [
 
 const snapshot = [
   ["5", "Modules open"],
-  ["1", "Lessons open now"],
+  ["26", "Lessons open now"],
   ["26", "Lessons available"],
   ["Open now", "Full access"],
 ];
