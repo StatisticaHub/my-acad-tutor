@@ -89,9 +89,9 @@ export default function CoursesPreview() {
             </h2>
 
             <p className="mt-5 max-w-3xl text-base leading-8 text-[#525252] md:text-lg md:leading-9">
-              Start with the available learning tools, then start learning
-              for upcoming structured courses in statistics, biostatistics,
-              epidemiology, regression, survival analysis and machine learning.
+              Statistics Foundation is fully open now. Machine Learning in
+              Biostatistics has Lesson 1.1 available as a preview, with the
+              full pathway opening in July 2026.
             </p>
           </div>
 
